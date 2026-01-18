@@ -1,0 +1,220 @@
+import React from 'react';
+import { motion } from 'framer-motion';
+import { Check, X, Star, Zap, Gauge, Code2, Users, Sparkles } from 'lucide-react';
+
+const ComparisonMatrix = () => {
+  const data = [
+    {
+      name: 'Clean Architecture',
+      size: 'Large',
+      speed: 2,
+      learning: 5,
+      maint: 5,
+      test: 5,
+      ai: 5,
+      color: 'var(--primary)',
+      bestFor: 'Complex Enterprise Systems'
+    },
+    {
+      name: 'Vertical Slice',
+      size: 'Small to Medium',
+      speed: 5,
+      learning: 2,
+      maint: 4,
+      test: 4,
+      ai: 4,
+      color: '#f97316',
+      bestFor: 'Rapid Feature Development'
+    },
+    {
+      name: 'DDD (Methodology)',
+      size: 'Large',
+      speed: 1,
+      learning: 5,
+      maint: 5,
+      test: 4,
+      ai: 5,
+      color: '#a78bfa',
+      bestFor: 'Domain-Heavy Business Logic'
+    },
+    {
+      name: 'CQRS (Pattern)',
+      size: 'Medium to Large',
+      speed: 2,
+      learning: 4,
+      maint: 4,
+      test: 5,
+      ai: 4,
+      color: '#eab308',
+      bestFor: 'High-Read/Write Systems'
+    },
+    {
+      name: 'SOLID Principles',
+      size: 'Any',
+      speed: 3,
+      learning: 3,
+      maint: 5,
+      test: 5,
+      ai: 5,
+      color: '#6366f1',
+      bestFor: 'Fundamental Code Quality'
+    },
+    {
+      name: 'Hexagonal',
+      size: 'Medium to Large',
+      speed: 3,
+      learning: 4,
+      maint: 5,
+      test: 5,
+      ai: 4,
+      color: '#10b981',
+      bestFor: 'Tech-Agnostic Apps'
+    },
+    {
+      name: 'Onion Architecture',
+      size: 'Medium to Large',
+      speed: 3,
+      learning: 4,
+      maint: 5,
+      test: 5,
+      ai: 5,
+      color: '#f43f5e',
+      bestFor: 'Domain-Centric Apps'
+    },
+    {
+      name: 'FSD (Frontend)',
+      size: 'Medium to Large',
+      speed: 3,
+      learning: 4,
+      maint: 4,
+      test: 3,
+      ai: 4,
+      color: '#06b6d4',
+      bestFor: 'Complex React/Next Projects'
+    },
+    {
+      name: 'Event-Driven (EDA)',
+      size: 'Huge',
+      speed: 2,
+      learning: 5,
+      maint: 4,
+      test: 3,
+      ai: 3,
+      color: '#a855f7',
+      bestFor: 'Distributed Microservices'
+    },
+    {
+      name: 'Monolith',
+      size: 'Small to Medium',
+      speed: 5,
+      learning: 1,
+      maint: 3,
+      test: 3,
+      ai: 2,
+      color: '#3b82f6',
+      bestFor: 'Small Teams & MVPs'
+    }
+  ];
+
+  const renderStars = (count) => {
+    return (
+      <div style={{ display: 'flex', gap: '2px' }}>
+        {[...Array(5)].map((_, i) => (
+          <Star 
+            key={i} 
+            size={14} 
+            fill={i < count ? "currentColor" : "transparent"} 
+            color={i < count ? "inherit" : "rgba(255,255,255,0.1)"} 
+          />
+        ))}
+      </div>
+    );
+  };
+
+  return (
+    <section style={{ padding: '100px 0' }}>
+      <div className="container">
+        <motion.div
+           initial={{ opacity: 0, y: 20 }}
+           whileInView={{ opacity: 1, y: 0 }}
+           viewport={{ once: true }}
+           style={{ textAlign: 'center', marginBottom: '5rem' }}
+        >
+          <h2 className="gradient-text" style={{ fontSize: '3.5rem', fontWeight: 800 }}>THE MASTER MATRIX</h2>
+          <p style={{ color: 'var(--text-secondary)', maxWidth: '700px', margin: '1.5rem auto' }}>
+            Mimari stiller, disiplinler ve prensiplerin stratejik kıyaslaması. 
+            Doğru projeye doğru araçla başlayın.
+          </p>
+        </motion.div>
+
+        <div style={{ width: '100%', overflowX: 'auto' }}>
+          <table style={{
+            width: '100%',
+            borderCollapse: 'separate',
+            borderSpacing: '0 10px',
+            minWidth: '1000px'
+          }}>
+            <thead>
+              <tr style={{ color: 'var(--text-secondary)', fontSize: '0.9rem' }}>
+                <th style={{ textAlign: 'left', padding: '1rem 2rem' }}>Arch / Style / Pattern</th>
+                <th style={{ textAlign: 'center', padding: '1rem' }}><Users size={18} style={{ margin: '0 auto 5px' }} /> Boyut</th>
+                <th style={{ textAlign: 'center', padding: '1rem' }}><Zap size={18} style={{ margin: '0 auto 5px' }} /> Hız</th>
+                <th style={{ textAlign: 'center', padding: '1rem' }}><Gauge size={18} style={{ margin: '0 auto 5px' }} /> Öğrenme</th>
+                <th style={{ textAlign: 'center', padding: '1rem' }}><Check size={18} style={{ margin: '0 auto 5px' }} /> Bakım</th>
+                <th style={{ textAlign: 'center', padding: '1rem' }}><Code2 size={18} style={{ margin: '0 auto 5px' }} /> Test</th>
+                <th style={{ textAlign: 'center', padding: '1rem' }}><Sparkles size={18} style={{ margin: '0 auto 5px' }} /> AI Context</th>
+              </tr>
+            </thead>
+            <tbody>
+              {data.map((row, idx) => (
+                <motion.tr
+                  key={idx}
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: idx * 0.05 }}
+                  style={{
+                    background: 'var(--glass)',
+                    boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
+                  }}
+                >
+                  <td style={{ 
+                    padding: '1.25rem 2rem', 
+                    borderRadius: '16px 0 0 16px',
+                    borderLeft: `4px solid ${row.color}`
+                  }}>
+                    <div style={{ fontWeight: 700, marginBottom: '4px' }}>{row.name}</div>
+                    <div style={{ fontSize: '0.7rem', color: row.color, fontWeight: 600 }}>BEST FOR: {row.bestFor}</div>
+                  </td>
+                  <td style={{ textAlign: 'center', padding: '1.25rem', fontSize: '0.8rem' }}>{row.size}</td>
+                  <td style={{ textAlign: 'center', padding: '1.25rem', color: '#f59e0b' }}>{renderStars(row.speed)}</td>
+                  <td style={{ textAlign: 'center', padding: '1.25rem', color: '#3b82f6' }}>{renderStars(row.learning)}</td>
+                  <td style={{ textAlign: 'center', padding: '1.25rem', color: '#10b981' }}>{renderStars(row.maint)}</td>
+                  <td style={{ textAlign: 'center', padding: '1.25rem', color: '#a855f7' }}>{renderStars(row.test)}</td>
+                  <td style={{ textAlign: 'center', padding: '1.25rem', borderRadius: '0 16px 16px 0', color: '#6366f1' }}>{renderStars(row.ai)}</td>
+                </motion.tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        <div style={{ marginTop: '5rem', display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '2rem' }}>
+          <div className="glass-card" style={{ textAlign: 'center' }}>
+            <h4 style={{ marginBottom: '1rem', color: '#f59e0b' }}>Yüksek Hız (Speed)</h4>
+            <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}>Vertical Slice ve Monolith, hızlı MVP çıkarmak için en idealidir.</p>
+          </div>
+          <div className="glass-card" style={{ textAlign: 'center' }}>
+            <h4 style={{ marginBottom: '1rem', color: '#10b981' }}>Yüksek Bakım (Long Term)</h4>
+            <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}>Clean, SOLID ve Onion, yıllarca yaşayacak büyük projelerin sigortasıdır.</p>
+          </div>
+          <div className="glass-card" style={{ textAlign: 'center' }}>
+            <h4 style={{ marginBottom: '1rem', color: '#6366f1' }}>AI Destekli Geliştirme</h4>
+            <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}>Yüksek "AI Context" puanlı mimariler, Cursor/ChatGPT gibi araçlarla mükemmel uyum sağlar.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default ComparisonMatrix;
