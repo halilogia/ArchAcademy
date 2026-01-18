@@ -35,7 +35,6 @@ const questions = [
     ]
   },
   {
-    id: 1,
     id: 4,
     title: "Milyonluk Trafik",
     scenario: "Amazon benzeri bir sistemde anlık milyonlarca sipariş geliyor. Sistemlerin birbiriyle 'gecikmesiz' ama 'bağımsız' konuşması lazım.",

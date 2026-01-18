@@ -252,10 +252,7 @@ const Navbar: React.FC = () => {
                   <Code2 size={16} style={{ color: '#10b981' }} />
                   <span style={{ fontSize: '0.85rem' }}>Project Architecture</span>
                 </Link>
-                <Link to="/design-system" style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', padding: '0.6rem 1rem', borderRadius: '8px', textDecoration: 'none', color: 'white' }}>
-                  <Palette size={16} style={{ color: '#a855f7' }} />
-                  <span style={{ fontSize: '0.85rem' }}>Design System</span>
-                </Link>
+
               </div>
             )}
           </div>

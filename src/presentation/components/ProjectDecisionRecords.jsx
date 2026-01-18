@@ -24,6 +24,13 @@ const ProjectDecisionRecords = () => {
       status: "Standardized",
       why: "Infrastructure'dan gelen ham verinin UI'ı kirletmemesi için Domain katmanında 'Calculators' ve 'Mappers' kullanıldı.",
       impact: "UI sadece ihtiyacı olan veriyi bilerek tamamen 'Agnostic' kaldı."
+    },
+    {
+      title: "Lazy Loading & Fault Isolation",
+      icon: <Cpu color="#8b5cf6" />,
+      status: "Implemented",
+      why: "Tek bir sayfanın (modülün) yüklenme hatası tüm uygulamanın çökmesine (White Screen of Death) neden olmamalıydı. Bu yüzden 'Lazy Loading' ve 'Error Boundaries' uygulandı.",
+      impact: "Sistem, bir parça bozulsa bile çalışmaya devam eder (Bulkhead Pattern)."
     }
   ];
 

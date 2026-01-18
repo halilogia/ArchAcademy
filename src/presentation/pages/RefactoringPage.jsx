@@ -1,11 +1,14 @@
 import React, { useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Scissors, Microscope, Zap, BookOpen } from 'lucide-react';
 import RefactoringSurgery from '../components/RefactoringSurgery';
+import FolderSurgery from '../components/FolderSurgery';
 import { useProgress } from '../../context/ProgressContext';
+import { useState } from 'react';
 
 const RefactoringPage = () => {
   const { completeStep } = useProgress();
+  const [activeTab, setActiveTab] = useState('code');
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -53,9 +56,43 @@ const RefactoringPage = () => {
             Refactoring Playground
           </h1>
           <p style={{ fontSize: '1.25rem', color: 'var(--text-secondary)', maxWidth: '800px', margin: '0 auto', lineHeight: 1.8 }}>
-            Korkunç görünen spagetti kodları, mimari cerrahi teknikleriyle tertemiz yapılara dönüştürüyoruz. 
+            Korkunç görünen spagetti kodları ve karmaşık dosya yapılarını, mimari cerrahi teknikleriyle tertemiz yapılara dönüştürüyoruz. 
             Patolojiyi gör, ameliyatı başlat ve kodun nasıl nefes aldığını izle.
           </p>
+
+          {/* Tab Switcher */}
+          <div style={{ display: 'inline-flex', background: 'rgba(255,255,255,0.05)', padding: '6px', borderRadius: '16px', marginTop: '3rem', border: '1px solid var(--glass-border)' }}>
+             <button 
+               onClick={() => setActiveTab('code')}
+               style={{ 
+                 padding: '12px 30px', 
+                 borderRadius: '12px', 
+                 background: activeTab === 'code' ? 'var(--primary)' : 'transparent',
+                 color: activeTab === 'code' ? 'white' : 'var(--text-secondary)',
+                 border: 'none',
+                 fontWeight: 700,
+                 cursor: 'pointer',
+                 transition: 'all 0.3s'
+               }}
+             >
+               Code Refactoring
+             </button>
+             <button 
+               onClick={() => setActiveTab('structure')}
+               style={{ 
+                 padding: '12px 30px', 
+                 borderRadius: '12px', 
+                 background: activeTab === 'structure' ? '#ec4899' : 'transparent',
+                 color: activeTab === 'structure' ? 'white' : 'var(--text-secondary)',
+                 border: 'none',
+                 fontWeight: 700,
+                 cursor: 'pointer',
+                 transition: 'all 0.3s'
+               }}
+             >
+               Architectural Surgery
+             </button>
+          </div>
         </div>
 
         {/* Stats Grid */}
@@ -74,7 +111,17 @@ const RefactoringPage = () => {
         </div>
 
         {/* Main Surgery Component */}
-        <RefactoringSurgery />
+        <AnimatePresence mode="wait">
+          {activeTab === 'code' ? (
+             <motion.div key="code" initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 20 }}>
+               <RefactoringSurgery />
+             </motion.div>
+          ) : (
+             <motion.div key="structure" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }}>
+               <FolderSurgery />
+             </motion.div>
+          )}
+        </AnimatePresence>
 
         {/* Footer Guidance */}
         <div style={{ padding: '80px 0 120px', textAlign: 'center' }}>

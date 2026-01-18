@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Laptop, Code2, ShieldCheck, ChevronRight } from 'lucide-react';
 
-const ProjectHero = () => {
+const ProjectHero = ({ children }) => {
   return (
     <section style={{
       padding: '120px 0 60px',
@@ -53,6 +53,8 @@ const ProjectHero = () => {
             kullanarak nasıl "teknoloji bağımsız" ve "test edilebilir" bir proje kurduğumuzu 
             gerçek kodlar üzerinden inceleyin.
           </p>
+
+          {children}
 
           <div style={{ display: 'flex', gap: '1.5rem' }}>
             <button style={{
