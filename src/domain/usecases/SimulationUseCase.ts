@@ -1,9 +1,19 @@
-/**
- * Simulasyonun mantığını yöneten Use Case.
- * UI'dan tamamen bağımsızdır.
- */
+export interface SimulationStep {
+  layer: string;
+  text: string;
+}
+
+export interface SimulationUpdate {
+  stepIndex: number;
+  activeLayer: string;
+  isFinished: boolean;
+}
+
 export class SimulationUseCase {
-  constructor(updateCallback) {
+  private updateCallback: (update: SimulationUpdate) => void;
+  private steps: SimulationStep[];
+
+  constructor(updateCallback: (update: SimulationUpdate) => void) {
     this.updateCallback = updateCallback;
     this.steps = [
       { layer: 'adapters', text: 'HTTP İsteği Geldi (POST /register)' },

@@ -33,6 +33,7 @@ const Navbar: React.FC = () => {
     { name: 'DDD (Methodology)', path: '/ddd', color: '#a78bfa' },
     { name: 'CQRS (Pattern)', path: '/cqrs', color: '#eab308' },
     { name: 'FSD (Frontend Style)', path: '/fsd', color: '#06b6d4' },
+    { name: 'Clean Code (Basic)', path: '/clean-code', color: '#10b981' },
   ];
 
   return (
@@ -277,7 +278,7 @@ const Navbar: React.FC = () => {
             gap: '0.5rem',
             transition: 'all 0.3s'
           }}>
-            <Sparkles size={14} /> Wizard
+            <Sparkles size={14} /> Matrix
           </Link>
         </div>
       </div>

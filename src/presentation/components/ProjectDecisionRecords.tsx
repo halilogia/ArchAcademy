@@ -1,15 +1,15 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Book, Cpu, ShieldAlert, ArrowRightLeft, Zap, FileCode } from 'lucide-react';
+import { Book, Cpu, ShieldAlert, ArrowRightLeft, Zap, FileCode, Palette } from 'lucide-react';
 
 const ProjectDecisionRecords = () => {
   const decisions = [
     {
       title: "JavaScript -> TypeScript Migration",
       icon: <FileCode color="#3178c6" />,
-      status: "In Progress",
-      why: "Başlangıçta hızlı prototipleme (Vibe Coding) için JS seçildi. Ancak mimarinin 'bağımlılık kuralını' (Dependency Rule) tip güvenliği ile korumak için TS'e geçiş kararı alındı.",
-      impact: "Katmanlar arası 'Sözleşmeler' (Interfaces) artık runtime yerine compile-time'da kontrol edilecek."
+      status: "Completed",
+      why: "Başlangıçta hızlı prototipleme için JS seçildi ancak mimari büyüdükçe tip güvenliği zorunluluk haline geldi. Hibrit bir geçiş süreci yerine tam 'Migration' yapıldı.",
+      impact: "Tüm proje %100 TypeScript (.tsx) yapısına kavuştu. Katmanlar arası sözleşmeler artık Tip Güvenliği altında."
     },
     {
       title: "Context API over Redux/Zustand",
@@ -17,6 +17,13 @@ const ProjectDecisionRecords = () => {
       status: "Stable",
       why: "Projenin state karmaşıklığı (Progress, Wizard) orta seviyede olduğu için ek kütüphane bağımlılığını azaltmak ve React'in native gücünü kullanmak tercih edildi.",
       impact: "Daha az 'Boilerplate' ve daha hafif bir bundle size."
+    },
+    {
+      title: "Vanilla CSS over CSS-in-JS",
+      icon: <Palette color="#ec4899" />,
+      status: "Stable",
+      why: "Runtime performansını (JS parse maliyetini) düşürmek ve stil katmanını React Framework'ünden bağımsız kılmak için saf CSS + CSS Variables kullanıldı.",
+      impact: "Sıfır JS runtime maliyeti ve %100 taşınabilir bir tasarım sistemi."
     },
     {
       title: "Manual Data Mapping",
@@ -29,7 +36,7 @@ const ProjectDecisionRecords = () => {
       title: "Lazy Loading & Fault Isolation",
       icon: <Cpu color="#8b5cf6" />,
       status: "Implemented",
-      why: "Tek bir sayfanın (modülün) yüklenme hatası tüm uygulamanın çökmesine (White Screen of Death) neden olmamalıydı. Bu yüzden 'Lazy Loading' ve 'Error Boundaries' uygulandı.",
+      why: "Tek bir sayfanın (modülün) yüklenme hatası tüm uygulamanın çökmesine neden olmamalıydı. 'Lazy Loading' ve 'Error Boundaries' uygulandı.",
       impact: "Sistem, bir parça bozulsa bile çalışmaya devam eder (Bulkhead Pattern)."
     }
   ];

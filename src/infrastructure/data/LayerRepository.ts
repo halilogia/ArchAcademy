@@ -14,7 +14,7 @@ const rawData = [
 ];
 
 export class LayerRepository {
-  getLayers() {
-    return rawData.map(data => new ArchitectureLayer(data));
+  getLayers(): ArchitectureLayer[] {
+    return rawData.map(data => new ArchitectureLayer(data as any)); // Using 'any' temp or defining rawData type properly
   }
 }

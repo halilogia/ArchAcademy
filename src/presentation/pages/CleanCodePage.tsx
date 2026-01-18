@@ -1,0 +1,186 @@
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { scissors, Scissors, CheckCircle2, XCircle, Divide, Sparkles } from 'lucide-react';
+import Navbar from '../components/Navbar';
+
+const CleanCodePage: React.FC = () => {
+  return (
+    <div style={{ minHeight: '100vh', background: 'var(--bg-dark)', color: 'var(--text-primary)', paddingTop: '80px' }}>
+      
+      {/* --- HERO SECTION --- */}
+      <section style={{ padding: '80px 0', position: 'relative', overflow: 'hidden' }}>
+        <div className="container">
+          <div style={{ maxWidth: '800px', margin: '0 auto', textAlign: 'center' }}>
+            <div style={{ 
+              display: 'inline-flex', 
+              alignItems: 'center', 
+              gap: '0.5rem', 
+              padding: '0.5rem 1rem', 
+              marginBottom: '2rem',
+              borderRadius: '100px',
+              background: 'rgba(16, 185, 129, 0.1)',
+              color: '#10b981',
+              border: '1px solid rgba(16, 185, 129, 0.2)'
+            }}>
+               <Sparkles size={16} /> 
+               <span style={{ fontSize: '0.8rem', fontWeight: 700, textTransform: 'uppercase' }}>Software Craftsmanship</span>
+            </div>
+            
+            <h1 className="gradient-text" style={{ fontSize: '3.5rem', fontWeight: 900, lineHeight: 1.1, marginBottom: '2rem' }}>
+              Temiz Kod, Arkanı Toplamaktır.
+            </h1>
+            <p style={{ fontSize: '1.2rem', color: 'var(--text-secondary)', lineHeight: 1.8 }}>
+              Yazdığın kodu 6 ay sonra açtığında <b>"Bunu hangi idiot yazdı?"</b> demek istemiyorsan, Clean Code opsiyonel değil, zorunluluktur.
+              Burada süslü teoriler yok; sadece gece rahat uyumanı sağlayacak gerçekler var.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* --- PRACTICAL BLOG CONTENT --- */}
+      <section style={{ padding: '40px 0 100px' }}>
+        <div className="container">
+          
+          {/* 1. THE BOY SCOUT RULE */}
+          <div style={{ marginBottom: '6rem' }}>
+             <h2 style={{ fontSize: '2rem', marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                <CheckCircle2 color="#10b981" /> İzcilik Kuralı (Boy Scout Rule)
+             </h2>
+             <div className="glass-card" style={{ padding: '2.5rem', background: 'rgba(16, 185, 129, 0.05)', border: '1px solid rgba(16, 185, 129, 0.1)' }}>
+                <p style={{ fontSize: '1.1rem', lineHeight: 1.7, color: '#e2e8f0', marginBottom: '1.5rem' }}>
+                   Robert C. Martin'in en sevdiğim kuralı basittir: <b>"Kamp alanını bulduğundan daha temiz bırak."</b>
+                </p>
+                <p style={{ color: 'var(--text-secondary)', lineHeight: 1.7 }}>
+                   Bir dosyayı açtın ve sadece bir <code>bug</code> düzelteceksin. Gözüne kötü isimlendirilmiş bir değişken takıldı.
+                   "Aman şimdi kim uğraşacak, testler patlar" deme. Düzelt. O an düzelt. Eğer her yazılımcı girdiği dosyayı birazcık temizleseydi,
+                   teknik borç (technical debt) diye bir kavram olmazdı. Büyük refactoring haftaları düzenlemeye gerek kalmazdı.
+                   Ufak dokunuşlar, büyük kaosları önler.
+                </p>
+             </div>
+          </div>
+
+          {/* 2. NAMING CONVENTIONS */}
+          <div style={{ display: 'grid', gridTemplateColumns: '1.2fr 0.8fr', gap: '4rem', marginBottom: '6rem', alignItems: 'center' }}>
+            <div>
+              <h2 style={{ fontSize: '2rem', marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                <Divide color="#3b82f6" /> İsimlendirme: En Zor Sanat
+              </h2>
+              <p style={{ color: 'var(--text-secondary)', lineHeight: 1.8, marginBottom: '1.5rem', fontSize: '1.05rem' }}>
+                Yazılımda en zor iki şey vardır: 1. Cache Invalidation, 2. Şeylere isim vermek.
+                Değişken ismin, o değişkenin ne işe yaradığını, neden var olduğunu ve nasıl kullanıldığını anlatmalı.
+                Yorum satırına ihtiyaç duyuyorsan, isimlendirmen kötüdür.
+              </p>
+              
+              <div style={{ background: 'rgba(0,0,0,0.3)', padding: '1.5rem', borderRadius: '12px' }}>
+                 <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '10px', color: '#f87171' }}>
+                    <XCircle size={18} /> 
+                    <code style={{ fontSize: '0.9rem' }}>const d; // elapsed time in days</code>
+                    <span style={{ fontSize: '0.8rem', opacity: 0.6 }}>(Bunu yorumla açıklamak zorundaysan kaybettin)</span>
+                 </div>
+                 <div style={{ display: 'flex', alignItems: 'center', gap: '10px', color: '#4ade80' }}>
+                    <CheckCircle2 size={18} /> 
+                    <code style={{ fontSize: '0.9rem' }}>const daysSinceModification;</code>
+                    <span style={{ fontSize: '0.8rem', opacity: 0.6 }}>(İsim her şeyi anlatıyor)</span>
+                 </div>
+              </div>
+            </div>
+            <div className="glass-card" style={{ padding: '2rem' }}>
+               <h4 style={{ color: 'var(--primary)', marginBottom: '1rem' }}>Yasaklı Kelimeler Listesi 🚫</h4>
+               <ul style={{ listStyle: 'none', padding: 0, color: 'var(--text-secondary)', lineHeight: 2 }}>
+                  <li>❌ <b>data, info, item:</b> Çok genel. Hangi data? Kullanıcı mı, Ürün mü?</li>
+                  <li>❌ <b>Manager, Processor:</b> Tanrı sınıfı (God Class) kokusu alıyorum.</li>
+                  <li>❌ <b>flag:</b> Boolean ama neyi kontrol ediyor? <code>isVisible</code> de.</li>
+                  <li>❌ <b>utils, helpers:</b> Kodun çöplüğü. Oraya atılan bir daha bulunmaz.</li>
+               </ul>
+            </div>
+          </div>
+
+          {/* 3. FUNCTIONS & COMMENTS */}
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem', marginBottom: '6rem' }}>
+             <PrincipleCard 
+               title="Fonksiyonlar: Tek Bir Görev" 
+               desc="Bir fonksiyonun ilk kuralı: KÜÇÜK olmalı. İkinci kuralı: DAHA DA KÜÇÜK olmalı. Bir fonksiyon sadece bir iş yapmalı. Eğer fonksiyonun adı 'getUserAndSaveToDbAndSendEmail' gibi oluyorsa, o fonksiyonu parçala. 've' bağlacı senin düşmanındır."
+               icon={<Divide color="#f59e0b" />} 
+             />
+             <PrincipleCard 
+               title="Yorumlar: Başarısızlığın İtirafı" 
+               desc="Mükemmel kodun yoruma ihtiyacı yoktur. Yorum satırı yazıyorsan, aslında şunu diyorsun: 'Kodum o kadar karmaşık ki, ne yaptığımı Türkçe/İngilizce anlatmak zorundayım.' Kodu düzelt, yorumu sil. Yorumlar yalan söyler (güncellenmez), kod asla yalan söylemez."
+               icon={<Sparkles color="#a855f7" />} 
+             />
+          </div>
+
+          {/* CTA SECTION */}
+          <div className="glass-card" style={{ padding: '4rem', textAlign: 'center', border: '1px solid var(--primary)', background: 'linear-gradient(180deg, rgba(59, 130, 246, 0.05) 0%, rgba(59, 130, 246, 0) 100%)' }}>
+               <h3 style={{ fontSize: '2rem', marginBottom: '1rem', fontWeight: 900 }}>Yeterince Konuştuk.</h3>
+               <p style={{ color: 'var(--text-secondary)', marginBottom: '2.5rem', fontSize: '1.2rem', maxWidth: '700px', marginInline: 'auto' }}>
+                 Tüm bu anlattıklarım havada kalmasın. Gerçek hayattan alınmış, iğrenç kod örneklerini 
+                 nasıl sanat eserine dönüştürdüğümüzü görmek ister misin?
+               </p>
+               <a href="/refactoring" style={{ 
+                 display: 'inline-flex', 
+                 alignItems: 'center', 
+                 gap: '1rem', 
+                 background: 'var(--primary)', 
+                 color: 'white', 
+                 padding: '1.2rem 3rem', 
+                 borderRadius: '16px', 
+                 fontWeight: 800,
+                 fontSize: '1.1rem',
+                 textDecoration: 'none',
+                 boxShadow: '0 20px 40px var(--primary-glow)',
+                 transition: 'transform 0.2s'
+               }}>
+                 <Scissors size={24} />
+                 Ameliyathaneye Gir (Refactoring Surgery)
+               </a>
+            </div>
+
+        </div>
+      </section>
+
+      {/* --- QUOTE SECTION --- */}
+      <section style={{ padding: '80px 0', background: 'rgba(255,255,255,0.02)', borderTop: '1px solid var(--glass-border)', borderBottom: '1px solid var(--glass-border)' }}>
+         <div className="container" style={{ textAlign: 'center' }}>
+            <div style={{ fontSize: '2rem', fontStyle: 'italic', maxWidth: '900px', margin: '0 auto 2rem', fontFamily: 'serif', color: 'var(--text-secondary)' }}>
+              "Mutfakta bıraktığınız dağınıklık nasıl yemeğin tadını bozmuyorsa, kirli kod da programın çalışmasını bozmaz. 
+              Ama bir süre sonra mutfağa girmek istemezsiniz."
+            </div>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '1rem' }}>
+               <div style={{ width: '50px', height: '50px', background: '#333', borderRadius: '50%' }}></div>
+               <div style={{ textAlign: 'left' }}>
+                  <div style={{ fontWeight: 700 }}>Robert C. Martin</div>
+                  <div style={{ fontSize: '0.8rem', color: 'var(--primary)' }}>Uncle Bob</div>
+               </div>
+            </div>
+         </div>
+      </section>
+
+    </div>
+  );
+};
+
+// --- HELPER COMPONENT: PRINCIPLE CARD ---
+const PrincipleCard = ({ title, desc, icon }: { title: string, desc: string, icon: React.ReactNode }) => (
+  <motion.div 
+    whileHover={{ y: -5 }}
+    className="glass-card" 
+    style={{ padding: '2rem', height: '100%' }}
+  >
+     <div style={{ 
+       background: 'rgba(255,255,255,0.05)', 
+       width: '50px', 
+       height: '50px', 
+       borderRadius: '12px', 
+       display: 'flex', 
+       alignItems: 'center', 
+       justifyContent: 'center',
+       marginBottom: '1.5rem'
+     }}>
+        {icon}
+     </div>
+     <h3 style={{ fontSize: '1.4rem', marginBottom: '1rem' }}>{title}</h3>
+     <p style={{ color: 'var(--text-secondary)', lineHeight: 1.6 }}>{desc}</p>
+  </motion.div>
+);
+
+export default CleanCodePage;
