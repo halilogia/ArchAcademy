@@ -27,6 +27,7 @@ const RefactoringPage = lazy(() => import('./presentation/pages/RefactoringPage'
 const RoadmapPage = lazy(() => import('./presentation/pages/RoadmapPage'));
 const DesignSystemPage = lazy(() => import('./presentation/pages/DesignSystemPage'));
 const CleanCodePage = lazy(() => import('./presentation/pages/CleanCodePage'));
+const WorkshopPage = lazy(() => import('./presentation/pages/WorkshopPage'));
 
 const LoadingFallback = () => (
   <div style={{ height: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--primary)' }}>
@@ -65,6 +66,7 @@ const App: React.FC = () => {
                     <Route path="/roadmap" element={<RoadmapPage />} />
                     <Route path="/design-system" element={<DesignSystemPage />} />
                     <Route path="/clean-code" element={<CleanCodePage />} />
+                    <Route path="/workshop" element={<WorkshopPage />} />
                   </Routes>
                 </AnimatePresence>
               </Suspense>

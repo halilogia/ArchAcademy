@@ -60,28 +60,33 @@ const ProjectDependency = () => {
                <Shield size={40} color="#10b981" />
                <div style={{ textAlign: 'left' }}>
                   <h4 style={{ color: '#10b981', fontSize: '1.2rem', marginBottom: '0.3rem' }}>Domain Layer (The Core)</h4>
-                  <p style={{ fontSize: '0.85rem', opacity: 0.7, lineHeight: 1.4 }}>Use Cases, Entities ve Business Rules. En saf katman. UI veya Veri kaynağından bağımlı değildir.</p>
+                  <p style={{ fontSize: '0.85rem', opacity: 0.7, lineHeight: 1.4 }}>
+                    Use Cases ve İş Kuralları. Burası teknoloji bağımsızdır. Bu klasörü alıp bir React Native (Mobil) projesine veya Node.js sunucusuna koysanız bile mantık aynen çalışır.
+                  </p>
                </div>
             </div>
           </motion.div>
+          
+          <ArrowDown size={32} color="#a855f7" style={{ opacity: 0.3 }} />
 
-          {/* Side Infrastructure */}
-          <div style={{ position: 'absolute', right: '5%', top: '65%', transform: 'translateY(-50%)' }}>
-             <motion.div
-                initial={{ opacity: 0, x: 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                className="glass-card"
-                style={{ width: '250px', borderColor: '#a855f7', background: 'rgba(168, 85, 247, 0.05)', padding: '1.5rem' }}
-              >
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1rem' }}>
-                   <Database size={24} color="#a855f7" />
-                   <h5 style={{ color: '#a855f7', margin: 0 }}>Infrastructure</h5>
-                </div>
-                <p style={{ fontSize: '0.75rem', opacity: 0.8, lineHeight: 1.5 }}>
-                  LocalStorage entegrasyonu ve ham veri depoları burada yer alır. Domain'in ihtiyaç duyduğu ham maddeyi sağlar.
-                </p>
-              </motion.div>
-          </div>
+          {/* Infrastructure Layer (Bottom Foundation) */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            className="glass-card"
+            style={{ width: '550px', borderColor: '#a855f7', background: 'rgba(168, 85, 247, 0.05)', padding: '2rem' }}
+          >
+            <div style={{ display: 'flex', gap: '1.5rem', alignItems: 'center' }}>
+               <Database size={40} color="#a855f7" />
+               <div style={{ textAlign: 'left' }}>
+                  <h4 style={{ color: '#a855f7', fontSize: '1.2rem', marginBottom: '0.3rem' }}>Infrastructure Layer (Data & Tools)</h4>
+                  <p style={{ fontSize: '0.85rem', opacity: 0.7, lineHeight: 1.4 }}>
+                    Repository implementasyonları ve LocalStorage adaptörleri. Domain katmanındaki 'interface'leri doldurur. 
+                    UI buraya doğrudan erişmez, Domain üzerinden veri alır.
+                  </p>
+               </div>
+            </div>
+          </motion.div>
 
         </div>
       </div>

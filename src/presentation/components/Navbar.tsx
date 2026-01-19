@@ -203,6 +203,13 @@ const Navbar: React.FC = () => {
                     <div style={{ fontSize: '0.7rem', opacity: 0.5 }}>Kariyer Yol Haritası</div>
                   </div>
                 </Link>
+                <Link to="/workshop" style={{ display: 'flex', alignItems: 'center', gap: '1rem', padding: '0.8rem', borderRadius: '10px', textDecoration: 'none', color: 'white' }}>
+                  <div style={{ color: '#ec4899' }}><Layers size={18} /></div>
+                  <div>
+                    <div style={{ fontSize: '0.85rem', fontWeight: 700 }}>Architecture Workshop</div>
+                    <div style={{ fontSize: '0.7rem', opacity: 0.5 }}>İnteraktif Atölye</div>
+                  </div>
+                </Link>
               </div>
             )}
           </div>

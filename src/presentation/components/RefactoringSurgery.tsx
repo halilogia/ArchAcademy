@@ -5,29 +5,30 @@ import { Scissors, Sparkles, AlertTriangle, CheckCircle2, ArrowRight, Code2, Bot
 const scenarios = [
   {
     id: 1,
-    title: "The God Function",
+    title: "1. The God Function (Her Şeyi Yapan)",
     problem: "Tek bir fonksiyonda; doğrulama, veritabanı kaydı, e-posta gönderimi ve loglama yapılıyor. Kodun okunması ve test edilmesi imkansız.",
-    category: "SOLID Violations",
+    category: "SOLID Violations (SRP)",
     dirtyCode: `function createUser(user) {
+  // 1. Validasyon
   if (!user.email.includes('@')) {
     throw new Error('Invalid email');
   }
   
-  // Direct DB Connection
+  // 2. Database (Doğrudan SQL)
   db.query('INSERT INTO users...', user);
   
-  // Direct SMTP Call
+  // 3. Email Gönderimi
   smtp.send('Welcome!', user.email);
   
-  // Logging everywhere
+  // 4. Dosyaya Loglama
   fs.writeFileSync('log.txt', 'User created');
 }`,
-    cleanCode: `// Repository (Data Access)
+    cleanCode: `// Repository (Sadece DB işleri)
 class UserRepository {
-  async save(user) { /* DB logic */ }
+  async save(user) { ... }
 }
 
-// Service (Business Logic)
+// Service (Sadece İş Akışı)
 class UserService {
   constructor(userRepo, mailer) {
     this.userRepo = userRepo;
@@ -35,70 +36,49 @@ class UserService {
   }
 
   async create(user) {
-    validateUser(user);
+    validateUser(user); // Helper
     await this.userRepo.save(user);
     await this.mailer.sendWelcome(user.email);
   }
 }`,
-    explanation: "Single Responsibility Principle (SRP) uygulandı. İş mantığı, veri erişimi ve e-posta gönderimi birbirinden ayrıldı."
+    explanation: "Single Responsibility Principle (SRP) uygulandı. İş mantığı, veri erişimi ve bildirimler farklı sınıflara bölündü."
   },
   {
     id: 2,
-    title: "Dependency Spagetti",
-    problem: "Servisler birbirini 'new' anahtar kelimesiyle oluşturuyor. Bu durum sınıfları birbirine sıkı sıkıya bağlar (Tight Coupling).",
-    category: "Coupling",
-    dirtyCode: `class PaymentService {
-  process() {
-    const logger = new MyLogger();
-    const db = new PostgresDB();
-    
-    logger.info('Processing...');
-    db.savePayment();
+    title: "2. Spagetti İf-Else (Arrow Code)",
+    problem: "Kod sağa doğru bir ok gibi kayıyor. Okumak için sürekli zihinsel takip gerekiyor.",
+    category: "Code Hygiene",
+    dirtyCode: `function getPayAmount() {
+  let result;
+  if (isDead){
+    result = deadAmount();
+  } else {
+    if (isSeparated){
+      result = separatedAmount();
+    } else {
+      if (isRetired){
+        result = retiredAmount();
+      } else {
+        result = normalPayAmount();
+      }
+    }
   }
+  return result;
 }`,
-    cleanCode: `class PaymentService {
-  // Dependency Injection (Inversion of Control)
-  constructor(logger, db) {
-    this.logger = logger;
-    this.db = db;
-  }
-
-  process() {
-    this.logger.info('Processing...');
-    this.db.savePayment();
-  }
+    cleanCode: `function getPayAmount() {
+  // Guard Clauses (Erken Dönüş)
+  if (isDead) return deadAmount();
+  if (isSeparated) return separatedAmount();
+  if (isRetired) return retiredAmount();
+  
+  // Happy Path (En sona kalan)
+  return normalPayAmount();
 }`,
-    explanation: "Dependency Injection kullanılarak bağımlılıklar dışarıdan enjekte edildi. Artık Test (Mocking) yapmak çok kolay!"
+    explanation: "Erken Return (Guard Clause) tekniğiyle iç içe if bloklarını yok ettik. Kod artık dümdüz okunuyor."
   },
   {
     id: 3,
-    title: "Switch Case Hell",
-    problem: "Yeni bir tip eklendiğinde sürekli dev switch bloklarını güncellemek zorunda kalıyorsunuz.",
-    category: "Open/Closed Principle",
-    dirtyCode: `function getDiscount(userType) {
-  switch(userType) {
-    case 'VIP': return 0.2;
-    case 'Premium': return 0.1;
-    case 'Standard': return 0.05;
-    // Her yeni tipte burası şişecek...
-  }
-}`,
-    cleanCode: `const strategies = {
-  VIP: () => 0.2,
-  Premium: () => 0.1,
-  Standard: () => 0.05,
-  NewType: () => 0.15
-};
-
-function getDiscount(userType) {
-  const strategy = strategies[userType];
-  return strategy ? strategy() : 0;
-}`,
-    explanation: "Strategy Pattern (veya Lookup Object) kullanılarak kod genişlemeye açık, değişime kapalı hale getirildi."
-  },
-  {
-    id: 4,
-    title: "Primitive Obsession",
+    title: "3. İlkel Takıntısı (Primitive Obsession)",
     problem: "Para birimi, tarih veya adres gibi kompleks yapıları hala raw (ilkel) string/number olarak tutmak hata payını artırır.",
     category: "Domain Modeling",
     dirtyCode: `function processPayment(amount, currency) {
@@ -118,21 +98,118 @@ function processPayment(money) {
   // Sadece Money objesini kabul et
   // Validasyon zaten Money içinde yapıldı
 }`,
-    explanation: "Value Object (Değer Nesnesi) kullanarak verinin her zaman geçerli (valid) olmasını sağladık."
+    explanation: "Veriyi 'Value Object' (Değer Nesnesi) içine hapsettik. Artık hatalı para birimi oluşturulamaz bile."
+  },
+  {
+    id: 4,
+    title: "4. Parametre Çorbası",
+    problem: "Bir fonksiyon 3'ten fazla parametre alıyorsa, orada bir sorun var demektir. Parametrelerin sırası karışabilir.",
+    category: "Signature Refactor",
+    dirtyCode: `function createMenu(title, body, buttonText, cancellable, theme, onClick) {
+  // Hangisi hangisiydi?
+  // createMenu("Başlık", "İçerik", true, "Mavi", ...) 
+  // HATA: true cancellable mı yoksa buttonText mi?
+}`,
+    cleanCode: `function createMenu({ title, body, options }) {
+  // Parametreleri bir Obje içinde grupla
+  // options: { buttonText, cancellable, theme, onClick }
+}
+
+// Kullanımı:
+createMenu({
+  title: "Başlık",
+  options: { cancellable: true, theme: "blue" }
+});`,
+    explanation: "`options` objesi kullanarak parametre sırası ezberleme derdinden kurtulduk. Kod okunaklı ve genişletilebilir oldu."
   },
   {
     id: 5,
-    title: "Data Clumps",
-    problem: "Bazı parametreler her zaman beraber geziyor (startDate, endDate gibi). Bunları ayrı ayrı taşımak kod kirliliğidir.",
-    category: "Clean Code",
-    dirtyCode: `function search(title, startDate, endDate, minPrice, maxPrice) {
-  // Çok fazla parametre, yönetmesi zor
+    title: "5. Bağımlılık (Dependency) Spagettisi",
+    problem: "Servisler birbirini 'new' anahtar kelimesiyle oluşturuyor. Bu durum sınıfları birbirine sıkı sıkıya bağlar (Tight Coupling).",
+    category: "Coupling",
+    dirtyCode: `class PaymentService {
+  process() {
+    // KÖTÜ: Sınıfın içinde new'lemek
+    const logger = new MyLogger();
+    const db = new PostgresDB();
+    
+    logger.info('Processing...');
+    db.savePayment();
+  }
 }`,
-    cleanCode: `function search(criteria) {
-  // criteria: { title, range: { start, end }, price: { min, max } }
-  // Parametreleri anlamlı objelerle grupladık.
+    cleanCode: `class PaymentService {
+  // İYİ: Dependency Injection (Constructor Injection)
+  constructor(logger, db) {
+    this.logger = logger;
+    this.db = db;
+  }
+
+  process() {
+    this.logger.info('Processing...');
+    this.db.savePayment();
+  }
 }`,
-    explanation: "Parametreleri mantıksal gruplara (Objects) ayırarak fonksiyon imzasını sadeleştirdik."
+    explanation: "Bağımlılıkları dışarıdan (Constructor) aldık. Böylece test yazarken gerçek DB yerine sahte (Mock) DB verebiliriz."
+  },
+  {
+    id: 6,
+    title: "6. Framework Tuzağı (Architecture)",
+    problem: "React Bileşeni (UI) iş mantığı, API çağrısı ve Veritabanı işlemleriyle kirlenmiş. React değişirse her şey çöpe gider.",
+    category: "Architectural Surgery",
+    dirtyCode: `// BadReactComponent.jsx
+const LoginButton = () => {
+  const handleLogin = async () => {
+    // 1. Validasyon UI içinde!
+    if(!email.includes('@')) return alert('Hata');
+    
+    // 2. İş Mantığı UI içinde!
+    const user = await axios.post('/api/login', { email });
+    
+    // 3. Veri Saklama UI içinde!
+    localStorage.setItem('token', user.token);
+    window.location.href = '/dashboard';
+  };
+  return <button onClick={handleLogin}>Giriş</button>;
+}`,
+    cleanCode: `// 1. UI (Sadece Görüntü)
+const LoginButton = ({ loginUseCase }) => {
+  // React sadece tetikleyici
+  return <button onClick={() => loginUseCase.execute(email)}>Giriş</button>;
+}
+
+// 2. Domain (Saf Mantık)
+class LoginUseCase {
+  async execute(email) {
+    if(!isValid(email)) throw new InvalidEmailError();
+    const user = await this.authRepo.login(email);
+    this.storage.save(user.token);
+  }
+}`,
+    explanation: "React sadece bir aptal UI bileşenine dönüştü. Tüm 'Login' mantığı dışarıdaki (Framework-less) UseCase sınıfına taşındı."
+  },
+  {
+    id: 7,
+    title: "7. Bonus: Switch Case Cehennemi",
+    problem: "Yeni bir tip eklendiğinde sürekli dev switch bloklarını güncellemek zorunda kalıyorsunuz.",
+    category: "Open/Closed Principle",
+    dirtyCode: `function getDiscount(userType) {
+  switch(userType) {
+    case 'VIP': return 0.2;
+    case 'Premium': return 0.1;
+    // ... 100 satır daha ...
+    case 'Standard': return 0.05;
+  }
+}`,
+    cleanCode: `const DISCOUNTS = {
+  VIP: 0.2,
+  Premium: 0.1,
+  Standard: 0.05
+};
+
+function getDiscount(userType) {
+  return DISCOUNTS[userType] || 0;
+}`,
+    explanation: "Switch bloğunu bir 'Lookup Object' (Sözlük) yapısına çevirdik. Artık yeni tip eklemek için koda dokunmaya gerek yok, objeye eklemek yeterli."
   }
 ];
 
