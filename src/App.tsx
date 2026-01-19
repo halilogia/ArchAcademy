@@ -35,6 +35,16 @@ const EvolutionaryPage = lazy(() => import('./presentation/pages/EvolutionaryPag
 const SpaceBasedPage = lazy(() => import('./presentation/pages/SpaceBasedPage'));
 const P2PPage = lazy(() => import('./presentation/pages/P2PPage'));
 const SOAPage = lazy(() => import('./presentation/pages/SOAPage'));
+const CatalogPage = lazy(() => import('./presentation/pages/CatalogPage'));
+const ObjectOrientedPage = lazy(() => import('./presentation/pages/ObjectOrientedPage'));
+const PipeFilterPage = lazy(() => import('./presentation/pages/PipeFilterPage'));
+const InterpreterPage = lazy(() => import('./presentation/pages/InterpreterPage'));
+const BrokerPage = lazy(() => import('./presentation/pages/BrokerPage'));
+const OrchestrationPage = lazy(() => import('./presentation/pages/OrchestrationPage'));
+const ChoreographyPage = lazy(() => import('./presentation/pages/ChoreographyPage'));
+const BigDataPage = lazy(() => import('./presentation/pages/BigDataPage'));
+const EventSourcingPage = lazy(() => import('./presentation/pages/EventSourcingPage'));
+const MVCPage = lazy(() => import('./presentation/pages/MVCPage'));
 
 const LoadingFallback = () => (
   <div style={{ height: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--primary)' }}>
@@ -80,7 +90,17 @@ const App: React.FC = () => {
                     <Route path="/space-based" element={<SpaceBasedPage />} />
                     <Route path="/p2p" element={<P2PPage />} />
                     <Route path="/soa" element={<SOAPage />} />
+                    <Route path="/catalog" element={<CatalogPage />} />
                     <Route path="/workshop" element={<WorkshopPage />} />
+                    <Route path="/object-oriented" element={<ObjectOrientedPage />} />
+                    <Route path="/pipe-filter" element={<PipeFilterPage />} />
+                    <Route path="/interpreter" element={<InterpreterPage />} />
+                    <Route path="/broker" element={<BrokerPage />} />
+                    <Route path="/orchestration" element={<OrchestrationPage />} />
+                    <Route path="/choreography" element={<ChoreographyPage />} />
+                    <Route path="/big-data" element={<BigDataPage />} />
+                    <Route path="/event-sourcing" element={<EventSourcingPage />} />
+                    <Route path="/mvc-mvvm" element={<MVCPage />} />
                   </Routes>
                 </AnimatePresence>
               </Suspense>

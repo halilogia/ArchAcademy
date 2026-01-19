@@ -89,11 +89,25 @@ const Navbar: React.FC = () => {
         </Link>
         
         {/* Main Navigation */}
-        <div style={{ display: 'flex', gap: '1.5rem', alignItems: 'center' }}>
+        <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
           
-          {/* CATALOG DROPDOWN */}
+          <Link to="/catalog" style={{ 
+            color: 'var(--primary)', 
+            fontSize: '0.8rem', 
+            fontWeight: 800, 
+            background: 'rgba(59, 130, 246, 0.1)', 
+            padding: '0.5rem 1rem', 
+            borderRadius: '100px',
+            textDecoration: 'none',
+            border: '1px solid rgba(59, 130, 246, 0.2)',
+            transition: 'all 0.3s'
+          }}>
+            Katalog
+          </Link>
+
+          {/* DISIPLİNLER DROPDOWN */}
           <div 
-            onMouseEnter={() => setOpenDropdown('curriculum')} 
+            onMouseEnter={() => setOpenDropdown('disciplines')} 
             onMouseLeave={() => setOpenDropdown(null)}
             style={{ position: 'relative' }}
           >
@@ -111,49 +125,48 @@ const Navbar: React.FC = () => {
               border: 'none',
               cursor: 'pointer'
             }}>
-              Katalog <ChevronDown size={14} />
+              Disiplinler <ChevronDown size={14} />
             </button>
-            {openDropdown === 'curriculum' && (
+            {openDropdown === 'disciplines' && (
               <div style={{
                 position: 'absolute',
                 top: '100%',
                 left: '50%',
                 transform: 'translateX(-50%)',
-                width: '450px',
+                width: '260px',
                 background: 'rgba(10, 15, 30, 0.95)',
                 backdropFilter: 'blur(20px)',
                 border: '1px solid var(--glass-border)',
                 borderRadius: '16px',
-                padding: '1.5rem',
+                padding: '1rem',
                 boxShadow: '0 20px 40px rgba(0,0,0,0.4)',
-                display: 'grid',
-                gridTemplateColumns: '1fr 1fr',
-                gap: '1.5rem'
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '0.5rem'
               }}>
-                <div>
-                  <h5 style={{ fontSize: '0.7rem', color: 'var(--primary)', textTransform: 'uppercase', marginBottom: '1rem', letterSpacing: '1px' }}>Mimariler</h5>
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
-                    {architectures.map(item => (
-                      <Link key={item.path} to={item.path} style={{ fontSize: '0.8rem', color: 'white', opacity: 0.7, textDecoration: 'none', padding: '0.4rem 0', transition: 'all 0.2s' }}>
-                        {item.name}
-                      </Link>
-                    ))}
-                  </div>
-                </div>
-                <div>
-                  <h5 style={{ fontSize: '0.7rem', color: '#a78bfa', textTransform: 'uppercase', marginBottom: '1rem', letterSpacing: '1px' }}>Disiplinler</h5>
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
-                    {disciplines.map(item => (
-                      <Link key={item.path} to={item.path} style={{ fontSize: '0.8rem', color: 'white', opacity: 0.7, textDecoration: 'none', padding: '0.4rem 0', transition: 'all 0.2s' }}>
-                        {item.name}
-                      </Link>
-                    ))}
-                  </div>
-                </div>
+                {disciplines.map(item => (
+                  <Link 
+                    key={item.path} 
+                    to={item.path} 
+                    style={{ 
+                      fontSize: '0.85rem', 
+                      color: 'white', 
+                      textDecoration: 'none', 
+                      padding: '0.7rem 1rem', 
+                      borderRadius: '10px',
+                      transition: 'all 0.2s',
+                      background: 'rgba(255,255,255,0.03)'
+                    }}
+                    onMouseEnter={(e) => e.currentTarget.style.background = 'rgba(255,255,255,0.08)'}
+                    onMouseLeave={(e) => e.currentTarget.style.background = 'rgba(255,255,255,0.03)'}
+                  >
+                    {item.name}
+                  </Link>
+                ))}
               </div>
             )}
           </div>
-
+          
           {/* LABS DROPDOWN */}
           <div 
             onMouseEnter={() => setOpenDropdown('labs')} 
@@ -277,6 +290,10 @@ const Navbar: React.FC = () => {
                 <Link to="/project-arch" style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', padding: '0.6rem 1rem', borderRadius: '8px', textDecoration: 'none', color: 'white' }}>
                   <Code2 size={16} style={{ color: '#10b981' }} />
                   <span style={{ fontSize: '0.85rem' }}>Project Architecture</span>
+                </Link>
+                <Link to="/design-system" style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', padding: '0.6rem 1rem', borderRadius: '8px', textDecoration: 'none', color: 'white' }}>
+                  <Palette size={16} style={{ color: '#a855f7' }} />
+                  <span style={{ fontSize: '0.85rem' }}>Design System</span>
                 </Link>
 
               </div>
