@@ -49,6 +49,8 @@ const CommandPalette = () => {
     { id: 'eda', title: 'Event-Driven Architecture', description: 'Building reactive systems', type: 'page', path: '/eda', icon: <Zap size={18} /> },
     { id: 'cqrs', title: 'CQRS & Event Sourcing', description: 'Separating reads from writes', type: 'page', path: '/cqrs', icon: <Database size={18} /> },
     { id: 'system', title: 'System Design', description: 'Monolith vs Microservices', type: 'page', path: '/system', icon: <Cpu size={18} /> },
+    { id: 'microkernel', title: 'Microkernel Architecture', description: 'Plug-in based system design', type: 'page', path: '/microkernel', icon: <Box size={18} /> },
+    { id: 'serverless', title: 'Serverless (FaaS)', description: 'Event-driven scaling without servers', type: 'page', path: '/serverless', icon: <Zap size={18} /> },
   ];
 
   const glossaryItems: SearchItem[] = GLOSSARY_TERMS.map(term => ({

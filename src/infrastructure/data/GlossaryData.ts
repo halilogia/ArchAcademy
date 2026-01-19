@@ -1387,12 +1387,6 @@ export const GLOSSARY_TERMS: GlossaryTerm[] = [
       guruTip: 'Bir işlemin 5 farklı serviste nasıl bir yol izlediğini ve nerede koptuğunu saniyeler içinde bulmanızı sağlar.'
     },
     {
-      term: 'Inversion of Control (IoC)',
-      definition: 'Bir nesnenin kendi akışını veya bağımlılıklarını yönetmek yerine, bu kontrolü dış bir sisteme (Framework veya Container) devretmesi prensibidir.',
-      category: 'Foundation',
-      guruTip: 'Kodun esnek ve test edilebilir olmasını sağlar; bağımlılıkların yönetimini sizin yerinize sistem yapar.'
-    },
-    {
       term: 'Hollywood Principle',
       definition: '"Bizi arama, biz seni ararız" (Don\'t call us, we\'ll call you) felsefesidir. IoC\'nin en basit tanımıdır; sistemin sizi tetiklemesini anlatır.',
       category: 'Principle',
@@ -1687,12 +1681,6 @@ export const GLOSSARY_TERMS: GlossaryTerm[] = [
       guruTip: 'İyi bir mimar, kodlamada derinleşirken; bulut, güvenlik ve iş analizi gibi alanlarda da geniş bilgiye sahip olan bir "T-Tipi" profesyonel olmalıdır.'
     },
     {
-      term: 'Law of Demeter (Demeter Yasası)',
-      definition: 'Bir nesnenin sadece doğrudan tanıdığı nesnelerle konuşması gerektiğini savunur. "Yabancıların iç yapılarına dokunma" prensibidir.',
-      category: 'Principle',
-      guruTip: 'Kodda "a.getB().getC().doAction()" gibi uzun zincirler varsa bu yasayı ihlal ediyorsunuzdur; bu durum sistemdeki bağımlılığı (coupling) tehlikeli şekilde artırır.'
-    },
-    {
       term: 'Primitive Obsession (İlkel Takıntısı)',
       definition: 'E-mail, Para Birimi, Telefon gibi özel domain kavramlarını temsil etmek için kendi tiplerimizi oluşturmak yerine sürekli standart tipleri (string, int) kullanma hatasıdır.',
       category: 'Quality',
@@ -1843,12 +1831,6 @@ export const GLOSSARY_TERMS: GlossaryTerm[] = [
       guruTip: 'Latency hızınızı, Throughput ise kapasitenizi gösterir. İyi bir mimari, her iki metriği de dengeli şekilde yönetmeyi hedefler.'
     },
     {
-      term: 'Scalability (Ölçeklenebilirlik)',
-      definition: 'Bir sistemin, artan iş yükünü mevcut kaynakları artırarak karşılama yeteneğidir.',
-      category: 'Modern',
-      guruTip: 'Sistemin sadece bugün çalışması yetmez; gelecekte 10 kat trafik geldiğinde de (kod değişikliği gerekmeden) ayakta kalabilmelidir.'
-    },
-    {
       term: 'Monitoring vs Observability',
       definition: 'Monitoring "Sistem çalışıyor mu?" sorusuna yanıt verirken; Observability "Neden çalışmıyor?" sorusunun cevabını bulmanızı sağlar.',
       category: 'Modern',
@@ -1925,12 +1907,6 @@ export const GLOSSARY_TERMS: GlossaryTerm[] = [
       definition: 'Bir servisin diğerlerinden bağımsız olarak geliştirilme, yayınlanma, ölçeklenme ve çalışabilme yeteneğidir.',
       category: 'Modern',
       guruTip: 'Mikroservis mimarisinin "Kutsal Kasesi"dir. Eğer bir servisi güncellemek için diğerlerini de güncellemeniz gerekiyorsa otonomiyi kaybetmişsiniz demektir.'
-    },
-    {
-      term: 'ACID Prensipleri',
-      definition: 'İlişkisel veritabanlarının veri tutarlılığını garanti etmek için kullandığı 4 kuraldır: Atomicity (Bütünlük), Consistency (Tutarlılık), Isolation (Yalıtım), Durability (Dayanıklılık).',
-      category: 'Foundation',
-      guruTip: 'Bir işlemin (Transaction) ya tamamen yapılacağını ya da hata anında tamamen geri alınacağını garanti eden güven kalkanıdır.'
     },
     {
       term: 'Optimistic Locking (İyimser Kilitleme)',
@@ -2473,12 +2449,6 @@ export const GLOSSARY_TERMS: GlossaryTerm[] = [
       guruTip: 'Güncelleme, güvenlik ve ölçekleme tamamen sağlayıcının sorumluluğundadır; kullanıcı sadece uygulamayı (Örn: Cloud tabanlı bir mail servisi) kullanır.'
     },
     {
-      term: 'FaaS (Function as a Service)',
-      definition: 'Uygulama mantığının, olaylar (events) ile tetiklenen bağımsız küçük fonksiyonlar olarak çalıştırıldığı modeldir. Serverless dünyasının kalbidir.',
-      category: 'Modern',
-      guruTip: 'Sadece kodunuz çalıştığı saniyeler için para ödersiniz; sistem boştayken maliyet sıfırdır. Modern mikroservislerde maliyet verimliliği için mükemmeldir.'
-    },
-    {
       term: 'Cache-Aside Pattern',
       definition: 'Uygulamanın veriyi önce önbellekten okuduğu, orada yoksa veritabanından alıp önbelleğe yazdığı en yaygın stratejidir.',
       category: 'Pattern',
@@ -2561,5 +2531,167 @@ export const GLOSSARY_TERMS: GlossaryTerm[] = [
       definition: 'Tasarımcılar ve geliştiriciler arasında kurulan; bileşen adlarından jetonlara (Design Tokens) kadar her şeyin hem tasarım araçlarında hem de kodda aynı isimle anılmasıdır.',
       category: 'Design',
       guruTip: 'Eğer tasarımcı "Aura-Primary" diyorsa ve siz kodda "purple-500" diyorsanız, ortak dil bozulmuştur; tasarım dökümantasyonu yaşayan bir sözleşmedir.'
+    },
+    {
+      term: 'CQRS (Command Query Responsibility Segregation)',
+      definition: 'Sistemin okuma (Query) ve yazma (Command) operasyonlarını birbirinden ayıran mimari desendir. Veri tutarlılığı ve performans optimizasyonu sağlar.',
+      category: 'Architecture',
+      guruTip: 'Okuma ve yazma yükleri çok farklı olan büyük ölçekli sistemlerde (örn: E-ticaret) hayat kurtarır.'
+    },
+    {
+      term: 'Microkernel Architecture (Plug-in)',
+      definition: 'Sistemin temel bir çekirdek (kernel) ve bu çekirdeğe eklenen bağımsız eklentiler (plug-ins) üzerine kurulu olduğu mimari yapıdır.',
+      category: 'Architecture',
+      guruTip: 'VS Code veya Chrome gibi uygulamalar en iyi örneğidir. Ana gövde değişmez, yetenekler eklentilerle gelir.'
+    },
+    {
+      term: 'Space-Based Architecture',
+      definition: 'Veri tutarlılığı ve yüksek ölçeklenebilirlik için verinin ve işlem merkezinin "space" adı verilen bir ortamda dağıtık olarak saklandığı yapıdır.',
+      category: 'Architecture',
+      guruTip: 'Veritabanı darboğazını çözmek için "Cloud-based sharing" mantığını kullanır; veriyi hafızada (in-memory) tutarak hızı artırır.'
+    },
+    {
+      term: 'Lambda Architecture',
+      definition: 'Büyük veri (Big Data) sistemlerinde hem gerçek zamanlı (Speed Layer) hem de geçmişe dönük (Batch Layer) veriyi işlemek için kullanılan hibrit mimari.',
+      category: 'Data',
+      guruTip: 'Hem anlık veriyi hem de kesinleşmiş geçmiş veriyi aynı anda görmek isteyen finans/analiz sistemleri için idealdir.'
+    },
+    {
+      term: 'Kappa Architecture',
+      definition: 'Lambda mimarisinin karmaşıklığını azaltan, tüm veriyi tek bir "stream processing" katmanı üzerinden işleyen mimarı yapı.',
+      category: 'Data',
+      guruTip: 'Batch katmanını devre dışı bırakır; her şeyi bir "akış" (stream) olarak görür.'
+    },
+    {
+      term: 'MVP (Model-View-Presenter)',
+      definition: 'UI mantığını Model ve View arasından tamamen ayırarak bir Presenter üzerinden yöneten mimari desendir.',
+      category: 'Design Pattern',
+      guruTip: 'Unit test yazmayı kolaylaştırır çünkü View sadece bir "dumy" (aptal) arayüze dönüşür.'
+    },
+    {
+      term: 'Pipeline (Pipe-Filter)',
+      definition: 'Bir verinin bir dizi işlemden (filter) sırayla geçerek dönüştürüldüğü mimari stildir.',
+      category: 'Architecture',
+      guruTip: 'Video sıkıştırma veya log işleme sistemleri gibi aşamalı işlerde çok başarılıdır.'
+    },
+    {
+      term: 'Serverless (FaaS)',
+      definition: 'Geliştiricinin sunucu yönetimiyle ilgilenmediği, kodun olaylar üzerine tetiklenip çalıştığı bulut mimarisi.',
+      category: 'Modern',
+      guruTip: 'Çalışmadığı sürece para ödemezsin; "Kodum sadece ihtiyaç anında yaşasın" mantığıdır.'
+    },
+    {
+      term: 'Publish-Subscribe (Pub/Sub)',
+      definition: 'Göndericilerin (publishers) mesajları belirli alıcılara değil, bir kanal üzerinden yayınladığı ve ilgilenenlerin (subscribers) bu kanalı dinlediği desen.',
+      category: 'Coordination',
+      guruTip: 'Sistem bileşenlerini tamamen birbirinden koparır. Kimin kimi dinlediğini bilmesine gerek yoktur.'
+    },
+    {
+      term: 'Primary-Secondary (Master-Slave)',
+      definition: 'Bir ana birimin (Primary) tüm yazma işlemlerini ve kontrolü üstlendiği, diğer birimlerin (Secondary) ise okuma veya yedekleme yaptığı mimari tarz.',
+      category: 'Architecture',
+      guruTip: 'Veritabanı okuma performansını artırmak ve veri güvenliğini sağlamak için standart bir yöntemdir.'
+    },
+    {
+      term: 'Peer-to-Peer (P2P)',
+      definition: 'Merkezi bir sunucu olmadan, ağdaki her birimin hem istemci hem de sunucu gibi davranarak doğrudan birbirleriyle veri paylaştığı mimari.',
+      category: 'Networking',
+      guruTip: 'Blockchain ve Torrent gibi sistemlerin temelidir. Tek bir hata noktası (SPOF) içermez.'
+    },
+    {
+      term: 'Object-Oriented Architecture',
+      definition: 'Sistemi birbirleriyle mesajlaşan ve kendi verisini/mantığını saklayan (encapsulation) nesneler bütünü olarak gören klasik mimari.',
+      category: 'Architecture',
+      guruTip: 'Gerçek dünyayı modellemek için en doğal yoldur ama bazen gereksiz hiyerarşi karmaşası yaratabilir.'
+    },
+    {
+      term: 'Broker Architecture',
+      definition: 'Dağıtık sistemlerde bileşenlerin birbirini tanımasına gerek kalmadan, mesajların bir aracı (broker) üzerinden yönlendirildiği mimari stil.',
+      category: 'Coordination',
+      guruTip: 'Kafka veya RabbitMQ bu mimarinin en popüler temsilcileridir.'
+    },
+    {
+      term: 'Component-Based Architecture',
+      definition: 'Sistemi bağımsız, tekrar kullanılabilir ve iyi tanımlanmış arayüzleri olan bileşenlere bölen tasarım yaklaşımı.',
+      category: 'Architecture',
+      guruTip: 'Web bileşenleri (React, Vue) bu mantığın frontend dünyasındaki en net yansımasıdır.'
+    },
+    {
+      term: 'Concurrency (Eşzamanlılık)',
+      definition: 'Birden fazla işlemin aynı zaman dilimi içinde, birbirlerini beklemeden (paralel veya interleaved) yürütülmesidir.',
+      category: 'Foundation',
+      guruTip: 'Doğru yönetilmezse Race Condition hatalarına yol açar; Lock ve Mutex gibi mekanizmalarla kontrol edilmelidir.'
+    },
+    {
+      term: 'Data-Centric Architecture',
+      definition: 'Tüm sistemin merkezi bir veri tabanı veya veri deposu (Data Store) etrafında kurulduğu, bileşenlerin veriye göre şekillendiği mimari.',
+      category: 'Architecture',
+      guruTip: 'Verinin kendisi en değerli varlıktır; logic veriye hizmet eder. Büyük veri ambarları bu mantığa yakındır.'
+    },
+    {
+      term: 'Deployment Manager',
+      definition: 'Uygulamanın farklı ortamlara (Dev, Prod) dağıtım sürecini otomatize eden ve yöneten bileşen veya araç.',
+      category: 'Modern',
+      guruTip: 'CI/CD süreçlerinin orkestra şefidir; hatasız canlıya geçişin anahtarıdır.'
+    },
+    {
+      term: 'Virtualized Middleware',
+      definition: 'Dağıtık sistemlerin katmanları arasında iletişimi sağlayan ara katman yazılımının sanallaştırılarak esnek hale getirilmesi.',
+      category: 'Data',
+      guruTip: 'Space-Based mimarilerde bileşenlerin birbirini bulmasını ve veri paylaşmasını sağlayan görünmez köprüdür.'
+    },
+    {
+      term: 'Interpreter (Yorumlayıcı)',
+      definition: 'Bilgisayar programlarını satır satır doğrudan yürüten, ara bir makine diline çevirmeden çalıştıran mimaridir.',
+      category: 'Interpreter',
+      guruTip: 'Python ve JavaScript gibi dillerin çalışma mantığıdır; esnektir ama derlenmiş dillere göre daha yavaştır.'
+    },
+    {
+      term: 'Broker (Aracı)',
+      definition: 'Dağıtık sistemlerde mesajların ve servis isteklerinin merkezi bir aracı üzerinden yönlendirildiği yapıdır.',
+      category: 'Coordination',
+      guruTip: 'Sistemin ölçeklenmesini sağlar ama Broker çökerse tüm haberleşme kesilir.'
+    },
+    {
+      term: 'Event Sourcing',
+      definition: 'Uygulamanın şimdiki durumunu saklamak yerine, duruma sebep olan tüm olaylar (events) dizisini saklama mimarisidir.',
+      category: 'Data',
+      guruTip: 'Bankacılık gibi "geçmişte ne oldu?" sorusunun hayati olduğu yerlerde standarttır.'
+    },
+    {
+      term: 'Orchestration (Orkestrasyon)',
+      definition: 'Servis etkileşimlerinin merkezi bir birim tarafından (orchestrator) adım adım yönetilmesidir.',
+      category: 'Coordination',
+      guruTip: 'Karmaşık iş akışlarında kontrolün tek elde olmasını sağlar; hata takibi kolaydır.'
+    },
+    {
+      term: 'Choreography (Koreografi)',
+      definition: 'Servislerin merkezi bir yönetici olmadan, sadece olayları dinleyerek birbirleriyle senkronize olmasıdır.',
+      category: 'Coordination',
+      guruTip: 'Servislerin birbirini hiç tanımaması gereken uç noktadaki esnek sistemler içindir.'
+    },
+    {
+      term: 'MVC (Model-View-Controller)',
+      definition: 'Veri (Model), Kullanıcı Arayüzü (View) ve Mantık (Controller) katmanlarını kesin çizgilerle ayıran klasiktir.',
+      category: 'Interface',
+      guruTip: 'Web geliştirmenin en temel taşıdır; sorumlulukları ayırmak için hala en iyi yollardan biridir.'
+    },
+    {
+      term: 'MVP (Model-View-Presenter)',
+      definition: 'MVC nin bir türevi olan, View un tamamen pasif olduğu ve her şeyin Presenter üzerinden geçtiği yapıdır.',
+      category: 'Interface',
+      guruTip: 'Android ve eski masaüstü uygulamalarında test edilebilirliği artırmak için çok kullanılmıştır.'
+    },
+    {
+      term: 'MVVM (Model-View-ViewModel)',
+      definition: 'View ile Model arasındaki bağın otomatik bir "Binding" mekanizmasıyla sağlandığı modern UI mimarisidir.',
+      category: 'Interface',
+      guruTip: 'React, Vue ve Angular gibi modern kütüphanelerin ruhunda bu "veriden görünüme" akış vardır.'
+    },
+    {
+      term: 'Object-Oriented Architecture',
+      definition: 'Sistemin bir bütün olarak değil, birbirleriyle konuşan kapsüllenmiş "nesneler" olarak tasarlandığı yapı.',
+      category: 'Foundation',
+      guruTip: 'Gerçek dünyayı koda yansıtmanın en doğal yoludur ama bazen gereksiz hiyerarşi yaratabilir.'
     }
 ];

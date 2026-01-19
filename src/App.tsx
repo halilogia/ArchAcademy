@@ -19,6 +19,8 @@ const CQRSPage = lazy(() => import('./presentation/pages/CQRSPage'));
 const HorizontalPage = lazy(() => import('./presentation/pages/HorizontalPage'));
 const EDAPage = lazy(() => import('./presentation/pages/EDAPage'));
 const ComparisonPage = lazy(() => import('./presentation/pages/ComparisonPage'));
+const MicrokernelPage = lazy(() => import('./presentation/pages/MicrokernelPage'));
+const ServerlessPage = lazy(() => import('./presentation/pages/ServerlessPage'));
 const ProjectPage = lazy(() => import('./presentation/pages/ProjectPage'));
 const SOLIDPage = lazy(() => import('./presentation/pages/SOLIDPage'));
 const GlossaryPage = lazy(() => import('./presentation/pages/GlossaryPage'));
@@ -30,6 +32,9 @@ const DesignSystemPage = lazy(() => import('./presentation/pages/DesignSystemPag
 const CleanCodePage = lazy(() => import('./presentation/pages/CleanCodePage'));
 const WorkshopPage = lazy(() => import('./presentation/pages/WorkshopPage'));
 const EvolutionaryPage = lazy(() => import('./presentation/pages/EvolutionaryPage'));
+const SpaceBasedPage = lazy(() => import('./presentation/pages/SpaceBasedPage'));
+const P2PPage = lazy(() => import('./presentation/pages/P2PPage'));
+const SOAPage = lazy(() => import('./presentation/pages/SOAPage'));
 
 const LoadingFallback = () => (
   <div style={{ height: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--primary)' }}>
@@ -59,6 +64,8 @@ const App: React.FC = () => {
                     <Route path="/cqrs" element={<CQRSPage />} />
                     <Route path="/horizontal" element={<HorizontalPage />} />
                     <Route path="/eda" element={<EDAPage />} />
+                    <Route path="/microkernel" element={<MicrokernelPage />} />
+                    <Route path="/serverless" element={<ServerlessPage />} />
                     <Route path="/compare" element={<ComparisonPage />} />
                     <Route path="/project-arch" element={<ProjectPage />} />
                     <Route path="/solid" element={<SOLIDPage />} />
@@ -70,6 +77,9 @@ const App: React.FC = () => {
                     <Route path="/design-system" element={<DesignSystemPage />} />
                     <Route path="/clean-code" element={<CleanCodePage />} />
                     <Route path="/evolution" element={<EvolutionaryPage />} />
+                    <Route path="/space-based" element={<SpaceBasedPage />} />
+                    <Route path="/p2p" element={<P2PPage />} />
+                    <Route path="/soa" element={<SOAPage />} />
                     <Route path="/workshop" element={<WorkshopPage />} />
                   </Routes>
                 </AnimatePresence>

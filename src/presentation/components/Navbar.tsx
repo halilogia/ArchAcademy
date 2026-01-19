@@ -28,8 +28,22 @@ const Navbar: React.FC = () => {
     { name: 'Onion (J. Palermo)', path: '/onion', color: '#f43f5e' },
     { name: 'Horizontal (N-Tier)', path: '/horizontal', color: '#3b82f6' },
     { name: 'Event-Driven (EDA)', path: '/eda', color: '#a855f7' },
-    { name: 'Evolutionary Architecture', path: '/evolution', color: '#ec4899' },
     { name: 'Monolith vs Microservices', path: '/system', color: '#f43f5e' },
+    { name: 'Microkernel (Plug-in)', path: '/microkernel', color: '#3b82f6' },
+    { name: 'Serverless (FaaS)', path: '/serverless', color: '#a855f7' },
+    { name: 'Space-Based Architecture', path: '/space-based', color: '#eab308' },
+    { name: 'Peer-to-Peer (P2P)', path: '/p2p', color: '#10b981' },
+    { name: 'SOA (Service Oriented)', path: '/soa', color: '#3b82f6' },
+    { name: 'Pipe-Filter (Pipeline)', path: '/glossary?search=Pipeline', color: '#f97316' },
+    { name: 'Big Data (Lambda/Kappa)', path: '/glossary?search=Lambda', color: '#ec4899' },
+    { name: 'Event Sourcing (State)', path: '/glossary?search=Event Sourcing', color: '#3b82f6' },
+    { name: 'Broker (Kafka Style)', path: '/glossary?search=Broker', color: '#f43f5e' },
+    { name: 'Orchestration (Center)', path: '/glossary?search=Orchestration', color: '#a855f7' },
+    { name: 'Choreography (Events)', path: '/glossary?search=Choreography', color: '#10b981' },
+    { name: 'Interpreter & Logic', path: '/glossary?search=Interpreter', color: '#3b82f6' },
+    { name: 'MVC / MVP / MVVM', path: '/glossary?search=MVC', color: '#eab308' },
+    { name: 'Object-Oriented Arch', path: '/glossary?search=Object-Oriented', color: '#3b82f6' },
+    { name: 'Evolutionary Architecture', path: '/evolution', color: '#ec4899' },
   ];
 
   const disciplines = [

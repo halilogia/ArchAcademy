@@ -26,6 +26,8 @@ const GlossaryPage = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedLetter, setSelectedLetter] = useState('All');
 
+  const [displayCount, setDisplayCount] = useState(100);
+
   useEffect(() => {
     const params = new URLSearchParams(location.search);
     const search = params.get('search');
@@ -35,16 +37,23 @@ const GlossaryPage = () => {
     }
   }, [location.search]);
 
-  const terms = GLOSSARY_TERMS;
+  // Reset display count when filters change
+  useEffect(() => {
+    setDisplayCount(100);
+  }, [searchTerm, selectedLetter]);
 
-  const filteredTerms = terms.filter(t => {
-    const matchesSearch = t.term.toLowerCase().includes(searchTerm.toLowerCase()) || 
-                         t.definition.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesLetter = selectedLetter === 'All' || t.term.startsWith(selectedLetter);
-    return matchesSearch && matchesLetter;
-  });
+  const filteredTerms = React.useMemo(() => {
+    return GLOSSARY_TERMS.filter(t => {
+      const matchesSearch = t.term.toLowerCase().includes(searchTerm.toLowerCase()) || 
+                           t.definition.toLowerCase().includes(searchTerm.toLowerCase());
+      const matchesLetter = selectedLetter === 'All' || t.term.startsWith(selectedLetter);
+      return matchesSearch && matchesLetter;
+    });
+  }, [searchTerm, selectedLetter]);
 
-  const alphabet = ['All', ...'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('')];
+  const alphabet = React.useMemo(() => ['All', ...'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('')], []);
+  
+  const visibleTerms = filteredTerms.slice(0, displayCount);
 
   return (
     <motion.div
@@ -132,74 +141,93 @@ const GlossaryPage = () => {
           display: 'grid', 
           gridTemplateColumns: 'repeat(auto-fill, minmax(350px, 1fr))', 
           gap: '2rem',
-          paddingBottom: '100px'
+          paddingBottom: '2rem'
         }}>
-          <AnimatePresence>
-            {filteredTerms.map((item, i) => (
-              <motion.div
-                key={item.term}
-                layout
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.9 }}
-                transition={{ duration: 0.2 }}
-                className="glass-card"
-                style={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  gap: '1.5rem',
-                  borderTop: '4px solid var(--primary)',
-                  position: 'relative'
-                }}
-              >
-                <div style={{
-                  position: 'absolute',
-                  top: '1.5rem',
-                  right: '1.5rem',
-                  opacity: 0.1
-                }}>
-                  <Hash size={40} />
-                </div>
+          {visibleTerms.map((item, i) => (
+            <motion.div
+              key={item.term}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3, delay: Math.min(i * 0.01, 0.3) }}
+              className="glass-card"
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '1.5rem',
+                borderTop: '4px solid var(--primary)',
+                position: 'relative'
+              }}
+            >
+              <div style={{
+                position: 'absolute',
+                top: '1.5rem',
+                right: '1.5rem',
+                opacity: 0.1
+              }}>
+                <Hash size={40} />
+              </div>
 
-                <div>
-                   <span style={{ 
-                     fontSize: '0.65rem', 
-                     background: 'rgba(59, 130, 246, 0.1)', 
-                     color: 'var(--primary)', 
-                     padding: '4px 8px', 
-                     borderRadius: '6px',
-                     fontWeight: 700,
-                     textTransform: 'uppercase',
-                     letterSpacing: '1px'
-                   }}>
-                     {item.category}
-                   </span>
-                   <h3 style={{ fontSize: '1.5rem', marginTop: '0.75rem', color: 'white' }}>{item.term}</h3>
-                </div>
+              <div>
+                 <span style={{ 
+                   fontSize: '0.65rem', 
+                   background: 'rgba(59, 130, 246, 0.1)', 
+                   color: 'var(--primary)', 
+                   padding: '4px 8px', 
+                   borderRadius: '6px',
+                   fontWeight: 700,
+                   textTransform: 'uppercase',
+                   letterSpacing: '1px'
+                 }}>
+                   {item.category}
+                 </span>
+                 <h3 style={{ fontSize: '1.5rem', marginTop: '0.75rem', color: 'white' }}>{item.term}</h3>
+              </div>
 
-                <p style={{ color: 'var(--text-secondary)', lineHeight: 1.6, fontSize: '0.95rem' }}>
-                  {item.definition}
-                </p>
+              <p style={{ color: 'var(--text-secondary)', lineHeight: 1.6, fontSize: '0.95rem' }}>
+                {item.definition}
+              </p>
 
-                <div style={{ 
-                  marginTop: 'auto',
-                  background: 'rgba(59, 130, 246, 0.03)',
-                  padding: '1rem',
-                  borderRadius: '12px',
-                  border: '1px dashed rgba(59, 130, 246, 0.2)',
-                  display: 'flex',
-                  gap: '0.75rem',
-                  alignItems: 'flex-start'
-                }}>
-                   <Info size={18} color="var(--primary)" style={{ flexShrink: 0 }} />
-                   <div style={{ fontSize: '0.8rem', color: 'var(--primary)', fontWeight: 500 }}>
-                      <strong style={{ opacity: 0.7 }}>GURU TIP:</strong> {item.guruTip}
-                   </div>
-                </div>
-              </motion.div>
-            ))}
-          </AnimatePresence>
+              <div style={{ 
+                marginTop: 'auto',
+                background: 'rgba(59, 130, 246, 0.03)',
+                padding: '1rem',
+                borderRadius: '12px',
+                border: '1px dashed rgba(59, 130, 246, 0.2)',
+                display: 'flex',
+                gap: '0.75rem',
+                alignItems: 'flex-start'
+              }}>
+                 <Info size={18} color="var(--primary)" style={{ flexShrink: 0 }} />
+                 <div style={{ fontSize: '0.8rem', color: 'var(--primary)', fontWeight: 500 }}>
+                    <strong style={{ opacity: 0.7 }}>GURU TIP:</strong> {item.guruTip}
+                 </div>
+              </div>
+            </motion.div>
+          ))}
         </div>
+
+        {/* Load More Section */}
+        {filteredTerms.length > displayCount && (
+          <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
+            <button
+              onClick={() => setDisplayCount(prev => prev + 100)}
+              style={{
+                background: 'var(--primary)',
+                color: 'white',
+                border: 'none',
+                padding: '1rem 2.5rem',
+                borderRadius: '15px',
+                fontWeight: 800,
+                cursor: 'pointer',
+                transition: 'all 0.2s',
+                boxShadow: '0 10px 30px rgba(59, 130, 246, 0.3)',
+                fontSize: '1rem'
+              }}
+            >
+              Daha Fazla Göster ({filteredTerms.length - displayCount} kalan)
+            </button>
+          </div>
+        )}
 
         {filteredTerms.length === 0 && (
           <div style={{ textAlign: 'center', padding: '5rem', opacity: 0.5 }}>
