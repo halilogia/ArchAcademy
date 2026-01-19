@@ -45,6 +45,13 @@ const ChoreographyPage = lazy(() => import('./presentation/pages/ChoreographyPag
 const BigDataPage = lazy(() => import('./presentation/pages/BigDataPage'));
 const EventSourcingPage = lazy(() => import('./presentation/pages/EventSourcingPage'));
 const MVCPage = lazy(() => import('./presentation/pages/MVCPage'));
+const MVVMPage = lazy(() => import('./presentation/pages/MVVMPage'));
+const LambdaPage = lazy(() => import('./presentation/pages/LambdaPage'));
+const PlugInPage = lazy(() => import('./presentation/pages/PlugInPage'));
+const MVPPage = lazy(() => import('./presentation/pages/MVPPage'));
+const PubSubPage = lazy(() => import('./presentation/pages/PubSubPage'));
+const PrimarySecondaryPage = lazy(() => import('./presentation/pages/PrimarySecondaryPage'));
+const KappaPage = lazy(() => import('./presentation/pages/KappaPage'));
 
 const LoadingFallback = () => (
   <div style={{ height: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--primary)' }}>
@@ -101,6 +108,13 @@ const App: React.FC = () => {
                     <Route path="/big-data" element={<BigDataPage />} />
                     <Route path="/event-sourcing" element={<EventSourcingPage />} />
                     <Route path="/mvc-mvvm" element={<MVCPage />} />
+                    <Route path="/mvvm" element={<MVVMPage />} />
+                    <Route path="/lambda" element={<LambdaPage />} />
+                    <Route path="/plugin" element={<PlugInPage />} />
+                    <Route path="/mvp" element={<MVPPage />} />
+                    <Route path="/pub-sub" element={<PubSubPage />} />
+                    <Route path="/primary-secondary" element={<PrimarySecondaryPage />} />
+                    <Route path="/kappa" element={<KappaPage />} />
                   </Routes>
                 </AnimatePresence>
               </Suspense>
