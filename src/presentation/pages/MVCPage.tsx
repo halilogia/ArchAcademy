@@ -5,42 +5,59 @@ import { Layout, Database, Settings } from 'lucide-react';
 
 const MVCPage = () => {
   const illu = (
-    <div style={{ position: 'relative', width: '300px', height: '300px' }}>
+    <div style={{ position: 'relative', width: '350px', height: '350px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'space-between' }}>
       {/* View */}
       <motion.div
         animate={{ y: [0, -10, 0] }}
-        transition={{ duration: 3, repeat: Infinity }}
-        style={{ position: 'absolute', top: 0, left: '50%', transform: 'translateX(-50%)', width: '120px', height: '80px', background: 'var(--glass)', border: '2px solid #ec4899', borderRadius: '15px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}
+        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+        style={{ width: '130px', height: '85px', background: 'var(--glass)', border: '2px solid #ec4899', borderRadius: '18px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', zIndex: 3, boxShadow: '0 10px 30px rgba(236, 72, 153, 0.2)' }}
       >
-        <Layout size={24} color="#ec4899" />
-        <span style={{ fontSize: '0.7rem', fontWeight: 800, marginTop: '5px' }}>VIEW</span>
+        <Layout size={28} color="#ec4899" />
+        <span style={{ fontSize: '0.75rem', fontWeight: 900, marginTop: '6px', color: 'white' }}>VIEW</span>
       </motion.div>
 
-      {/* Controller */}
+      {/* Dynamic Connector Down */}
+      <div style={{ height: '40px', width: '2px', background: 'rgba(236, 72, 153, 0.2)', position: 'relative' }}>
+        <motion.div 
+          animate={{ top: ['0%', '100%'], opacity: [0, 1, 0] }}
+          transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
+          style={{ position: 'absolute', width: '6px', height: '6px', background: '#ec4899', borderRadius: '50%', left: '-2px', filter: 'blur(1px)' }}
+        />
+      </div>
+
+      {/* Controller / ViewModel */}
       <motion.div
-        animate={{ scale: [1, 1.05, 1] }}
-        transition={{ duration: 2, repeat: Infinity }}
-        style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', width: '120px', height: '80px', background: 'var(--glass)', border: '2px solid #ec4899', borderRadius: '15px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', zIndex: 2 }}
+        animate={{ scale: [1, 1.03, 1] }}
+        transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+        style={{ width: '140px', height: '90px', background: 'var(--glass)', border: '2px solid #ec4899', borderRadius: '18px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', zIndex: 3, boxShadow: '0 0 40px rgba(236, 72, 153, 0.15)' }}
       >
-        <Settings size={24} color="#ec4899" />
-        <span style={{ fontSize: '0.7rem', fontWeight: 800, marginTop: '5px' }}>CONTROLLER</span>
+        <Settings size={28} color="#ec4899" className="rotate-slow" />
+        <span style={{ fontSize: '0.75rem', fontWeight: 900, marginTop: '6px', color: 'white' }}>CONTROLLER</span>
       </motion.div>
+
+      {/* Dynamic Connector Up & Down */}
+      <div style={{ height: '40px', width: '2px', background: 'rgba(236, 72, 153, 0.2)', position: 'relative' }}>
+        <motion.div 
+          animate={{ bottom: ['0%', '100%'], opacity: [0, 1, 0] }}
+          transition={{ duration: 1.5, repeat: Infinity, ease: "linear", delay: 0.75 }}
+          style={{ position: 'absolute', width: '6px', height: '6px', background: '#ec4899', borderRadius: '50%', left: '-2px', filter: 'blur(1px)' }}
+        />
+      </div>
 
       {/* Model */}
       <motion.div
         animate={{ y: [0, 10, 0] }}
-        transition={{ duration: 3, repeat: Infinity }}
-        style={{ position: 'absolute', bottom: 0, left: '50%', transform: 'translateX(-50%)', width: '120px', height: '80px', background: 'var(--glass)', border: '2px solid #ec4899', borderRadius: '15px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}
+        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+        style={{ width: '130px', height: '85px', background: 'var(--glass)', border: '2px solid #ec4899', borderRadius: '18px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', zIndex: 3, boxShadow: '0 -10px 30px rgba(236, 72, 153, 0.2)' }}
       >
-        <Database size={24} color="#ec4899" />
-        <span style={{ fontSize: '0.7rem', fontWeight: 800, marginTop: '5px' }}>MODEL</span>
+        <Database size={28} color="#ec4899" />
+        <span style={{ fontSize: '0.75rem', fontWeight: 900, marginTop: '6px', color: 'white' }}>MODEL</span>
       </motion.div>
 
-      {/* Connectors */}
-      <svg style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 1 }}>
-        <line x1="150" y1="80" x2="150" y2="110" stroke="#ec4899" strokeWidth="2" strokeDasharray="4" />
-        <line x1="150" y1="190" x2="150" y2="220" stroke="#ec4899" strokeWidth="2" strokeDasharray="4" />
-      </svg>
+      <style>{`
+        .rotate-slow { animation: spin 8s linear infinite; }
+        @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+      `}</style>
     </div>
   );
 

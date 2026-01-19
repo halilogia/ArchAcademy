@@ -6,6 +6,7 @@ import { AnimatePresence } from 'framer-motion';
 import { ProgressProvider } from './context/ProgressContext';
 import ErrorBoundary from './presentation/components/ErrorBoundary';
 import CommandPalette from './presentation/components/CommandPalette';
+import ScrollToTop from './presentation/components/ScrollToTop';
 
 // Lazy Load Pages for Fault Isolation & Performance
 const HomePage = lazy(() => import('./presentation/pages/HomePage'));
@@ -52,6 +53,7 @@ const MVPPage = lazy(() => import('./presentation/pages/MVPPage'));
 const PubSubPage = lazy(() => import('./presentation/pages/PubSubPage'));
 const PrimarySecondaryPage = lazy(() => import('./presentation/pages/PrimarySecondaryPage'));
 const KappaPage = lazy(() => import('./presentation/pages/KappaPage'));
+const ECSPage = lazy(() => import('./presentation/pages/ECSPage'));
 
 const LoadingFallback = () => (
   <div style={{ height: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--primary)' }}>
@@ -63,6 +65,7 @@ const App: React.FC = () => {
   return (
     <ProgressProvider>
       <Router>
+        <ScrollToTop />
         <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
           <Navbar />
           <CommandPalette />
@@ -115,6 +118,7 @@ const App: React.FC = () => {
                     <Route path="/pub-sub" element={<PubSubPage />} />
                     <Route path="/primary-secondary" element={<PrimarySecondaryPage />} />
                     <Route path="/kappa" element={<KappaPage />} />
+                    <Route path="/ecs" element={<ECSPage />} />
                   </Routes>
                 </AnimatePresence>
               </Suspense>

@@ -40,9 +40,9 @@ const MVVMPage = () => {
       color="#ec4899"
       illustration={illu}
       features={[
-        { icon: <Zap />, title: 'Data Binding', desc: 'ViewModel deki veri değiştiğinde View otomatik olarak güncellenir.' },
-        { icon: <Share2 />, title: 'Observable State', desc: 'View'ün durumunu tamamen reaktif bir akış üzerinden yönetin.' },
-        { icon: <Layout />, title: 'Framework Ready', desc: 'React, Vue ve Angular gibi modern kütüphanelerin temel çalışma prensibi.' }
+        { icon: <Zap />, title: "Data Binding", desc: "ViewModel'deki veri değiştiğinde View otomatik olarak güncellenir." },
+        { icon: <Share2 />, title: "Observable State", desc: "View'ün durumunu tamamen reaktif bir akış üzerinden yönetin." },
+        { icon: <Layout />, title: "Framework Ready", desc: "React, Vue ve Angular gibi modern kütüphanelerin temel çalışma prensibi." }
       ]}
     />
   );

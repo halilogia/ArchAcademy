@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import { Hexagon, Zap, MousePointer2, Info } from 'lucide-react';
+import { Hexagon, Zap, MousePointer2, Compass, Sparkles, Orbit } from 'lucide-react';
 
 interface ArchItem {
   name: string;
@@ -24,12 +24,11 @@ const CatalogPage = () => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setRotation(prev => (prev + 0.05) % 360);
+      setRotation(prev => (prev + 0.02) % 360);
     }, 50);
     return () => clearInterval(interval);
   }, []);
 
-  // ByteByteGo 100% Parity Data Matrix
   const categories: ArchCategory[] = [
     {
       id: 'data-centric',
@@ -55,7 +54,9 @@ const CatalogPage = () => {
       color: '#10b981',
       items: [
         { name: 'Object-Oriented', path: '/object-oriented', color: '#10b981', desc: 'Nesne tabanlı modüler tasarım.' },
-        { name: 'Microkernel', path: '/microkernel', color: '#059669', desc: 'Eklenti tabanlı çekirdek sistemi.' }
+        { name: 'Microkernel', path: '/microkernel', color: '#059669', desc: 'Eklenti tabanlı çekirdek sistemi.' },
+        { name: 'Evolutionary', path: '/evolution', color: '#34d399', desc: 'Zamanla evrilebilen esnek yapılar.' },
+        { name: 'ECS Architecture', path: '/ecs', color: '#10b981', desc: 'Yüksek performanslı veri odaklı tasarım.' }
       ]
     },
     {
@@ -131,27 +132,34 @@ const CatalogPage = () => {
   ];
 
   return (
-    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} style={{ background: 'var(--bg-dark)', minHeight: '100vh', paddingTop: '100px' }}>
-      <div className="container">
+    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} style={{ background: '#020617', minHeight: '100vh', paddingTop: '80px', overflowX: 'hidden' }}>
+      <div className="container" style={{ position: 'relative' }}>
         <div style={{ textAlign: 'center', marginBottom: '40px' }}>
-          <h1 style={{ fontSize: '4rem', fontWeight: 950 }}>Software <span className="gradient-text">Architecture</span> Matrix</h1>
-          <p style={{ color: 'var(--text-secondary)', fontSize: '1.2rem', opacity: 0.8 }}>ByteByteGo Tasarımı - %100 Uyumlu Eğitim Haritası</p>
+          <motion.div initial={{ y: -20, opacity: 0 }} animate={{ y: 0, opacity: 1 }} style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', background: 'rgba(59, 130, 246, 0.1)', padding: '0.5rem 1.2rem', borderRadius: '100px', color: '#3b82f6', fontWeight: 800, fontSize: '0.9rem', marginBottom: '1rem', border: '1px solid rgba(59, 130, 246, 0.3)' }}>
+            <Sparkles size={16} /> VIBRANT ARCHITECTURE MATRIX
+          </motion.div>
+          <h1 style={{ fontSize: '4.5rem', fontWeight: 950, letterSpacing: '-3px', margin: 0, color: 'white' }}>
+            Software <span className="gradient-text">Architecture</span>
+          </h1>
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: '1.5fr 1fr', gap: '3rem', alignItems: 'center' }}>
-          <div style={{ position: 'relative', height: '800px' }}>
-            <svg viewBox="0 0 800 800" style={{ width: '100%', height: '100%', overflow: 'visible' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'minmax(800px, 1.6fr) 1fr', gap: '2rem', alignItems: 'center' }}>
+          <div style={{ position: 'relative', height: '1000px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <svg viewBox="0 0 1100 1100" style={{ width: '100%', height: '100%', overflow: 'visible' }}>
                <defs>
-                 {categories.map(cat => (
-                   <pattern key={`pat-${cat.id}`} id={`grad-${cat.id}`} patternUnits="userSpaceOnUse" width="100" height="100">
-                     <rect width="100" height="100" fill={cat.color} fillOpacity="0.3" />
-                   </pattern>
-                 ))}
+                 <filter id="color-glow-ultra" x="-100%" y="-100%" width="300%" height="300%">
+                   <feGaussianBlur stdDeviation="25" result="blur" />
+                   <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                 </filter>
+                 <linearGradient id="center-glow-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor="#3b82f6" />
+                    <stop offset="100%" stopColor="#8b5cf6" />
+                 </linearGradient>
                </defs>
 
-               <motion.g animate={{ rotate: rotation }} style={{ transformOrigin: '400px 400px' }}>
-                 <circle cx="400" cy="400" r="100" fill="rgba(255,255,255,0.05)" stroke="white" strokeWidth="1" strokeDasharray="5 5" />
-                 <text x="400" y="405" textAnchor="middle" fill="white" fontWeight="900" fontSize="12" style={{ letterSpacing: '2px' }}>MATRIX</text>
+               <motion.g animate={{ rotate: rotation }} style={{ transformOrigin: '550px 550px' }}>
+                 <circle cx={550} cy={550} r={115} fill="#0f172a" stroke="url(#center-glow-grad)" strokeWidth={3} />
+                 <text x={550} y={558} textAnchor="middle" fill="white" fontWeight="950" fontSize={22} style={{ letterSpacing: '8px', textShadow: '0 0 20px #3b82f6' }}>MATRIX</text>
                </motion.g>
 
                {categories.map((cat, catIdx) => {
@@ -168,43 +176,63 @@ const CatalogPage = () => {
                        const radStart = (itemStartAngle - 90) * (Math.PI / 180);
                        const radEnd = (itemEndAngle - 90) * (Math.PI / 180);
                        
-                       const innerR = 120;
-                       const outerR = 380;
+                       const innerR = 135;
+                       const outerR = 510; // ÇARK BÜYÜTÜLDÜ (Eski: 380)
                        
-                       const x1_i = 400 + innerR * Math.cos(radStart);
-                       const y1_i = 400 + innerR * Math.sin(radStart);
-                       const x2_i = 400 + innerR * Math.cos(radEnd);
-                       const y2_i = 400 + innerR * Math.sin(radEnd);
-                       const x1_o = 400 + outerR * Math.cos(radStart);
-                       const y1_o = 400 + outerR * Math.sin(radStart);
-                       const x2_o = 400 + outerR * Math.cos(radEnd);
-                       const y2_o = 400 + outerR * Math.sin(radEnd);
-
                        const isHovered = hoveredItem?.name === item.name;
+
+                       const x1_i = 550 + innerR * Math.cos(radStart);
+                       const y1_i = 550 + innerR * Math.sin(radStart);
+                       const x2_i = 550 + innerR * Math.cos(radEnd);
+                       const y2_i = 550 + innerR * Math.sin(radEnd);
+                       const x1_o = 550 + outerR * Math.cos(radStart);
+                       const y1_o = 550 + outerR * Math.sin(radStart);
+                       const x2_o = 550 + outerR * Math.cos(radEnd);
+                       const y2_o = 550 + outerR * Math.sin(radEnd);
 
                        return (
                          <motion.path
                            key={item.name}
                            d={`M ${x1_i} ${y1_i} L ${x1_o} ${y1_o} A ${outerR} ${outerR} 0 0 1 ${x2_o} ${y2_o} L ${x2_i} ${y2_i} A ${innerR} ${innerR} 0 0 0 ${x1_i} ${y1_i}`}
-                           fill={isHovered ? item.color : 'rgba(255,255,255,0.03)'}
-                           stroke={isHovered ? "white" : "rgba(255,255,255,0.1)"}
-                           strokeWidth={isHovered ? "2" : "0.5"}
+                           fill={cat.color}
+                           fillOpacity={isHovered ? 1 : 0.85}
+                           stroke={isHovered ? "white" : "rgba(255,255,255,0.15)"}
+                           strokeWidth={isHovered ? "5" : "1"}
+                           initial={false}
+                           animate={{ 
+                             scale: isHovered ? 1.04 : 1,
+                             filter: isHovered ? 'url(#color-glow-ultra)' : 'none',
+                           }}
                            onMouseEnter={() => setHoveredItem(item)}
                            onMouseLeave={() => setHoveredItem(null)}
                            onClick={() => navigate(item.path)}
-                           style={{ cursor: 'pointer', transition: 'all 0.3s' }}
+                           style={{ cursor: 'pointer', transition: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)' }}
                          />
                        );
                      })}
 
-                     {/* Inner category label */}
+                     {/* Yazılar çarkın içinde ama merkeze uzak (Radius: 360) */}
                      {(() => {
                         const midAngle = startAngle + (sliceAngle / 2);
                         const radMid = (midAngle - 90) * (Math.PI / 180);
-                        const x = 400 + 170 * Math.cos(radMid);
-                        const y = 400 + 170 * Math.sin(radMid);
+                        const x = 550 + 320 * Math.cos(radMid); // Merkeze çok bitişik değil, çarkın içinde dengeli konum
+                        const y = 550 + 320 * Math.sin(radMid);
                         return (
-                          <text x={x} y={y} fill={cat.color} fontSize="8" fontWeight="950" textAnchor="middle" style={{ pointerEvents: 'none', transform: `rotate(${midAngle > 90 && midAngle < 270 ? midAngle + 180 : midAngle}deg)`, transformOrigin: `${x}px ${y}px` }}>
+                          <text 
+                            x={x} y={y} 
+                            fill="white" 
+                            fontSize="12" 
+                            fontWeight="950" 
+                            textAnchor="middle" 
+                            style={{ 
+                              pointerEvents: 'none', 
+                              letterSpacing: '1.5px',
+                              textShadow: '0 2px 10px rgba(0,0,0,0.9), 0 0 20px rgba(0,0,0,0.5)',
+                              transform: `rotate(${midAngle > 90 && midAngle < 270 ? midAngle + 180 : midAngle}deg)`, 
+                              transformOrigin: `${x}px ${y}px`,
+                              opacity: 0.95
+                            }}
+                          >
                             {cat.name.toUpperCase()}
                           </text>
                         );
@@ -215,25 +243,68 @@ const CatalogPage = () => {
             </svg>
           </div>
 
-          <div>
+          <div style={{ position: 'sticky', top: '150px' }}>
              <AnimatePresence mode="wait">
                {hoveredItem ? (
-                 <motion.div key={hoveredItem.name} initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} className="glass-card" style={{ padding: '3rem', border: `2px solid ${hoveredItem.color}44` }}>
-                   <div style={{ color: hoveredItem.color, marginBottom: '1.5rem' }}><Info size={32} /></div>
-                   <h2 style={{ fontSize: '2.5rem', fontWeight: 900, marginBottom: '1rem' }}>{hoveredItem.name}</h2>
-                   <p style={{ fontSize: '1.2rem', color: 'var(--text-secondary)', lineHeight: 1.6, marginBottom: '2rem' }}>{hoveredItem.desc}</p>
-                   <button onClick={() => navigate(hoveredItem.path)} style={{ background: hoveredItem.color, color: 'black', width: '100%', padding: '1.2rem', borderRadius: '15px', fontWeight: 900, border: 'none', cursor: 'pointer' }}>İNCELE VE ÖĞREN</button>
+                 <motion.div 
+                   key={hoveredItem.name} 
+                   initial={{ opacity: 0, scale: 0.9 }} 
+                   animate={{ opacity: 1, scale: 1 }} 
+                   exit={{ opacity: 0, scale: 0.9 }} 
+                   className="glass-card" 
+                   style={{ 
+                     padding: '3.5rem', 
+                     borderRadius: '60px',
+                     border: `6px solid ${hoveredItem.color}`,
+                     background: `linear-gradient(135deg, ${hoveredItem.color}44 0%, rgba(15, 23, 42, 1) 100%)`,
+                     boxShadow: `0 0 100px ${hoveredItem.color}44, 0 40px 150px rgba(0,0,0,0.9)`
+                   }}
+                 >
+                   <div style={{ color: hoveredItem.color, marginBottom: '2rem' }}>
+                     <Compass size={60} className="glow-anim" />
+                   </div>
+                   <h2 style={{ fontSize: '3.2rem', fontWeight: 950, marginBottom: '1.2rem', color: 'white', letterSpacing: '-2px', lineHeight: 1 }}>
+                     {hoveredItem.name}
+                   </h2>
+                   <p style={{ fontSize: '1.3rem', color: 'rgba(255,255,255,0.9)', lineHeight: 1.6, marginBottom: '2.5rem' }}>{hoveredItem.desc}</p>
+                   <button 
+                     onClick={() => navigate(hoveredItem.path)} 
+                     style={{ 
+                       background: hoveredItem.color, 
+                       color: 'white', 
+                       width: '100%', 
+                       padding: '1.5rem', 
+                       borderRadius: '25px', 
+                       fontWeight: 950, 
+                       border: 'none', 
+                       cursor: 'pointer',
+                       fontSize: '1.2rem',
+                       display: 'flex',
+                       alignItems: 'center',
+                       justifyContent: 'center',
+                       gap: '1rem',
+                       textTransform: 'uppercase',
+                       boxShadow: `0 15px 40px ${hoveredItem.color}55`
+                      }}
+                    >
+                      EĞİTİME BAŞLA <Zap size={24} />
+                    </button>
                  </motion.div>
                ) : (
-                 <div className="glass-card" style={{ padding: '4rem', textAlign: 'center', opacity: 0.5 }}>
-                    <MousePointer2 size={48} style={{ margin: '0 auto 1.5rem' }} />
-                    <p>Mimarileri keşfetmek için çarkın üzerine gelin.</p>
+                 <div className="glass-card" style={{ padding: '6rem', textAlign: 'center', opacity: 1, borderRadius: '60px', border: '3px dashed rgba(255,255,255,0.1)' }}>
+                    <Compass size={80} color="rgba(255,255,255,0.2)" style={{ margin: '0 auto 2rem' }} />
+                    <h3 style={{ fontSize: '2rem', fontWeight: 900, marginBottom: '1rem', color: 'white' }}>ARCHITECT'S HUB</h3>
+                    <p style={{ fontSize: '1.1rem', color: 'rgba(255,255,255,0.4)' }}>Daha büyük, daha canlı ve daha okunaklı.</p>
                  </div>
                )}
              </AnimatePresence>
           </div>
         </div>
       </div>
+      <style>{`
+        .glow-anim { animation: glow-pulse-heavy 2s infinite; }
+        @keyframes glow-pulse-heavy { 0% { filter: drop-shadow(0 0 5px currentColor); } 50% { filter: drop-shadow(0 0 30px currentColor); } 100% { filter: drop-shadow(0 0 5px currentColor); } }
+      `}</style>
     </motion.div>
   );
 };

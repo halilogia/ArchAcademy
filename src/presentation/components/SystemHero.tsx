@@ -39,9 +39,9 @@ const SystemHero = () => {
 
   return (
     <ArchHero 
-      title="Monolith vs."
-      subtitle="Microservices"
-      description="Tek parça devasa bir kale mi, yoksa bağımsız hareket eden uzman bir ordu mu? Sisteminizi ölçeklendirmek için doğru stratejiyi belirleyin."
+      title="Microservices"
+      subtitle="System Architecture"
+      description="Tek parça (Monolith) yapılardan, bağımsız hareket eden uzman servisler ekosistemine yolculuk. Sisteminizi ölçeklendirmek için doğru stratejiyi belirleyin."
       badge="System Architecture"
       color="#f43f5e"
       illustration={illu}

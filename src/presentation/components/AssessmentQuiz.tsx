@@ -53,6 +53,16 @@ const questions = [
       { text: "Clean Arch (Small, pure logic files)", score: { type: 'Modernist', value: 10 }, feedback: "AI'nın en sevdiği yemek! Net bağlam, sıfır hata." },
       { text: "Spagetti Code with lots of comments", score: { type: 'Hopeful', value: 3 }, feedback: "Yorumlar yardımcı olur ama yapı her şeydir." }
     ]
+  },
+  {
+    id: 6,
+    title: "Oyun Dünyasında Performans",
+    scenario: "Aynı anda ekranda 10.000 aktif mermi ve 500 düşmanın olduğu yüksek performanslı bir savaş oyunu geliştiriyorsun. İşlemci gecikmesini minimize etmek için hangi yaklaşımı seçersin?",
+    options: [
+      { text: "OOP (Hiyerarşik Miras Yapısı)", score: { type: 'Classic', value: 2 }, feedback: "CPU Cache miss problemleri yüzünden fps düşebilir!" },
+      { text: "ECS (Entity Component System)", score: { type: 'Performance Expert', value: 10 }, feedback: "Mükemmel! Veriyi işlemcinin sevdiği sırayla (Linear) işlersin." },
+      { text: "Pure Functional Architecture", score: { type: 'Scholar', value: 5 }, feedback: "Temiz kod ama oyun motorunda çok yavaş kalabilir." }
+    ]
   }
 ];
 
