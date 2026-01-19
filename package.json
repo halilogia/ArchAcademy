@@ -1,14 +1,13 @@
 {
-  "name": "clean-architecture-tutorial",
+  "name": "arch-academy",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "analyze": "node scripts/analyze_project.js"
   },
   "dependencies": {
     "framer-motion": "^12.27.0",

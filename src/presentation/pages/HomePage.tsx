@@ -25,14 +25,14 @@ const HomePage = () => {
             textAlign: 'center',
             borderRadius: '40px'
           }}>
-             <h2 style={{ fontSize: '3rem', marginBottom: '1.5rem' }}>Eğitim Ücretsiz, <br /> Bilgi Paha Biçilemez.</h2>
+             <h2 style={{ fontSize: '3rem', marginBottom: '1.5rem' }}>Education is Free, <br /> Knowledge is Priceless.</h2>
              <p style={{ maxWidth: '700px', margin: '0 auto 3rem', color: 'var(--text-secondary)', fontSize: '1.1rem' }}>
-               Bu portal, topluluk tarafından geliştirilen açık kaynaklı bir eğitim projesidir. 
-               Mimari bilginizi bir üst seviyeye taşımak için her gün yeni içerikler ekliyoruz.
+               This portal is an open-source educational project developed by the community. 
+               We add new content daily to help you level up your architectural skills.
              </p>
              <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center' }}>
-                <div style={{ padding: '1rem 2rem', background: 'white', color: 'black', borderRadius: '16px', fontWeight: 700 }}>Github'da Yıldızla</div>
-                <div style={{ padding: '1rem 2rem', background: 'var(--glass)', color: 'white', borderRadius: '16px', fontWeight: 700, border: '1px solid var(--glass-border)' }}>Topluluğa Katıl</div>
+                <div style={{ padding: '1rem 2rem', background: 'white', color: 'black', borderRadius: '16px', fontWeight: 700 }}>Star on GitHub</div>
+                <div style={{ padding: '1rem 2rem', background: 'var(--glass)', color: 'white', borderRadius: '16px', fontWeight: 700, border: '1px solid var(--glass-border)' }}>Join Community</div>
              </div>
           </div>
         </div>
