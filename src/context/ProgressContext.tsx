@@ -1,4 +1,5 @@
-import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import React, { createContext, useContext, ReactNode } from 'react';
+import useLocalStorage from '../presentation/hooks/useLocalStorage';
 
 interface ProgressState {
   completedSteps: string[];
@@ -14,26 +15,23 @@ interface ProgressContextType {
 const ProgressContext = createContext<ProgressContextType | undefined>(undefined);
 
 export const ProgressProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const [progress, setProgress] = useState<ProgressState>(() => {
-    const saved = localStorage.getItem('arch_progress');
-    return saved ? JSON.parse(saved) : { completedSteps: [], lastVisited: null };
+  // Use Custom Hook for clean persistence logic
+  const [progress, setProgress] = useLocalStorage<ProgressState>('arch_progress', { 
+    completedSteps: [], 
+    lastVisited: null 
   });
 
-  useEffect(() => {
-    localStorage.setItem('arch_progress', JSON.stringify(progress));
-  }, [progress]);
-
   const completeStep = (stepPath: string) => {
-    setProgress(prev => ({
-      ...prev,
-      completedSteps: prev.completedSteps.includes(stepPath) 
-        ? prev.completedSteps 
-        : [...prev.completedSteps, stepPath]
-    }));
+    setProgress({
+      ...progress,
+      completedSteps: progress.completedSteps.includes(stepPath) 
+        ? progress.completedSteps 
+        : [...progress.completedSteps, stepPath]
+    });
   };
 
   const setLastVisited = (path: string) => {
-    setProgress(prev => ({ ...prev, lastVisited: path }));
+    setProgress({ ...progress, lastVisited: path });
   };
 
   return (

@@ -11,7 +11,8 @@ import {
   Sparkles, 
   Code2, 
   Map, 
-  Palette 
+  Palette,
+  GitBranch 
 } from 'lucide-react';
 
 const Navbar: React.FC = () => {
@@ -25,6 +26,7 @@ const Navbar: React.FC = () => {
     { name: 'Onion (J. Palermo)', path: '/onion', color: '#f43f5e' },
     { name: 'Horizontal (N-Tier)', path: '/horizontal', color: '#3b82f6' },
     { name: 'Event-Driven (EDA)', path: '/eda', color: '#a855f7' },
+    { name: 'Evolutionary Architecture', path: '/evolution', color: '#ec4899' },
     { name: 'Monolith vs Microservices', path: '/system', color: '#f43f5e' },
   ];
 
