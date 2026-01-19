@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { Sparkles, ArrowRight, BookOpen, GraduationCap, Shield } from 'lucide-react';
 
 const HomeHero = () => {
@@ -60,34 +61,41 @@ const HomeHero = () => {
           </p>
 
           <div style={{ display: 'flex', gap: '1.5rem', justifyContent: 'center' }}>
-            <button style={{
-              background: 'var(--primary)',
-              color: 'white',
-              padding: '1.25rem 2.5rem',
-              borderRadius: '20px',
-              fontWeight: 700,
-              fontSize: '1.1rem',
-              display: 'flex',
-              alignItems: 'center',
-              gap: '0.75rem',
-              boxShadow: '0 10px 30px var(--primary-glow)'
-            }}>
-              Eğitime Başla <ArrowRight size={20} />
-            </button>
-            <button style={{
-              background: 'var(--glass)',
-              color: 'white',
-              padding: '1.25rem 2.5rem',
-              borderRadius: '20px',
-              fontWeight: 700,
-              fontSize: '1.1rem',
-              border: '1px solid var(--glass-border)',
-              display: 'flex',
-              alignItems: 'center',
-              gap: '0.75rem'
-            }}>
-              <BookOpen size={20} /> Müfredat
-            </button>
+            <Link to="/roadmap" style={{ textDecoration: 'none' }}>
+              <button style={{
+                background: 'var(--primary)',
+                color: 'white',
+                padding: '1.25rem 2.5rem',
+                borderRadius: '20px',
+                fontWeight: 700,
+                fontSize: '1.1rem',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.75rem',
+                boxShadow: '0 10px 30px var(--primary-glow)',
+                border: 'none',
+                cursor: 'pointer'
+              }}>
+                Eğitime Başla <ArrowRight size={20} />
+              </button>
+            </Link>
+            <Link to="/compare" style={{ textDecoration: 'none' }}>
+              <button style={{
+                background: 'var(--glass)',
+                color: 'white',
+                padding: '1.25rem 2.5rem',
+                borderRadius: '20px',
+                fontWeight: 700,
+                fontSize: '1.1rem',
+                border: '1px solid var(--glass-border)',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.75rem',
+                cursor: 'pointer'
+              }}>
+                <BookOpen size={20} /> Müfredat
+              </button>
+            </Link>
           </div>
         </motion.div>
       </div>

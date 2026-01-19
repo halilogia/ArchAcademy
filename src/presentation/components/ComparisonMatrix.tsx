@@ -1,8 +1,10 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 import { Check, X, Star, Zap, Gauge, Code2, Users, Sparkles } from 'lucide-react';
 
 const ComparisonMatrix = () => {
+  const navigate = useNavigate();
   const data = [
     {
       name: 'Clean Architecture',
@@ -13,7 +15,8 @@ const ComparisonMatrix = () => {
       test: 5,
       ai: 5,
       color: 'var(--primary)',
-      bestFor: 'Complex Enterprise Systems'
+      bestFor: 'Complex Enterprise Systems',
+      path: '/clean-arch'
     },
     {
       name: 'Vertical Slice',
@@ -24,7 +27,8 @@ const ComparisonMatrix = () => {
       test: 4,
       ai: 4,
       color: '#f97316',
-      bestFor: 'Rapid Feature Development'
+      bestFor: 'Rapid Feature Development',
+      path: '/vertical'
     },
     {
       name: 'DDD (Methodology)',
@@ -35,7 +39,8 @@ const ComparisonMatrix = () => {
       test: 4,
       ai: 5,
       color: '#a78bfa',
-      bestFor: 'Domain-Heavy Business Logic'
+      bestFor: 'Domain-Heavy Business Logic',
+      path: '/ddd'
     },
     {
       name: 'CQRS (Pattern)',
@@ -46,7 +51,8 @@ const ComparisonMatrix = () => {
       test: 5,
       ai: 4,
       color: '#eab308',
-      bestFor: 'High-Read/Write Systems'
+      bestFor: 'High-Read/Write Systems',
+      path: '/cqrs'
     },
     {
       name: 'SOLID Principles',
@@ -57,7 +63,8 @@ const ComparisonMatrix = () => {
       test: 5,
       ai: 5,
       color: '#6366f1',
-      bestFor: 'Fundamental Code Quality'
+      bestFor: 'Fundamental Code Quality',
+      path: '/solid'
     },
     {
       name: 'Hexagonal',
@@ -68,7 +75,8 @@ const ComparisonMatrix = () => {
       test: 5,
       ai: 4,
       color: '#10b981',
-      bestFor: 'Tech-Agnostic Apps'
+      bestFor: 'Tech-Agnostic Apps',
+      path: '/hexagonal'
     },
     {
       name: 'Onion Architecture',
@@ -79,7 +87,8 @@ const ComparisonMatrix = () => {
       test: 5,
       ai: 5,
       color: '#f43f5e',
-      bestFor: 'Domain-Centric Apps'
+      bestFor: 'Domain-Centric Apps',
+      path: '/onion'
     },
     {
       name: 'FSD (Frontend)',
@@ -90,7 +99,8 @@ const ComparisonMatrix = () => {
       test: 3,
       ai: 4,
       color: '#06b6d4',
-      bestFor: 'Complex React/Next Projects'
+      bestFor: 'Complex React/Next Projects',
+      path: '/fsd'
     },
     {
       name: 'Event-Driven (EDA)',
@@ -101,7 +111,8 @@ const ComparisonMatrix = () => {
       test: 3,
       ai: 3,
       color: '#a855f7',
-      bestFor: 'Distributed Microservices'
+      bestFor: 'Distributed Microservices',
+      path: '/eda'
     },
     {
       name: 'Monolith',
@@ -112,7 +123,8 @@ const ComparisonMatrix = () => {
       test: 3,
       ai: 2,
       color: '#3b82f6',
-      bestFor: 'Small Teams & MVPs'
+      bestFor: 'Small Teams & MVPs',
+      path: '/system'
     }
   ];
 
@@ -171,11 +183,14 @@ const ComparisonMatrix = () => {
                   key={idx}
                   initial={{ opacity: 0, x: -20 }}
                   whileInView={{ opacity: 1, x: 0 }}
+                  whileHover={{ scale: 1.01, background: 'rgba(255,255,255,0.05)' }}
+                  onClick={() => navigate(row.path)}
                   viewport={{ once: true }}
                   transition={{ delay: idx * 0.05 }}
                   style={{
                     background: 'var(--glass)',
                     boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
+                    cursor: 'pointer'
                   }}
                 >
                   <td style={{ 

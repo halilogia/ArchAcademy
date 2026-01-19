@@ -54,17 +54,21 @@ const SOLIDHero = () => {
           </p>
 
           <div style={{ display: 'flex', gap: '1.5rem' }}>
-            <button style={{
-              background: '#6366f1',
-              color: 'white',
-              padding: '1rem 2rem',
-              borderRadius: '16px',
-              fontWeight: 600,
-              display: 'flex',
-              alignItems: 'center',
-              gap: '0.5rem',
-              boxShadow: '0 8px 24px rgba(99, 102, 241, 0.3)'
-            }}>
+            <button 
+              onClick={() => window.scrollTo({ top: 900, behavior: 'smooth' })}
+              style={{
+                background: '#6366f1',
+                color: 'white',
+                padding: '1rem 2rem',
+                borderRadius: '16px',
+                fontWeight: 600,
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.5rem',
+                boxShadow: '0 8px 24px rgba(99, 102, 241, 0.3)',
+                cursor: 'pointer',
+                border: 'none'
+              }}>
               Prensipleri Keşfet <ChevronRight size={20} />
             </button>
           </div>

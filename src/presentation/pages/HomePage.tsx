@@ -31,8 +31,8 @@ const HomePage = () => {
                We add new content daily to help you level up your architectural skills.
              </p>
              <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center' }}>
-                <div style={{ padding: '1rem 2rem', background: 'white', color: 'black', borderRadius: '16px', fontWeight: 700 }}>Star on GitHub</div>
-                <div style={{ padding: '1rem 2rem', background: 'var(--glass)', color: 'white', borderRadius: '16px', fontWeight: 700, border: '1px solid var(--glass-border)' }}>Join Community</div>
+                <a href="https://github.com/halilogia/ArchAcademy" target="_blank" rel="noopener noreferrer" style={{ padding: '1rem 2rem', background: 'white', color: 'black', borderRadius: '16px', fontWeight: 700, textDecoration: 'none' }}>Star on GitHub</a>
+                <a href="https://discord.gg/archacademy" target="_blank" rel="noopener noreferrer" style={{ padding: '1rem 2rem', background: 'var(--glass)', color: 'white', borderRadius: '16px', fontWeight: 700, border: '1px solid var(--glass-border)', textDecoration: 'none' }}>Join Community</a>
              </div>
           </div>
         </div>

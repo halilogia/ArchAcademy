@@ -5,6 +5,7 @@ import Footer from './presentation/components/Footer';
 import { AnimatePresence } from 'framer-motion';
 import { ProgressProvider } from './context/ProgressContext';
 import ErrorBoundary from './presentation/components/ErrorBoundary';
+import CommandPalette from './presentation/components/CommandPalette';
 
 // Lazy Load Pages for Fault Isolation & Performance
 const HomePage = lazy(() => import('./presentation/pages/HomePage'));
@@ -42,6 +43,7 @@ const App: React.FC = () => {
       <Router>
         <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
           <Navbar />
+          <CommandPalette />
           <main style={{ flex: 1 }}>
             <ErrorBoundary>
               <Suspense fallback={<LoadingFallback />}>

@@ -12,7 +12,9 @@ import {
   Code2, 
   Map, 
   Palette,
-  GitBranch 
+  GitBranch,
+  Search,
+  Command 
 } from 'lucide-react';
 
 const Navbar: React.FC = () => {
@@ -266,6 +268,38 @@ const Navbar: React.FC = () => {
               </div>
             )}
           </div>
+
+          {/* SEARCH BUTTON */}
+          <button 
+            onClick={() => window.dispatchEvent(new KeyboardEvent('keydown', { key: 'k', ctrlKey: true }))}
+            style={{
+              background: 'rgba(255,255,255,0.05)',
+              border: '1px solid var(--glass-border)',
+              borderRadius: '10px',
+              padding: '0.4rem 0.75rem',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '0.75rem',
+              cursor: 'pointer',
+              transition: 'all 0.2s',
+              color: 'var(--text-secondary)',
+              marginLeft: '0.5rem'
+            }}
+          >
+            <Search size={14} />
+            <span style={{ fontSize: '0.75rem', fontWeight: 600 }}>Ara...</span>
+            <div style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '2px',
+              background: 'rgba(255,255,255,0.08)',
+              padding: '2px 5px',
+              borderRadius: '4px',
+              fontSize: '0.6rem'
+            }}>
+              <Command size={10} /><span>K</span>
+            </div>
+          </button>
 
         </div>
 

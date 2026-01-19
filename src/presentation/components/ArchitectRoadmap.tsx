@@ -25,7 +25,7 @@ const roadmapData = [
     color: "#6366f1",
     tasks: [
       { id: 'solid', title: 'SOLID Prensipleri', desc: 'Esnek kodun temel taşları.', icon: <Shield size={18} />, path: '/solid' },
-      { id: 'patterns', title: 'Design Patterns', desc: 'Tekrar eden sorunlara standart çözümler.', icon: <Box size={18} />, path: '/patterns' },
+      { id: 'patterns', title: 'Design Patterns', desc: 'Tekrar eden sorunlara standart çözümler.', icon: <Box size={18} />, path: '/glossary' },
       { id: 'clean-code', title: 'Clean Code', desc: 'Okunabilir ve sürdürülebilir kod sanatı.', icon: <Sparkles size={18} />, path: '/clean-code' }
     ]
   },
@@ -56,7 +56,7 @@ const roadmapData = [
     tasks: [
       { id: 'matrix', title: 'Master Matrix', desc: 'Mimari seçim matrisi oluşturma.', icon: <Award size={18} />, path: '/compare' },
       { id: 'surgery', title: 'Code Surgery', desc: 'Legacy sistemlerin modernizasyonu.', icon: <Cpu size={18} />, path: '/refactoring' },
-      { id: 'strategy', title: 'Team Topologies', desc: 'Organizasyonel mimari yönetimi.', icon: <Shield size={18} />, path: '/strategy' }
+      { id: 'strategy', title: 'Team Topologies', desc: 'Organizasyonel mimari yönetimi.', icon: <Shield size={18} />, path: '/system' }
     ]
   }
 ];

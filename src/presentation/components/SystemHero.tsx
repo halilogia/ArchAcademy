@@ -55,17 +55,21 @@ const SystemHero = () => {
           </p>
 
           <div style={{ display: 'flex', gap: '1.5rem' }}>
-            <button style={{
-              background: '#f43f5e',
-              color: 'white',
-              padding: '1rem 2rem',
-              borderRadius: '16px',
-              fontWeight: 600,
-              display: 'flex',
-              alignItems: 'center',
-              gap: '0.5rem',
-              boxShadow: '0 8px 24px rgba(244, 63, 94, 0.3)'
-            }}>
+            <button 
+              onClick={() => window.scrollTo({ top: 900, behavior: 'smooth' })}
+              style={{
+                background: '#f43f5e',
+                color: 'white',
+                padding: '1rem 2rem',
+                borderRadius: '16px',
+                fontWeight: 600,
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.5rem',
+                boxShadow: '0 8px 24px rgba(244, 63, 94, 0.3)',
+                cursor: 'pointer',
+                border: 'none'
+              }}>
               Savaş Alanını İncele <ArrowRight size={20} />
             </button>
           </div>

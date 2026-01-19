@@ -135,14 +135,26 @@ const EvolutionaryPage: React.FC = () => {
                     Bu, Evrimsel Mimari'nin en uç fitness function örneğidir.
                  </p>
               </div>
-              <div className="glass-card" style={{ padding: '2rem', textAlign: 'center' }}>
-                 <img 
-                   src="https://netflixtechblog.com/1-5c8e3ca31333" 
-                   alt="Chaos Engineering Visualization" 
-                   style={{ width: '100%', borderRadius: '12px', display: 'none' }} // Placeholder if no image tool
-                 />
-                 <div style={{ fontSize: '5rem', marginBottom: '1rem' }}>🐒💥</div>
-                 <div style={{ fontWeight: 700, fontSize: '1.2rem' }}>"What doesn't kill you makes you stronger."</div>
+              <div className="glass-card" style={{ padding: '2rem', textAlign: 'center', position: 'relative', overflow: 'hidden' }}>
+                 <div style={{ 
+                   position: 'absolute', 
+                   top: '50%', 
+                   left: '50%', 
+                   transform: 'translate(-50%, -50%)',
+                   width: '200px',
+                   height: '200px',
+                   background: 'radial-gradient(circle, rgba(236, 72, 153, 0.2) 0%, transparent 70%)',
+                   borderRadius: '50%'
+                 }} />
+                 <motion.div 
+                   animate={{ scale: [1, 1.2, 1] }} 
+                   transition={{ duration: 4, repeat: Infinity }}
+                   style={{ fontSize: '5rem', marginBottom: '1rem', position: 'relative' }}
+                 >
+                   🐒💥
+                 </motion.div>
+                 <div style={{ fontWeight: 700, fontSize: '1.2rem', color: '#ec4899', marginBottom: '1rem' }}>Chaos Monkey</div>
+                 <div style={{ fontWeight: 700, fontSize: '1rem', color: 'var(--text-secondary)' }}>"What doesn't kill you makes you stronger."</div>
               </div>
            </div>
         </div>

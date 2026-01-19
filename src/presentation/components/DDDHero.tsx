@@ -63,16 +63,20 @@ const DDDHero = () => {
           </p>
 
           <div style={{ display: 'flex', gap: '1.5rem' }}>
-            <button style={{
-              background: '#8b5cf6',
-              color: 'white',
-              padding: '1rem 2rem',
-              borderRadius: '16px',
-              fontWeight: 600,
-              display: 'flex',
-              alignItems: 'center',
-              gap: '0.5rem'
-            }}>
+            <button 
+              onClick={() => window.scrollTo({ top: 900, behavior: 'smooth' })}
+              style={{
+                background: '#8b5cf6',
+                color: 'white',
+                padding: '1rem 2rem',
+                borderRadius: '16px',
+                fontWeight: 600,
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.5rem',
+                cursor: 'pointer',
+                border: 'none'
+              }}>
               Modellemeye Başla <ArrowRight size={20} />
             </button>
           </div>

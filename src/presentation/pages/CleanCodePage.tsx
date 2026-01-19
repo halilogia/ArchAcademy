@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { scissors, Scissors, CheckCircle2, XCircle, Divide, Sparkles } from 'lucide-react';
 import Navbar from '../components/Navbar';
 
@@ -116,7 +117,7 @@ const CleanCodePage: React.FC = () => {
                  Tüm bu anlattıklarım havada kalmasın. Gerçek hayattan alınmış, iğrenç kod örneklerini 
                  nasıl sanat eserine dönüştürdüğümüzü görmek ister misin?
                </p>
-               <a href="/refactoring" style={{ 
+               <Link to="/refactoring" style={{ 
                  display: 'inline-flex', 
                  alignItems: 'center', 
                  gap: '1rem', 
@@ -132,7 +133,7 @@ const CleanCodePage: React.FC = () => {
                }}>
                  <Scissors size={24} />
                  Ameliyathaneye Gir (Refactoring Surgery)
-               </a>
+               </Link>
             </div>
 
         </div>

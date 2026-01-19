@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import ProjectDesignSystem from '../components/ProjectDesignSystem';
 import ProjectTechStack from '../components/ProjectTechStack';
 import { Palette, Sparkles, Wind } from 'lucide-react';
@@ -74,9 +75,9 @@ const DesignSystemPage = () => {
               Bu tasarım sistemini kendi projende kullanmak istersen kaynak kodları inceleyebilirsin.
             </p>
             {/* Logic for going back to architecture */}
-            <a href="/project-arch" style={{ color: '#10b981', fontWeight: 800, textDecoration: 'none', borderBottom: '2px solid' }}>
+            <Link to="/project-arch" style={{ color: '#10b981', fontWeight: 800, textDecoration: 'none', borderBottom: '2px solid' }}>
               Klasör Yapısını ve Mimariyi İncele →
-            </a>
+            </Link>
          </div>
       </section>
 
