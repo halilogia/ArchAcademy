@@ -35,7 +35,7 @@ const InterpreterPage = () => {
       <ArchHero 
         title="Interpreter"
         subtitle="Architecture"
-        description="Özel bir dili veya komut setini doğrudan yorumlayarak çalıştıran sistemler tasarlayın. Karmaşık kural motorları ve DSL ler için ideal çözüm."
+        description="Özel bir dili veya komut setini doğrudan yorumlayarak çalıştıran sistemler tasarlayın. Karmaşık kural motorları ve DSL'ler için ideal çözüm."
         badge="Logic Engine"
         color="#db2777"
         illustration={illu}

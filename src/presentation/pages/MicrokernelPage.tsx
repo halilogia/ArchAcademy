@@ -66,7 +66,7 @@ const MicrokernelPage = () => {
       <ArchHero 
         title="Microkernel"
         subtitle="Architecture"
-        description="Sistemin değişmez ana çekirdeği ile sürekli gelişen eklentilerini birbirinden ayıran, modern yazılımların esneklik sırrı. VS Code ve Linux un kalbi."
+        description="Sistemin değişmez ana çekirdeği ile sürekli gelişen eklentilerini birbirinden ayıran, modern yazılımların esneklik sırrı. VS Code ve Linux'un kalbi."
         badge="Plug-in Architecture"
         color="#10b981"
         illustration={illu}

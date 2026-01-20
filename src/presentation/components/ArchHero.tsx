@@ -10,9 +10,11 @@ interface ArchHeroProps {
   color: string;
   illustration: React.ReactNode;
   features: { icon: React.ReactNode; title: string; desc: string }[];
+  children?: React.ReactNode;
+  hideAction?: boolean;
 }
 
-const ArchHero: React.FC<ArchHeroProps> = ({ title, subtitle, description, badge, color, illustration, features }) => {
+const ArchHero: React.FC<ArchHeroProps> = ({ title, subtitle, description, badge, color, illustration, features, children, hideAction }) => {
   return (
     <section style={{ padding: '120px 0 80px', position: 'relative', overflow: 'hidden' }}>
       <div style={{ position: 'absolute', top: '0', left: '0', width: '100%', height: '100%', background: `radial-gradient(circle at 20% 30%, ${color}11, transparent 70%)`, zIndex: -1 }} />
@@ -28,9 +30,12 @@ const ArchHero: React.FC<ArchHeroProps> = ({ title, subtitle, description, badge
           <p style={{ color: 'var(--text-secondary)', fontSize: '1.25rem', maxWidth: '600px', marginBottom: '3rem', lineHeight: 1.7 }}>
             {description}
           </p>
-          <button style={{ background: color, color: 'white', padding: '1rem 2rem', borderRadius: '16px', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '0.5rem', border: 'none', cursor: 'pointer', boxShadow: `0 8px 24px ${color}44` }}>
-            Mevzuyu Çöz <ChevronRight size={20} />
-          </button>
+          {children}
+          {!hideAction && (
+            <button style={{ background: color, color: 'white', padding: '1rem 2rem', borderRadius: '16px', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '0.5rem', border: 'none', cursor: 'pointer', boxShadow: `0 8px 24px ${color}44` }}>
+              Mevzuyu Çöz <ChevronRight size={20} />
+            </button>
+          )}
         </motion.div>
 
         <motion.div initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.2 }}>

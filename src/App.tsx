@@ -29,7 +29,6 @@ const SystemPage = lazy(() => import('./presentation/pages/SystemPage'));
 const AssessmentPage = lazy(() => import('./presentation/pages/AssessmentPage'));
 const RefactoringPage = lazy(() => import('./presentation/pages/RefactoringPage'));
 const RoadmapPage = lazy(() => import('./presentation/pages/RoadmapPage'));
-const DesignSystemPage = lazy(() => import('./presentation/pages/DesignSystemPage'));
 const CleanCodePage = lazy(() => import('./presentation/pages/CleanCodePage'));
 const WorkshopPage = lazy(() => import('./presentation/pages/WorkshopPage'));
 const EvolutionaryPage = lazy(() => import('./presentation/pages/EvolutionaryPage'));
@@ -94,7 +93,6 @@ const App: React.FC = () => {
                     <Route path="/assessment" element={<AssessmentPage />} />
                     <Route path="/refactoring" element={<RefactoringPage />} />
                     <Route path="/roadmap" element={<RoadmapPage />} />
-                    <Route path="/design-system" element={<DesignSystemPage />} />
                     <Route path="/clean-code" element={<CleanCodePage />} />
                     <Route path="/evolution" element={<EvolutionaryPage />} />
                     <Route path="/space-based" element={<SpaceBasedPage />} />

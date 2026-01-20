@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Github, Twitter, Linkedin } from 'lucide-react';
+import { Github, Youtube, Linkedin } from 'lucide-react';
 
 const Footer = () => {
   return (
@@ -17,73 +17,77 @@ const Footer = () => {
           marginBottom: '4rem'
         }}>
           <div style={{ gridColumn: 'span 2' }}>
-            <h3 style={{ fontSize: '1.5rem', fontWeight: 700, marginBottom: '1.5rem' }}>
-              CleanArch Academy
+            <h3 style={{ fontSize: '1.5rem', fontWeight: 950, marginBottom: '1.5rem', letterSpacing: '-1px' }}>
+              ArchAcademy
             </h3>
-            <p style={{ color: 'var(--text-secondary)', maxWidth: '400px', marginBottom: '2rem' }}>
-              En iyi mühendislik pratiklerini öğrenin ve projelerinizde uygulayın. 
-              Sürdürülebilir mimariler ile geleceği inşa edin.
+            <p style={{ color: 'var(--text-secondary)', maxWidth: '400px', marginBottom: '2rem', lineHeight: 1.6 }}>
+              Yazılım mimarisi üzerine aldığım kişisel notlar ve modern mühendislik pratikleri arşivi. 
+              Karmaşıklığı yönetmek için dürüst ve pratik bir rehber.
             </p>
             <div style={{ display: 'flex', gap: '1rem' }}>
               <a href="https://github.com/halilogia/ArchAcademy" target="_blank" rel="noopener noreferrer" style={{ 
                 width: '40px', height: '40px', 
-                borderRadius: '50%', background: 'var(--glass)', 
+                borderRadius: '50%', background: 'rgba(255,255,255,0.03)', 
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
                 border: '1px solid var(--glass-border)',
-                color: 'white'
+                color: 'white',
+                transition: 'all 0.3s'
               }}>
-                <Github size={20} />
+                <Github size={18} />
               </a>
-              <a href="https://twitter.com/archacademy" target="_blank" rel="noopener noreferrer" style={{ 
+              <a href="https://www.youtube.com/@Halilogia" target="_blank" rel="noopener noreferrer" style={{ 
                 width: '40px', height: '40px', 
-                borderRadius: '50%', background: 'var(--glass)', 
+                borderRadius: '50%', background: 'rgba(255,255,255,0.03)', 
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
                 border: '1px solid var(--glass-border)',
-                color: 'white'
+                color: 'white',
+                transition: 'all 0.3s'
               }}>
-                <Twitter size={20} />
+                <Youtube size={18} />
               </a>
-              <a href="https://linkedin.com/company/archacademy" target="_blank" rel="noopener noreferrer" style={{ 
+              <a href="https://www.linkedin.com/in/halil-emre-k-32a590211/?locale=tr_TR" target="_blank" rel="noopener noreferrer" style={{ 
                 width: '40px', height: '40px', 
-                borderRadius: '50%', background: 'var(--glass)', 
+                borderRadius: '50%', background: 'rgba(255,255,255,0.03)', 
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
                 border: '1px solid var(--glass-border)',
-                color: 'white'
+                color: 'white',
+                transition: 'all 0.3s'
               }}>
-                <Linkedin size={20} />
+                <Linkedin size={18} />
               </a>
             </div>
           </div>
           
           <div>
-            <h4 style={{ marginBottom: '1.5rem' }}>Kaynaklar</h4>
+            <h4 style={{ marginBottom: '1.5rem', fontWeight: 700 }}>Hızlı Bağlantılar</h4>
             <ul style={{ display: 'flex', flexDirection: 'column', gap: '1rem', color: 'var(--text-secondary)', fontSize: '0.9rem', listStyle: 'none', padding: 0 }}>
-              <li><a href="http://blog.cleancoder.com/" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'none' }}>Uncle Bob'un Blogu</a></li>
-              <li><Link to="/solid" style={{ color: 'inherit', textDecoration: 'none' }}>Solid Prensipleri</Link></li>
-              <li><Link to="/glossary" style={{ color: 'inherit', textDecoration: 'none' }}>Design Patterns</Link></li>
-              <li><Link to="/refactoring" style={{ color: 'inherit', textDecoration: 'none' }}>Case Studies</Link></li>
+              <li><Link to="/assessment" style={{ color: 'inherit', textDecoration: 'none' }}>Mimari Sihirbazı</Link></li>
+              <li><Link to="/solid" style={{ color: 'inherit', textDecoration: 'none' }}>SOLID Prensipleri</Link></li>
+              <li><Link to="/glossary" style={{ color: 'inherit', textDecoration: 'none' }}>Mimari Sözlük</Link></li>
+              <li><Link to="/workshop" style={{ color: 'inherit', textDecoration: 'none' }}>Pratik Atölye</Link></li>
             </ul>
           </div>
 
           <div>
-            <h4 style={{ marginBottom: '1.5rem' }}>Topluluk</h4>
+            <h4 style={{ marginBottom: '1.5rem', fontWeight: 700 }}>Dış Kaynaklar</h4>
             <ul style={{ display: 'flex', flexDirection: 'column', gap: '1rem', color: 'var(--text-secondary)', fontSize: '0.9rem', listStyle: 'none', padding: 0 }}>
-              <li><a href="https://discord.gg/archacademy" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'none' }}>Discord Sunucusu</a></li>
-              <li><a href="https://linkedin.com/company/archacademy" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'none' }}>LinkedIn Grubu</a></li>
-              <li><Link to="/workshop" style={{ color: 'inherit', textDecoration: 'none' }}>Atölye Çalışmaları</Link></li>
-              <li><a href="https://archacademy.substack.com" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'none' }}>Bülten</a></li>
+              <li><a href="http://blog.cleancoder.com/" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'none' }}>Uncle Bob's Blog</a></li>
+              <li><a href="https://martinfowler.com" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'none' }}>Martin Fowler</a></li>
+              <li><a href="https://refactoring.guru" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'none' }}>Refactoring Guru</a></li>
+              <li><a href="https://microservices.io" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'none' }}>Microservices.io</a></li>
             </ul>
           </div>
         </div>
         
         <div style={{ 
           paddingTop: '40px', 
-          borderTop: '1px solid var(--glass-border)', 
+          borderTop: '1px solid rgba(255,255,255,0.05)', 
           textAlign: 'center',
           color: 'var(--text-secondary)',
-          fontSize: '0.85rem'
+          fontSize: '0.85rem',
+          opacity: 0.7
         }}>
-          © 2026 CleanArch Academy. Tüm hakları saklıdır. Antigravity tarafından tasarlandı.
+          © 2026 ArchAcademy. Sevgiyle ve temiz kodla inşa edildi.
         </div>
       </div>
     </footer>

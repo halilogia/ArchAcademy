@@ -22,28 +22,30 @@ const Navbar: React.FC = () => {
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
 
   const architectures = [
-    { name: 'Clean Architecture (Uncle Bob)', path: '/clean-arch', color: 'var(--primary)' },
-    { name: 'Vertical Slice (Jimmy Bogard)', path: '/vertical', color: '#f97316' },
-    { name: 'Hexagonal (A. Cockburn)', path: '/hexagonal', color: '#10b981' },
-    { name: 'Onion (J. Palermo)', path: '/onion', color: '#f43f5e' },
-    { name: 'Horizontal (N-Tier)', path: '/horizontal', color: '#3b82f6' },
+    { name: 'Clean Architecture', path: '/clean-arch', color: 'var(--primary)' },
+    { name: 'Onion Architecture', path: '/onion', color: '#f43f5e' },
+    { name: 'Hexagonal (Ports)', path: '/hexagonal', color: '#10b981' },
+    { name: 'Vertical Slice', path: '/vertical', color: '#f97316' },
+    { name: 'n-Tier (Horizontal)', path: '/horizontal', color: '#3b82f6' },
+    { name: 'FSD (Frontend)', path: '/fsd', color: '#06b6d4' },
     { name: 'Event-Driven (EDA)', path: '/eda', color: '#a855f7' },
-    { name: 'Monolith vs Microservices', path: '/system', color: '#f43f5e' },
+    { name: 'Microservices vs Monolith', path: '/system', color: '#f43f5e' },
     { name: 'Microkernel (Plug-in)', path: '/microkernel', color: '#3b82f6' },
-    { name: 'Serverless (FaaS)', path: '/serverless', color: '#a855f7' },
-    { name: 'Space-Based Architecture', path: '/space-based', color: '#eab308' },
+    { name: 'Serverless (FaaS)', path: '/serverless', color: '#ec4899' },
+    { name: 'Space-Based Arch', path: '/space-based', color: '#eab308' },
     { name: 'Peer-to-Peer (P2P)', path: '/p2p', color: '#10b981' },
     { name: 'SOA (Service Oriented)', path: '/soa', color: '#3b82f6' },
-    { name: 'Pipe-Filter (Pipeline)', path: '/glossary?search=Pipeline', color: '#f97316' },
-    { name: 'Big Data (Lambda/Kappa)', path: '/glossary?search=Lambda', color: '#ec4899' },
-    { name: 'Event Sourcing (State)', path: '/glossary?search=Event Sourcing', color: '#3b82f6' },
-    { name: 'Broker (Kafka Style)', path: '/glossary?search=Broker', color: '#f43f5e' },
-    { name: 'Orchestration (Center)', path: '/glossary?search=Orchestration', color: '#a855f7' },
-    { name: 'Choreography (Events)', path: '/glossary?search=Choreography', color: '#10b981' },
-    { name: 'Interpreter & Logic', path: '/glossary?search=Interpreter', color: '#3b82f6' },
-    { name: 'MVC / MVP / MVVM', path: '/glossary?search=MVC', color: '#eab308' },
-    { name: 'Object-Oriented Arch', path: '/glossary?search=Object-Oriented', color: '#3b82f6' },
-    { name: 'Evolutionary Architecture', path: '/evolution', color: '#ec4899' },
+    { name: 'Event Sourcing', path: '/event-sourcing', color: '#6366f1' },
+    { name: 'Broker (Kafka Style)', path: '/broker', color: '#fda4af' },
+    { name: 'Orchestration', path: '/orchestration', color: '#8b5cf6' },
+    { name: 'Choreography', path: '/choreography', color: '#7c3aed' },
+    { name: 'Big Data (Lambda/Kappa)', path: '/big-data', color: '#06b6d4' },
+    { name: 'Pipe-Filter (Pipeline)', path: '/pipe-filter', color: '#8b5cf6' },
+    { name: 'Interpreter Logic', path: '/interpreter', color: '#6366f1' },
+    { name: 'MVC / MVP / MVVM', path: '/mvc-mvvm', color: '#10b981' },
+    { name: 'ECS (System Design)', path: '/ecs', color: '#059669' },
+    { name: 'Evolutionary Arch', path: '/evolution', color: '#ec4899' },
+    { name: 'Object-Oriented Arch', path: '/object-oriented', color: '#3b82f6' },
   ];
 
   const disciplines = [
@@ -206,13 +208,6 @@ const Navbar: React.FC = () => {
                 flexDirection: 'column',
                 gap: '0.5rem'
               }}>
-                <Link to="/compare" style={{ display: 'flex', alignItems: 'center', gap: '1rem', padding: '0.8rem', borderRadius: '10px', textDecoration: 'none', color: 'white', background: 'rgba(255,255,255,0.03)' }}>
-                  <div style={{ color: 'var(--primary)' }}><Zap size={18} /></div>
-                  <div>
-                    <div style={{ fontSize: '0.85rem', fontWeight: 700 }}>Master Matrix</div>
-                    <div style={{ fontSize: '0.7rem', opacity: 0.5 }}>Mimari Karşılaştırma</div>
-                  </div>
-                </Link>
                 <Link to="/assessment" style={{ display: 'flex', alignItems: 'center', gap: '1rem', padding: '0.8rem', borderRadius: '10px', textDecoration: 'none', color: 'white' }}>
                   <div style={{ color: '#f59e0b' }}><Target size={18} /></div>
                   <div>
@@ -290,10 +285,6 @@ const Navbar: React.FC = () => {
                 <Link to="/project-arch" style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', padding: '0.6rem 1rem', borderRadius: '8px', textDecoration: 'none', color: 'white' }}>
                   <Code2 size={16} style={{ color: '#10b981' }} />
                   <span style={{ fontSize: '0.85rem' }}>Project Architecture</span>
-                </Link>
-                <Link to="/design-system" style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', padding: '0.6rem 1rem', borderRadius: '8px', textDecoration: 'none', color: 'white' }}>
-                  <Palette size={16} style={{ color: '#a855f7' }} />
-                  <span style={{ fontSize: '0.85rem' }}>Design System</span>
                 </Link>
 
               </div>

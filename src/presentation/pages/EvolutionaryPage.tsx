@@ -48,7 +48,7 @@ const EvolutionaryPage: React.FC = () => {
       <ArchHero 
         title="Evolutionary"
         subtitle="Architecture"
-        description="'Evolutionary architecture supports guided, incremental change across multiple dimensions.' Neal Ford un değişen dünyaya uyum sağlayan mimari disiplini."
+        description="'Evolutionary architecture supports guided, incremental change across multiple dimensions.' Neal Ford'un değişen dünyaya uyum sağlayan mimari disiplini."
         badge="Incremental Change"
         color="#ec4899"
         illustration={illu}

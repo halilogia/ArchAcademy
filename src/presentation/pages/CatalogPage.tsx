@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import { Hexagon, Zap, MousePointer2, Compass, Sparkles, Orbit } from 'lucide-react';
+import { Hexagon, Zap, MousePointer2, Compass, Sparkles, Orbit, Shield } from 'lucide-react';
 
 interface ArchItem {
   name: string;
@@ -31,102 +31,106 @@ const CatalogPage = () => {
 
   const categories: ArchCategory[] = [
     {
-      id: 'data-centric',
-      name: 'Data-Centric',
+      id: 'domain-centric',
+      name: 'Domain-Centric',
+      color: '#a855f7',
+      items: [
+        { name: 'Clean Architecture', path: '/clean-arch', color: '#a855f7', desc: 'Uncle Bob\'un bağımsızlık katmanları.' },
+        { name: 'Onion Architecture', path: '/onion', color: '#c084fc', desc: 'Bağımlılık yönü merkeze olan yapı.' },
+        { name: 'DDD Architecture', path: '/ddd', color: '#d8b4fe', desc: 'İş mantığını dile ve bounded context\'e odaklayan tasarım.' },
+        { name: 'Hexagonal', path: '/hexagonal', color: '#a855f7', desc: 'Ports & Adapters soyutlama modeli.' }
+      ]
+    },
+    {
+      id: 'layered-modern',
+      name: 'Layered & Modern',
       color: '#3b82f6',
       items: [
-        { name: 'CQRS', path: '/cqrs', color: '#3b82f6', desc: 'Komut ve sorgu sorumluluklarının ayrılması.' },
-        { name: 'Event Sourcing', path: '/event-sourcing', color: '#60a5fa', desc: 'Veriyi olaylar dizisi olarak saklama.' }
+        { name: 'Vertical Slice', path: '/vertical', color: '#3b82f6', desc: 'Modern startup odaklı özellik bazlı tasarım.' },
+        { name: 'n-Tier (Horizontal)', path: '/horizontal', color: '#60a5fa', desc: 'Klasik sorumluluk bazlı katmanlandırma.' },
+        { name: 'FSD (Frontend)', path: '/fsd', color: '#93c5fd', desc: 'Büyük ölçekli React/Next projeleri için katmanlı yapı.' }
       ]
     },
     {
-      id: 'layered',
-      name: 'Layered',
-      color: '#2563eb',
+      id: 'data-intensive',
+      name: 'Data-Intensive',
+      color: '#f97316',
       items: [
-        { name: 'Clean / Onion', path: '/clean-arch', color: '#2563eb', desc: 'Domain merkezli katmanlı yapılar.' },
-        { name: 'n-Tier Architecture', path: '/horizontal', color: '#3b82f6', desc: 'Klasik sorumluluk bazlı katmanlandırma.' }
-      ]
-    },
-    {
-      id: 'component',
-      name: 'Component-Based',
-      color: '#10b981',
-      items: [
-        { name: 'Object-Oriented', path: '/object-oriented', color: '#10b981', desc: 'Nesne tabanlı modüler tasarım.' },
-        { name: 'Microkernel', path: '/microkernel', color: '#059669', desc: 'Eklenti tabanlı çekirdek sistemi.' },
-        { name: 'Evolutionary', path: '/evolution', color: '#34d399', desc: 'Zamanla evrilebilen esnek yapılar.' },
-        { name: 'ECS Architecture', path: '/ecs', color: '#10b981', desc: 'Yüksek performanslı veri odaklı tasarım.' }
-      ]
-    },
-    {
-      id: 'service',
-      name: 'Service-Oriented',
-      color: '#f43f5e',
-      items: [
-        { name: 'Plug-in', path: '/plugin', color: '#f43f5e', desc: 'Dinamik modül ekleme mimarisi.' },
-        { name: 'SOA Arch', path: '/soa', color: '#fb7185', desc: 'Kurumsal servis haberleşme stratejisi.' },
-        { name: 'Broker Styles', path: '/broker', color: '#fda4af', desc: 'Mesaj tabanlı aracı sistemler.' },
-        { name: 'Microservices', path: '/system', color: '#f43f5e', desc: 'Bağımsız servisler ekosistemi.' },
-        { name: 'Serverless (FaaS)', path: '/serverless', color: '#e11d48', desc: 'Sunucusuz fonksiyon mimarisi.' }
+        { name: 'CQRS', path: '/cqrs', color: '#f97316', desc: 'Komut ve sorgu sorumluluklarının ayrılması.' },
+        { name: 'Event Sourcing', path: '/event-sourcing', color: '#fb923c', desc: 'Veriyi olaylar dizisi olarak saklama.' },
+        { name: 'Primary-Secondary', path: '/primary-secondary', color: '#fdba74', desc: 'Veri replikasyonu ve yedekleme stratejileri.' }
       ]
     },
     {
       id: 'distributed',
-      name: 'Distributed System',
+      name: 'Distributed Systems',
       color: '#eab308',
       items: [
-        { name: 'Space-Based', path: '/space-based', color: '#eab308', desc: 'In-memory veri hızı ve performans.' },
-        { name: 'Peer-to-Peer', path: '/p2p', color: '#facc15', desc: 'Düğümler arası doğrudan iletişim.' }
+        { name: 'Microservices', path: '/system', color: '#eab308', desc: 'Bağımsız servisler ekosistemi.' },
+        { name: 'Serverless (FaaS)', path: '/serverless', color: '#facc15', desc: 'Sunucusuz fonksiyon mimarisi.' },
+        { name: 'Space-Based', path: '/space-based', color: '#fde047', desc: 'In-memory veri hızı ve ekstrem performans.' },
+        { name: 'Peer-to-Peer', path: '/p2p', color: '#eab308', desc: 'Düğümler arası doğrudan iletişim.' }
       ]
     },
     {
-      id: 'domain',
-      name: 'Domain-Driven',
-      color: '#a855f7',
+      id: 'event-messaging',
+      name: 'Event & Messaging',
+      color: '#ef4444',
       items: [
-        { name: 'Hexagonal', path: '/hexagonal', color: '#a855f7', desc: 'Ports & Adapters soyutlama modeli.' },
-        { name: 'DDD Architecture', path: '/ddd', color: '#c084fc', desc: 'Domain odaklı mimari tasarım.' }
+        { name: 'Event-Driven (EDA)', path: '/eda', color: '#ef4444', desc: 'Olay yayıncıları ve dinleyicileri.' },
+        { name: 'Publish-Subscribe', path: '/pub-sub', color: '#f87171', desc: 'Mesaj abonelik haberleşme deseni.' },
+        { name: 'Message Broker', path: '/broker', color: '#fca5a5', desc: 'Aracı tabanlı güvenli mesajlaşma.' }
       ]
     },
     {
-      id: 'event',
-      name: 'Event-Driven',
-      color: '#f97316',
-      items: [
-        { name: 'Event-Driven', path: '/eda', color: '#f97316', desc: 'Olay yayıncıları ve dinleyicileri.' },
-        { name: 'Publish-Subscribe', path: '/pub-sub', color: '#fb923c', desc: 'Mesaj abonelik haberleşme deseni.' }
-      ]
-    },
-    {
-      id: 'concern',
-      name: 'Separation of Concern',
+      id: 'coordination',
+      name: 'Coordination',
       color: '#ec4899',
       items: [
-        { name: 'MVC', path: '/mvc-mvvm', color: '#ec4899', desc: 'Model-View-Controller deseni.' },
-        { name: 'MVVM', path: '/mvvm', color: '#f472b6', desc: 'Model-View-ViewModel reaktif yapı.' },
-        { name: 'MVP', path: '/mvp', color: '#db2777', desc: 'Model-View-Presenter etkileşimi.' }
+        { name: 'Orchestration', path: '/orchestration', color: '#ec4899', desc: 'Merkezi servis koordinasyonu.' },
+        { name: 'Choreography', path: '/choreography', color: '#f472b6', desc: 'Dağıtık olay senkronizasyonu.' },
+        { name: 'SOA Architecture', path: '/soa', color: '#fb923c', desc: 'Kurumsal servis haberleşme stratejisi.' }
       ]
     },
     {
-      id: 'interpreter',
-      name: 'Interpreter',
+      id: 'big-data',
+      name: 'Big Data Processing',
       color: '#06b6d4',
       items: [
-        { name: 'Interpreter Logic', path: '/interpreter', color: '#06b6d4', desc: 'Komut yorumlama mimarisi.' }
+        { name: 'Big Data Stack', path: '/big-data', color: '#06b6d4', desc: 'Büyük ölçekli veri işleme hattı.' },
+        { name: 'Lambda Arch', path: '/lambda', color: '#22d3ee', desc: 'Hibrit (Batch + Speed) veri katmanı.' },
+        { name: 'Kappa Arch', path: '/kappa', color: '#67e8f9', desc: 'Tamamen akış (Streaming) odaklı yapı.' }
       ]
     },
     {
-      id: 'concurrency',
-      name: 'Concurrency',
+      id: 'logic-structural',
+      name: 'Logic & Structural',
       color: '#8b5cf6',
       items: [
-        { name: 'Pipe-Filter', path: '/pipe-filter', color: '#8b5cf6', desc: 'Verinin süzgeçlerden akışı.' },
-        { name: 'Primary-Secondary', path: '/primary-secondary', color: '#a78bfa', desc: 'Veri replikasyonu ve yedekleme.' },
-        { name: 'Choreography', path: '/choreography', color: '#7c3aed', desc: 'Dağıtık olay senkronizasyonu.' },
-        { name: 'Orchestration', path: '/orchestration', color: '#8b5cf6', desc: 'Merkezi servis koordinasyonu.' },
-        { name: 'Lambda', path: '/lambda', color: '#6366f1', desc: 'Hibrit büyük veri işleme.' },
-        { name: 'Kappa', path: '/kappa', color: '#4f46e5', desc: 'Anlık akış odaklı veri işleme.' }
+        { name: 'Microkernel', path: '/microkernel', color: '#8b5cf6', desc: 'Eklenti tabanlı çekirdek sistemi.' },
+        { name: 'Plug-in Arch', path: '/plugin', color: '#a78bfa', desc: 'Dinamik modül ekleme mimarisi.' },
+        { name: 'Pipe-Filter', path: '/pipe-filter', color: '#c4b5fd', desc: 'Verinin süzgeçlerden akış disiplini.' },
+        { name: 'Interpreter', path: '/interpreter', color: '#8b5cf6', desc: 'Komut yorumlama ve kural işleme.' }
+      ]
+    },
+    {
+      id: 'component-ui',
+      name: 'Component & UI',
+      color: '#10b981',
+      items: [
+        { name: 'MVC', path: '/mvc-mvvm', color: '#10b981', desc: 'Model-View-Controller deseni.' },
+        { name: 'MVP', path: '/mvp', color: '#34d399', desc: 'Model-View-Presenter etkileşimi.' },
+        { name: 'MVVM', path: '/mvvm', color: '#6ee7b7', desc: 'Model-View-ViewModel reaktif yapı.' },
+        { name: 'ECS (Game Dev)', path: '/ecs', color: '#059669', desc: 'Yüksek performanslı veri odaklı tasarım.' }
+      ]
+    },
+    {
+      id: 'evolutionary',
+      name: 'Evolutionary',
+      color: '#6366f1',
+      items: [
+        { name: 'Evolutionary Arch', path: '/evolution', color: '#6366f1', desc: 'Zamanla evrilebilen esnek yapılar.' },
+        { name: 'Object-Oriented', path: '/object-oriented', color: '#818cf8', desc: 'Sınıf tabanlı modüler tasarım.' }
       ]
     }
   ];
@@ -157,10 +161,23 @@ const CatalogPage = () => {
                  </linearGradient>
                </defs>
 
-               <motion.g animate={{ rotate: rotation }} style={{ transformOrigin: '550px 550px' }}>
-                 <circle cx={550} cy={550} r={115} fill="#0f172a" stroke="url(#center-glow-grad)" strokeWidth={3} />
-                 <text x={550} y={558} textAnchor="middle" fill="white" fontWeight="950" fontSize={22} style={{ letterSpacing: '8px', textShadow: '0 0 20px #3b82f6' }}>MATRIX</text>
-               </motion.g>
+                <motion.g animate={{ rotate: rotation }} style={{ transformOrigin: '550px 550px' }}>
+                  <circle 
+                    cx={550} 
+                    cy={550} 
+                    r={120} 
+                    fill="transparent" 
+                    stroke="rgba(255,255,255,0.1)" 
+                    strokeWidth={2} 
+                    strokeDasharray="10,10" 
+                  />
+                </motion.g>
+                <g style={{ pointerEvents: 'none' }}>
+                  <circle cx={550} cy={550} r={90} fill="#0f172a" />
+                  <Compass x={520} y={500} size={60} color="rgba(255,255,255,0.2)" />
+                  <text x={550} y={570} textAnchor="middle" fill="white" fontWeight="950" fontSize={16} style={{ letterSpacing: '4px' }}>ARCHITECT'S</text>
+                  <text x={550} y={595} textAnchor="middle" fill="white" fontWeight="950" fontSize={24} style={{ letterSpacing: '6px' }}>HUB</text>
+                </g>
 
                {categories.map((cat, catIdx) => {
                  const sliceAngle = 360 / categories.length;
@@ -253,11 +270,17 @@ const CatalogPage = () => {
                    exit={{ opacity: 0, scale: 0.9 }} 
                    className="glass-card" 
                    style={{ 
-                     padding: '3.5rem', 
-                     borderRadius: '60px',
-                     border: `6px solid ${hoveredItem.color}`,
-                     background: `linear-gradient(135deg, ${hoveredItem.color}44 0%, rgba(15, 23, 42, 1) 100%)`,
-                     boxShadow: `0 0 100px ${hoveredItem.color}44, 0 40px 150px rgba(0,0,0,0.9)`
+                     padding: '4rem 3rem', 
+                     borderRadius: '50px',
+                     minHeight: '650px',
+                     width: '100%',
+                     maxWidth: '500px',
+                     display: 'flex',
+                     flexDirection: 'column',
+                     justifyContent: 'center',
+                     border: `4px solid ${hoveredItem.color}`,
+                     background: `linear-gradient(135deg, ${hoveredItem.color}22 0%, rgba(15, 23, 42, 1) 100%)`,
+                     boxShadow: `0 0 80px ${hoveredItem.color}33, 0 40px 120px rgba(0,0,0,0.8)`
                    }}
                  >
                    <div style={{ color: hoveredItem.color, marginBottom: '2rem' }}>
@@ -284,18 +307,62 @@ const CatalogPage = () => {
                        justifyContent: 'center',
                        gap: '1rem',
                        textTransform: 'uppercase',
-                       boxShadow: `0 15px 40px ${hoveredItem.color}55`
+                       boxShadow: `0 15px 40px ${hoveredItem.color}55`,
+                       marginTop: 'auto'
                       }}
                     >
                       EĞİTİME BAŞLA <Zap size={24} />
                     </button>
                  </motion.div>
                ) : (
-                 <div className="glass-card" style={{ padding: '6rem', textAlign: 'center', opacity: 1, borderRadius: '60px', border: '3px dashed rgba(255,255,255,0.1)' }}>
-                    <Compass size={80} color="rgba(255,255,255,0.2)" style={{ margin: '0 auto 2rem' }} />
-                    <h3 style={{ fontSize: '2rem', fontWeight: 900, marginBottom: '1rem', color: 'white' }}>ARCHITECT'S HUB</h3>
-                    <p style={{ fontSize: '1.1rem', color: 'rgba(255,255,255,0.4)' }}>Daha büyük, daha canlı ve daha okunaklı.</p>
-                 </div>
+                  <div className="glass-card" style={{ 
+                    padding: '4rem 3rem', 
+                    textAlign: 'left', 
+                    opacity: 1, 
+                    borderRadius: '50px', 
+                    minHeight: '650px',
+                    width: '100%',
+                    maxWidth: '500px',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'center',
+                    border: '2px solid rgba(255,255,255,0.05)', 
+                    background: 'linear-gradient(135deg, rgba(255,255,255,0.01) 0%, rgba(255,255,255,0.03) 100%)' 
+                  }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '2rem' }}>
+                      <div style={{ width: '50px', height: '50px', background: 'var(--primary)', borderRadius: '15px', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 0 20px var(--primary-glow)' }}>
+                        <Compass size={28} color="white" />
+                      </div>
+                      <div>
+                        <h3 style={{ fontSize: '1.8rem', fontWeight: 950, color: 'white', margin: 0 }}>MİMARİ MATRİS</h3>
+                        <div style={{ fontSize: '0.8rem', color: 'var(--primary)', fontWeight: 800, letterSpacing: '2px' }}>GLOBAL CONTEXT</div>
+                      </div>
+                    </div>
+                    
+                    <p style={{ fontSize: '1.1rem', color: 'var(--text-secondary)', lineHeight: 1.6, marginBottom: '2.5rem' }}>
+                      Yazılım mimarisi bir tercih değil, bir denge sanatıdır. Bu matris üzerinde 34'ten fazla modeli ve stratejiyi inceleyebilirsiniz.
+                    </p>
+
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '1.2rem' }}>
+                       {[ 
+                         { icon: <Orbit size={18} />, text: '34+ Farklı Mimari Model' },
+                         { icon: <Shield size={18} />, text: 'Senior Seviye Trade-off Analizi' },
+                         { icon: <MousePointer2 size={18} />, text: 'Katalog Üzerinde Gezinin' }
+                       ].map((item, i) => (
+                         <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '1rem', color: 'rgba(255,255,255,0.8)', fontSize: '0.95rem', fontWeight: 600 }}>
+                           <div style={{ color: 'var(--primary)' }}>{item.icon}</div>
+                           {item.text}
+                         </div>
+                       ))}
+                    </div>
+
+                    <div style={{ paddingTop: '2.5rem', borderTop: '1px solid rgba(255,255,255,0.05)', marginTop: 'auto' }}>
+                       <div style={{ display: 'flex', alignItems: 'center', gap: '10px', color: 'white', opacity: 0.5, fontSize: '0.85rem' }}>
+                          <Sparkles size={14} />
+                          <span>Detayları görmek için çarktaki bir dilimin üzerine gelin.</span>
+                       </div>
+                    </div>
+                  </div>
                )}
              </AnimatePresence>
           </div>

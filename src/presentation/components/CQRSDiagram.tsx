@@ -80,8 +80,8 @@ const CQRSDiagram = () => {
 
           {/* Connectors to UI */}
           <svg style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', pointerEvents: 'none', zIndex: 0 }}>
-             <path d="M 50% 200 L 35% 260" stroke="#f59e0b" strokeWidth="2" fill="none" strokeDasharray="5,5" />
-             <path d="M 50% 200 L 65% 260" stroke="#3b82f6" strokeWidth="2" fill="none" strokeDasharray="5,5" />
+             <line x1="50%" y1="200" x2="35%" y2="260" stroke="#f59e0b" strokeWidth="2" strokeDasharray="5,5" />
+             <line x1="50%" y1="200" x2="65%" y2="260" stroke="#3b82f6" strokeWidth="2" strokeDasharray="5,5" />
           </svg>
         </div>
 

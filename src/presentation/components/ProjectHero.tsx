@@ -56,25 +56,6 @@ const ProjectHero = ({ children }) => {
 
           {children}
 
-          <div style={{ display: 'flex', gap: '1.5rem' }}>
-            <button 
-              onClick={() => window.scrollTo({ top: 1000, behavior: 'smooth' })}
-              style={{
-                background: '#10b981',
-                color: 'white',
-                padding: '1rem 2rem',
-                borderRadius: '16px',
-                fontWeight: 600,
-                display: 'flex',
-                alignItems: 'center',
-                gap: '0.5rem',
-                boxShadow: '0 8px 24px rgba(16, 185, 129, 0.3)',
-                cursor: 'pointer',
-                border: 'none'
-              }}>
-              Mimariyi Soyun <ChevronRight size={20} />
-            </button>
-          </div>
         </motion.div>
 
         <motion.div

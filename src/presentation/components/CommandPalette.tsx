@@ -12,7 +12,9 @@ import {
   Sparkles,
   Layout,
   Cpu,
-  Database
+  Globe,
+  Database,
+  Palette
 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { GLOSSARY_TERMS } from '../../infrastructure/data/GlossaryData';
@@ -51,6 +53,17 @@ const CommandPalette = () => {
     { id: 'system', title: 'System Design', description: 'Monolith vs Microservices', type: 'page', path: '/system', icon: <Cpu size={18} /> },
     { id: 'microkernel', title: 'Microkernel Architecture', description: 'Plug-in based system design', type: 'page', path: '/microkernel', icon: <Box size={18} /> },
     { id: 'serverless', title: 'Serverless (FaaS)', description: 'Event-driven scaling without servers', type: 'page', path: '/serverless', icon: <Zap size={18} /> },
+    { id: 'p2p', title: 'Peer-to-Peer', description: 'Decentralized network architecture', type: 'page', path: '/p2p', icon: <Globe size={18} /> },
+    { id: 'soa', title: 'SOA (Service Oriented)', description: 'Enterprise service bus and governance', type: 'page', path: '/soa', icon: <Box size={18} /> },
+    { id: 'evolutionary', title: 'Evolutionary Architecture', description: 'Support guided, incremental change', type: 'page', path: '/evolution', icon: <Sparkles size={18} /> },
+    { id: 'big-data', title: 'Big Data Stack', description: 'Lambda and Kappa architectures', type: 'page', path: '/big-data', icon: <Database size={18} /> },
+    { id: 'ecs', title: 'ECS (Game Dev)', description: 'Entity Component System for performance', type: 'page', path: '/ecs', icon: <Cpu size={18} /> },
+    { id: 'pipe-filter', title: 'Pipe & Filter', description: 'Data processing pipelines', type: 'page', path: '/pipe-filter', icon: <ArrowRight size={18} /> },
+    { id: 'space-based', title: 'Space-Based Arch', description: 'High-concurrency in-memory systems', type: 'page', path: '/space-based', icon: <Database size={18} /> },
+    { id: 'interpreter', title: 'Interpreter Pattern', description: 'Rule engines and DSL design', type: 'page', path: '/interpreter', icon: <Terminal size={18} /> },
+    { id: 'choreography', title: 'Choreography', description: 'Decentralized service coordination', type: 'page', path: '/choreography', icon: <Zap size={18} /> },
+    { id: 'orchestration', title: 'Orchestration', description: 'Centralized workflow management', type: 'page', path: '/orchestration', icon: <Box size={18} /> },
+    { id: 'design-system', title: 'Design System', description: 'ArchAcademy visual principles and atoms', type: 'page', path: '/project-arch?tab=design', icon: <Palette size={18} /> },
   ];
 
   const glossaryItems: SearchItem[] = GLOSSARY_TERMS.map(term => ({

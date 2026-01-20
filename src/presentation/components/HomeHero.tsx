@@ -36,25 +36,26 @@ const HomeHero = () => {
             marginBottom: '2.5rem',
             boxShadow: '0 4px 20px rgba(0,0,0,0.2)'
           }}>
-            <Sparkles size={16} /> Software Architecture Academy v2.0
+            <Sparkles size={16} /> Kişisel Tasarım Defteri v2.0
           </div>
           
           <h1 className="gradient-text" style={{
-            fontSize: '5.5rem',
-            fontWeight: 800,
-            lineHeight: 1,
-            marginBottom: '2rem',
-            letterSpacing: '-3px'
+            fontSize: '6.5rem',
+            fontWeight: 950,
+            lineHeight: 0.9,
+            marginBottom: '2.5rem',
+            letterSpacing: '-4px'
           }}>
-            Mimari Dehası <br /> Burada Başlar.
+            Yazılım Mimari <br /> <span style={{ opacity: 0.9 }}>Notlarım.</span>
           </h1>
 
           <p style={{
-            fontSize: '1.4rem',
+            fontSize: '1.5rem',
             color: 'var(--text-secondary)',
-            maxWidth: '800px',
+            maxWidth: '900px',
             margin: '0 auto 4rem',
-            lineHeight: 1.6
+            lineHeight: 1.7,
+            fontWeight: 500
           }}>
             Karmaşık sistemleri basitleştirin, senior seviye kararlar alın ve <br /> 
             geleceğin yazılım mimarisini bizzat inşa edin.

@@ -31,7 +31,7 @@ const KappaPage = () => {
     <ArchHero 
       title="Kappa"
       subtitle="Architecture"
-      description="Lambda nın karmaşıklığını reddeden, hem geçmişi hem bugünü tek bir 'Stream Processing' hattı üzerinden işleyen yalın veri mimarisi."
+      description="Lambda'nın karmaşıklığını reddeden, hem geçmişi hem bugünü tek bir 'Stream Processing' hattı üzerinden işleyen yalın veri mimarisi."
       badge="Stream Processing"
       color="#6366f1"
       illustration={illu}

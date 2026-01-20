@@ -11,11 +11,11 @@ const AssessmentPage = () => {
       exit={{ opacity: 0 }}
       style={{ background: 'var(--bg-dark)', minHeight: '100vh' }}
     >
-      {/* Hero Section for Assessment */}
+      {/* Hero Section for Interview Simulator */}
       <section style={{ 
         padding: '120px 0 60px', 
         textAlign: 'center',
-        background: 'linear-gradient(to bottom, rgba(59, 130, 246, 0.05) 0%, transparent 100%)'
+        background: 'radial-gradient(circle at top, rgba(99, 102, 241, 0.1) 0%, transparent 80%)'
       }}>
         <div className="container">
           <motion.div
@@ -25,23 +25,24 @@ const AssessmentPage = () => {
             <div style={{
               display: 'inline-flex',
               alignItems: 'center',
-              gap: '0.5rem',
-              background: 'rgba(59, 130, 246, 0.1)',
-              padding: '8px 16px',
+              gap: '0.6rem',
+              background: 'rgba(99, 102, 241, 0.1)',
+              padding: '10px 20px',
               borderRadius: '100px',
               color: 'var(--primary)',
-              fontSize: '0.85rem',
-              fontWeight: 600,
-              marginBottom: '1.5rem'
+              fontSize: '0.9rem',
+              fontWeight: 700,
+              marginBottom: '1.5rem',
+              border: '1px solid rgba(99, 102, 241, 0.2)'
             }}>
-              <BrainCircuit size={16} /> Mezar Mezuniyet Sınavı
+              <BrainCircuit size={18} /> Mülakat Simülasyonu (V2)
             </div>
-            <h1 className="gradient-text" style={{ fontSize: '4rem', fontWeight: 800, marginBottom: '1.5rem' }}>
-              Architectural Assessment
+            <h1 className="gradient-text" style={{ fontSize: '4.5rem', fontWeight: 950, marginBottom: '1.5rem', letterSpacing: '-2px' }}>
+              Architect Interview <br /> <span style={{ opacity: 0.8 }}>Simulator</span>
             </h1>
-            <p style={{ color: 'var(--text-secondary)', maxWidth: '700px', margin: '0 auto', fontSize: '1.2rem', lineHeight: 1.7 }}>
-              Gerçek dünya senaryolarıyla mimari zekânızı test edin. 
-              Bakalım siz bir <strong>Bricklayer</strong> mısınız yoksa gerçek bir <strong>System Wizard</strong> mı?
+            <p style={{ color: 'var(--text-secondary)', maxWidth: '800px', margin: '0 auto', fontSize: '1.3rem', lineHeight: 1.8 }}>
+              Kariyerindeki bir sonraki adımı atmaya hazır mısın? Dev teknoloji şirketleri (FAANG) 
+              seviyesindeki <strong>Mimari Mülakat</strong> sorularını deneyimle ve 'Guru' geri bildirimleriyle ustalaş.
             </p>
           </motion.div>
         </div>

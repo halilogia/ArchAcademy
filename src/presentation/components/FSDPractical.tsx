@@ -74,7 +74,7 @@ export const Button = ({ children, onClick }) => {
                 >
                   <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
                     <Folder size={18} color="#06b6d4" />
-                    <span style={{ fontWeight: 600 }}>{key.toUpperCase()}</span>
+                    <span style={{ fontWeight: 600, color: 'white' }}>{key.toUpperCase()}</span>
                   </div>
                 </button>
               ))}

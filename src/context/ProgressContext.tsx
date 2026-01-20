@@ -4,12 +4,14 @@ import useLocalStorage from '../presentation/hooks/useLocalStorage';
 interface ProgressState {
   completedSteps: string[];
   lastVisited: string | null;
+  quizResult?: { score: number; rank: string };
 }
 
 interface ProgressContextType {
   progress: ProgressState;
   completeStep: (stepPath: string) => void;
   setLastVisited: (path: string) => void;
+  updateQuizResult: (score: number, rank: string) => void;
 }
 
 const ProgressContext = createContext<ProgressContextType | undefined>(undefined);
@@ -34,8 +36,12 @@ export const ProgressProvider: React.FC<{ children: ReactNode }> = ({ children }
     setProgress({ ...progress, lastVisited: path });
   };
 
+  const updateQuizResult = (score: number, rank: string) => {
+    setProgress({ ...progress, quizResult: { score, rank } });
+  };
+
   return (
-    <ProgressContext.Provider value={{ progress, completeStep, setLastVisited }}>
+    <ProgressContext.Provider value={{ progress, completeStep, setLastVisited, updateQuizResult }}>
       {children}
     </ProgressContext.Provider>
   );
