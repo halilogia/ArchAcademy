@@ -13,7 +13,8 @@ import {
   Box, 
   Award,
   ChevronRight,
-  Sparkles
+  Sparkles,
+  Layers
 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { useProgress } from '../../context/ProgressContext';
@@ -25,38 +26,38 @@ const roadmapData = [
     color: "#6366f1",
     tasks: [
       { id: 'solid', title: 'SOLID Prensipleri', desc: 'Esnek kodun temel taşları.', icon: <Shield size={18} />, path: '/solid' },
-      { id: 'patterns', title: 'Design Patterns', desc: 'Tekrar eden sorunlara standart çözümler.', icon: <Box size={18} />, path: '/glossary' },
-      { id: 'clean-code', title: 'Clean Code', desc: 'Okunabilir ve sürdürülebilir kod sanatı.', icon: <Sparkles size={18} />, path: '/clean-code' }
+      { id: 'clean-code', title: 'Clean Code', desc: 'Okunabilir ve sürdürülebilir kod sanatı.', icon: <Sparkles size={18} />, path: '/clean-code' },
+      { id: 'patterns', title: 'Design Patterns', desc: 'Tekrar eden sorunlara standart çözümler.', icon: <Box size={18} />, path: '/glossary' }
     ]
   },
   {
     level: "Seviye 2: The Architect",
-    title: "Mimari Stiller ve Katmanlı Yapılar",
+    title: "Modern Mimari Stiller",
     color: '#3b82f6',
     tasks: [
+      { id: 'vertical', title: 'Vertical Slice', desc: 'Hızlı ve bağımsız özellik geliştirme.', icon: <Zap size={18} />, path: '/vertical' },
       { id: 'clean-arch', title: 'Clean Architecture', desc: 'Bağımsızlık ve test edilebilirlik.', icon: <Layout size={18} />, path: '/clean-arch' },
-      { id: 'hexagonal', title: 'Hexagonal Architecture', desc: 'Portlar ve adaptörler ile izolasyon.', icon: <Database size={18} />, path: '/hexagonal' },
       { id: 'ddd', title: 'Domain Driven Design', desc: 'Karmaşık iş mantığı yönetimi.', icon: <Target size={18} />, path: '/ddd' }
     ]
   },
   {
-    level: "Seviye 3: The Cloud Specialist",
-    title: "Dağıtık Sistemler ve Modern Mimari",
+    level: "Seviye 3: The System Builder",
+    title: "Frontend ve Dağıtık Yapılar",
     color: '#a855f7',
     tasks: [
+      { id: 'fsd', title: 'Feature-Sliced Design', desc: 'Modern frontend organizasyonu.', icon: <Layers size={18} />, path: '/fsd' },
       { id: 'eda', title: 'Event Driven Architecture', desc: 'Olay bazlı asenkron iletişim.', icon: <Zap size={18} />, path: '/eda' },
-      { id: 'microservices', title: 'Microservices vs Monolith', desc: 'Ölçeklenebilirlik stratejileri.', icon: <Cpu size={18} />, path: '/system' },
-      { id: 'cqrs', title: 'CQRS & Event Sourcing', desc: 'Okuma ve yazma işlemlerinin ayrımı.', icon: <Globe size={18} />, path: '/cqrs' }
+      { id: 'microservices', title: 'Microservices & Systems', desc: 'Dağıtık sistem stratejileri.', icon: <Cpu size={18} />, path: '/system' }
     ]
   },
   {
     level: "Seviye 4: The Visionary",
-    title: "Stratejik Karar Verme ve Liderlik",
+    title: "Stratejik Liderlik",
     color: '#f59e0b',
     tasks: [
-      { id: 'matrix', title: 'Master Matrix', desc: 'Mimari seçim matrisi oluşturma.', icon: <Award size={18} />, path: '/compare' },
-      { id: 'surgery', title: 'Code Surgery', desc: 'Legacy sistemlerin modernizasyonu.', icon: <Cpu size={18} />, path: '/refactoring' },
-      { id: 'strategy', title: 'Team Topologies', desc: 'Organizasyonel mimari yönetimi.', icon: <Shield size={18} />, path: '/system' }
+      { id: 'matrix', title: 'Master Matrix', desc: 'Stratejik mimari seçim yöntemleri.', icon: <Award size={18} />, path: '/compare' },
+      { id: 'evolution', title: 'Evolutionary Arch', desc: 'Değişime ayak uyduran sistemler.', icon: <Globe size={18} />, path: '/evolution' },
+      { id: 'surgery', title: 'Code Surgery', desc: 'Legacy sistem modernizasyon sanatı.', icon: <Cpu size={18} />, path: '/refactoring' }
     ]
   }
 ];
@@ -67,23 +68,11 @@ const ArchitectRoadmap = () => {
 
   return (
     <div style={{ padding: '60px 0', position: 'relative' }}>
-      {/* Background Decorative Element */}
-      <div style={{
-        position: 'absolute',
-        top: 0,
-        left: '50%',
-        transform: 'translateX(-50%)',
-        width: '2px',
-        height: '100%',
-        background: 'linear-gradient(to bottom, transparent, rgba(99, 102, 241, 0.2), rgba(245, 158, 11, 0.2), transparent)',
-        zIndex: 0
-      }} />
-
       <div className="container">
         <div style={{ textAlign: 'center', marginBottom: '5rem' }}>
-           <h1 className="gradient-text" style={{ fontSize: '3.5rem', fontWeight: 900, marginBottom: '1rem' }}>Architect's Journey</h1>
-           <p style={{ color: 'var(--text-secondary)', fontSize: '1.2rem', maxWidth: '700px', margin: '0 auto' }}>
-              Yazılım dünyasında bir usta (Architect) olma yolunda adım adım ilerle. 
+           <h1 className="gradient-text" style={{ fontSize: '3.5rem', fontWeight: 900, marginBottom: '1rem' }}>Mimari Müfredat</h1>
+           <p style={{ color: 'var(--text-secondary)', fontSize: '1.2rem', maxWidth: '750px', margin: '0 auto' }}>
+              Yazılım mimarisi disiplinlerini en temelden en ileri seviyeye, yapılandırılmış bir müfredat eşliğinde keşfedin.
               Hangi seviyedesin, seni neler bekliyor?
            </p>
         </div>

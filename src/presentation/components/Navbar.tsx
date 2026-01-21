@@ -14,7 +14,8 @@ import {
   Palette,
   GitBranch,
   Search,
-  Command 
+  Command,
+  Library
 } from 'lucide-react';
 
 const Navbar: React.FC = () => {
@@ -46,14 +47,6 @@ const Navbar: React.FC = () => {
     { name: 'ECS (System Design)', path: '/ecs', color: '#059669' },
     { name: 'Evolutionary Arch', path: '/evolution', color: '#ec4899' },
     { name: 'Object-Oriented Arch', path: '/object-oriented', color: '#3b82f6' },
-  ];
-
-  const disciplines = [
-    { name: 'SOLID Principles', path: '/solid', color: '#6366f1' },
-    { name: 'DDD (Methodology)', path: '/ddd', color: '#a78bfa' },
-    { name: 'CQRS (Pattern)', path: '/cqrs', color: '#eab308' },
-    { name: 'FSD (Frontend Style)', path: '/fsd', color: '#06b6d4' },
-    { name: 'Clean Code (Basic)', path: '/clean-code', color: '#10b981' },
   ];
 
   return (
@@ -107,67 +100,20 @@ const Navbar: React.FC = () => {
             Katalog
           </Link>
 
-          {/* DISIPLİNLER DROPDOWN */}
-          <div 
-            onMouseEnter={() => setOpenDropdown('disciplines')} 
-            onMouseLeave={() => setOpenDropdown(null)}
-            style={{ position: 'relative' }}
-          >
-            <button style={{ 
-              background: 'transparent', 
-              color: 'white', 
-              fontSize: '0.85rem', 
-              fontWeight: 700, 
-              display: 'flex', 
-              alignItems: 'center', 
-              gap: '0.4rem',
-              padding: '0.5rem 1rem',
-              borderRadius: '8px',
-              transition: 'all 0.2s',
-              border: 'none',
-              cursor: 'pointer'
-            }}>
-              Disiplinler <ChevronDown size={14} />
-            </button>
-            {openDropdown === 'disciplines' && (
-              <div style={{
-                position: 'absolute',
-                top: '100%',
-                left: '50%',
-                transform: 'translateX(-50%)',
-                width: '260px',
-                background: 'rgba(10, 15, 30, 0.95)',
-                backdropFilter: 'blur(20px)',
-                border: '1px solid var(--glass-border)',
-                borderRadius: '16px',
-                padding: '1rem',
-                boxShadow: '0 20px 40px rgba(0,0,0,0.4)',
-                display: 'flex',
-                flexDirection: 'column',
-                gap: '0.5rem'
-              }}>
-                {disciplines.map(item => (
-                  <Link 
-                    key={item.path} 
-                    to={item.path} 
-                    style={{ 
-                      fontSize: '0.85rem', 
-                      color: 'white', 
-                      textDecoration: 'none', 
-                      padding: '0.7rem 1rem', 
-                      borderRadius: '10px',
-                      transition: 'all 0.2s',
-                      background: 'rgba(255,255,255,0.03)'
-                    }}
-                    onMouseEnter={(e) => e.currentTarget.style.background = 'rgba(255,255,255,0.08)'}
-                    onMouseLeave={(e) => e.currentTarget.style.background = 'rgba(255,255,255,0.03)'}
-                  >
-                    {item.name}
-                  </Link>
-                ))}
-              </div>
-            )}
-          </div>
+          <Link to="/discipline-catalog" style={{ 
+            color: '#a855f7', 
+            fontSize: '0.8rem', 
+            fontWeight: 800, 
+            background: 'rgba(168, 85, 247, 0.1)', 
+            padding: '0.5rem 1rem', 
+            borderRadius: '100px',
+            textDecoration: 'none',
+            border: '1px solid rgba(168, 85, 247, 0.2)',
+            transition: 'all 0.3s'
+          }}>
+            Disiplinler
+          </Link>
+
           
           {/* LABS DROPDOWN */}
           <div 
@@ -281,6 +227,10 @@ const Navbar: React.FC = () => {
                 <Link to="/glossary" style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', padding: '0.6rem 1rem', borderRadius: '8px', textDecoration: 'none', color: 'white' }}>
                   <BookOpen size={16} style={{ color: 'var(--primary)' }} />
                   <span style={{ fontSize: '0.85rem' }}>Terimler Sözlüğü</span>
+                </Link>
+                <Link to="/library" style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', padding: '0.6rem 1rem', borderRadius: '8px', textDecoration: 'none', color: 'white' }}>
+                  <Library size={16} style={{ color: '#f59e0b' }} />
+                  <span style={{ fontSize: '0.85rem' }}>Usta Kitaplığı</span>
                 </Link>
                 <Link to="/project-arch" style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', padding: '0.6rem 1rem', borderRadius: '8px', textDecoration: 'none', color: 'white' }}>
                   <Code2 size={16} style={{ color: '#10b981' }} />

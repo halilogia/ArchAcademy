@@ -53,6 +53,14 @@ const PubSubPage = lazy(() => import('./presentation/pages/PubSubPage'));
 const PrimarySecondaryPage = lazy(() => import('./presentation/pages/PrimarySecondaryPage'));
 const KappaPage = lazy(() => import('./presentation/pages/KappaPage'));
 const ECSPage = lazy(() => import('./presentation/pages/ECSPage'));
+const SecurityPage = lazy(() => import('./presentation/pages/SecurityPage'));
+const RobustnessPage = lazy(() => import('./presentation/pages/RobustnessPage'));
+const DocumentationPage = lazy(() => import('./presentation/pages/DocumentationPage'));
+const TestingPage = lazy(() => import('./presentation/pages/TestingPage'));
+const AbstractionPage = lazy(() => import('./presentation/pages/AbstractionPage'));
+const DisciplineCatalogPage = lazy(() => import('./presentation/pages/DisciplineCatalogPage'));
+const BookshelfPage = lazy(() => import('./presentation/pages/BookshelfPage'));
+const NotFoundPage = lazy(() => import('./presentation/pages/NotFoundPage'));
 
 const LoadingFallback = () => (
   <div style={{ height: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--primary)' }}>
@@ -117,6 +125,14 @@ const App: React.FC = () => {
                     <Route path="/primary-secondary" element={<PrimarySecondaryPage />} />
                     <Route path="/kappa" element={<KappaPage />} />
                     <Route path="/ecs" element={<ECSPage />} />
+                    <Route path="/security" element={<SecurityPage />} />
+                    <Route path="/robustness" element={<RobustnessPage />} />
+                    <Route path="/docs-annotations" element={<DocumentationPage />} />
+                    <Route path="/testing" element={<TestingPage />} />
+                    <Route path="/abstraction" element={<AbstractionPage />} />
+                    <Route path="/discipline-catalog" element={<DisciplineCatalogPage />} />
+                    <Route path="/library" element={<BookshelfPage />} />
+                    <Route path="*" element={<NotFoundPage />} />
                   </Routes>
                 </AnimatePresence>
               </Suspense>

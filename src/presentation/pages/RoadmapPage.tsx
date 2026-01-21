@@ -1,16 +1,93 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Ship, GraduationCap } from 'lucide-react';
 import ArchitectRoadmap from '../components/ArchitectRoadmap';
+import ProductionFlow from '../components/ProductionFlow';
 
 const RoadmapPage = () => {
+  const [activeTab, setActiveTab] = useState<'career' | 'production'>('career');
+
+  const TabSwitcher = () => (
+    <div style={{ 
+      display: 'inline-flex', 
+      background: 'rgba(2, 6, 23, 0.4)', 
+      padding: '6px', 
+      borderRadius: '20px', 
+      border: '1px solid var(--glass-border)',
+      marginBottom: '3rem',
+      backdropFilter: 'blur(10px)'
+    }}>
+        <button
+          onClick={() => setActiveTab('career')}
+          style={{
+            padding: '12px 25px',
+            borderRadius: '16px',
+            background: activeTab === 'career' ? 'var(--primary)' : 'transparent',
+            color: activeTab === 'career' ? 'white' : 'var(--text-secondary)',
+            border: 'none',
+            fontWeight: 700,
+            cursor: 'pointer',
+            transition: 'all 0.3s ease',
+            display: 'flex', alignItems: 'center', gap: '8px',
+            fontSize: '0.9rem'
+          }}
+        >
+          <GraduationCap size={18} /> Mimari Müfredat
+        </button>
+        <button
+          onClick={() => setActiveTab('production')}
+          style={{
+            padding: '12px 25px',
+            borderRadius: '16px',
+            background: activeTab === 'production' ? '#f43f5e' : 'transparent',
+            color: activeTab === 'production' ? 'white' : 'var(--text-secondary)',
+            border: 'none',
+            fontWeight: 700,
+            cursor: 'pointer',
+            transition: 'all 0.3s ease',
+            display: 'flex', alignItems: 'center', gap: '8px',
+            fontSize: '0.9rem'
+          }}
+        >
+          <Ship size={18} /> Yazılım Döngüsü
+        </button>
+    </div>
+  );
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      style={{ background: 'var(--bg-dark)', minHeight: '100vh', paddingTop: '80px' }}
+      style={{ background: 'var(--bg-dark)', minHeight: '100vh', paddingTop: '100px' }}
     >
-      <ArchitectRoadmap />
+      <div className="container" style={{ textAlign: 'center' }}>
+        <TabSwitcher />
+      </div>
+
+      <AnimatePresence mode="wait">
+        {activeTab === 'career' ? (
+          <motion.div
+            key="career"
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -15 }}
+            transition={{ duration: 0.3 }}
+          >
+            <ArchitectRoadmap />
+          </motion.div>
+        ) : (
+          <motion.div
+            key="production"
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -15 }}
+            transition={{ duration: 0.3 }}
+          >
+            <ProductionFlow />
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.div>
   );
 };
