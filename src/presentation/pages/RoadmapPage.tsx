@@ -14,7 +14,7 @@ const RoadmapPage = () => {
       padding: '6px', 
       borderRadius: '20px', 
       border: '1px solid var(--glass-border)',
-      marginBottom: '3rem',
+      marginBottom: '1rem',
       backdropFilter: 'blur(10px)'
     }}>
         <button
@@ -61,30 +61,59 @@ const RoadmapPage = () => {
       exit={{ opacity: 0 }}
       style={{ background: 'var(--bg-dark)', minHeight: '100vh', paddingTop: '100px' }}
     >
-      <div className="container" style={{ textAlign: 'center' }}>
+      <div className="container" style={{ textAlign: 'center', marginBottom: '3rem' }}>
+        <AnimatePresence mode="wait">
+          {activeTab === 'career' ? (
+            <motion.div
+              key="career-head"
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 10 }}
+            >
+              <h1 className="gradient-text" style={{ fontSize: '3.5rem', fontWeight: 900, marginBottom: '1rem' }}>Mimari Müfredat</h1>
+              <p style={{ color: 'var(--text-secondary)', fontSize: '1.2rem', maxWidth: '750px', margin: '0 auto 2.5rem' }}>
+                Yazılım mimarisi disiplinlerini en temelden en ileri seviyeye, yapılandırılmış bir müfredat eşliğinde keşfedin. 
+                Hangi seviyedesin, seni neler bekliyor?
+              </p>
+            </motion.div>
+          ) : (
+            <motion.div
+              key="production-head"
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 10 }}
+            >
+              <h1 className="gradient-text" style={{ fontSize: '3.5rem', fontWeight: 900, marginBottom: '1rem' }}>Path to Production</h1>
+              <p style={{ color: 'var(--text-secondary)', fontSize: '1.2rem', maxWidth: '750px', margin: '0 auto 2.5rem' }}>
+                Kodun fikir aşamasından son kullanıcıya kadar uzanan modern yolculuğu.
+              </p>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
         <TabSwitcher />
       </div>
 
       <AnimatePresence mode="wait">
         {activeTab === 'career' ? (
           <motion.div
-            key="career"
+            key="career-content"
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -15 }}
             transition={{ duration: 0.3 }}
           >
-            <ArchitectRoadmap />
+            <ArchitectRoadmap hideHeader />
           </motion.div>
         ) : (
           <motion.div
-            key="production"
+            key="production-content"
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -15 }}
             transition={{ duration: 0.3 }}
           >
-            <ProductionFlow />
+            <ProductionFlow hideHeader />
           </motion.div>
         )}
       </AnimatePresence>

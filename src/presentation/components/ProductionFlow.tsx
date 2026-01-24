@@ -71,16 +71,18 @@ const steps = [
   }
 ];
 
-const ProductionFlow = () => {
+const ProductionFlow = ({ hideHeader }: { hideHeader?: boolean }) => {
   return (
-    <div style={{ padding: '60px 0', position: 'relative' }}>
+    <div style={{ padding: hideHeader ? '0 0 60px 0' : '60px 0', position: 'relative' }}>
       <div className="container">
-        <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
-          <h2 className="gradient-text" style={{ fontSize: '3rem', fontWeight: 900 }}>Path to Production</h2>
-          <p style={{ color: 'var(--text-secondary)', fontSize: '1.1rem', maxWidth: '600px', margin: '1rem auto' }}>
-            Kodun fikir aşamasından son kullanıcıya kadar uzanan modern yolculuğu.
-          </p>
-        </div>
+        {!hideHeader && (
+          <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
+            <h2 className="gradient-text" style={{ fontSize: '3rem', fontWeight: 900 }}>Path to Production</h2>
+            <p style={{ color: 'var(--text-secondary)', fontSize: '1.1rem', maxWidth: '600px', margin: '1rem auto' }}>
+              Kodun fikir aşamasından son kullanıcıya kadar uzanan modern yolculuğu.
+            </p>
+          </div>
+        )}
 
         <div style={{ maxWidth: '900px', margin: '0 auto', position: 'relative' }}>
           {/* Vertical Connecting Line */}

@@ -2,12 +2,6 @@
 
 This document outlines the vision and upcoming features for ArchAcademy. Our goal is to become the ultimate portal for software architecture education.
 
-## 🚀 Phase 1: Foundation (Currently Live - v1.0.0)
-- [x] Basic Architecture Guides (Clean, Hexagonal, Vertical Slice)
-- [x] Interactive Master Matrix
-- [x] Discovery Wizard (Architect's Compass)
-- [x] Terminology Glossary with Guru Tips
-- [x] Career Roadmap visualization
 
 ## 🎯 Phase 2: Interactivity & Search (Q1 2026)
 - [ ] **Global Spotlight Search (Cmd + K)**: Instant access to any term, pattern, or page.
@@ -28,3 +22,30 @@ This document outlines the vision and upcoming features for ArchAcademy. Our goa
 ---
 
 *Note: This roadmap is a living document and priorities may shift based on community feedback. Feel free to open a [Feature Request](https://github.com/halilogia/ArchAcademy/issues/new) to suggest new ideas!*
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1. Detay Sayfalarının Zenginleştirilmesi 📄
+Çarktaki dilimlere (SOLID, DDD, Microservices vb.) tıkladığımızda giden sayfalar şu an "overview" seviyesinde olabilir. Bu sayfaları; çarktaki o premium hava ile eşleşen, kod örnekleri ve "Guru Tip"ler içeren tam kapsamlı rehberlere dönüştürebiliriz.
+
+2. Arama Deneyimi (Command Palette) 🔍
+Sitedeki Cmd+K (Arama) özelliğini, yeni eklediğimiz 10 Kitap ve 10 Disiplin'i de kapsayacak şekilde derinleştirebiliriz. Kullanıcı "Clean Code" diye arattığında hem kitaplığa hem de prensipler sayfasına yönlenebilmeli.
+
+3. "Master Matrix" (Karşılaştırma Sayfası) Görselleştirmesi 📊
+Ana sayfada 3. sütun olarak bıraktığımız karşılaştırma matrisini, çarklardaki o "canlı" ve premium dokunuşlarla (hover efektleri, animasyonlu trade-off tabloları) modernize edebiliriz.
+
+içeriklerin zenginleştirilmesi

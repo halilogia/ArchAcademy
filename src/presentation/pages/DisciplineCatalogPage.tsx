@@ -36,7 +36,6 @@ const DisciplineCatalogPage = () => {
     return () => clearInterval(interval);
   }, []);
 
-  // BYTEBYTEGO "10 GOOD CODING PRINCIPLES" FULL LIST
   const disciplines: DisciplineItem[] = [
     { 
       name: 'Security Assurance', 
@@ -122,9 +121,9 @@ const DisciplineCatalogPage = () => {
           </h1>
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'minmax(800px, 1.6fr) 1fr', gap: '2rem', alignItems: 'center' }}>
-          <div style={{ position: 'relative', height: '1000px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-             <svg viewBox="0 0 1100 1100" style={{ width: '100%', height: '100%', overflow: 'visible' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'minmax(700px, 1.4fr) 1fr', gap: '2rem', alignItems: 'center' }}>
+          <div style={{ position: 'relative', height: '900px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+             <svg viewBox="0 0 1000 1000" style={{ width: '100%', height: '100%', overflow: 'visible' }}>
                 <defs>
                   <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
                     <feGaussianBlur stdDeviation="20" result="blur" />
@@ -132,13 +131,13 @@ const DisciplineCatalogPage = () => {
                   </filter>
                 </defs>
 
-                <motion.g animate={{ rotate: rotation }} style={{ transformOrigin: '550px 550px' }}>
-                  <circle cx={550} cy={550} r={120} fill="transparent" stroke="rgba(255,255,255,0.05)" strokeWidth={1} strokeDasharray="5,5" />
+                <motion.g animate={{ rotate: rotation }} style={{ transformOrigin: '500px 500px' }}>
+                  <circle cx={500} cy={500} r={120} fill="transparent" stroke="rgba(255,255,255,0.05)" strokeWidth={1} strokeDasharray="5,5" />
                 </motion.g>
 
                 <g>
                    <motion.circle 
-                    cx={550} cy={550} r={100} 
+                    cx={500} cy={500} r={90} 
                     fill="#0f172a" 
                     stroke="#a855f7" 
                     strokeWidth={2} 
@@ -146,8 +145,8 @@ const DisciplineCatalogPage = () => {
                     transition={{ duration: 4, repeat: Infinity }}
                     style={{ filter: 'drop-shadow(0 0 25px rgba(168, 85, 247, 0.4))' }} 
                    />
-                   <text x={550} y={545} textAnchor="middle" fill="white" fontWeight="900" fontSize="14" style={{ letterSpacing: '2px' }}>MİMARİ</text>
-                   <text x={550} y={570} textAnchor="middle" fill="#a855f7" fontWeight="950" fontSize="20" style={{ letterSpacing: '3px' }}>10 EMİR</text>
+                   <text x={500} y={495} textAnchor="middle" fill="white" fontWeight="900" fontSize="13" style={{ letterSpacing: '2px' }}>MİMARİ</text>
+                   <text x={500} y={520} textAnchor="middle" fill="#a855f7" fontWeight="950" fontSize="18" style={{ letterSpacing: '3px' }}>10 EMİR</text>
                 </g>
 
                 {disciplines.map((item, idx) => {
@@ -156,24 +155,24 @@ const DisciplineCatalogPage = () => {
                   const radStart = (angle - 90) * (Math.PI / 180);
                   const radEnd = (angle + sliceAngle - 90) * (Math.PI / 180);
                   
-                  const innerR = 135;
-                  const outerR = 510;
+                  const innerR = 125;
+                  const outerR = 460;
                   
                   const isHovered = hoveredItem?.name === item.name;
 
-                  const x1_i = 550 + innerR * Math.cos(radStart);
-                  const y1_i = 550 + innerR * Math.sin(radStart);
-                  const x2_i = 550 + innerR * Math.cos(radEnd);
-                  const y2_i = 550 + innerR * Math.sin(radEnd);
-                  const x1_o = 550 + outerR * Math.cos(radStart);
-                  const y1_o = 550 + outerR * Math.sin(radStart);
-                  const x2_o = 550 + outerR * Math.cos(radEnd);
-                  const y2_o = 550 + outerR * Math.sin(radEnd);
+                  const x1_i = 500 + innerR * Math.cos(radStart);
+                  const y1_i = 500 + innerR * Math.sin(radStart);
+                  const x2_i = 500 + innerR * Math.cos(radEnd);
+                  const y2_i = 500 + innerR * Math.sin(radEnd);
+                  const x1_o = 500 + outerR * Math.cos(radStart);
+                  const y1_o = 500 + outerR * Math.sin(radStart);
+                  const x2_o = 500 + outerR * Math.cos(radEnd);
+                  const y2_o = 500 + outerR * Math.sin(radEnd);
 
                   const midRad = (angle + sliceAngle / 2 - 90) * (Math.PI / 180);
-                  const textR = 340;
-                  const textX = 550 + textR * Math.cos(midRad);
-                  const textY = 550 + textR * Math.sin(midRad);
+                  const textR = 310;
+                  const textX = 500 + textR * Math.cos(midRad);
+                  const textY = 500 + textR * Math.sin(midRad);
 
                   return (
                     <g key={item.name}>
@@ -196,7 +195,7 @@ const DisciplineCatalogPage = () => {
                       <text
                         x={textX} y={textY}
                         fill="white"
-                        fontSize="13"
+                        fontSize="12"
                         fontWeight="950"
                         textAnchor="middle"
                         style={{ 
@@ -225,9 +224,9 @@ const DisciplineCatalogPage = () => {
                    exit={{ opacity: 0, x: -30 }} 
                    className="glass-card" 
                    style={{ 
-                     padding: '3.5rem', 
+                     padding: '3rem', 
                      borderRadius: '40px',
-                     minHeight: '600px',
+                     minHeight: '550px',
                      display: 'flex',
                      flexDirection: 'column',
                      justifyContent: 'center',
@@ -239,25 +238,25 @@ const DisciplineCatalogPage = () => {
                    <motion.div 
                     initial={{ scale: 0.5 }}
                     animate={{ scale: 1 }}
-                    style={{ color: hoveredItem.color, marginBottom: '2.5rem' }}
+                    style={{ color: hoveredItem.color, marginBottom: '2rem' }}
                    >
                      {hoveredItem.icon}
                    </motion.div>
-                   <h2 style={{ fontSize: '3.2rem', fontWeight: 950, marginBottom: '1.5rem', color: 'white', letterSpacing: '-1.5px', lineHeight: 1 }}>
+                   <h2 style={{ fontSize: '2.8rem', fontWeight: 950, marginBottom: '1.2rem', color: 'white', letterSpacing: '-1.5px', lineHeight: 1 }}>
                      {hoveredItem.name}
                    </h2>
-                   <p style={{ fontSize: '1.3rem', color: 'rgba(255,255,255,0.85)', lineHeight: 1.7, marginBottom: '3.5rem' }}>{hoveredItem.desc}</p>
+                   <p style={{ fontSize: '1.2rem', color: 'rgba(255,255,255,0.85)', lineHeight: 1.7, marginBottom: '3rem' }}>{hoveredItem.desc}</p>
                    <button 
                      onClick={() => navigate(hoveredItem.path)} 
                      style={{ 
                        background: hoveredItem.color, 
                        color: 'white', 
-                       padding: '1.5rem', 
-                       borderRadius: '20px', 
+                       padding: '1.2rem', 
+                       borderRadius: '16px', 
                        fontWeight: 900, 
                        border: 'none', 
                        cursor: 'pointer',
-                       fontSize: '1.2rem',
+                       fontSize: '1.1rem',
                        display: 'flex',
                        alignItems: 'center',
                        justifyContent: 'center',
@@ -267,37 +266,37 @@ const DisciplineCatalogPage = () => {
                        marginTop: 'auto'
                       }}
                     >
-                      DETAYLI EĞİTİME GİT <Zap size={24} />
+                      DETAYLI EĞİTİME GİT <Zap size={22} />
                     </button>
                  </motion.div>
                ) : (
                   <div className="glass-card" style={{ 
-                    padding: '3.5rem', 
+                    padding: '3rem', 
                     borderRadius: '40px', 
-                    minHeight: '600px',
+                    minHeight: '550px',
                     display: 'flex',
                     flexDirection: 'column',
                     justifyContent: 'center',
                     border: '1px solid rgba(255,255,255,0.05)',
                     background: 'rgba(255,255,255,0.01)'
                   }}>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', marginBottom: '2.5rem' }}>
-                      <div style={{ padding: '15px', background: 'rgba(168, 85, 247, 0.1)', borderRadius: '20px', color: '#a855f7' }}>
-                        <ShieldCheck size={32} />
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', marginBottom: '2.2rem' }}>
+                      <div style={{ padding: '12px', background: 'rgba(168, 85, 247, 0.1)', borderRadius: '15px', color: '#a855f7' }}>
+                        <ShieldCheck size={28} />
                       </div>
-                      <h3 style={{ fontSize: '2rem', fontWeight: 950, color: 'white', margin: 0, letterSpacing: '-1px' }}>MİMARİ 10 EMİR</h3>
+                      <h3 style={{ fontSize: '1.8rem', fontWeight: 950, color: 'white', margin: 0, letterSpacing: '-1px' }}>MİMARİ 10 EMİR</h3>
                     </div>
-                    <p style={{ fontSize: '1.3rem', color: 'var(--text-secondary)', lineHeight: 1.8 }}>
+                    <p style={{ fontSize: '1.2rem', color: 'var(--text-secondary)', lineHeight: 1.7 }}>
                       Usta bir mimar olmak sadece kod yazmayı bilmek değildir; o kodu ayakta tutan sarsılmaz prensipleri (Emirleri) hayata geçirmektir.
                     </p>
-                    <div style={{ marginTop: '4rem', display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+                    <div style={{ marginTop: '3rem', display: 'flex', flexDirection: 'column', gap: '1.2rem' }}>
                         {[ 
                           'Global Mimari Standartlar',
                           'Sertifikalı Temel Prensipler',
                           'Uygulamalı Müfredat Akışı'
                         ].map((t, i) => (
-                          <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '1.2rem', fontSize: '1.1rem', color: 'rgba(255,255,255,0.7)', fontWeight: 600 }}>
-                            <div style={{ width: '10px', height: '10px', borderRadius: '50%', background: '#a855f7', boxShadow: '0 0 15px #a855f7' }} />
+                          <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '1rem', fontSize: '1rem', color: 'rgba(255,255,255,0.7)', fontWeight: 600 }}>
+                            <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#a855f7', boxShadow: '0 0 12px #a855f7' }} />
                             {t}
                           </div>
                         ))}

@@ -62,20 +62,22 @@ const roadmapData = [
   }
 ];
 
-const ArchitectRoadmap = () => {
+const ArchitectRoadmap = ({ hideHeader }: { hideHeader?: boolean }) => {
   const navigate = useNavigate();
   const { progress } = useProgress();
 
   return (
-    <div style={{ padding: '60px 0', position: 'relative' }}>
+    <div style={{ padding: hideHeader ? '0 0 60px 0' : '60px 0', position: 'relative' }}>
       <div className="container">
-        <div style={{ textAlign: 'center', marginBottom: '5rem' }}>
-           <h1 className="gradient-text" style={{ fontSize: '3.5rem', fontWeight: 900, marginBottom: '1rem' }}>Mimari Müfredat</h1>
-           <p style={{ color: 'var(--text-secondary)', fontSize: '1.2rem', maxWidth: '750px', margin: '0 auto' }}>
-              Yazılım mimarisi disiplinlerini en temelden en ileri seviyeye, yapılandırılmış bir müfredat eşliğinde keşfedin.
-              Hangi seviyedesin, seni neler bekliyor?
-           </p>
-        </div>
+        {!hideHeader && (
+          <div style={{ textAlign: 'center', marginBottom: '5rem' }}>
+            <h1 className="gradient-text" style={{ fontSize: '3.5rem', fontWeight: 900, marginBottom: '1rem' }}>Mimari Müfredat</h1>
+            <p style={{ color: 'var(--text-secondary)', fontSize: '1.2rem', maxWidth: '750px', margin: '0 auto' }}>
+                Yazılım mimarisi disiplinlerini en temelden en ileri seviyeye, yapılandırılmış bir müfredat eşliğinde keşfedin.
+                Hangi seviyedesin, seni neler bekliyor?
+            </p>
+          </div>
+        )}
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: '6rem' }}>
            {roadmapData.map((level, lIndex) => (

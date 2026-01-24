@@ -107,20 +107,20 @@ const HomePage = () => {
               label="KÜTÜPHANE"
             />
             <FeatureCard 
+              title="Disiplin Matrisi" 
+              icon={<Sparkles />}
+              desc="Usta yazılımcıların uyması gereken 10 temel emir; interaktif 'Hiyerarşi Çarkı' ile keşfedin."
+              path="/discipline-catalog"
+              color="#a855f7"
+              label="PRENSİPLER"
+            />
+            <FeatureCard 
               title="Master Matrix" 
               icon={<Table2 />}
               desc="Projeleriniz için en uygun mimariyi 'Trade-off' analizleri ve puanlamalar ile seçin."
               path="/compare"
-              color="#f59e0b"
+              color="#10b981"
               label="STRATEJİ"
-            />
-            <FeatureCard 
-              title="Mülakat Simülatörü" 
-              icon={<BrainCircuit />}
-              desc="Dev teknoloji şirketlerinin mimarlık mülakatlarını gerçek senaryolarla deneyimleyin."
-              path="/assessment"
-              color="#8b5cf6"
-              label="KARİYER"
             />
           </div>
         </div>
