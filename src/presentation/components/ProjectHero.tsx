@@ -49,9 +49,8 @@ const ProjectHero = ({ children }) => {
             marginBottom: '3rem',
             lineHeight: 1.7
           }}>
-            Bu portal, içinde anlattığı prensiplerle inşa edildi. <strong>Clean Architecture</strong> 
-            kullanarak nasıl "teknoloji bağımsız" ve "test edilebilir" bir proje kurduğumuzu 
-            gerçek kodlar üzerinden inceleyin.
+            Bu portal, içinde anlattığı prensiplerle inşa edildi. <strong>Clean Architecture</strong>, 
+            <strong>SOLID</strong> ve <strong>Bileşen Temelli Tasarım</strong> uyumunu gerçek kodlar üzerinden inceleyin.
           </p>
 
           {children}

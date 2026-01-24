@@ -94,58 +94,53 @@ const ProjectPage = () => {
               <section style={{ padding: '100px 0', borderTop: '1px solid var(--glass-border)', background: 'rgba(0,0,0,0.2)' }}>
                 <div className="container">
                   <div style={{ textAlign: 'center', marginBottom: '5rem' }}>
-                    <h2 className="gradient-text" style={{ fontSize: '3rem', fontWeight: 800 }}>Architect's Manifesto</h2>
-                    <p style={{ color: 'var(--text-secondary)' }}>Bu projenin arkasındaki stratejik kararlar ve tasarım felsefesi.</p>
+                    <h2 className="gradient-text" style={{ fontSize: '3rem', fontWeight: 800 }}>Architect's Harmony</h2>
+                    <p style={{ color: 'var(--text-secondary)' }}>Tek bir mimari, sarsılmaz bir disiplin ve modern bir uygulama yaklaşımı.</p>
                   </div>
 
                   <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '3rem' }}>
                     <div className="glass-card" style={{ padding: '3rem' }}>
                         <h3 style={{ color: 'var(--primary)', marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
                           <div style={{ padding: '8px', background: 'rgba(59, 130, 246, 0.1)', borderRadius: '10px' }}>01</div>
-                          Presentation Dominance
+                          Clean Architecture (Strateji)
                         </h3>
                         <p style={{ color: 'var(--text-secondary)', lineHeight: 1.8 }}>
-                          Normal bir kurumsal projede iş mantığı (Domain) çok yer kaplar. Ancak bu proje bir <strong>Eğitim Portalı</strong> olduğu için "Öğretme" eyleminin kendisi bir UI sorumluluğudur. 
-                          Architecture Wizard ve Code Surgery gibi interaktif araçlar, kompleks birer <strong>Visual Use Case</strong> örneğidir. 
-                          Presentation katmanının büyük olması, projenin görsel ve eğitici gücünü temsil eder.
+                          Projenin ana iskeletidir. Domain, Use Case ve Infrastructure katmanlarını birbirinden ayırarak 
+                          yazılımın teknolojiye (React, API vb.) değil, "İş Mantığına" (Eğitim Portalı kuralları) köle olmasını sağlar.
                         </p>
                     </div>
 
                     <div className="glass-card" style={{ padding: '3rem' }}>
                         <h3 style={{ color: '#f59e0b', marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
                           <div style={{ padding: '8px', background: 'rgba(245, 158, 11, 0.1)', borderRadius: '10px' }}>02</div>
-                          The Context Hub
+                          SOLID / SRP (Taktik)
                         </h3>
                         <p style={{ color: 'var(--text-secondary)', lineHeight: 1.8 }}>
-                          <code>context</code> klasörünün kök dizinde bağımsız olması tesadüf değildir. İlerleme durumu (Progress), 
-                          uygulamanın tüm katmanlarını enine kesen bir <strong>Global State</strong>'tir. 
-                          Onu Presentation içine hapsetmek, veri akışını kısıtlamak olurdu. 
-                          Bu yapı sayesinde, yarın bir mobil app (Infrastructure) eklediğimizde bile ProgressContext merkezi bir noktada kalmaya devam eder.
+                          Kodun hücre seviyesindeki disiplinidir. Her dosya (Bileşen) sadece tek bir işten sorumludur. 
+                          Bu sayede bir özelliği değiştirdiğimizde diğerleri domino taşı gibi devrilmez.
                         </p>
                     </div>
 
                     <div className="glass-card" style={{ padding: '3rem' }}>
                         <h3 style={{ color: '#10b981', marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
                           <div style={{ padding: '8px', background: 'rgba(16, 185, 129, 0.1)', borderRadius: '10px' }}>03</div>
-                          Persistent Memory
+                          Component-Based (Uygulama)
                         </h3>
                         <p style={{ color: 'var(--text-secondary)', lineHeight: 1.8 }}>
-                          Kullanıcı deneyimi (UX), süreklilik gerektirir. <code>localStorage</code> entegrasyonu, Infrastructure katmanında yaşayan bir detaydır. 
-                          ProgressContext bu detayı kullanarak, Domain kurallarına (x dersi bitti mi?) cevap verir. 
-                          Böylece kullanıcı sayfayı yenilese de, başarısı "ölümsüz" kalır.
+                          React dünyasının sunduğu muazzam bir güçtür. Clean Architecture'ın o katı kurallarını, 
+                          esnek Lego parçalarına (Components) dönüştürerek ekrana yansıtmamızı sağlar.
                         </p>
                     </div>
 
                     <div className="glass-card" style={{ padding: '3rem' }}>
                         <h3 style={{ color: '#a855f7', marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
                           <div style={{ padding: '8px', background: 'rgba(168, 85, 247, 0.1)', borderRadius: '10px' }}>04</div>
-                          Scalability Vision
+                          The Master Synergy
                         </h3>
                         <p style={{ color: 'var(--text-secondary)', lineHeight: 1.8 }}>
-                          Şu an static verilerle çalışıyoruz. Ancak projemiz yarın binlerce kullanıcıya hizmet veren bir 
-                          <strong>SaaS</strong> ürününe dönüştüğünde, sadece Infrastructure katmanındaki Repository'leri 
-                          API çağrılarıyla değiştirerek tüm sistemi saniyeler içinde upgrade edebiliriz. 
-                          İşte Clean Architecture'ın gerçek gücü budur.
+                          Sonuç olarak; bu projede bu üçü arasında bir hiyerarşi vardır. 
+                          <strong> Mimari</strong> (Clean) yol haritasıdır, <strong>Disiplin</strong> (SOLID) kurallar dizisidir, 
+                          <strong> Tasarım</strong> (Component) ise bu kuralların görsel halidir.
                         </p>
                     </div>
                   </div>

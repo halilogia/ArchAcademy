@@ -4,24 +4,24 @@ import { motion } from 'framer-motion';
 const Theory = () => {
   const layers = [
     { 
-      name: 'Entities (Kurumsal İş Kuralları)', 
+      name: 'Domain (Alan Katmanı)', 
       color: 'var(--layer-entities)', 
-      desc: 'En iç katman. Uygulamanın en temel iş nesnelerini ve mantığını içerir. Hiçbir şeye bağımlı değildir.' 
+      desc: 'En iç çekirdek. Entities, Value Objects, Domain Events ve Exceptions burada yer alır. Saf iş mantığını temsil eder.' 
     },
     { 
-      name: 'Use Cases (Uygulama İş Kuralları)', 
+      name: 'Application (Uygulama Katmanı)', 
       color: 'var(--layer-usecases)', 
-      desc: 'Sistemin spesifik iş akışlarını tanımlar. Entitileri kullanarak verinin nasıl akacağını yönetir.' 
+      desc: 'İş Kuralları, CQRS (Queries & Commands) ve Infrastructure için tanımlanan Interface’ler burada bulunur. Uygulamanın "ne yapacağını" koordine eder.' 
     },
     { 
-      name: 'Interface Adapters', 
+      name: 'Infrastructure (Altyapı Katmanı)', 
       color: 'var(--layer-adapters)', 
-      desc: 'Veriyi Use Case formatından DB veya Web formatına dönüştüren katman (Controllers, Presenters).' 
+      desc: 'Teknik detaylar. DB Persistence Implementation, Identity (Auth), File Systems ve dış servis entegrasyonları burada yaşar.' 
     },
     { 
-      name: 'Frameworks & Drivers', 
+      name: 'Presentation / WebUI', 
       color: 'var(--layer-external)', 
-      desc: 'En dış katman. DB, UI, Web Framework gibi araçların bulunduğu yerdir. Her an değişebilir.' 
+      desc: 'Görsel katman. Controllers, Views ve Program/Startup (Bağımlılık Enjeksiyonu ayarları) bu katmanda yer alır.' 
     }
   ];
 
@@ -71,15 +71,6 @@ const Theory = () => {
                 </div>
               </motion.div>
             ))}
-            <div style={{
-              zIndex: 10,
-              textAlign: 'center',
-              fontWeight: 800,
-              color: 'var(--layer-entities)',
-              fontSize: '1.2rem'
-            }}>
-              ENTITIES
-            </div>
           </div>
 
           {/* Text Content */}
