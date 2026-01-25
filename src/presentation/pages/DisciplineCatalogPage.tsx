@@ -101,6 +101,13 @@ const DisciplineCatalogPage = () => {
       desc: 'Global bağımlılıkları azaltın, bileşenleri birbirinden bağımsızlaştırın.' 
     },
     { 
+      name: 'Lean Philosophy', 
+      path: '/lean-architecture', 
+      color: '#84cc16', 
+      icon: <Target size={24} />,
+      desc: 'Gereksiz her şeyi çöpe atın: Yalın, hızlı ve sadece değer üretene odaklanan zihin yapısı.' 
+    },
+    { 
       name: 'Continuous Refactoring', 
       path: '/refactoring', 
       color: '#a855f7', 
@@ -114,7 +121,7 @@ const DisciplineCatalogPage = () => {
       <div className="container" style={{ maxWidth: '1600px' }}>
         <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
           <motion.div initial={{ y: -20, opacity: 0 }} animate={{ y: 0, opacity: 1 }} style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', background: 'rgba(168, 85, 247, 0.1)', padding: '0.5rem 1.2rem', borderRadius: '100px', color: '#a855f7', fontWeight: 800, fontSize: '0.8rem', marginBottom: '1rem', border: '1px solid rgba(168, 85, 247, 0.3)' }}>
-            <Sparkles size={16} /> 10 GOOD CODING PRINCIPLES
+            <Sparkles size={16} /> ARCHITECTURAL DISCIPLINES
           </motion.div>
           <h1 style={{ fontSize: '3.5rem', fontWeight: 950, letterSpacing: '-2px', margin: 0, color: 'white' }}>
             Mimari <span className="gradient-text">Disiplinler</span> Matrisi
@@ -145,8 +152,8 @@ const DisciplineCatalogPage = () => {
                     transition={{ duration: 4, repeat: Infinity }}
                     style={{ filter: 'drop-shadow(0 0 25px rgba(168, 85, 247, 0.4))' }} 
                    />
-                   <text x={500} y={495} textAnchor="middle" fill="white" fontWeight="900" fontSize="13" style={{ letterSpacing: '2px' }}>MİMARİ</text>
-                   <text x={500} y={520} textAnchor="middle" fill="#a855f7" fontWeight="950" fontSize="18" style={{ letterSpacing: '3px' }}>10 EMİR</text>
+                   <text x={500} y={495} textAnchor="middle" fill="white" fontWeight="900" fontSize="13" style={{ letterSpacing: '2px' }}>TEMEL</text>
+                   <text x={500} y={520} textAnchor="middle" fill="#a855f7" fontWeight="950" fontSize="18" style={{ letterSpacing: '3px' }}>DİSİPLİNLER</text>
                 </g>
 
                 {disciplines.map((item, idx) => {
@@ -284,7 +291,7 @@ const DisciplineCatalogPage = () => {
                       <div style={{ padding: '12px', background: 'rgba(168, 85, 247, 0.1)', borderRadius: '15px', color: '#a855f7' }}>
                         <ShieldCheck size={28} />
                       </div>
-                      <h3 style={{ fontSize: '1.8rem', fontWeight: 950, color: 'white', margin: 0, letterSpacing: '-1px' }}>MİMARİ 10 EMİR</h3>
+                      <h3 style={{ fontSize: '1.8rem', fontWeight: 950, color: 'white', margin: 0, letterSpacing: '-1px' }}>MİMARİ DİSİPLİNLER</h3>
                     </div>
                     <p style={{ fontSize: '1.2rem', color: 'var(--text-secondary)', lineHeight: 1.7 }}>
                       Usta bir mimar olmak sadece kod yazmayı bilmek değildir; o kodu ayakta tutan sarsılmaz prensipleri (Emirleri) hayata geçirmektir.

@@ -59,6 +59,7 @@ const DocumentationPage = lazy(() => import('./presentation/pages/DocumentationP
 const TestingPage = lazy(() => import('./presentation/pages/TestingPage'));
 const AbstractionPage = lazy(() => import('./presentation/pages/AbstractionPage'));
 const DisciplineCatalogPage = lazy(() => import('./presentation/pages/DisciplineCatalogPage'));
+const LeanArchitecturePage = lazy(() => import('./presentation/pages/LeanArchitecturePage'));
 const BookshelfPage = lazy(() => import('./presentation/pages/BookshelfPage'));
 const NotFoundPage = lazy(() => import('./presentation/pages/NotFoundPage'));
 
@@ -131,6 +132,7 @@ const App: React.FC = () => {
                     <Route path="/testing" element={<TestingPage />} />
                     <Route path="/abstraction" element={<AbstractionPage />} />
                     <Route path="/discipline-catalog" element={<DisciplineCatalogPage />} />
+                    <Route path="/lean-architecture" element={<LeanArchitecturePage />} />
                     <Route path="/library" element={<BookshelfPage />} />
                     <Route path="*" element={<NotFoundPage />} />
                   </Routes>
