@@ -45,7 +45,7 @@ const DisciplineCatalogPage = () => {
       desc: 'SQL Injection, XSS ve Veri Sızıntısına karşı mimari kalkan protokolleri.' 
     },
     { 
-      name: 'Code Specification', 
+      name: 'Clean Code', 
       path: '/clean-code', 
       color: '#f43f5e', 
       icon: <Code2 size={24} />,
@@ -88,7 +88,7 @@ const DisciplineCatalogPage = () => {
     },
     { 
       name: 'Design Patterns', 
-      path: '/glossary', 
+      path: '/design-patterns', 
       color: '#3b82f6', 
       icon: <Zap size={24} />,
       desc: 'Tekrar eden sorunlara kanıtlanmış mimari ve yapısal çözümler (GOF).' 
@@ -108,11 +108,11 @@ const DisciplineCatalogPage = () => {
       desc: 'Gereksiz her şeyi çöpe atın: Yalın, hızlı ve sadece değer üretene odaklanan zihin yapısı.' 
     },
     { 
-      name: 'Continuous Refactoring', 
-      path: '/refactoring', 
-      color: '#a855f7', 
-      icon: <Scissors size={24} />,
-      desc: 'Kodun tasarımını bozmadan, sürekli iyileştirme ve modernizasyon sanatı.' 
+      name: 'Atomic Design', 
+      path: '/atomic-design', 
+      color: '#f97316', 
+      icon: <Sparkles size={24} />,
+      desc: 'Atoms to Pages: Arayüz bileşenlerini hiyerarşik ve yeniden kullanılabilir bir sistemle inşa etme sanatı.' 
     }
   ];
 
