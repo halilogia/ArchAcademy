@@ -145,16 +145,37 @@ const WorkshopPage = () => {
                <p style={{ color: 'var(--text-secondary)', marginBottom: '3rem', lineHeight: 1.7, fontSize: '1.05rem' }}>
                  Yazılım mimarisi bir puzzle'dır. Bileşenleri doğru katmanlara sürükleyin, karmaşıklığı yönetin ve projenin "Usta Mimarı" olduğunuzu kanıtlayın.
                </p>
-               <button onClick={() => setGameStatus('playing')} style={{ 
-                 padding: '1.2rem 3.5rem', background: '#6366f1', color: 'white', border: 'none', borderRadius: '14px', 
-                 fontSize: '1.1rem', fontWeight: 900, cursor: 'pointer', display: 'inline-flex', alignItems: 'center', gap: '0.8rem',
-                 boxShadow: '0 15px 30px rgba(99, 102, 241, 0.25)', transition: 'transform 0.2s'
-               }}
-               onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.03)'}
-               onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
-               >
-                 <Play size={22} fill="white" /> BAŞLA
-               </button>
+                <div style={{ display: 'flex', gap: '1.2rem', justifyContent: 'center' }}>
+                  <button onClick={() => setGameStatus('playing')} style={{ 
+                    padding: '1.1rem 2.8rem', background: '#6366f1', color: 'white', border: 'none', borderRadius: '14px', 
+                    fontSize: '1rem', fontWeight: 900, cursor: 'pointer', display: 'inline-flex', alignItems: 'center', gap: '0.8rem',
+                    boxShadow: '0 15px 30px rgba(99, 102, 241, 0.25)', transition: 'transform 0.2s'
+                  }}
+                  onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.03)'}
+                  onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
+                  >
+                    <Play size={22} fill="white" /> BAŞLA
+                  </button>
+                  
+                  <button 
+                    onClick={() => window.location.href='/synthesis-lab'}
+                    style={{ 
+                      padding: '1.1rem 2.2rem', background: 'rgba(6, 182, 212, 0.1)', color: '#06b6d4', border: '1px solid rgba(6, 182, 212, 0.3)', borderRadius: '14px', 
+                      fontSize: '1rem', fontWeight: 900, cursor: 'pointer', display: 'inline-flex', alignItems: 'center', gap: '0.8rem',
+                      transition: 'all 0.2s'
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.background = 'rgba(6, 182, 212, 0.2)';
+                      e.currentTarget.style.transform = 'scale(1.03)';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.background = 'rgba(6, 182, 212, 0.1)';
+                      e.currentTarget.style.transform = 'scale(1)';
+                    }}
+                  >
+                    <Zap size={22} /> SYNTHESIS LAB
+                  </button>
+                </div>
             </motion.div>
           )}
 

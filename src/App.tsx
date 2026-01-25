@@ -66,6 +66,7 @@ const DesignTokensPage = lazy(() => import('./presentation/pages/DesignTokensPag
 const AtomicDesignPage = lazy(() => import('./presentation/pages/AtomicDesignPage'));
 const DesignPatternsPage = lazy(() => import('./presentation/pages/DesignPatternsPage'));
 const BookshelfPage = lazy(() => import('./presentation/pages/BookshelfPage'));
+const SynthesisLabPage = lazy(() => import('./presentation/pages/SynthesisLabPage'));
 const NotFoundPage = lazy(() => import('./presentation/pages/NotFoundPage'));
 
 const LoadingFallback = () => (
@@ -144,6 +145,7 @@ const App: React.FC = () => {
                     <Route path="/atomic-design" element={<AtomicDesignPage />} />
                     <Route path="/design-patterns" element={<DesignPatternsPage />} />
                     <Route path="/library" element={<BookshelfPage />} />
+                    <Route path="/synthesis-lab" element={<SynthesisLabPage />} />
                     <Route path="*" element={<NotFoundPage />} />
                   </Routes>
                 </AnimatePresence>
