@@ -12,8 +12,8 @@ const DocumentationPage = () => {
       style={{ background: 'var(--bg-dark)', minHeight: '100vh' }}
     >
       <ArchHero 
-        title="Architecture"
-        subtitle="Documentation"
+        title="Docs"
+        subtitle="Annotations"
         description="Kodun sadece 'ne' yaptığını değil, neden (Why) bu şekilde yapıldığını belgeleyin. Kararlarınızı ölümsüzleştirin."
         badge="Living Documentation"
         color="#3b82f6"

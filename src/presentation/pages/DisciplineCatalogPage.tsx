@@ -13,7 +13,8 @@ import {
   Layers, 
   Code2, 
   Scissors, 
-  Network 
+  Network,
+  Palette
 } from 'lucide-react';
 
 interface DisciplineItem {
@@ -113,6 +114,13 @@ const DisciplineCatalogPage = () => {
       color: '#f97316', 
       icon: <Sparkles size={24} />,
       desc: 'Atoms to Pages: Arayüz bileşenlerini hiyerarşik ve yeniden kullanılabilir bir sistemle inşa etme sanatı.' 
+    },
+    { 
+      name: 'Design Tokens', 
+      path: '/design-tokens', 
+      color: '#06b6d4', 
+      icon: <Palette size={24} />,
+      desc: 'Renk, tipografi ve boşluk gibi görsel atomların mimari seviyede tek bir kaynaktan (SSOT) yönetilmesi.' 
     }
   ];
 

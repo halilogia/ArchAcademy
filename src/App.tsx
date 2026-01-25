@@ -60,6 +60,7 @@ const TestingPage = lazy(() => import('./presentation/pages/TestingPage'));
 const AbstractionPage = lazy(() => import('./presentation/pages/AbstractionPage'));
 const DisciplineCatalogPage = lazy(() => import('./presentation/pages/DisciplineCatalogPage'));
 const LeanArchitecturePage = lazy(() => import('./presentation/pages/LeanArchitecturePage'));
+const DesignTokensPage = lazy(() => import('./presentation/pages/DesignTokensPage'));
 const AtomicDesignPage = lazy(() => import('./presentation/pages/AtomicDesignPage'));
 const DesignPatternsPage = lazy(() => import('./presentation/pages/DesignPatternsPage'));
 const BookshelfPage = lazy(() => import('./presentation/pages/BookshelfPage'));
@@ -135,6 +136,7 @@ const App: React.FC = () => {
                     <Route path="/abstraction" element={<AbstractionPage />} />
                     <Route path="/discipline-catalog" element={<DisciplineCatalogPage />} />
                     <Route path="/lean-architecture" element={<LeanArchitecturePage />} />
+                    <Route path="/design-tokens" element={<DesignTokensPage />} />
                     <Route path="/atomic-design" element={<AtomicDesignPage />} />
                     <Route path="/design-patterns" element={<DesignPatternsPage />} />
                     <Route path="/library" element={<BookshelfPage />} />
