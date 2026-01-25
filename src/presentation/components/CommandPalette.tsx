@@ -14,6 +14,7 @@ import {
   Cpu,
   Globe,
   Database,
+  Target,
   Palette
 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
@@ -63,7 +64,11 @@ const CommandPalette = () => {
     { id: 'interpreter', title: 'Interpreter Pattern', description: 'Rule engines and DSL design', type: 'page', path: '/interpreter', icon: <Terminal size={18} /> },
     { id: 'choreography', title: 'Choreography', description: 'Decentralized service coordination', type: 'page', path: '/choreography', icon: <Zap size={18} /> },
     { id: 'orchestration', title: 'Orchestration', description: 'Centralized workflow management', type: 'page', path: '/orchestration', icon: <Box size={18} /> },
-    { id: 'design-system', title: 'Design System', description: 'ArchAcademy visual principles and atoms', type: 'page', path: '/project-arch?tab=design', icon: <Palette size={18} /> },
+    { id: 'clean-code', title: 'Clean Code', description: 'Software craftsmanship and naming standards', type: 'page', path: '/clean-code', icon: <Box size={18} /> },
+    { id: 'lean-philosophy', title: 'Lean Philosophy (YAGNI)', description: 'Eliminate waste and deliver fast', type: 'page', path: '/lean-architecture', icon: <Target size={18} /> },
+    { id: 'atomic-design', title: 'Atomic Design', description: 'Hierarchical UI architecture from Atoms to Pages', type: 'page', path: '/atomic-design', icon: <Sparkles size={18} /> },
+    { id: 'design-patterns', title: 'Design Patterns', description: 'Proven solutions (GOF) for software design', type: 'page', path: '/design-patterns', icon: <Zap size={18} /> },
+    { id: 'design-system', title: 'Design System', description: 'ArchAcademy visual principles and design tokens', type: 'page', path: '/project-arch?tab=design', icon: <Palette size={18} /> },
   ];
 
   const glossaryItems: SearchItem[] = GLOSSARY_TERMS.map(term => ({
