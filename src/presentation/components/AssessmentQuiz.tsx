@@ -203,8 +203,8 @@ const AssessmentQuiz = () => {
                {currentStep + 1}
              </div>
              <div>
-               <div style={{ color: 'var(--primary)', fontWeight: 800, fontSize: '0.9rem', textTransform: 'uppercase', letterSpacing: '2px' }}>{currentQuestion.category || 'Architecture'}</div>
-               <div style={{ fontSize: '0.8rem', opacity: 0.5 }}>Question {currentStep + 1} of {interviewQuestions.length}</div>
+                <div style={{ color: 'var(--primary)', fontWeight: 900, fontSize: '0.85rem', textTransform: 'uppercase', letterSpacing: '3px', marginBottom: '4px' }}>{currentQuestion.category || 'Architecture'}</div>
+                <div style={{ fontSize: '0.75rem', opacity: 0.6, fontWeight: 700 }}>Question {currentStep + 1} of {interviewQuestions.length}</div>
              </div>
           </div>
 
@@ -217,9 +217,9 @@ const AssessmentQuiz = () => {
             >
               <h2 style={{ fontSize: '2.8rem', fontWeight: 900, marginBottom: '2rem', color: 'white', letterSpacing: '-1px' }}>{currentQuestion.title}</h2>
               <div style={{ background: 'rgba(255, 255, 255, 0.02)', padding: '3rem', borderRadius: '40px', border: '1px solid var(--glass-border)', position: 'relative', minHeight: '300px' }}>
-                <div style={{ position: 'absolute', top: '-15px', left: '40px', background: 'var(--bg-dark)', padding: '5px 20px', borderRadius: '10px', display: 'flex', alignItems: 'center', gap: '8px', border: '1px solid var(--glass-border)' }}>
-                   <MessageSquare size={16} color="var(--primary)" />
-                   <span style={{ fontSize: '0.8rem', fontWeight: 800 }}>MÜLAKATÇI (GURU)</span>
+                <div style={{ position: 'absolute', top: '-15px', left: '30px', background: 'var(--bg-dark)', padding: '6px 18px', borderRadius: '12px', display: 'flex', alignItems: 'center', gap: '8px', border: '1px solid var(--glass-border)', boxShadow: '0 4px 10px rgba(0,0,0,0.3)' }}>
+                   <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: 'var(--primary)', boxShadow: '0 0 10px var(--primary)' }} />
+                   <span style={{ fontSize: '0.75rem', fontWeight: 900, letterSpacing: '1px' }}>MÜLAKATÇI (GURU)</span>
                 </div>
                 <p style={{ fontSize: '1.4rem', lineHeight: 1.8, color: '#f8fafc', fontWeight: 500 }}>
                   "{currentQuestion.scenario}"
@@ -269,9 +269,15 @@ const AssessmentQuiz = () => {
                     opacity: !isAnswering && !isSelected ? 0.4 : 1
                   }}
                 >
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                     <span style={{ fontSize: '1.2rem', fontWeight: 800, color: 'white' }}>{opt.text}</span>
-                     {isSelected ? <CheckCircle2 size={24} color="var(--primary)" /> : <div style={{ width: '24px', height: '24px', borderRadius: '50%', border: '2px solid rgba(255,255,255,0.1)' }} />}
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '2rem' }}>
+                     <span style={{ fontSize: '1.2rem', fontWeight: 800, color: isSelected ? 'white' : '#94a3b8', transition: 'color 0.3s' }}>{opt.text}</span>
+                     {isSelected ? (
+                       <div style={{ width: '28px', height: '28px', borderRadius: '50%', background: 'var(--primary)', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 0 15px rgba(59, 130, 246, 0.5)' }}>
+                         <CheckCircle2 size={18} color="white" />
+                       </div>
+                     ) : (
+                       <div style={{ width: '24px', height: '24px', borderRadius: '50%', border: '2px solid rgba(255,255,255,0.1)', transition: 'border-color 0.3s' }} />
+                     )}
                   </div>
                 </motion.button>
               );

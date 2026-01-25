@@ -35,7 +35,7 @@ const AssessmentPage = () => {
               marginBottom: '1.5rem',
               border: '1px solid rgba(99, 102, 241, 0.2)'
             }}>
-              <BrainCircuit size={18} /> Mülakat Simülasyonu (V2)
+              <BrainCircuit size={18} /> Mülakat Simülasyonu
             </div>
             <h1 className="gradient-text" style={{ fontSize: '4.5rem', fontWeight: 950, marginBottom: '1.5rem', letterSpacing: '-2px' }}>
               Architect Interview <br /> <span style={{ opacity: 0.8 }}>Simulator</span>

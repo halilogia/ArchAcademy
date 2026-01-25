@@ -130,7 +130,6 @@ const CatalogPage = () => {
       color: '#6366f1',
       items: [
         { name: 'Evolutionary Arch', path: '/evolution', color: '#6366f1', desc: 'Zamanla evrilebilen esnek yapılar.' },
-        { name: 'Future (2050)', path: '/fna-concept', color: '#06b6d4', desc: 'Niyet odaklı, AI-sentezli 2050 kodlama vizyonu.' },
         { name: 'Object-Oriented', path: '/object-oriented', color: '#818cf8', desc: 'Sınıf tabanlı modüler tasarım.' }
       ]
     }
