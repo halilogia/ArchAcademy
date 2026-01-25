@@ -9,60 +9,69 @@ const Practical = () => {
   const [simStep, setSimStep] = useState(-1);
 
   const codeExamples = {
-    // ... (keep the same code examples)
     entities: {
       file: 'domain/entities/User.js',
       code: `class User {
-  constructor(id, name, email) {
+  constructor(id, name, birthDate) {
     this.id = id;
     this.name = name;
-    this.email = email;
+    this.birthDate = birthDate;
+    
+    // İş Kuralı: 18 Yaş Sınırı
+    if (this.calculateAge() < 18) {
+      throw new Error('Kullanıcı reşit olmalıdır!');
+    }
   }
   
-  validate() {
-    if (!this.email.includes('@')) throw new Error('Geçersiz email');
+  calculateAge() {
+    // Yaş hesaplama mantığı burada...
+    return 20; // Örnek değer
   }
 }`,
-      desc: 'En saf iş kuralı. Framework veya DB bağımsız.'
+      desc: 'Anayasa: En saf iş kuralı (18 yaş sınırı). Hiçbir kütüphaneye veya veritabanına dokunmaz.'
     },
     usecases: {
       file: 'application/use_cases/RegisterUser.js',
-      code: `class RegisterUser {
+      code: `// Interface (Arayüz) tanımı burada sayılır
+class RegisterUser {
   constructor(userRepository) {
-    this.userRepository = userRepository;
+    this.userRepository = userRepository; // IUserRepository tipinde
   }
 
   async execute(userData) {
-    const user = new User(null, userData.name, userData.email);
-    user.validate();
+    // 1. Yeni entity oluştur (kurallar burada tetiklenir)
+    const user = new User(null, userData.name, userData.birthDate);
+    
+    // 2. Arayüz üzerinden kaydet (Hangi DB olduğu umurunda değil!)
     return await this.userRepository.save(user);
   }
 }`,
-      desc: 'İş akışını (flow) yönetir. Repository arayüzünü (interface) kullanır.'
+      desc: 'Orkestra Şefi: İş akışını yönetir. Sadece Repository arayüzünü (Port) bilir.'
     },
     adapters: {
-      file: 'interfaces/controllers/UserController.js',
-      code: `class UserController {
-  constructor(registerUserUseCase) {
-    this.registerUserUseCase = registerUserUseCase;
-  }
-
-  async handleRegister(req, res) {
-    const result = await this.registerUserUseCase.execute(req.body);
-    res.json(result);
+      file: 'interfaces/presenters/UserPresenter.js',
+      code: `class UserPresenter {
+  // Ham veriyi UI'ın (React) seveceği hale getirir
+  formatForDisplay(user) {
+    return {
+      fullName: user.name.toUpperCase(),
+      memberSince: new Date().getFullYear()
+    };
   }
 }`,
-      desc: 'HTTP isteğini Use Case\'in anlayacağı dile çevirir.'
+      desc: 'Tercüman: Sistemden çıkan veriyi UI/Ekran için formatlar.'
     },
     infrastructure: {
-      file: 'infrastructure/db/MongoUserRepository.js',
-      code: `class MongoUserRepository {
+      file: 'infrastructure/db/SqlUserRepository.js',
+      code: `// Repository Interface'ini implemente eder (gerçekleştirir)
+class SqlUserRepository {
   async save(user) {
-    const dbUser = { name: user.name, email: user.email };
-    return await db.collection('users').insertOne(dbUser);
+    // Gerçek teknoloji detayları burada:
+    const sql = "INSERT INTO users ...";
+    return await db.query(sql, [user.name]);
   }
 }`,
-      desc: 'Dış dünyayla (DB) konuşan gerçek implementasyon.'
+      desc: 'Detay: Veritabanı, API veya dosya sistemi gibi dış dünya araçları.'
     }
   };
 

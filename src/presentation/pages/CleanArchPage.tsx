@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import Hero from '../components/Hero';
 import Theory from '../components/Theory';
 import UncleBobStructure from '../components/UncleBobStructure';
+import ArchitectureFlow from '../components/ArchitectureFlow';
 import Practical from '../components/Practical';
 import ArchitecturalTruths from '../components/ArchitecturalTruths';
 import { useProgress } from '../../context/ProgressContext';
@@ -28,6 +29,7 @@ const CleanArchPage = () => {
       <UncleBobStructure />
       <ArchitecturalTruths />
       <Practical />
+      <ArchitectureFlow />
     </motion.div>
   );
 };

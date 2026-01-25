@@ -31,11 +31,6 @@ const ArchHero: React.FC<ArchHeroProps> = ({ title, subtitle, description, badge
             {description}
           </p>
           {children}
-          {!hideAction && (
-            <button style={{ background: color, color: 'white', padding: '1rem 2rem', borderRadius: '16px', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '0.5rem', border: 'none', cursor: 'pointer', boxShadow: `0 8px 24px ${color}44` }}>
-              Mevzuyu Çöz <ChevronRight size={20} />
-            </button>
-          )}
         </motion.div>
 
         <motion.div initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.2 }}>
