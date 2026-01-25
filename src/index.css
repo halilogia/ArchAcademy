@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800;900&display=swap');
 
 :root {
   --primary: #3b82f6;
@@ -27,9 +27,13 @@
 body {
   font-family: var(--font-main);
   background-color: var(--bg-dark);
-  color: var(--text-primary);
+  color: var(--text-secondary);
   line-height: 1.6;
   overflow-x: hidden;
+}
+
+h1, h2, h3, h4 {
+  color: var(--text-primary);
 }
 
 a {

@@ -215,13 +215,13 @@ const AssessmentQuiz = () => {
                animate={{ opacity: 1, x: 0 }}
                exit={{ opacity: 0, x: -20 }}
             >
-              <h2 style={{ fontSize: '2.8rem', fontWeight: 900, marginBottom: '2rem', color: 'white', letterSpacing: '-1px' }}>{currentQuestion.title}</h2>
+              <h2 style={{ fontSize: '2.8rem', fontWeight: 900, marginBottom: '2rem', color: 'var(--text-primary)', letterSpacing: '-1px' }}>{currentQuestion.title}</h2>
               <div style={{ background: 'rgba(255, 255, 255, 0.02)', padding: '3rem', borderRadius: '40px', border: '1px solid var(--glass-border)', position: 'relative', minHeight: '300px' }}>
                 <div style={{ position: 'absolute', top: '-15px', left: '30px', background: 'var(--bg-dark)', padding: '6px 18px', borderRadius: '12px', display: 'flex', alignItems: 'center', gap: '8px', border: '1px solid var(--glass-border)', boxShadow: '0 4px 10px rgba(0,0,0,0.3)' }}>
                    <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: 'var(--primary)', boxShadow: '0 0 10px var(--primary)' }} />
                    <span style={{ fontSize: '0.75rem', fontWeight: 900, letterSpacing: '1px' }}>MÜLAKATÇI (GURU)</span>
                 </div>
-                <p style={{ fontSize: '1.4rem', lineHeight: 1.8, color: '#f8fafc', fontWeight: 500 }}>
+                <p style={{ fontSize: '1.4rem', lineHeight: 1.8, color: 'var(--text-primary)', fontWeight: 500, opacity: 0.9 }}>
                   "{currentQuestion.scenario}"
                 </p>
                 
@@ -270,7 +270,7 @@ const AssessmentQuiz = () => {
                   }}
                 >
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '2rem' }}>
-                     <span style={{ fontSize: '1.2rem', fontWeight: 800, color: isSelected ? 'white' : '#94a3b8', transition: 'color 0.3s' }}>{opt.text}</span>
+                     <span style={{ fontSize: '1.2rem', fontWeight: 800, color: isSelected ? 'var(--text-primary)' : 'var(--text-secondary)', transition: 'color 0.3s' }}>{opt.text}</span>
                      {isSelected ? (
                        <div style={{ width: '28px', height: '28px', borderRadius: '50%', background: 'var(--primary)', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 0 15px rgba(59, 130, 246, 0.5)' }}>
                          <CheckCircle2 size={18} color="white" />
