@@ -1,8 +1,8 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Palette, Droplets, Type, Layout, Sparkles, BoxSelect } from 'lucide-react';
 
-const ProjectDesignSystem = () => {
+const ProjectDesignSystem = ({ children }: { children?: React.ReactNode }) => {
   const principles = [
     {
       title: "Glassmorphism & Depth",
@@ -52,7 +52,8 @@ const ProjectDesignSystem = () => {
   return (
     <section style={{ padding: '100px 0', background: 'rgba(2, 6, 23, 0.2)' }}>
       <div className="container">
-        <div style={{ textAlign: 'center', marginBottom: '5rem' }}>
+        {children && <div style={{ textAlign: 'center' }}>{children}</div>}
+        <div style={{ textAlign: 'center', marginBottom: '5rem', marginTop: children ? '3rem' : '0' }}>
            <h2 className="section-title">Design System & UI Architecture</h2>
            <p style={{ color: 'var(--text-secondary)', maxWidth: '800px', margin: '0 auto' }}>
               Kaliteli bir proje sadece temiz çalışmaz, aynı zamanda kusursuz görünür. 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { GitBranch, ShieldAlert, RefreshCw, Layers, Zap } from 'lucide-react';
+import { GitBranch, ShieldAlert, RefreshCw, Layers } from 'lucide-react';
 import ArchHero from '../components/ArchHero';
 
 const EvolutionaryPage: React.FC = () => {
@@ -44,8 +44,8 @@ const EvolutionaryPage: React.FC = () => {
   );
 
   return (
-    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} style={{ background: 'var(--bg-dark)' }}>
-      <ArchHero 
+    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} style={{ background: '#020617', minHeight: '100vh', color: 'white' }}>
+      <ArchHero   
         title="Evolutionary"
         subtitle="Architecture"
         description="'Evolutionary architecture supports guided, incremental change across multiple dimensions.' Neal Ford'un değişen dünyaya uyum sağlayan mimari disiplini."
@@ -69,16 +69,22 @@ const EvolutionaryPage: React.FC = () => {
               </p>
            </div>
            
-           <div className="glass-card" style={{ padding: '3rem', textAlign: 'center', maxWidth: '900px', margin: '0 auto' }}>
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '1rem', alignItems: 'center' }}>
-                 <div className="glass-card" style={{ padding: '1rem' }}>Code</div>
-                 <div style={{ color: '#ec4899' }}>→</div>
-                 <div className="glass-card" style={{ padding: '1.5rem', border: '2px dashed #ec4899', background: 'rgba(236, 72, 153, 0.1)' }}>
-                    <div style={{ fontWeight: 800, color: '#ec4899' }}>FITNESS</div>
-                    <div style={{ fontSize: '0.7rem' }}>CHECKS</div>
+           <div className="glass-card" style={{ padding: '3rem', textAlign: 'center', maxWidth: '1000px', margin: '0 auto' }}>
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 40px 1.5fr 40px 1fr', gap: '1rem', alignItems: 'center' }}>
+                 <div className="glass-card" style={{ padding: '1.5rem', background: 'rgba(255,255,255,0.02)' }}>
+                    <div style={{ fontWeight: 800 }}>Code</div>
+                    <div style={{ fontSize: '0.7rem', opacity: 0.5 }}>Implementation</div>
                  </div>
-                 <div style={{ color: '#ec4899' }}>→</div>
-                 <div className="glass-card" style={{ padding: '1rem', background: '#10b98122' }}>Deploy</div>
+                 <div style={{ color: '#ec4899', fontSize: '1.5rem' }}>→</div>
+                 <div className="glass-card" style={{ padding: '2rem', border: '2px dashed #ec4899', background: 'rgba(236, 72, 153, 0.1)', position: 'relative' }}>
+                    <div style={{ fontWeight: 900, color: '#ec4899', letterSpacing: '1px' }}>FITNESS</div>
+                    <div style={{ fontSize: '0.8rem', opacity: 0.8 }}>CHECKS</div>
+                 </div>
+                 <div style={{ color: '#ec4899', fontSize: '1.5rem' }}>→</div>
+                 <div className="glass-card" style={{ padding: '1.5rem', background: 'rgba(16, 185, 129, 0.1)', border: '1px solid rgba(16, 185, 129, 0.2)' }}>
+                    <div style={{ fontWeight: 800, color: '#10b981' }}>Deploy</div>
+                    <div style={{ fontSize: '0.7rem', opacity: 0.8, color: '#10b981' }}>Success</div>
+                 </div>
               </div>
            </div>
         </div>

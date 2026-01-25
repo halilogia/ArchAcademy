@@ -1,10 +1,11 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Box, Wind, Cpu, Palette } from 'lucide-react';
+import { Box, Wind, Cpu, Palette, Zap } from 'lucide-react';
 
 const ProjectTechStack = () => {
   const stack = [
     { name: 'Vite & React', icon: <Cpu />, desc: 'Ultra hızlı derleme ve komponent tabanlı yapı.', color: '#61dafb' },
+    { name: 'Zero-Runtime CSS', icon: <Zap />, desc: 'CSS Variables ile performanslı ve koda yük getirmeyen stil yönetimi.', color: '#06b6d4' },
     { name: 'Framer Motion', icon: <Wind />, desc: 'Premium ve akıcı sayfa geçişleri/animasyonlar.', color: '#ff0055' },
     { name: 'Lucide Icons', icon: <Box />, desc: 'Modern ve anlamlı vektörel ikon seti.', color: '#10b981' },
     { name: 'Glassmorphism', icon: <Palette />, desc: 'Saydam katmanlar ve modern UI estetiği.', color: '#a855f7' }

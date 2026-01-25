@@ -11,6 +11,8 @@ import ScrollToTop from './presentation/components/ScrollToTop';
 // Lazy Load Pages for Fault Isolation & Performance
 const HomePage = lazy(() => import('./presentation/pages/HomePage'));
 const CleanArchPage = lazy(() => import('./presentation/pages/CleanArchPage'));
+const FutureArchitecturePage = lazy(() => import('./presentation/pages/FutureArchitecturePage'));
+const ArchBrainPage = lazy(() => import('./presentation/pages/ArchBrainPage'));
 const DDDPage = lazy(() => import('./presentation/pages/DDDPage'));
 const HexagonalPage = lazy(() => import('./presentation/pages/HexagonalPage'));
 const OnionPage = lazy(() => import('./presentation/pages/OnionPage'));
@@ -87,6 +89,8 @@ const App: React.FC = () => {
                   <Routes>
                     <Route path="/" element={<HomePage />} />
                     <Route path="/clean-arch" element={<CleanArchPage />} />
+                    <Route path="/fna-concept" element={<FutureArchitecturePage />} />
+                    <Route path="/brain" element={<ArchBrainPage />} />
                     <Route path="/ddd" element={<DDDPage />} />
                     <Route path="/hexagonal" element={<HexagonalPage />} />
                     <Route path="/onion" element={<OnionPage />} />

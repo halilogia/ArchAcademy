@@ -21,7 +21,7 @@ export class ArchitectureLayer {
     this.id = id;
     this.title = title;
     this.color = color;
-    this.description = description;
+    this.description = description; 
     this.codeExample = codeExample;
     this.fileName = fileName;
     this.dependencyHint = dependencyHint;

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Layers, Palette, Sparkles, Wind } from 'lucide-react';
+import { Layers, Palette, Sparkles, Wind, Brain, Activity, Layout, Shield, Cpu, Share2, Network, Database } from 'lucide-react';
 import ProjectHero from '../components/ProjectHero';
 import ProjectStructure from '../components/ProjectStructure';
 import ProjectDependency from '../components/ProjectDependency';
@@ -10,21 +10,109 @@ import ProjectDesignSystem from '../components/ProjectDesignSystem';
 import ArchHero from '../components/ArchHero';
 import { useLocation } from 'react-router-dom';
 
+const ArchBrainContent = ({ TabSwitcher }: { TabSwitcher: React.FC }) => {
+  const nodes = [
+    { id: 'Domain', type: 'core', root: true, icon: <Shield size={20} />, color: '#ef4444', desc: 'İş kuralları ve varlıklar (Entities)' },
+    { id: 'UseCases', type: 'core', parent: 'Domain', icon: <Activity size={20} />, color: '#f59e0b', desc: 'Uygulama mantığı ve senaryolar' },
+    { id: 'Presentation', type: 'adapter', icon: <Layout size={20} />, color: '#3b82f6', desc: 'UI bileşenleri ve sayfalar' },
+    { id: 'Infrastructure', type: 'adapter', icon: <Database size={20} />, color: '#10b981', desc: 'Dış servisler, API ve Veritabanı' },
+    { id: 'Components', type: 'sub', parent: 'Presentation', icon: <Cpu size={16} />, color: '#60a5fa', desc: 'Yeniden kullanılabilir atomik parçalar' },
+    { id: 'Data', type: 'sub', parent: 'Infrastructure', icon: <Network size={16} />, color: '#34d399', desc: 'Ham veri ve modeller' }
+  ];
+
+  return (
+    <>
+      <ArchHero 
+        title="ArchBrain" 
+        subtitle="Neural Map"
+        description="Projenin tüm bağımlılıklarını ve sinir ağlarını 3D uzayda keşfedin. Mimarinin kalbini anlık olarak izleyin."
+        badge="Autonomous Visualization"
+        color="#06b6d4"
+        illustration={
+           <div style={{ position: 'relative', width: '350px', height: '350px', perspective: '1000px' }}>
+              <motion.div
+                animate={{ rotateY: 360 }}
+                transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+                style={{ width: '100%', height: '100%', position: 'relative', transformStyle: 'preserve-3d' }}
+              >
+                 {nodes.map((node, i) => (
+                   <motion.div
+                    key={node.id}
+                    whileHover={{ scale: 1.2, z: 50 }}
+                    style={{
+                      position: 'absolute',
+                      left: '50%',
+                      top: '50%',
+                      transform: `translate(-50%, -50%) rotateY(${i * 60}deg) translateZ(150px)`,
+                      width: '60px',
+                      height: '60px',
+                      borderRadius: '15px',
+                      background: 'rgba(15, 23, 42, 0.8)',
+                      border: `2px solid ${node.color}`,
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      color: node.color,
+                      boxShadow: `0 0 20px ${node.color}33`,
+                      backdropFilter: 'blur(10px)',
+                      zIndex: 10
+                    }}
+                   >
+                      {node.icon}
+                   </motion.div>
+                 ))}
+                 <div style={{ position: 'absolute', inset: 0, opacity: 0.2 }}>
+                    <svg width="100%" height="100%" viewBox="0 0 350 350">
+                       <circle cx="175" cy="175" r="150" fill="none" stroke="rgba(6, 182, 212, 0.3)" strokeWidth="1" strokeDasharray="5,5" />
+                    </svg>
+                 </div>
+              </motion.div>
+           </div>
+        }
+        features={[
+          { icon: <Brain />, title: 'Real-time Scanner', desc: 'Tüm dosya sistemini tarayıp anlık bağımlılık grafiği çıkarır.' },
+          { icon: <Share2 />, title: 'Dependency Tracer', desc: 'Bir dosyayı seçince ona bağlı olan tüm damarları renklendirir.' },
+          { icon: <Activity />, title: 'Health Score', desc: 'Mimarideki potansiyel riskleri ve karmaşıklığı analiz eder.' }
+        ]}
+      >
+        <TabSwitcher />
+      </ArchHero>
+
+      <section style={{ padding: '80px 0', borderTop: '1px solid var(--glass-border)', background: 'rgba(0,0,0,0.2)' }}>
+        <div className="container">
+           <div className="glass-card" style={{ height: '700px', background: '#000', borderRadius: '30px', position: 'relative', overflow: 'hidden' }}>
+              <iframe 
+                src="/arch-brain-report.html" 
+                style={{ width: '100%', height: '100%', border: 'none', background: '#020617' }} 
+                title="ArchBrain neural report"
+              />
+           </div>
+        </div>
+      </section>
+    </>
+  );
+};
+
 const ProjectPage = () => {
   const location = useLocation();
   const [activeTab, setActiveTab] = useState(() => {
     const params = new URLSearchParams(location.search);
-    return params.get('tab') === 'design' ? 'design' : 'architecture';
+    const tab = params.get('tab');
+    if (tab === 'design') return 'design';
+    if (tab === 'brain') return 'brain';
+    return 'architecture';
   });
 
   React.useEffect(() => {
     const params = new URLSearchParams(location.search);
-    if (params.get('tab') === 'design') setActiveTab('design');
+    const tab = params.get('tab');
+    if (tab === 'design') setActiveTab('design');
+    else if (tab === 'brain') setActiveTab('brain');
     else setActiveTab('architecture');
   }, [location.search]);
 
   const TabSwitcher = () => (
-    <div style={{ display: 'inline-flex', background: 'rgba(255,255,255,0.05)', padding: '6px', borderRadius: '16px', border: '1px solid var(--glass-border)', marginBottom: '2rem' }}>
+    <div style={{ display: 'inline-flex', background: 'rgba(255,255,255,0.05)', padding: '6px', borderRadius: '16px', border: '1px solid var(--glass-border)', marginBottom: '2rem', gap: '8px' }}>
         <button
           onClick={() => setActiveTab('architecture')}
           style={{
@@ -40,6 +128,22 @@ const ProjectPage = () => {
           }}
         >
           <Layers size={18} /> Project Architecture
+        </button>
+        <button
+          onClick={() => setActiveTab('brain')}
+          style={{
+            padding: '12px 30px',
+            borderRadius: '12px',
+            background: activeTab === 'brain' ? '#06b6d4' : 'transparent',
+            color: activeTab === 'brain' ? 'white' : 'var(--text-secondary)',
+            border: 'none',
+            fontWeight: 700,
+            cursor: 'pointer',
+            transition: 'all 0.3s',
+            display: 'flex', alignItems: 'center', gap: '8px'
+          }}
+        >
+          <Brain size={18} /> Neural Map
         </button>
         <button
           onClick={() => setActiveTab('design')}
@@ -81,16 +185,11 @@ const ProjectPage = () => {
                 <TabSwitcher />
               </ProjectHero>
               
-              {/* The Why behind the What */}
               <ProjectDecisionRecords />
-              
-              {/* Visualizing the logical flow */}
               <ProjectDependency />
-              
-              {/* Deep dive into folders and code */}
               <ProjectStructure />
               
-              {/* Detailed Manifesto / Q&A Section */}
+              {/* Architect's Harmony Section */}
               <section style={{ padding: '100px 0', borderTop: '1px solid var(--glass-border)', background: 'rgba(0,0,0,0.2)' }}>
                 <div className="container">
                   <div style={{ textAlign: 'center', marginBottom: '5rem' }}>
@@ -147,9 +246,9 @@ const ProjectPage = () => {
                 </div>
               </section>
 
-
               <ProjectTechStack />
 
+              {/* Architect's Conclusion Section */}
               <section style={{ padding: '100px 0', textAlign: 'center' }}>
                 <div className="container">
                   <div className="glass-card" style={{ 
@@ -167,6 +266,10 @@ const ProjectPage = () => {
                 </div>
               </section>
             </motion.div>
+          ) : activeTab === 'brain' ? (
+            <motion.div key="brain" initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.95 }}>
+               <ArchBrainContent TabSwitcher={TabSwitcher} />
+            </motion.div>
           ) : (
             <motion.div 
               key="design" 
@@ -183,7 +286,6 @@ const ProjectPage = () => {
                 color="#a855f7"
                 illustration={
                   <div style={{ position: 'relative', width: '350px', height: '350px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                    {/* Color Swatches */}
                     {[0, 1, 2].map((i) => (
                       <motion.div
                         key={i}
@@ -215,7 +317,6 @@ const ProjectPage = () => {
                       </motion.div>
                     ))}
 
-                    {/* Floating UI Elements */}
                     <motion.div
                       animate={{ x: [0, 20, 0], y: [0, 20, 0] }}
                       transition={{ duration: 5, repeat: Infinity }}
@@ -233,7 +334,6 @@ const ProjectPage = () => {
                       <Palette size={40} color="#a855f7" />
                     </motion.div>
 
-                    {/* Grid Dots */}
                     <div style={{ position: 'absolute', inset: 0, backgroundImage: 'radial-gradient(rgba(168, 85, 247, 0.2) 1px, transparent 1px)', backgroundSize: '20px 20px', zIndex: -1 }} />
                   </div>
                 }

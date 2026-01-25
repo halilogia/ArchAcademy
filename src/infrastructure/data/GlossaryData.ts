@@ -3142,5 +3142,19 @@ export const GLOSSARY_TERMS: GlossaryTerm[] = [
       definition: 'Bir yazılımın klasör yapısının, kullanılan teknolojileri (React, Express, Rails vb.) değil, projenin asıl iş amacını (Banka, E-ticaret vb.) yansıtması gerektiğini savunan yaklaşımdır.',
       category: 'Foundation',
       guruTip: 'Klasörlerinize baktığınızda "Controllers" yerine "UseCases" veya "Orders" görüyorsanız, mimariniz doğru şekilde çığlık atıyor demektir.'
+    },
+    {
+      id: 449,
+      term: 'Sovereign Architecture (Egemen Mimari)',
+      definition: 'Dijital varlıkların, verilerin ve altyapının kontrolünün tamamen organizasyonda kalmasını sağlayan, dış sağlayıcılara (Cloud vendor-lock vb.) olan bağımlılığı mimari seviyede en aza indiren yaklaşımdır.',
+      category: 'Modern',
+      guruTip: '"Bulut ölse de sistemim ölmesin" mantığıdır. Portable (taşınabilir) ve uyumlu (compliant) sistemler inşa etmenin anahtarıdır.'
+    },
+    {
+      id: 450,
+      term: 'Layer-First vs Feature-First',
+      definition: 'Mimarinin klasör organizasyonu stratejisidir. Layer-First kodu teknik katmanlara (Domain, Infra vb.) göre bölerken; Feature-First kodu iş özelliklerine (Orders, Users vb.) göre dikey dilimler (Vertical Slices) halinde böler.',
+      category: 'Foundation',
+      guruTip: 'Modern projelerde "Feature-First" yaklaşımı sürdürülebilirlik ve bağımsızlık açısından çok daha üstündür; mimarinin ne iş yaptığını "haykırmasını" sağlar.'
     }
 ];

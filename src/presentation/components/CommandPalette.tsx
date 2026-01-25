@@ -68,7 +68,10 @@ const CommandPalette = () => {
     { id: 'lean-philosophy', title: 'Lean Philosophy (YAGNI)', description: 'Eliminate waste and deliver fast', type: 'page', path: '/lean-architecture', icon: <Target size={18} /> },
     { id: 'atomic-design', title: 'Atomic Design', description: 'Hierarchical UI architecture from Atoms to Pages', type: 'page', path: '/atomic-design', icon: <Sparkles size={18} /> },
     { id: 'design-patterns', title: 'Design Patterns', description: 'Proven solutions (GOF) for software design', type: 'page', path: '/design-patterns', icon: <Zap size={18} /> },
-    { id: 'design-system', title: 'Design System', description: 'ArchAcademy visual principles and design tokens', type: 'page', path: '/project-arch?tab=design', icon: <Palette size={18} /> },
+    { id: 'design-tokens', title: 'Design Tokens', description: 'Architectural visual atoms and SSOT styling', type: 'page', path: '/design-tokens', icon: <Palette size={18} /> },
+    { id: 'discipline-catalog', title: 'Discipline Catalog', description: 'The 12 commandments of architecture', type: 'page', path: '/discipline-catalog', icon: <Target size={18} /> },
+    { id: 'design-system', title: 'Design System', description: 'ArchAcademy visual principles and project design', type: 'page', path: '/project-arch?tab=design', icon: <Palette size={18} /> },
+    { id: 'docs', title: 'Docs & Annotations', description: 'Architecture Decision Records (ADR) and more', type: 'page', path: '/docs-annotations', icon: <Book size={18} /> },
   ];
 
   const glossaryItems: SearchItem[] = GLOSSARY_TERMS.map(term => ({
@@ -84,10 +87,26 @@ const CommandPalette = () => {
   const allItems = [...pages, ...glossaryItems];
 
   const filteredItems = query 
-    ? allItems.filter(item => 
-        item.title.toLowerCase().includes(query.toLowerCase()) || 
-        item.description.toLowerCase().includes(query.toLowerCase())
-      ).slice(0, 8)
+    ? allItems
+        .map(item => {
+          const title = item.title.toLowerCase();
+          const desc = item.description.toLowerCase();
+          const q = query.toLowerCase();
+          let score = 0;
+
+          if (title === q) score += 100;
+          else if (title.startsWith(q)) score += 80;
+          else if (title.includes(q)) score += 60;
+          else if (desc.includes(q)) score += 20;
+
+          // Boost pages over glossary if matches are similar
+          if (item.type === 'page') score += 10;
+
+          return { ...item, score };
+        })
+        .filter(item => item.score > 0)
+        .sort((a, b) => b.score - a.score)
+        .slice(0, 8)
     : pages;
 
   const handleKeyDown = useCallback((e: KeyboardEvent) => {
