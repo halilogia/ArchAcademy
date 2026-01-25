@@ -3135,5 +3135,12 @@ export const GLOSSARY_TERMS: GlossaryTerm[] = [
       definition: 'View ile Model arasındaki bağın otomatik bir "Binding" mekanizmasıyla sağlandığı modern UI mimarisidir.',
       category: 'Interface',
       guruTip: 'React, Vue ve Angular gibi modern kütüphanelerin ruhunda bu "veriden görünüme" akış vardır.'
+    },
+    {
+      id: 448,
+      term: 'Screaming Architecture (Çığlık Atan Mimari)',
+      definition: 'Bir yazılımın klasör yapısının, kullanılan teknolojileri (React, Express, Rails vb.) değil, projenin asıl iş amacını (Banka, E-ticaret vb.) yansıtması gerektiğini savunan yaklaşımdır.',
+      category: 'Foundation',
+      guruTip: 'Klasörlerinize baktığınızda "Controllers" yerine "UseCases" veya "Orders" görüyorsanız, mimariniz doğru şekilde çığlık atıyor demektir.'
     }
 ];

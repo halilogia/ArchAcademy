@@ -1,9 +1,9 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Shield, Zap, Box, ArrowRight, Target, Hexagon } from 'lucide-react';
+import { Shield, Zap, Box, ArrowRight, Target, Hexagon, Globe } from 'lucide-react';
 import ArchHero from './ArchHero';
 
-const Hero = () => {
+const Hero = ({ mode = 'clean', children }: { mode?: 'clean' | 'scream', children?: React.ReactNode }) => {
   const illu = (
     <div style={{ position: 'relative', width: '350px', height: '350px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
       {/* Concentric rings for Clean Arch */}
@@ -38,18 +38,26 @@ const Hero = () => {
 
   return (
     <ArchHero 
-      title="Clean"
+      title={mode === 'clean' ? 'Clean' : 'Screaming'}
       subtitle="Architecture"
-      description="Bağımsız, test edilebilir ve sürdürülebilir yazılımlar inşa etmek için Uncle Bob un geliştirdiği katmanlı disiplin. Geleceğe yatırım yapın."
-      badge="The Industry Standard"
+      description={mode === 'clean' 
+        ? "Bağımsız, test edilebilir ve sürdürülebilir yazılımlar inşa etmek için Uncle Bob un geliştirdiği katmanlı disiplin. Geleceğe yatırım yapın."
+        : "Klasör yapısının iş amacını haykırdığı mimari. Frameworkleri bir araç olarak görüp, asıl odak noktasına iş mantığını koyun."}
+      badge={mode === 'clean' ? "The Industry Standard" : "The Voice of Intent"}
       color="#3b82f6"
       illustration={illu}
-      features={[
+      features={mode === 'clean' ? [
         { icon: <Shield />, title: 'Testability', desc: 'İş kurallarını UI veya veritabanı olmadan anında test edin.' },
         { icon: <Zap />, title: 'Independence', desc: 'Framework ve kütüphanelere asla köle olmayın, onları kullanın.' },
         { icon: <Box />, title: 'Clean Boundaries', desc: 'Katmanlar arası net sınırlar ile kod karmaşasını engelleyin.' }
+      ] : [
+        { icon: <Target />, title: 'Intent Focused', desc: 'Klasörlere baktığınızda projenin ne yaptığı çığlık atmalıdır.' },
+        { icon: <ArrowRight />, title: 'Framework Delayed', desc: 'Teknik detayları en sona bırakın, iş mantığını merkeze alın.' },
+        { icon: <Globe />, title: 'Visual Clarity', desc: 'Sistemin anatomisi kodun içinde bir harita gibi okunabilir olur.' }
       ]}
-    />
+    >
+      {children}
+    </ArchHero>
   );
 };
 
