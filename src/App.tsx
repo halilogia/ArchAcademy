@@ -67,6 +67,10 @@ const AtomicDesignPage = lazy(() => import('./presentation/pages/AtomicDesignPag
 const DesignPatternsPage = lazy(() => import('./presentation/pages/DesignPatternsPage'));
 const BookshelfPage = lazy(() => import('./presentation/pages/BookshelfPage'));
 const SynthesisLabPage = lazy(() => import('./presentation/pages/SynthesisLabPage'));
+const TDDPage = lazy(() => import('./presentation/pages/TDDPage'));
+const OOPFundamentalsPage = lazy(() => import('./presentation/pages/OOPFundamentalsPage'));
+const CAPTheoremPage = lazy(() => import('./presentation/pages/CAPTheoremPage'));
+const ACIDPage = lazy(() => import('./presentation/pages/ACIDPage'));
 const NotFoundPage = lazy(() => import('./presentation/pages/NotFoundPage'));
 
 const LoadingFallback = () => (
@@ -146,6 +150,10 @@ const App: React.FC = () => {
                     <Route path="/design-patterns" element={<DesignPatternsPage />} />
                     <Route path="/library" element={<BookshelfPage />} />
                     <Route path="/synthesis-lab" element={<SynthesisLabPage />} />
+                    <Route path="/tdd" element={<TDDPage />} />
+                    <Route path="/oop-fundamentals" element={<OOPFundamentalsPage />} />
+                    <Route path="/cap-theorem" element={<CAPTheoremPage />} />
+                    <Route path="/acid" element={<ACIDPage />} />
                     <Route path="*" element={<NotFoundPage />} />
                   </Routes>
                 </AnimatePresence>

@@ -12,9 +12,14 @@ import {
   Beaker, 
   Layers, 
   Code2, 
-  Scissors, 
   Network,
-  Palette
+  Palette,
+  Triangle,
+  Database,
+  Box,
+  CheckCircle2,
+  Medal,
+  Brain
 } from 'lucide-react';
 
 interface DisciplineItem {
@@ -25,6 +30,13 @@ interface DisciplineItem {
   icon: React.ReactNode;
 }
 
+interface DisciplineCategory {
+  id: string;
+  name: string;
+  color: string;
+  items: DisciplineItem[];
+}
+
 const DisciplineCatalogPage = () => {
   const navigate = useNavigate();
   const [hoveredItem, setHoveredItem] = useState<DisciplineItem | null>(null);
@@ -32,95 +44,71 @@ const DisciplineCatalogPage = () => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setRotation(prev => (prev + 0.05) % 360);
+      setRotation(prev => (prev + 0.03) % 360);
     }, 50);
     return () => clearInterval(interval);
   }, []);
 
-  const disciplines: DisciplineItem[] = [
-    { 
-      name: 'Security Assurance', 
-      path: '/security', 
-      color: '#ef4444', 
-      icon: <Lock size={24} />,
-      desc: 'SQL Injection, XSS ve Veri Sızıntısına karşı mimari kalkan protokolleri.' 
+  const categories: DisciplineCategory[] = [
+    {
+      id: 'code-craftsmanship',
+      name: 'Code Craftsmanship',
+      color: '#f43f5e',
+      items: [
+        { name: 'Clean Code', path: '/clean-code', color: '#f43f5e', icon: <Code2 size={24} />, desc: 'Standardizasyon ve ekip içi ortak dil (Styling Guides).' },
+        { name: 'SOLID Principles', path: '/solid', color: '#fb7185', icon: <ShieldCheck size={24} />, desc: 'Esneklik ve sürdürülebilirliğin 5 dev kuralı.' },
+        { name: 'OOP Fundamentals', path: '/oop-fundamentals', color: '#fda4af', icon: <Box size={24} />, desc: 'Soyutlama, Kapsülleme, Miras ve Çok Biçimlilik.' }
+      ]
     },
-    { 
-      name: 'Clean Code', 
-      path: '/clean-code', 
-      color: '#f43f5e', 
-      icon: <Code2 size={24} />,
-      desc: 'Standardizasyon, isimlendirme kuralları ve ekip içi ortak dil (Styling Guides).' 
+    {
+      id: 'quality-assurance',
+      name: 'Quality & Speed',
+      color: '#10b981',
+      items: [
+        { name: 'TDD Metodolojisi', path: '/tdd', color: '#10b981', icon: <CheckCircle2 size={24} />, desc: 'Red-Green-Refactor döngüsüyle önce test, sonra kod.' },
+        { name: 'Easy to Test', path: '/testing', color: '#34d399', icon: <Beaker size={24} />, desc: 'Düşük karmaşıklık odaklı test edilebilir mimari.' },
+        { name: 'Lean Philosophy', path: '/lean-architecture', color: '#6ee7b7', icon: <Target size={24} />, desc: 'Yalın, hızlı ve sadece değer üreten israfsız zihin.' }
+      ]
     },
-    { 
-      name: 'Docs & Annotations', 
-      path: '/docs-annotations', 
-      color: '#f97316', 
-      icon: <BookOpen size={24} />,
-      desc: 'Neden (Why) sorusuna cevap veren ADR ve mimari dökümantasyon disiplini.' 
+    {
+      id: 'system-wisdom',
+      name: 'System Wisdom',
+      color: '#3b82f6',
+      items: [
+        { name: 'CAP Theorem', path: '/cap-theorem', color: '#3b82f6', icon: <Triangle size={24} />, desc: 'Dağıtık sistemlerde Tutarlılık ve Erişilebilirlik dengesi.' },
+        { name: 'ACID Principles', path: '/acid', color: '#60a5fa', icon: <Database size={24} />, desc: 'Atomiklik, Tutarlılık, İzolasyon ve Dayanıklılık.' },
+        { name: 'Design Patterns', path: '/design-patterns', color: '#93c5fd', icon: <Zap size={24} />, desc: 'Tekrar eden sorunlara kanıtlanmış yapısal çözümler (GOF).' }
+      ]
     },
-    { 
-      name: 'Robustness & Reliability', 
-      path: '/robustness', 
-      color: '#f59e0b', 
-      icon: <Activity size={24} />,
-      desc: 'Disk, Network ve IO hatalarına karşı sarsılmaz sistem tasarımı (Resilience).' 
+    {
+      id: 'resilience-safety',
+      name: 'Resilience & Safety',
+      color: '#ef4444',
+      items: [
+        { name: 'Security Assurance', path: '/security', color: '#ef4444', icon: <Lock size={24} />, desc: 'SQL Injection, XSS ve Veri Sızıntısına karşı kalkan.' },
+        { name: 'Robustness & Reliability', path: '/robustness', color: '#f87171', icon: <Activity size={24} />, desc: 'Network ve IO hatalarına karşı sarsılmaz tasarım.' },
+        { name: 'Docs & Annotations', path: '/docs-annotations', color: '#fca5a5', icon: <BookOpen size={24} />, desc: 'Neden (Why) sorusuna cevap veren mimari ADR kültürü.' }
+      ]
     },
-    { 
-      name: 'SOLID Principles', 
-      path: '/solid', 
-      color: '#eab308', 
-      icon: <ShieldCheck size={24} />,
-      desc: 'Tek başlıkta 5 dev kural: Esneklik ve sürdürülebilirliğin DNA\'sı.' 
+    {
+      id: 'component-systems',
+      name: 'Component Systems',
+      color: '#f97316',
+      items: [
+        { name: 'MVC Pattern', path: '/mvc-mvvm', color: '#f97316', icon: <Layers size={24} />, desc: 'Veri, arayüz ve kontrol mantığının disiplinli ayrışması.' },
+        { name: 'Atomic Design', path: '/atomic-design', color: '#fb923c', icon: <Sparkles size={24} />, desc: 'Bileşenleri hiyerarşik bir sistemle inşa etme sanatı.' },
+        { name: 'Design Tokens', path: '/design-tokens', color: '#fdba74', icon: <Palette size={24} />, desc: 'Görsel atomların mimari seviyede tek kaynaktan yönetimi.' }
+      ]
     },
-    { 
-      name: 'Easy to Test', 
-      path: '/testing', 
-      color: '#10b981', 
-      icon: <Beaker size={24} />,
-      desc: 'Düşük karmaşıklık ve yüksek otomasyon odağında test edilebilir mimari.' 
-    },
-    { 
-      name: 'Moderate Abstraction', 
-      path: '/abstraction', 
-      color: '#06b6d4', 
-      icon: <Layers size={24} />,
-      desc: 'Ne çok derin ne çok sığ; tam kararında soyutlama ve mantıksal ayrışma.' 
-    },
-    { 
-      name: 'Design Patterns', 
-      path: '/design-patterns', 
-      color: '#3b82f6', 
-      icon: <Zap size={24} />,
-      desc: 'Tekrar eden sorunlara kanıtlanmış mimari ve yapısal çözümler (GOF).' 
-    },
-    { 
-      name: 'Dependency Management', 
-      path: '/abstraction', 
-      color: '#6366f1', 
-      icon: <Network size={24} />,
-      desc: 'Global bağımlılıkları azaltın, bileşenleri birbirinden bağımsızlaştırın.' 
-    },
-    { 
-      name: 'Lean Philosophy', 
-      path: '/lean-architecture', 
-      color: '#84cc16', 
-      icon: <Target size={24} />,
-      desc: 'Gereksiz her şeyi çöpe atın: Yalın, hızlı ve sadece değer üretene odaklanan zihin yapısı.' 
-    },
-    { 
-      name: 'Atomic Design', 
-      path: '/atomic-design', 
-      color: '#f97316', 
-      icon: <Sparkles size={24} />,
-      desc: 'Atoms to Pages: Arayüz bileşenlerini hiyerarşik ve yeniden kullanılabilir bir sistemle inşa etme sanatı.' 
-    },
-    { 
-      name: 'Design Tokens', 
-      path: '/design-tokens', 
-      color: '#06b6d4', 
-      icon: <Palette size={24} />,
-      desc: 'Renk, tipografi ve boşluk gibi görsel atomların mimari seviyede tek bir kaynaktan (SSOT) yönetilmesi.' 
+    {
+      id: 'architectural-balance',
+      name: 'Arch. Balance',
+      color: '#a855f7',
+      items: [
+        { name: 'Domain-Driven Design', path: '/ddd', color: '#a855f7', icon: <Brain size={24} />, desc: 'İş mantığını dil ve bağlam (context) odağında tasarlama.' },
+        { name: 'Moderate Abstraction', path: '/abstraction', color: '#c084fc', icon: <Layers size={24} />, desc: 'Tam kararında soyutlama ve mantıksal ayrışma.' },
+        { name: 'Dependency Management', path: '/abstraction', color: '#d8b4fe', icon: <Network size={24} />, desc: 'Global bağımlılıkları azaltın, bileşenleri bağımsızlaştırın.' }
+      ]
     }
   ];
 
@@ -140,8 +128,8 @@ const DisciplineCatalogPage = () => {
           <div style={{ position: 'relative', height: '900px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
              <svg viewBox="0 0 1000 1000" style={{ width: '100%', height: '100%', overflow: 'visible' }}>
                 <defs>
-                  <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
-                    <feGaussianBlur stdDeviation="20" result="blur" />
+                   <filter id="color-glow-ultra" x="-100%" y="-100%" width="300%" height="300%">
+                    <feGaussianBlur stdDeviation="25" result="blur" />
                     <feComposite in="SourceGraphic" in2="blur" operator="over" />
                   </filter>
                 </defs>
@@ -160,69 +148,85 @@ const DisciplineCatalogPage = () => {
                     transition={{ duration: 4, repeat: Infinity }}
                     style={{ filter: 'drop-shadow(0 0 25px rgba(168, 85, 247, 0.4))' }} 
                    />
-                   <text x={500} y={495} textAnchor="middle" fill="white" fontWeight="900" fontSize="13" style={{ letterSpacing: '2px' }}>TEMEL</text>
-                   <text x={500} y={520} textAnchor="middle" fill="#a855f7" fontWeight="950" fontSize="18" style={{ letterSpacing: '3px' }}>DİSİPLİNLER</text>
+                   <text x={500} y={495} textAnchor="middle" fill="white" fontWeight="900" fontSize="13" style={{ letterSpacing: '2px' }}>DİSİPLİN</text>
+                   <text x={500} y={520} textAnchor="middle" fill="#a855f7" fontWeight="950" fontSize="18" style={{ letterSpacing: '3px' }}>HUB</text>
                 </g>
 
-                {disciplines.map((item, idx) => {
-                  const sliceAngle = 360 / disciplines.length;
-                  const angle = idx * sliceAngle;
-                  const radStart = (angle - 90) * (Math.PI / 180);
-                  const radEnd = (angle + sliceAngle - 90) * (Math.PI / 180);
+                {categories.map((cat, catIdx) => {
+                  const sliceAngle = 360 / categories.length;
+                  const startAngle = catIdx * sliceAngle;
                   
-                  const innerR = 125;
-                  const outerR = 460;
-                  
-                  const isHovered = hoveredItem?.name === item.name;
-
-                  const x1_i = 500 + innerR * Math.cos(radStart);
-                  const y1_i = 500 + innerR * Math.sin(radStart);
-                  const x2_i = 500 + innerR * Math.cos(radEnd);
-                  const y2_i = 500 + innerR * Math.sin(radEnd);
-                  const x1_o = 500 + outerR * Math.cos(radStart);
-                  const y1_o = 500 + outerR * Math.sin(radStart);
-                  const x2_o = 500 + outerR * Math.cos(radEnd);
-                  const y2_o = 500 + outerR * Math.sin(radEnd);
-
-                  const midRad = (angle + sliceAngle / 2 - 90) * (Math.PI / 180);
-                  const textR = 310;
-                  const textX = 500 + textR * Math.cos(midRad);
-                  const textY = 500 + textR * Math.sin(midRad);
-
                   return (
-                    <g key={item.name}>
-                      <motion.path
-                        d={`M ${x1_i} ${y1_i} L ${x1_o} ${y1_o} A ${outerR} ${outerR} 0 0 1 ${x2_o} ${y2_o} L ${x2_i} ${y2_i} A ${innerR} ${innerR} 0 0 0 ${x1_i} ${y1_i}`}
-                        fill={item.color}
-                        fillOpacity={isHovered ? 0.95 : 0.8}
-                        stroke={isHovered ? "white" : "rgba(2, 6, 23, 0.4)"}
-                        strokeWidth={isHovered ? 4 : 1}
-                        animate={{ 
-                          scale: isHovered ? 1.05 : 1, 
-                          filter: isHovered ? 'url(#glow)' : 'none',
-                          zIndex: isHovered ? 20 : 1
-                        }}
-                        onMouseEnter={() => setHoveredItem(item)}
-                        onMouseLeave={() => setHoveredItem(null)}
-                        onClick={() => navigate(item.path)}
-                        style={{ cursor: 'pointer', transition: 'all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)' }}
-                      />
-                      <text
-                        x={textX} y={textY}
-                        fill="white"
-                        fontSize="12"
-                        fontWeight="950"
-                        textAnchor="middle"
-                        style={{ 
-                          pointerEvents: 'none',
-                          transform: `rotate(${angle + sliceAngle/2 > 90 && angle + sliceAngle/2 < 270 ? angle + sliceAngle/2 + 180 : angle + sliceAngle/2}deg)`,
-                          transformOrigin: `${textX}px ${textY}px`,
-                          textShadow: '0 2px 8px rgba(0,0,0,0.9)',
-                          letterSpacing: '1px'
-                        }}
-                      >
-                        {item.name.toUpperCase()}
-                      </text>
+                    <g key={cat.id}>
+                      {cat.items.map((item, itemIdx) => {
+                        const itemSliceAngle = sliceAngle / cat.items.length;
+                        const itemStartAngle = startAngle + (itemIdx * itemSliceAngle);
+                        const itemEndAngle = itemStartAngle + itemSliceAngle;
+                        
+                        const radStart = (itemStartAngle - 90) * (Math.PI / 180);
+                        const radEnd = (itemEndAngle - 90) * (Math.PI / 180);
+                        
+                        const innerR = 125;
+                        const outerR = 460;
+                        
+                        const isHovered = hoveredItem?.name === item.name;
+
+                        const x1_i = 500 + innerR * Math.cos(radStart);
+                        const y1_i = 500 + innerR * Math.sin(radStart);
+                        const x2_i = 500 + innerR * Math.cos(radEnd);
+                        const y2_i = 500 + innerR * Math.sin(radEnd);
+                        const x1_o = 500 + outerR * Math.cos(radStart);
+                        const y1_o = 500 + outerR * Math.sin(radStart);
+                        const x2_o = 500 + outerR * Math.cos(radEnd);
+                        const y2_o = 500 + outerR * Math.sin(radEnd);
+
+                        return (
+                          <motion.path
+                            key={item.name}
+                            d={`M ${x1_i} ${y1_i} L ${x1_o} ${y1_o} A ${outerR} ${outerR} 0 0 1 ${x2_o} ${y2_o} L ${x2_i} ${y2_i} A ${innerR} ${innerR} 0 0 0 ${x1_i} ${y1_i}`}
+                            fill={cat.color}
+                            fillOpacity={isHovered ? 0.95 : 0.8}
+                            stroke={isHovered ? "white" : "rgba(2, 6, 23, 0.4)"}
+                            strokeWidth={isHovered ? 4 : 1}
+                            animate={{ 
+                                scale: isHovered ? 1.05 : 1, 
+                                filter: isHovered ? 'url(#color-glow-ultra)' : 'none',
+                                zIndex: isHovered ? 20 : 1
+                            }}
+                            onMouseEnter={() => setHoveredItem(item)}
+                            onMouseLeave={() => setHoveredItem(null)}
+                            onClick={() => navigate(item.path)}
+                            style={{ cursor: 'pointer', transition: 'all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)' }}
+                          />
+                        );
+                      })}
+
+                      {(() => {
+                         const midAngle = startAngle + (sliceAngle / 2);
+                         const radMid = (midAngle - 90) * (Math.PI / 180);
+                         const textR = 310;
+                         const x = 500 + textR * Math.cos(radMid);
+                         const y = 500 + textR * Math.sin(radMid);
+                         return (
+                           <text 
+                             x={x} y={y} 
+                             fill="white" 
+                             fontSize="10" 
+                             fontWeight="950" 
+                             textAnchor="middle" 
+                             style={{ 
+                               pointerEvents: 'none', 
+                               letterSpacing: '1px',
+                               textShadow: '0 2px 8px rgba(0,0,0,0.9)',
+                               transform: `rotate(${midAngle > 90 && midAngle < 270 ? midAngle + 180 : midAngle}deg)`, 
+                               transformOrigin: `${x}px ${y}px`,
+                               opacity: 0.95
+                             }}
+                           >
+                             {cat.name.toUpperCase()}
+                           </text>
+                         );
+                      })()}
                     </g>
                   );
                 })}
@@ -281,7 +285,7 @@ const DisciplineCatalogPage = () => {
                        marginTop: 'auto'
                       }}
                     >
-                      DETAYLI EĞİTİME GİT <Zap size={22} />
+                      EĞİTİME BAŞLA <Zap size={22} />
                     </button>
                  </motion.div>
                ) : (
@@ -297,18 +301,18 @@ const DisciplineCatalogPage = () => {
                   }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', marginBottom: '2.2rem' }}>
                       <div style={{ padding: '12px', background: 'rgba(168, 85, 247, 0.1)', borderRadius: '15px', color: '#a855f7' }}>
-                        <ShieldCheck size={28} />
+                        <Medal size={28} />
                       </div>
-                      <h3 style={{ fontSize: '1.8rem', fontWeight: 950, color: 'white', margin: 0, letterSpacing: '-1px' }}>MİMARİ DİSİPLİNLER</h3>
+                      <h3 style={{ fontSize: '1.8rem', fontWeight: 950, color: 'white', margin: 0, letterSpacing: '-1px' }}>DİSİPLİN MATRİSİ</h3>
                     </div>
                     <p style={{ fontSize: '1.2rem', color: 'var(--text-secondary)', lineHeight: 1.7 }}>
-                      Usta bir mimar olmak sadece kod yazmayı bilmek değildir; o kodu ayakta tutan sarsılmaz prensipleri (Emirleri) hayata geçirmektir.
+                      Usta bir mimar olmak sadece modelleri bilmek değil, o modelleri ayakta tutan sarsılmaz disiplinleri hayata geçirmektir.
                     </p>
                     <div style={{ marginTop: '3rem', display: 'flex', flexDirection: 'column', gap: '1.2rem' }}>
                         {[ 
-                          'Global Mimari Standartlar',
-                          'Sertifikalı Temel Prensipler',
-                          'Uygulamalı Müfredat Akışı'
+                          '6 Ana Disiplin Kategorisi',
+                          '34+ Mimari İlke ve Kural',
+                          'Senior Seviye Teknik Derinlik'
                         ].map((t, i) => (
                           <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '1rem', fontSize: '1rem', color: 'rgba(255,255,255,0.7)', fontWeight: 600 }}>
                             <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#a855f7', boxShadow: '0 0 12px #a855f7' }} />

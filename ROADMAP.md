@@ -149,3 +149,31 @@ Senaryo: "Kullanıcı verilerini öyle bir saklayalım ki, veritabanı çalınsa
 
 Kavramlar: CI/CD Pipelines, Infrastructure as Code (IaC), ADR (Architecture Decision Records).
 Senaryo: "Şirketin kullandığı 500 farklı uygulama birbiriyle nasıl hatasız konuşur?"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1. CQRS (Şu an çok sade)
+Resimde görülen "Query Service (Read) vs Command Service (Write)" ve aradaki veritabanı ayrımını gösteren teknik diyagramı ve detaylı analizi bu sayfaya eklemeliyiz.
+
+2. Space-Based Architecture
+Resmin sağ altındaki "Processing Unit" ve "Virtualized Middleware (Data Grid, Messaging Grid)" yapısını anlatan o karmaşık ama etkileyici diyagramı sayfaya yansıtabiliriz.
+
+3. DDD (Domain-Driven Design)
+Resmin alt ortasındaki "Application, Domain, Infrastructure" katmanlarını gösteren o spesifik teknik şemayı ekleyerek sayfayı zenginleştirebiliriz.
+
+4. Event-Driven (EDA)
+Resmin sol altındaki "Message Broker -> Consumers" akışını (Checkout örneğiyle) sayfaya bir animasyon olarak ekleyebiliriz.
+
+5. Microkernel (Plug-in)
+Sağ taraftaki "Core System + Plug-in Components" yapısını gösteren kutulu diyagramı sayfaya ekleyerek eklenti mimarisini daha iyi anlatabiliriz.
