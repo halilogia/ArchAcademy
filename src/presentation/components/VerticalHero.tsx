@@ -81,28 +81,41 @@ const VerticalHero = () => {
           transition={{ duration: 0.8, delay: 0.2 }}
           style={{ position: 'relative', display: 'flex', justifyContent: 'center' }}
         >
-          <div style={{
-            display: 'flex',
-            gap: '15px'
-          }}>
-            {[1, 2, 3].map((i) => (
-              <motion.div
+            <div style={{ position: 'relative', width: '300px', height: '350px', display: 'flex', gap: '15px' }}>
+            {[0, 1, 2].map((i) => (
+                <motion.div
                 key={i}
-                animate={{ 
-                  height: [200, 300, 200],
-                  y: i % 2 === 0 ? [0, 20, 0] : [0, -20, 0]
-                }}
-                transition={{ repeat: Infinity, duration: 4, delay: i * 0.5 }}
+                initial={{ height: 0 }}
+                animate={{ height: '300px' }}
+                transition={{ delay: i * 0.3, duration: 1 }}
                 style={{
-                  width: '80px',
-                  background: i === 2 ? '#f97316' : 'var(--glass)',
-                  borderRadius: '20px',
-                  border: '1px solid var(--glass-border)',
-                  boxShadow: i === 2 ? '0 0 30px rgba(249, 115, 22, 0.4)' : 'none'
+                    flex: 1,
+                    background: i === 1 ? '#f97316' : 'var(--glass)',
+                    border: `2px solid ${i === 1 ? '#ea580c' : 'rgba(249, 115, 22, 0.2)'}`,
+                    borderRadius: '15px',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    overflow: 'hidden',
+                    boxShadow: i === 1 ? '0 0 40px rgba(249, 115, 22, 0.3)' : 'none'
                 }}
-              />
+                >
+                <div style={{ flex: 1, borderBottom: '1px solid rgba(255,255,255,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                    <span style={{ fontSize: '0.6rem', fontWeight: 900, color: i === 1 ? 'white' : '#f97316' }}>API</span>
+                </div>
+                <div style={{ flex: 1, borderBottom: '1px solid rgba(255,255,255,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                    <span style={{ fontSize: '0.6rem', fontWeight: 900, color: i === 1 ? 'white' : '#f97316' }}>LOGIC</span>
+                </div>
+                <div style={{ flex: 1, borderBottom: '1px solid rgba(255,255,255,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                    <span style={{ fontSize: '0.6rem', fontWeight: 900, color: i === 1 ? 'white' : '#f97316' }}>DATA</span>
+                </div>
+                </motion.div>
             ))}
-          </div>
+            <motion.div
+                animate={{ y: [0, 300, 0] }}
+                transition={{ duration: 4, repeat: Infinity }}
+                style={{ position: 'absolute', left: '-20px', top: 0, width: '140%', height: '2px', background: '#f97316', boxShadow: '0 0 15px #f97316' }}
+            />
+            </div>
         </motion.div>
       </div>
     </section>

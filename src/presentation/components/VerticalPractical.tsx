@@ -57,7 +57,7 @@ export const handle = async (userId) => {
               >
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
                   <Folder color="#f97316" size={20} />
-                  <span style={{ fontWeight: 600 }}>{value.title}</span>
+                  <span style={{ fontWeight: 600, color: '#e2e8f0' }}>{value.title}</span>
                 </div>
               </button>
             ))}

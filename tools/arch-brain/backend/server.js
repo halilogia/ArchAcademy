@@ -137,37 +137,46 @@ function getAnalysis() {
     const layerRank = { 'Domain': 0, 'Application': 1, 'Infrastructure': 2, 'Presentation': 3 };
 
     nodes.forEach(node => {
-        const importRegex = /from\s+['"]([^'"]+)['"]/g;
-        let match;
+        // Regex 1: Static Imports (import ... from 'path')
+        const staticImportRegex = /from\s+['"]([^'"]+)['"]/g;
+        // Regex 2: Dynamic Imports (import('path') or require('path')) - For React.lazy
+        const dynamicImportRegex = /(?:import|require)\s*\(\s*['"]([^'"]+)['"]\s*\)/g;
+
+        const findDependency = (regex) => {
+            let match;
+            while ((match = regex.exec(node.content)) !== null) {
+                let targetPath = match[1];
+            
+                let target = nodes.find(n => {
+                    if (targetPath.startsWith('.')) {
+                        const resolved = path.join(path.dirname(node.id), targetPath).replace(/\\/g, '/');
+                        return n.id.startsWith(resolved);
+                    }
+                    return n.id.includes(targetPath);
+                });
+
+                if (target && target.id !== node.id) {
+                    node.outDegree++;
+                    
+                    // DEPENDENCY RULE: Source Rank >= Target Rank (Can only point INWARDS)
+                    const sourceRank = layerRank[node.category];
+                    const targetRank = layerRank[target.category];
+                    const isViolation = sourceRank < targetRank;
+
+                    edges.push({ 
+                        source: node.id, 
+                        target: target.id, 
+                        violation: isViolation 
+                    });
+                }
+            }
+        };
+
         node.outDegree = 0;
         node.inDegree = 0;
 
-        while ((match = importRegex.exec(node.content)) !== null) {
-            let targetPath = match[1];
-            
-            let target = nodes.find(n => {
-                if (targetPath.startsWith('.')) {
-                    const resolved = path.join(path.dirname(node.id), targetPath).replace(/\\/g, '/');
-                    return n.id.startsWith(resolved);
-                }
-                return n.id.includes(targetPath);
-            });
-
-            if (target && target.id !== node.id) {
-                node.outDegree++;
-                
-                // DEPENDENCY RULE: Source Rank >= Target Rank (Can only point INWARDS)
-                const sourceRank = layerRank[node.category];
-                const targetRank = layerRank[target.category];
-                const isViolation = sourceRank < targetRank;
-
-                edges.push({ 
-                    source: node.id, 
-                    target: target.id, 
-                    violation: isViolation 
-                });
-            }
-        }
+        findDependency(staticImportRegex);
+        findDependency(dynamicImportRegex);
     });
 
     // Summary Stats
@@ -392,7 +401,7 @@ if (process.env.MCP_ONLY) {
     serverHttp.listen(PORT, () => {
         isHub = true; // We are the Hub!
         console.error(`ArchBrain Web UI: http://localhost:${PORT}`);
-        console.error(`AI MCP Bridge: ws://localhost:${PORT}/mcp`);
+        console.error(`[SENTINEL]: System Operational. Analysis Engine Ready.`);
     }).on('error', (err) => {
         if (err.code === 'EADDRINUSE') {
             console.error("[SENTINEL]: Hub active on 5050. Tool Forwarding mode enabled.");

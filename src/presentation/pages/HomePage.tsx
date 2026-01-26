@@ -13,6 +13,7 @@ import {
   Milestone
 } from 'lucide-react';
 import HomeHero from '../components/HomeHero';
+// HomeGrid removed
 
 const FeatureCard = ({ title, icon, desc, path, color, label }: any) => (
   <Link to={path} style={{ textDecoration: 'none', color: 'inherit' }}>
