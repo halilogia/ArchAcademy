@@ -25,3 +25,8 @@ dist-ssr
 
 # Local Reports
 scripts/*
+
+# Tools
+tools/arch-brain/dist
+tools/arch-brain/data/*.log
+tools/arch-brain/node_modules

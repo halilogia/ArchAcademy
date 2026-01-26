@@ -1,0 +1,6 @@
+# ArchBrain Specifics
+tools/arch-brain/node_modules
+tools/arch-brain/dist
+tools/arch-brain/data/*.log
+tools/arch-brain/data/preferences.json
+tools/arch-brain/data/.neural-*
