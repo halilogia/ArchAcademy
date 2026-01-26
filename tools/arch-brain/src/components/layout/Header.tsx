@@ -29,9 +29,6 @@ export const Header: React.FC<HeaderProps> = ({
           <div className={logoText}>
             ARCHBRAIN<span style={{ color: '#3b82f6' }}>.SENTINEL</span>
           </div>
-          <button onClick={onOpenDocs} className={btnSecondary}>
-            <BookOpen size={16} /> DOCS
-          </button>
         </div>
         
         <div className={headerContent}>

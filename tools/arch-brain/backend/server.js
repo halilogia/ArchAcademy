@@ -442,5 +442,10 @@ const forwardToHub = (path, body) => {
     });
 };
 
+// --- FINAL CATCH-ALL FOR SPA (Must come AFTER API routes) ---
+app.use((req, res) => {
+    res.sendFile(path.join(projectRoot, 'tools/arch-brain/dist/index.html'));
+});
+
 // FINAL CONNECTION
 await mcpServer.connect(stdioTransport);
