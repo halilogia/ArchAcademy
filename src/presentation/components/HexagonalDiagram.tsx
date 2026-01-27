@@ -76,10 +76,10 @@ const HexagonalDiagram = () => {
             </div>
           </div>
 
-          <div style={{ position: 'absolute', bottom: '20%', left: '30%', maxWidth: '250px' }}>
-            <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', background: 'rgba(0,0,0,0.5)', padding: '1rem', borderRadius: '12px' }}>
-              <strong>Port:</strong> Bir arayüz (Interface). Uygulamanın ne beklediğini söyler. <br />
-              <strong>Adapter:</strong> Gerçek araç. Portun istediği işi somut olarak yapar.
+          <div style={{ position: 'absolute', bottom: '10%', left: '10%', maxWidth: '280px', pointerEvents: 'none' }}>
+            <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', background: 'rgba(0,0,0,0.8)', padding: '1rem', borderRadius: '12px', border: '1px solid var(--glass-border)' }}>
+              <span style={{ color: '#10b981', fontWeight: 800 }}>Port:</span> Bir arayüz (Interface). Uygulamanın ne beklediğini söyler. <br /><br/>
+              <span style={{ color: '#3b82f6', fontWeight: 800 }}>Adapter:</span> Gerçek araç. Portun istediği işi somut olarak yapar.
             </p>
           </div>
         </div>

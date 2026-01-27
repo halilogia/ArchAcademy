@@ -11,6 +11,7 @@ import ScrollToTop from './presentation/components/ScrollToTop';
 // Lazy Load Pages for Fault Isolation & Performance
 const HomePage = lazy(() => import('./presentation/pages/HomePage'));
 const CleanArchPage = lazy(() => import('./presentation/pages/CleanArchPage'));
+const ClientServerPage = lazy(() => import('./presentation/pages/ClientServerPage'));
 const IntentArchitecturePage = lazy(() => import('./presentation/pages/FutureArchitecturePage'));
 const ArchBrainPage = lazy(() => import('./presentation/pages/ArchBrainPage'));
 const DDDPage = lazy(() => import('./presentation/pages/DDDPage'));
@@ -114,6 +115,7 @@ const App: React.FC = () => {
                     <Route path="/solid" element={<SOLIDPage />} />
                     <Route path="/glossary" element={<GlossaryPage />} />
                     <Route path="/system" element={<SystemPage />} />
+                    <Route path="/microservices" element={<SystemPage />} />
                     <Route path="/assessment" element={<AssessmentPage />} />
                     <Route path="/refactoring" element={<RefactoringPage />} />
                     <Route path="/refactor-culture" element={<RefactoringPage />} />
@@ -138,6 +140,7 @@ const App: React.FC = () => {
                     <Route path="/lambda" element={<LambdaPage />} />
                     <Route path="/plugin" element={<PlugInPage />} />
                     <Route path="/mvp" element={<MVPPage />} />
+                    <Route path="/client-server" element={<ClientServerPage />} />
                     <Route path="/pub-sub" element={<PubSubPage />} />
                     <Route path="/primary-secondary" element={<PrimarySecondaryPage />} />
                     <Route path="/kappa" element={<KappaPage />} />

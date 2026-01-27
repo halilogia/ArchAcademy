@@ -66,7 +66,8 @@ const CatalogPage = () => {
       name: 'Distributed Systems',
       color: '#eab308',
       items: [
-        { name: 'Microservices', path: '/system', color: '#eab308', desc: 'Bağımsız servisler ekosistemi.' },
+        { name: 'Microservices', path: '/microservices', color: '#eab308', desc: 'Bağımsız servisler ekosistemi.' },
+        { name: 'Client-Server', path: '/client-server', color: '#ca8a04', desc: 'İstemci ve sunucu ayrımı.' },
         { name: 'Serverless (FaaS)', path: '/serverless', color: '#facc15', desc: 'Sunucusuz fonksiyon mimarisi.' },
         { name: 'Space-Based', path: '/space-based', color: '#fde047', desc: 'In-memory veri hızı ve ekstrem performans.' },
         { name: 'Peer-to-Peer', path: '/p2p', color: '#eab308', desc: 'Düğümler arası doğrudan iletişim.' }
@@ -89,7 +90,7 @@ const CatalogPage = () => {
       items: [
         { name: 'Orchestration', path: '/orchestration', color: '#ec4899', desc: 'Merkezi servis koordinasyonu.' },
         { name: 'Choreography', path: '/choreography', color: '#f472b6', desc: 'Dağıtık olay senkronizasyonu.' },
-        { name: 'SOA Architecture', path: '/soa', color: '#f59e0b', desc: 'Kurumsal servis haberleşme strateji.' }
+        { name: 'SOA Architecture', path: '/soa', color: '#fbcfe8', desc: 'Kurumsal servis haberleşme strateji.' }
       ]
     },
     {

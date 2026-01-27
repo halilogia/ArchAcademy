@@ -126,33 +126,7 @@ const DesignPatternsPage = () => {
         </div>
       </section>
 
-      <section style={{ padding: '80px 0', borderTop: '1px solid var(--glass-border)' }}>
-        <div className="container" style={{ textAlign: 'center' }}>
-          <div className="glass-card" style={{ display: 'inline-block', padding: '3rem', maxWidth: '800px' }}>
-            <h3 style={{ marginBottom: '1rem' }}>Sözlükte Keşfet</h3>
-            <p style={{ color: 'var(--text-secondary)', marginBottom: '2rem' }}>
-              Tüm dizayn kalıplarının detaylı mülakat tanımları ve "Guru Tip"leri için dev sözlüğümüzü kullanabilirsin.
-            </p>
-            <button 
-              onClick={() => navigate('/glossary')}
-              style={{ 
-                background: 'var(--primary)', 
-                color: 'white', 
-                padding: '1rem 2rem', 
-                borderRadius: '12px', 
-                border: 'none', 
-                fontWeight: 800, 
-                cursor: 'pointer',
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '0.5rem'
-              }}
-            >
-              TÜM TERİMLERİ GÖR <ArrowRight size={20} />
-            </button>
-          </div>
-        </div>
-      </section>
+
     </motion.div>
   );
 };
