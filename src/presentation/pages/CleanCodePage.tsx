@@ -2,9 +2,23 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import ArchHero from '../components/ArchHero';
-import { Sparkles, Code2, Scissors, CheckCircle2, XCircle, Divide, Search, Zap } from 'lucide-react';
+import { 
+  Sparkles, 
+  Code2, 
+  Scissors, 
+  CheckCircle2, 
+  XCircle, 
+  Divide, 
+  Search, 
+  Zap,
+  AlignLeft,
+  Type,
+  AlertTriangle
+} from 'lucide-react';
 
 const CleanCodePage: React.FC = () => {
+  const [activeTab, setActiveTab] = useState<'bad' | 'good'>('bad');
+
   return (
     <div style={{ minHeight: '100vh', background: 'var(--bg-dark)', color: 'var(--text-primary)' }}>
       
@@ -46,7 +60,7 @@ const CleanCodePage: React.FC = () => {
         features={[
           { icon: <CheckCircle2 />, title: "Self-Documenting", desc: "Kodun kendini dökümante etmesi." },
           { icon: <Zap />, title: "Boy-Scout Rule", desc: "Bulduğundan daha temiz bırak." },
-          { icon: <Search />, title: "Readability", desc: "Önce insan sonra makine anlasın." }
+          { icon: <AlignLeft />, title: "Standardization", desc: "Takım içi ortak dil ve kurallar." }
         ]}
       />
 
@@ -108,7 +122,94 @@ const CleanCodePage: React.FC = () => {
             </div>
           </div>
 
-          {/* 3. FUNCTIONS & COMMENTS */}
+          {/* 3. CODE SPECIFICATION & STANDARDS (MERGED FROM CodeSpecPage) */}
+          <div style={{ marginBottom: '6rem' }}>
+             <h2 style={{ fontSize: '2rem', marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                 <AlignLeft color="#facc15" /> Code Specification
+             </h2>
+             <div className="glass-card" style={{ padding: '2rem' }}>
+                  <p style={{ color: '#cbd5e1', marginBottom: '1.5rem', lineHeight: 1.7 }}>
+                      Clean Code sadece güzel isimler vermek değildir; aynı zamanda tutarlı olmaktır. 
+                      Ekip içinde (veya kendi projelerinizde) bir stil rehberi (Style Guide) belirleyin ve ona uyun.
+                      Tab vs Space tartışmasını bırakın, Linter'a ne diyorsanız onu yapın.
+                  </p>
+
+                  <div style={{ display: 'flex', gap: '20px', marginBottom: '20px', borderBottom: '1px solid rgba(255,255,255,0.1)', paddingBottom: '20px' }}>
+                      <button 
+                        onClick={() => setActiveTab('bad')}
+                        style={{ 
+                            background: activeTab === 'bad' ? 'rgba(239, 68, 68, 0.2)' : 'transparent', 
+                            color: activeTab === 'bad' ? '#fca5a5' : '#94a3b8',
+                            border: 'none', padding: '10px 20px', borderRadius: '8px', cursor: 'pointer', fontWeight: 'bold'
+                        }}
+                      >
+                          <AlertTriangle size={16} style={{ marginRight: '5px', verticalAlign: 'text-bottom' }} />
+                          Spaghetti Code (No Spec)
+                      </button>
+                      <button 
+                        onClick={() => setActiveTab('good')}
+                        style={{ 
+                            background: activeTab === 'good' ? 'rgba(16, 185, 129, 0.2)' : 'transparent', 
+                            color: activeTab === 'good' ? '#6ee7b7' : '#94a3b8',
+                            border: 'none', padding: '10px 20px', borderRadius: '8px', cursor: 'pointer', fontWeight: 'bold'
+                        }}
+                      >
+                          <CheckCircle2 size={16} style={{ marginRight: '5px', verticalAlign: 'text-bottom' }} />
+                          Clean Code (Standardized)
+                      </button>
+                  </div>
+
+                  <div style={{ fontFamily: 'monospace', fontSize: '0.9rem', background: '#020617', padding: '20px', borderRadius: '12px', minHeight: '300px', overflowX: 'auto' }}>
+                      {activeTab === 'bad' ? (
+                          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+                              <div style={{ color: '#94a3b8' }}>// ❌ Karışık syntax, tutarsız isimlendirme</div>
+                              <br/>
+                              <div style={{ color: '#fca5a5' }}>var</div> u = <span style={{ color: '#eab308' }}>"John"</span>; <span style={{ color: '#64748b' }}>// Çok kısa değişken</span>
+                              <br/>
+                              <div style={{ color: '#fca5a5' }}>function</div> <span style={{ color: '#60a5fa' }}>GT_USR_DT</span>(id) {'{'} <span style={{ color: '#64748b' }}>// Anlaşılmaz fonksiyon ismi</span>
+                              <br/>
+                                &nbsp;&nbsp;<div style={{ color: '#fca5a5' }}>if</div>(id==0) <div style={{ color: '#fca5a5' }}>return</div> <span style={{ color: '#fca5a5' }}>null</span>  <span style={{ color: '#64748b' }}>// Süslü parantez yok</span>
+                              <br/>
+                                &nbsp;&nbsp;&nbsp;&nbsp;let  x=   db.fetch(id) <span style={{ color: '#64748b' }}>// Gereksiz boşluklar, noktalı virgül eksik</span>
+                              <br/>
+                              &nbsp;&nbsp;<div style={{ color: '#fca5a5' }}>return</div> x;
+                              <br/>
+                              {'}'}
+                          </motion.div>
+                      ) : (
+                         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+                              <div style={{ color: '#94a3b8' }}>// ✅ Airbnb Style Guide uyumlu</div>
+                              <br/>
+                              <div style={{ color: '#c084fc' }}>const</div> <span style={{ color: '#facc15' }}>DEFAULT_USER_NAME</span> = <span style={{ color: '#eab308' }}>'John'</span>;
+                              <br/>
+                              <br/>
+                              <div style={{ color: '#64748b' }}>/**</div>
+                              <br/>
+                              <div style={{ color: '#64748b' }}> * Retrieves user data by unique ID.</div>
+                              <br/>
+                              <div style={{ color: '#64748b' }}> */</div>
+                              <br/>
+                              <div style={{ color: '#c084fc' }}>async function</div> <span style={{ color: '#60a5fa' }}>getUserData</span>(<span style={{ color: '#f87171' }}>userId</span>: <span style={{ color: '#c084fc' }}>string</span>): <span style={{ color: '#c084fc' }}>Promise</span>&lt;User | null&gt; {'{'}
+                              <br/>
+                                &nbsp;&nbsp;<div style={{ color: '#c084fc' }}>if</div> (!userId) {'{'}
+                              <br/>
+                                &nbsp;&nbsp;&nbsp;&nbsp;<div style={{ color: '#c084fc' }}>return</div> <span style={{ color: '#c084fc' }}>null</span>;
+                              <br/>
+                                &nbsp;&nbsp;{'}'}
+                              <br/>
+                              <br/>
+                                &nbsp;&nbsp;<div style={{ color: '#c084fc' }}>const</div> user = <div style={{ color: '#c084fc' }}>await</div> db.fetch(userId);
+                              <br/>
+                                &nbsp;&nbsp;<div style={{ color: '#c084fc' }}>return</div> user;
+                              <br/>
+                              {'}'}
+                         </motion.div>
+                      )}
+                  </div>
+             </div>
+          </div>
+
+          {/* 4. FUNCTIONS & COMMENTS */}
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem', marginBottom: '6rem' }}>
              <PrincipleCard 
                title="Fonksiyonlar: Tek Bir Görev" 

@@ -149,6 +149,7 @@ const App: React.FC = () => {
                     <Route path="/robustness" element={<RobustnessPage />} />
                     <Route path="/docs-annotations" element={<DocumentationPage />} />
                     <Route path="/testing" element={<TestingPage />} />
+
                     <Route path="/abstraction" element={<AbstractionPage />} />
                     <Route path="/discipline-catalog" element={<DisciplineCatalogPage />} />
                     <Route path="/lean-architecture" element={<LeanArchitecturePage />} />

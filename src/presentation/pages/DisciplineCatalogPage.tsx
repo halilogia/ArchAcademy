@@ -21,7 +21,8 @@ import {
   CheckCircle2,
   Medal,
   Brain,
-  ShieldAlert
+  ShieldAlert,
+  FileText
 } from 'lucide-react';
 
 interface DisciplineItem {
@@ -68,8 +69,8 @@ const DisciplineCatalogPage = () => {
       color: '#10b981',
       items: [
         { name: 'Clean Code', path: '/clean-code', color: '#10b981', icon: <Code2 size={24} />, desc: 'Temiz, okunabilir ve sürdürülebilir kod yazma sanatı.' },
-        { name: 'TDD Metodolojisi', path: '/tdd', color: '#6ee7b7', icon: <CheckCircle2 size={24} />, desc: 'Geliştirme sürecini testlerle yönetme disiplini (Red-Green-Refactor).' },
-        { name: 'Easy to Test', path: '/testing', color: '#34d399', icon: <Beaker size={24} />, desc: 'Mimariyi düşük bağımlılık ve yüksek test edilebilirlik odasına taşıma.' }
+        { name: 'TDD Metodolojisi', path: '/tdd', color: '#059669', icon: <CheckCircle2 size={24} />, desc: 'Geliştirme sürecini testlerle yönetme disiplini (Red-Green-Refactor).' },
+        { name: 'Easy to Test', path: '/testing', color: '#047857', icon: <Beaker size={24} />, desc: 'Mimariyi düşük bağımlılık ve yüksek test edilebilirlik odasına taşıma.' }
       ]
     },
     {
