@@ -4,6 +4,7 @@ import ArchHero from '../components/ArchHero';
 import MVVMFlow from '../components/MVVMFlow';
 import WhyLayered from '../components/WhyLayered';
 import FlutterBestPractices from '../components/FlutterBestPractices';
+import RefactoringGuide from '../components/RefactoringGuide';
 import { 
   Layout, 
   Share2, 
@@ -226,6 +227,7 @@ const MVVMPage = () => {
                 </div>
               </div>
             </section>
+            <RefactoringGuide />
           </motion.div>
         )}
 
@@ -251,31 +253,43 @@ const MVVMPage = () => {
                   <div className="glass-card" style={{ padding: '2rem', border: '1px solid rgba(255,255,255,0.05)', background: '#0f172a' }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '2rem', borderBottom: '1px solid rgba(255,255,255,0.1)', paddingBottom: '1rem' }}>
                       <FolderTree size={18} color="#3b82f6" />
-                      <span style={{ fontWeight: 800, fontSize: '0.9rem', color: '#64748b', textTransform: 'uppercase', letterSpacing: '1px' }}>Project Blueprint</span>
+                      <span style={{ fontWeight: 800, fontSize: '0.9rem', color: 'white', textTransform: 'uppercase', letterSpacing: '1px' }}>Project Blueprint</span>
                     </div>
                     
                     <div style={{ fontSize: '0.9rem', color: 'rgba(255,255,255,0.8)', fontFamily: 'monospace' }}>
-                      <div style={{ display: 'flex', gap: '8px', marginBottom: '8px' }}><FolderTree size={16} color="#f59e0b" /> <strong>lib/</strong></div>
+                      <div style={{ display: 'flex', gap: '8px', marginBottom: '12px' }}><FolderTree size={16} color="#f59e0b" /> <strong>lib/</strong> <span style={{ color: '#64748b' }}></span></div>
                       <div style={{ paddingLeft: '20px' }}>
-                        <div style={{ display: 'flex', gap: '8px', marginBottom: '8px', color: '#10b981' }}><FolderTree size={16} /> <strong>ui/</strong></div>
+                        
+                        {/* UI LAYER */}
+                        <div style={{ display: 'flex', gap: '8px', marginBottom: '8px', color: '#10b981' }}><FolderTree size={16} /> <strong>ui/</strong> <span style={{ color: '#64748b' }}>(Kullanıcı Arayüzü)</span></div>
                         <div style={{ paddingLeft: '20px', borderLeft: '1px dashed rgba(255,255,255,0.1)', marginLeft: '8px' }}>
-                           <div style={{ display: 'flex', gap: '8px', marginBottom: '8px' }}><FolderTree size={16} color="#64748b" /> <strong>core/</strong> (Shared UI & Themes)</div>
-                           <div style={{ display: 'flex', gap: '8px', marginBottom: '8px' }}><FolderTree size={16} color="#f59e0b" /> <strong>auth/</strong> (Feature folder)</div>
+                           <div style={{ display: 'flex', gap: '8px', marginBottom: '8px' }}><FolderTree size={16} color="#64748b" /> <strong>core/</strong> <span style={{ color: '#64748b' }}>(Ortak Bileşenler & Temalar)</span></div>
+                           
+                           <div style={{ display: 'flex', gap: '8px', marginBottom: '8px' }}><FolderTree size={16} color="#f59e0b" /> <strong>vocabulary/</strong> <span style={{ color: '#64748b' }}>(Kelime Öğrenme Modülü)</span></div>
                            <div style={{ paddingLeft: '20px' }}>
-                              <div style={{ display: 'flex', gap: '8px', marginBottom: '4px' }}><Settings size={16} color="#ec4899" /> auth_view_model.dart</div>
-                              <div style={{ display: 'flex', gap: '8px', marginBottom: '4px' }}><Code2 size={16} color="#ec4899" /> login_screen.dart</div>
+                              <div style={{ display: 'flex', gap: '8px', marginBottom: '4px' }}><Settings size={16} color="#ec4899" /> vocabulary_view_model.dart</div>
+                              <div style={{ display: 'flex', gap: '8px', marginBottom: '4px' }}><Code2 size={16} color="#ec4899" /> flashcard_screen.dart</div>
+                           </div>
+
+                           <div style={{ display: 'flex', gap: '8px', marginTop: '8px', marginBottom: '8px' }}><FolderTree size={16} color="#f59e0b" /> <strong>lessons/</strong> <span style={{ color: '#64748b' }}>(Gramatik & Alıştırmalar)</span></div>
+                           <div style={{ paddingLeft: '20px' }}>
+                              <div style={{ display: 'flex', gap: '8px', marginBottom: '4px' }}><Settings size={16} color="#ec4899" /> lesson_view_model.dart</div>
+                              <div style={{ display: 'flex', gap: '8px', marginBottom: '4px' }}><Code2 size={16} color="#ec4899" /> quiz_screen.dart</div>
                            </div>
                         </div>
 
-                        <div style={{ display: 'flex', gap: '8px', marginTop: '12px', marginBottom: '8px', color: '#3b82f6' }}><FolderTree size={16} /> <strong>domain/</strong> (Business Logic & Models)</div>
+                        {/* DOMAIN LAYER */}
+                        <div style={{ display: 'flex', gap: '8px', marginTop: '16px', marginBottom: '8px', color: '#3b82f6' }}><FolderTree size={16} /> <strong>domain/</strong> <span style={{ color: '#64748b' }}>(Sadece Tipler & İş Mantığı)</span></div>
                         <div style={{ paddingLeft: '20px' }}>
-                           <div style={{ display: 'flex', gap: '8px', marginBottom: '4px' }}><Code2 size={16} /> user_model.dart</div>
+                           <div style={{ display: 'flex', gap: '8px', marginBottom: '4px' }}><Code2 size={16} /> word_model.dart <span style={{ color: '#64748b' }}>(Kelime Tipi / Interface)</span></div>
+                           <div style={{ display: 'flex', gap: '8px', marginBottom: '4px' }}><Code2 size={16} /> lesson_entity.dart <span style={{ color: '#64748b' }}>(Ders Yapısı / Types)</span></div>
                         </div>
 
-                        <div style={{ display: 'flex', gap: '8px', marginTop: '12px', marginBottom: '8px', color: '#3b82f6' }}><FolderTree size={16} /> <strong>data/</strong> (Repositories & Services)</div>
+                        {/* DATA LAYER */}
+                        <div style={{ display: 'flex', gap: '8px', marginTop: '16px', marginBottom: '8px', color: '#3b82f6' }}><FolderTree size={16} /> <strong>data/</strong> <span style={{ color: '#64748b' }}>(Veri Kaynakları & Repos)</span></div>
                         <div style={{ paddingLeft: '20px' }}>
-                           <div style={{ display: 'flex', gap: '8px', marginBottom: '4px' }}><Settings size={16} /> auth_repository.dart</div>
-                           <div style={{ display: 'flex', gap: '8px', marginBottom: '4px' }}><Zap size={16} /> auth_api_service.dart</div>
+                           <div style={{ display: 'flex', gap: '8px', marginBottom: '4px' }}><Settings size={16} /> vocabulary_repository.dart</div>
+                           <div style={{ display: 'flex', gap: '8px', marginBottom: '4px' }}><Zap size={16} /> local_storage_service.dart</div>
                         </div>
                       </div>
                     </div>
@@ -283,10 +297,9 @@ const MVVMPage = () => {
 
                   {/* Flow Explanation */}
                   <div>
-                    <h3 style={{ fontSize: '2rem', fontWeight: 900, marginBottom: '1.5rem' }}>E-Ticaret Örneği ile Akış</h3>
+                    <h3 style={{ fontSize: '2rem', fontWeight: 900, marginBottom: '1.5rem' }}>Dil Öğrenme Uygulaması: Akış Örneği</h3>
                     <p style={{ color: 'var(--text-secondary)', marginBottom: '2.5rem', fontSize: '1.1rem', lineHeight: 1.6 }}>
-                      Andrea Bizzotto ve Google'ın önerdiği gibi; veri akışı her zaman <strong>aşağıdan yukarıya</strong> (Data → UI) doğru tetiklenir, 
-                      bağımlılıklar ise <strong>yukarıdan aşağıya</strong> doğrudur.
+                      Bir kelimeyi havuzdan alıp ekranda göstermeye kadar süren o kusursuz yolculuk:
                     </p>
 
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
@@ -295,8 +308,8 @@ const MVVMPage = () => {
                             <Database color="white" size={20} />
                          </div>
                          <div>
-                            <h4 style={{ marginBottom: '4px' }}>1. Data Katmanı (The Source)</h4>
-                            <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}>Örn: <code>ProductRepository</code>. Firebase'den ürünleri çeker ve domain modeline çevirir.</p>
+                            <h4 style={{ marginBottom: '4px' }}>1. Kelime Havuzu (Data)</h4>
+                            <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}><code>VocabularyRepository</code> local veritabanından kelimeleri çeker.</p>
                          </div>
                       </div>
 
@@ -309,8 +322,8 @@ const MVVMPage = () => {
                             <Settings color="white" size={20} />
                          </div>
                          <div>
-                            <h4 style={{ marginBottom: '4px' }}>2. Feature ViewModel (The Logic)</h4>
-                            <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}>Örn: <code>ProductsViewModel</code>. Repositories'i dinler ve UI için bir 'State' üretir.</p>
+                            <h4 style={{ marginBottom: '4px' }}>2. Öğrenme Mantığı (Logic)</h4>
+                            <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}><code>VocabularyViewModel</code> kelimeleri karıştırır ve "Öğrenildi" bilgisini işler.</p>
                          </div>
                       </div>
 
@@ -323,8 +336,8 @@ const MVVMPage = () => {
                             <Layout color="white" size={20} />
                          </div>
                          <div>
-                            <h4 style={{ marginBottom: '4px' }}>3. UI Widget (The View)</h4>
-                            <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}>Örn: <code>ProductListView</code>. Sadece State'i dinler ve ekrana 'Lego parçaları' gibi dizer.</p>
+                            <h4 style={{ marginBottom: '4px' }}>3. Flashcard Arayüzü (View)</h4>
+                            <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}><code>FlashcardScreen</code> sadece ViewModel'den gelen kelimeyi ekranda parlatır.</p>
                          </div>
                       </div>
                     </div>

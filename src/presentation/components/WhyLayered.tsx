@@ -1,4 +1,4 @@
-import React from 'react';
+  import React from 'react';
 import { motion } from 'framer-motion';
 import { 
   Layers, 
@@ -10,7 +10,17 @@ import {
   ChevronRight
 } from 'lucide-react';
 
-const WhyLayered = () => {
+interface WhyLayeredProps {
+  title?: React.ReactNode;
+  description?: string;
+  badge?: string;
+}
+
+const WhyLayered: React.FC<WhyLayeredProps> = ({ 
+  title = <>Google Neden Katmanlı <br/><span className="gradient-text">Yapıyı Öneriyor?</span></>,
+  description = "Google'ın Flutter rehberi, karma (hybrid) bir yapıyı savunur ama temelde Katmanlı (Layered) disiplini merkeze alır. Bu, uygulamanın 'birbirine çarpan özellikler' yığını olmasını engeller.",
+  badge = "NEDEN LAYERED-FIRST?"
+}) => {
   const reasons = [
     {
       title: "Bilişsel Yükü Azaltır (Cognitive Load)",
@@ -36,14 +46,13 @@ const WhyLayered = () => {
           
           <div style={{ flex: '1', minWidth: '300px' }}>
             <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '8px 16px', background: 'rgba(16, 185, 129, 0.1)', borderRadius: '100px', color: '#10b981', fontSize: '0.8rem', fontWeight: 700, marginBottom: '1.5rem' }}>
-               <Info size={16} /> NEDEN LAYERED-FIRST?
+               <Info size={16} /> {badge}
             </div>
             <h2 style={{ fontSize: '2.2rem', fontWeight: 900, marginBottom: '1.5rem', lineHeight: 1.2 }}>
-               Google Neden Katmanlı <br/><span className="gradient-text">Yapıyı Öneriyor?</span>
+               {title}
             </h2>
             <p style={{ color: 'var(--text-secondary)', lineHeight: 1.7, marginBottom: '2rem' }}>
-              Google'ın Flutter rehberi, karma (hybrid) bir yapıyı savunur ama temelde <strong>Katmanlı (Layered)</strong> 
-              disiplini merkeze alır. Bu, uygulamanın "birbirine çarpan özellikler" yığını olmasını engeller.
+              {description}
             </p>
             
             <div className="glass-card" style={{ background: 'rgba(236, 72, 153, 0.05)', border: '1px solid rgba(236, 72, 153, 0.1)' }}>
