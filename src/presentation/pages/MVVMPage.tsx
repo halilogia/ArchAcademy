@@ -24,7 +24,9 @@ import {
   ExternalLink,
   Compass,
   ArrowRight,
-  Activity
+  Activity,
+  FolderTree,
+  Settings
 } from 'lucide-react';
 import { useProgress } from '../../context/ProgressContext';
 
@@ -234,8 +236,102 @@ const MVVMPage = () => {
             animate={{ opacity: 1, y: 0 }} 
             exit={{ opacity: 0, y: -20 }}
           >
-            {/* WhyLayered component is moved here to explain Google's reasoning */}
-            <WhyLayered />
+            {/* Customized for Hybrid Approach */}
+            <WhyLayered 
+              badge="NEDEN HYBRID-FIRST?"
+              title={<>Google Neden Hibrit <br/><span className="gradient-text">Yapıyı Öneriyor?</span></>}
+              description="Google'ın resmi mimari vaka çalışmaları, MVVM'in esnekliği ile katmanlı yapının disiplinini birleştiren Hibrit modeli savunur. Bu sayede hem hız hem de ölçeklenebilirlik korunur."
+            />
+
+            {/* --- ARCHITECTURE BLUEPRINT (FOLDER STRUCTURE & EXAMPLE) --- */}
+            <section style={{ padding: '80px 0', background: 'rgba(15, 23, 42, 0.4)' }}>
+              <div className="container">
+                <div style={{ display: 'grid', gridTemplateColumns: 'minmax(300px, 400px) 1fr', gap: '4rem', alignItems: 'start' }}>
+                  {/* VS Code Inspired Folder Structure */}
+                  <div className="glass-card" style={{ padding: '2rem', border: '1px solid rgba(255,255,255,0.05)', background: '#0f172a' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '2rem', borderBottom: '1px solid rgba(255,255,255,0.1)', paddingBottom: '1rem' }}>
+                      <FolderTree size={18} color="#3b82f6" />
+                      <span style={{ fontWeight: 800, fontSize: '0.9rem', color: '#64748b', textTransform: 'uppercase', letterSpacing: '1px' }}>Project Blueprint</span>
+                    </div>
+                    
+                    <div style={{ fontSize: '0.9rem', color: 'rgba(255,255,255,0.8)', fontFamily: 'monospace' }}>
+                      <div style={{ display: 'flex', gap: '8px', marginBottom: '8px' }}><FolderTree size={16} color="#f59e0b" /> <strong>lib/</strong></div>
+                      <div style={{ paddingLeft: '20px' }}>
+                        <div style={{ display: 'flex', gap: '8px', marginBottom: '8px', color: '#10b981' }}><FolderTree size={16} /> <strong>ui/</strong></div>
+                        <div style={{ paddingLeft: '20px', borderLeft: '1px dashed rgba(255,255,255,0.1)', marginLeft: '8px' }}>
+                           <div style={{ display: 'flex', gap: '8px', marginBottom: '8px' }}><FolderTree size={16} color="#64748b" /> <strong>core/</strong> (Shared UI & Themes)</div>
+                           <div style={{ display: 'flex', gap: '8px', marginBottom: '8px' }}><FolderTree size={16} color="#f59e0b" /> <strong>auth/</strong> (Feature folder)</div>
+                           <div style={{ paddingLeft: '20px' }}>
+                              <div style={{ display: 'flex', gap: '8px', marginBottom: '4px' }}><Settings size={16} color="#ec4899" /> auth_view_model.dart</div>
+                              <div style={{ display: 'flex', gap: '8px', marginBottom: '4px' }}><Code2 size={16} color="#ec4899" /> login_screen.dart</div>
+                           </div>
+                        </div>
+
+                        <div style={{ display: 'flex', gap: '8px', marginTop: '12px', marginBottom: '8px', color: '#3b82f6' }}><FolderTree size={16} /> <strong>domain/</strong> (Business Logic & Models)</div>
+                        <div style={{ paddingLeft: '20px' }}>
+                           <div style={{ display: 'flex', gap: '8px', marginBottom: '4px' }}><Code2 size={16} /> user_model.dart</div>
+                        </div>
+
+                        <div style={{ display: 'flex', gap: '8px', marginTop: '12px', marginBottom: '8px', color: '#3b82f6' }}><FolderTree size={16} /> <strong>data/</strong> (Repositories & Services)</div>
+                        <div style={{ paddingLeft: '20px' }}>
+                           <div style={{ display: 'flex', gap: '8px', marginBottom: '4px' }}><Settings size={16} /> auth_repository.dart</div>
+                           <div style={{ display: 'flex', gap: '8px', marginBottom: '4px' }}><Zap size={16} /> auth_api_service.dart</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Flow Explanation */}
+                  <div>
+                    <h3 style={{ fontSize: '2rem', fontWeight: 900, marginBottom: '1.5rem' }}>E-Ticaret Örneği ile Akış</h3>
+                    <p style={{ color: 'var(--text-secondary)', marginBottom: '2.5rem', fontSize: '1.1rem', lineHeight: 1.6 }}>
+                      Andrea Bizzotto ve Google'ın önerdiği gibi; veri akışı her zaman <strong>aşağıdan yukarıya</strong> (Data → UI) doğru tetiklenir, 
+                      bağımlılıklar ise <strong>yukarıdan aşağıya</strong> doğrudur.
+                    </p>
+
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+                      <div className="glass-card" style={{ display: 'flex', gap: '20px', alignItems: 'center', background: 'rgba(59, 130, 246, 0.05)' }}>
+                         <div style={{ background: '#3b82f6', width: '40px', height: '40px', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                            <Database color="white" size={20} />
+                         </div>
+                         <div>
+                            <h4 style={{ marginBottom: '4px' }}>1. Data Katmanı (The Source)</h4>
+                            <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}>Örn: <code>ProductRepository</code>. Firebase'den ürünleri çeker ve domain modeline çevirir.</p>
+                         </div>
+                      </div>
+
+                      <div style={{ display: 'flex', justifyContent: 'center', color: '#64748b' }}>
+                         <ArrowRight style={{ transform: 'rotate(90deg)' }} />
+                      </div>
+
+                      <div className="glass-card" style={{ display: 'flex', gap: '20px', alignItems: 'center', background: 'rgba(236, 72, 153, 0.05)' }}>
+                         <div style={{ background: '#ec4899', width: '40px', height: '40px', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                            <Settings color="white" size={20} />
+                         </div>
+                         <div>
+                            <h4 style={{ marginBottom: '4px' }}>2. Feature ViewModel (The Logic)</h4>
+                            <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}>Örn: <code>ProductsViewModel</code>. Repositories'i dinler ve UI için bir 'State' üretir.</p>
+                         </div>
+                      </div>
+
+                      <div style={{ display: 'flex', justifyContent: 'center', color: '#64748b' }}>
+                         <ArrowRight style={{ transform: 'rotate(90deg)' }} />
+                      </div>
+
+                      <div className="glass-card" style={{ display: 'flex', gap: '20px', alignItems: 'center' }}>
+                         <div style={{ background: '#10b981', width: '40px', height: '40px', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                            <Layout color="white" size={20} />
+                         </div>
+                         <div>
+                            <h4 style={{ marginBottom: '4px' }}>3. UI Widget (The View)</h4>
+                            <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}>Örn: <code>ProductListView</code>. Sadece State'i dinler ve ekrana 'Lego parçaları' gibi dizer.</p>
+                         </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
 
             <section style={{ padding: '100px 0', background: 'rgba(59, 130, 246, 0.03)', borderTop: '1px solid var(--glass-border)' }}>
               <div className="container">
