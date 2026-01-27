@@ -308,18 +308,46 @@ const ComparisonMatrix = () => {
       path: '/glossary?search=Micro'
     },
     {
-      name: 'MVC / MVP / MVVM',
-      size: 'Küçük/Orta',
-      sizeValue: 1.5,
+      name: 'MVC (Classic)',
+      size: 'Küçük (Small)',
+      sizeValue: 1,
       speed: 5,
-      learning: 4,
-      maint: 3,
-      test: 3,
-      ai: 4,
+      learning: 5,
+      maint: 2,
+      test: 2,
+      ai: 2,
       flex: 3,
       color: '#ec4899',
-      bestFor: 'Arayüz ve Kullanıcı Etkileşimi Odaklı Uygulamalar',
-      path: '/mvc-mvvm'
+      bestFor: 'Basit Web Siteleri ve Prototipler',
+      path: '/mvc'
+    },
+    {
+      name: 'MVP (Presenter)',
+      size: 'Orta (Medium)',
+      sizeValue: 2,
+      speed: 3,
+      learning: 3,
+      maint: 4,
+      test: 5,
+      ai: 3,
+      flex: 4,
+      color: '#db2777',
+      bestFor: 'Test Odaklı Legacy Desktop/Android',
+      path: '/mvp'
+    },
+    {
+      name: 'MVVM (Reactive)',
+      size: 'Orta/Büyük',
+      sizeValue: 2.5,
+      speed: 4,
+      learning: 2,
+      maint: 5,
+      test: 5,
+      ai: 5,
+      flex: 5,
+      color: '#be185d',
+      bestFor: 'Modern Reaktif UI (React, Flutter)',
+      path: '/mvvm'
     },
     {
       name: 'ECS (Game Dev)',
@@ -413,11 +441,25 @@ const ComparisonMatrix = () => {
       learning: 5,
       maint: 3,
       test: 3,
-      ai: 2,
+      ai: 5, // Updated: Single Repo context is great for AI
       flex: 3,
       color: '#f43f5e',
       bestFor: 'Tek Kişilik Ekipler ve Hızlı MVP Projeleri',
       path: '/system'
+    },
+    {
+      name: 'VIPER (iOS)',
+      size: 'Büyük (Large)',
+      sizeValue: 3,
+      speed: 1, // High boilerplate
+      learning: 1, // Steep curve
+      maint: 5,
+      test: 5,
+      ai: 3,
+      flex: 3,
+      color: '#ef4444',
+      bestFor: 'Büyük Ölçekli iOS Uygulamaları',
+      path: '/viper'
     }
   ];
 

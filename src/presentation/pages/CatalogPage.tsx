@@ -119,7 +119,7 @@ const CatalogPage = () => {
       name: 'Component & UI',
       color: '#10b981',
       items: [
-        { name: 'MVC', path: '/mvc-mvvm', color: '#10b981', desc: 'Model-View-Controller deseni.' },
+        { name: 'MVC', path: '/mvc', color: '#10b981', desc: 'Model-View-Controller deseni.' },
         { name: 'MVP', path: '/mvp', color: '#34d399', desc: 'Model-View-Presenter etkileşimi.' },
         { name: 'MVVM', path: '/mvvm', color: '#6ee7b7', desc: 'Model-View-ViewModel reaktif yapı.' },
         { name: 'MVVM-C', path: '/mvvm-c', color: '#10b981', desc: 'Navigasyon odaklı Coordinator deseni.' },

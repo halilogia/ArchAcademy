@@ -43,7 +43,7 @@ const Navbar: React.FC = () => {
     { name: 'Big Data (Lambda/Kappa)', path: '/big-data', color: '#06b6d4' },
     { name: 'Pipe-Filter (Pipeline)', path: '/pipe-filter', color: '#8b5cf6' },
     { name: 'Interpreter Logic', path: '/interpreter', color: '#6366f1' },
-    { name: 'MVC / MVP / MVVM', path: '/mvc-mvvm', color: '#10b981' },
+    { name: 'MVC / MVP / MVVM', path: '/mvc', color: '#10b981' },
     { name: 'ECS (System Design)', path: '/ecs', color: '#059669' },
     { name: 'Evolutionary Arch', path: '/evolution', color: '#ec4899' },
     { name: 'Object-Oriented Arch', path: '/object-oriented', color: '#3b82f6' },

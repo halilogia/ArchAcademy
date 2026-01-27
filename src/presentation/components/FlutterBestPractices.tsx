@@ -78,8 +78,11 @@ const FlutterBestPractices = () => {
               </h4>
               <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', lineHeight: 1.6 }}>
                 Modern UI framework'lerinde (Flutter/React) arayüz, o anki durumun (state) bir fonksiyonudur. 
-                State değiştiğinde UI kendini tamamen yeniden render eder. Bu, **Imperative** (Nasıl yapılacağı) yerine 
-                **Declarative** (Ne olacağı) yaklaşımını getirir.
+                
+                <div style={{ marginTop: '10px', padding: '10px', background: 'rgba(16, 185, 129, 0.1)', borderRadius: '8px', border: '1px dashed rgba(16, 185, 129, 0.3)' }}>
+                  <strong style={{ color: '#10b981', fontSize: '0.85rem' }}>PRO TIP:</strong><br/>
+                  State'i dağınık değişkenler (`isLoading`, `error`) yerine, durumu net tanımlanmış <strong>Immutable Sealed Class</strong>'lar (Loading, Success, Error) olarak modelleyin.
+                </div>
               </p>
             </div>
 

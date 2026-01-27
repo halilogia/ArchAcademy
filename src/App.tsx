@@ -133,7 +133,7 @@ const App: React.FC = () => {
                     <Route path="/choreography" element={<ChoreographyPage />} />
                     <Route path="/big-data" element={<BigDataPage />} />
                     <Route path="/event-sourcing" element={<EventSourcingPage />} />
-                    <Route path="/mvc-mvvm" element={<MVCPage />} />
+                    <Route path="/mvc" element={<MVCPage />} />
                     <Route path="/mvvm" element={<MVVMPage />} />
                     <Route path="/lambda" element={<LambdaPage />} />
                     <Route path="/plugin" element={<PlugInPage />} />

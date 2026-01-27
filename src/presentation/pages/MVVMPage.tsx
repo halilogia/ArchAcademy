@@ -27,7 +27,8 @@ import {
   ArrowRight,
   Activity,
   FolderTree,
-  Settings
+  Settings,
+  Sparkles
 } from 'lucide-react';
 import { useProgress } from '../../context/ProgressContext';
 
@@ -291,7 +292,29 @@ const MVVMPage = () => {
                            <div style={{ display: 'flex', gap: '8px', marginBottom: '4px' }}><Settings size={16} /> vocabulary_repository.dart</div>
                            <div style={{ display: 'flex', gap: '8px', marginBottom: '4px' }}><Zap size={16} /> local_storage_service.dart</div>
                         </div>
+
+                        {/* APP INFRASTRUCTURE (Cross-Cutting Concerns) */}
+                        <div style={{ marginTop: '20px', paddingTop: '10px', borderTop: '1px dashed rgba(255,255,255,0.1)' }}>
+                           <div style={{ display: 'flex', gap: '8px', marginBottom: '8px', color: '#94a3b8' }}><FolderTree size={16} /> <strong>config/</strong> <span style={{ color: '#64748b' }}>(Env, Theme, Constants)</span></div>
+                           <div style={{ display: 'flex', gap: '8px', marginBottom: '8px', color: '#94a3b8' }}><FolderTree size={16} /> <strong>routing/</strong> <span style={{ color: '#64748b' }}>(GoRouter, Navigasyon)</span></div>
+                           <div style={{ display: 'flex', gap: '8px', marginBottom: '8px', color: '#94a3b8' }}><FolderTree size={16} /> <strong>utils/</strong> <span style={{ color: '#64748b' }}>(Helpers, Extensions)</span></div>
+                           <div style={{ display: 'flex', gap: '8px', marginTop: '12px', color: '#f8fafc' }}><Code2 size={16} /> main_development.dart</div>
+                           <div style={{ display: 'flex', gap: '8px', color: '#f8fafc' }}><Code2 size={16} /> main_production.dart</div>
+                         </div>
                       </div>
+                    </div>
+
+                    {/* Architect's Perspective Note */}
+                    <div style={{ marginTop: '2rem', padding: '1.5rem', borderRadius: '16px', background: 'rgba(245, 158, 11, 0.05)', border: '1px solid rgba(245, 158, 11, 0.2)' }}>
+                       <div style={{ display: 'flex', alignItems: 'center', gap: '10px', color: '#f59e0b', marginBottom: '0.8rem' }}>
+                          <Sparkles size={18} />
+                          <span style={{ fontWeight: 800, fontSize: '0.9rem', textTransform: 'uppercase', letterSpacing: '1px' }}>Mimarın Notu: Esneklik</span>
+                       </div>
+                       <p style={{ fontSize: '0.9rem', color: 'rgba(255,255,255,0.7)', lineHeight: 1.6 }}>
+                          Bu klasörleme yapısı, Google'ın <strong>The Compass</strong> vaka çalışması için sunduğu kurumsal bir referanstır. 
+                          Mimari bir varış noktası değil, bir yolculuktur. Projeniz küçükse bu yapı "overkill" olabilir; çok devasa ise katmanları 
+                          ayrı paketlere (Internal Packages) bölmek daha doğru bir adım olabilir. <strong>Önemli olan klasör ismi değil, bağımlılıkların yönüdür.</strong>
+                       </p>
                     </div>
                   </div>
 
