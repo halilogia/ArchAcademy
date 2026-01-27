@@ -71,6 +71,9 @@ const TDDPage = lazy(() => import('./presentation/pages/TDDPage'));
 const OOPFundamentalsPage = lazy(() => import('./presentation/pages/OOPFundamentalsPage'));
 const CAPTheoremPage = lazy(() => import('./presentation/pages/CAPTheoremPage'));
 const ACIDPage = lazy(() => import('./presentation/pages/ACIDPage'));
+const VIPERPage = lazy(() => import('./presentation/pages/VIPERPage'));
+const MVVMCPage = lazy(() => import('./presentation/pages/MVVMCPage'));
+const AntiPatternsPage = lazy(() => import('./presentation/pages/AntiPatternsPage'));
 const NotFoundPage = lazy(() => import('./presentation/pages/NotFoundPage'));
 
 const LoadingFallback = () => (
@@ -113,6 +116,7 @@ const App: React.FC = () => {
                     <Route path="/system" element={<SystemPage />} />
                     <Route path="/assessment" element={<AssessmentPage />} />
                     <Route path="/refactoring" element={<RefactoringPage />} />
+                    <Route path="/refactor-culture" element={<RefactoringPage />} />
                     <Route path="/roadmap" element={<RoadmapPage />} />
                     <Route path="/clean-code" element={<CleanCodePage />} />
                     <Route path="/evolution" element={<EvolutionaryPage />} />
@@ -154,6 +158,9 @@ const App: React.FC = () => {
                     <Route path="/oop-fundamentals" element={<OOPFundamentalsPage />} />
                     <Route path="/cap-theorem" element={<CAPTheoremPage />} />
                     <Route path="/acid" element={<ACIDPage />} />
+                    <Route path="/viper" element={<VIPERPage />} />
+                    <Route path="/mvvm-c" element={<MVVMCPage />} />
+                    <Route path="/anti-patterns" element={<AntiPatternsPage />} />
                     <Route path="*" element={<NotFoundPage />} />
                   </Routes>
                 </AnimatePresence>

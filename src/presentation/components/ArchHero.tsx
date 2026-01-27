@@ -38,17 +38,19 @@ const ArchHero: React.FC<ArchHeroProps> = ({ title, subtitle, description, badge
         </motion.div>
       </div>
 
-      <div className="container" style={{ marginTop: '6rem' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '2rem' }}>
-          {features.map((f, i) => (
-            <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.1 }} className="glass-card" style={{ borderTop: `4px solid ${color}` }}>
-              <div style={{ color: color, marginBottom: '1rem' }}>{f.icon}</div>
-              <h3 style={{ marginBottom: '0.5rem' }}>{f.title}</h3>
-              <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem' }}>{f.desc}</p>
-            </motion.div>
-          ))}
+      {features.length > 0 && (
+        <div className="container" style={{ marginTop: '6rem' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '2rem' }}>
+            {features.map((f, i) => (
+              <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.1 }} className="glass-card" style={{ borderTop: `4px solid ${color}` }}>
+                <div style={{ color: color, marginBottom: '1rem' }}>{f.icon}</div>
+                <h3 style={{ marginBottom: '0.5rem' }}>{f.title}</h3>
+                <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem' }}>{f.desc}</p>
+              </motion.div>
+            ))}
+          </div>
         </div>
-      </div>
+      )}
     </section>
   );
 };

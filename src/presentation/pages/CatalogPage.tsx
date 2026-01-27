@@ -110,7 +110,8 @@ const CatalogPage = () => {
         { name: 'Microkernel', path: '/microkernel', color: '#8b5cf6', desc: 'Eklenti tabanlı çekirdek sistemi.' },
         { name: 'Plug-in Arch', path: '/plugin', color: '#a78bfa', desc: 'Dinamik modül ekleme mimarisi.' },
         { name: 'Pipe-Filter', path: '/pipe-filter', color: '#c4b5fd', desc: 'Verinin süzgeçlerden akış disiplini.' },
-        { name: 'Interpreter', path: '/interpreter', color: '#8b5cf6', desc: 'Komut yorumlama ve kural işleme.' }
+        { name: 'ECS (Game Dev)', path: '/ecs', color: '#8b5cf6', desc: 'Yüksek performanslı veri odaklı tasarım.' },
+        { name: 'Interpreter', path: '/interpreter', color: '#a78bfa', desc: 'Komut yorumlama ve kural işleme.' }
       ]
     },
     {
@@ -121,7 +122,8 @@ const CatalogPage = () => {
         { name: 'MVC', path: '/mvc-mvvm', color: '#10b981', desc: 'Model-View-Controller deseni.' },
         { name: 'MVP', path: '/mvp', color: '#34d399', desc: 'Model-View-Presenter etkileşimi.' },
         { name: 'MVVM', path: '/mvvm', color: '#6ee7b7', desc: 'Model-View-ViewModel reaktif yapı.' },
-        { name: 'ECS (Game Dev)', path: '/ecs', color: '#059669', desc: 'Yüksek performanslı veri odaklı tasarım.' }
+        { name: 'MVVM-C', path: '/mvvm-c', color: '#10b981', desc: 'Navigasyon odaklı Coordinator deseni.' },
+        { name: 'VIPER', path: '/viper', color: '#059669', desc: 'Router ve Interactor tabanlı yüksek izolasyon.' }
       ]
     },
     {

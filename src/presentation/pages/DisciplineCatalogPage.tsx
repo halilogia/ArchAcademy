@@ -12,6 +12,7 @@ import {
   Beaker, 
   Layers, 
   Code2, 
+  Scissors, 
   Network,
   Palette,
   Triangle,
@@ -19,7 +20,8 @@ import {
   Box,
   CheckCircle2,
   Medal,
-  Brain
+  Brain,
+  ShieldAlert
 } from 'lucide-react';
 
 interface DisciplineItem {
@@ -51,63 +53,70 @@ const DisciplineCatalogPage = () => {
 
   const categories: DisciplineCategory[] = [
     {
-      id: 'code-craftsmanship',
-      name: 'Code Craftsmanship',
+      id: 'engineering-dna',
+      name: 'Engineering DNA',
       color: '#f43f5e',
       items: [
-        { name: 'Clean Code', path: '/clean-code', color: '#f43f5e', icon: <Code2 size={24} />, desc: 'Standardizasyon ve ekip içi ortak dil (Styling Guides).' },
-        { name: 'SOLID Principles', path: '/solid', color: '#fb7185', icon: <ShieldCheck size={24} />, desc: 'Esneklik ve sürdürülebilirliğin 5 dev kuralı.' },
-        { name: 'OOP Fundamentals', path: '/oop-fundamentals', color: '#fda4af', icon: <Box size={24} />, desc: 'Soyutlama, Kapsülleme, Miras ve Çok Biçimlilik.' }
+        { name: 'OOP Fundamentals', path: '/oop-fundamentals', color: '#f43f5e', icon: <Box size={24} />, desc: 'Abstraction, Encapsulation, Inheritance ve Polymorphism.' },
+        { name: 'SOLID Principles', path: '/solid', color: '#fb7185', icon: <ShieldCheck size={24} />, desc: 'Değişime direnç göstermeyen, esnek kodun 5 ana kuralı.' },
+        { name: 'Separation of Concerns', path: '/abstraction', color: '#fda4af', icon: <Scissors size={24} />, desc: 'Sorumlulukların mantıksal ve fiziksel olarak ayrıştırılması.' }
       ]
     },
     {
-      id: 'quality-assurance',
-      name: 'Quality & Speed',
+      id: 'craftsmanship',
+      name: 'Craftsmanship',
       color: '#10b981',
       items: [
-        { name: 'TDD Metodolojisi', path: '/tdd', color: '#10b981', icon: <CheckCircle2 size={24} />, desc: 'Red-Green-Refactor döngüsüyle önce test, sonra kod.' },
-        { name: 'Easy to Test', path: '/testing', color: '#34d399', icon: <Beaker size={24} />, desc: 'Düşük karmaşıklık odaklı test edilebilir mimari.' },
-        { name: 'Lean Philosophy', path: '/lean-architecture', color: '#6ee7b7', icon: <Target size={24} />, desc: 'Yalın, hızlı ve sadece değer üreten israfsız zihin.' }
+        { name: 'Clean Code', path: '/clean-code', color: '#10b981', icon: <Code2 size={24} />, desc: 'Temiz, okunabilir ve sürdürülebilir kod yazma sanatı.' },
+        { name: 'TDD Metodolojisi', path: '/tdd', color: '#6ee7b7', icon: <CheckCircle2 size={24} />, desc: 'Geliştirme sürecini testlerle yönetme disiplini (Red-Green-Refactor).' },
+        { name: 'Easy to Test', path: '/testing', color: '#34d399', icon: <Beaker size={24} />, desc: 'Mimariyi düşük bağımlılık ve yüksek test edilebilirlik odasına taşıma.' }
+      ]
+    },
+    {
+      id: 'arch-strategy',
+      name: 'Arch. Strategy',
+      color: '#3b82f6',
+      items: [
+        { name: 'Design Patterns', path: '/design-patterns', color: '#3b82f6', icon: <Zap size={24} />, desc: 'Tekrar eden yapısal sorunlara kanıtlanmış çözümler (GOF).' },
+        { name: 'Dependency Management', path: '/abstraction', color: '#60a5fa', icon: <Network size={24} />, desc: 'Bileşenler arası bağımlılıkların reaktif ve esnek yönetimi.' },
+        { name: 'Moderate Abstraction', path: '/abstraction', color: '#93c5fd', icon: <Layers size={24} />, desc: 'Ne çok derin ne çok sığ; tam kararında soyutlama dengesi.' }
       ]
     },
     {
       id: 'system-wisdom',
       name: 'System Wisdom',
-      color: '#3b82f6',
+      color: '#eab308',
       items: [
-        { name: 'CAP Theorem', path: '/cap-theorem', color: '#3b82f6', icon: <Triangle size={24} />, desc: 'Dağıtık sistemlerde Tutarlılık ve Erişilebilirlik dengesi.' },
-        { name: 'ACID Principles', path: '/acid', color: '#60a5fa', icon: <Database size={24} />, desc: 'Atomiklik, Tutarlılık, İzolasyon ve Dayanıklılık.' },
-        { name: 'Design Patterns', path: '/design-patterns', color: '#93c5fd', icon: <Zap size={24} />, desc: 'Tekrar eden sorunlara kanıtlanmış yapısal çözümler (GOF).' }
+        { name: 'CAP Theorem', path: '/cap-theorem', color: '#eab308', icon: <Triangle size={24} />, desc: 'Dağıtık sistemlerdeki vazgeçilmez 3\'lü denge yasası.' },
+        { name: 'ACID Principles', path: '/acid', color: '#facc15', icon: <Database size={24} />, desc: 'Transaction güvenliği ve veri bütünlüğünün teminatı.' },
+        { name: 'Robustness & Reliability', path: '/robustness', color: '#fde047', icon: <Activity size={24} />, desc: 'Hatalara karşı toleranslı ve sarsılmaz çalışma prensibi.' }
       ]
     },
     {
-      id: 'resilience-safety',
-      name: 'Resilience & Safety',
-      color: '#ef4444',
-      items: [
-        { name: 'Security Assurance', path: '/security', color: '#ef4444', icon: <Lock size={24} />, desc: 'SQL Injection, XSS ve Veri Sızıntısına karşı kalkan.' },
-        { name: 'Robustness & Reliability', path: '/robustness', color: '#f87171', icon: <Activity size={24} />, desc: 'Network ve IO hatalarına karşı sarsılmaz tasarım.' },
-        { name: 'Docs & Annotations', path: '/docs-annotations', color: '#fca5a5', icon: <BookOpen size={24} />, desc: 'Neden (Why) sorusuna cevap veren mimari ADR kültürü.' }
-      ]
-    },
-    {
-      id: 'component-systems',
-      name: 'Component Systems',
+      id: 'ui-arch',
+      name: 'UI Architecture',
       color: '#f97316',
       items: [
-        { name: 'MVC Pattern', path: '/mvc-mvvm', color: '#f97316', icon: <Layers size={24} />, desc: 'Veri, arayüz ve kontrol mantığının disiplinli ayrışması.' },
-        { name: 'Atomic Design', path: '/atomic-design', color: '#fb923c', icon: <Sparkles size={24} />, desc: 'Bileşenleri hiyerarşik bir sistemle inşa etme sanatı.' },
-        { name: 'Design Tokens', path: '/design-tokens', color: '#fdba74', icon: <Palette size={24} />, desc: 'Görsel atomların mimari seviyede tek kaynaktan yönetimi.' }
+        { name: 'Atomic Design', path: '/atomic-design', color: '#f97316', icon: <Sparkles size={24} />, desc: 'Arayüzü atomlardan sayfalara hiyerarşik inşa etme.' },
+        { name: 'Design Tokens', path: '/design-tokens', color: '#fb923c', icon: <Palette size={24} />, desc: 'Marka değerlerinin mimari seviyede tek merkezden yönetimi.' }
       ]
     },
     {
-      id: 'architectural-balance',
-      name: 'Arch. Balance',
+      id: 'governance',
+      name: 'Governance',
       color: '#a855f7',
       items: [
-        { name: 'Domain-Driven Design', path: '/ddd', color: '#a855f7', icon: <Brain size={24} />, desc: 'İş mantığını dil ve bağlam (context) odağında tasarlama.' },
-        { name: 'Moderate Abstraction', path: '/abstraction', color: '#c084fc', icon: <Layers size={24} />, desc: 'Tam kararında soyutlama ve mantıksal ayrışma.' },
-        { name: 'Dependency Management', path: '/abstraction', color: '#d8b4fe', icon: <Network size={24} />, desc: 'Global bağımlılıkları azaltın, bileşenleri bağımsızlaştırın.' }
+        { name: 'Security Assurance', path: '/security', color: '#a855f7', icon: <Lock size={24} />, desc: 'Mimari seviyede güvenlik katmanları ve kalkan önlemleri.' },
+        { name: 'Docs & Annotations', path: '/docs-annotations', color: '#c084fc', icon: <BookOpen size={24} />, desc: 'Kararların nedenlerini (ADR) dökümante etme kültürü.' },
+        { name: 'Lean Philosophy', path: '/lean-architecture', color: '#d8b4fe', icon: <Target size={24} />, desc: 'İsraftan kaçınma ve sürekli değer üretme zihin yapısı.' }
+      ]
+    },
+    {
+      id: 'anti-patterns',
+      name: 'Anti-Patterns',
+      color: '#475569',
+      items: [
+        { name: 'Architecture Hall of Shame', path: '/anti-patterns', color: '#475569', icon: <ShieldAlert size={24} />, desc: 'Kaçınılması gereken tehlikeli mimari tuzaklar ve anti-pattern galerisi.' }
       ]
     }
   ];

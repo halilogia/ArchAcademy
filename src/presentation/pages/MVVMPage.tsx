@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { motion } from 'framer-motion';
+import React, { useEffect, useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import ArchHero from '../components/ArchHero';
 import MVVMFlow from '../components/MVVMFlow';
 import WhyLayered from '../components/WhyLayered';
@@ -17,12 +17,20 @@ import {
   CheckCircle2,
   XCircle,
   ArrowLeftRight,
-  Cpu
+  Cpu,
+  Layers,
+  Brain,
+  Palette,
+  ExternalLink,
+  Compass,
+  ArrowRight,
+  Activity
 } from 'lucide-react';
 import { useProgress } from '../../context/ProgressContext';
 
 const MVVMPage = () => {
   const { completeStep } = useProgress();
+  const [activeTab, setActiveTab] = useState<'principles' | 'hybrid'>('principles');
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -33,7 +41,6 @@ const MVVMPage = () => {
 
   const illu = (
     <div style={{ position: 'relative', width: '350px', height: '300px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        {/* Animated Background Ring */}
         <motion.div
           animate={{ rotate: 360 }}
           transition={{ repeat: Infinity, duration: 20, ease: "linear" }}
@@ -45,8 +52,6 @@ const MVVMPage = () => {
             borderRadius: '50%' 
           }}
         />
-
-        {/* Nodes */}
         <div style={{ position: 'relative', display: 'flex', gap: '20px', alignItems: 'center' }}>
           <motion.div 
             initial={{ x: -20, opacity: 0 }}
@@ -57,15 +62,9 @@ const MVVMPage = () => {
             <Layout size={32} color="#ec4899" />
             <div style={{ fontSize: '0.7rem', fontWeight: 900, marginTop: '8px', color: '#ec4899' }}>VIEW</div>
           </motion.div>
-
-          <motion.div
-            animate={{ scale: [1, 1.1, 1] }}
-            transition={{ repeat: Infinity, duration: 2 }}
-            style={{ color: '#ec4899' }}
-          >
+          <motion.div animate={{ scale: [1, 1.1, 1] }} transition={{ repeat: Infinity, duration: 2 }} style={{ color: '#ec4899' }}>
             <ArrowLeftRight size={24} />
           </motion.div>
-
           <motion.div 
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
@@ -75,15 +74,9 @@ const MVVMPage = () => {
             <Cpu size={32} color="white" />
             <div style={{ fontSize: '0.7rem', fontWeight: 900, marginTop: '8px', color: 'white' }}>VIEW-MODEL</div>
           </motion.div>
-
-          <motion.div
-             animate={{ scale: [1, 1.1, 1] }}
-             transition={{ repeat: Infinity, duration: 2, delay: 0.5 }}
-             style={{ color: '#ec4899' }}
-          >
+          <motion.div animate={{ scale: [1, 1.1, 1] }} transition={{ repeat: Infinity, duration: 2, delay: 0.5 }} style={{ color: '#ec4899' }}>
             <ArrowLeftRight size={24} />
           </motion.div>
-
           <motion.div 
             initial={{ x: 20, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
@@ -98,11 +91,7 @@ const MVVMPage = () => {
   );
 
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-    >
+    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
       <ArchHero 
         title="MVVM"
         subtitle="Architecture"
@@ -110,97 +99,234 @@ const MVVMPage = () => {
         badge="Reactive & Decoupled"
         color="#ec4899"
         illustration={illu}
-        features={[
+        features={activeTab === 'principles' ? [
           { icon: <Zap />, title: "Data Binding", desc: "ViewModel'deki state değiştiğinde View (UI) anında ve otomatik olarak güncellenir." },
           { icon: <CheckCircle2 />, title: "Testability", desc: "ViewModel, UI framework'ünden bağımsız olduğu için saf logic testleri kolaylaşır." },
           { icon: <Share2 />, title: "Decoupling", desc: "View ve Model birbirini asla tanımaz; aradaki köprü ViewModel'dir." }
-        ]}
-      />
+        ] : []}
+      >
+        <div style={{ 
+          marginTop: '2rem',
+          padding: '6px', 
+          background: 'rgba(15, 23, 42, 0.4)', 
+          borderRadius: '24px', 
+          border: '1px solid rgba(255,255,255,0.05)',
+          display: 'inline-flex',
+          alignItems: 'center',
+          gap: '4px',
+          backdropFilter: 'blur(10px)'
+        }}>
+          {[
+            { id: 'principles', label: 'Principles', icon: <Layers size={18} /> },
+            { id: 'hybrid', label: 'Hybrid Approach', icon: <Compass size={18} /> }
+          ].map((tab) => (
+            <button
+              key={tab.id}
+              onClick={() => setActiveTab(tab.id as any)}
+              style={{
+                padding: '10px 24px',
+                borderRadius: '18px',
+                border: 'none',
+                background: activeTab === tab.id ? '#ec4899' : 'transparent',
+                color: activeTab === tab.id ? 'white' : 'rgba(255,255,255,0.5)',
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '8px',
+                fontWeight: 700,
+                fontSize: '0.9rem',
+                transition: 'all 0.3s ease',
+                boxShadow: activeTab === tab.id ? '0 4px 12px rgba(236, 72, 153, 0.3)' : 'none'
+              }}
+            >
+              {tab.icon} {tab.label}
+            </button>
+          ))}
+        </div>
+      </ArchHero>
 
-      <MVVMFlow />
-      <WhyLayered />
-      <FlutterBestPractices />
+      <AnimatePresence mode="wait">
+        {activeTab === 'principles' && (
+          <motion.div 
+            key="principles" 
+            initial={{ opacity: 0, y: 20 }} 
+            animate={{ opacity: 1, y: 0 }} 
+            exit={{ opacity: 0, y: -20 }}
+          >
+            <MVVMFlow />
+            <FlutterBestPractices />
+            
+            <section style={{ padding: '80px 0', background: 'var(--bg-dark)' }}>
+              <div className="container">
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))', gap: '3rem' }}>
+                  <div className="glass-card">
+                    <h3 style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '1.5rem', color: '#ec4899' }}>
+                      <Layout size={24} /> UI Katmanı
+                    </h3>
+                    <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                      <li style={{ display: 'flex', gap: '10px' }}>
+                        <Code2 size={18} color="#ec4899" style={{ flexShrink: 0 }} />
+                        <div><strong>View (Widgets):</strong> Sadece görseli tanımlar. İş mantığı barındırmaz. Flutter'da bunlar Stateless veya Stateful widget'lardır.</div>
+                      </li>
+                      <li style={{ display: 'flex', gap: '10px' }}>
+                        <Terminal size={18} color="#ec4899" style={{ flexShrink: 0 }} />
+                        <div><strong>ViewModel:</strong> Veriyi UI State'e dönüştürür. Repositories'den gelen veriyi View'un anlayacağı formata sokar.</div>
+                      </li>
+                    </ul>
+                  </div>
+                  <div className="glass-card">
+                    <h3 style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '1.5rem', color: '#3b82f6' }}>
+                      <Database size={24} /> Veri Katmanı
+                    </h3>
+                    <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                      <li style={{ display: 'flex', gap: '10px' }}>
+                        <Box size={18} color="#3b82f6" style={{ flexShrink: 0 }} />
+                        <div><strong>Repositories:</strong> Tekil gerçeklik kaynağıdır (Single Source of Truth). Caching, error handling ve retry mantığı burada yaşar.</div>
+                      </li>
+                      <li style={{ display: 'flex', gap: '10px' }}>
+                        <Server size={18} color="#3b82f6" style={{ flexShrink: 0 }} />
+                        <div><strong>Services:</strong> En alt katmandır. API endpoint'lerini veya yerel dosyaları wrap eder. Hiçbir state tutmazlar.</div>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
 
-      <section style={{ padding: '80px 0', background: 'var(--bg-dark)' }}>
-        <div className="container">
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))', gap: '3rem' }}>
-            {/* UI Layer Details */}
-            <div className="glass-card">
-              <h3 style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '1.5rem', color: '#ec4899' }}>
-                <Layout size={24} /> UI Katmanı
-              </h3>
-              <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                <li style={{ display: 'flex', gap: '10px' }}>
-                  <Code2 size={18} color="#ec4899" style={{ flexShrink: 0 }} />
-                  <div>
-                    <strong>View (Widgets):</strong> Sadece görseli tanımlar. İş mantığı barındırmaz. Flutter'da bunlar Stateless veya Stateful widget'lardır.
+                <div style={{ marginTop: '6rem' }}>
+                  <h2 className="section-title" style={{ textAlign: 'center', marginBottom: '3rem' }}>Trade-off Analizi</h2>
+                  <div className="glass-card" style={{ padding: 0, overflow: 'hidden' }}>
+                    <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left' }}>
+                      <thead style={{ background: 'rgba(236, 72, 153, 0.1)' }}>
+                        <tr>
+                          <th style={{ padding: '1.5rem', color: '#ec4899', fontSize: '1.1rem' }}>Avantajlar (Pros)</th>
+                          <th style={{ padding: '1.5rem', color: '#f59e0b', fontSize: '1.1rem' }}>Dezavantajlar (Cons)</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td style={{ padding: '1.5rem', borderRight: '1px solid var(--glass-border)', verticalAlign: 'top' }}>
+                            <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                              <div style={{ display: 'flex', gap: '10px' }}><CheckCircle2 size={18} color="#10b981" /> Bağımsız Test Edilebilirlik</div>
+                              <div style={{ display: 'flex', gap: '10px' }}><CheckCircle2 size={18} color="#10b981" /> UI ve İş Mantığı Ayrımı</div>
+                              <div style={{ display: 'flex', gap: '10px' }}><CheckCircle2 size={18} color="#10b981" /> Reaktif ve Dinamik UI Yapısı</div>
+                            </div>
+                          </td>
+                          <td style={{ padding: '1.5rem', verticalAlign: 'top' }}>
+                            <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                              <div style={{ display: 'flex', gap: '10px' }}><XCircle size={18} color="#ef4444" /> Küçük Projeler İçin Overkill</div>
+                              <div style={{ display: 'flex', gap: '10px' }}><XCircle size={18} color="#ef4444" /> Boilerplate (Fazla Dosya) Sayısı</div>
+                              <div style={{ display: 'flex', gap: '10px' }}><XCircle size={18} color="#ef4444" /> Öğrenme Eğrisi (Reactive Paradigm)</div>
+                            </div>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
                   </div>
-                </li>
-                <li style={{ display: 'flex', gap: '10px' }}>
-                  <Terminal size={18} color="#ec4899" style={{ flexShrink: 0 }} />
-                  <div>
-                    <strong>ViewModel:</strong> Veriyi UI State'e dönüştürür. Repositories'den gelen veriyi View'un anlayacağı formata sokar.
-                  </div>
-                </li>
-              </ul>
-            </div>
+                </div>
+              </div>
+            </section>
+          </motion.div>
+        )}
 
-            {/* Data Layer Details */}
-            <div className="glass-card">
-              <h3 style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '1.5rem', color: '#3b82f6' }}>
-                <Database size={24} /> Veri Katmanı
-              </h3>
-              <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                <li style={{ display: 'flex', gap: '10px' }}>
-                  <Box size={18} color="#3b82f6" style={{ flexShrink: 0 }} />
-                  <div>
-                    <strong>Repositories:</strong> Tekil gerçeklik kaynağıdır (Single Source of Truth). Caching, error handling ve retry mantığı burada yaşar.
-                  </div>
-                </li>
-                <li style={{ display: 'flex', gap: '10px' }}>
-                  <Server size={18} color="#3b82f6" style={{ flexShrink: 0 }} />
-                  <div>
-                    <strong>Services:</strong> En alt katmandır. API endpoint'lerini veya yerel dosyaları wrap eder. Hiçbir state tutmazlar.
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </div>
+        {activeTab === 'hybrid' && (
+          <motion.div 
+            key="hybrid" 
+            initial={{ opacity: 0, y: 20 }} 
+            animate={{ opacity: 1, y: 0 }} 
+            exit={{ opacity: 0, y: -20 }}
+          >
+            {/* WhyLayered component is moved here to explain Google's reasoning */}
+            <WhyLayered />
 
-          {/* Trade-off Analysis */}
-          <div style={{ marginTop: '6rem' }}>
-            <h2 className="section-title" style={{ textAlign: 'center', marginBottom: '3rem' }}>Trade-off Analizi</h2>
-            <div className="glass-card" style={{ padding: 0, overflow: 'hidden' }}>
-              <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left' }}>
-                <thead style={{ background: 'rgba(236, 72, 153, 0.1)' }}>
-                  <tr>
-                    <th style={{ padding: '1.5rem', color: '#ec4899', fontSize: '1.1rem' }}>Avantajlar (Pros)</th>
-                    <th style={{ padding: '1.5rem', color: '#f59e0b', fontSize: '1.1rem' }}>Dezavantajlar (Cons)</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td style={{ padding: '1.5rem', borderRight: '1px solid var(--glass-border)', verticalAlign: 'top' }}>
-                      <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                        <div style={{ display: 'flex', gap: '10px' }}><CheckCircle2 size={18} color="#10b981" /> Bağımsız Test Edilebilirlik</div>
-                        <div style={{ display: 'flex', gap: '10px' }}><CheckCircle2 size={18} color="#10b981" /> UI ve İş Mantığı Ayrımı</div>
-                        <div style={{ display: 'flex', gap: '10px' }}><CheckCircle2 size={18} color="#10b981" /> Reaktif ve Dinamik UI Yapısı</div>
+            <section style={{ padding: '100px 0', background: 'rgba(59, 130, 246, 0.03)', borderTop: '1px solid var(--glass-border)' }}>
+              <div className="container">
+                <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
+                  <div style={{ 
+                    display: 'inline-flex', 
+                    alignItems: 'center', 
+                    gap: '0.5rem', 
+                    padding: '0.5rem 1rem', 
+                    marginBottom: '1.5rem',
+                    borderRadius: '100px',
+                    background: 'rgba(59, 130, 246, 0.1)',
+                    color: '#3b82f6',
+                    border: '1px solid rgba(59, 130, 246, 0.2)'
+                  }}>
+                    <Compass size={16} /> 
+                    <span style={{ fontSize: '0.8rem', fontWeight: 700, textTransform: 'uppercase' }}>Google Engineering Standard</span>
+                  </div>
+                  <h2 style={{ fontSize: '2.5rem', fontWeight: 900, marginBottom: '1rem' }}>Hibrit MVVM Yaklaşımı</h2>
+                  <p style={{ color: 'var(--text-secondary)', maxWidth: '700px', margin: '0 auto' }}>
+                    Büyük ölçekli projelerde bağımlılıkları yönetmenin en asil yolu: Veriyi merkezi, arayüzü özellik bazlı kurgulamaktır.
+                  </p>
+                </div>
+
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4rem', alignItems: 'center' }}>
+                  <div>
+                    <h3 style={{ fontSize: '1.8rem', marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                      <Layers color="#3b82f6" /> Merkezi Mantık vs. Özellik Bazlı UI
+                    </h3>
+                    <p style={{ color: 'var(--text-secondary)', lineHeight: 1.8, marginBottom: '2rem' }}>
+                      Google'ın önerdiği bu hibrit yapı, uygulamanın farklı katmanlarını "değişim sıklığına" göre gruplar. 
+                      Data ve Domain katmanları bir kütüphane gibi <strong>merkezi (Type-based)</strong> dururken, UI katmanı tamamen bağımsız <strong>özelliklere (Feature-based)</strong> bölünür.
+                    </p>
+                    
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                      <div className="glass-card" style={{ padding: '1.5rem', borderLeft: '4px solid #3b82f6' }}>
+                        <div style={{ fontWeight: 800, marginBottom: '0.5rem' }}>lib/data & lib/domain (Horizontal)</div>
+                        <div style={{ fontSize: '0.9rem', color: 'var(--text-secondary)' }}>Repositories ve Modeller merkezi kalır. Her feature bunlara erişebilir.</div>
                       </div>
-                    </td>
-                    <td style={{ padding: '1.5rem', verticalAlign: 'top' }}>
-                      <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                        <div style={{ display: 'flex', gap: '10px' }}><XCircle size={18} color="#ef4444" /> Küçük Projeler İçin Overkill</div>
-                        <div style={{ display: 'flex', gap: '10px' }}><XCircle size={18} color="#ef4444" /> Boilerplate (Fazla Dosya) Sayısı</div>
-                        <div style={{ display: 'flex', gap: '10px' }}><XCircle size={18} color="#ef4444" /> Öğrenme Eğrisi (Reactive Paradigm)</div>
+                      <div className="glass-card" style={{ padding: '1.5rem', borderLeft: '4px solid #10b981' }}>
+                        <div style={{ fontWeight: 800, marginBottom: '0.5rem' }}>lib/ui/features (Vertical)</div>
+                        <div style={{ fontSize: '0.9rem', color: 'var(--text-secondary)' }}>Her sayfa (Auth, Home vb.) kendi ViewModel ve Widget'larını içinde saklar.</div>
                       </div>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
+                    </div>
+                  </div>
+
+                  <div style={{ background: 'rgba(0,0,0,0.3)', padding: '2rem', borderRadius: '32px', border: '1px solid var(--glass-border)' }}>
+                     <h4 style={{ marginBottom: '1.5rem', color: '#3b82f6', fontSize: '1.1rem' }}>Mimarinin Faydaları:</h4>
+                     {[
+                       "Farklı ekipler aynı data katmanını kullanıp farklı featurelar geliştirebilir.",
+                       "Bir feature silindiğinde diğerlerini asla etkilemez.",
+                       "Unit testler domain katmanında, Widget testler feature katmanında izole edilir.",
+                       "Uygulama büyüdükçe lib klasörü bir çöplüğe dönüşmez."
+                     ].map((text, i) => (
+                       <div key={i} style={{ display: 'flex', gap: '1rem', marginBottom: '1rem', alignItems: 'flex-start' }}>
+                          <CheckCircle2 size={18} color="#3b82f6" style={{ flexShrink: 0, marginTop: '2px' }} />
+                          <span style={{ fontSize: '0.95rem', color: 'rgba(255,255,255,0.8)' }}>{text}</span>
+                       </div>
+                     ))}
+                  </div>
+                </div>
+
+                <div style={{ 
+                  marginTop: '5rem', 
+                  padding: '2rem', 
+                  borderRadius: '24px', 
+                  background: 'linear-gradient(90deg, rgba(30, 41, 59, 0.4) 0%, rgba(15, 23, 42, 0.4) 100%)',
+                  border: '1px dashed rgba(255,255,255,0.1)',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  textAlign: 'center'
+                }}>
+                  <div style={{ color: '#64748b', fontSize: '0.8rem', fontWeight: 800, textTransform: 'uppercase', marginBottom: '1rem', letterSpacing: '2px' }}>Reference & Case Study</div>
+                  <p style={{ color: 'var(--text-secondary)', marginBottom: '1.5rem', maxWidth: '600px' }}>
+                    Bu hibrit yaklaşım ve paketleme stratejisi, Google Flutter ekibinin resmi mimari vaka analizinden ilham almıştır.
+                  </p>
+                  <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', justifyContent: 'center' }}>
+              <a href="https://docs.flutter.dev/app-architecture/case-study" target="_blank" rel="noopener noreferrer" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', color: '#3b82f6', fontWeight: 700, textDecoration: 'none', padding: '0.8rem 1.5rem', background: 'rgba(59, 130, 246, 0.1)', borderRadius: '12px', transition: 'all 0.2s' }}>
+                Google Architecture Case Study <ExternalLink size={16} />
+              </a>
+              <a href="https://developer.android.com/topic/modularization?hl=tr" target="_blank" rel="noopener noreferrer" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', color: '#10b981', fontWeight: 700, textDecoration: 'none', padding: '0.8rem 1.5rem', background: 'rgba(16, 185, 129, 0.1)', borderRadius: '12px', transition: 'all 0.2s' }}>
+                Android Modularization Guide <ExternalLink size={16} />
+              </a>
             </div>
           </div>
         </div>
       </section>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.div>
   );
 };

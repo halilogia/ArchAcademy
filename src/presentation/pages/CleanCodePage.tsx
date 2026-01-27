@@ -1,42 +1,54 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { scissors, Scissors, CheckCircle2, XCircle, Divide, Sparkles } from 'lucide-react';
-import Navbar from '../components/Navbar';
+import ArchHero from '../components/ArchHero';
+import { Sparkles, Code2, Scissors, CheckCircle2, XCircle, Divide, Search, Zap } from 'lucide-react';
 
 const CleanCodePage: React.FC = () => {
   return (
-    <div style={{ minHeight: '100vh', background: 'var(--bg-dark)', color: 'var(--text-primary)', paddingTop: '80px' }}>
+    <div style={{ minHeight: '100vh', background: 'var(--bg-dark)', color: 'var(--text-primary)' }}>
       
-      {/* --- HERO SECTION --- */}
-      <section style={{ padding: '80px 0', position: 'relative', overflow: 'hidden' }}>
-        <div className="container">
-          <div style={{ maxWidth: '800px', margin: '0 auto', textAlign: 'center' }}>
-            <div style={{ 
-              display: 'inline-flex', 
-              alignItems: 'center', 
-              gap: '0.5rem', 
-              padding: '0.5rem 1rem', 
-              marginBottom: '2rem',
-              borderRadius: '100px',
-              background: 'rgba(16, 185, 129, 0.1)',
-              color: '#10b981',
-              border: '1px solid rgba(16, 185, 129, 0.2)'
-            }}>
-               <Sparkles size={16} /> 
-               <span style={{ fontSize: '0.8rem', fontWeight: 700, textTransform: 'uppercase' }}>Software Craftsmanship</span>
+      <ArchHero 
+        title="Clean Code"
+        subtitle="Zanaatkarlık Sanatı"
+        description="Yazdığın kodu 6 ay sonra açtığında 'Bunu hangi idiot yazdı?' demek istemiyorsan, Clean Code opsiyonel değil, bir zorunluluktur. Temiz kod, bir varış noktası değil; sürekli bir yolculuktur."
+        badge="Software Craftsmanship"
+        color="#10b981"
+        illustration={
+          <div style={{ position: 'relative', width: '300px', height: '300px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <motion.div
+              animate={{ rotate: 360 }}
+              transition={{ repeat: Infinity, duration: 20, ease: "linear" }}
+              style={{ position: 'absolute', width: '280px', height: '280px', border: '2px dashed #10b98122', borderRadius: '50%' }}
+            />
+             <motion.div
+              animate={{ scale: [1, 1.1, 1], rotate: -360 }}
+              transition={{ repeat: Infinity, duration: 25, ease: "linear" }}
+              style={{ position: 'absolute', width: '200px', height: '200px', border: '1px solid #10b98144', borderRadius: '30%' }}
+            />
+            <div className="glass-card" style={{ padding: '2.5rem', borderRadius: '32px', background: 'rgba(16, 185, 129, 0.1)', position: 'relative', zIndex: 2 }}>
+               <motion.div
+                 animate={{ y: [0, -10, 0] }}
+                 transition={{ repeat: Infinity, duration: 3 }}
+               >
+                 <Code2 size={80} color="#10b981" />
+               </motion.div>
+               <motion.div
+                 animate={{ scale: [0, 1.2, 0], opacity: [0, 1, 0] }}
+                 transition={{ repeat: Infinity, duration: 2, delay: 0.5 }}
+                 style={{ position: 'absolute', top: '10px', right: '10px' }}
+               >
+                 <Sparkles size={24} color="#10b981" />
+               </motion.div>
             </div>
-            
-            <h1 className="gradient-text" style={{ fontSize: '3.5rem', fontWeight: 900, lineHeight: 1.1, marginBottom: '2rem' }}>
-              Temiz Kod, Arkanı Toplamaktır.
-            </h1>
-            <p style={{ fontSize: '1.2rem', color: 'var(--text-secondary)', lineHeight: 1.8 }}>
-              Yazdığın kodu 6 ay sonra açtığında <b>"Bunu hangi idiot yazdı?"</b> demek istemiyorsan, Clean Code opsiyonel değil, zorunluluktur.
-              Burada süslü teoriler yok; sadece gece rahat uyumanı sağlayacak gerçekler var.
-            </p>
           </div>
-        </div>
-      </section>
+        }
+        features={[
+          { icon: <CheckCircle2 />, title: "Self-Documenting", desc: "Kodun kendini dökümante etmesi." },
+          { icon: <Zap />, title: "Boy-Scout Rule", desc: "Bulduğundan daha temiz bırak." },
+          { icon: <Search />, title: "Readability", desc: "Önce insan sonra makine anlasın." }
+        ]}
+      />
 
       {/* --- PRACTICAL BLOG CONTENT --- */}
       <section style={{ padding: '40px 0 100px' }}>
