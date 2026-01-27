@@ -3155,6 +3155,15 @@ export const GLOSSARY_TERMS: GlossaryTerm[] = [
       term: 'Layer-First vs Feature-First',
       definition: 'Mimarinin klasör organizasyonu stratejisidir. Layer-First kodu teknik katmanlara (Domain, Infra vb.) göre bölerken; Feature-First kodu iş özelliklerine (Orders, Users vb.) göre dikey dilimler (Vertical Slices) halinde böler.',
       category: 'Foundation',
-      guruTip: 'Modern projelerde "Feature-First" yaklaşımı sürdürülebilirlik ve bağımsızlık açısından çok daha üstündür; mimarinin ne iş yaptığını "haykırmasını" sağlar.'
+      guruTip: 'Modern projelerde "Feature-First" yaklaşımı sürdürülebilirlik and bağımsızlık açısından çok daha üstündür; mimarinin ne iş yaptığını "haykırmasını" sağlar.'
+    },
+    {
+      id: 452,
+      term: 'Islands Architecture',
+      definition: 'Sadece sayfanın interaktif olan kısımlarının (adalar) JavaScript ile canlandırıldığı, geri kalanının statik HTML kaldığı modern frontend mimarisidir.',
+      category: 'UI Architecture',
+      guruTip: 'Astro gibi frameworklerin temelidir. Gereksiz JavaScript yükünü (vampire code) yok eder.'
     }
 ];
+
+

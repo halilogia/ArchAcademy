@@ -223,7 +223,7 @@ const HomePage = () => {
              <h2 style={{ fontSize: '4.5rem', marginBottom: '1.5rem', fontWeight: 950, letterSpacing: '-3px', lineHeight: 1 }}>Better Code, <br /> Better Future.</h2>
              <p style={{ maxWidth: '800px', margin: '0 auto 4rem', color: 'var(--text-secondary)', fontSize: '1.3rem', lineHeight: 1.8 }}>
                Bu portal, topluluk tarafından geliştirilen açık kaynaklı bir eğitim projesidir. 
-               Her gün mimari becerilerinizi geliştirecek yeni içerikler ekliyoruz.
+               Mimari becerilerinizi sürekli geliştirecek içerikler ve güncellemeler ekliyoruz.
              </p>
               <div style={{ display: 'flex', gap: '2rem', justifyContent: 'center' }}>
                 <a href="https://github.com/halilogia/ArchAcademy" target="_blank" rel="noopener noreferrer" style={{ padding: '1.25rem 3rem', background: 'white', color: 'black', borderRadius: '24px', fontWeight: 900, textDecoration: 'none', transition: 'all 0.3s', boxShadow: '0 10px 40px rgba(255,255,255,0.1)' }}>GitHub Arşivini Gez</a>

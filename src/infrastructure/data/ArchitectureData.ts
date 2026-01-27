@@ -56,8 +56,16 @@ export const ARCHITECTURES: Record<string, Architecture> = {
     desc: 'Karmaşıklıktan kaçınan, her şeyi tek bir pakette toplayan sağlam bir temel. Solo ve küçük ekipler için mermi gibi hızlı sonuç verir.',
     color: '#3b82f6',
     pros: ['Kolay Debugging', 'Hızlı Deployment', 'Düşük Altyapı Maliyeti']
+  },
+  hexagonal: {
+    title: 'Hexagonal (Ports & Adapters)',
+    tag: 'THE ADAPTER',
+    desc: 'Uygulamayı dış dünyadan (DB, UI, API) tamamen izole eden, test edilebilirliği zirveye taşıyan esnek bir yapı.',
+    color: '#10b981',
+    pros: ['Kolay Teknoloji Değişimi', 'Yüksek Test Kapsamı', 'Side-Effect İzolasyonu']
   }
 };
+
 
 export const WIZARD_QUESTIONS: Question[] = [
   {

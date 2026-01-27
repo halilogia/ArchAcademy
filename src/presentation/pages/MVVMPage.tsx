@@ -227,7 +227,7 @@ const MVVMPage = () => {
                 </div>
               </div>
             </section>
-            <RefactoringGuide />
+
           </motion.div>
         )}
 
@@ -433,6 +433,7 @@ const MVVMPage = () => {
           </div>
         </div>
       </section>
+            <RefactoringGuide />
           </motion.div>
         )}
       </AnimatePresence>
