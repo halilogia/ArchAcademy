@@ -4,6 +4,8 @@ import ArchHero from '../components/ArchHero';
 import MVVMFlow from '../components/MVVMFlow';
 import WhyLayered from '../components/WhyLayered';
 import FlutterBestPractices from '../components/FlutterBestPractices';
+import AndroidPrinciples from '../components/AndroidPrinciples';
+import ArchReferences from '../components/ArchReferences';
 import RefactoringGuide from '../components/RefactoringGuide';
 import { 
   Layout, 
@@ -229,6 +231,9 @@ const MVVMPage = () => {
               </div>
             </section>
 
+            <AndroidPrinciples />
+            <RefactoringGuide />
+            <ArchReferences />
           </motion.div>
         )}
 
@@ -245,6 +250,69 @@ const MVVMPage = () => {
               title={<>Google Neden Hibrit <br/><span className="gradient-text">Yapıyı Öneriyor?</span></>}
               description="Google'ın resmi mimari vaka çalışmaları, MVVM'in esnekliği ile katmanlı yapının disiplinini birleştiren Hibrit modeli savunur. Bu sayede hem hız hem de ölçeklenebilirlik korunur."
             />
+
+            <section style={{ padding: '100px 0', background: 'rgba(59, 130, 246, 0.03)', borderTop: '1px solid var(--glass-border)' }}>
+              <div className="container">
+                <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
+                  <div style={{ 
+                    display: 'inline-flex', 
+                    alignItems: 'center', 
+                    gap: '0.5rem', 
+                    padding: '0.5rem 1rem', 
+                    marginBottom: '1.5rem',
+                    borderRadius: '100px',
+                    background: 'rgba(59, 130, 246, 0.1)',
+                    color: '#3b82f6',
+                    border: '1px solid rgba(59, 130, 246, 0.2)'
+                  }}>
+                    <Compass size={16} /> 
+                    <span style={{ fontSize: '0.8rem', fontWeight: 700, textTransform: 'uppercase' }}>Google Engineering Standard</span>
+                  </div>
+                  <h2 style={{ fontSize: '2.5rem', fontWeight: 900, marginBottom: '1rem' }}>Hibrit MVVM Yaklaşımı</h2>
+                  <p style={{ color: 'var(--text-secondary)', maxWidth: '700px', margin: '0 auto' }}>
+                    Büyük ölçekli projelerde bağımlılıkları yönetmenin en asil yolu: Veriyi merkezi, arayüzü özellik bazlı kurgulamaktır.
+                  </p>
+                </div>
+
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4rem', alignItems: 'center' }}>
+                  <div>
+                    <h3 style={{ fontSize: '1.8rem', marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                      <Layers color="#3b82f6" /> Merkezi Mantık vs. Özellik Bazlı UI
+                    </h3>
+                    <p style={{ color: 'var(--text-secondary)', lineHeight: 1.8, marginBottom: '2rem' }}>
+                      Google'ın önerdiği bu hibrit yapı, uygulamanın farklı katmanlarını "değişim sıklığına" göre gruplar. 
+                      Data ve Domain katmanları bir kütüphane gibi <strong>merkezi (Type-based)</strong> dururken, UI katmanı tamamen bağımsız <strong>özelliklere (Feature-based)</strong> bölünür.
+                    </p>
+                    
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                      <div className="glass-card" style={{ padding: '1.5rem', borderLeft: '4px solid #3b82f6' }}>
+                        <div style={{ fontWeight: 800, marginBottom: '0.5rem' }}>lib/data & lib/domain (Horizontal)</div>
+                        <div style={{ fontSize: '0.9rem', color: 'var(--text-secondary)' }}>Repositories ve Modeller merkezi kalır. Her feature bunlara erişebilir.</div>
+                      </div>
+                      <div className="glass-card" style={{ padding: '1.5rem', borderLeft: '4px solid #10b981' }}>
+                        <div style={{ fontWeight: 800, marginBottom: '0.5rem' }}>lib/ui/features (Vertical)</div>
+                        <div style={{ fontSize: '0.9rem', color: 'var(--text-secondary)' }}>Her sayfa (Auth, Home vb.) kendi ViewModel ve Widget'larını içinde saklar.</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div style={{ background: 'rgba(0,0,0,0.3)', padding: '2rem', borderRadius: '32px', border: '1px solid var(--glass-border)' }}>
+                     <h4 style={{ marginBottom: '1.5rem', color: '#3b82f6', fontSize: '1.1rem' }}>Mimarinin Faydaları:</h4>
+                     {[
+                       "Farklı ekipler aynı data katmanını kullanıp farklı featurelar geliştirebilir.",
+                       "Bir feature silindiğinde diğerlerini asla etkilemez.",
+                       "Unit testler domain katmanında, Widget testler feature katmanında izole edilir.",
+                       "Uygulama büyüdükçe lib klasörü bir çöplüğe dönüşmez."
+                     ].map((text, i) => (
+                       <div key={i} style={{ display: 'flex', gap: '1rem', marginBottom: '1rem', alignItems: 'flex-start' }}>
+                          <CheckCircle2 size={18} color="#3b82f6" style={{ flexShrink: 0, marginTop: '2px' }} />
+                          <span style={{ fontSize: '0.95rem', color: 'rgba(255,255,255,0.8)' }}>{text}</span>
+                       </div>
+                     ))}
+                  </div>
+                </div>
+              </div>
+            </section>
 
             {/* --- ARCHITECTURE BLUEPRINT (FOLDER STRUCTURE & EXAMPLE) --- */}
             <section style={{ padding: '80px 0', background: 'rgba(15, 23, 42, 0.4)' }}>
@@ -369,94 +437,8 @@ const MVVMPage = () => {
               </div>
             </section>
 
-            <section style={{ padding: '100px 0', background: 'rgba(59, 130, 246, 0.03)', borderTop: '1px solid var(--glass-border)' }}>
-              <div className="container">
-                <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
-                  <div style={{ 
-                    display: 'inline-flex', 
-                    alignItems: 'center', 
-                    gap: '0.5rem', 
-                    padding: '0.5rem 1rem', 
-                    marginBottom: '1.5rem',
-                    borderRadius: '100px',
-                    background: 'rgba(59, 130, 246, 0.1)',
-                    color: '#3b82f6',
-                    border: '1px solid rgba(59, 130, 246, 0.2)'
-                  }}>
-                    <Compass size={16} /> 
-                    <span style={{ fontSize: '0.8rem', fontWeight: 700, textTransform: 'uppercase' }}>Google Engineering Standard</span>
-                  </div>
-                  <h2 style={{ fontSize: '2.5rem', fontWeight: 900, marginBottom: '1rem' }}>Hibrit MVVM Yaklaşımı</h2>
-                  <p style={{ color: 'var(--text-secondary)', maxWidth: '700px', margin: '0 auto' }}>
-                    Büyük ölçekli projelerde bağımlılıkları yönetmenin en asil yolu: Veriyi merkezi, arayüzü özellik bazlı kurgulamaktır.
-                  </p>
-                </div>
-
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4rem', alignItems: 'center' }}>
-                  <div>
-                    <h3 style={{ fontSize: '1.8rem', marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                      <Layers color="#3b82f6" /> Merkezi Mantık vs. Özellik Bazlı UI
-                    </h3>
-                    <p style={{ color: 'var(--text-secondary)', lineHeight: 1.8, marginBottom: '2rem' }}>
-                      Google'ın önerdiği bu hibrit yapı, uygulamanın farklı katmanlarını "değişim sıklığına" göre gruplar. 
-                      Data ve Domain katmanları bir kütüphane gibi <strong>merkezi (Type-based)</strong> dururken, UI katmanı tamamen bağımsız <strong>özelliklere (Feature-based)</strong> bölünür.
-                    </p>
-                    
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                      <div className="glass-card" style={{ padding: '1.5rem', borderLeft: '4px solid #3b82f6' }}>
-                        <div style={{ fontWeight: 800, marginBottom: '0.5rem' }}>lib/data & lib/domain (Horizontal)</div>
-                        <div style={{ fontSize: '0.9rem', color: 'var(--text-secondary)' }}>Repositories ve Modeller merkezi kalır. Her feature bunlara erişebilir.</div>
-                      </div>
-                      <div className="glass-card" style={{ padding: '1.5rem', borderLeft: '4px solid #10b981' }}>
-                        <div style={{ fontWeight: 800, marginBottom: '0.5rem' }}>lib/ui/features (Vertical)</div>
-                        <div style={{ fontSize: '0.9rem', color: 'var(--text-secondary)' }}>Her sayfa (Auth, Home vb.) kendi ViewModel ve Widget'larını içinde saklar.</div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div style={{ background: 'rgba(0,0,0,0.3)', padding: '2rem', borderRadius: '32px', border: '1px solid var(--glass-border)' }}>
-                     <h4 style={{ marginBottom: '1.5rem', color: '#3b82f6', fontSize: '1.1rem' }}>Mimarinin Faydaları:</h4>
-                     {[
-                       "Farklı ekipler aynı data katmanını kullanıp farklı featurelar geliştirebilir.",
-                       "Bir feature silindiğinde diğerlerini asla etkilemez.",
-                       "Unit testler domain katmanında, Widget testler feature katmanında izole edilir.",
-                       "Uygulama büyüdükçe lib klasörü bir çöplüğe dönüşmez."
-                     ].map((text, i) => (
-                       <div key={i} style={{ display: 'flex', gap: '1rem', marginBottom: '1rem', alignItems: 'flex-start' }}>
-                          <CheckCircle2 size={18} color="#3b82f6" style={{ flexShrink: 0, marginTop: '2px' }} />
-                          <span style={{ fontSize: '0.95rem', color: 'rgba(255,255,255,0.8)' }}>{text}</span>
-                       </div>
-                     ))}
-                  </div>
-                </div>
-
-                <div style={{ 
-                  marginTop: '5rem', 
-                  padding: '2rem', 
-                  borderRadius: '24px', 
-                  background: 'linear-gradient(90deg, rgba(30, 41, 59, 0.4) 0%, rgba(15, 23, 42, 0.4) 100%)',
-                  border: '1px dashed rgba(255,255,255,0.1)',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'center',
-                  textAlign: 'center'
-                }}>
-                  <div style={{ color: '#64748b', fontSize: '0.8rem', fontWeight: 800, textTransform: 'uppercase', marginBottom: '1rem', letterSpacing: '2px' }}>Reference & Case Study</div>
-                  <p style={{ color: 'var(--text-secondary)', marginBottom: '1.5rem', maxWidth: '600px' }}>
-                    Bu hibrit yaklaşım ve paketleme stratejisi, Google Flutter ekibinin resmi mimari vaka analizinden ilham almıştır.
-                  </p>
-                  <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', justifyContent: 'center' }}>
-              <a href="https://docs.flutter.dev/app-architecture/case-study" target="_blank" rel="noopener noreferrer" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', color: '#3b82f6', fontWeight: 700, textDecoration: 'none', padding: '0.8rem 1.5rem', background: 'rgba(59, 130, 246, 0.1)', borderRadius: '12px', transition: 'all 0.2s' }}>
-                Google Architecture Case Study <ExternalLink size={16} />
-              </a>
-              <a href="https://developer.android.com/topic/modularization?hl=tr" target="_blank" rel="noopener noreferrer" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', color: '#10b981', fontWeight: 700, textDecoration: 'none', padding: '0.8rem 1.5rem', background: 'rgba(16, 185, 129, 0.1)', borderRadius: '12px', transition: 'all 0.2s' }}>
-                Android Modularization Guide <ExternalLink size={16} />
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
             <RefactoringGuide />
+            <ArchReferences />
           </motion.div>
         )}
       </AnimatePresence>

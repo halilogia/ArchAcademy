@@ -97,7 +97,7 @@ const MVVMFlow = () => {
             MVVM Mimari Akışı
           </h2>
           <p style={{ color: 'var(--text-secondary)', maxWidth: '700px', margin: '0 auto' }}>
-            Flutter App Architecture rehberine göre modernize edilmiş katmanlı yapı.
+            Google (Android & Flutter) modern uygulama mimari rehberine göre modernize edilmiş katmanlı yapı.
           </p>
         </div>
 
