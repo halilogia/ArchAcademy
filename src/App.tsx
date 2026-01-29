@@ -91,6 +91,9 @@ const VIPERPage = lazy(() => import('./presentation/pages/VIPERPage'));
 const MVVMCPage = lazy(() => import('./presentation/pages/MVVMCPage'));
 const AntiPatternsPage = lazy(() => import('./presentation/pages/AntiPatternsPage'));
 const NotFoundPage = lazy(() => import('./presentation/pages/NotFoundPage'));
+const BFFPage = lazy(() => import('./presentation/pages/BFFPage'));
+const MVIPage = lazy(() => import('./presentation/pages/MVIPage'));
+const SPAvsMPAPage = lazy(() => import('./presentation/pages/SPAvsMPAPage'));
 
 const LoadingFallback = () => (
   <div style={{ height: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--primary)' }}>
@@ -195,6 +198,9 @@ const App: React.FC = () => {
                     <Route path="/viper" element={<VIPERPage />} />
                     <Route path="/mvvm-c" element={<MVVMCPage />} />
                     <Route path="/anti-patterns" element={<AntiPatternsPage />} />
+                    <Route path="/bff" element={<BFFPage />} />
+                    <Route path="/mvi" element={<MVIPage />} />
+                    <Route path="/spa-vs-mpa" element={<SPAvsMPAPage />} />
                     <Route path="*" element={<NotFoundPage />} />
                   </Routes>
                 </AnimatePresence>

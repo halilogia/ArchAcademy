@@ -85,16 +85,7 @@ const DisciplineCatalogPage = () => {
         { name: 'Moderate Abstraction', path: '/abstraction', color: '#93c5fd', icon: <Layers size={24} />, desc: 'Ne çok derin ne çok sığ; tam kararında soyutlama dengesi.' }
       ]
     },
-    {
-      id: 'system-wisdom',
-      name: 'System Wisdom',
-      color: '#eab308',
-      items: [
-        { name: 'CAP Theorem', path: '/cap-theorem', color: '#eab308', icon: <Triangle size={24} />, desc: 'Dağıtık sistemlerdeki vazgeçilmez 3\'lü denge yasası.' },
-        { name: 'ACID Principles', path: '/acid', color: '#facc15', icon: <Database size={24} />, desc: 'Transaction güvenliği ve veri bütünlüğünün teminatı.' },
-        { name: 'Robustness & Reliability', path: '/robustness', color: '#fde047', icon: <Activity size={24} />, desc: 'Hatalara karşı toleranslı ve sarsılmaz çalışma prensibi.' }
-      ]
-    },
+
 
     {
       id: 'governance',

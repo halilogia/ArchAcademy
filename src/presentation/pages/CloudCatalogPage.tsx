@@ -37,7 +37,8 @@ const CloudCatalogPage = () => {
     { id: 'zerotrust', name: 'Zero Trust', path: '/zero-trust', color: '#ef4444', icon: <ShieldCheck size={32} />, desc: 'Ağ içindeki hiçbir cihaza güvenme; her isteği doğrula.', gridArea: 'e' },
     { id: 'soa', name: 'SOA Arch', path: '/soa', color: '#8b5cf6', icon: <Globe size={32} />, desc: 'Kurumsal servis odaklı mimari (Microservices atası).', gridArea: 'f' },
     { id: 'spacebased', name: 'Space-Based', path: '/space-based', color: '#ec4899', icon: <Server size={32} />, desc: 'Ekstrem ölçeklenme için in-memory veri ızgaraları.', gridArea: 'g' },
-    { id: 'security', name: 'Security Arch', path: '/security', color: '#10b981', icon: <Lock size={32} />, desc: 'Savunma derinliği ve güvenlik katmanları.', gridArea: 'h' }
+    { id: 'security', name: 'Security Arch', path: '/security', color: '#10b981', icon: <Lock size={32} />, desc: 'Savunma derinliği ve güvenlik katmanları.', gridArea: 'h' },
+    { id: 'bff', name: 'BFF Pattern', path: '/bff', color: '#3b82f6', icon: <Share2 size={32} />, desc: 'Frontend ekiplerinin yönettiği özel backend katmanı.', gridArea: 'i' }
   ];
 
   return (
@@ -60,24 +61,19 @@ const CloudCatalogPage = () => {
            <p style={{ color: '#94a3b8', fontSize: '1.2rem' }}>Modern altyapı ve operasyon mimarileri</p>
         </div>
 
-        {/* Honeycomb Grid Layout */}
         <div style={{ 
-          display: 'grid',
-          gridTemplateAreas: `
-            ". a b ."
-            "h center c"
-            "g f d"
-            ". e . ."
-          `,
+          display: 'flex',
+          flexWrap: 'wrap',
           gap: '20px',
           justifyContent: 'center',
           alignItems: 'center',
-          transform: 'scale(0.9)', // Adjust scale to fit
+          maxWidth: '1200px',
+          margin: '0 auto'
         }}>
            {items.map((item) => (
              <motion.div
                key={item.id}
-               style={{ gridArea: item.gridArea, position: 'relative', display: 'flex', justifyContent: 'center' }}
+               style={{ position: 'relative', display: 'flex', justifyContent: 'center', margin: '10px' }}
                initial={{ opacity: 0, scale: 0.8 }}
                animate={{ opacity: 1, scale: 1 }}
                whileHover={{ scale: 1.1, zIndex: 20 }}
@@ -142,32 +138,32 @@ const CloudCatalogPage = () => {
         </div>
 
         {/* Info Panel Overlap (Bottom) */}
-        <AnimatePresence>
-           {hoveredItem && hoveredItem.id !== 'cloud-center' && (
-             <motion.div
-               initial={{ opacity: 0, y: 20 }}
-               animate={{ opacity: 1, y: 0 }}
-               exit={{ opacity: 0, y: 20 }}
-               style={{
-                  position: 'fixed',
-                  bottom: '30px',
-                  left: '50%',
-                  transform: 'translateX(-50%)',
-                  background: 'rgba(15, 23, 42, 0.95)',
-                  border: `1px solid ${hoveredItem.color}`,
-                  padding: '1.5rem 3rem',
-                  borderRadius: '100px',
-                  boxShadow: `0 10px 40px rgba(0,0,0,0.5)`,
-                  textAlign: 'center',
-                  minWidth: '500px',
-                  zIndex: 50
-               }}
-             >
-                <h3 style={{ color: hoveredItem.color, margin: 0, fontSize: '1.5rem' }}>{hoveredItem.name}</h3>
-                <p style={{ color: '#cbd5e1', margin: '5px 0 0', fontSize: '1rem' }}>{hoveredItem.desc}</p>
-             </motion.div>
-           )}
-        </AnimatePresence>
+         {/* Info Panel Overlap (Bottom) */}
+         <AnimatePresence>
+            {hoveredItem && hoveredItem.id !== 'cloud-center' && (
+              <div style={{ position: 'fixed', left: 0, right: 0, bottom: '30px', zIndex: 9999, pointerEvents: 'none', display: 'flex', justifyContent: 'center' }}>
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 20 }}
+                    style={{
+                        background: 'rgba(15, 23, 42, 0.95)',
+                        border: `1px solid ${hoveredItem.color}`,
+                        padding: '1.5rem 3rem',
+                        borderRadius: '100px',
+                        boxShadow: `0 10px 40px rgba(0,0,0,0.5)`,
+                        textAlign: 'center',
+                        minWidth: '500px',
+                        pointerEvents: 'auto',
+                        backdropFilter: 'blur(10px)'
+                    }}
+                  >
+                      <h3 style={{ color: hoveredItem.color, margin: 0, fontSize: '1.5rem' }}>{hoveredItem.name}</h3>
+                      <p style={{ color: '#cbd5e1', margin: '5px 0 0', fontSize: '1rem' }}>{hoveredItem.desc}</p>
+                  </motion.div>
+              </div>
+            )}
+         </AnimatePresence>
 
       </div>
     </motion.div>

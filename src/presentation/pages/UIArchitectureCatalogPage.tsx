@@ -56,7 +56,9 @@ const UIArchitectureCatalogPage = () => {
     { id: 'micro', name: 'Micro-Frontends', path: '/micro-frontends', color: '#ec4899', icon: <GitMerge size={24} />, desc: 'Frontend uygulamasını bağımsız parçalara bölme.' },
     { id: 'state', name: 'State-Driven UI', path: '/state-driven', color: '#22c55e', icon: <RefreshCcw size={24} />, desc: 'UI = f(State). Reaktif arayüz paradigması.' },
     { id: 'cdd', name: 'Component-Driven', path: '/component-driven', color: '#f43f5e', icon: <Puzzle size={24} />, desc: 'Sayfalardan değil, bileşenlerden başlama (CDD).' },
-    { id: 'composite', name: 'Composite UI', path: '/composite-ui', color: '#8b5cf6', icon: <Layers size={24} />, desc: 'Farklı modüllerin runtime anında birleşmesi.' }
+    { id: 'composite', name: 'Composite UI', path: '/composite-ui', color: '#8b5cf6', icon: <Layers size={24} />, desc: 'Farklı modüllerin runtime anında birleşmesi.' },
+    { id: 'mvi', name: 'MVI Arch', path: '/mvi', color: '#10b981', icon: <RefreshCcw size={24} />, desc: 'Model-View-Intent. Tek yönlü ve döngüsel veri akışı.' },
+    { id: 'spa-mpa', name: 'SPA vs MPA', path: '/spa-vs-mpa', color: '#eab308', icon: <Monitor size={24} />, desc: 'Single Page vs Multi Page. Web render stratejileri.' }
   ];
 
   return (
