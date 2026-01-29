@@ -253,20 +253,40 @@ const CleanCodePage: React.FC = () => {
       </section>
 
       {/* --- QUOTE SECTION --- */}
-      <section style={{ padding: '80px 0', background: 'rgba(255,255,255,0.02)', borderTop: '1px solid var(--glass-border)', borderBottom: '1px solid var(--glass-border)' }}>
-         <div className="container" style={{ textAlign: 'center' }}>
-            <div style={{ fontSize: '2rem', fontStyle: 'italic', maxWidth: '900px', margin: '0 auto 2rem', fontFamily: 'serif', color: 'var(--text-secondary)' }}>
-              "Mutfakta bıraktığınız dağınıklık nasıl yemeğin tadını bozmuyorsa, kirli kod da programın çalışmasını bozmaz. 
-              Ama bir süre sonra mutfağa girmek istemezsiniz."
-            </div>
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '1rem' }}>
-               <div style={{ width: '50px', height: '50px', background: '#333', borderRadius: '50%' }}></div>
-               <div style={{ textAlign: 'left' }}>
-                  <div style={{ fontWeight: 700 }}>Robert C. Martin</div>
-                  <div style={{ fontSize: '0.8rem', color: 'var(--primary)' }}>Uncle Bob</div>
-               </div>
-            </div>
-         </div>
+      <section style={{ padding: '4rem 0', background: 'rgba(0,0,0,0.3)', borderTop: '1px solid rgba(255,255,255,0.05)', marginTop: '4rem' }}>
+        <div className="container" style={{ textAlign: 'center' }}>
+           <div style={{ 
+             background: 'linear-gradient(180deg, rgba(15, 23, 42, 0) 0%, rgba(15, 23, 42, 0.5) 100%)', 
+             padding: '3rem', 
+             borderRadius: '24px', 
+             border: '1px solid rgba(255,255,255,0.05)',
+             maxWidth: '900px',
+             margin: '0 auto'
+           }}>
+              <div style={{ fontSize: '0.8rem', letterSpacing: '2px', fontWeight: 800, color: 'rgba(255,255,255,0.4)', marginBottom: '1rem', textTransform: 'uppercase' }}>
+                The Philosophy
+              </div>
+              <p style={{ color: '#94a3b8', marginBottom: '2rem', fontSize: '1.1rem', lineHeight: 1.6 }}>
+                "Clean Code" kavramının yaratıcısı Robert C. Martin (Uncle Bob)'in blogundaki makaleler, bu disiplinin kaynağıdır.
+              </p>
+              
+              <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+                 <a 
+                   href="https://blog.cleancoder.com/" 
+                   target="_blank" 
+                   rel="noopener noreferrer"
+                   style={{ 
+                     display: 'flex', alignItems: 'center', gap: '8px', 
+                     background: 'rgba(16, 185, 129, 0.15)', color: '#6ee7b7', 
+                     padding: '12px 24px', borderRadius: '12px', textDecoration: 'none', fontWeight: 600,
+                     border: '1px solid rgba(16, 185, 129, 0.2)', transition: 'all 0.2s'
+                   }}
+                 >
+                    Uncle Bob's Blog (Clean Coder) <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                 </a>
+              </div>
+           </div>
+        </div>
       </section>
 
     </div>

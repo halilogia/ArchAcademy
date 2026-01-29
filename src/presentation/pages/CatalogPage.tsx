@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import { Hexagon, Zap, MousePointer2, Compass, Sparkles, Orbit, Shield } from 'lucide-react';
+import { Hexagon, Zap, Compass, Sparkles, Layers, Box, Cpu, Network } from 'lucide-react';
 
 interface ArchItem {
   name: string;
@@ -52,60 +52,8 @@ const CatalogPage = () => {
       ]
     },
     {
-      id: 'data-intensive',
-      name: 'Data-Intensive',
-      color: '#f97316',
-      items: [
-        { name: 'CQRS', path: '/cqrs', color: '#f97316', desc: 'Komut ve sorgu sorumluluklarının ayrılması.' },
-        { name: 'Event Sourcing', path: '/event-sourcing', color: '#fb923c', desc: 'Veriyi olaylar dizisi olarak saklama.' },
-        { name: 'Primary-Secondary', path: '/primary-secondary', color: '#fdba74', desc: 'Veri replikasyonu ve yedekleme stratejileri.' }
-      ]
-    },
-    {
-      id: 'distributed',
-      name: 'Distributed Systems',
-      color: '#eab308',
-      items: [
-        { name: 'Microservices', path: '/microservices', color: '#eab308', desc: 'Bağımsız servisler ekosistemi.' },
-        { name: 'Client-Server', path: '/client-server', color: '#ca8a04', desc: 'İstemci ve sunucu ayrımı.' },
-        { name: 'Serverless (FaaS)', path: '/serverless', color: '#facc15', desc: 'Sunucusuz fonksiyon mimarisi.' },
-        { name: 'Space-Based', path: '/space-based', color: '#fde047', desc: 'In-memory veri hızı ve ekstrem performans.' },
-        { name: 'Peer-to-Peer', path: '/p2p', color: '#eab308', desc: 'Düğümler arası doğrudan iletişim.' }
-      ]
-    },
-    {
-      id: 'event-messaging',
-      name: 'Event & Messaging',
-      color: '#ef4444',
-      items: [
-        { name: 'Event-Driven (EDA)', path: '/eda', color: '#ef4444', desc: 'Olay yayıncıları ve dinleyicileri.' },
-        { name: 'Publish-Subscribe', path: '/pub-sub', color: '#f87171', desc: 'Mesaj abonelik haberleşme deseni.' },
-        { name: 'Message Broker', path: '/broker', color: '#fca5a5', desc: 'Aracı tabanlı güvenli mesajlaşma.' }
-      ]
-    },
-    {
-      id: 'coordination',
-      name: 'Coordination',
-      color: '#ec4899',
-      items: [
-        { name: 'Orchestration', path: '/orchestration', color: '#ec4899', desc: 'Merkezi servis koordinasyonu.' },
-        { name: 'Choreography', path: '/choreography', color: '#f472b6', desc: 'Dağıtık olay senkronizasyonu.' },
-        { name: 'SOA Architecture', path: '/soa', color: '#fbcfe8', desc: 'Kurumsal servis haberleşme strateji.' }
-      ]
-    },
-    {
-      id: 'big-data',
-      name: 'Big Data Processing',
-      color: '#06b6d4',
-      items: [
-        { name: 'Big Data Stack', path: '/big-data', color: '#06b6d4', desc: 'Büyük ölçekli veri işleme hattı.' },
-        { name: 'Lambda Arch', path: '/lambda', color: '#22d3ee', desc: 'Hibrit (Batch + Speed) veri katmanı.' },
-        { name: 'Kappa Arch', path: '/kappa', color: '#67e8f9', desc: 'Tamamen akış (Streaming) odaklı yapı.' }
-      ]
-    },
-    {
-      id: 'logic-structural',
-      name: 'Logic & Structural',
+      id: 'structural-patterns',
+      name: 'Structural Patterns',
       color: '#8b5cf6',
       items: [
         { name: 'Microkernel', path: '/microkernel', color: '#8b5cf6', desc: 'Eklenti tabanlı çekirdek sistemi.' },
@@ -116,14 +64,13 @@ const CatalogPage = () => {
       ]
     },
     {
-      id: 'component-ui',
-      name: 'Component & UI',
+      id: 'code-patterns',
+      name: 'Code Patterns (MVC)',
       color: '#10b981',
       items: [
         { name: 'MVC', path: '/mvc', color: '#10b981', desc: 'Model-View-Controller deseni.' },
         { name: 'MVP', path: '/mvp', color: '#34d399', desc: 'Model-View-Presenter etkileşimi.' },
         { name: 'MVVM', path: '/mvvm', color: '#6ee7b7', desc: 'Model-View-ViewModel reaktif yapı.' },
-        { name: 'MVVM-C', path: '/mvvm-c', color: '#10b981', desc: 'Navigasyon odaklı Coordinator deseni.' },
         { name: 'VIPER', path: '/viper', color: '#059669', desc: 'Router ve Interactor tabanlı yüksek izolasyon.' }
       ]
     },
@@ -143,10 +90,10 @@ const CatalogPage = () => {
       <div className="container" style={{ maxWidth: '1600px' }}>
         <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
           <motion.div initial={{ y: -20, opacity: 0 }} animate={{ y: 0, opacity: 1 }} style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', background: 'rgba(59, 130, 246, 0.1)', padding: '0.5rem 1.2rem', borderRadius: '100px', color: '#3b82f6', fontWeight: 800, fontSize: '0.8rem', marginBottom: '1rem', border: '1px solid rgba(59, 130, 246, 0.3)' }}>
-            <Sparkles size={16} /> VIBRANT ARCHITECTURE MATRIX
+            <Layers size={16} /> CORE SYSTEM ARCHITECTURE
           </motion.div>
           <h1 style={{ fontSize: '3.5rem', fontWeight: 950, letterSpacing: '-2px', margin: 0, color: 'white' }}>
-            Mimari <span className="gradient-text">Stil</span> Kataloğu
+            Sistem <span className="gradient-text">Mimari</span> Kataloğu
           </h1>
         </div>
 
@@ -174,8 +121,8 @@ const CatalogPage = () => {
                     transition={{ duration: 4, repeat: Infinity }}
                     style={{ filter: 'drop-shadow(0 0 25px rgba(59, 130, 246, 0.4))' }} 
                    />
-                   <text x={500} y={495} textAnchor="middle" fill="white" fontWeight="900" fontSize="13" style={{ letterSpacing: '2px' }}>MİMARİ</text>
-                   <text x={500} y={520} textAnchor="middle" fill="#3b82f6" fontWeight="950" fontSize="18" style={{ letterSpacing: '3px' }}>HUB</text>
+                   <text x={500} y={495} textAnchor="middle" fill="white" fontWeight="900" fontSize="13" style={{ letterSpacing: '2px' }}>SİSTEM</text>
+                   <text x={500} y={520} textAnchor="middle" fill="#3b82f6" fontWeight="950" fontSize="18" style={{ letterSpacing: '3px' }}>CORE</text>
                 </g>
 
                 {categories.map((cat, catIdx) => {
@@ -310,9 +257,9 @@ const CatalogPage = () => {
                        textTransform: 'uppercase',
                        marginTop: 'auto'
                       }}
-                    >
+                   >
                       EĞİTİME BAŞLA <Zap size={22} />
-                    </button>
+                   </button>
                  </motion.div>
                ) : (
                   <div className="glass-card" style={{ 
@@ -329,16 +276,16 @@ const CatalogPage = () => {
                       <div style={{ padding: '12px', background: 'rgba(59, 130, 246, 0.1)', borderRadius: '15px', color: '#3b82f6' }}>
                         <Compass size={28} />
                       </div>
-                      <h3 style={{ fontSize: '1.8rem', fontWeight: 950, color: 'white', margin: 0, letterSpacing: '-1px' }}>MİMARİ MATRİS</h3>
+                      <h3 style={{ fontSize: '1.8rem', fontWeight: 950, color: 'white', margin: 0, letterSpacing: '-1px' }}>SİSTEM MATRİSİ</h3>
                     </div>
                     <p style={{ fontSize: '1.2rem', color: 'var(--text-secondary)', lineHeight: 1.7 }}>
-                      Yazılım mimarisi bir tercih değil, bir denge sanatıdır. Bu matris üzerinde 34'ten fazla modeli ve stratejiyi inceleyebilirsiniz.
+                      Clean Architecture'dan Hexagonal'a, Core sistem tasarımının temel taşları burada.
                     </p>
                     <div style={{ marginTop: '3rem', display: 'flex', flexDirection: 'column', gap: '1.2rem' }}>
                         {[ 
-                          '34+ Farklı Mimari Model',
-                          'Senior Seviye Trade-off Analizi',
-                          'İnteraktif Katalog Deneyimi'
+                          'Domain Odaklı Tasarımlar',
+                          'Bağımsız Katmanlı Yapılar',
+                          'Yüksek Kaliteli Kod Organizasyonu'
                         ].map((t, i) => (
                           <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '1rem', fontSize: '1rem', color: 'rgba(255,255,255,0.7)', fontWeight: 600 }}>
                             <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#3b82f6', boxShadow: '0 0 12px #3b82f6' }} />

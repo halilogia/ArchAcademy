@@ -86,33 +86,68 @@ const Navbar: React.FC = () => {
         {/* Main Navigation */}
         <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
           
-          <Link to="/catalog" style={{ 
-            color: 'var(--primary)', 
-            fontSize: '0.8rem', 
-            fontWeight: 800, 
-            background: 'rgba(59, 130, 246, 0.1)', 
-            padding: '0.5rem 1rem', 
-            borderRadius: '100px',
-            textDecoration: 'none',
-            border: '1px solid rgba(59, 130, 246, 0.2)',
-            transition: 'all 0.3s'
-          }}>
-            Katalog
-          </Link>
-
-          <Link to="/discipline-catalog" style={{ 
-            color: '#a855f7', 
-            fontSize: '0.8rem', 
-            fontWeight: 800, 
-            background: 'rgba(168, 85, 247, 0.1)', 
-            padding: '0.5rem 1rem', 
-            borderRadius: '100px',
-            textDecoration: 'none',
-            border: '1px solid rgba(168, 85, 247, 0.2)',
-            transition: 'all 0.3s'
-          }}>
-            Disiplinler
-          </Link>
+          {/* CATALOGS DROPDOWN */}
+          <div 
+            onMouseEnter={() => setOpenDropdown('catalogs')} 
+            onMouseLeave={() => setOpenDropdown(null)}
+            style={{ position: 'relative' }}
+          >
+            <button style={{ 
+              background: 'rgba(59, 130, 246, 0.1)', 
+              color: '#60a5fa', 
+              fontSize: '0.85rem', 
+              fontWeight: 800, 
+              display: 'flex', 
+              alignItems: 'center', 
+              gap: '0.4rem',
+              padding: '0.5rem 1rem',
+              borderRadius: '100px',
+              transition: 'all 0.2s',
+              border: '1px solid rgba(59, 130, 246, 0.2)',
+              cursor: 'pointer'
+            }}>
+              Kataloglar <ChevronDown size={14} />
+            </button>
+            {openDropdown === 'catalogs' && (
+              <div style={{
+                position: 'absolute',
+                top: '100%',
+                left: '0',
+                width: '260px',
+                background: 'rgba(10, 15, 30, 0.95)',
+                backdropFilter: 'blur(20px)',
+                border: '1px solid var(--glass-border)',
+                borderRadius: '16px',
+                padding: '0.8rem',
+                boxShadow: '0 20px 40px rgba(0,0,0,0.4)',
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '0.4rem'
+              }}>
+                <Link to="/catalog" style={{ display: 'flex', alignItems: 'center', gap: '0.8rem', padding: '0.6rem 0.8rem', borderRadius: '8px', textDecoration: 'none', color: 'white', transition: 'background 0.2s' }}>
+                  <div style={{ padding: '6px', background: '#3b82f620', borderRadius: '8px', color: '#3b82f6' }}><Library size={16} /></div>
+                  <div style={{ fontSize: '0.9rem', fontWeight: 600 }}>Sistem Mimarisi</div>
+                </Link>
+                <Link to="/ui-catalog" style={{ display: 'flex', alignItems: 'center', gap: '0.8rem', padding: '0.6rem 0.8rem', borderRadius: '8px', textDecoration: 'none', color: 'white', transition: 'background 0.2s' }}>
+                  <div style={{ padding: '6px', background: '#0ea5e920', borderRadius: '8px', color: '#0ea5e9' }}><Layers size={16} /></div>
+                  <div style={{ fontSize: '0.9rem', fontWeight: 600 }}>UI Mimarisi</div>
+                </Link>
+                <Link to="/data-ai-catalog" style={{ display: 'flex', alignItems: 'center', gap: '0.8rem', padding: '0.6rem 0.8rem', borderRadius: '8px', textDecoration: 'none', color: 'white', transition: 'background 0.2s' }}>
+                  <div style={{ padding: '6px', background: '#8b5cf620', borderRadius: '8px', color: '#8b5cf6' }}><Sparkles size={16} /></div>
+                  <div style={{ fontSize: '0.9rem', fontWeight: 600 }}>Data & AI</div>
+                </Link>
+                <Link to="/cloud-catalog" style={{ display: 'flex', alignItems: 'center', gap: '0.8rem', padding: '0.6rem 0.8rem', borderRadius: '8px', textDecoration: 'none', color: 'white', transition: 'background 0.2s' }}>
+                  <div style={{ padding: '6px', background: '#f9731620', borderRadius: '8px', color: '#f97316' }}><Cpu size={16} /></div>
+                  <div style={{ fontSize: '0.9rem', fontWeight: 600 }}>Cloud & DevOps</div>
+                </Link>
+                <div style={{ height: '1px', background: 'rgba(255,255,255,0.1)', margin: '0.4rem 0' }} />
+                <Link to="/discipline-catalog" style={{ display: 'flex', alignItems: 'center', gap: '0.8rem', padding: '0.6rem 0.8rem', borderRadius: '8px', textDecoration: 'none', color: 'white', transition: 'background 0.2s' }}>
+                  <div style={{ padding: '6px', background: '#10b98120', borderRadius: '8px', color: '#10b981' }}><BookOpen size={16} /></div>
+                  <div style={{ fontSize: '0.9rem', fontWeight: 600 }}>Disiplin Matrisi</div>
+                </Link>
+              </div>
+            )}
+          </div>
 
           
           {/* LABS DROPDOWN */}

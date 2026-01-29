@@ -22,7 +22,9 @@ import {
   Medal,
   Brain,
   ShieldAlert,
-  FileText
+  FileText,
+  CloudLightning,
+  Anchor
 } from 'lucide-react';
 
 interface DisciplineItem {
@@ -93,15 +95,7 @@ const DisciplineCatalogPage = () => {
         { name: 'Robustness & Reliability', path: '/robustness', color: '#fde047', icon: <Activity size={24} />, desc: 'Hatalara karşı toleranslı ve sarsılmaz çalışma prensibi.' }
       ]
     },
-    {
-      id: 'ui-arch',
-      name: 'UI Architecture',
-      color: '#f97316',
-      items: [
-        { name: 'Atomic Design', path: '/atomic-design', color: '#f97316', icon: <Sparkles size={24} />, desc: 'Arayüzü atomlardan sayfalara hiyerarşik inşa etme.' },
-        { name: 'Design Tokens', path: '/design-tokens', color: '#fb923c', icon: <Palette size={24} />, desc: 'Marka değerlerinin mimari seviyede tek merkezden yönetimi.' }
-      ]
-    },
+
     {
       id: 'governance',
       name: 'Governance',

@@ -65,6 +65,21 @@ const DisciplineCatalogPage = lazy(() => import('./presentation/pages/Discipline
 const LeanArchitecturePage = lazy(() => import('./presentation/pages/LeanArchitecturePage'));
 const DesignTokensPage = lazy(() => import('./presentation/pages/DesignTokensPage'));
 const AtomicDesignPage = lazy(() => import('./presentation/pages/AtomicDesignPage'));
+const ServerDrivenUIPage = lazy(() => import('./presentation/pages/ServerDrivenUIPage'));
+const IslandsArchPage = lazy(() => import('./presentation/pages/IslandsArchPage'));
+const UIArchitectureCatalogPage = lazy(() => import('./presentation/pages/UIArchitectureCatalogPage'));
+const MicroFrontendsPage = lazy(() => import('./presentation/pages/MicroFrontendsPage'));
+const GitOpsPage = lazy(() => import('./presentation/pages/GitOpsPage'));
+const ContainerizationPage = lazy(() => import('./presentation/pages/ContainerizationPage'));
+const ZeroTrustPage = lazy(() => import('./presentation/pages/ZeroTrustPage'));
+const RAGPage = lazy(() => import('./presentation/pages/RAGPage'));
+const AgenticAIPage = lazy(() => import('./presentation/pages/AgenticAIPage'));
+const LLMOpsPage = lazy(() => import('./presentation/pages/LLMOpsPage'));
+const StateDrivenPage = lazy(() => import('./presentation/pages/StateDrivenPage'));
+const ComponentDrivenPage = lazy(() => import('./presentation/pages/ComponentDrivenPage'));
+const CompositeUIPage = lazy(() => import('./presentation/pages/CompositeUIPage'));
+const DataAICatalogPage = lazy(() => import('./presentation/pages/DataAICatalogPage'));
+const CloudCatalogPage = lazy(() => import('./presentation/pages/CloudCatalogPage'));
 const DesignPatternsPage = lazy(() => import('./presentation/pages/DesignPatternsPage'));
 const BookshelfPage = lazy(() => import('./presentation/pages/BookshelfPage'));
 const SynthesisLabPage = lazy(() => import('./presentation/pages/SynthesisLabPage'));
@@ -155,6 +170,21 @@ const App: React.FC = () => {
                     <Route path="/lean-architecture" element={<LeanArchitecturePage />} />
                     <Route path="/design-tokens" element={<DesignTokensPage />} />
                     <Route path="/atomic-design" element={<AtomicDesignPage />} />
+                    <Route path="/server-driven-ui" element={<ServerDrivenUIPage />} />
+                    <Route path="/islands-arch" element={<IslandsArchPage />} />
+                    <Route path="/ui-catalog" element={<UIArchitectureCatalogPage />} />
+                    <Route path="/micro-frontends" element={<MicroFrontendsPage />} />
+                    <Route path="/gitops" element={<GitOpsPage />} />
+                    <Route path="/containerization" element={<ContainerizationPage />} />
+                    <Route path="/zero-trust" element={<ZeroTrustPage />} />
+                    <Route path="/rag-arch" element={<RAGPage />} />
+                    <Route path="/agentic-ai" element={<AgenticAIPage />} />
+                    <Route path="/llm-ops" element={<LLMOpsPage />} />
+                    <Route path="/state-driven" element={<StateDrivenPage />} />
+                    <Route path="/component-driven" element={<ComponentDrivenPage />} />
+                    <Route path="/composite-ui" element={<CompositeUIPage />} />
+                    <Route path="/data-ai-catalog" element={<DataAICatalogPage />} />
+                    <Route path="/cloud-catalog" element={<CloudCatalogPage />} />
                     <Route path="/design-patterns" element={<DesignPatternsPage />} />
                     <Route path="/library" element={<BookshelfPage />} />
                     <Route path="/synthesis-lab" element={<SynthesisLabPage />} />

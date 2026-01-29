@@ -24,19 +24,39 @@ const SOLIDPage = () => {
       <SOLIDHero />
       <SOLIDSection />
       
-      <section style={{ padding: '80px 0', borderTop: '1px solid var(--glass-border)' }}>
+      <section style={{ padding: '4rem 0', background: 'rgba(0,0,0,0.3)', borderTop: '1px solid rgba(255,255,255,0.05)' }}>
         <div className="container" style={{ textAlign: 'center' }}>
-          <div className="glass-card" style={{ 
-            background: 'linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(79, 70, 229, 0.1) 100%)',
-            padding: '4rem'
-          }}>
-            <h3 style={{ marginBottom: '1.5rem' }}>Son Söz: SOLID Sadece Başlangıçtır</h3>
-            <p style={{ maxWidth: '800px', margin: '0 auto', color: 'var(--text-secondary)', lineHeight: 1.8 }}>
-              SOLID prensipleri birer varış noktası değil, birer yardımcı kılavuzdur. 
-              Her zaman %100 uygulamak mümkün veya mantıklı olmayabilir (KISS - Keep It Simple, Stupid prensibini unutmayın!). 
-              Önemli olan, bu prensipleri ne zaman esnetebileceğinizi ve ne zaman taviz vermemeniz gerektiğini bilecek tecrübeye sahip olmaktır.
-            </p>
-          </div>
+           <div style={{ 
+             background: 'linear-gradient(180deg, rgba(15, 23, 42, 0) 0%, rgba(15, 23, 42, 0.5) 100%)', 
+             padding: '3rem', 
+             borderRadius: '24px', 
+             border: '1px solid rgba(255,255,255,0.05)',
+             maxWidth: '900px',
+             margin: '0 auto'
+           }}>
+              <div style={{ fontSize: '0.8rem', letterSpacing: '2px', fontWeight: 800, color: 'rgba(255,255,255,0.4)', marginBottom: '1rem', textTransform: 'uppercase' }}>
+                The Origin
+              </div>
+              <p style={{ color: '#94a3b8', marginBottom: '2rem', fontSize: '1.1rem', lineHeight: 1.6 }}>
+                SOLID prensiplerinin kaynağı olan "Design Principles and Design Patterns" makalesi, Robert C. Martin (Uncle Bob) tarafından 2000 yılında yayınlanmıştır.
+              </p>
+              
+              <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+                 <a 
+                   href="https://blog.cleancoder.com/uncle-bob/2020/10/18/Solid-Relevance.html" 
+                   target="_blank" 
+                   rel="noopener noreferrer"
+                   style={{ 
+                     display: 'flex', alignItems: 'center', gap: '8px', 
+                     background: 'rgba(99, 102, 241, 0.15)', color: '#818cf8', 
+                     padding: '12px 24px', borderRadius: '12px', textDecoration: 'none', fontWeight: 600,
+                     border: '1px solid rgba(99, 102, 241, 0.2)', transition: 'all 0.2s'
+                   }}
+                 >
+                    SOLID Relevance (Uncle Bob) <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                 </a>
+              </div>
+           </div>
         </div>
       </section>
     </motion.div>

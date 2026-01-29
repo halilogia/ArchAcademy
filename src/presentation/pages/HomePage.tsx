@@ -2,18 +2,18 @@ import React from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { 
-  Zap, 
-  BrainCircuit, 
-  Table2, 
   Library, 
   ArrowUpRight, 
   CheckCircle2, 
   Sparkles,
   Command,
-  Milestone
+  Milestone,
+  Monitor,
+  Database,
+  Cloud,
+  Scale
 } from 'lucide-react';
 import HomeHero from '../components/HomeHero';
-// HomeGrid removed
 
 const FeatureCard = ({ title, icon, desc, path, color, label }: any) => (
   <Link to={path} style={{ textDecoration: 'none', color: 'inherit' }}>
@@ -22,7 +22,7 @@ const FeatureCard = ({ title, icon, desc, path, color, label }: any) => (
       className="glass-card"
       style={{
         height: '100%',
-        padding: '3rem',
+        padding: '2.5rem',
         border: '1px solid var(--glass-border)',
         position: 'relative',
         overflow: 'hidden',
@@ -44,23 +44,23 @@ const FeatureCard = ({ title, icon, desc, path, color, label }: any) => (
         {label}
       </div>
       <div style={{ 
-        width: '64px', 
-        height: '64px', 
+        width: '56px', 
+        height: '56px', 
         background: `${color}15`, 
-        borderRadius: '20px', 
+        borderRadius: '16px', 
         display: 'flex', 
         alignItems: 'center', 
         justifyContent: 'center', 
         color: color,
-        marginBottom: '2rem'
+        marginBottom: '1.5rem'
       }}>
-        {React.cloneElement(icon, { size: 32 })}
+        {React.cloneElement(icon, { size: 28 })}
       </div>
-      <h3 style={{ fontSize: '1.5rem', fontWeight: 800, marginBottom: '1rem', color: 'white' }}>{title}</h3>
-      <p style={{ color: 'var(--text-secondary)', lineHeight: 1.6, fontSize: '0.95rem' }}>{desc}</p>
+      <h3 style={{ fontSize: '1.3rem', fontWeight: 800, marginBottom: '0.8rem', color: 'white' }}>{title}</h3>
+      <p style={{ color: 'var(--text-secondary)', lineHeight: 1.6, fontSize: '0.9rem' }}>{desc}</p>
       
-      <div style={{ marginTop: '2rem', display: 'flex', alignItems: 'center', gap: '8px', color: color, fontWeight: 700, fontSize: '0.9rem' }}>
-        Keşfetmeye Başla <ArrowUpRight size={18} />
+      <div style={{ marginTop: '2rem', display: 'flex', alignItems: 'center', gap: '8px', color: color, fontWeight: 700, fontSize: '0.8rem' }}>
+        Keşfet <ArrowUpRight size={16} />
       </div>
     </motion.div>
   </Link>
@@ -86,42 +86,58 @@ const HomePage = () => {
               viewport={{ once: true }}
             >
               <h2 className="gradient-text" style={{ fontSize: '3.5rem', fontWeight: 900, letterSpacing: '-2px' }}>
-                Akademi Ekosistemi
+                Mimari Hub
               </h2>
               <p style={{ color: 'var(--text-secondary)', fontSize: '1.2rem', maxWidth: '600px', margin: '1.5rem auto' }}>
-                Teoriden pratiğe, mülakattan mimari karara kadar ihtiyacın olan her şey tek bir çatıda.
+                Yazılımın 5 farklı boyutunu keşfedin. Her biri kendi derinliğine sahip, birbirine bağlı evrenler.
               </p>
             </motion.div>
           </div>
 
           <div style={{ 
             display: 'grid', 
-            gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))', 
-            gap: '2.5rem' 
+            gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', 
+            gap: '2rem' 
           }}>
             <FeatureCard 
-              title="Mimari Kataloğu" 
+              title="Sistem Mimarisi" 
               icon={<Library />}
-              desc="30'dan fazla mimari modeli, etkileşimli çark ve derinlemesine teknik detaylarla inceleyin."
+              desc="Clean Arch, DDD, Hexagonal gibi Back-end ve Core sistem tasarımları."
               path="/catalog"
               color="#3b82f6"
-              label="KÜTÜPHANE"
+              label="CORE"
+            />
+            <FeatureCard 
+              title="UI Mimarisi" 
+              icon={<Monitor />}
+              desc="Atomic Design, Micro-Frontends ve modern görsel inşa teknikleri."
+              path="/ui-catalog"
+              color="#0ea5e9"
+              label="FRONTEND"
+            />
+            <FeatureCard 
+              title="Data & AI" 
+              icon={<Database />}
+              desc="Big Data, RAG, AI Ajanları ve yoğun veri işleme modelleri."
+              path="/data-ai-catalog"
+              color="#8b5cf6"
+              label="INTELLIGENCE"
+            />
+            <FeatureCard 
+              title="Cloud & DevOps" 
+              icon={<Cloud />}
+              desc="Kubernetes, GitOps, Serverless ve ölçeklenebilir altyapı mimarileri."
+              path="/cloud-catalog"
+              color="#f97316"
+              label="INFRA"
             />
             <FeatureCard 
               title="Disiplin Matrisi" 
-              icon={<Sparkles />}
-              desc="Usta yazılımcıların uyması gereken 10 temel emir; interaktif 'Hiyerarşi Çarkı' ile keşfedin."
+              icon={<Scale />}
+              desc="SOLID, TDD, Clean Code gibi yazılım mühendisliği prensipleri."
               path="/discipline-catalog"
-              color="#a855f7"
-              label="PRENSİPLER"
-            />
-            <FeatureCard 
-              title="Master Matrix" 
-              icon={<Table2 />}
-              desc="Projeleriniz için en uygun mimariyi 'Trade-off' analizleri ve puanlamalar ile seçin."
-              path="/compare"
               color="#10b981"
-              label="STRATEJİ"
+              label="PRINCIPLES"
             />
           </div>
         </div>
@@ -132,10 +148,10 @@ const HomePage = () => {
         <div className="container">
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '2rem' }}>
              {[
-               { val: '40+', lab: 'Mimari Makale' },
-               { val: '25+', lab: 'İnteraktif Diyagram' },
+               { val: '70+', lab: 'Mimari Konu' },
+               { val: '5', lab: 'Ana Evren' },
                { val: '100%', lab: 'Open Source' },
-               { val: '5min', lab: 'Öğrenme Döngüsü' }
+               { val: '∞', lab: 'Öğrenme Potansiyeli' }
              ].map((s, i) => (
                <div key={i} style={{ textAlign: 'center' }}>
                  <div style={{ fontSize: '3rem', fontWeight: 950, color: 'white', marginBottom: '0.5rem' }}>{s.val}</div>
