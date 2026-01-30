@@ -1,11 +1,18 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Folder, FileJson, Code, Info, Terminal, Layout, Shield, Cpu, ExternalLink } from 'lucide-react';
+import { Folder, FileJson, Code, Info, Terminal, Layout, Shield, Cpu } from 'lucide-react';
+
+interface StructureItem {
+  title: string;
+  desc: string;
+  qna?: string;
+  files: { path: string; role: string; }[];
+  codeSnippet: string;
+  hint: string;
+}
 
 const ProjectStructure = () => {
-  const [activeFolder, setActiveFolder] = useState('presentation');
-
-  const structure = {
+  const structure: Record<string, StructureItem> = {
     presentation: {
       title: 'Presentation Layer (Vücudumuz)',
       desc: 'Kullanıcının gördüğü ve etkileşime girdiği tüm UI bileşenlerini, sayfa şablonlarını ve animasyon mantığını barındırır. React dünyasında en büyük klasör burasıdır.',
@@ -79,6 +86,9 @@ export const ArchitectureData = {
     }
   };
 
+  type FolderKey = keyof typeof structure;
+  const [activeFolder, setActiveFolder] = useState<FolderKey>('presentation');
+
   return (
     <section style={{ padding: '100px 0', background: 'rgba(2, 6, 23, 0.5)' }}>
       <div className="container">
@@ -87,7 +97,7 @@ export const ArchitectureData = {
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 2fr', gap: '3rem' }}>
           {/* Explorer Side */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-            {Object.entries(structure).map(([key, value]) => (
+            {(Object.keys(structure) as FolderKey[]).map((key) => (
               <div
                 key={key}
                 onClick={() => setActiveFolder(key)}
@@ -191,7 +201,7 @@ export const ArchitectureData = {
                          lineHeight: 1.5, 
                          fontFamily: 'monospace',
                          margin: 0,
-                         whiteSpace: 'pre' // Keeps formatting but container will scroll
+                         whiteSpace: 'pre'
                        }}>
                          <code>{structure[activeFolder].codeSnippet}</code>
                        </pre>

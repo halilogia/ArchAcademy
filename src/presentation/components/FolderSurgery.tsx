@@ -2,6 +2,31 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FolderOpen, File, ArrowRight, Layout, ShieldCheck, AlertTriangle, CheckCircle2, Layers } from 'lucide-react';
 
+interface FileNodeProps {
+  node: {
+    name: string;
+    type: string;
+    children?: any[];
+  };
+  depth?: number;
+}
+
+const FileNode: React.FC<FileNodeProps> = ({ node, depth = 0 }) => {
+  return (
+    <div style={{ marginLeft: depth * 20, marginBottom: '4px' }}>
+       <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: node.type === 'folder' ? 'var(--primary)' : 'var(--text-secondary)' }}>
+          {node.type === 'folder' ? <FolderOpen size={16} /> : <File size={14} />}
+          <span style={{ fontSize: '0.9rem', fontFamily: 'monospace' }}>{node.name}</span>
+       </div>
+       {node.children && (
+         <div style={{ borderLeft: '1px solid rgba(255,255,255,0.1)', marginLeft: '7px' }}>
+            {node.children.map((child, i) => <FileNode key={i} node={child} depth={depth + 1} />)}
+         </div>
+       )}
+    </div>
+  );
+};
+
 const folderScenarios = [
   {
     id: 1,
@@ -98,22 +123,6 @@ const folderScenarios = [
     explanation: "Vertical Slice / Feature Folder yapısına geçildi. 'Sipariş' ile ilgili her şey tek bir klasörde toplandı."
   }
 ];
-
-const FileNode = ({ node, depth = 0 }) => {
-  return (
-    <div style={{ marginLeft: depth * 20, marginBottom: '4px' }}>
-       <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: node.type === 'folder' ? 'var(--primary)' : 'var(--text-secondary)' }}>
-          {node.type === 'folder' ? <FolderOpen size={16} /> : <File size={14} />}
-          <span style={{ fontSize: '0.9rem', fontFamily: 'monospace' }}>{node.name}</span>
-       </div>
-       {node.children && (
-         <div style={{ borderLeft: '1px solid rgba(255,255,255,0.1)', marginLeft: '7px' }}>
-            {node.children.map((child, i) => <FileNode key={i} node={child} depth={depth + 1} />)}
-         </div>
-       )}
-    </div>
-  );
-};
 
 const FolderSurgery = () => {
   const [activeScenario, setActiveScenario] = useState(0);

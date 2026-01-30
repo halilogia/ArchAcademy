@@ -1,13 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FileCode, Play, Terminal, ArrowRight } from 'lucide-react';
 import { SimulationUseCase } from '../../domain/usecases/SimulationUseCase';
 
 const Practical = () => {
-  const [activeLayer, setActiveLayer] = useState('entities');
-  const [isSimulating, setIsSimulating] = useState(false);
-  const [simStep, setSimStep] = useState(-1);
-
   const codeExamples = {
     entities: {
       file: 'domain/entities/User.js',
@@ -75,7 +71,12 @@ class SqlUserRepository {
     }
   };
 
-  const simulationSteps = [
+  type LayerKey = keyof typeof codeExamples;
+  const [activeLayer, setActiveLayer] = useState<LayerKey>('entities');
+  const [isSimulating, setIsSimulating] = useState(false);
+  const [simStep, setSimStep] = useState(-1);
+
+  const simulationSteps: { layer: LayerKey; text: string }[] = [
     { layer: 'adapters', text: 'HTTP İsteği Geldi (POST /register)' },
     { layer: 'usecases', text: 'RegisterUser Use Case Tetiklendi' },
     { layer: 'entities', text: 'User Nesnesi Oluşturuldu ve Doğrulandı' },
@@ -85,13 +86,13 @@ class SqlUserRepository {
 
   const runSimulation = () => {
     setIsSimulating(true);
-    const useCase = new SimulationUseCase(({ stepIndex, activeLayer, isFinished }) => {
+    const useCase = new SimulationUseCase(({ stepIndex, activeLayer: newLayer, isFinished }) => {
       if (isFinished) {
         setIsSimulating(false);
         setSimStep(-1);
       } else {
         setSimStep(stepIndex);
-        setActiveLayer(activeLayer);
+        setActiveLayer(newLayer as LayerKey);
       }
     });
     useCase.start();
@@ -119,14 +120,16 @@ class SqlUserRepository {
                   onClick={runSimulation}
                   disabled={isSimulating}
                   style={{
-                    background: isSimulating ? 'var(--surface-light)' : 'var(--accent)',
+                    background: isSimulating ? 'rgba(255,255,255,0.05)' : '#3b82f6',
                     color: 'white',
                     padding: '0.5rem 1rem',
                     borderRadius: '8px',
                     display: 'flex',
                     alignItems: 'center',
                     gap: '0.5rem',
-                    fontWeight: 600
+                    fontWeight: 600,
+                    cursor: isSimulating ? 'default' : 'pointer',
+                    border: 'none'
                   }}
                 >
                   <Play size={16} /> Çalıştır
@@ -147,7 +150,7 @@ class SqlUserRepository {
                       width: '32px',
                       height: '32px',
                       borderRadius: '50%',
-                      background: simStep === i ? 'var(--primary)' : 'var(--surface-light)',
+                      background: simStep === i ? '#3b82f6' : 'rgba(255,255,255,0.05)',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
@@ -157,7 +160,7 @@ class SqlUserRepository {
                       {i + 1}
                     </div>
                     <span style={{ fontSize: '0.9rem' }}>{step.text}</span>
-                    {simStep === i && <motion.div animate={{ scale: [1, 1.2, 1] }} transition={{ repeat: Infinity }} style={{ width: 8, height: 8, borderRadius: '50%', background: 'var(--primary)' }} />}
+                    {simStep === i && <motion.div animate={{ scale: [1, 1.2, 1] }} transition={{ repeat: Infinity }} style={{ width: 8, height: 8, borderRadius: '50%', background: '#3b82f6' }} />}
                   </div>
                 ))}
               </div>
@@ -166,17 +169,19 @@ class SqlUserRepository {
             <div className="glass-card">
               <h4 style={{ marginBottom: '1rem', fontSize: '1rem' }}>Katmanı İncele</h4>
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
-                {Object.keys(codeExamples).map(key => (
+                {(Object.keys(codeExamples) as LayerKey[]).map(key => (
                   <button
                     key={key}
                     onClick={() => setActiveLayer(key)}
                     style={{
-                      background: activeLayer === key ? 'var(--primary)' : 'var(--surface-light)',
+                      background: activeLayer === key ? '#3b82f6' : 'rgba(255,255,255,0.05)',
                       color: 'white',
                       padding: '0.5rem 1rem',
                       borderRadius: '8px',
                       fontSize: '0.85rem',
-                      textTransform: 'capitalize'
+                      textTransform: 'capitalize',
+                      border: 'none',
+                      cursor: 'pointer'
                     }}
                   >
                     {key}
@@ -201,14 +206,14 @@ class SqlUserRepository {
               border: '1px solid var(--glass-border)'
             }}>
               <div style={{ 
-                background: 'var(--surface)', 
+                background: 'rgba(255,255,255,0.02)', 
                 padding: '1rem 1.5rem', 
                 borderBottom: '1px solid var(--glass-border)',
                 display: 'flex',
                 alignItems: 'center',
                 gap: '0.75rem'
               }}>
-                <FileCode size={18} color="var(--primary)" />
+                <FileCode size={18} color="#3b82f6" />
                 <span style={{ fontSize: '0.9rem', fontWeight: 600, color: 'var(--text-secondary)' }}>
                   {codeExamples[activeLayer].file}
                 </span>
@@ -239,13 +244,13 @@ class SqlUserRepository {
               {/* Dependency Hint */}
               <div style={{ 
                 padding: '1rem 1.5rem', 
-                background: 'rgba(59, 130, 246, 0.1)', 
+                background: 'rgba(59, 130, 246, 0.05)', 
                 borderTop: '1px solid var(--glass-border)',
                 display: 'flex',
                 alignItems: 'center',
                 gap: '0.5rem',
                 fontSize: '0.8rem',
-                color: 'var(--primary)'
+                color: '#3b82f6'
               }}>
                 <ArrowRight size={14} /> 
                 {activeLayer === 'entities' ? 'Hiçbir dış katmana bağımlılığı yok.' : 

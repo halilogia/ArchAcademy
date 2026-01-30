@@ -141,7 +141,11 @@ const ChoreographyPage = () => {
 
             {/* Event Particles */}
             <motion.div
-                style={{ width: '10px', height: '10px', background: '#ffe4e6', borderRadius: '50%', position: 'absolute', zIndex: 11, boxShadow: '0 0 10px white' }}
+                style={{ 
+                    width: '10px', height: '10px', background: '#ffe4e6', borderRadius: '50%', 
+                    position: 'absolute', zIndex: 11, boxShadow: '0 0 10px white',
+                    offsetPath: 'path("M 50 150 C 100 50, 200 250, 350 150")' 
+                }}
                 animate={{
                     offsetDistance: ['0%', '100%'],
                     opacity: [0, 1, 1, 0]
@@ -150,9 +154,6 @@ const ChoreographyPage = () => {
                     duration: 4,
                     repeat: Infinity,
                     ease: "easeInOut"
-                }}
-                style={{ 
-                    offsetPath: 'path("M 50 150 C 100 50, 200 250, 350 150")',
                 }}
             />
         </div>

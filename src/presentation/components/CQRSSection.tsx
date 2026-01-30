@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Code, Share2, Database, Zap, ArrowRight, MessageSquare } from 'lucide-react';
+import { Code, Share2, Database, Zap } from 'lucide-react';
 
 const CQRSSection = () => {
-  const [activeTab, setActiveTab] = useState('command');
-
   const concepts = {
     command: {
       title: 'Commands (Yazma)',
@@ -45,6 +43,9 @@ async function handle(query) {
     }
   };
 
+  type ConceptKey = keyof typeof concepts;
+  const [activeTab, setActiveTab] = useState<ConceptKey>('command');
+
   return (
     <section id="cqrs" style={{ padding: '100px 0' }}>
       <div className="container">
@@ -75,25 +76,28 @@ async function handle(query) {
 
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.5fr', gap: '3rem' }}>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-            {Object.entries(concepts).map(([key, item]) => (
-              <div
-                key={key}
-                onClick={() => setActiveTab(key)}
-                className="glass-card"
-                style={{
-                  cursor: 'pointer',
-                  borderLeft: activeTab === key ? `4px solid ${key === 'command' ? '#f59e0b' : '#3b82f6'}` : '4px solid transparent',
-                  background: activeTab === key ? 'rgba(255,255,255,0.05)' : 'var(--glass)',
-                  transition: 'all 0.3s ease'
-                }}
-              >
-                <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '0.75rem' }}>
-                  {item.icon}
-                  <h3 style={{ fontSize: '1.25rem' }}>{item.title}</h3>
+            {(Object.keys(concepts) as ConceptKey[]).map((key) => {
+              const item = concepts[key];
+              return (
+                <div
+                  key={key}
+                  onClick={() => setActiveTab(key)}
+                  className="glass-card"
+                  style={{
+                    cursor: 'pointer',
+                    borderLeft: activeTab === key ? `4px solid ${key === 'command' ? '#f59e0b' : '#3b82f6'}` : '4px solid transparent',
+                    background: activeTab === key ? 'rgba(255,255,255,0.05)' : 'var(--glass)',
+                    transition: 'all 0.3s ease'
+                  }}
+                >
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '0.75rem' }}>
+                    {item.icon}
+                    <h3 style={{ fontSize: '1.25rem' }}>{item.title}</h3>
+                  </div>
+                  <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)' }}>{item.desc}</p>
                 </div>
-                <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)' }}>{item.desc}</p>
-              </div>
-            ))}
+              );
+            })}
 
             <div className="glass-card" style={{ marginTop: 'auto', background: 'rgba(59, 130, 246, 0.05)' }}>
               <h4 style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1rem', fontSize: '1rem' }}>

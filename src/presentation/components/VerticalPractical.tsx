@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Folder, Code, Terminal, FileText } from 'lucide-react';
+import { Folder, Code, Terminal } from 'lucide-react';
 
 const VerticalPractical = () => {
-  const [activeSlice, setActiveSlice] = useState('create');
-
   const slices = {
     create: {
       title: 'src/features/create-order/',
@@ -37,6 +35,9 @@ export const handle = async (userId) => {
     }
   };
 
+  type SliceKey = keyof typeof slices;
+  const [activeSlice, setActiveSlice] = useState<SliceKey>('create');
+
   return (
     <section style={{ padding: '100px 0' }}>
       <div className="container">
@@ -44,23 +45,28 @@ export const handle = async (userId) => {
         
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 2fr', gap: '3rem' }}>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-            {Object.entries(slices).map(([key, value]) => (
-              <button
-                key={key}
-                onClick={() => setActiveSlice(key)}
-                className="glass-card"
-                style={{
-                  textAlign: 'left',
-                  borderLeft: activeSlice === key ? '4px solid #f97316' : '4px solid transparent',
-                  background: activeSlice === key ? 'rgba(249, 115, 22, 0.1)' : 'var(--glass)'
-                }}
-              >
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-                  <Folder color="#f97316" size={20} />
-                  <span style={{ fontWeight: 600, color: '#e2e8f0' }}>{value.title}</span>
-                </div>
-              </button>
-            ))}
+            {(Object.keys(slices) as SliceKey[]).map((key) => {
+              const value = slices[key];
+              return (
+                <button
+                  key={key}
+                  onClick={() => setActiveSlice(key)}
+                  className="glass-card"
+                  style={{
+                    textAlign: 'left',
+                    borderLeft: activeSlice === key ? '4px solid #f97316' : '4px solid transparent',
+                    background: activeSlice === key ? 'rgba(249, 115, 22, 0.1)' : 'var(--glass)',
+                    cursor: 'pointer',
+                    width: '100%'
+                  }}
+                >
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+                    <Folder color="#f97316" size={20} />
+                    <span style={{ fontWeight: 600, color: '#e2e8f0' }}>{value.title}</span>
+                  </div>
+                </button>
+              );
+            })}
 
             <div className="glass-card" style={{ marginTop: '2rem', borderColor: 'rgba(59, 130, 246, 0.2)' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1rem' }}>

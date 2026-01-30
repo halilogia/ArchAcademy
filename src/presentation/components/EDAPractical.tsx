@@ -3,8 +3,6 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Terminal, Code, MessageSquare, Bell } from 'lucide-react';
 
 const EDAPractical = () => {
-  const [activeTab, setActiveTab] = useState('publish');
-
   const practicalContent = {
     publish: {
       title: 'Event Publishing',
@@ -38,6 +36,9 @@ eventBus.subscribe("order.created", async (event) => {
     }
   };
 
+  type ContentKey = keyof typeof practicalContent;
+  const [activeTab, setActiveTab] = useState<ContentKey>('publish');
+
   return (
     <section style={{ padding: '100px 0' }}>
       <div className="container">
@@ -45,24 +46,29 @@ eventBus.subscribe("order.created", async (event) => {
         
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 2fr', gap: '3rem' }}>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-             {Object.entries(practicalContent).map(([key, item]) => (
-               <button
-                 key={key}
-                 onClick={() => setActiveTab(key)}
-                 className="glass-card"
-                 style={{
-                   textAlign: 'left',
-                   borderLeft: activeTab === key ? '4px solid #a855f7' : '4px solid transparent',
-                   background: activeTab === key ? 'rgba(168, 85, 247, 0.1)' : 'var(--glass)'
-                 }}
-               >
-                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.5rem' }}>
-                   {key === 'publish' ? <Bell size={18} color="#a855f7" /> : <MessageSquare size={18} color="#a855f7" />}
-                   <h4 style={{ color: activeTab === key ? '#a855f7' : 'white' }}>{item.title}</h4>
-                 </div>
-                 <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}>{item.desc}</p>
-               </button>
-             ))}
+             {(Object.keys(practicalContent) as ContentKey[]).map((key) => {
+               const item = practicalContent[key];
+               return (
+                <button
+                  key={key}
+                  onClick={() => setActiveTab(key)}
+                  className="glass-card"
+                  style={{
+                    textAlign: 'left',
+                    borderLeft: activeTab === key ? '4px solid #a855f7' : '4px solid transparent',
+                    background: activeTab === key ? 'rgba(168, 85, 247, 0.1)' : 'var(--glass)',
+                    cursor: 'pointer',
+                    width: '100%'
+                  }}
+                >
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.5rem' }}>
+                    {key === 'publish' ? <Bell size={18} color="#a855f7" /> : <MessageSquare size={18} color="#a855f7" />}
+                    <h4 style={{ color: activeTab === key ? '#a855f7' : 'white' }}>{item.title}</h4>
+                  </div>
+                  <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}>{item.desc}</p>
+                </button>
+               );
+             })}
              
              <div className="glass-card" style={{ marginTop: '2rem', border: '1px solid rgba(168, 85, 247, 0.2)' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1rem' }}>

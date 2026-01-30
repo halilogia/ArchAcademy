@@ -1,8 +1,12 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { motion } from 'framer-motion';
-import { Laptop, Code2, ShieldCheck, ChevronRight } from 'lucide-react';
+import { Code2, ShieldCheck } from 'lucide-react';
 
-const ProjectHero = ({ children }) => {
+interface ProjectHeroProps {
+  children?: ReactNode;
+}
+
+const ProjectHero: React.FC<ProjectHeroProps> = ({ children }) => {
   return (
     <section style={{
       padding: '120px 0 60px',

@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Code, Boxes, Repeat, Database, Zap } from 'lucide-react';
+import { Code, Zap } from 'lucide-react';
 
 const DDDSimulation = () => {
-  const [activeTab, setActiveTab] = useState('entity');
-
   const modelExamples = {
     entity: {
       title: 'Entity (Varlık)',
@@ -65,6 +63,9 @@ const DDDSimulation = () => {
     }
   };
 
+  type ModelKey = keyof typeof modelExamples;
+  const [activeTab, setActiveTab] = useState<ModelKey>('entity');
+
   return (
     <section style={{ padding: '100px 0' }}>
       <div className="container">
@@ -78,23 +79,27 @@ const DDDSimulation = () => {
         }}>
           {/* Controls */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-            {Object.entries(modelExamples).map(([key, data]) => (
-              <button
-                key={key}
-                onClick={() => setActiveTab(key)}
-                className="glass-card"
-                style={{
-                  textAlign: 'left',
-                  padding: '1.5rem',
-                  borderLeft: activeTab === key ? `4px solid #a78bfa` : '4px solid transparent',
-                  background: activeTab === key ? 'rgba(167, 139, 250, 0.1)' : 'var(--glass)',
-                  transition: 'all 0.3s ease'
-                }}
-              >
-                <h4 style={{ color: activeTab === key ? '#a78bfa' : 'white', marginBottom: '0.5rem' }}>{data.title}</h4>
-                <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}>{data.desc.substring(0, 60)}...</p>
-              </button>
-            ))}
+            {(Object.keys(modelExamples) as ModelKey[]).map((key) => {
+              const data = modelExamples[key];
+              return (
+                <button
+                  key={key}
+                  onClick={() => setActiveTab(key)}
+                  className="glass-card"
+                  style={{
+                    textAlign: 'left',
+                    padding: '1.5rem',
+                    borderLeft: activeTab === key ? `4px solid #a78bfa` : '4px solid transparent',
+                    background: activeTab === key ? 'rgba(167, 139, 250, 0.1)' : 'var(--glass)',
+                    transition: 'all 0.3s ease',
+                    cursor: 'pointer'
+                  }}
+                >
+                  <h4 style={{ color: activeTab === key ? '#a78bfa' : 'white', marginBottom: '0.5rem' }}>{data.title}</h4>
+                  <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}>{data.desc.substring(0, 60)}...</p>
+                </button>
+              );
+            })}
 
             <div className="glass-card" style={{ marginTop: 'auto', background: 'rgba(245, 158, 11, 0.05)', borderColor: 'rgba(245, 158, 11, 0.2)' }}>
               <h4 style={{ color: '#f59e0b', display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.9rem' }}>

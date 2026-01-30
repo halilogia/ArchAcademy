@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Folder, Code, Terminal, FileText } from 'lucide-react';
+import { Folder, Code, Terminal } from 'lucide-react';
 
 const HorizontalPractical = () => {
-  const [activeTab, setActiveTab] = useState('controller');
-
   const layers = {
     controller: {
       title: 'Presentation (Controllers)',
@@ -42,6 +40,9 @@ public async Task<Product> Get(int id) {
     }
   };
 
+  type LayerKey = keyof typeof layers;
+  const [activeTab, setActiveTab] = useState<LayerKey>('controller');
+
   return (
     <section style={{ padding: '100px 0' }}>
       <div className="container">
@@ -59,23 +60,28 @@ public async Task<Product> Get(int id) {
               </p>
             </div>
 
-            {Object.entries(layers).map(([key, value]) => (
-              <button
-                key={key}
-                onClick={() => setActiveTab(key)}
-                className="glass-card"
-                style={{
-                  textAlign: 'left',
-                  borderLeft: activeTab === key ? '4px solid #3b82f6' : '4px solid transparent',
-                  background: activeTab === key ? 'rgba(59, 130, 246, 0.1)' : 'var(--glass)'
-                }}
-              >
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-                  <Folder color="#3b82f6" size={20} />
-                  <span style={{ fontWeight: 600 }}>{value.title}</span>
-                </div>
-              </button>
-            ))}
+            {(Object.keys(layers) as LayerKey[]).map((key) => {
+              const value = layers[key];
+              return (
+                <button
+                  key={key}
+                  onClick={() => setActiveTab(key)}
+                  className="glass-card"
+                  style={{
+                    textAlign: 'left',
+                    borderLeft: activeTab === key ? '4px solid #3b82f6' : '4px solid transparent',
+                    background: activeTab === key ? 'rgba(59, 130, 246, 0.1)' : 'var(--glass)',
+                    cursor: 'pointer',
+                    width: '100%'
+                  }}
+                >
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+                    <Folder color="#3b82f6" size={20} />
+                    <span style={{ fontWeight: 600, color: 'white' }}>{value.title}</span>
+                  </div>
+                </button>
+              );
+            })}
           </div>
 
           <div className="glass-card" style={{ padding: 0, overflow: 'hidden', background: '#0a0a0f' }}>

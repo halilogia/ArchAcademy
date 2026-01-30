@@ -334,5 +334,5 @@ const LambdaKappaPage = () => {
     );
 };
 
-export default BigDataPage;
+export default LambdaKappaPage;
 

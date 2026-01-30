@@ -26,27 +26,30 @@ export const calculateScores = (answers: Answers, questions: Question[]): Scores
     if (q.type === 'choice' && q.options) {
       const option = q.options[answer];
       if (option?.weights) {
-        Object.keys(option.weights).forEach(key => {
-          scores[key] = (scores[key] || 0) + (option.weights[key] || 0);
+        const weights = option.weights;
+        Object.keys(weights).forEach(key => {
+          scores[key] = (scores[key] || 0) + (weights[key] || 0);
         });
       }
       if (option?.constraints) {
-        Object.keys(option.constraints).forEach(key => {
-          scores[key] = (scores[key] || 0) + (option.constraints[key] || 0);
+        const constraints = option.constraints;
+        Object.keys(constraints).forEach(key => {
+          scores[key] = (scores[key] || 0) + (constraints[key] || 0);
         });
       }
     } else if (q.type === 'range' && q.weights) {
+      const { low, high } = q.weights;
       // Orijinal .jsx mantığı: 0-4 low, 6-10 high. Orta (5) nötr.
       const val = answer;
       if (val <= 4) {
         const factor = (5 - val) / 5;
-        Object.keys(q.weights.low).forEach(key => {
-          scores[key] = (scores[key] || 0) + Math.round(q.weights.low[key] * factor * 3);
+        Object.keys(low).forEach(key => {
+          scores[key] = (scores[key] || 0) + Math.round(low[key] * factor * 3);
         });
       } else if (val >= 6) {
         const factor = (val - 5) / 5;
-        Object.keys(q.weights.high).forEach(key => {
-          scores[key] = (scores[key] || 0) + Math.round(q.weights.high[key] * factor * 3);
+        Object.keys(high).forEach(key => {
+          scores[key] = (scores[key] || 0) + Math.round(high[key] * factor * 3);
         });
       }
     }

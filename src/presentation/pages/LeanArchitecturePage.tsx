@@ -10,49 +10,49 @@ const LeanArchitecturePage = () => {
     {
       id: 'eliminate-waste',
       title: '1. Eliminate Waste',
-      icon: <Trash2 size={24} />,
+      icon: Trash2,
       color: '#ef4444',
       desc: 'Yazılımda "değer üretmeyen" her şey israftır. Müşterinin kullanmayacağı ekstra özellikler (Gold Plating), tamamlanmamış işler, gereksiz evrak işleri ve beklemeler hemen elenmelidir.'
     },
     {
       id: 'amplify-learning',
       title: '2. Create Knowledge',
-      icon: <Sparkles size={24} />,
+      icon: Sparkles,
       color: '#f59e0b',
       desc: 'Yazılım geliştirme bir üretim süreci değil, bir öğrenme sürecidir. En iyi mimari, kodu yazanların domaini en iyi öğrendiği anda ortaya çıkar. Dokümantasyon değil, çalışan kod ve testler bilgiyi taşır.'
     },
     {
       id: 'decide-late',
       title: '3. Defer Commitment',
-      icon: <Clock size={24} />,
+      icon: Clock,
       color: '#3b82f6',
       desc: 'Mimari kararları (örn: NoSQL vs SQL) mümkün olan "son sorumlu ana" kadar erteleyin. Erken verilen kararlar varsayımlara dayanır; geç verilen kararlar ise gerçeklere.'
     },
     {
       id: 'deliver-fast',
       title: '4. Deliver Fast',
-      icon: <Zap size={24} />,
+      icon: Zap,
       color: '#eab308',
       desc: 'Hız, belirsizliği yok eder. Müşteriye ne kadar hızlı çıktı verirseniz, o kadar hızlı geri bildirim alırsınız. Büyük "Big Bang" sürümler yerine küçük ve sık sürümler esastır.'
     },
     {
       id: 'empower-team',
       title: '5. Respect People',
-      icon: <Users size={24} />,
+      icon: Users,
       color: '#a855f7',
       desc: 'Kararları yukarıdaki mimarlar değil, işi yapan uzmanlar vermelidir. Takıma güvenin ve onlara inisiyatif verin. Motivasyonu yüksek bir ekip, en iyi süreçten daha değerlidir.'
     },
     {
       id: 'build-integrity',
       title: '6. Build Integrity In',
-      icon: <CheckSquare size={24} />,
+      icon: CheckSquare,
       color: '#10b981',
       desc: 'Kalite sonradan test edilerek eklenemez; en baştan koda inşa edilmelidir. TDD, Refactoring ve Continuous Integration, sistemin bütünlüğünü (integrity) sağlayan temel araçlardır.'
     },
     {
       id: 'whole-view',
       title: '7. Optimize the Whole',
-      icon: <Minimize2 size={24} />,
+      icon: Minimize2,
       color: '#ec4899',
       desc: 'Sadece veritabanını hızlandırmak yetmez; tüm isteğin (request) yaşam döngüsüne bakın. Parçaları optimize etmek (sub-optimization) genellikle bütünün performansını düşürür.'
     }
@@ -156,7 +156,7 @@ const LeanArchitecturePage = () => {
                   }}
                 >
                   <div style={{ color: activeTab === idx ? p.color : 'rgba(255,255,255,0.4)' }}>
-                    {p.icon}
+                    {React.createElement(p.icon, { size: 24 })}
                   </div>
                   <span style={{ 
                     fontWeight: activeTab === idx ? 700 : 500, 
@@ -194,7 +194,7 @@ const LeanArchitecturePage = () => {
                       color: principles[activeTab].color,
                       marginBottom: '2rem'
                     }}>
-                      {React.cloneElement(principles[activeTab].icon as React.ReactElement, { size: 40 })}
+                      {React.createElement(principles[activeTab].icon, { size: 40 })}
                     </div>
                     
                     <h2 style={{ fontSize: '2.5rem', marginBottom: '1.5rem', color: 'white' }}>{principles[activeTab].title}</h2>

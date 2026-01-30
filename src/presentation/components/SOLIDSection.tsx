@@ -3,8 +3,6 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { FileCode, Shield, Check, X, Info } from 'lucide-react';
 
 const SOLIDSection = () => {
-  const [activeTab, setActiveTab] = useState('S');
-
   const principles = {
     S: {
       name: 'Single Responsibility',
@@ -93,6 +91,9 @@ class Robot implements Workable { ... }`,
     }
   };
 
+  type PrincipleKey = keyof typeof principles;
+  const [activeTab, setActiveTab] = useState<PrincipleKey>('S');
+
   return (
     <section style={{ padding: '100px 0' }}>
       <div className="container">
@@ -103,7 +104,7 @@ class Robot implements Workable { ... }`,
           gap: '1rem',
           marginBottom: '4rem'
         }}>
-          {Object.keys(principles).map(p => (
+          {(Object.keys(principles) as PrincipleKey[]).map(p => (
             <button
               key={p}
               onClick={() => setActiveTab(p)}

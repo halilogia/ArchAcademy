@@ -3,8 +3,6 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Terminal, Code, Activity, Server } from 'lucide-react';
 
 const CQRSPractical = () => {
-  const [activeTab, setActiveTab] = useState('handler');
-
   const content = {
     handler: {
       title: 'Command Handler',
@@ -67,6 +65,9 @@ export class OrderController {
     }
   };
 
+  type ContentKey = keyof typeof content;
+  const [activeTab, setActiveTab] = useState<ContentKey>('handler');
+
   return (
     <section style={{ padding: '100px 0' }}>
       <div className="container">
@@ -74,22 +75,27 @@ export class OrderController {
         
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 2fr', gap: '3rem' }}>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
-            {Object.entries(content).map(([key, item]) => (
-              <button
-                key={key}
-                onClick={() => setActiveTab(key)}
-                className="glass-card"
-                style={{
-                  textAlign: 'left',
-                  borderLeft: activeTab === key ? '4px solid #eab308' : '4px solid transparent',
-                  background: activeTab === key ? 'rgba(234, 179, 8, 0.1)' : 'var(--glass)',
-                  padding: '1.5rem'
-                }}
-              >
-                <h4 style={{ color: activeTab === key ? '#eab308' : 'white', marginBottom: '0.5rem' }}>{item.title}</h4>
-                <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}>{item.desc}</p>
-              </button>
-            ))}
+            {(Object.keys(content) as ContentKey[]).map((key) => {
+              const item = content[key];
+              return (
+                <button
+                  key={key}
+                  onClick={() => setActiveTab(key)}
+                  className="glass-card"
+                  style={{
+                    textAlign: 'left',
+                    borderLeft: activeTab === key ? '4px solid #eab308' : '4px solid transparent',
+                    background: activeTab === key ? 'rgba(234, 179, 8, 0.1)' : 'var(--glass)',
+                    padding: '1.5rem',
+                    cursor: 'pointer',
+                    width: '100%'
+                  }}
+                >
+                  <h4 style={{ color: activeTab === key ? '#eab308' : 'white', marginBottom: '0.5rem' }}>{item.title}</h4>
+                  <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}>{item.desc}</p>
+                </button>
+              );
+            })}
 
             <div className="glass-card" style={{ marginTop: '2rem', background: 'rgba(59, 130, 246, 0.05)' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1rem' }}>

@@ -64,7 +64,7 @@ const ECSPage = () => {
   );
 
   return (
-    <div style={{ background: 'var(--bg-dark)', minHeight: '100vh', pb: '100px' }}>
+    <div style={{ background: 'var(--bg-dark)', minHeight: '100vh', paddingBottom: '100px' }}>
       <ArchHero 
         title="ECS"
         subtitle="Game Architecture"

@@ -313,7 +313,6 @@ const EventSourcingPage = () => {
                 </motion.div>
             )}
         </AnimatePresence>
-        </AnimatePresence>
       </div>
       
       <section style={{ padding: '4rem 0', background: 'rgba(0,0,0,0.3)', borderTop: '1px solid rgba(255,255,255,0.05)', marginTop: '4rem' }}>

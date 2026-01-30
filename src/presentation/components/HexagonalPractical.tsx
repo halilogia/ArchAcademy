@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FileCode, Layers, Link as LinkIcon } from 'lucide-react';
+import { FileCode, Link as LinkIcon } from 'lucide-react';
 
 const HexagonalPractical = () => {
-  const [activeTab, setActiveTab] = useState('port');
-
   const codeExamples = {
     port: {
       title: 'Port (Interface)',
@@ -48,6 +46,9 @@ class SqlUserRepository implements UserRepository {
     }
   };
 
+  type ExampleKey = keyof typeof codeExamples;
+  const [activeTab, setActiveTab] = useState<ExampleKey>('port');
+
   return (
     <section style={{ padding: '100px 0' }}>
       <div className="container">
@@ -55,21 +56,26 @@ class SqlUserRepository implements UserRepository {
         
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 2fr', gap: '3rem' }}>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-            {Object.entries(codeExamples).map(([key, data]) => (
-              <button
-                key={key}
-                onClick={() => setActiveTab(key)}
-                className="glass-card"
-                style={{
-                  textAlign: 'left',
-                  borderLeft: activeTab === key ? '4px solid #10b981' : '4px solid transparent',
-                  background: activeTab === key ? 'rgba(16, 185, 129, 0.1)' : 'var(--glass)'
-                }}
-              >
-                <h4 style={{ color: activeTab === key ? '#10b981' : 'white' }}>{data.title}</h4>
-                <p style={{ fontSize: '0.8rem', opacity: 0.6, marginTop: '0.5rem' }}>{data.file}</p>
-              </button>
-            ))}
+            {(Object.keys(codeExamples) as ExampleKey[]).map((key) => {
+              const data = codeExamples[key];
+              return (
+                <button
+                  key={key}
+                  onClick={() => setActiveTab(key)}
+                  className="glass-card"
+                  style={{
+                    textAlign: 'left',
+                    borderLeft: activeTab === key ? '4px solid #10b981' : '4px solid transparent',
+                    background: activeTab === key ? 'rgba(16, 185, 129, 0.1)' : 'var(--glass)',
+                    cursor: 'pointer',
+                    width: '100%'
+                  }}
+                >
+                  <h4 style={{ color: activeTab === key ? '#10b981' : 'white' }}>{data.title}</h4>
+                  <p style={{ fontSize: '0.8rem', opacity: 0.6, marginTop: '0.5rem' }}>{data.file}</p>
+                </button>
+              );
+            })}
             
             <div className="glass-card" style={{ marginTop: '2rem', background: 'rgba(59, 130, 246, 0.1)' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1rem' }}>

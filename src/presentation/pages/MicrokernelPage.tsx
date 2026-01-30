@@ -56,6 +56,8 @@ const MicrokernelPage = () => {
 
     const startPlugin = (id: string) => {
         const plugin = plugins.find(p => p.id === id);
+        if (!plugin) return; // Güvenlik kontrolü
+
         updatePluginStatus(id, 'running');
         log(`Starting ${plugin.name}...`);
         
@@ -80,8 +82,8 @@ const MicrokernelPage = () => {
                     boxShadow: plugins.some(p => p.status === 'running') 
                         ? ['0 0 20px #10b981', '0 0 60px #10b981', '0 0 20px #10b981'] 
                         : '0 0 20px rgba(16, 185, 129, 0.2)',
-                    type: "spring"
                 }}
+                transition={{ type: "spring" }}
                 style={{ 
                     position: 'relative',
                     width: '100px', 

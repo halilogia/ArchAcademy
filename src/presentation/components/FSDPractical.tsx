@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Folder, FileJson, Code, Terminal } from 'lucide-react';
+import { Folder, Code, Terminal } from 'lucide-react';
 
 const FSDPractical = () => {
-  const [activeFolder, setActiveFolder] = useState('features');
-
   const structure = {
     features: {
       title: 'src/features/auth-by-email',
@@ -38,6 +36,9 @@ export const Button = ({ children, onClick }) => {
     }
   };
 
+  type StructureKey = keyof typeof structure;
+  const [activeFolder, setActiveFolder] = useState<StructureKey>('features');
+
   return (
     <section style={{ padding: '100px 0' }}>
       <div className="container">
@@ -60,7 +61,7 @@ export const Button = ({ children, onClick }) => {
             </div>
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-              {Object.entries(structure).map(([key, value]) => (
+              {(Object.keys(structure) as StructureKey[]).map((key) => (
                 <button
                   key={key}
                   onClick={() => setActiveFolder(key)}
@@ -69,7 +70,9 @@ export const Button = ({ children, onClick }) => {
                     textAlign: 'left',
                     padding: '1.25rem',
                     borderLeft: activeFolder === key ? '4px solid #06b6d4' : '4px solid transparent',
-                    background: activeFolder === key ? 'rgba(6, 182, 212, 0.1)' : 'var(--glass)'
+                    background: activeFolder === key ? 'rgba(6, 182, 212, 0.1)' : 'var(--glass)',
+                    cursor: 'pointer',
+                    width: '100%'
                   }}
                 >
                   <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
