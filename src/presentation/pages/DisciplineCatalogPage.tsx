@@ -81,8 +81,8 @@ const DisciplineCatalogPage = () => {
       color: '#3b82f6',
       items: [
         { name: 'Design Patterns', path: '/design-patterns', color: '#3b82f6', icon: <Zap size={24} />, desc: 'Tekrar eden yapısal sorunlara kanıtlanmış çözümler (GOF).' },
-        { name: 'Dependency Management', path: '/abstraction', color: '#60a5fa', icon: <Network size={24} />, desc: 'Bileşenler arası bağımlılıkların reaktif ve esnek yönetimi.' },
-        { name: 'Moderate Abstraction', path: '/abstraction', color: '#93c5fd', icon: <Layers size={24} />, desc: 'Ne çok derin ne çok sığ; tam kararında soyutlama dengesi.' }
+        { name: 'Dependency Management', path: '/dependency-management', color: '#60a5fa', icon: <Network size={24} />, desc: 'Bileşenler arası bağımlılıkların reaktif ve esnek yönetimi.' },
+        { name: 'Moderate Abstraction', path: '/moderate-abstraction', color: '#93c5fd', icon: <Layers size={24} />, desc: 'Ne çok derin ne çok sığ; tam kararında soyutlama dengesi.' }
       ]
     },
 
@@ -94,7 +94,8 @@ const DisciplineCatalogPage = () => {
       items: [
         { name: 'Security Assurance', path: '/security', color: '#a855f7', icon: <Lock size={24} />, desc: 'Mimari seviyede güvenlik katmanları ve kalkan önlemleri.' },
         { name: 'Docs & Annotations', path: '/docs-annotations', color: '#c084fc', icon: <BookOpen size={24} />, desc: 'Kararların nedenlerini (ADR) dökümante etme kültürü.' },
-        { name: 'Lean Philosophy', path: '/lean-architecture', color: '#d8b4fe', icon: <Target size={24} />, desc: 'İsraftan kaçınma ve sürekli değer üretme zihin yapısı.' }
+        { name: 'Lean Philosophy', path: '/lean-architecture', color: '#d8b4fe', icon: <Target size={24} />, desc: 'İsraftan kaçınma ve sürekli değer üretme zihin yapısı.' },
+        { name: 'Robustness & Reliability', path: '/robustness', color: '#fde047', icon: <Activity size={24} />, desc: 'Hatalara karşı toleranslı ve sarsılmaz çalışma prensibi.' }
       ]
     },
     {

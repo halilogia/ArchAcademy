@@ -100,20 +100,20 @@ const HomePage = () => {
             gap: '2rem' 
           }}>
             <FeatureCard 
-              title="Sistem Mimarisi" 
+              title="Code Org. & Patterns" 
               icon={<Library />}
-              desc="Clean Arch, DDD, Hexagonal gibi Back-end ve Core sistem tasarımları."
+              desc="Microservices, DDD, Clean Arch ve MVC gibi kod organizasyon desenleri."
               path="/catalog"
               color="#3b82f6"
               label="CORE"
             />
             <FeatureCard 
-              title="UI Mimarisi" 
+              title="Visual Architecture" 
               icon={<Monitor />}
-              desc="Atomic Design, Micro-Frontends ve modern görsel inşa teknikleri."
+              desc="Design Systems, Atomic Design, Micro-Frontends ve görsel inşa teknikleri."
               path="/ui-catalog"
               color="#0ea5e9"
-              label="FRONTEND"
+              label="VISUAL"
             />
             <FeatureCard 
               title="Data & AI" 

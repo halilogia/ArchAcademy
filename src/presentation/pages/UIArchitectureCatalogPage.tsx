@@ -2,29 +2,15 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { 
-  monitor, 
-  Layout, 
-  MousePointerClick, 
-  Palette, 
-  Component, 
+  CreditCard, 
   Server, 
-  Split, 
-  Zap, 
-  Layers, 
-  Box, 
-  RefreshCcw 
-} from 'lucide-react'; // Simulating imports, actual icons below
-
-import { 
-  Monitor, 
-  LayoutTemplate, 
-  Pointer, 
-  PaintBucket, 
+  Layout, 
+  Palette, 
   Puzzle, 
-  Server as ServerIcon, 
-  GitMerge, 
-  Activity, 
-  Cpu
+  Layers,
+  RefreshCcw,
+  Globe,
+  Monitor
 } from 'lucide-react';
 
 interface UIArchItem {
@@ -43,115 +29,150 @@ const UIArchitectureCatalogPage = () => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setRotation(prev => (prev + 0.05) % 360);
+      setRotation(prev => (prev + 0.2) % 360);
     }, 50);
     return () => clearInterval(interval);
   }, []);
 
   const items: UIArchItem[] = [
-    { id: 'atomic', name: 'Atomic Design', path: '/atomic-design', color: '#f97316', icon: <Box size={24} />, desc: 'Arayüzü atomlardan sayfalara hiyerarşik inşa etme.' },
-    { id: 'sdui', name: 'Server-Driven UI', path: '/server-driven-ui', color: '#818cf8', icon: <ServerIcon size={24} />, desc: 'Ekran tasarımını backend JSON yanıtlarıyla yönetme.' },
-    { id: 'islands', name: 'Islands Arch', path: '/islands-arch', color: '#0ea5e9', icon: <LayoutTemplate size={24} />, desc: 'Statik HTML içinde interaktif adacıklar.' },
-    { id: 'tokens', name: 'Design Tokens', path: '/design-tokens', color: '#fb923c', icon: <PaintBucket size={24} />, desc: 'Renk, font ve boşlukların merkezi yönetimi.' },
-    { id: 'micro', name: 'Micro-Frontends', path: '/micro-frontends', color: '#ec4899', icon: <GitMerge size={24} />, desc: 'Frontend uygulamasını bağımsız parçalara bölme.' },
+    { id: 'atomic', name: 'Atomic Design', path: '/atomic-design', color: '#3b82f6', icon: <Palette size={24} />, desc: 'Atom -> Molekül -> Organizma. UI bileşen hiyerarşisi.' },
+    { id: 'sdui', name: 'Server-Driven UI', path: '/server-driven-ui', color: '#8b5cf6', icon: <Server size={24} />, desc: 'Backend ne derse onu çiz. Dinamik UI yönetimi.' },
+    { id: 'islands', name: 'Islands Arch', path: '/islands-arch', color: '#f59e0b', icon: <Layout size={24} />, desc: 'Sadece interaktif adaları hydrate et (Astro).' },
+    { id: 'tokens', name: 'Design Tokens', path: '/design-tokens', color: '#ec4899', icon: <CreditCard size={24} />, desc: 'Renk, font, spacing... Tasarımın atomik sabitleri.' },
+    { id: 'microfe', name: 'Micro-Frontends', path: '/micro-frontends', color: '#06b6d4', icon: <Puzzle size={24} />, desc: 'Monolitik frontendi parçala ve yönet.' },
     { id: 'state', name: 'State-Driven UI', path: '/state-driven', color: '#22c55e', icon: <RefreshCcw size={24} />, desc: 'UI = f(State). Reaktif arayüz paradigması.' },
     { id: 'cdd', name: 'Component-Driven', path: '/component-driven', color: '#f43f5e', icon: <Puzzle size={24} />, desc: 'Sayfalardan değil, bileşenlerden başlama (CDD).' },
     { id: 'composite', name: 'Composite UI', path: '/composite-ui', color: '#8b5cf6', icon: <Layers size={24} />, desc: 'Farklı modüllerin runtime anında birleşmesi.' },
-    { id: 'mvi', name: 'MVI Arch', path: '/mvi', color: '#10b981', icon: <RefreshCcw size={24} />, desc: 'Model-View-Intent. Tek yönlü ve döngüsel veri akışı.' },
-    { id: 'spa-mpa', name: 'SPA vs MPA', path: '/spa-vs-mpa', color: '#eab308', icon: <Monitor size={24} />, desc: 'Single Page vs Multi Page. Web render stratejileri.' }
+    { id: 'spa-mpa', name: 'SPA vs MPA', path: '/spa-vs-mpa', color: '#10b981', icon: <Globe size={24} />, desc: 'Tek Sayfa (SPA) ile Çok Sayfa (MPA) render stratejileri.' }
   ];
 
   return (
-    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} style={{ background: '#0f172a', minHeight: '100vh', paddingTop: '100px', overflow: 'hidden' }}>
-      <div className="container" style={{ position: 'relative', height: 'calc(100vh - 120px)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+    <div style={{ minHeight: '100vh', padding: '0', background: '#0f172a', overflow: 'hidden', position: 'relative' }}>
         
-        {/* Central Hub */}
-        <div style={{ position: 'absolute', zIndex: 10, textAlign: 'center' }}>
-          <motion.div 
-            animate={{ boxShadow: ['0 0 20px #6366f1', '0 0 50px #6366f1', '0 0 20px #6366f1'] }}
-            transition={{ duration: 3, repeat: Infinity }}
-            style={{ width: '130px', height: '130px', borderRadius: '50%', background: '#1e1b4b', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', border: '4px solid #6366f1' }}
-          >
-             <Monitor size={40} color="#818cf8" />
-             <div style={{ color: 'white', fontWeight: 900, fontSize: '1rem', marginTop: '8px' }}>UI ARCH</div>
-             <div style={{ color: '#818cf8', fontSize: '0.7rem' }}>CATALOG</div>
-          </motion.div>
+        {/* Background Ambience */}
+        <div style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, zIndex: 0 }}>
+            <div style={{ position: 'absolute', top: '20%', left: '10%', width: '400px', height: '400px', background: 'radial-gradient(circle, rgba(96, 165, 250, 0.1) 0%, transparent 70%)', filter: 'blur(40px)' }} />
+            <div style={{ position: 'absolute', bottom: '10%', right: '10%', width: '300px', height: '300px', background: 'radial-gradient(circle, rgba(139, 92, 246, 0.1) 0%, transparent 70%)', filter: 'blur(40px)' }} />
         </div>
 
-        {/* Orbiting Items */}
-        <motion.div 
-          animate={{ rotate: rotation }} 
-          style={{ width: '500px', height: '500px', position: 'absolute', borderRadius: '50%', border: '1px dashed rgba(255,255,255,0.1)' }}
-        >
-          {items.map((item, index) => {
-            const angle = (360 / items.length) * index;
-            const rad = angle * (Math.PI / 180);
-            const radius = 250;
-            const x = radius * Math.cos(rad) + 250 - 35; // Center offset (Half of container - Half of item)
-            const y = radius * Math.sin(rad) + 250 - 35;
+        {/* Title */}
+        <div style={{ position: 'relative', zIndex: 10, textAlign: 'center', paddingTop: '4rem', marginBottom: '1rem' }}>
+            <h1 style={{ 
+            fontSize: '3.5rem', 
+            fontWeight: 800, 
+            background: 'linear-gradient(to right, #60a5fa, #c084fc)',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+            marginBottom: '1rem',
+            letterSpacing: '-1px'
+            }}>
+            Visual Architecture
+            </h1>
+            <p style={{ fontSize: '1.2rem', color: '#94a3b8', maxWidth: '600px', margin: '0 auto' }}>
+            Pixel-perfect rendering, Design Systems ve görsel tutarlılık disiplinleri.
+            </p>
+        </div>
 
-            const isHovered = hoveredItem?.id === item.id;
+        {/* Orbit Visualization */}
+        <div style={{ position: 'relative', height: '600px', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 10 }}>
+            
+            {/* Center Core */}
+            <div style={{ position: 'absolute', zIndex: 20 }}>
+                <motion.div 
+                    animate={{ boxShadow: ['0 0 20px rgba(99, 102, 241, 0.4)', '0 0 50px rgba(99, 102, 241, 0.6)', '0 0 20px rgba(99, 102, 241, 0.4)'] }}
+                    transition={{ duration: 3, repeat: Infinity }}
+                    style={{ 
+                        width: '140px', height: '140px', 
+                        borderRadius: '50%', 
+                        background: '#1e1b4b', 
+                        display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', 
+                        border: '4px solid #6366f1',
+                        cursor: 'default'
+                    }}
+                >
+                    <Monitor size={40} color="#818cf8" />
+                    <div style={{ color: 'white', fontWeight: 900, fontSize: '1rem', marginTop: '8px' }}>DESIGN</div>
+                    <div style={{ color: '#818cf8', fontSize: '0.7rem' }}>SYSTEMS</div>
+                </motion.div>
+            </div>
 
-            return (
-              <motion.div
-                key={item.id}
+            {/* Orbital Ring */}
+            <motion.div 
+                animate={{ rotate: rotation }} 
                 style={{ 
-                   position: 'absolute', top: 0, left: 0, 
-                   x, y,
-                   width: '70px', height: '70px', borderRadius: '50%',
-                   background: '#1e293b',
-                   border: `2px solid ${item.color}`,
-                   display: 'flex', alignItems: 'center', justifyContent: 'center',
-                   cursor: 'pointer',
-                   boxShadow: isHovered ? `0 0 30px ${item.color}` : `0 0 10px ${item.color}44`,
-                   zIndex: 20
+                    width: '500px', height: '500px', 
+                    position: 'absolute', 
+                    borderRadius: '50%', 
+                    border: '1px dashed rgba(255,255,255,0.1)' 
                 }}
-                whileHover={{ scale: 1.2 }}
-                onMouseEnter={() => setHoveredItem(item)}
-                onMouseLeave={() => setHoveredItem(null)}
-                onClick={() => navigate(item.path)}
-              >
-                  <motion.div
-                     animate={{ rotate: -rotation }} // Counter rotate to keep icon upright
-                     style={{ color: item.color }}
-                  >
-                     {React.cloneElement(item.icon as React.ReactElement, { size: 20 })}
-                  </motion.div>
-              </motion.div>
-            );
-          })}
-        </motion.div>
-
-        {/* Details Panel */}
-        <AnimatePresence>
-          {hoveredItem && (
-            <motion.div
-              initial={{ opacity: 0, y: 20, scale: 0.9 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: 20, scale: 0.9 }}
-              style={{
-                position: 'absolute',
-                bottom: '5%',
-                background: 'rgba(15, 23, 42, 0.95)',
-                backdropFilter: 'blur(16px)',
-                border: `1px solid ${hoveredItem.color}`,
-                padding: '2rem',
-                borderRadius: '24px',
-                textAlign: 'center',
-                maxWidth: '600px',
-                width: '90%',
-                zIndex: 30,
-                boxShadow: `0 20px 50px -10px rgba(0,0,0,0.5)`
-              }}
             >
-               <h2 style={{ color: hoveredItem.color, margin: 0, fontSize: '2rem', fontWeight: 800 }}>{hoveredItem.name}</h2>
-               <p style={{ color: '#cbd5e1', marginTop: '10px', fontSize: '1.1rem', lineHeight: 1.6 }}>{hoveredItem.desc}</p>
+                {items.map((item, index) => {
+                    const angle = (360 / items.length) * index;
+                    const rad = angle * (Math.PI / 180);
+                    const radius = 250;
+                    const x = radius * Math.cos(rad) + 250 - 35; 
+                    const y = radius * Math.sin(rad) + 250 - 35;
+
+                    return (
+                        <motion.div
+                            key={item.id}
+                            style={{ 
+                                position: 'absolute', 
+                                left: x, top: y, 
+                                width: '70px', height: '70px', 
+                                borderRadius: '50%', 
+                                background: '#1e293b',
+                                border: `2px solid ${item.color}`,
+                                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                                cursor: 'pointer',
+                                boxShadow: hoveredItem?.id === item.id ? `0 0 30px ${item.color}` : 'none'
+                             }}
+                             whileHover={{ scale: 1.2, zIndex: 100 }}
+                             onClick={(e) => {
+                                 e.stopPropagation();
+                                 navigate(item.path);
+                             }}
+                             onMouseEnter={() => setHoveredItem(item)}
+                             onMouseLeave={() => setHoveredItem(null)}
+                        >
+                            {/* Counter-rotate icon so it stays upright */}
+                            <motion.div style={{ color: item.color }} animate={{ rotate: -rotation }}>
+                                {item.icon}
+                            </motion.div>
+                        </motion.div>
+                    );
+                })}
             </motion.div>
-          )}
-        </AnimatePresence>
-        
-      </div>
-    </motion.div>
+
+            {/* Info Card (Dynamic) */}
+            <AnimatePresence>
+                {hoveredItem && (
+                    <motion.div
+                        initial={{ opacity: 0, y: 20, scale: 0.9 }}
+                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                        exit={{ opacity: 0, scale: 0.9 }}
+                        style={{
+                            position: 'absolute',
+                            bottom: '20px', // Fixed at bottom of orbit area
+                            background: 'rgba(30, 41, 59, 0.9)',
+                            backdropFilter: 'blur(10px)',
+                            padding: '1.5rem',
+                            borderRadius: '16px',
+                            border: `1px solid ${hoveredItem.color}`,
+                            textAlign: 'center',
+                            maxWidth: '400px',
+                            zIndex: 50,
+                            boxShadow: '0 20px 50px rgba(0,0,0,0.5)'
+                        }}
+                    >
+                        <h3 style={{ color: hoveredItem.color, marginBottom: '0.5rem', fontSize: '1.5rem' }}>{hoveredItem.name}</h3>
+                        <p style={{ color: '#cbd5e1', lineHeight: 1.5 }}>{hoveredItem.desc}</p>
+                        <div style={{ marginTop: '10px', fontSize: '0.8rem', color: '#64748b' }}>Click to explore pattern</div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
+        </div>
+    </div>
   );
 };
 

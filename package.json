@@ -6,9 +6,12 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "scan": "python3 scripts/generate_graph.py"
   },
   "dependencies": {
+    "framer-motion": "^12.29.2",
+    "lucide-react": "^0.563.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "react-router-dom": "^7.12.0"
@@ -23,6 +26,7 @@
     "eslint-plugin-react-hooks": "^7.0.1",
     "eslint-plugin-react-refresh": "^0.4.24",
     "globals": "^16.5.0",
+    "knip": "^5.82.1",
     "typescript": "^5.9.3",
     "vite": "^7.2.4"
   }

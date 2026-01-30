@@ -15,7 +15,8 @@ import {
   GitBranch,
   Search,
   Command,
-  Library
+  Library,
+  Brain
 } from 'lucide-react';
 
 const Navbar: React.FC = () => {
@@ -126,11 +127,11 @@ const Navbar: React.FC = () => {
               }}>
                 <Link to="/catalog" style={{ display: 'flex', alignItems: 'center', gap: '0.8rem', padding: '0.6rem 0.8rem', borderRadius: '8px', textDecoration: 'none', color: 'white', transition: 'background 0.2s' }}>
                   <div style={{ padding: '6px', background: '#3b82f620', borderRadius: '8px', color: '#3b82f6' }}><Library size={16} /></div>
-                  <div style={{ fontSize: '0.9rem', fontWeight: 600 }}>Sistem Mimarisi</div>
+                  <div style={{ fontSize: '0.9rem', fontWeight: 600 }}>Code Org. & Patterns</div>
                 </Link>
                 <Link to="/ui-catalog" style={{ display: 'flex', alignItems: 'center', gap: '0.8rem', padding: '0.6rem 0.8rem', borderRadius: '8px', textDecoration: 'none', color: 'white', transition: 'background 0.2s' }}>
                   <div style={{ padding: '6px', background: '#0ea5e920', borderRadius: '8px', color: '#0ea5e9' }}><Layers size={16} /></div>
-                  <div style={{ fontSize: '0.9rem', fontWeight: 600 }}>UI Mimarisi</div>
+                  <div style={{ fontSize: '0.9rem', fontWeight: 600 }}>Visual Architecture</div>
                 </Link>
                 <Link to="/data-ai-catalog" style={{ display: 'flex', alignItems: 'center', gap: '0.8rem', padding: '0.6rem 0.8rem', borderRadius: '8px', textDecoration: 'none', color: 'white', transition: 'background 0.2s' }}>
                   <div style={{ padding: '6px', background: '#8b5cf620', borderRadius: '8px', color: '#8b5cf6' }}><Sparkles size={16} /></div>
@@ -156,13 +157,13 @@ const Navbar: React.FC = () => {
             onMouseLeave={() => setOpenDropdown(null)}
             style={{ position: 'relative' }}
           >
-            <button style={{ 
-              background: 'transparent', 
-              color: 'white', 
-              fontSize: '0.85rem', 
-              fontWeight: 700, 
-              display: 'flex', 
-              alignItems: 'center', 
+            <button style={{
+              background: 'transparent',
+              color: 'white',
+              fontSize: '0.85rem',
+              fontWeight: 700,
+              display: 'flex',
+              alignItems: 'center',
               gap: '0.4rem',
               padding: '0.5rem 1rem',
               borderRadius: '8px',
@@ -217,6 +218,7 @@ const Navbar: React.FC = () => {
                     <div style={{ fontSize: '0.7rem', opacity: 0.5 }}>İnteraktif Atölye</div>
                   </div>
                 </Link>
+
               </div>
             )}
           </div>

@@ -4,7 +4,7 @@ import SystemHero from '../components/SystemHero';
 import SystemComparison from '../components/SystemComparison';
 import SystemChoice from '../components/SystemChoice';
 
-const SystemPage = () => {
+const MicroservicesPage = () => {
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -75,4 +75,4 @@ const SystemPage = () => {
   );
 };
 
-export default SystemPage;
+export default MicroservicesPage;

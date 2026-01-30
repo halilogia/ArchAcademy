@@ -52,6 +52,18 @@ const CatalogPage = () => {
       ]
     },
     {
+      id: 'distributed-messaging',
+      name: 'Distributed & Messaging',
+      color: '#ec4899',
+      items: [
+        { name: 'Broker (Kafka)', path: '/broker', color: '#ec4899', desc: 'Merkezi mesaj dağıtım sistemi.' },
+        { name: 'Pub-Sub', path: '/pub-sub', color: '#fda4af', desc: 'Yayıncı ve abone modeli.' },
+        { name: 'P2P Network', path: '/p2p', color: '#be185d', desc: 'Merkeziyetsiz eşler arası iletişim.' },
+        { name: 'Client-Server', path: '/client-server', color: '#db2777', desc: 'Klasik istemci-sunucu mimarisi.' },
+        { name: 'EDA (Event-Driven)', path: '/eda', color: '#f472b6', desc: 'Olay güdümlü asenkron yapı.' }
+      ]
+    },
+    {
       id: 'structural-patterns',
       name: 'Structural Patterns',
       color: '#8b5cf6',
@@ -60,18 +72,23 @@ const CatalogPage = () => {
         { name: 'Plug-in Arch', path: '/plugin', color: '#a78bfa', desc: 'Dinamik modül ekleme mimarisi.' },
         { name: 'Pipe-Filter', path: '/pipe-filter', color: '#c4b5fd', desc: 'Verinin süzgeçlerden akış disiplini.' },
         { name: 'ECS (Game Dev)', path: '/ecs', color: '#8b5cf6', desc: 'Yüksek performanslı veri odaklı tasarım.' },
-        { name: 'Interpreter', path: '/interpreter', color: '#a78bfa', desc: 'Komut yorumlama ve kural işleme.' }
+        { name: 'Interpreter', path: '/interpreter', color: '#a78bfa', desc: 'Komut yorumlama ve kural işleme.' },
+        { name: 'Primary-Secondary', path: '/primary-secondary', color: '#7c3aed', desc: 'Replikasyon ve yedekleme stratejisi.' }
       ]
     },
     {
       id: 'code-patterns',
-      name: 'Code Patterns (MVC)',
+      name: 'Code Patterns (Logic)',
       color: '#10b981',
       items: [
         { name: 'MVC', path: '/mvc', color: '#10b981', desc: 'Model-View-Controller deseni.' },
         { name: 'MVP', path: '/mvp', color: '#34d399', desc: 'Model-View-Presenter etkileşimi.' },
         { name: 'MVVM', path: '/mvvm', color: '#6ee7b7', desc: 'Model-View-ViewModel reaktif yapı.' },
-        { name: 'VIPER', path: '/viper', color: '#059669', desc: 'Router ve Interactor tabanlı yüksek izolasyon.' }
+        { name: 'MVVM-C', path: '/mvvm-c', color: '#059669', desc: 'Coordinator pattern ile navigasyon kontrolü.' },
+        { name: 'VIPER', path: '/viper', color: '#047857', desc: 'Router ve Interactor tabanlı yüksek izolasyon.' },
+        { name: 'MVI', path: '/mvi', color: '#34d399', desc: 'Model-View-Intent. Tek yönlü akış.' },
+        { name: 'Orchestration', path: '/orchestration', color: '#065f46', desc: 'Merkezi iş akışı yönetimi (Saga).' },
+        { name: 'Choreography', path: '/choreography', color: '#10b981', desc: 'Dağıtık ve otonom iş birliği.' }
       ]
     },
     {
@@ -80,7 +97,8 @@ const CatalogPage = () => {
       color: '#6366f1',
       items: [
         { name: 'Evolutionary Arch', path: '/evolution', color: '#6366f1', desc: 'Zamanla evrilebilen esnek yapılar.' },
-        { name: 'Object-Oriented', path: '/object-oriented', color: '#818cf8', desc: 'Sınıf tabanlı modüler tasarım.' }
+        { name: 'Object-Oriented', path: '/object-oriented', color: '#818cf8', desc: 'Sınıf tabanlı modüler tasarım.' },
+        { name: 'Future Arch', path: '/fna-concept', color: '#4338ca', desc: 'Intent-Based ve geleceğin mimarileri.' }
       ]
     }
   ];

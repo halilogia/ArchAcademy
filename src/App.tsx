@@ -28,7 +28,7 @@ const ServerlessPage = lazy(() => import('./presentation/pages/ServerlessPage'))
 const ProjectPage = lazy(() => import('./presentation/pages/ProjectPage'));
 const SOLIDPage = lazy(() => import('./presentation/pages/SOLIDPage'));
 const GlossaryPage = lazy(() => import('./presentation/pages/GlossaryPage'));
-const SystemPage = lazy(() => import('./presentation/pages/SystemPage'));
+const MicroservicesPage = lazy(() => import('./presentation/pages/MicroservicesPage'));
 const AssessmentPage = lazy(() => import('./presentation/pages/AssessmentPage'));
 const RefactoringPage = lazy(() => import('./presentation/pages/RefactoringPage'));
 const RoadmapPage = lazy(() => import('./presentation/pages/RoadmapPage'));
@@ -45,22 +45,22 @@ const InterpreterPage = lazy(() => import('./presentation/pages/InterpreterPage'
 const BrokerPage = lazy(() => import('./presentation/pages/BrokerPage'));
 const OrchestrationPage = lazy(() => import('./presentation/pages/OrchestrationPage'));
 const ChoreographyPage = lazy(() => import('./presentation/pages/ChoreographyPage'));
-const BigDataPage = lazy(() => import('./presentation/pages/BigDataPage'));
+const LambdaKappaPage = lazy(() => import('./presentation/pages/LambdaKappaPage'));
 const EventSourcingPage = lazy(() => import('./presentation/pages/EventSourcingPage'));
 const MVCPage = lazy(() => import('./presentation/pages/MVCPage'));
 const MVVMPage = lazy(() => import('./presentation/pages/MVVMPage'));
-const LambdaPage = lazy(() => import('./presentation/pages/LambdaPage'));
 const PlugInPage = lazy(() => import('./presentation/pages/PlugInPage'));
 const MVPPage = lazy(() => import('./presentation/pages/MVPPage'));
 const PubSubPage = lazy(() => import('./presentation/pages/PubSubPage'));
 const PrimarySecondaryPage = lazy(() => import('./presentation/pages/PrimarySecondaryPage'));
-const KappaPage = lazy(() => import('./presentation/pages/KappaPage'));
 const ECSPage = lazy(() => import('./presentation/pages/ECSPage'));
 const SecurityPage = lazy(() => import('./presentation/pages/SecurityPage'));
 const RobustnessPage = lazy(() => import('./presentation/pages/RobustnessPage'));
 const DocumentationPage = lazy(() => import('./presentation/pages/DocumentationPage'));
 const TestingPage = lazy(() => import('./presentation/pages/TestingPage'));
 const AbstractionPage = lazy(() => import('./presentation/pages/AbstractionPage'));
+const DependencyManagementPage = lazy(() => import('./presentation/pages/DependencyManagementPage'));
+const ModerateAbstractionPage = lazy(() => import('./presentation/pages/ModerateAbstractionPage'));
 const DisciplineCatalogPage = lazy(() => import('./presentation/pages/DisciplineCatalogPage'));
 const LeanArchitecturePage = lazy(() => import('./presentation/pages/LeanArchitecturePage'));
 const DesignTokensPage = lazy(() => import('./presentation/pages/DesignTokensPage'));
@@ -117,7 +117,6 @@ const App: React.FC = () => {
                     <Route path="/" element={<HomePage />} />
                     <Route path="/clean-arch" element={<CleanArchPage />} />
                     <Route path="/fna-concept" element={<IntentArchitecturePage />} />
-                    <Route path="/brain" element={<ArchBrainPage />} />
                     <Route path="/ddd" element={<DDDPage />} />
                     <Route path="/hexagonal" element={<HexagonalPage />} />
                     <Route path="/onion" element={<OnionPage />} />
@@ -132,8 +131,7 @@ const App: React.FC = () => {
                     <Route path="/project-arch" element={<ProjectPage />} />
                     <Route path="/solid" element={<SOLIDPage />} />
                     <Route path="/glossary" element={<GlossaryPage />} />
-                    <Route path="/system" element={<SystemPage />} />
-                    <Route path="/microservices" element={<SystemPage />} />
+                    <Route path="/microservices" element={<MicroservicesPage />} />
                     <Route path="/assessment" element={<AssessmentPage />} />
                     <Route path="/refactoring" element={<RefactoringPage />} />
                     <Route path="/refactor-culture" element={<RefactoringPage />} />
@@ -151,24 +149,23 @@ const App: React.FC = () => {
                     <Route path="/broker" element={<BrokerPage />} />
                     <Route path="/orchestration" element={<OrchestrationPage />} />
                     <Route path="/choreography" element={<ChoreographyPage />} />
-                    <Route path="/big-data" element={<BigDataPage />} />
+                    <Route path="/big-data" element={<LambdaKappaPage />} />
                     <Route path="/event-sourcing" element={<EventSourcingPage />} />
                     <Route path="/mvc" element={<MVCPage />} />
                     <Route path="/mvvm" element={<MVVMPage />} />
-                    <Route path="/lambda" element={<LambdaPage />} />
                     <Route path="/plugin" element={<PlugInPage />} />
                     <Route path="/mvp" element={<MVPPage />} />
                     <Route path="/client-server" element={<ClientServerPage />} />
                     <Route path="/pub-sub" element={<PubSubPage />} />
                     <Route path="/primary-secondary" element={<PrimarySecondaryPage />} />
-                    <Route path="/kappa" element={<KappaPage />} />
                     <Route path="/ecs" element={<ECSPage />} />
                     <Route path="/security" element={<SecurityPage />} />
                     <Route path="/robustness" element={<RobustnessPage />} />
                     <Route path="/docs-annotations" element={<DocumentationPage />} />
                     <Route path="/testing" element={<TestingPage />} />
-
                     <Route path="/abstraction" element={<AbstractionPage />} />
+                    <Route path="/dependency-management" element={<DependencyManagementPage />} />
+                    <Route path="/moderate-abstraction" element={<ModerateAbstractionPage />} />
                     <Route path="/discipline-catalog" element={<DisciplineCatalogPage />} />
                     <Route path="/lean-architecture" element={<LeanArchitecturePage />} />
                     <Route path="/design-tokens" element={<DesignTokensPage />} />

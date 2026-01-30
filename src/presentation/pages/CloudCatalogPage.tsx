@@ -33,11 +33,9 @@ const CloudCatalogPage = () => {
     { id: 'container', name: 'Container Arch', path: '/containerization', color: '#06b6d4', icon: <Container size={32} />, desc: 'Docker kutuları ve Kubernetes orkestrasyonu.', gridArea: 'b' },
     { id: 'serverless', name: 'Serverless (FaaS)', path: '/serverless', color: '#f59e0b', icon: <Zap size={32} />, desc: 'Sunucu yönetimi olmadan sadece fonksiyon kodlama.', gridArea: 'c' },
     { id: 'microservices', name: 'Microservices', path: '/microservices', color: '#3b82f6', icon: <Share2 size={32} />, desc: 'Monoliti kırıp bağımsız, küçük ve otonom servislere bölme.', gridArea: 'd' },
-    { id: 'cloud-center', name: 'CLOUD & OPS', path: '#', color: '#64748b', icon: <Cloud size={48} />, desc: 'Merkezi Operasyon Üssü', gridArea: 'center' }, // Center Decor
     { id: 'zerotrust', name: 'Zero Trust', path: '/zero-trust', color: '#ef4444', icon: <ShieldCheck size={32} />, desc: 'Ağ içindeki hiçbir cihaza güvenme; her isteği doğrula.', gridArea: 'e' },
     { id: 'soa', name: 'SOA Arch', path: '/soa', color: '#8b5cf6', icon: <Globe size={32} />, desc: 'Kurumsal servis odaklı mimari (Microservices atası).', gridArea: 'f' },
     { id: 'spacebased', name: 'Space-Based', path: '/space-based', color: '#ec4899', icon: <Server size={32} />, desc: 'Ekstrem ölçeklenme için in-memory veri ızgaraları.', gridArea: 'g' },
-    { id: 'security', name: 'Security Arch', path: '/security', color: '#10b981', icon: <Lock size={32} />, desc: 'Savunma derinliği ve güvenlik katmanları.', gridArea: 'h' },
     { id: 'bff', name: 'BFF Pattern', path: '/bff', color: '#3b82f6', icon: <Share2 size={32} />, desc: 'Frontend ekiplerinin yönettiği özel backend katmanı.', gridArea: 'i' }
   ];
 

@@ -25,7 +25,17 @@ import {
   CheckCircle2,
   Code2,
   AlertTriangle,
-  Scale
+  Scale,
+  BrainCircuit,
+  Bot,
+  GitBranch,
+  ShieldCheck,
+  Activity,
+  Network,
+  Grid,
+  Share2,
+  Server,
+  BookOpen
 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { GLOSSARY_TERMS } from '../../infrastructure/data/GlossaryData';
@@ -48,83 +58,84 @@ const CommandPalette = () => {
   const inputRef = useRef<HTMLInputElement>(null);
 
   const pages: SearchItem[] = [
-    // Core
-    { id: 'home', title: 'Home', description: 'Go to start page', type: 'page', path: '/', icon: <Layout size={18} /> },
-    { id: 'catalog', title: 'Architecture Catalog', description: 'Visual library of all architectures', type: 'page', path: '/catalog', icon: <Library size={18} /> },
-    { id: 'compare', title: 'Comparison Matrix', description: 'Trade-off analysis system', type: 'page', path: '/compare', icon: <Table2 size={18} /> },
-    { id: 'wizard', title: 'Architecture Wizard', description: 'Find your perfect architecture', type: 'page', path: '/assessment', icon: <Sparkles size={18} /> },
-    { id: 'roadmap', title: 'Roadmap', description: 'Path to Senior Architect', type: 'page', path: '/roadmap', icon: <ArrowRight size={18} /> },
-    { id: 'glossary', title: 'Glossary', description: 'Architectural terms and definitions', type: 'page', path: '/glossary', icon: <Book size={18} /> },
-    { id: 'bookshelf', title: 'Bookshelf', description: 'Curated reading list', type: 'page', path: '/bookshelf', icon: <Book size={18} /> },
+    // --- MAIN CATALOGS ---
+    { id: 'catalog', title: 'System Architecture Catalog', description: 'Core system patterns (Clean, DDD, Microservices)', type: 'page', path: '/catalog', icon: <Library size={18} /> },
+    { id: 'ui-catalog', title: 'UI Architecture Catalog', description: 'Frontend patterns (MVI, MVVM, Micro-Frontends)', type: 'page', path: '/ui-catalog', icon: <Layout size={18} /> },
+    { id: 'data-catalog', title: 'Data & AI Catalog', description: 'Big Data, RAG, Kappa Architecture', type: 'page', path: '/data-ai-catalog', icon: <Database size={18} /> },
+    { id: 'cloud-catalog', title: 'Infrastructure Catalog', description: 'Cloud, DevOps, GitOps, Zero Trust', type: 'page', path: '/cloud-catalog', icon: <Globe size={18} /> },
+    { id: 'discipline-catalog', title: 'Discipline Catalog', description: 'Engineering principles, SOLID, Craftsmanship', type: 'page', path: '/discipline-catalog', icon: <Target size={18} /> },
 
-    // Design & Principles
-    { id: 'clean-code', title: 'Clean Code', description: 'Naming, functions and formatting', type: 'page', path: '/clean-code', icon: <Code2 size={18} /> },
-    { id: 'solid', title: 'SOLID Principles', description: 'The 5 foundations of clean code', type: 'page', path: '/solid', icon: <Box size={18} /> },
-    { id: 'discipline', title: 'Discipline Catalog', description: 'The 12 commandments of architecture', type: 'page', path: '/discipline-catalog', icon: <Target size={18} /> },
-    { id: 'anti-patterns', title: 'Anti-Patterns', description: 'Common architectural mistakes', type: 'page', path: '/anti-patterns', icon: <AlertTriangle size={18} /> },
-    { id: 'design-patterns', title: 'Design Patterns', description: 'GoF and modern patterns', type: 'page', path: '/design-patterns', icon: <Zap size={18} /> },
-    
-    // Layered Architectures
+    // --- SYSTEM & BACKEND ---
     { id: 'clean-arch', title: 'Clean Architecture', description: 'The GURU pattern by Uncle Bob', type: 'page', path: '/clean-arch', icon: <Box size={18} /> },
     { id: 'onion', title: 'Onion Architecture', description: 'Dependency inversion core', type: 'page', path: '/onion', icon: <Layers size={18} /> },
     { id: 'hexagonal', title: 'Hexagonal (Ports & Adapters)', description: 'Testable and isolated', type: 'page', path: '/hexagonal', icon: <Box size={18} /> },
-    { id: 'n-tier', title: 'N-Tier (Horizontal)', description: 'Classic layered architecture', type: 'page', path: '/horizontal', icon: <Layers size={18} /> },
-
-    // Domain & Business
     { id: 'ddd', title: 'Domain-Driven Design (DDD)', description: 'Managing complex domain logic', type: 'page', path: '/ddd', icon: <Database size={18} /> },
-    { id: 'vertical', title: 'Vertical Slice', description: 'Feature-first architecture', type: 'page', path: '/vertical', icon: <Zap size={18} /> },
+    { id: 'microservices', title: 'Microservices', description: 'Monolith to Microservices journey', type: 'page', path: '/microservices', icon: <Share2 size={18} /> },
     { id: 'soa', title: 'SOA', description: 'Service Oriented Architecture', type: 'page', path: '/soa', icon: <Globe size={18} /> },
-    { id: 'microkernel', title: 'Microkernel', description: 'Plugin-based architecture', type: 'page', path: '/microkernel', icon: <Cpu size={18} /> },
-
-    // Scalability & Distributed
-    { id: 'eda', title: 'Event-Driven Architecture', description: 'Asynchronous messaging', type: 'page', path: '/eda', icon: <Zap size={18} /> },
-    { id: 'cqrs', title: 'CQRS', description: 'Command Query Responsibility Segregation', type: 'page', path: '/cqrs', icon: <Database size={18} /> },
-    { id: 'event-sourcing', title: 'Event Sourcing', description: 'Immutable state history', type: 'page', path: '/event-sourcing', icon: <Database size={18} /> },
     { id: 'serverless', title: 'Serverless', description: 'FaaS and cloud-native', type: 'page', path: '/serverless', icon: <Globe size={18} /> },
-    { id: 'space-based', title: 'Space-Based', description: 'In-memory grid computing', type: 'page', path: '/space-based', icon: <Cpu size={18} /> },
-    { id: 'big-data', title: 'Big Data (Lambda/Kappa)', description: 'High volume data processing', type: 'page', path: '/big-data', icon: <Database size={18} /> },
-    { id: 'p2p', title: 'Peer-to-Peer', description: 'Decentralized networks', type: 'page', path: '/p2p', icon: <Globe size={18} /> },
-    
-    // Patterns & Messaging
-    { id: 'broker', title: 'Broker Pattern', description: 'Message bus coordination', type: 'page', path: '/broker', icon: <Zap size={18} /> },
-    { id: 'pub-sub', title: 'Publish-Subscribe', description: 'Decoupled communication', type: 'page', path: '/pub-sub', icon: <Zap size={18} /> },
+    { id: 'eda', title: 'Event-Driven Architecture', description: 'Asynchronous messaging', type: 'page', path: '/eda', icon: <Zap size={18} /> },
+    { id: 'vertical', title: 'Vertical Slice', description: 'Feature-first architecture', type: 'page', path: '/vertical', icon: <Zap size={18} /> },
+    { id: 'horizontal', title: 'N-Tier (Horizontal)', description: 'Classic layered architecture', type: 'page', path: '/horizontal', icon: <Layers size={18} /> },
+    { id: 'microkernel', title: 'Microkernel', description: 'Plugin-based architecture', type: 'page', path: '/microkernel', icon: <Cpu size={18} /> },
+    { id: 'plugin', title: 'Plug-in Architecture', description: 'Extendable core system', type: 'page', path: '/plugin', icon: <Cpu size={18} /> },
     { id: 'pipe-filter', title: 'Pipe & Filter', description: 'Data transformation pipelines', type: 'page', path: '/pipe-filter', icon: <ArrowRight size={18} /> },
-    { id: 'choreography', title: 'Choreography', description: 'Decentralized service coordination', type: 'page', path: '/choreography', icon: <Zap size={18} /> },
-    { id: 'orchestration', title: 'Orchestration', description: 'Centralized workflow management', type: 'page', path: '/orchestration', icon: <Box size={18} /> },
-
-    // Frontend & UI
+    { id: 'ecs', title: 'ECS', description: 'Entity Component System (Game Dev)', type: 'page', path: '/ecs', icon: <Cpu size={18} /> },
+    { id: 'interpreter', title: 'Interpreter Pattern', description: 'Language and rule engines', type: 'page', path: '/interpreter', icon: <Terminal size={18} /> },
+    { id: 'evolution', title: 'Evolutionary Arch', description: 'Guided incremental change', type: 'page', path: '/evolution', icon: <GitBranch size={18} /> },
+    { id: 'oop', title: 'OOP Fundamentals', description: 'Object-Oriented Programming', type: 'page', path: '/object-oriented', icon: <Box size={18} /> },
+    
+    // --- UI & FRONTEND ---
     { id: 'mvc', title: 'MVC', description: 'Model-View-Controller', type: 'page', path: '/mvc', icon: <Layout size={18} /> },
     { id: 'mvp', title: 'MVP', description: 'Model-View-Presenter', type: 'page', path: '/mvp', icon: <Layout size={18} /> },
     { id: 'mvvm', title: 'MVVM', description: 'Model-View-ViewModel', type: 'page', path: '/mvvm', icon: <Layout size={18} /> },
     { id: 'viper', title: 'VIPER', description: 'iOS Clean Architecture', type: 'page', path: '/viper', icon: <Smartphone size={18} /> },
-    { id: 'fsd', title: 'Feature-Sliced Design', description: 'Modern frontend architecture', type: 'page', path: '/fsd', icon: <Layout size={18} /> },
+    { id: 'mvi', title: 'MVI Architecture', description: 'Model-View-Intent (Unidirectional)', type: 'page', path: '/mvi', icon: <Layout size={18} /> },
+    { id: 'micro-frontends', title: 'Micro-Frontends', description: 'Splitting UI into independent apps', type: 'page', path: '/micro-frontends', icon: <Grid size={18} /> },
     { id: 'atomic', title: 'Atomic Design', description: 'UI component hierarchy', type: 'page', path: '/atomic-design', icon: <Palette size={18} /> },
+    { id: 'sdui', title: 'Server-Driven UI', description: 'UI logic from backend', type: 'page', path: '/server-driven-ui', icon: <Server size={18} /> },
+    { id: 'islands', title: 'Islands Architecture', description: 'Partial hydration (Astro)', type: 'page', path: '/islands-arch', icon: <Layout size={18} /> },
+    { id: 'tokens', title: 'Design Tokens', description: 'Design system constants', type: 'page', path: '/design-tokens', icon: <Palette size={18} /> },
+    { id: 'state-driven', title: 'State-Driven UI', description: 'UI as a function of state', type: 'page', path: '/state-driven', icon: <Database size={18} /> },
+    { id: 'component', title: 'Component-Driven', description: 'Building bottom-up', type: 'page', path: '/component-driven', icon: <Box size={18} /> },
+    { id: 'composite', title: 'Composite UI', description: 'Aggregating UI parts', type: 'page', path: '/composite-ui', icon: <Layout size={18} /> },
+    { id: 'spa-mpa', title: 'SPA vs MPA', description: 'Single vs Multi Page Apps', type: 'page', path: '/spa-vs-mpa', icon: <Globe size={18} /> },
     
-    // Database & Quality
-    { id: 'acid', title: 'ACID Transactions', description: 'Atomicity, Consistency, Isolation, Durability', type: 'page', path: '/acid', icon: <Database size={18} /> },
+    // --- DATA & AI ---
+    { id: 'rag', title: 'RAG Architecture', description: 'Retrieval-Augmented Generation', type: 'page', path: '/rag-arch', icon: <BrainCircuit size={18} /> },
+    { id: 'agentic', title: 'Agentic AI', description: 'Autonomous AI Agents', type: 'page', path: '/agentic-ai', icon: <Bot size={18} /> },
+    { id: 'cqrs', title: 'CQRS', description: 'Command Query Responsibility Segregation', type: 'page', path: '/cqrs', icon: <Database size={18} /> },
+    { id: 'event-sourcing', title: 'Event Sourcing', description: 'Immutable state history', type: 'page', path: '/event-sourcing', icon: <Database size={18} /> },
     { id: 'cap', title: 'CAP Theorem', description: 'Trade-offs in distributed systems', type: 'page', path: '/cap-theorem', icon: <Scale size={18} /> },
-    { id: 'security', title: 'Security Architecture', description: 'Design harness and safety', type: 'page', path: '/security', icon: <Shield size={18} /> },
-    { id: 'testing', title: 'Testing Strategy', description: 'TDD and Test Pyramid', type: 'page', path: '/testing', icon: <CheckCircle2 size={18} /> },
-    { id: 'tdd', title: 'TDD', description: 'Test Driven Development', type: 'page', path: '/tdd', icon: <Code2 size={18} /> },
+    { id: 'acid', title: 'ACID Transactions', description: 'Atomicity, Consistency, Isolation, Durability', type: 'page', path: '/acid', icon: <Database size={18} /> },
+    { id: 'big-data', title: 'Big Data / Lambda', description: 'Batch and Stream processing', type: 'page', path: '/big-data', icon: <Database size={18} /> },
+    { id: 'kappa', title: 'Kappa Architecture', description: 'Everything is a stream', type: 'page', path: '/kappa', icon: <Activity size={18} /> },
+    { id: 'llmops', title: 'LLMOps', description: 'DevOps for LLMs', type: 'page', path: '/llm-ops', icon: <Bot size={18} /> },
+
+    // --- CLOUD & INFRA ---
+    { id: 'gitops', title: 'GitOps', description: 'Git as single source of truth', type: 'page', path: '/gitops', icon: <GitBranch size={18} /> },
+    { id: 'zero-trust', title: 'Zero Trust', description: 'Never trust, always verify', type: 'page', path: '/zero-trust', icon: <ShieldCheck size={18} /> },
+    { id: 'container', title: 'Containerization', description: 'Docker & Kubernetes', type: 'page', path: '/containerization', icon: <Box size={18} /> },
+    { id: 'bff', title: 'BFF Pattern', description: 'Backend for Frontend', type: 'page', path: '/bff', icon: <Share2 size={18} /> },
+    { id: 'space-based', title: 'Space-Based', description: 'In-memory data grid', type: 'page', path: '/space-based', icon: <Server size={18} /> },
     
-    // Misc
-    { id: 'interpreter', title: 'Interpreter Pattern', description: 'Language and rule engines', type: 'page', path: '/interpreter', icon: <Terminal size={18} /> },
-    { id: 'ecs', title: 'ECS', description: 'Entity Component System (Game Dev)', type: 'page', path: '/ecs', icon: <Cpu size={18} /> },
-    { id: 'workshop', title: 'Workshop', description: 'Interactive architecture labs', type: 'page', path: '/workshop', icon: <FlaskConical size={18} /> },
-    { id: 'synthesis', title: 'Synthesis Lab', description: 'Mix and match architectures', type: 'page', path: '/synthesis', icon: <FlaskConical size={18} /> },
+    // --- PRINCIPLES & DISCIPLINES ---
+    { id: 'clean-code', title: 'Clean Code', description: 'Naming, functions and formatting', type: 'page', path: '/clean-code', icon: <Code2 size={18} /> },
+    { id: 'solid', title: 'SOLID Principles', description: 'The 5 foundations of clean code', type: 'page', path: '/solid', icon: <Box size={18} /> },
+    { id: 'tdd', title: 'TDD', description: 'Test Driven Development', type: 'page', path: '/tdd', icon: <Code2 size={18} /> },
+    { id: 'design-patterns', title: 'Design Patterns', description: 'GoF and modern patterns', type: 'page', path: '/design-patterns', icon: <Zap size={18} /> },
+    { id: 'dependency', title: 'Dependency Management', description: 'Coupling control', type: 'page', path: '/dependency-management', icon: <Network size={18} /> },
+    { id: 'moderate', title: 'Moderate Abstraction', description: 'Avoiding over-engineering', type: 'page', path: '/moderate-abstraction', icon: <Layers size={18} /> },
+    { id: 'robustness', title: 'Robustness & Reliability', description: 'Circuit Breaker, Chaos Eng.', type: 'page', path: '/robustness', icon: <Activity size={18} /> },
+    { id: 'anti-patterns', title: 'Anti-Patterns', description: 'Common architectural mistakes', type: 'page', path: '/anti-patterns', icon: <AlertTriangle size={18} /> },
+    { id: 'testing', title: 'Easy to Test', description: 'Testability architecture', type: 'page', path: '/testing', icon: <CheckCircle2 size={18} /> },
+    { id: 'docs', title: 'Docs & Annotations', description: 'ADR and Documentation', type: 'page', path: '/docs-annotations', icon: <BookOpen size={18} /> },
+    { id: 'lean', title: 'Lean Philosophy', description: 'Eliminating waste', type: 'page', path: '/lean-architecture', icon: <Target size={18} /> },
+    { id: 'security', title: 'Security Assurance', description: 'Governance & Safety', type: 'page', path: '/security', icon: <ShieldCheck size={18} /> },
+    { id: 'abstraction', title: 'Separation of Concerns', description: 'Core Abstraction', type: 'page', path: '/abstraction', icon: <Layers size={18} /> },
   ];
 
-  const glossaryItems: SearchItem[] = GLOSSARY_TERMS.map(term => ({
-    id: `glossary-${term.term}`,
-    title: term.term,
-    description: term.definition,
-    type: 'glossary',
-    path: `/glossary?search=${encodeURIComponent(term.term)}`,
-    icon: <Terminal size={18} />,
-    category: term.category
-  }));
-
-  const allItems = [...pages, ...glossaryItems];
+  // Glossary/Tools Removed
+  const allItems = [...pages];
 
   const filteredItems = query 
     ? allItems
