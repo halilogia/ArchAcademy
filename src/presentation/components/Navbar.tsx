@@ -41,7 +41,7 @@ const Navbar: React.FC = () => {
     { name: 'Broker (Kafka Style)', path: '/broker', color: '#fda4af' },
     { name: 'Orchestration', path: '/orchestration', color: '#8b5cf6' },
     { name: 'Choreography', path: '/choreography', color: '#7c3aed' },
-    { name: 'Big Data (Lambda/Kappa)', path: '/big-data', color: '#06b6d4' },
+    { name: 'Big Data (Lambda/Kappa)', path: '/lambda-kappa', color: '#06b6d4' },
     { name: 'Pipe-Filter (Pipeline)', path: '/pipe-filter', color: '#8b5cf6' },
     { name: 'Interpreter Logic', path: '/interpreter', color: '#6366f1' },
     { name: 'MVC / MVP / MVVM', path: '/mvc', color: '#10b981' },

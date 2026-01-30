@@ -1,5 +1,5 @@
 # 🏗️ ArchAcademy Proje Analiz Raporu
-**Tarih:** 30 January 2026 03:53
+**Tarih:** 30 January 2026 04:01
 
 ## 1. 🔍 Duplicate (Çoklanan) Sayfalar
 _✅ Harika! Hiçbir duplicate referans veya çakışma bulunamadı._
@@ -56,12 +56,12 @@ _✅ Harika! Hiçbir duplicate referans veya çakışma bulunamadı._
 |---|---|---|---|---|
 | RAG Arch | `/rag-arch` | `RAGPage` | **87** | 🟢 Normal |
 | Agentic AI | `/agentic-ai` | `AgenticAIPage` | **57** | 🟢 Normal |
-| 🛑 Vector DBs | - | - | 0 | Dekoratif |
+| Vector DBs | `/vector-dbs` | `VectorDBPage` | **144** | 🟢 Normal |
 | CQRS | `/cqrs` | `CQRSPage` | **64** | 🟢 Normal |
 | Event Sourcing | `/event-sourcing` | `EventSourcingPage` | **357** | 🔶 Yoğun |
 | CAP Theorem | `/cap-theorem` | `CAPTheoremPage` | **329** | 🔶 Yoğun |
 | ACID | `/acid` | `ACIDPage` | **260** | 🔶 Yoğun |
-| Big Data | `/big-data` | `LambdaKappaPage` | **338** | 🔶 Yoğun |
+| Lambda & Kappa | `/lambda-kappa` | `LambdaKappaPage` | **338** | 🔶 Yoğun |
 | LLMOps | `/llm-ops` | `LLMOpsPage` | **50** | 🟢 Normal |
 
 ### ☁️  CLOUD & DEVOPS (Infra)

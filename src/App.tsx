@@ -45,7 +45,7 @@ const InterpreterPage = lazy(() => import('./presentation/pages/interpreter'));
 const BrokerPage = lazy(() => import('./presentation/pages/broker'));
 const OrchestrationPage = lazy(() => import('./presentation/pages/orchestration'));
 const ChoreographyPage = lazy(() => import('./presentation/pages/choreography'));
-const LambdaKappaPage = lazy(() => import('./presentation/pages/big-data'));
+const LambdaKappaPage = lazy(() => import('./presentation/pages/lambda-kappa'));
 const EventSourcingPage = lazy(() => import('./presentation/pages/event-sourcing'));
 const MVCPage = lazy(() => import('./presentation/pages/mvc'));
 const MVVMPage = lazy(() => import('./presentation/pages/mvvm'));
@@ -91,6 +91,7 @@ const VIPERPage = lazy(() => import('./presentation/pages/viper'));
 const MVVMCPage = lazy(() => import('./presentation/pages/mvvm-c'));
 const AntiPatternsPage = lazy(() => import('./presentation/pages/anti-patterns'));
 const NotFoundPage = lazy(() => import('./presentation/pages/not-found'));
+const VectorDBPage = lazy(() => import('./presentation/pages/vector-dbs'));
 const BFFPage = lazy(() => import('./presentation/pages/bff'));
 const MVIPage = lazy(() => import('./presentation/pages/mvi'));
 const SPAvsMPAPage = lazy(() => import('./presentation/pages/spa-vs-mpa'));
@@ -149,7 +150,7 @@ const App: React.FC = () => {
                     <Route path="/broker" element={<BrokerPage />} />
                     <Route path="/orchestration" element={<OrchestrationPage />} />
                     <Route path="/choreography" element={<ChoreographyPage />} />
-                    <Route path="/big-data" element={<LambdaKappaPage />} />
+                    <Route path="/lambda-kappa" element={<LambdaKappaPage />} />
                     <Route path="/event-sourcing" element={<EventSourcingPage />} />
                     <Route path="/mvc" element={<MVCPage />} />
                     <Route path="/mvvm" element={<MVVMPage />} />
@@ -194,8 +195,9 @@ const App: React.FC = () => {
                     <Route path="/acid" element={<ACIDPage />} />
                     <Route path="/viper" element={<VIPERPage />} />
                     <Route path="/mvvm-c" element={<MVVMCPage />} />
-                    <Route path="/anti-patterns" element={<AntiPatternsPage />} />
-                    <Route path="/bff" element={<BFFPage />} />
+                     <Route path="/anti-patterns" element={<AntiPatternsPage />} />
+                     <Route path="/vector-dbs" element={<VectorDBPage />} />
+                     <Route path="/bff" element={<BFFPage />} />
                     <Route path="/mvi" element={<MVIPage />} />
                     <Route path="/spa-vs-mpa" element={<SPAvsMPAPage />} />
                     <Route path="*" element={<NotFoundPage />} />

@@ -47,12 +47,12 @@ const DataAICatalogPage: React.FC = () => {
   const items: ArchItem[] = [
     { id: 'rag', name: 'RAG Arch', path: '/rag-arch', color: '#8b5cf6', icon: <Brain />, desc: 'Retrieval Augmented Generation: LLM verimliliği.', pos: { x: 30, y: 35 } },
     { id: 'agents', name: 'Agentic AI', path: '/agentic-ai', color: '#ef4444', icon: <Cpu />, desc: 'Otonom karar veren yapay zeka ajanları.', pos: { x: 25, y: 60 } },
-    { id: 'vector', name: 'Vector DBs', path: '#', color: '#3b82f6', icon: <Database />, desc: 'Yüksek boyutlu embedding saklama.', pos: { x: 45, y: 45 } },
+    { id: 'vector', name: 'Vector DBs', path: '/vector-dbs', color: '#3b82f6', icon: <Database />, desc: 'Yüksek boyutlu verileri (Embeddings) verimli saklama ve arama.', pos: { x: 45, y: 45 } },
     { id: 'cqrs', name: 'CQRS', path: '/cqrs', color: '#ec4899', icon: <Activity />, desc: 'Command ve Query sorumluluk ayrımı.', pos: { x: 65, y: 30 } },
     { id: 'eventsourcing', name: 'Event Sourcing', path: '/event-sourcing', color: '#f59e0b', icon: <Layers />, desc: 'Durumun olay dizisi olarak saklanması.', pos: { x: 70, y: 55 } },
     { id: 'cap', name: 'CAP Theorem', path: '/cap-theorem', color: '#3b82f6', icon: <Search />, desc: 'Consistency, Availability, Partition Tolerance.', pos: { x: 50, y: 70 } },
     { id: 'acid', name: 'ACID', path: '/acid', color: '#10b981', icon: <ShieldCheck />, desc: 'Veritabanı işlem bütünlüğü kuralları.', pos: { x: 40, y: 20 } },
-    { id: 'bigdata', name: 'Big Data', path: '/big-data', color: '#06b6d4', icon: <Network />, desc: 'Lambda ve Kappa veri mimarileri.', pos: { x: 80, y: 40 } },
+    { id: 'lambda-kappa', name: 'Lambda & Kappa', path: '/lambda-kappa', color: '#06b6d4', icon: <Network />, desc: 'Büyük veri işleme (Stream vs Batch) mimarileri.', pos: { x: 80, y: 40 } },
     { id: 'llmops', name: 'LLMOps', path: '/llm-ops', color: '#6366f1', icon: <Zap />, desc: 'AI modellerinin operasyonel süreçleri.', pos: { x: 15, y: 50 } },
   ];
 
