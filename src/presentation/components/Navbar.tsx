@@ -273,10 +273,6 @@ const Navbar: React.FC = () => {
                   <Code2 size={16} style={{ color: '#10b981' }} />
                   <span style={{ fontSize: '0.85rem' }}>Project Architecture</span>
                 </Link>
-                <Link to="/arch-brain" style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', padding: '0.6rem 1rem', borderRadius: '8px', textDecoration: 'none', color: 'white' }}>
-                  <Brain size={16} style={{ color: '#8b5cf6' }} />
-                  <span style={{ fontSize: '0.85rem' }}>Neural Network (3D)</span>
-                </Link>
 
               </div>
             )}

@@ -270,7 +270,17 @@ const CommandPalette = () => {
               </div>
             </div>
 
-            <div style={{ maxHeight: '400px', overflowY: 'auto', padding: '0.5rem' }}>
+            <div 
+              className="custom-scrollbar"
+              style={{ 
+                maxHeight: '400px', 
+                overflowY: 'auto', 
+                overflowX: 'hidden', 
+                padding: '0.5rem',
+                width: '100%',
+                boxSizing: 'border-box'
+              }}
+            >
               {filteredItems.length > 0 ? (
                 filteredItems.map((item, index) => (
                   <div
@@ -281,43 +291,55 @@ const CommandPalette = () => {
                       display: 'flex',
                       alignItems: 'center',
                       gap: '1rem',
-                      padding: '1rem',
+                      padding: '0.85rem 1rem',
                       borderRadius: '12px',
                       cursor: 'pointer',
                       background: selectedIndex === index ? 'rgba(59, 130, 246, 0.15)' : 'transparent',
                       transition: 'all 0.2s',
-                      border: selectedIndex === index ? '1px solid rgba(59, 130, 246, 0.2)' : '1px solid transparent'
+                      border: selectedIndex === index ? '1px solid rgba(59, 130, 246, 0.2)' : '1px solid transparent',
+                      width: '100%',
+                      boxSizing: 'border-box'
                     }}
                   >
                     <div style={{
-                      width: '40px',
-                      height: '40px',
+                      width: '36px',
+                      height: '36px',
                       borderRadius: '10px',
                       background: selectedIndex === index ? 'var(--primary)' : 'rgba(255,255,255,0.05)',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
-                      color: selectedIndex === index ? 'white' : 'var(--text-secondary)'
+                      color: selectedIndex === index ? 'white' : 'var(--text-secondary)',
+                      flexShrink: 0
                     }}>
                       {item.icon}
                     </div>
-                    <div style={{ flex: 1 }}>
+                    <div style={{ flex: 1, minWidth: 0 }}>
                       <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                        <span style={{ color: 'white', fontWeight: 600 }}>{item.title}</span>
+                        <span style={{ color: 'white', fontWeight: 600, fontSize: '0.95rem', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{item.title}</span>
                         {item.category && (
                           <span style={{ 
                             fontSize: '0.6rem', 
                             background: 'rgba(255,255,255,0.05)', 
                             padding: '2px 6px', 
                             borderRadius: '4px',
-                            color: 'var(--text-secondary)'
+                            color: 'var(--text-secondary)',
+                            flexShrink: 0
                           }}>
                             {item.category}
                           </span>
                         )}
                       </div>
-                      <div style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', marginTop: '2px' }}>
-                        {item.description.length > 80 ? item.description.substring(0, 80) + '...' : item.description}
+                      <div style={{ 
+                        fontSize: '0.75rem', 
+                        color: 'var(--text-secondary)', 
+                        marginTop: '2px', 
+                        whiteSpace: 'nowrap', 
+                        overflow: 'hidden', 
+                        textOverflow: 'ellipsis',
+                        opacity: 0.7
+                      }}>
+                        {item.description}
                       </div>
                     </div>
                     {selectedIndex === index && (

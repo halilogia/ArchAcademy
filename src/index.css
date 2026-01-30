@@ -52,19 +52,41 @@ button {
   outline: none;
 }
 
-/* Scrollbar */
+/* Beautified Scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.1) transparent;
+  box-sizing: border-box;
+}
+
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
+  height: 0px; /* Hide horizontal scrollbar */
 }
+
 ::-webkit-scrollbar-track {
-  background: var(--bg-dark);
+  background: transparent;
 }
+
 ::-webkit-scrollbar-thumb {
-  background: var(--surface-light);
-  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  border: 1px solid transparent;
 }
+
 ::-webkit-scrollbar-thumb:hover {
   background: var(--primary);
+  box-shadow: 0 0 10px var(--primary-glow);
+}
+
+/* Specific class for containers that need clean vertical scrolling */
+.custom-scrollbar {
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 4px; /* Even thinner for nested lists */
 }
 
 .container {

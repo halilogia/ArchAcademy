@@ -13,7 +13,6 @@ const HomePage = lazy(() => import('./presentation/pages/home'));
 const CleanArchPage = lazy(() => import('./presentation/pages/clean-arch'));
 const ClientServerPage = lazy(() => import('./presentation/pages/client-server'));
 const IntentArchitecturePage = lazy(() => import('./presentation/pages/fna-concept'));
-const ArchBrainPage = lazy(() => import('./presentation/pages/arch-brain'));
 const DDDPage = lazy(() => import('./presentation/pages/ddd'));
 const HexagonalPage = lazy(() => import('./presentation/pages/hexagonal'));
 const OnionPage = lazy(() => import('./presentation/pages/onion'));
@@ -118,7 +117,6 @@ const App: React.FC = () => {
                     <Route path="/" element={<HomePage />} />
                     <Route path="/clean-arch" element={<CleanArchPage />} />
                     <Route path="/fna-concept" element={<IntentArchitecturePage />} />
-                    <Route path="/arch-brain" element={<ArchBrainPage />} />
                     <Route path="/ddd" element={<DDDPage />} />
                     <Route path="/hexagonal" element={<HexagonalPage />} />
                     <Route path="/onion" element={<OnionPage />} />
