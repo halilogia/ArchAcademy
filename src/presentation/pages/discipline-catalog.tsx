@@ -103,7 +103,8 @@ const DisciplineCatalogPage = () => {
       name: 'Anti-Patterns',
       color: '#475569',
       items: [
-        { name: 'Architecture Hall of Shame', path: '/anti-patterns', color: '#475569', icon: <ShieldAlert size={24} />, desc: 'Kaçınılması gereken tehlikeli mimari tuzaklar ve anti-pattern galerisi.' }
+        { name: 'Architecture Hall of Shame', path: '/anti-patterns', color: '#475569', icon: <ShieldAlert size={24} />, desc: 'Kaçınılması gereken tehlikeli mimari tuzaklar ve anti-pattern galerisi.' },
+        { name: 'Synthesis Lab', path: '/synthesis-lab', color: '#94a3b8', icon: <Anchor size={24} />, desc: 'Mimari sentez ve deney laboratuvarı.' }
       ]
     }
   ];

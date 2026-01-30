@@ -9,91 +9,91 @@ import CommandPalette from './presentation/components/CommandPalette';
 import ScrollToTop from './presentation/components/ScrollToTop';
 
 // Lazy Load Pages for Fault Isolation & Performance
-const HomePage = lazy(() => import('./presentation/pages/HomePage'));
-const CleanArchPage = lazy(() => import('./presentation/pages/CleanArchPage'));
-const ClientServerPage = lazy(() => import('./presentation/pages/ClientServerPage'));
-const IntentArchitecturePage = lazy(() => import('./presentation/pages/FutureArchitecturePage'));
-const ArchBrainPage = lazy(() => import('./presentation/pages/ArchBrainPage'));
-const DDDPage = lazy(() => import('./presentation/pages/DDDPage'));
-const HexagonalPage = lazy(() => import('./presentation/pages/HexagonalPage'));
-const OnionPage = lazy(() => import('./presentation/pages/OnionPage'));
-const FSDPage = lazy(() => import('./presentation/pages/FSDPage'));
-const VerticalSlicePage = lazy(() => import('./presentation/pages/VerticalSlicePage'));
-const CQRSPage = lazy(() => import('./presentation/pages/CQRSPage'));
-const HorizontalPage = lazy(() => import('./presentation/pages/HorizontalPage'));
-const EDAPage = lazy(() => import('./presentation/pages/EDAPage'));
-const ComparisonPage = lazy(() => import('./presentation/pages/ComparisonPage'));
-const MicrokernelPage = lazy(() => import('./presentation/pages/MicrokernelPage'));
-const ServerlessPage = lazy(() => import('./presentation/pages/ServerlessPage'));
-const ProjectPage = lazy(() => import('./presentation/pages/ProjectPage'));
-const SOLIDPage = lazy(() => import('./presentation/pages/SOLIDPage'));
-const GlossaryPage = lazy(() => import('./presentation/pages/GlossaryPage'));
-const MicroservicesPage = lazy(() => import('./presentation/pages/MicroservicesPage'));
-const AssessmentPage = lazy(() => import('./presentation/pages/AssessmentPage'));
-const RefactoringPage = lazy(() => import('./presentation/pages/RefactoringPage'));
-const RoadmapPage = lazy(() => import('./presentation/pages/RoadmapPage'));
-const CleanCodePage = lazy(() => import('./presentation/pages/CleanCodePage'));
-const WorkshopPage = lazy(() => import('./presentation/pages/WorkshopPage'));
-const EvolutionaryPage = lazy(() => import('./presentation/pages/EvolutionaryPage'));
-const SpaceBasedPage = lazy(() => import('./presentation/pages/SpaceBasedPage'));
-const P2PPage = lazy(() => import('./presentation/pages/P2PPage'));
-const SOAPage = lazy(() => import('./presentation/pages/SOAPage'));
-const CatalogPage = lazy(() => import('./presentation/pages/CatalogPage'));
-const ObjectOrientedPage = lazy(() => import('./presentation/pages/ObjectOrientedPage'));
-const PipeFilterPage = lazy(() => import('./presentation/pages/PipeFilterPage'));
-const InterpreterPage = lazy(() => import('./presentation/pages/InterpreterPage'));
-const BrokerPage = lazy(() => import('./presentation/pages/BrokerPage'));
-const OrchestrationPage = lazy(() => import('./presentation/pages/OrchestrationPage'));
-const ChoreographyPage = lazy(() => import('./presentation/pages/ChoreographyPage'));
-const LambdaKappaPage = lazy(() => import('./presentation/pages/LambdaKappaPage'));
-const EventSourcingPage = lazy(() => import('./presentation/pages/EventSourcingPage'));
-const MVCPage = lazy(() => import('./presentation/pages/MVCPage'));
-const MVVMPage = lazy(() => import('./presentation/pages/MVVMPage'));
-const PlugInPage = lazy(() => import('./presentation/pages/PlugInPage'));
-const MVPPage = lazy(() => import('./presentation/pages/MVPPage'));
-const PubSubPage = lazy(() => import('./presentation/pages/PubSubPage'));
-const PrimarySecondaryPage = lazy(() => import('./presentation/pages/PrimarySecondaryPage'));
-const ECSPage = lazy(() => import('./presentation/pages/ECSPage'));
-const SecurityPage = lazy(() => import('./presentation/pages/SecurityPage'));
-const RobustnessPage = lazy(() => import('./presentation/pages/RobustnessPage'));
-const DocumentationPage = lazy(() => import('./presentation/pages/DocumentationPage'));
-const TestingPage = lazy(() => import('./presentation/pages/TestingPage'));
-const AbstractionPage = lazy(() => import('./presentation/pages/AbstractionPage'));
-const DependencyManagementPage = lazy(() => import('./presentation/pages/DependencyManagementPage'));
-const ModerateAbstractionPage = lazy(() => import('./presentation/pages/ModerateAbstractionPage'));
-const DisciplineCatalogPage = lazy(() => import('./presentation/pages/DisciplineCatalogPage'));
-const LeanArchitecturePage = lazy(() => import('./presentation/pages/LeanArchitecturePage'));
-const DesignTokensPage = lazy(() => import('./presentation/pages/DesignTokensPage'));
-const AtomicDesignPage = lazy(() => import('./presentation/pages/AtomicDesignPage'));
-const ServerDrivenUIPage = lazy(() => import('./presentation/pages/ServerDrivenUIPage'));
-const IslandsArchPage = lazy(() => import('./presentation/pages/IslandsArchPage'));
-const UIArchitectureCatalogPage = lazy(() => import('./presentation/pages/UIArchitectureCatalogPage'));
-const MicroFrontendsPage = lazy(() => import('./presentation/pages/MicroFrontendsPage'));
-const GitOpsPage = lazy(() => import('./presentation/pages/GitOpsPage'));
-const ContainerizationPage = lazy(() => import('./presentation/pages/ContainerizationPage'));
-const ZeroTrustPage = lazy(() => import('./presentation/pages/ZeroTrustPage'));
-const RAGPage = lazy(() => import('./presentation/pages/RAGPage'));
-const AgenticAIPage = lazy(() => import('./presentation/pages/AgenticAIPage'));
-const LLMOpsPage = lazy(() => import('./presentation/pages/LLMOpsPage'));
-const StateDrivenPage = lazy(() => import('./presentation/pages/StateDrivenPage'));
-const ComponentDrivenPage = lazy(() => import('./presentation/pages/ComponentDrivenPage'));
-const CompositeUIPage = lazy(() => import('./presentation/pages/CompositeUIPage'));
-const DataAICatalogPage = lazy(() => import('./presentation/pages/DataAICatalogPage'));
-const CloudCatalogPage = lazy(() => import('./presentation/pages/CloudCatalogPage'));
-const DesignPatternsPage = lazy(() => import('./presentation/pages/DesignPatternsPage'));
-const BookshelfPage = lazy(() => import('./presentation/pages/BookshelfPage'));
-const SynthesisLabPage = lazy(() => import('./presentation/pages/SynthesisLabPage'));
-const TDDPage = lazy(() => import('./presentation/pages/TDDPage'));
-const OOPFundamentalsPage = lazy(() => import('./presentation/pages/OOPFundamentalsPage'));
-const CAPTheoremPage = lazy(() => import('./presentation/pages/CAPTheoremPage'));
-const ACIDPage = lazy(() => import('./presentation/pages/ACIDPage'));
-const VIPERPage = lazy(() => import('./presentation/pages/VIPERPage'));
-const MVVMCPage = lazy(() => import('./presentation/pages/MVVMCPage'));
-const AntiPatternsPage = lazy(() => import('./presentation/pages/AntiPatternsPage'));
-const NotFoundPage = lazy(() => import('./presentation/pages/NotFoundPage'));
-const BFFPage = lazy(() => import('./presentation/pages/BFFPage'));
-const MVIPage = lazy(() => import('./presentation/pages/MVIPage'));
-const SPAvsMPAPage = lazy(() => import('./presentation/pages/SPAvsMPAPage'));
+const HomePage = lazy(() => import('./presentation/pages/home'));
+const CleanArchPage = lazy(() => import('./presentation/pages/clean-arch'));
+const ClientServerPage = lazy(() => import('./presentation/pages/client-server'));
+const IntentArchitecturePage = lazy(() => import('./presentation/pages/fna-concept'));
+const ArchBrainPage = lazy(() => import('./presentation/pages/arch-brain'));
+const DDDPage = lazy(() => import('./presentation/pages/ddd'));
+const HexagonalPage = lazy(() => import('./presentation/pages/hexagonal'));
+const OnionPage = lazy(() => import('./presentation/pages/onion'));
+const FSDPage = lazy(() => import('./presentation/pages/fsd'));
+const VerticalSlicePage = lazy(() => import('./presentation/pages/vertical'));
+const CQRSPage = lazy(() => import('./presentation/pages/cqrs'));
+const HorizontalPage = lazy(() => import('./presentation/pages/horizontal'));
+const EDAPage = lazy(() => import('./presentation/pages/eda'));
+const ComparisonPage = lazy(() => import('./presentation/pages/compare'));
+const MicrokernelPage = lazy(() => import('./presentation/pages/microkernel'));
+const ServerlessPage = lazy(() => import('./presentation/pages/serverless'));
+const ProjectPage = lazy(() => import('./presentation/pages/project-arch'));
+const SOLIDPage = lazy(() => import('./presentation/pages/solid'));
+const GlossaryPage = lazy(() => import('./presentation/pages/glossary'));
+const MicroservicesPage = lazy(() => import('./presentation/pages/microservices'));
+const AssessmentPage = lazy(() => import('./presentation/pages/assessment'));
+const RefactoringPage = lazy(() => import('./presentation/pages/refactoring'));
+const RoadmapPage = lazy(() => import('./presentation/pages/roadmap'));
+const CleanCodePage = lazy(() => import('./presentation/pages/clean-code'));
+const WorkshopPage = lazy(() => import('./presentation/pages/workshop'));
+const EvolutionaryPage = lazy(() => import('./presentation/pages/evolution'));
+const SpaceBasedPage = lazy(() => import('./presentation/pages/space-based'));
+const P2PPage = lazy(() => import('./presentation/pages/p2p'));
+const SOAPage = lazy(() => import('./presentation/pages/soa'));
+const CatalogPage = lazy(() => import('./presentation/pages/catalog'));
+const ObjectOrientedPage = lazy(() => import('./presentation/pages/object-oriented'));
+const PipeFilterPage = lazy(() => import('./presentation/pages/pipe-filter'));
+const InterpreterPage = lazy(() => import('./presentation/pages/interpreter'));
+const BrokerPage = lazy(() => import('./presentation/pages/broker'));
+const OrchestrationPage = lazy(() => import('./presentation/pages/orchestration'));
+const ChoreographyPage = lazy(() => import('./presentation/pages/choreography'));
+const LambdaKappaPage = lazy(() => import('./presentation/pages/big-data'));
+const EventSourcingPage = lazy(() => import('./presentation/pages/event-sourcing'));
+const MVCPage = lazy(() => import('./presentation/pages/mvc'));
+const MVVMPage = lazy(() => import('./presentation/pages/mvvm'));
+const PlugInPage = lazy(() => import('./presentation/pages/plugin'));
+const MVPPage = lazy(() => import('./presentation/pages/mvp'));
+const PubSubPage = lazy(() => import('./presentation/pages/pub-sub'));
+const PrimarySecondaryPage = lazy(() => import('./presentation/pages/primary-secondary'));
+const ECSPage = lazy(() => import('./presentation/pages/ecs'));
+const SecurityPage = lazy(() => import('./presentation/pages/security'));
+const RobustnessPage = lazy(() => import('./presentation/pages/robustness'));
+const DocumentationPage = lazy(() => import('./presentation/pages/docs-annotations'));
+const TestingPage = lazy(() => import('./presentation/pages/testing'));
+const AbstractionPage = lazy(() => import('./presentation/pages/abstraction'));
+const DependencyManagementPage = lazy(() => import('./presentation/pages/dependency-management'));
+const ModerateAbstractionPage = lazy(() => import('./presentation/pages/moderate-abstraction'));
+const DisciplineCatalogPage = lazy(() => import('./presentation/pages/discipline-catalog'));
+const LeanArchitecturePage = lazy(() => import('./presentation/pages/lean-architecture'));
+const DesignTokensPage = lazy(() => import('./presentation/pages/design-tokens'));
+const AtomicDesignPage = lazy(() => import('./presentation/pages/atomic-design'));
+const ServerDrivenUIPage = lazy(() => import('./presentation/pages/server-driven-ui'));
+const IslandsArchPage = lazy(() => import('./presentation/pages/islands-arch'));
+const UIArchitectureCatalogPage = lazy(() => import('./presentation/pages/ui-catalog'));
+const MicroFrontendsPage = lazy(() => import('./presentation/pages/micro-frontends'));
+const GitOpsPage = lazy(() => import('./presentation/pages/gitops'));
+const ContainerizationPage = lazy(() => import('./presentation/pages/containerization'));
+const ZeroTrustPage = lazy(() => import('./presentation/pages/zero-trust'));
+const RAGPage = lazy(() => import('./presentation/pages/rag-arch'));
+const AgenticAIPage = lazy(() => import('./presentation/pages/agentic-ai'));
+const LLMOpsPage = lazy(() => import('./presentation/pages/llm-ops'));
+const StateDrivenPage = lazy(() => import('./presentation/pages/state-driven'));
+const ComponentDrivenPage = lazy(() => import('./presentation/pages/component-driven'));
+const CompositeUIPage = lazy(() => import('./presentation/pages/composite-ui'));
+const DataAICatalogPage = lazy(() => import('./presentation/pages/data-ai-catalog'));
+const CloudCatalogPage = lazy(() => import('./presentation/pages/cloud-catalog'));
+const DesignPatternsPage = lazy(() => import('./presentation/pages/design-patterns'));
+const BookshelfPage = lazy(() => import('./presentation/pages/library'));
+const SynthesisLabPage = lazy(() => import('./presentation/pages/synthesis-lab'));
+const TDDPage = lazy(() => import('./presentation/pages/tdd'));
+const OOPFundamentalsPage = lazy(() => import('./presentation/pages/oop-fundamentals'));
+const CAPTheoremPage = lazy(() => import('./presentation/pages/cap-theorem'));
+const ACIDPage = lazy(() => import('./presentation/pages/acid'));
+const VIPERPage = lazy(() => import('./presentation/pages/viper'));
+const MVVMCPage = lazy(() => import('./presentation/pages/mvvm-c'));
+const AntiPatternsPage = lazy(() => import('./presentation/pages/anti-patterns'));
+const NotFoundPage = lazy(() => import('./presentation/pages/not-found'));
+const BFFPage = lazy(() => import('./presentation/pages/bff'));
+const MVIPage = lazy(() => import('./presentation/pages/mvi'));
+const SPAvsMPAPage = lazy(() => import('./presentation/pages/spa-vs-mpa'));
 
 const LoadingFallback = () => (
   <div style={{ height: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--primary)' }}>
@@ -117,6 +117,7 @@ const App: React.FC = () => {
                     <Route path="/" element={<HomePage />} />
                     <Route path="/clean-arch" element={<CleanArchPage />} />
                     <Route path="/fna-concept" element={<IntentArchitecturePage />} />
+                    <Route path="/arch-brain" element={<ArchBrainPage />} />
                     <Route path="/ddd" element={<DDDPage />} />
                     <Route path="/hexagonal" element={<HexagonalPage />} />
                     <Route path="/onion" element={<OnionPage />} />
@@ -134,7 +135,6 @@ const App: React.FC = () => {
                     <Route path="/microservices" element={<MicroservicesPage />} />
                     <Route path="/assessment" element={<AssessmentPage />} />
                     <Route path="/refactoring" element={<RefactoringPage />} />
-                    <Route path="/refactor-culture" element={<RefactoringPage />} />
                     <Route path="/roadmap" element={<RoadmapPage />} />
                     <Route path="/clean-code" element={<CleanCodePage />} />
                     <Route path="/evolution" element={<EvolutionaryPage />} />

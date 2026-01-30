@@ -1,5 +1,5 @@
 # 🏗️ ArchAcademy Proje Analiz Raporu
-**Tarih:** 30 January 2026 02:36
+**Tarih:** 30 January 2026 03:53
 
 ## 1. 🔍 Duplicate (Çoklanan) Sayfalar
 _✅ Harika! Hiçbir duplicate referans veya çakışma bulunamadı._
@@ -20,7 +20,7 @@ _✅ Harika! Hiçbir duplicate referans veya çakışma bulunamadı._
 | P2P Network | `/p2p` | `P2PPage` | **422** | 🚨 God Class |
 | Client-Server | `/client-server` | `ClientServerPage` | **312** | 🔶 Yoğun |
 | EDA (Event-Driven) | `/eda` | `EDAPage` | **58** | 🟢 Normal |
-| Structural Patterns | `/microkernel` | `MicrokernelPage` | **371** | 🔶 Yoğun |
+| Structural Patterns | `/microkernel` | `MicrokernelPage` | **373** | 🔶 Yoğun |
 | Plug-in Arch | `/plugin` | `PlugInPage` | **304** | 🔶 Yoğun |
 | Pipe-Filter | `/pipe-filter` | `PipeFilterPage` | **338** | 🔶 Yoğun |
 | ECS (Game Dev) | `/ecs` | `ECSPage` | **210** | 🟢 Normal |
@@ -33,10 +33,10 @@ _✅ Harika! Hiçbir duplicate referans veya çakışma bulunamadı._
 | VIPER | `/viper` | `VIPERPage` | **321** | 🔶 Yoğun |
 | MVI | `/mvi` | `MVIPage` | **315** | 🔶 Yoğun |
 | Orchestration | `/orchestration` | `OrchestrationPage` | **216** | 🟢 Normal |
-| Choreography | `/choreography` | `ChoreographyPage` | **400** | 🔶 Yoğun |
+| Choreography | `/choreography` | `ChoreographyPage` | **401** | 🚨 God Class |
 | Evolutionary | `/evolution` | `EvolutionaryPage` | **114** | 🟢 Normal |
 | Object-Oriented | `/object-oriented` | `ObjectOrientedPage` | **173** | 🟢 Normal |
-| Future Arch | `/fna-concept` | `IntentArchitecturePage` | **0** | ⚠️ Yetersiz |
+| Future Arch | `/fna-concept` | `IntentArchitecturePage` | **162** | 🟢 Normal |
 
 ### 🎨  VISUAL ARCHITECTURE (UI)
 | Sayfa Adı | Rota | Component | Satır | Durum |
@@ -54,15 +54,15 @@ _✅ Harika! Hiçbir duplicate referans veya çakışma bulunamadı._
 ### 🧠  DATA & AI (Intelligence)
 | Sayfa Adı | Rota | Component | Satır | Durum |
 |---|---|---|---|---|
-| RAG Architecture | `/rag-arch` | `RAGPage` | **87** | 🟢 Normal |
-| Agentic Workflows | `/agentic-ai` | `AgenticAIPage` | **57** | 🟢 Normal |
-| Big Data & Lambda | `/big-data` | `BigDataPage` | **436** | 🚨 God Class |
-| Event Sourcing | `/event-sourcing` | `EventSourcingPage` | **358** | 🔶 Yoğun |
+| RAG Arch | `/rag-arch` | `RAGPage` | **87** | 🟢 Normal |
+| Agentic AI | `/agentic-ai` | `AgenticAIPage` | **57** | 🟢 Normal |
+| 🛑 Vector DBs | - | - | 0 | Dekoratif |
 | CQRS | `/cqrs` | `CQRSPage` | **64** | 🟢 Normal |
-| LLMOps | `/llm-ops` | `LLMOpsPage` | **50** | 🟢 Normal |
+| Event Sourcing | `/event-sourcing` | `EventSourcingPage` | **357** | 🔶 Yoğun |
 | CAP Theorem | `/cap-theorem` | `CAPTheoremPage` | **329** | 🔶 Yoğun |
-| ACID Principles | `/acid` | `ACIDPage` | **260** | 🔶 Yoğun |
-| Kappa Arch | `/kappa` | `KappaPage` | **322** | 🔶 Yoğun |
+| ACID | `/acid` | `ACIDPage` | **260** | 🔶 Yoğun |
+| Big Data | `/big-data` | `LambdaKappaPage` | **338** | 🔶 Yoğun |
+| LLMOps | `/llm-ops` | `LLMOpsPage` | **50** | 🟢 Normal |
 
 ### ☁️  CLOUD & DEVOPS (Infra)
 | Sayfa Adı | Rota | Component | Satır | Durum |
@@ -93,15 +93,10 @@ _✅ Harika! Hiçbir duplicate referans veya çakışma bulunamadı._
 | Lean Philosophy | `/lean-architecture` | `LeanArchitecturePage` | **255** | 🔶 Yoğun |
 | Robustness & Reliability | `/robustness` | `RobustnessPage` | **272** | 🔶 Yoğun |
 | Anti-Patterns | `/anti-patterns` | `AntiPatternsPage` | **176** | 🟢 Normal |
-
+| Synthesis Lab | `/synthesis-lab` | `SynthesisLabPage` | **336** | 🔶 Yoğun |
 
 ## 3. 👻 Kayıp Sayfalar (Orphan Pages)
-Routes içinde tanımlı olup, hiçbir katalogda linklenmemiş sayfalar.
+Kataloglarda veya Navbar'da linklenmemiş sayfalar.
 
 | Rota | Component | Satır | Durum |
 |---|---|---|---|
-| `/brain` | `ArchBrainPage` | 175 |  ❓ Unlinked |
-| `/system` | `MicroservicesPage` | 78 |  ❓ Unlinked |
-| `/lambda` | `LambdaPage` | 257 |  ❓ Unlinked |
-| `/library` | `BookshelfPage` | 309 |  ❓ Unlinked |
-| `/synthesis-lab` | `SynthesisLabPage` | 336 |  ❓ Unlinked |

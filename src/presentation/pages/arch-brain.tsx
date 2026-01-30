@@ -1,6 +1,6 @@
-import React, { useState, useMemo } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Brain, Network, Share2, Activity, Database, Layout, Shield, Cpu, Zap } from 'lucide-react';
+import React from 'react';
+import { motion } from 'framer-motion';
+import { Brain, Share2, Activity } from 'lucide-react';
 import ArchHero from '../components/ArchHero';
 
 const ArchBrainPage = () => {
@@ -21,7 +21,6 @@ const ArchBrainPage = () => {
                         title="ArchBrain 3D Graph"
                     />
                 </div>
-                {/* Fallback/Overlay Decorations - Hizalamayı düzelttim */}
                 <div style={{ position: 'absolute', bottom: '10px', right: '20px', fontSize: '0.7rem', color: 'rgba(255,255,255,0.5)', pointerEvents: 'none', zIndex: 10 }}>
                     Neural Nodes Active
                 </div>
