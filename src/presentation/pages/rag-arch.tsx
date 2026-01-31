@@ -70,17 +70,34 @@ const RAGPage = () => {
         </div>
       </section>
 
-      <section style={{ padding: '4rem 0', background: 'rgba(0,0,0,0.3)', borderTop: '1px solid rgba(255,255,255,0.05)' }}>
-        <div className="container" style={{ textAlign: 'center' }}>
-           <div style={{ display: 'inline-flex', alignItems: 'center', gap: '1rem', background: 'rgba(139, 92, 246, 0.1)', padding: '1rem 2rem', borderRadius: '12px', border: '1px solid rgba(139, 92, 246, 0.2)' }}>
-              <BookOpen size={24} color="#8b5cf6" />
-              <div style={{ textAlign: 'left' }}>
-                <div style={{ fontSize: '0.8rem', color: '#a78bfa', textTransform: 'uppercase' }}>Temel Kaynak</div>
-                <div style={{ color: 'white', fontWeight: 600 }}>Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks (Lewis et al., 2020)</div>
-              </div>
-           </div>
-        </div>
-      </section>
+       <section style={{ padding: '4rem 0', background: 'rgba(0,0,0,0.3)', borderTop: '1px solid rgba(255,255,255,0.05)' }}>
+         <div className="container" style={{ textAlign: 'center' }}>
+-           <div style={{ display: 'inline-flex', alignItems: 'center', gap: '1rem', background: 'rgba(139, 92, 246, 0.1)', padding: '1rem 2rem', borderRadius: '12px', border: '1px solid rgba(139, 92, 246, 0.2)' }}>
+-              <BookOpen size={24} color="#8b5cf6" />
+-              <div style={{ textAlign: 'left' }}>
+-                <div style={{ fontSize: '0.8rem', color: '#a78bfa', textTransform: 'uppercase' }}>Temel Kaynak</div>
+-                <div style={{ color: 'white', fontWeight: 600 }}>Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks (Lewis et al., 2020)</div>
+-              </div>
+-           </div>
++           <a 
++             href="https://arxiv.org/abs/2005.11401" 
++             target="_blank" 
++             rel="noopener noreferrer"
++             style={{ 
++               display: 'inline-flex', alignItems: 'center', gap: '1rem', 
++               background: 'rgba(139, 92, 246, 0.1)', padding: '1rem 2rem', 
++               borderRadius: '12px', border: '1px solid rgba(139, 92, 246, 0.2)',
++               textDecoration: 'none', transition: 'all 0.2s', color: 'inherit'
++             }}
++           >
++             <BookOpen size={24} color="#8b5cf6" />
++             <div style={{ textAlign: 'left' }}>
++               <div style={{ fontSize: '0.8rem', color: '#a78bfa', textTransform: 'uppercase' }}>Orijinal Bildiri</div>
++               <div style={{ color: 'white', fontWeight: 600 }}>Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks (Facebook AI)</div>
++             </div>
++           </a>
+         </div>
+       </section>
     </motion.div>
   );
 };

@@ -31,7 +31,54 @@ const MicroFrontendsPage = () => {
         ]}
       />
       
-      <section style={{ padding: '4rem 0', background: 'rgba(0,0,0,0.3)', borderTop: '1px solid rgba(255,255,255,0.05)' }}>
+      <section style={{ padding: '80px 0', background: 'rgba(2, 6, 23, 0.4)' }}>
+        <div className="container">
+          <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
+            <h2 className="section-title">Entegrasyon Stratejileri</h2>
+            <p style={{ color: 'var(--text-secondary)' }}>Parçaları nasıl birleştirmeli?</p>
+          </div>
+
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem' }}>
+            <div className="glass-card" style={{ borderTop: '4px solid #ec4899' }}>
+               <h4 style={{ color: 'white', marginBottom: '1rem' }}>Server-Side Composition</h4>
+               <p style={{ color: '#94a3b8', fontSize: '0.9rem', lineHeight: 1.6 }}>
+                 Sunucu tarafında (SSR) farklı servislerden gelen HTML parçaları birleştirilir. En hızlı "First Contentful Paint" sonucunu verir.
+               </p>
+            </div>
+            <div className="glass-card" style={{ borderTop: '4px solid #8b5cf6' }}>
+               <h4 style={{ color: 'white', marginBottom: '1rem' }}>Build-Time Integration</h4>
+               <p style={{ color: '#94a3b8', fontSize: '0.9rem', lineHeight: 1.6 }}>
+                 Mikro frontendler NPM paketleri olarak yayınlanır ve ana uygulamada "compile-time" sırasında birleştirilir. 
+                 Güvenlidir ama bağımsız dağıtım (deployment) zorlaşır.
+               </p>
+            </div>
+            <div className="glass-card" style={{ borderTop: '4px solid #3b82f6' }}>
+               <h4 style={{ color: 'white', marginBottom: '1rem' }}>Run-Time Integration</h4>
+               <p style={{ color: '#94a3b8', fontSize: '0.9rem', lineHeight: 1.6 }}>
+                 En popüler yöntemdir (Module Federation). Parçalar tarayıcıda çalışma anında yüklenir. Tam bağımsızlık sağlar.
+               </p>
+            </div>
+          </div>
+
+          <div style={{ marginTop: '4rem', padding: '3rem', background: '#0f172a', borderRadius: '24px', border: '1px solid rgba(255,255,255,0.05)' }}>
+             <h3 style={{ marginBottom: '1.5rem', textAlign: 'center' }}>Zorluklar ve Dikkat Edilmesi Gerekenler</h3>
+             <ul style={{ color: '#94a3b8', listStyle: 'none', padding: 0, display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+                <li style={{ background: 'rgba(255,255,255,0.02)', padding: '15px', borderRadius: '12px' }}>
+                  <strong>Payload Size:</strong> Her mikro uygulamanın kendi React kütüphanesini indirmesi performansı bozabilir.
+                </li>
+                <li style={{ background: 'rgba(255,255,255,0.02)', padding: '15px', borderRadius: '12px' }}>
+                  <strong>Style Isolation:</strong> CSS çakışmalarını önlemek için Shadow DOM veya CSS-in-JS kullanılmalıdır.
+                </li>
+                <li style={{ background: 'rgba(255,255,255,0.02)', padding: '15px', borderRadius: '12px' }}>
+                  <strong>Communication:</strong> Uygulamalar arası veri paylaşımı "Custom Events" üzerinden yapılmalıdır.
+                </li>
+                <li style={{ background: 'rgba(255,255,255,0.02)', padding: '15px', borderRadius: '12px' }}>
+                  <strong>Consistency:</strong> Kullanıcı deneyiminin (UI/UX) tüm parçalarda aynı kalması için bir Design System şarttır.
+                </li>
+             </ul>
+          </div>
+        </div>
+      </section>
         <div className="container" style={{ textAlign: 'center' }}>
            <div style={{ 
              background: 'linear-gradient(180deg, rgba(15, 23, 42, 0) 0%, rgba(15, 23, 42, 0.5) 100%)', 

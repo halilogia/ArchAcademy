@@ -23,6 +23,31 @@ const SOLIDPage = () => {
     >
       <SOLIDHero />
       <SOLIDSection />
+
+      <section style={{ padding: '80px 0', background: 'rgba(2, 6, 23, 0.3)' }}>
+        <div className="container">
+          <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
+            <h2 className="section-title">Prensiplerin Özeti</h2>
+            <p style={{ color: 'var(--text-secondary)' }}>Daha esnek, test edilebilir ve sürdürülebilir kod için 5 altın kural.</p>
+          </div>
+
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '20px' }}>
+            {[
+              { id: 'S', t: 'Single Responsibility', d: 'Bir sınıfın değişmesi için sadece tek bir sebebi olmalıdır.' },
+              { id: 'O', t: 'Open/Closed', d: 'Sınıflar genişletilmeye açık, değişikliğe kapalı olmalıdır.' },
+              { id: 'L', t: 'Liskov Substitution', d: 'Alt sınıflar, üst sınıfların yerine geçebilmelidir.' },
+              { id: 'I', t: 'Interface Segregation', d: 'Kullanılmayan metodlar sınıflara zorla implemente ettirilmemelidir.' },
+              { id: 'D', t: 'Dependency Inversion', d: 'Yüksek seviyeli modüller, düşük seviyeli modüllere bağımlı olmamalıdır.' }
+            ].map((item) => (
+              <div key={item.id} className="glass-card" style={{ borderTop: '4px solid #3b82f6' }}>
+                <div style={{ fontSize: '3rem', fontWeight: 900, color: '#3b82f6', opacity: 0.2, lineHeight: 1 }}>{item.id}</div>
+                <h3 style={{ fontSize: '1.2rem', color: 'white', marginBottom: '10px' }}>{item.t}</h3>
+                <p style={{ color: '#94a3b8', fontSize: '0.9rem', lineHeight: 1.6 }}>{item.d}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
       
       <section style={{ padding: '4rem 0', background: 'rgba(0,0,0,0.3)', borderTop: '1px solid rgba(255,255,255,0.05)' }}>
         <div className="container" style={{ textAlign: 'center' }}>

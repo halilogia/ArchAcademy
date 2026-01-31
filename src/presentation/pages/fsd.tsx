@@ -16,6 +16,53 @@ const FSDPage = () => {
       <FSDDiagram />
       <FSDPractical />
       
+      <section style={{ padding: '80px 0', background: 'rgba(2, 6, 23, 0.4)' }}>
+        <div className="container">
+          <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
+            <h2 className="section-title">Katman Hiyerarşisi</h2>
+            <p style={{ color: 'var(--text-secondary)' }}>Yukarıdan aşağıya doğru sarsılmaz bir düzen.</p>
+          </div>
+
+          <div style={{ display: 'grid', gridTemplateColumns: 'minmax(300px, 400px) 1fr', gap: '3rem' }}>
+            {/* Visual Layers */}
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+              {[
+                { n: '1. App', c: '#0891b2', d: 'Setup, providers, styles.' },
+                { n: '2. Pages', c: '#0e7490', d: 'Full-length routes.' },
+                { n: '3. Widgets', c: '#155e75', d: 'Large self-contained UI blocks.' },
+                { n: '4. Features', c: '#164e63', d: 'User interactions & scenarios.' },
+                { n: '5. Entities', c: '#0f172a', d: 'Business entities (User, Post).' },
+                { n: '6. Shared', c: '#1e293b', d: 'Reusable UI, Utils, Libs.' },
+              ].map((layer, i) => (
+                <div key={i} style={{ 
+                  padding: '15px 20px', background: layer.c, borderRadius: '12px', border: '1px solid rgba(255,255,255,0.05)',
+                  display: 'flex', justifyContent: 'space-between', alignItems: 'center'
+                }}>
+                  <strong style={{ color: 'white', fontSize: '0.9rem' }}>{layer.n}</strong>
+                  <span style={{ color: 'rgba(255,255,255,0.5)', fontSize: '0.75rem' }}>{layer.d}</span>
+                </div>
+              ))}
+            </div>
+
+            {/* Rules Text */}
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem', justifyContent: 'center' }}>
+               <div className="glass-card" style={{ borderLeft: '4px solid #06b6d4' }}>
+                  <h4 style={{ color: 'white', marginBottom: '10px' }}>Bağımlılık Kuralı</h4>
+                  <p style={{ color: '#94a3b8', fontSize: '0.95rem' }}>
+                    Bir katman sadece altındaki katmanlardan bir şeyler import edebilir. Asla yanındaki veya üstündeki katmana erişemez.
+                  </p>
+               </div>
+               <div className="glass-card" style={{ borderLeft: '4px solid #06b6d4' }}>
+                  <h4 style={{ color: 'white', marginBottom: '10px' }}>Public API (index.ts)</h4>
+                  <p style={{ color: '#94a3b8', fontSize: '0.95rem' }}>
+                    Her dilim (slice) dışarıya sadece ihtiyacı olanı verir. Internal dosyalar asla dışarıdan import edilmemelidir.
+                  </p>
+               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
       {/* Summary Section */}
       <section style={{ padding: '80px 0', borderTop: '1px solid var(--glass-border)' }}>
         <div className="container">

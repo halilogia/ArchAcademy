@@ -16,6 +16,51 @@ const MicroservicesPage = () => {
       <SystemComparison />
       <SystemChoice />
       
+      <section style={{ padding: '80px 0', background: 'rgba(2, 6, 23, 0.4)' }}>
+        <div className="container">
+          <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
+            <h2 className="section-title">Mikroservislerin Temel Prensipleri</h2>
+            <p style={{ color: 'var(--text-secondary)' }}>Dağıtık bir sistemde hayatta kalma kuralları.</p>
+          </div>
+
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '3rem' }}>
+            {/* Rule 1 */}
+            <div className="glass-card" style={{ borderTop: '4px solid #f43f5e' }}>
+               <h3 style={{ marginBottom: '1.5rem', color: '#fb7185' }}>1. Database per Service</h3>
+               <p style={{ color: 'var(--text-secondary)', lineHeight: 1.8 }}>
+                 Her servis kendi verisine sahip olmalıdır. Bir servis asla başka bir servisin veritabanına doğrudan bağlanamaz. 
+                 Veri paylaşımı sadece API'lar veya Event'ler (Message Broker) üzerinden yapılır.
+               </p>
+            </div>
+            {/* Rule 2 */}
+            <div className="glass-card" style={{ borderTop: '4px solid #f43f5e' }}>
+               <h3 style={{ marginBottom: '1.5rem', color: '#fb7185' }}>2. Decentralized Governance</h3>
+               <p style={{ color: 'var(--text-secondary)', lineHeight: 1.8 }}>
+                 "Doğru araç, doğru iş için." Her servis farklı bir dilde (Java, Go, Python) veya farklı bir veritabanında 
+                 (NoSQL, SQL, Graph) yazılabilir. Ekipler kendi teknolojilerini seçmekte özgürdür.
+               </p>
+            </div>
+          </div>
+
+          <div style={{ marginTop: '4rem', padding: '3rem', background: '#0f172a', borderRadius: '24px', border: '1px solid rgba(255,255,255,0.05)' }}>
+             <h3 style={{ marginBottom: '2rem', textAlign: 'center' }}>Dağıtık Sistemlerin Zorluğu</h3>
+             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '2rem' }}>
+                {[
+                  { t: 'Network Latency', d: 'Servisler arası iletişim maliyetlidir.' },
+                  { t: 'Distributed Transactions', d: 'Saga Pattern kullanımı gerekir.' },
+                  { t: 'Service Discovery', d: 'Servislerin birbirini bulması gerekir.' },
+                  { t: 'Observability', d: 'Distributed Tracing (Jaeger) zorunludur.' }
+                ].map((item, i) => (
+                  <div key={i} style={{ textAlign: 'center' }}>
+                    <div style={{ fontWeight: 800, color: '#f43f5e', marginBottom: '8px' }}>{item.t}</div>
+                    <div style={{ fontSize: '0.85rem', color: '#94a3b8' }}>{item.d}</div>
+                  </div>
+                ))}
+             </div>
+          </div>
+        </div>
+      </section>
+      
       {/* Conclusion */}
       <section style={{ padding: '100px 0', background: 'rgba(2, 6, 23, 0.8)' }}>
         <div className="container" style={{ textAlign: 'center' }}>

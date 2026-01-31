@@ -1,9 +1,9 @@
 import { Question } from '../../infrastructure/data/ArchitectureData';
 
-export type Scores = Record<string, number>;
+type Scores = Record<string, number>;
 export type Answers = Record<string, number>;
 
-export interface SortedResult {
+interface SortedResult {
   key: string;
   score: number;
 }

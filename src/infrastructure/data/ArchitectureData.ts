@@ -1,4 +1,4 @@
-export interface Architecture {
+interface Architecture {
   title: string;
   tag: string;
   desc: string;

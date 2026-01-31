@@ -16,6 +16,51 @@ const HexagonalPage = () => {
       <HexagonalDiagram />
       <HexagonalPractical />
       
+      <section style={{ padding: '80px 0', background: 'rgba(2, 6, 23, 0.4)' }}>
+        <div className="container">
+          <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
+            <h2 className="section-title">Portlar ve Adaptörler</h2>
+            <p style={{ color: 'var(--text-secondary)' }}>Uygulamanızın dış dünya ile imzaladığı sözleşmeler.</p>
+          </div>
+
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '3rem' }}>
+            {/* Driving Side */}
+            <div className="glass-card" style={{ borderTop: '4px solid #10b981' }}>
+              <h3 style={{ marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '10px', color: '#10b981' }}>
+                Driving (Primary)
+              </h3>
+              <p style={{ color: 'var(--text-secondary)', lineHeight: 1.8 }}>
+                Uygulamanızı "harekete geçiren" taraftır. Kullanıcılar veya diğer sistemler uygulamanızı tetikler.
+                <br/><br/>
+                <strong>Adaptörler:</strong> REST Controller, CLI, Desktop UI.<br/>
+                <strong>Port:</strong> Application API (Sizin UseCase/Service katmanınız).
+              </p>
+            </div>
+
+            {/* Driven Side */}
+            <div className="glass-card" style={{ borderTop: '4px solid #3b82f6' }}>
+              <h3 style={{ marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '10px', color: '#3b82f6' }}>
+                Driven (Secondary)
+              </h3>
+              <p style={{ color: 'var(--text-secondary)', lineHeight: 1.8 }}>
+                Uygulamanızın "ihtiyaç duyduğu" taraftır. Uygulama, işini tamamlamak için dışarıdaki bir sisteme erişir.
+                <br/><br/>
+                <strong>Port:</strong> Repository Interface, Mail Service Interface.<br/>
+                <strong>Adaptörler:</strong> SQL Database, Kafka, SendGrid API.
+              </p>
+            </div>
+          </div>
+
+          <div style={{ marginTop: '4rem', padding: '2rem', background: 'rgba(255,255,255,0.02)', borderRadius: '24px', border: '1px solid rgba(255,255,255,0.05)' }}>
+             <h4 style={{ marginBottom: '1rem', textAlign: 'center' }}>Altın Kural: Bağımlılık İçeri Doğrudur</h4>
+             <p style={{ color: '#94a3b8', fontSize: '0.95rem', textAlign: 'center', maxWidth: '800px', margin: '0 auto' }}>
+                Dışarıdaki hiçbir teknoloji (Adaptör), içerideki iş mantığına (Domain) doğrudan sızamaz. 
+                Adaptörler, Domain katmanının tanımladığı <strong>Port</strong> (Interface) kurallarına uymak zorundadır.
+             </p>
+          </div>
+        </div>
+      </section>
+      
       {/* Conclusion / Comparison */}
       <section style={{ padding: '80px 0', borderTop: '1px solid var(--glass-border)' }}>
         <div className="container">

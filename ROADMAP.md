@@ -177,3 +177,8 @@ Resmin sol altındaki "Message Broker -> Consumers" akışını (Checkout örne�
 
 5. Microkernel (Plug-in)
 Sağ taraftaki "Core System + Plug-in Components" yapısını gösteren kutulu diyagramı sayfaya ekleyerek eklenti mimarisini daha iyi anlatabiliriz.
+
+
+Modular Monolith: (Özellikle monolitik yapıdan mikroservise geçişin mantığını anlatmak için harika bir "ara basamak" sayfası olur).
+Data Mesh: (Veri Mimarisi kategorisini tamamlamak için).
+Twelve-Factor App: (Bulut tabanlı modern yazılımın anayasasını görselleştirmek için).

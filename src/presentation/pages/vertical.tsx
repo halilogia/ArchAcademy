@@ -12,6 +12,55 @@ const VerticalSlicePage = () => {
       <VerticalComparison />
       <VerticalPractical />
       
+      <section style={{ padding: '80px 0', background: 'var(--bg-dark)' }}>
+        <div className="container">
+          <div style={{ display: 'grid', gridTemplateColumns: 'minmax(300px, 450px) 1fr', gap: '4rem', alignItems: 'start' }}>
+            {/* Folder Structure Visualization */}
+            <div className="glass-card" style={{ background: '#0f172a', padding: '2rem' }}>
+              <h4 style={{ marginBottom: '1.5rem', color: '#f97316', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                📂 Proje Klasör Yapısı
+              </h4>
+              <div style={{ fontFamily: 'monospace', fontSize: '0.9rem', color: '#94a3b8' }}>
+                <div>src/</div>
+                <div style={{ paddingLeft: '20px' }}>Features/</div>
+                <div style={{ paddingLeft: '40px', color: '#f97316' }}>Siparişler/</div>
+                <div style={{ paddingLeft: '60px' }}>📦 SiparişVer.cs</div>
+                <div style={{ paddingLeft: '60px' }}>📦 SiparişDetay.cs</div>
+                <div style={{ paddingLeft: '60px' }}>📦 SiparişRepository.cs</div>
+                <div style={{ paddingLeft: '40px', color: '#10b981' }}>Ürünler/</div>
+                <div style={{ paddingLeft: '60px' }}>📦 ÜrünListele.cs</div>
+                <div style={{ paddingLeft: '60px' }}>📦 ÜrünAra.cs</div>
+                <div style={{ paddingLeft: '20px' }}>Infrastructure/</div>
+                <div style={{ paddingLeft: '40px' }}>DatabaseContext.cs</div>
+              </div>
+              <p style={{ marginTop: '1.5rem', fontSize: '0.8rem', fontStyle: 'italic' }}>
+                * Her klasör kendi içinde tamamen bağımsız bir minyatür mimaridir.
+              </p>
+            </div>
+
+            {/* Core Rules */}
+            <div>
+              <h3 style={{ fontSize: '2rem', fontWeight: 800, marginBottom: '2rem' }}>Dikey Dilim Kuralları</h3>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+                {[
+                  { t: 'Özellik Bazlı Gruplama', d: 'Kodu teknik katmanlara (Controller/Service) göre değil, iş özelliklerine göre gruplayın.' },
+                  { t: 'Minimum Paylaşım', d: 'Dilimler arasında kod paylaşımından kaçının. Kod tekrarı, sıkı bağımlılıktan (Coupling) daha iyidir.' },
+                  { t: 'Esnek İç Yapı', d: 'Bir dilim basit bir SQL sorgusu kullanırken, diğeri karmaşık bir DDD Aggregate kullanabilir.' }
+                ].map((rule, i) => (
+                  <div key={i} style={{ display: 'flex', gap: '1rem' }}>
+                    <div style={{ width: '24px', height: '24px', borderRadius: '50%', background: 'rgba(249, 115, 22, 0.2)', color: '#f97316', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, fontWeight: 800, fontSize: '0.8rem' }}>{i+1}</div>
+                    <div>
+                      <h4 style={{ color: 'white', marginBottom: '4px' }}>{rule.t}</h4>
+                      <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem' }}>{rule.d}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
       <section style={{ padding: '4rem 0', background: 'rgba(0,0,0,0.3)', borderTop: '1px solid rgba(255,255,255,0.05)', marginTop: '4rem' }}>
         <div className="container" style={{ textAlign: 'center' }}>
            <div style={{ 

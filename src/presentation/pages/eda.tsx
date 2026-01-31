@@ -16,6 +16,60 @@ const EDAPage = () => {
       <EDADiagram />
       <EDAPractical />
       
+      <section style={{ padding: '80px 0', background: 'rgba(2, 6, 23, 0.4)' }}>
+        <div className="container">
+          <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
+            <h2 className="section-title">Event-Driven Pattern Çeşitleri</h2>
+            <p style={{ color: 'var(--text-secondary)' }}>Farklı amaçlar için farklı event stratejileri.</p>
+          </div>
+
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem' }}>
+            <div className="glass-card" style={{ borderTop: '4px solid #a855f7' }}>
+              <h4 style={{ color: 'white', marginBottom: '1rem' }}>1. Event Notification</h4>
+              <p style={{ color: '#94a3b8', fontSize: '0.9rem', lineHeight: 1.6 }}>
+                En basit formdur. Bir sistem "Bir şey oldu" der, detay vermez. Alıcı gerekirse detayları sormak için sistemi geri arar.
+              </p>
+            </div>
+            <div className="glass-card" style={{ borderTop: '4px solid #a855f7' }}>
+              <h4 style={{ color: 'white', marginBottom: '1rem' }}>2. Event-Carried State Transfer</h4>
+              <h4 style={{ color: 'white', marginBottom: '1rem' }}>2. Event-Carried State Transfer</h4>
+              <p style={{ color: '#94a3b8', fontSize: '0.9rem', lineHeight: 1.6 }}>
+                Event, alıcının işini yapması için gereken tüm veriyi taşır. Alıcının gönderen sisteme geri dönmesine gerek kalmaz.
+              </p>
+            </div>
+            <div className="glass-card" style={{ borderTop: '4px solid #a855f7' }}>
+              <h4 style={{ color: 'white', marginBottom: '1rem' }}>3. Event Sourcing</h4>
+              <p style={{ color: '#94a3b8', fontSize: '0.9rem', lineHeight: 1.6 }}>
+                Sistemin durumu (State), geçmişteki tüm event'lerin birikimidir. Veritabanında son durum değil, event log tutulur.
+              </p>
+            </div>
+          </div>
+
+          <div style={{ marginTop: '4rem', padding: '3rem', background: '#0f172a', borderRadius: '24px', border: '1px solid rgba(255,255,255,0.05)' }}>
+             <h3 style={{ marginBottom: '2rem', textAlign: 'center' }}>Neden EDA?</h3>
+             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '3rem' }}>
+                <div>
+                  <h4 style={{ color: '#10b981', marginBottom: '1rem' }}>✅ Avantajlar</h4>
+                  <ul style={{ color: '#94a3b8', paddingLeft: '20px', lineHeight: 2 }}>
+                    <li>Yüksek Gevşek Bağlılık (Loose Coupling)</li>
+                    <li>Sistemler Arası Ölçeklenebilirlik</li>
+                    <li>Gerçek Zamanlı Tepki Kabiliyeti</li>
+                    <li>Hata Toleransı ve Yeniden İşleme</li>
+                  </ul>
+                </div>
+                <div>
+                  <h4 style={{ color: '#f43f5e', marginBottom: '1rem' }}>❌ Dezavantajlar</h4>
+                  <ul style={{ color: '#94a3b8', paddingLeft: '20px', lineHeight: 2 }}>
+                    <li>Takip Edilebilirlik (Traceability) Zorluğu</li>
+                    <li>Consistency Yönetimi (Eventual Consistency)</li>
+                    <li>Altyapı Karmaşıklığı (Broker Yönetimi)</li>
+                  </ul>
+                </div>
+             </div>
+          </div>
+        </div>
+      </section>
+      
       <section style={{ padding: '4rem 0', background: 'rgba(0,0,0,0.3)', borderTop: '1px solid rgba(255,255,255,0.05)' }}>
         <div className="container" style={{ textAlign: 'center' }}>
            <div style={{ 

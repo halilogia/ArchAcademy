@@ -17,6 +17,47 @@ const CQRSPage = () => {
       <CQRSDiagram />
       <CQRSPractical />
       
+      <section style={{ padding: '80px 0', background: 'rgba(2, 6, 23, 0.4)' }}>
+        <div className="container">
+          <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
+            <h2 className="section-title">Komut ve Sorgu Ayrımı</h2>
+            <p style={{ color: 'var(--text-secondary)' }}>Okuma ve yazma işlemlerini farklı modellerle yönetme sanatı.</p>
+          </div>
+
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '3rem' }}>
+            {/* Commands */}
+            <div className="glass-card" style={{ borderTop: '4px solid #ef4444' }}>
+               <h3 style={{ marginBottom: '1.5rem', color: '#f87171' }}>Commands (Yazma)</h3>
+               <p style={{ color: 'var(--text-secondary)', lineHeight: 1.8 }}>
+                 Sistemin durumunu değiştiren işlemlerdir. Cevap olarak sadece işlemin başarılı olup olmadığını veya bir hata dönerler.
+                 <br/><br/>
+                 <strong>Örnek:</strong> SiparişVer, ŞifreDeğiştir, KullanıcıEkle.
+               </p>
+            </div>
+
+            {/* Queries */}
+            <div className="glass-card" style={{ borderTop: '4px solid #3b82f6' }}>
+               <h3 style={{ marginBottom: '1.5rem', color: '#60a5fa' }}>Queries (Okuma)</h3>
+               <p style={{ color: 'var(--text-secondary)', lineHeight: 1.8 }}>
+                 Sistemin durumunu asla değiştirmezler. Sadece veri dönerler (DTO). Genellikle performans için optimize edilmiş görünümler (Views) kullanırlar.
+                 <br/><br/>
+                 <strong>Örnek:</strong> SiparişDetaylarınıGetir, EnÇokSatanÜrünleriListele.
+               </p>
+            </div>
+          </div>
+
+          <div style={{ marginTop: '4rem', padding: '3rem', background: '#0f172a', borderRadius: '24px', border: '1px solid rgba(255,255,255,0.05)' }}>
+             <h3 style={{ marginBottom: '1.5rem' }}>Neden CQRS Kullanmalıyız?</h3>
+             <p style={{ color: '#94a3b8', lineHeight: 1.8 }}>
+                Çoğu uygulamada okuma işlemleri, yazma işlemlerine göre 100 kat daha fazladır. 
+                CQRS ile okuma tarafını (Query) tamamen farklı bir veritabanına (Elasticsearch, Redis) taşıyabilir 
+                ve yazma tarafını (Command) karmaşık iş kuralları için saklayabilirsiniz. 
+                Bu sayede her iki tarafı da birbirinden bağımsız olarak ölçeklendirebilirsiniz.
+             </p>
+          </div>
+        </div>
+      </section>
+      
       {/* Keeping the foundational overview at the bottom */}
       <div style={{ paddingBottom: '100px' }}>
         <CQRSSection />

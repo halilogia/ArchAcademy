@@ -29,6 +29,54 @@ const DDDPage = () => {
       <DDDKeyConcepts />
       <DDDSimulation />
       
+      <section style={{ padding: '100px 0', background: 'rgba(2, 6, 23, 0.5)' }}>
+        <div className="container">
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4rem' }}>
+            {/* Strategic Design */}
+            <div className="glass-card" style={{ borderTop: '4px solid #7c3aed' }}>
+               <h3 style={{ marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '10px', color: '#a78bfa' }}>
+                  Stratejik Tasarım (Strategic)
+               </h3>
+               <p style={{ color: 'var(--text-secondary)', lineHeight: 1.8, marginBottom: '2rem' }}>
+                  Büyük ve karmaşık sistemleri yönetilebilir parçalara bölmek için kullanılan üst düzey kararlar. 
+                  Yazılımcılar ve iş birimleri (Business Experts) aynı dili konuşmalıdır.
+               </p>
+               <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                  <li style={{ background: 'rgba(124, 58, 237, 0.1)', padding: '12px', borderRadius: '8px' }}>
+                    <strong style={{ color: 'white' }}>Bounded Context:</strong> Bir kelimenin (örn: Ürün) farklı ekipler için farklı anlamlar taşıdığı sinırlar.
+                  </li>
+                  <li style={{ background: 'rgba(124, 58, 237, 0.1)', padding: '12px', borderRadius: '8px' }}>
+                    <strong style={{ color: 'white' }}>Ubiquitous Language:</strong> Tüm ekip tarafından (analistten yazılımcıya) kullanılan ortak dil.
+                  </li>
+               </ul>
+            </div>
+
+            {/* Tactical Design */}
+            <div className="glass-card" style={{ borderTop: '4px solid #10b981' }}>
+               <h3 style={{ marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '10px', color: '#10b981' }}>
+                  Taktiksel Tasarım (Tactical)
+               </h3>
+               <p style={{ color: 'var(--text-secondary)', lineHeight: 1.8, marginBottom: '2rem' }}>
+                  Kod seviyesinde iş mantığını nasıl modelleyeceğimize odaklanan teknik desenler.
+               </p>
+               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px' }}>
+                  {[
+                    { t: 'Entity', d: 'Kimliği olan nesneler.' },
+                    { t: 'Value Object', d: 'Kimliği olmayan değerler.' },
+                    { t: 'Aggregate', d: 'Bir grup nesnenin yöneticisi.' },
+                    { t: 'Repository', d: 'Veri erişim soyutlaması.' }
+                  ].map((item, i) => (
+                    <div key={i} style={{ padding: '15px', background: 'rgba(255,255,255,0.03)', borderRadius: '10px', border: '1px solid rgba(255,255,255,0.05)' }}>
+                      <div style={{ fontWeight: 800, color: '#10b981', fontSize: '0.85rem' }}>{item.t}</div>
+                      <div style={{ fontSize: '0.75rem', color: '#94a3b8' }}>{item.d}</div>
+                    </div>
+                  ))}
+               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
       {/* Keeping the summary section but styled as a footer detail */}
       <div style={{ paddingBottom: '100px' }}>
         <DDDSection />

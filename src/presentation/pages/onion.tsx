@@ -16,6 +16,60 @@ const OnionPage = () => {
       <OnionDiagram />
       <OnionPractical />
       
+      <section style={{ padding: '80px 0', background: 'rgba(2, 6, 23, 0.3)' }}>
+        <div className="container">
+          <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
+            <h2 className="section-title">Mimari Çekirdek Kuralları</h2>
+            <p style={{ color: 'var(--text-secondary)' }}>Bağımlılıkların yönü her zaman merkeze doğrudur.</p>
+          </div>
+
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '3rem' }}>
+            <div className="glass-card" style={{ borderLeft: '4px solid #f43f5e' }}>
+              <h3 style={{ marginBottom: '1.5rem', color: '#f43f5e' }}>1. Bağımlılık Yönü (Dependency)</h3>
+              <p style={{ color: 'var(--text-secondary)', lineHeight: 1.8 }}>
+                Tüm katmanlar sadece kendisinden daha "içte" olan katmana erişebilir. 
+                Dış katmanlar iç katmanları bilir, ancak iç katmanlar dış dünya hakkında hiçbir fikre sahip değildir.
+                <br/><br/>
+                <span style={{ color: 'white', fontWeight: 600 }}>Örn:</span> Domain katmanı veritabanını (Persistence) veya Web API'yi bilmez.
+              </p>
+            </div>
+
+            <div className="glass-card" style={{ borderLeft: '4px solid #f43f5e' }}>
+              <h3 style={{ marginBottom: '1.5rem', color: '#f43f5e' }}>2. Soyutlama (Abstraction)</h3>
+              <p style={{ color: 'var(--text-secondary)', lineHeight: 1.8 }}>
+                İç katmanlar (Domain/Core), dış dünyadaki sistemlerle (DB, API, Mail) haberleşmek için 
+                <strong>Interface</strong> tanımlar. Bu arayüzlerin gerçek implementasyonları en dış katmanda (Infrastructure) yapılır.
+              </p>
+            </div>
+          </div>
+
+          <div style={{ marginTop: '4rem' }}>
+            <h3 style={{ textAlign: 'center', marginBottom: '2rem' }}>Katman Hiyerarşisi</h3>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+              {[
+                { name: 'Infrastructure (Dış)', color: '#334155', desc: 'Veritabanı, Web API Framework, Dosya Sistemi.' },
+                { name: 'Application Services', color: '#475569', desc: 'UseCase koordinasyonu, Interface implementasyonları.' },
+                { name: 'Domain Services', color: '#0f172a', desc: 'Birden fazla Entity'yi ilgilendiren iş mantığı.' },
+                { name: 'Domain Model (Merkez)', color: '#f43f5e', desc: 'Saf iş kuralları, Entityler ve Value Objectler.' },
+              ].map((layer, i) => (
+                <div key={i} style={{ 
+                  padding: '20px', 
+                  background: layer.color, 
+                  borderRadius: '12px', 
+                  border: '1px solid rgba(255,255,255,0.05)',
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'center'
+                }}>
+                  <strong style={{ color: 'white' }}>{layer.name}</strong>
+                  <span style={{ color: 'rgba(255,255,255,0.6)', fontSize: '0.9rem' }}>{layer.desc}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+      
       <section style={{ padding: '80px 0', borderTop: '1px solid var(--glass-border)' }}>
         <div className="container" style={{ textAlign: 'center' }}>
           <div className="glass-card" style={{ 
