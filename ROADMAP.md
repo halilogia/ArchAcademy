@@ -182,3 +182,11 @@ Sağ taraftaki "Core System + Plug-in Components" yapısını gösteren kutulu d
 Modular Monolith: (Özellikle monolitik yapıdan mikroservise geçişin mantığını anlatmak için harika bir "ara basamak" sayfası olur).
 Data Mesh: (Veri Mimarisi kategorisini tamamlamak için).
 Twelve-Factor App: (Bulut tabanlı modern yazılımın anayasasını görselleştirmek için).
+
+### 5. Yeni Nesil Mimari Derinliği 🚀
+Aşağıdaki kritik mimari desenler ve yaklaşımlar portalın "Master" seviyesine ulaşması için eklenmelidir:
+- [ ] **Modular Monolith**: Mikroservis karmaşıklığına girmeden modülerlik sağlamak.
+- [ ] **Saga Pattern**: Dağıtık sistemlerde veri tutarlılığı ve transaction yönetimi.
+- [ ] **Outbox Pattern**: Event-driven sistemlerde güvenilir mesaj iletimi.
+- [ ] **Data Mesh**: Merkezi olmayan veri yönetimi ve veri sahipliği.
+- [ ] **Twelve-Factor App**: Modern bulut tabanlı uygulama geliştirmenin standartları.

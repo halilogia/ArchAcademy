@@ -180,6 +180,121 @@ public partial struct MovementSystem : ISystem {
                     yoğun fizik simülasyonları veya MMO arka uçları için gerçek gücünü gösterir.
                 </p>
              </div>
+
+             <div className="glass-card" style={{ padding: '3rem', borderLeft: '4px solid #10b981', gridColumn: 'span 2' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1.5rem', color: '#10b981' }}>
+                    <FastForward size={28} />
+                    <h3 style={{ fontSize: '1.5rem', fontWeight: 900 }}>Modern Kavram: The Baking Process</h3>
+                </div>
+                <p style={{ color: 'var(--text-secondary)', lineHeight: 1.7 }}>
+                    Unity DOTS gibi sistemlerde <strong>Baking</strong>, editördeki (GameObject) hiyerarşiyi, çalışma zamanındaki optimize edilmiş 
+                    <strong> Entity</strong> yapılarına dönüştürme işlemidir. Bu sayede geliştirici dostu bir arayüzle tasarım yaparken, 
+                    çalışma anında saf ECS performansından ödün vermezsiniz.
+                </p>
+             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* --- SOURCE SECTION --- */}
+      <section style={{ padding: '40px 0', borderTop: '1px solid var(--glass-border)' }}>
+        <div className="container" style={{ textAlign: 'center' }}>
+          <p style={{ color: 'var(--text-secondary)', fontSize: '0.85rem' }}>
+            Referans Kaynak: <a href="https://docs.unity3d.com/Packages/com.unity.entities@1.0/manual/index.html" target="_blank" rel="noopener noreferrer" style={{ color: '#10b981', textDecoration: 'none', fontWeight: 700 }}>Unity DOTS (Entities) Documentation</a>
+          </p>
+        </div>
+      </section>
+      {/* --- FOLDER STRUCTURE & COMPARISON --- */}
+      <section style={{ padding: '80px 0', borderTop: '1px solid var(--glass-border)' }}>
+        <div className="container">
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4rem' }}>
+            {/* Folder Structure */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+            >
+              <h3 style={{ fontSize: '1.8rem', fontWeight: 900, marginBottom: '2rem', display: 'flex', alignItems: 'center', gap: '10px' }}>
+                <Box color="#10b981" /> Authoritative Structure (Unity DOTS)
+              </h3>
+              <p style={{ color: 'var(--text-secondary)', marginBottom: '1.5rem', fontSize: '0.9rem' }}>
+                Modern ECS projelerinde (özellikle Unity DOTS gibi endüstri standartlarında) yapı, geleneksel OOP'den farklı olarak "Authoring" (Editör) ve "Runtime" (Çalışma Zamanı) olarak ikiye ayrılır.
+              </p>
+              <div className="glass-card" style={{ padding: '2rem', background: 'rgba(0,0,0,0.2)' }}>
+                <pre style={{ color: '#94a3b8', fontSize: '0.9rem', lineHeight: 1.8 }}>
+                  {`Assets/
+├── Scripts/
+│   ├── Components/     # Pure Data (IComponentData)
+│   │   ├── MovementComponent.cs
+│   │   └── HealthComponent.cs
+│   ├── Systems/        # Logic (ISystem / SystemBase)
+│   │   ├── MovementSystem.cs
+│   │   └── CollisionSystem.cs
+│   ├── Aspects/        # Data Grouping (Optional)
+│   │   └── PlayerAspect.cs
+│   └── Authoring/      # Editor UI & Conversion
+│       ├── MovementAuthoring.cs
+│       └── Bakers/      # Authoring -> Entity logic
+│           └── MovementBaker.cs
+└── Prefabs/            # Entity Templates`}
+                </pre>
+              </div>
+            </motion.div>
+
+            {/* ECS vs MVVM */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+            >
+              <h3 style={{ fontSize: '1.8rem', fontWeight: 900, marginBottom: '2rem', display: 'flex', alignItems: 'center', gap: '10px' }}>
+                <Activity color="#3b82f6" /> ECS vs MVVM
+              </h3>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                <div style={{ padding: '1.5rem', background: 'rgba(16, 185, 129, 0.05)', borderRadius: '16px', border: '1px solid rgba(16, 185, 129, 0.1)' }}>
+                  <h4 style={{ color: '#10b981', marginBottom: '0.5rem' }}>ECS: Veri Odaklı (Performance)</h4>
+                  <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}>
+                    Binlerce benzer nesnenin (mermiler, askerler) aynı anda işlenmesi gereken durumlar için idealdir. CPU Cache kullanımını maksimize eder.
+                  </p>
+                </div>
+                <div style={{ padding: '1.5rem', background: 'rgba(59, 130, 246, 0.05)', borderRadius: '16px', border: '1px solid rgba(59, 130, 246, 0.1)' }}>
+                  <h4 style={{ color: '#3b82f6', marginBottom: '0.5rem' }}>MVVM: UI Odaklı (Flexibility)</h4>
+                  <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}>
+                    Karmaşık kullanıcı arayüzleri, formlar ve veri bağlama (Data Binding) gerektiren iş uygulamaları için standarttır.
+                  </p>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+
+          <div style={{ marginTop: '4rem', padding: '2rem', background: 'rgba(255,255,255,0.02)', borderRadius: '24px' }}>
+             <table style={{ width: '100%', borderCollapse: 'collapse', color: 'var(--text-secondary)', fontSize: '0.9rem' }}>
+                <thead>
+                  <tr style={{ borderBottom: '1px solid var(--glass-border)' }}>
+                    <th style={{ textAlign: 'left', padding: '1rem' }}>Özellik</th>
+                    <th style={{ textAlign: 'left', padding: '1rem', color: '#10b981' }}>ECS</th>
+                    <th style={{ textAlign: 'left', padding: '1rem', color: '#3b82f6' }}>MVVM</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr style={{ borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
+                    <td style={{ padding: '1rem', fontWeight: 700 }}>Ana Odak</td>
+                    <td style={{ padding: '1rem' }}>Ham Performans & Veri Akışı</td>
+                    <td style={{ padding: '1rem' }}>UI Durum Yönetimi & Test Edilebilirlik</td>
+                  </tr>
+                  <tr style={{ borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
+                    <td style={{ padding: '1rem', fontWeight: 700 }}>Bellek Yapısı</td>
+                    <td style={{ padding: '1rem' }}>Ardışık (Cache-Friendly Layout)</td>
+                    <td style={{ padding: '1rem' }}>Dağınık (Heap-Based Objects)</td>
+                  </tr>
+                  <tr style={{ borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
+                    <td style={{ padding: '1rem', fontWeight: 700 }}>Kullanım Alanı</td>
+                    <td style={{ padding: '1rem' }}>Oyun Motorları, Simülasyonlar</td>
+                    <td style={{ padding: '1rem' }}>Kurumsal Uygulamalar, Mobil/Web UI</td>
+                  </tr>
+                </tbody>
+             </table>
           </div>
         </div>
       </section>
