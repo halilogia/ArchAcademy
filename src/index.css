@@ -32,8 +32,25 @@ body {
   overflow-x: hidden;
 }
 
-h1, h2, h3, h4 {
+h1,
+h2,
+h3,
+h4 {
   color: var(--text-primary);
+}
+
+/* Cinematic Noise Overlay - Adds high-fidelity texture without affecting visibility */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url("https://grainy-gradients.vercel.app/noise.svg");
+  opacity: 0.02;
+  pointer-events: none;
+  z-index: 9999;
 }
 
 a {
@@ -61,7 +78,8 @@ button {
 
 ::-webkit-scrollbar {
   width: 6px;
-  height: 0px; /* Hide horizontal scrollbar */
+  height: 0px;
+  /* Hide horizontal scrollbar */
 }
 
 ::-webkit-scrollbar-track {
@@ -86,7 +104,8 @@ button {
 }
 
 .custom-scrollbar::-webkit-scrollbar {
-  width: 4px; /* Even thinner for nested lists */
+  width: 4px;
+  /* Even thinner for nested lists */
 }
 
 .container {
@@ -125,8 +144,15 @@ button {
 
 /* Animations */
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .animate-fade-in {
