@@ -94,6 +94,8 @@ const VectorDBPage = lazy(() => import('./presentation/pages/vector-dbs'));
 const BFFPage = lazy(() => import('./presentation/pages/bff'));
 const MVIPage = lazy(() => import('./presentation/pages/mvi'));
 const SPAvsMPAPage = lazy(() => import('./presentation/pages/spa-vs-mpa'));
+const ComponentStatePage = lazy(() => import('./presentation/pages/component-state'));
+
 
 const LoadingFallback = () => (
   <div style={{ height: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--primary)' }}>
@@ -198,6 +200,8 @@ const App: React.FC = () => {
                      <Route path="/bff" element={<BFFPage />} />
                     <Route path="/mvi" element={<MVIPage />} />
                     <Route path="/spa-vs-mpa" element={<SPAvsMPAPage />} />
+                    <Route path="/component-state" element={<ComponentStatePage />} />
+
                     <Route path="*" element={<NotFoundPage />} />
                   </Routes>
                 </AnimatePresence>

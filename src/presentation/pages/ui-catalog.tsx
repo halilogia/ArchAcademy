@@ -43,7 +43,8 @@ const UIArchitectureCatalogPage = () => {
     { id: 'state', name: 'State-Driven UI', path: '/state-driven', color: '#22c55e', icon: <RefreshCcw size={24} />, desc: 'UI = f(State). Reaktif arayüz paradigması.' },
     { id: 'cdd', name: 'Component-Driven', path: '/component-driven', color: '#f43f5e', icon: <Puzzle size={24} />, desc: 'Sayfalardan değil, bileşenlerden başlama (CDD).' },
     { id: 'composite', name: 'Composite UI', path: '/composite-ui', color: '#8b5cf6', icon: <Layers size={24} />, desc: 'Farklı modüllerin runtime anında birleşmesi.' },
-    { id: 'spa-mpa', name: 'SPA vs MPA', path: '/spa-vs-mpa', color: '#10b981', icon: <Globe size={24} />, desc: 'Tek Sayfa (SPA) ile Çok Sayfa (MPA) render stratejileri.' }
+    { id: 'spa-mpa', name: 'SPA vs MPA', path: '/spa-vs-mpa', color: '#10b981', icon: <Globe size={24} />, desc: 'Tek Sayfa (SPA) ile Çok Sayfa (MPA) render stratejileri.' },
+    { id: 'comp-state', name: 'Component State', path: '/component-state', color: '#6366f1', icon: <Database size={24} />, desc: 'Bileşen tabanlı durum yönetimi ve veri akışı.' }
   ];
 
   return (

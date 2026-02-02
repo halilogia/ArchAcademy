@@ -1,10 +1,11 @@
 # 🏗️ ArchAcademy Proje Analiz Raporu
-**Güncellenme:** 30 January 2026 16:07
+**Güncellenme:** 01 February 2026 17:58
 
 ## ⚖️ Genel Sağlık Karnesi
-- **Toplam Bilgi Derinliği:** ~19553 satır mimari içerik
-- **Aktif Rotalar:** 85 sayfa
-- **Kaynakça Oranı:** %67 (57 sayfada kaynakça var)
+- **Toplam Bilgi Derinliği:** ~19738 satır mimari içerik
+- **Aktif Rotalar:** 86 sayfa
+- **Kaynakça Oranı:** %66 (57 sayfada kaynakça var)
+
 - **İkonlar:** 💎 Hero | 📚 Kaynakça | 📄 Standart | 📝 Taslak
 
 ## 1. 🗺️ Mimari Kataloglar
@@ -76,6 +77,8 @@
 | Component-Driven | `/component-driven` | **139** | 💎 | 🟢 Normal |
 | Composite UI | `/composite-ui` | **165** | 💎 | 🟢 Normal |
 | SPA vs MPA | `/spa-vs-mpa` | **364** | 💎 📚(1) | 🟢 Normal |
+| Component State | `/component-state` | **185** | 💎 | 🟢 Normal |
+
 
 
 ### 🧠  DATA & AI (Intelligence)
