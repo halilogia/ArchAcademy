@@ -65,15 +65,15 @@ const ProjectDecisionRecords = () => {
                    {d.icon}
                    <span style={{ fontSize: '0.7rem', fontWeight: 900, textTransform: 'uppercase', opacity: 0.5 }}>{d.status}</span>
                 </div>
-                <h4 style={{ marginBottom: '1rem' }}>{d.title}</h4>
-                <div style={{ marginBottom: '1.5rem', opacity: 0.8 }}>
-                   <div style={{ fontSize: '0.75rem', color: 'var(--primary)', fontWeight: 800, marginBottom: '0.5rem' }}>NEDEN?</div>
-                   <p style={{ fontSize: '0.85rem', lineHeight: 1.6 }}>{d.why}</p>
-                </div>
-                <div style={{ padding: '1rem', background: 'rgba(255,255,255,0.02)', borderRadius: '12px' }}>
-                   <div style={{ fontSize: '0.75rem', color: '#10b981', fontWeight: 800, marginBottom: '0.5rem' }}>ETKİSİ</div>
-                   <p style={{ fontSize: '0.8rem', margin: 0, opacity: 0.7 }}>{d.impact}</p>
-                </div>
+                 <h4 style={{ marginBottom: '1rem', fontWeight: 800 }}>{d.title}</h4>
+                 <div style={{ marginBottom: '1.5rem' }}>
+                    <div style={{ fontSize: '0.75rem', color: 'var(--primary)', fontWeight: 900, marginBottom: '0.5rem', letterSpacing: '2px' }}>NEDEN?</div>
+                    <p style={{ fontSize: '1rem', lineHeight: 1.6, opacity: 0.8 }}>{d.why}</p>
+                 </div>
+                 <div style={{ padding: '1.25rem', background: 'rgba(255,255,255,0.03)', borderRadius: '16px', border: '1px solid rgba(255,255,255,0.05)' }}>
+                    <div style={{ fontSize: '0.75rem', color: '#10b981', fontWeight: 900, marginBottom: '0.5rem', letterSpacing: '2px' }}>ETKİSİ</div>
+                    <p style={{ fontSize: '0.95rem', margin: 0, opacity: 0.7, lineHeight: 1.5 }}>{d.impact}</p>
+                 </div>
              </motion.div>
            ))}
         </div>

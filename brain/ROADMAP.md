@@ -4,6 +4,13 @@
 - [ ] **Security Architecture**: RBAC, OAuth2, and Zero-Trust implementation patterns.
 - [ ] **Multilingual Support**: Expanding beyond English/Turkish to reach a global developer base.
 
+### 6. Elite Quality & Architecture Guard 🛡️
+Projenin "Elite" standartlarını korumak için otomasyon ve derinlemesine temizlik süreci.
+- [ ] **Typography Surgery**: Tüm sayfadaki (300+) hardcoded font-size değerlerini `typography.ts` tokenları ile değiştirmek.
+- [ ] **Architecture Guardian**: `audit-typography.py` scriptini CI/CD sürecine veya git-hook olarak entegre etmek.
+- [ ] **Design Token Expansion**: Renk ve boşluk (spacing) değerleri için de benzer bir audit ve merkezi sistem kurmak.
+- [ ] **Zero-Any Policy Audit**: Projedeki tüm `any` kullanımlarını tespit eden ve tip güvenliğini %100'e çeken otomatik kontrol scripti.
+
 
 
 
