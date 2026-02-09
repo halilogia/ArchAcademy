@@ -95,6 +95,8 @@ const BFFPage = lazy(() => import('./presentation/pages/bff'));
 const MVIPage = lazy(() => import('./presentation/pages/mvi'));
 const SPAvsMPAPage = lazy(() => import('./presentation/pages/spa-vs-mpa'));
 const ComponentStatePage = lazy(() => import('./presentation/pages/component-state'));
+const EliteArchitecturePage = lazy(() => import('./presentation/pages/elite-architecture'));
+
 
 
 const LoadingFallback = () => (
@@ -195,12 +197,14 @@ const App: React.FC = () => {
                     <Route path="/acid" element={<ACIDPage />} />
                     <Route path="/viper" element={<VIPERPage />} />
                     <Route path="/mvvm-c" element={<MVVMCPage />} />
-                     <Route path="/anti-patterns" element={<AntiPatternsPage />} />
-                     <Route path="/vector-dbs" element={<VectorDBPage />} />
-                     <Route path="/bff" element={<BFFPage />} />
+                    <Route path="/anti-patterns" element={<AntiPatternsPage />} />
+                    <Route path="/vector-dbs" element={<VectorDBPage />} />
+                    <Route path="/bff" element={<BFFPage />} />
                     <Route path="/mvi" element={<MVIPage />} />
                     <Route path="/spa-vs-mpa" element={<SPAvsMPAPage />} />
                     <Route path="/component-state" element={<ComponentStatePage />} />
+                    <Route path="/elite-architecture" element={<EliteArchitecturePage />} />
+
 
                     <Route path="*" element={<NotFoundPage />} />
                   </Routes>

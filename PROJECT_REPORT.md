@@ -137,7 +137,7 @@
 |---|---|---|---|---|
 | Security Assurance | `/security` | **88** | 💎 | 🟢 Normal |
 | Docs & Annotations | `/docs-annotations` | **84** | 💎 | 🟢 Normal |
-| Lean Philosophy | `/lean-architecture` | **255** | 💎 | 🟢 Normal |
+| Lean Philosophy | `/lean-architecture` | **435** | 💎 📚(1) | 👑 Masterpiece |
 | Robustness & Reliability | `/robustness` | **272** | 💎 | 🟢 Normal |
 
 #### 📂 Anti-Patterns

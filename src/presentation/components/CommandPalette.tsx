@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { 
-  Search, 
-  Terminal, 
-  Book, 
-  Box, 
-  Zap, 
-  Maximize2, 
+import {
+  Search,
+  Terminal,
+  Book,
+  Box,
+  Zap,
+  Maximize2,
   Command,
   ArrowRight,
   Sparkles,
@@ -38,7 +38,7 @@ import {
   BookOpen
 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-import { GLOSSARY_TERMS } from '../../infrastructure/data/GlossaryData';
+import { GLOSSARY_TERMS } from '../../infrastructure/GlossaryData';
 
 interface SearchItem {
   id: string;
@@ -83,7 +83,7 @@ const CommandPalette = () => {
     { id: 'interpreter', title: 'Interpreter Pattern', description: 'Language and rule engines', type: 'page', path: '/interpreter', icon: <Terminal size={18} /> },
     { id: 'evolution', title: 'Evolutionary Arch', description: 'Guided incremental change', type: 'page', path: '/evolution', icon: <GitBranch size={18} /> },
     { id: 'oop', title: 'OOP Fundamentals', description: 'Object-Oriented Programming', type: 'page', path: '/object-oriented', icon: <Box size={18} /> },
-    
+
     // --- UI & FRONTEND ---
     { id: 'mvc', title: 'MVC', description: 'Model-View-Controller', type: 'page', path: '/mvc', icon: <Layout size={18} /> },
     { id: 'mvp', title: 'MVP', description: 'Model-View-Presenter', type: 'page', path: '/mvp', icon: <Layout size={18} /> },
@@ -99,7 +99,7 @@ const CommandPalette = () => {
     { id: 'component', title: 'Component-Driven', description: 'Building bottom-up', type: 'page', path: '/component-driven', icon: <Box size={18} /> },
     { id: 'composite', title: 'Composite UI', description: 'Aggregating UI parts', type: 'page', path: '/composite-ui', icon: <Layout size={18} /> },
     { id: 'spa-mpa', title: 'SPA vs MPA', description: 'Single vs Multi Page Apps', type: 'page', path: '/spa-vs-mpa', icon: <Globe size={18} /> },
-    
+
     // --- DATA & AI ---
     { id: 'rag', title: 'RAG Architecture', description: 'Retrieval-Augmented Generation', type: 'page', path: '/rag-arch', icon: <BrainCircuit size={18} /> },
     { id: 'agentic', title: 'Agentic AI', description: 'Autonomous AI Agents', type: 'page', path: '/agentic-ai', icon: <Bot size={18} /> },
@@ -117,7 +117,7 @@ const CommandPalette = () => {
     { id: 'container', title: 'Containerization', description: 'Docker & Kubernetes', type: 'page', path: '/containerization', icon: <Box size={18} /> },
     { id: 'bff', title: 'BFF Pattern', description: 'Backend for Frontend', type: 'page', path: '/bff', icon: <Share2 size={18} /> },
     { id: 'space-based', title: 'Space-Based', description: 'In-memory data grid', type: 'page', path: '/space-based', icon: <Server size={18} /> },
-    
+
     // --- PRINCIPLES & DISCIPLINES ---
     { id: 'clean-code', title: 'Clean Code', description: 'Naming, functions and formatting', type: 'page', path: '/clean-code', icon: <Code2 size={18} /> },
     { id: 'solid', title: 'SOLID Principles', description: 'The 5 foundations of clean code', type: 'page', path: '/solid', icon: <Box size={18} /> },
@@ -129,7 +129,7 @@ const CommandPalette = () => {
     { id: 'anti-patterns', title: 'Anti-Patterns', description: 'Common architectural mistakes', type: 'page', path: '/anti-patterns', icon: <AlertTriangle size={18} /> },
     { id: 'testing', title: 'Easy to Test', description: 'Testability architecture', type: 'page', path: '/testing', icon: <CheckCircle2 size={18} /> },
     { id: 'docs', title: 'Docs & Annotations', description: 'ADR and Documentation', type: 'page', path: '/docs-annotations', icon: <BookOpen size={18} /> },
-    { id: 'lean', title: 'Lean Philosophy', description: 'Eliminating waste', type: 'page', path: '/lean-architecture', icon: <Target size={18} /> },
+    { id: 'lean', title: 'Lean Clean Architecture', description: 'User Favorite: Pragmatic, fast and waste-free development structure.', type: 'page', path: '/lean-architecture', icon: <Target size={18} />, category: 'MASTERPIECE' },
     { id: 'security', title: 'Security Assurance', description: 'Governance & Safety', type: 'page', path: '/security', icon: <ShieldCheck size={18} /> },
     { id: 'abstraction', title: 'Separation of Concerns', description: 'Core Abstraction', type: 'page', path: '/abstraction', icon: <Layers size={18} /> },
   ];
@@ -137,27 +137,28 @@ const CommandPalette = () => {
   // Glossary/Tools Removed
   const allItems = [...pages];
 
-  const filteredItems = query 
+  const filteredItems = query
     ? allItems
-        .map(item => {
-          const title = item.title.toLowerCase();
-          const desc = item.description.toLowerCase();
-          const q = query.toLowerCase();
-          let score = 0;
+      .map(item => {
+        const title = item.title.toLowerCase();
+        const desc = item.description.toLowerCase();
+        const q = query.toLowerCase();
+        let score = 0;
 
-          if (title === q) score += 100;
-          else if (title.startsWith(q)) score += 80;
-          else if (title.includes(q)) score += 60;
-          else if (desc.includes(q)) score += 20;
+        if (title === q) score += 100;
+        else if (title.startsWith(q)) score += 80;
+        else if (title.includes(q)) score += 60;
+        else if (desc.includes(q)) score += 20;
 
-          // Boost pages over glossary if matches are similar
-          if (item.type === 'page') score += 10;
+        // Boost pages over glossary if matches are similar
+        if (item.type === 'page') score += 10;
+        if (item.category === 'MASTERPIECE') score += 50;
 
-          return { ...item, score };
-        })
-        .filter(item => item.score > 0)
-        .sort((a, b) => b.score - a.score)
-        .slice(0, 8)
+        return { ...item, score };
+      })
+      .filter(item => item.score > 0)
+      .sort((a, b) => b.score - a.score)
+      .slice(0, 8)
     : pages;
 
   const handleKeyDown = useCallback((e: KeyboardEvent) => {
@@ -165,7 +166,7 @@ const CommandPalette = () => {
       e.preventDefault();
       setIsOpen(prev => !prev);
     }
-    
+
     if (e.key === 'Escape') {
       setIsOpen(false);
     }
@@ -270,12 +271,12 @@ const CommandPalette = () => {
               </div>
             </div>
 
-            <div 
+            <div
               className="custom-scrollbar"
-              style={{ 
-                maxHeight: '400px', 
-                overflowY: 'auto', 
-                overflowX: 'hidden', 
+              style={{
+                maxHeight: '400px',
+                overflowY: 'auto',
+                overflowX: 'hidden',
                 padding: '0.5rem',
                 width: '100%',
                 boxSizing: 'border-box'
@@ -318,10 +319,10 @@ const CommandPalette = () => {
                       <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                         <span style={{ color: 'white', fontWeight: 600, fontSize: '0.95rem', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{item.title}</span>
                         {item.category && (
-                          <span style={{ 
-                            fontSize: '0.6rem', 
-                            background: 'rgba(255,255,255,0.05)', 
-                            padding: '2px 6px', 
+                          <span style={{
+                            fontSize: '0.6rem',
+                            background: 'rgba(255,255,255,0.05)',
+                            padding: '2px 6px',
                             borderRadius: '4px',
                             color: 'var(--text-secondary)',
                             flexShrink: 0
@@ -330,12 +331,12 @@ const CommandPalette = () => {
                           </span>
                         )}
                       </div>
-                      <div style={{ 
-                        fontSize: '0.75rem', 
-                        color: 'var(--text-secondary)', 
-                        marginTop: '2px', 
-                        whiteSpace: 'nowrap', 
-                        overflow: 'hidden', 
+                      <div style={{
+                        fontSize: '0.75rem',
+                        color: 'var(--text-secondary)',
+                        marginTop: '2px',
+                        whiteSpace: 'nowrap',
+                        overflow: 'hidden',
                         textOverflow: 'ellipsis',
                         opacity: 0.7
                       }}>

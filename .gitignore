@@ -7,12 +7,24 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
+# Dependencies
 node_modules
+.pnpm-store
+
+# Build Output
 dist
 dist-ssr
 *.local
 
-# Editor directories and files
+# Environment Variables (CRITICAL: Do not commit secrets)
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env.*.local
+
+# Editor / IDE
 .vscode/*
 !.vscode/extensions.json
 .idea
@@ -22,7 +34,18 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+.eslintcache
 
-# Local Reports
-scripts/*
+# Testing
+coverage
+__snapshots__
+.vitest.result.json
 
+# System Files
+Thumbs.db
+desktop.ini
+
+# Universal-Docs & System Generated Files
+Universal-Docs/
+**/.gemini/**
+antigravity/

@@ -1,4 +1,4 @@
-import { Question } from '../../infrastructure/data/ArchitectureData';
+import { Question } from '../../infrastructure/ArchitectureData';
 
 type Scores = Record<string, number>;
 export type Answers = Record<string, number>;
@@ -74,7 +74,7 @@ export const getSortedResults = (scores: Scores): SortedResult[] => {
 export const calculateConfidence = (sortedResults: SortedResult[]): number => {
   const total = sortedResults.reduce((a, b) => a + (b.score > 0 ? b.score : 0), 0);
   if (total === 0) return 80;
-  
+
   const confidence = Math.min(Math.round((sortedResults[0].score / total) * 150), 98);
   return confidence;
 };

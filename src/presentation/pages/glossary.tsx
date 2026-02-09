@@ -1,16 +1,16 @@
-import { GLOSSARY_TERMS } from "../../infrastructure/data/GlossaryData";
+import { GLOSSARY_TERMS } from "../../infrastructure/GlossaryData";
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { 
-  Search, 
-  Filter, 
-  HelpCircle, 
-  BookOpen, 
-  Zap, 
-  Shield, 
-  Cpu, 
-  Terminal, 
-  Globe, 
+import {
+  Search,
+  Filter,
+  HelpCircle,
+  BookOpen,
+  Zap,
+  Shield,
+  Cpu,
+  Terminal,
+  Globe,
   Database,
   ArrowUp,
   Book,
@@ -44,15 +44,15 @@ const GlossaryPage = () => {
 
   const filteredTerms = React.useMemo(() => {
     return GLOSSARY_TERMS.filter(t => {
-      const matchesSearch = t.term.toLowerCase().includes(searchTerm.toLowerCase()) || 
-                           t.definition.toLowerCase().includes(searchTerm.toLowerCase());
+      const matchesSearch = t.term.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        t.definition.toLowerCase().includes(searchTerm.toLowerCase());
       const matchesLetter = selectedLetter === 'All' || t.term.startsWith(selectedLetter);
       return matchesSearch && matchesLetter;
     });
   }, [searchTerm, selectedLetter]);
 
   const alphabet = React.useMemo(() => ['All', ...'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('')], []);
-  
+
   const visibleTerms = filteredTerms.slice(0, displayCount);
 
   return (
@@ -64,33 +64,33 @@ const GlossaryPage = () => {
     >
       <div className="container">
         <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
-          <motion.h1 
+          <motion.h1
             initial={{ y: -20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
-            className="gradient-text" 
+            className="gradient-text"
             style={{ fontSize: '3.5rem', fontWeight: 800, marginBottom: '1.5rem' }}
           >
             Architect's Glossary
           </motion.h1>
           <p style={{ color: 'var(--text-secondary)', maxWidth: '600px', margin: '0 auto' }}>
-            Mimaride kullanılan karmaşık terimleri, mülakatlarda seni devleştirecek 
+            Mimaride kullanılan karmaşık terimleri, mülakatlarda seni devleştirecek
             şekilde basitleştirdik. Kavramlara hakim ol, sistemleri yönet.
           </p>
         </div>
 
         {/* Search & Filter */}
         <div style={{ marginBottom: '3rem' }}>
-          <div className="glass-card" style={{ 
-            display: 'flex', 
-            alignItems: 'center', 
-            gap: '1rem', 
+          <div className="glass-card" style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '1rem',
             padding: '1rem 2rem',
             background: 'rgba(255,255,255,0.03)',
             borderRadius: '24px',
             marginBottom: '2rem'
           }}>
             <Search size={20} color="var(--primary)" />
-            <input 
+            <input
               type="text"
               placeholder="Terimlerde ara... (örn: Coupling)"
               value={searchTerm}
@@ -106,10 +106,10 @@ const GlossaryPage = () => {
             />
           </div>
 
-          <div style={{ 
-            display: 'flex', 
-            flexWrap: 'wrap', 
-            gap: '0.5rem', 
+          <div style={{
+            display: 'flex',
+            flexWrap: 'wrap',
+            gap: '0.5rem',
             justifyContent: 'center',
             padding: '10px'
           }}>
@@ -137,9 +137,9 @@ const GlossaryPage = () => {
         </div>
 
         {/* Terms Grid */}
-        <div style={{ 
-          display: 'grid', 
-          gridTemplateColumns: 'repeat(auto-fill, minmax(350px, 1fr))', 
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fill, minmax(350px, 1fr))',
           gap: '2rem',
           paddingBottom: '2rem'
         }}>
@@ -168,26 +168,26 @@ const GlossaryPage = () => {
               </div>
 
               <div>
-                 <span style={{ 
-                   fontSize: '0.65rem', 
-                   background: 'rgba(59, 130, 246, 0.1)', 
-                   color: 'var(--primary)', 
-                   padding: '4px 8px', 
-                   borderRadius: '6px',
-                   fontWeight: 700,
-                   textTransform: 'uppercase',
-                   letterSpacing: '1px'
-                 }}>
-                   {item.category}
-                 </span>
-                 <h3 style={{ fontSize: '1.5rem', marginTop: '0.75rem', color: 'white' }}>{item.term}</h3>
+                <span style={{
+                  fontSize: '0.65rem',
+                  background: 'rgba(59, 130, 246, 0.1)',
+                  color: 'var(--primary)',
+                  padding: '4px 8px',
+                  borderRadius: '6px',
+                  fontWeight: 700,
+                  textTransform: 'uppercase',
+                  letterSpacing: '1px'
+                }}>
+                  {item.category}
+                </span>
+                <h3 style={{ fontSize: '1.5rem', marginTop: '0.75rem', color: 'white' }}>{item.term}</h3>
               </div>
 
               <p style={{ color: 'var(--text-secondary)', lineHeight: 1.6, fontSize: '0.95rem' }}>
                 {item.definition}
               </p>
 
-              <div style={{ 
+              <div style={{
                 marginTop: 'auto',
                 background: 'rgba(59, 130, 246, 0.03)',
                 padding: '1rem',
@@ -197,10 +197,10 @@ const GlossaryPage = () => {
                 gap: '0.75rem',
                 alignItems: 'flex-start'
               }}>
-                 <Info size={18} color="var(--primary)" style={{ flexShrink: 0 }} />
-                 <div style={{ fontSize: '0.8rem', color: 'var(--primary)', fontWeight: 500 }}>
-                    <strong style={{ opacity: 0.7 }}>GURU TIP:</strong> {item.guruTip}
-                 </div>
+                <Info size={18} color="var(--primary)" style={{ flexShrink: 0 }} />
+                <div style={{ fontSize: '0.8rem', color: 'var(--primary)', fontWeight: 500 }}>
+                  <strong style={{ opacity: 0.7 }}>GURU TIP:</strong> {item.guruTip}
+                </div>
               </div>
             </motion.div>
           ))}
@@ -231,8 +231,8 @@ const GlossaryPage = () => {
 
         {filteredTerms.length === 0 && (
           <div style={{ textAlign: 'center', padding: '5rem', opacity: 0.5 }}>
-             <Book size={48} style={{ marginBottom: '1rem' }} />
-             <p>Aradığınız terim henüz sözlüğümüzde yok.</p>
+            <Book size={48} style={{ marginBottom: '1rem' }} />
+            <p>Aradığınız terim henüz sözlüğümüzde yok.</p>
           </div>
         )}
       </div>
