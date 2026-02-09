@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './presentation/components/Navbar';
 import Footer from './presentation/components/Footer';
 import { AnimatePresence } from 'framer-motion';
-import { ProgressProvider } from './context/ProgressContext';
+import { ProgressProvider } from './presentation/context/ProgressContext';
 import ErrorBoundary from './presentation/components/ErrorBoundary';
 import CommandPalette from './presentation/components/CommandPalette';
 import ScrollToTop from './presentation/components/ScrollToTop';

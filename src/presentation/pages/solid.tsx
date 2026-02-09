@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import SOLIDHero from '../components/SOLIDHero';
 import SOLIDSection from '../components/SOLIDSection';
-import { useProgress } from '../../context/ProgressContext';
+import { useProgress } from '../context/ProgressContext';
 
 const SOLIDPage = () => {
   const { completeStep } = useProgress();

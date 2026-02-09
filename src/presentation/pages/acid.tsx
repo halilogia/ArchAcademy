@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import ArchHero from '../components/ArchHero';
-import { useProgress } from '../../context/ProgressContext';
+import { useProgress } from '../context/ProgressContext';
 import { 
   Database, 
   ShieldCheck, 

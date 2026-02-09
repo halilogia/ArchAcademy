@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Scissors, Microscope, Zap, BookOpen } from 'lucide-react';
 import RefactoringSurgery from '../components/RefactoringSurgery';
 import FolderSurgery from '../components/FolderSurgery';
-import { useProgress } from '../../context/ProgressContext';
+import { useProgress } from '../context/ProgressContext';
 import { useState } from 'react';
 
 const RefactoringPage = () => {

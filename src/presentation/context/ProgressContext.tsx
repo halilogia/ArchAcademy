@@ -1,5 +1,5 @@
 import React, { createContext, useContext, ReactNode } from 'react';
-import useLocalStorage from '../presentation/hooks/useLocalStorage';
+import useLocalStorage from '../hooks/useLocalStorage';
 
 interface ProgressState {
   completedSteps: string[];

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Shield, Trophy, Target, ArrowRight, RefreshCw, Star, Zap, MessageSquare, Code2, Users, AlertCircle, CheckCircle2 } from 'lucide-react';
-import { useProgress } from '../../context/ProgressContext';
+import { useProgress } from '../context/ProgressContext';
 
 const interviewQuestions = [
   {

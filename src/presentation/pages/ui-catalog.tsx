@@ -13,7 +13,7 @@ import {
     Monitor,
     Database
 } from 'lucide-react';
-import { theme } from '../theme';
+import { theme } from '../themes/theme';
 
 interface UIArchItem {
     id: string;

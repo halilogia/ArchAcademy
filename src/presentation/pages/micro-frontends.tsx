@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Puzzle, BringToFront, Split } from 'lucide-react';
 import ArchHero from '../components/ArchHero';
-import { theme } from '../theme';
+import { theme } from '../themes/theme';
 
 const MicroFrontendsPage = () => {
   return (

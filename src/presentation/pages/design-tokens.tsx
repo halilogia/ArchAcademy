@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Palette, Box, Type, Move, Zap, Shield, Sparkles } from 'lucide-react';
 import ArchHero from '../components/ArchHero';
-import { useProgress } from '../../context/ProgressContext';
+import { useProgress } from '../context/ProgressContext';
 
 const DesignTokensPage = () => {
   const { completeStep } = useProgress();

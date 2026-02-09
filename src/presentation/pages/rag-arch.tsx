@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Database, Search, FileText, Cpu, BookOpen } from 'lucide-react';
 import ArchHero from '../components/ArchHero';
-import { theme } from '../theme';
+import { theme } from '../themes/theme';
 
 const RAGPage = () => {
   const [activeStep] = useState(0);

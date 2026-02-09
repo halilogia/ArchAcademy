@@ -17,7 +17,7 @@ import {
   Layers
 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-import { useProgress } from '../../context/ProgressContext';
+import { useProgress } from '../context/ProgressContext';
 
 const roadmapData = [
   {

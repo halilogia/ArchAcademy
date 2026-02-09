@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { useProgress } from '../../context/ProgressContext';
+import { useProgress } from '../context/ProgressContext';
 import ComparisonMatrix from '../components/ComparisonMatrix';
 import ArchitectureWizard from '../components/ArchitectureWizard';
 

@@ -5,7 +5,7 @@ import StrategicDetails from '../components/StrategicDetails';
 import DDDSimulation from '../components/DDDSimulation';
 import DDDSection from '../components/DDDSection';
 import DDDKeyConcepts from '../components/DDDKeyConcepts';
-import { useProgress } from '../../context/ProgressContext';
+import { useProgress } from '../context/ProgressContext';
 
 const DDDPage = () => {
   const { completeStep } = useProgress();

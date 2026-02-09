@@ -33,7 +33,7 @@ import {
   Sparkles,
   Smartphone
 } from 'lucide-react';
-import { useProgress } from '../../context/ProgressContext';
+import { useProgress } from '../context/ProgressContext';
 
 const MVVMPage = () => {
   const { completeStep } = useProgress();

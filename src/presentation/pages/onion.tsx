@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import OnionHero from '../components/OnionHero';
 import OnionDiagram from '../components/OnionDiagram';
 import OnionPractical from '../components/OnionPractical';
-import { theme } from '../theme';
+import { theme } from '../themes/theme';
 
 const OnionPage = () => {
   return (

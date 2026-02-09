@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Hero from '../components/Hero';
-import { useProgress } from '../../context/ProgressContext';
+import { useProgress } from '../context/ProgressContext';
 import { Shield, Zap, Layout, Database, Activity, Volume2 } from 'lucide-react';
 
 const EliteArchitecturePage = () => {

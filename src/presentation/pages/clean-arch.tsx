@@ -8,7 +8,7 @@ import Practical from '../components/Practical';
 import ArchitecturalTruths from '../components/ArchitecturalTruths';
 import ScreamingSection from '../components/ScreamingSection';
 import FeatureVsLayerDetail from '../components/FeatureVsLayerDetail';
-import { useProgress } from '../../context/ProgressContext';
+import { useProgress } from '../context/ProgressContext';
 import { Layers, Volume2, FolderTree, Zap } from 'lucide-react';
 
 const CleanArchPage = () => {

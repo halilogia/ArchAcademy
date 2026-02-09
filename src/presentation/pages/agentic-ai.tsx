@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Bot, Network, BrainCircuit, Activity, BookOpen } from 'lucide-react';
 import ArchHero from '../components/ArchHero';
-import { theme } from '../theme';
+import { theme } from '../themes/theme';
 
 const AgenticAIPage = () => {
   return (
