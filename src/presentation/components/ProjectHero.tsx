@@ -53,8 +53,8 @@ const ProjectHero: React.FC<ProjectHeroProps> = ({ children }) => {
             marginBottom: '3rem',
             lineHeight: 1.7
           }}>
-            Bu portal, içinde anlattığı prensiplerle inşa edildi. <strong>Clean Architecture</strong>, 
-            <strong>SOLID</strong> ve <strong>Bileşen Temelli Tasarım</strong> uyumunu gerçek kodlar üzerinden inceleyin.
+            Bu portal, <strong>Lean Clean Architecture (LCA)</strong> prensipleriyle inşa edildi. 
+            Gereksiz karmaşıklıktan (Waste) arınmış, modüler ve yüksek performanslı bir yapıyı inceleyin.
           </p>
 
           {children}

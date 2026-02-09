@@ -193,19 +193,19 @@ const ProjectPage = () => {
               <section style={{ padding: '100px 0', borderTop: '1px solid var(--glass-border)', background: 'rgba(0,0,0,0.2)' }}>
                 <div className="container">
                   <div style={{ textAlign: 'center', marginBottom: '5rem' }}>
-                    <h2 className="gradient-text" style={{ fontSize: '3rem', fontWeight: 800 }}>Architect's Harmony</h2>
-                    <p style={{ color: 'var(--text-secondary)' }}>Tek bir mimari, sarsılmaz bir disiplin ve modern bir uygulama yaklaşımı.</p>
+                    <h2 className="gradient-text" style={{ fontSize: '3rem', fontWeight: 800 }}>LCA Harmony</h2>
+                    <p style={{ color: 'var(--text-secondary)' }}>Tek bir mimari, sarsılmaz bir disiplin: <strong>Eliminate Waste, Build Quality.</strong></p>
                   </div>
 
                   <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '3rem' }}>
-                    <div className="glass-card" style={{ padding: '3rem' }}>
+                    <div className="glass-card" style={{ padding: '3rem', borderTop: '4px solid var(--primary)' }}>
                         <h3 style={{ color: 'var(--primary)', marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
                           <div style={{ padding: '8px', background: 'rgba(59, 130, 246, 0.1)', borderRadius: '10px' }}>01</div>
-                          Clean Architecture (Strateji)
+                          Lean Clean Architecture (LCA)
                         </h3>
                         <p style={{ color: 'var(--text-secondary)', lineHeight: 1.8 }}>
-                          Projenin ana iskeletidir. Domain, Use Case ve Infrastructure katmanlarını birbirinden ayırarak 
-                          yazılımın teknolojiye (React, API vb.) değil, "İş Mantığına" (Eğitim Portalı kuralları) köle olmasını sağlar.
+                          Mimarimizin kalbidir. Clean Architecture'ın katman disiplinini, <strong>Lean</strong> prensiplerinin 
+                          "israfı yok et" kuralıyla birleştirir. Sadece gereken UseCase'ler, en saf haliyle tutulur.
                         </p>
                     </div>
 
