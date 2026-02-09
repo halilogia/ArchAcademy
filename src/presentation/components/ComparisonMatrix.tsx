@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import { Check, X, Star, Zap, Gauge, Code2, Users, Sparkles, Layers, ChevronUp, ChevronDown } from 'lucide-react';
+import { Check, X, Star, Zap, Gauge, Code2, Users, Sparkles, Layers, ChevronUp, ChevronDown, Shield, Microscope, Minimize2 } from 'lucide-react';
 
 type SortConfig = {
   key: string;
@@ -23,6 +23,7 @@ const ComparisonMatrix = () => {
       test: 5,
       ai: 3,
       flex: 5,
+      simplicity: 2,
       color: 'var(--primary)',
       bestFor: 'Karmaşık Kurumsal Sistemler',
       path: '/clean-arch'
@@ -37,6 +38,7 @@ const ComparisonMatrix = () => {
       test: 4,
       ai: 5,
       flex: 5,
+      simplicity: 4,
       color: '#f97316',
       bestFor: 'Hızlı Özellik Geliştirme (Feature-First)',
       path: '/vertical'
@@ -51,6 +53,7 @@ const ComparisonMatrix = () => {
       test: 4,
       ai: 4,
       flex: 4,
+      simplicity: 1,
       color: '#a78bfa',
       bestFor: 'Karmaşık İş Mantığına Sahip Domainler',
       path: '/ddd'
@@ -65,6 +68,7 @@ const ComparisonMatrix = () => {
       test: 3,
       ai: 4,
       flex: 5,
+      simplicity: 3,
       color: '#f59e0b',
       bestFor: 'Yüksek Performanslı İçerik Odaklı Siteler',
       path: '/glossary?search=Islands'
@@ -79,6 +83,7 @@ const ComparisonMatrix = () => {
       test: 5,
       ai: 4,
       flex: 3,
+      simplicity: 2,
       color: '#eab308',
       bestFor: 'Yüksek Okuma/Yazma Trafikli Sistemler',
       path: '/cqrs'
@@ -93,6 +98,7 @@ const ComparisonMatrix = () => {
       test: 5,
       ai: 5,
       flex: 5,
+      simplicity: 3,
       color: '#6366f1',
       bestFor: 'Temel Kod Kalitesi ve Sürdürülebilirlik',
       path: '/solid'
@@ -107,6 +113,7 @@ const ComparisonMatrix = () => {
       test: 5,
       ai: 4,
       flex: 5,
+      simplicity: 2,
       color: '#10b981',
       bestFor: 'Teknoloji Bağımsız Uygulamalar',
       path: '/hexagonal'
@@ -121,6 +128,7 @@ const ComparisonMatrix = () => {
       test: 5,
       ai: 4,
       flex: 5,
+      simplicity: 2,
       color: '#f43f5e',
       bestFor: 'Domain Odaklı Uygulamalar',
       path: '/onion'
@@ -135,6 +143,7 @@ const ComparisonMatrix = () => {
       test: 3,
       ai: 4,
       flex: 4,
+      simplicity: 2,
       color: '#06b6d4',
       bestFor: 'Karmaşık React/Next.js Projeleri',
       path: '/fsd'
@@ -149,6 +158,7 @@ const ComparisonMatrix = () => {
       test: 3,
       ai: 3,
       flex: 5,
+      simplicity: 1,
       color: '#a855f7',
       bestFor: 'Dağıtık Mikroservis Sistemleri',
       path: '/eda'
@@ -163,6 +173,7 @@ const ComparisonMatrix = () => {
       test: 4,
       ai: 3,
       flex: 5,
+      simplicity: 3,
       color: '#3b82f6',
       bestFor: 'Eklenti Tabanlı Uygulamalar (IDE, OS)',
       path: '/microkernel'
@@ -177,6 +188,7 @@ const ComparisonMatrix = () => {
       test: 2,
       ai: 4,
       flex: 4,
+      simplicity: 4,
       color: '#ec4899',
       bestFor: 'Olay Tetiklemeli İş Mantığı ve Ölçeklenme',
       path: '/serverless'
@@ -191,6 +203,7 @@ const ComparisonMatrix = () => {
       test: 5,
       ai: 5,
       flex: 2,
+      simplicity: 1,
       color: '#6366f1',
       bestFor: 'Denetim Odaklı Finansal Uygulamalar',
       path: '/event-sourcing'
@@ -205,6 +218,7 @@ const ComparisonMatrix = () => {
       test: 2,
       ai: 2,
       flex: 2,
+      simplicity: 1,
       color: '#eab308',
       bestFor: 'Ultra Yüksek Eşzamanlılık Gereken Sitemler',
       path: '/space-based'
@@ -219,6 +233,7 @@ const ComparisonMatrix = () => {
       test: 2,
       ai: 2,
       flex: 3,
+      simplicity: 2,
       color: '#10b981',
       bestFor: 'Merkeziyetsiz Ağlar ve Dosya Paylaşımı',
       path: '/p2p'
@@ -233,6 +248,7 @@ const ComparisonMatrix = () => {
       test: 3,
       ai: 3,
       flex: 2,
+      simplicity: 2,
       color: '#3b82f6',
       bestFor: 'Kurumsal Entegrasyon ve Servis Yönetimi',
       path: '/soa'
@@ -247,6 +263,7 @@ const ComparisonMatrix = () => {
       test: 3,
       ai: 2,
       flex: 3,
+      simplicity: 4,
       color: '#3b82f6',
       bestFor: 'Klasik Katmanlı Uygulamalar',
       path: '/horizontal'
@@ -261,6 +278,7 @@ const ComparisonMatrix = () => {
       test: 3,
       ai: 3,
       flex: 4,
+      simplicity: 2,
       color: '#fda4af',
       bestFor: 'Servisler Arası Mesajlaşma Hattı',
       path: '/broker'
@@ -275,6 +293,7 @@ const ComparisonMatrix = () => {
       test: 3,
       ai: 3,
       flex: 4,
+      simplicity: 4,
       color: '#fb923c',
       bestFor: 'Gevşek Bağlı Bildirim Sistemleri',
       path: '/pub-sub'
@@ -289,6 +308,7 @@ const ComparisonMatrix = () => {
       test: 5,
       ai: 4,
       flex: 5,
+      simplicity: 4,
       color: '#8b5cf6',
       bestFor: 'Veri İşleme ve Dönüştürme Hatları',
       path: '/pipe-filter'
@@ -303,6 +323,7 @@ const ComparisonMatrix = () => {
       test: 3,
       ai: 2,
       flex: 5,
+      simplicity: 1,
       color: '#6366f1',
       bestFor: 'Çoklu Ekip Gerektiren Devasa Frontend Projeleri',
       path: '/glossary?search=Micro'
@@ -317,6 +338,7 @@ const ComparisonMatrix = () => {
       test: 2,
       ai: 2,
       flex: 3,
+      simplicity: 5,
       color: '#ec4899',
       bestFor: 'Basit Web Siteleri ve Prototipler',
       path: '/mvc'
@@ -331,6 +353,7 @@ const ComparisonMatrix = () => {
       test: 5,
       ai: 3,
       flex: 4,
+      simplicity: 3,
       color: '#db2777',
       bestFor: 'Test Odaklı Legacy Desktop/Android',
       path: '/mvp'
@@ -345,6 +368,7 @@ const ComparisonMatrix = () => {
       test: 5,
       ai: 5,
       flex: 5,
+      simplicity: 4,
       color: '#be185d',
       bestFor: 'Modern Reaktif UI (React, Flutter)',
       path: '/mvvm'
@@ -359,6 +383,7 @@ const ComparisonMatrix = () => {
       test: 4,
       ai: 3,
       flex: 4,
+      simplicity: 1,
       color: '#10b981',
       bestFor: 'Ekstrem Performans ve Oyun Geliştirme',
       path: '/ecs'
@@ -373,6 +398,7 @@ const ComparisonMatrix = () => {
       test: 2,
       ai: 3,
       flex: 2,
+      simplicity: 1,
       color: '#06b6d4',
       bestFor: 'Büyük Veri Analitiği ve İşleme',
       path: '/big-data'
@@ -387,6 +413,7 @@ const ComparisonMatrix = () => {
       test: 2,
       ai: 2,
       flex: 5,
+      simplicity: 1,
       color: '#f472b6',
       bestFor: 'Merkezi Olmayan Servis Koordinasyonu',
       path: '/choreography'
@@ -401,6 +428,7 @@ const ComparisonMatrix = () => {
       test: 4,
       ai: 3,
       flex: 4,
+      simplicity: 2,
       color: '#8b5cf6',
       bestFor: 'Merkezi İş Akışı ve Saga Yönetimi',
       path: '/orchestration'
@@ -415,6 +443,7 @@ const ComparisonMatrix = () => {
       test: 5,
       ai: 5,
       flex: 5,
+      simplicity: 2,
       color: '#06b6d4',
       bestFor: 'Dinamik Kural Motorları ve DSL Tasarımı',
       path: '/interpreter'
@@ -429,6 +458,7 @@ const ComparisonMatrix = () => {
       test: 4,
       ai: 2,
       flex: 2,
+      simplicity: 3,
       color: '#a78bfa',
       bestFor: 'Veritabanı Yüksek Erişilebilirlik Mimarisi',
       path: '/primary-secondary'
@@ -441,8 +471,9 @@ const ComparisonMatrix = () => {
       learning: 5,
       maint: 3,
       test: 3,
-      ai: 5, // Updated: Single Repo context is great for AI
+      ai: 5,
       flex: 3,
+      simplicity: 5,
       color: '#f43f5e',
       bestFor: 'Tek Kişilik Ekipler ve Hızlı MVP Projeleri',
       path: '/system'
@@ -451,12 +482,13 @@ const ComparisonMatrix = () => {
       name: 'VIPER (iOS)',
       size: 'Büyük (Large)',
       sizeValue: 3,
-      speed: 1, // High boilerplate
-      learning: 1, // Steep curve
+      speed: 1,
+      learning: 1,
       maint: 5,
       test: 5,
       ai: 3,
       flex: 3,
+      simplicity: 1,
       color: '#ef4444',
       bestFor: 'Büyük Ölçekli iOS Uygulamaları',
       path: '/viper'
@@ -513,12 +545,12 @@ const ComparisonMatrix = () => {
 
   return (
     <section style={{ padding: '100px 0' }}>
-      <div className="container">
+      <div className="container" style={{ maxWidth: '1600px', width: '95%' }}>
         <motion.div
            initial={{ opacity: 0, y: 20 }}
            whileInView={{ opacity: 1, y: 0 }}
            viewport={{ once: true }}
-           style={{ textAlign: 'center', marginBottom: '5rem' }}
+           style={{ textAlign: 'center', marginBottom: '4rem' }}
         >
           <h2 className="gradient-text" style={{ fontSize: '3.5rem', fontWeight: 800 }}>THE MASTER MATRIX</h2>
           <p style={{ color: 'var(--text-secondary)', maxWidth: '750px', margin: '1.5rem auto', lineHeight: 1.8 }}>
@@ -527,12 +559,12 @@ const ComparisonMatrix = () => {
           </p>
         </motion.div>
 
-        <div style={{ width: '100%', overflowX: 'auto' }}>
+        <div style={{ width: '100%', overflowX: 'auto', paddingBottom: '1rem' }}>
           <table style={{
             width: '100%',
             borderCollapse: 'separate',
             borderSpacing: '0 8px',
-            minWidth: '1100px'
+            minWidth: '1350px'
           }}>
             <thead>
               <tr style={{ color: 'var(--text-secondary)', fontSize: '0.85rem' }}>
@@ -551,6 +583,15 @@ const ComparisonMatrix = () => {
                   <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '5px' }}>
                     <Users size={18} /> 
                     <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>Boyut {getSortIcon('sizeValue')}</div>
+                  </div>
+                </th>
+                <th 
+                  onClick={() => requestSort('simplicity')}
+                  style={{ textAlign: 'center', padding: '1rem', cursor: 'pointer' }}
+                >
+                  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '5px' }}>
+                    <Minimize2 size={18} /> 
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>Basitlik {getSortIcon('simplicity')}</div>
                   </div>
                 </th>
                 <th 
@@ -610,21 +651,17 @@ const ComparisonMatrix = () => {
               </tr>
             </thead>
             <tbody>
-              <AnimatePresence mode="popLayout">
                 {sortedData.map((row) => (
-                  <motion.tr
+                  <tr
                     key={row.name}
-                    layout
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    whileHover={{ scale: 1.01, background: 'rgba(255,255,255,0.05)' }}
                     onClick={() => navigate(row.path)}
                     style={{
                       background: 'var(--glass)',
                       boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
-                      cursor: 'pointer'
+                      cursor: 'pointer',
+                      transition: 'background 0.2s, transform 0.2s',
                     }}
+                    className="matrix-row"
                   >
                     <td style={{ 
                       padding: '1.25rem 2rem', 
@@ -635,15 +672,15 @@ const ComparisonMatrix = () => {
                       <div style={{ fontSize: '0.7rem', color: row.color, fontWeight: 600 }}>BEST FOR: {row.bestFor}</div>
                     </td>
                     <td style={{ textAlign: 'center', padding: '1.25rem', fontSize: '0.8rem' }}>{row.size}</td>
+                    <td style={{ textAlign: 'center', padding: '1.25rem', color: '#84cc16' }}>{renderStars(row.simplicity)}</td>
                     <td style={{ textAlign: 'center', padding: '1.25rem', color: '#f59e0b' }}>{renderStars(row.speed)}</td>
                     <td style={{ textAlign: 'center', padding: '1.25rem', color: '#3b82f6' }}>{renderStars(row.learning)}</td>
                     <td style={{ textAlign: 'center', padding: '1.25rem', color: '#10b981' }}>{renderStars(row.flex)}</td>
                     <td style={{ textAlign: 'center', padding: '1.25rem', color: '#10b981' }}>{renderStars(row.maint)}</td>
                     <td style={{ textAlign: 'center', padding: '1.25rem', color: '#a855f7' }}>{renderStars(row.test)}</td>
                     <td style={{ textAlign: 'center', padding: '1.25rem', borderRadius: '0 16px 16px 0', color: '#6366f1' }}>{renderStars(row.ai)}</td>
-                  </motion.tr>
+                  </tr>
                 ))}
-              </AnimatePresence>
             </tbody>
           </table>
         </div>
