@@ -45,7 +45,12 @@ __snapshots__
 Thumbs.db
 desktop.ini
 
-# Universal-Docs & System Generated Files
+docs/
+archive/
+brain/
 Universal-Docs/
-**/.gemini/**
-antigravity/
+Universal-Docs
+
+.snapshots/
+.agent/
+
