@@ -1,5 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
+import { HelmetProvider } from 'react-helmet-async';
+import './i18n'; // Initialize i18n
 import Navbar from './presentation/components/Navbar';
 import Footer from './presentation/components/Footer';
 import { ProgressProvider } from './presentation/context/ProgressContext';
@@ -10,8 +12,9 @@ import AppRouter from './presentation/navigation/AppRouter';
 
 const App: React.FC = () => {
   return (
-    <ProgressProvider>
-      <Router>
+    <HelmetProvider>
+      <ProgressProvider>
+        <Router>
         <ScrollToTop />
         <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
           <Navbar />
@@ -23,8 +26,9 @@ const App: React.FC = () => {
           </main>
           <Footer />
         </div>
-      </Router>
-    </ProgressProvider>
+        </Router>
+      </ProgressProvider>
+    </HelmetProvider>
   );
 }
 

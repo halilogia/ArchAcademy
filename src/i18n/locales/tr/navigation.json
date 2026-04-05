@@ -1,0 +1,35 @@
+{
+  "catalogs": "Kataloglar",
+  "labs": "Atölye",
+  "docs": "Referans",
+  "matrix": "Matrix",
+  "catalog": {
+    "code_org": "Code Org. & Patterns",
+    "visual_arch": "Visual Architecture",
+    "data_ai": "Data & AI",
+    "cloud_devops": "Cloud & DevOps",
+    "discipline": "Disiplin Matrisi"
+  },
+  "labs_menu": {
+    "challenge": "Architect Challenge",
+    "challenge_desc": "Bilgi Testi",
+    "surgery": "Code Surgery",
+    "surgery_desc": "Refactoring Atölyesi",
+    "roadmap": "Architect Roadmap",
+    "roadmap_desc": "Kariyer Yol Haritası",
+    "workshop": "Architecture Workshop",
+    "workshop_desc": "İnteraktif Atölye"
+  },
+  "docs_menu": {
+    "glossary": "Terimler Sözlüğü",
+    "library": "Usta Kitaplığı",
+    "project_arch": "Project Architecture"
+  },
+  "search": {
+    "open": "Arama panelini aç (Ctrl+K)",
+    "placeholder": "Ara...",
+    "navigate": "Gezin",
+    "select": "Seç",
+    "close": "Kapat"
+  }
+}

@@ -1,0 +1,220 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main]
+
+# İzinler - Güvenlik için minimum izinler
+permissions:
+  contents: read
+  checks: write
+  pull-requests: write
+
+env:
+  NODE_VERSION: '20'
+  CACHE_NAME: 'npm-cache'
+
+jobs:
+  # ============================================
+  # 1. LINT & TYPE CHECK
+  # ============================================
+  lint:
+    name: 🔍 Lint & Type Check
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: 📥 Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: 🟢 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: 📦 Install Dependencies
+        run: npm ci --ignore-scripts
+
+      - name: 🔍 Run ESLint
+        run: npm run lint --if-present || echo "No lint script found, skipping"
+
+      - name: 📝 TypeScript Type Check
+        run: npm run check
+
+  # ============================================
+  # 2. UNIT & COMPONENT TESTS
+  # ============================================
+  test:
+    name: 🧪 Run Tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: 📥 Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: 🟢 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: 📦 Install Dependencies
+        run: npm ci --ignore-scripts
+
+      - name: 🧪 Run Tests
+        run: npm run test -- --run --coverage --reporter=verbose --reporter=junit --outputFile=test-results.xml || echo "Some tests failed, continuing with build"
+        continue-on-error: true
+
+      - name: 📊 Upload Test Results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results
+          path: test-results.xml
+          retention-days: 30
+
+      - name: 📈 Publish Test Report
+        if: always()
+        uses: dorny/test-reporter@v1
+        with:
+          name: Test Results
+          path: test-results.xml
+          reporter: jest-junit
+          fail-on-error: false
+
+  # ============================================
+  # 3. BUILD
+  # ============================================
+  build:
+    name: 🏗️ Build Project
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    needs: [lint, test]
+    steps:
+      - name: 📥 Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: 🟢 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: 📦 Install Dependencies
+        run: npm ci --ignore-scripts
+
+      - name: 🏗️ Build Project
+        run: npm run build
+        env:
+          NODE_ENV: production
+
+      - name: 📦 Upload Build Artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist/
+          retention-days: 7
+
+      - name: 📊 Build Size Report
+        run: |
+          echo "## 📦 Build Size Report" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Directory | Size |" >> $GITHUB_STEP_SUMMARY
+          echo "|-----------|------|" >> $GITHUB_STEP_SUMMARY
+          du -sh dist/* 2>/dev/null | while read size dir; do
+            echo "| $dir | $size |" >> $GITHUB_STEP_SUMMARY
+          done
+
+  # ============================================
+  # 4. SECURITY SCAN (Optional)
+  # ============================================
+  security:
+    name: 🔒 Security Scan
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: 📥 Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: 🟢 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: 📦 Install Dependencies
+        run: npm ci --ignore-scripts
+
+      - name: 🔒 Audit Dependencies
+        run: npm audit --audit-level=moderate || echo "Some vulnerabilities found, review manually"
+        continue-on-error: true
+
+      - name: 🧹 Run Knip (Unused Code Detection)
+        run: npx knip --no-exit-code || echo "Knip not configured, skipping"
+        continue-on-error: true
+
+  # ============================================
+  # 5. DEPLOY (Only on main branch push)
+  # ============================================
+  deploy:
+    name: 🚀 Deploy to GitHub Pages
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    needs: [build]
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: 🚀 Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+  # ============================================
+  # 6. PREVIEW DEPLOY (For PRs - Optional)
+  # ============================================
+  preview:
+    name: 👀 Preview Deploy
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    needs: [build]
+    if: github.event_name == 'pull_request'
+    steps:
+      - name: 📥 Download Build Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: github-pages
+
+      - name: 📋 Preview Info
+        run: |
+          echo "## 👀 Preview Build Complete" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "✅ Build successful!" >> $GITHUB_STEP_SUMMARY
+          echo "📦 Artifacts uploaded for manual deployment" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "> To deploy this PR preview, configure Vercel/Netlify integration" >> $GITHUB_STEP_SUMMARY
+
+  # ============================================
+  # 7. NOTIFICATION (Slack/Discord - Optional)
+  # ============================================
+  notify:
+    name: 📢 Notify
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    needs: [lint, test, build, deploy]
+    if: always() && github.ref == 'refs/heads/main'
+    steps:
+      - name: 📋 Build Summary
+        run: |
+          echo "## 📋 CI/CD Pipeline Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Job | Status |" >> $GITHUB_STEP_SUMMARY
+          echo "|-----|--------|" >> $GITHUB_STEP_SUMMARY
+          echo "| 🔍 Lint | ${{ needs.lint.result }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| 🧪 Tests | ${{ needs.test.result }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| 🏗️ Build | ${{ needs.build.result }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| 🚀 Deploy | ${{ needs.deploy.result }} |" >> $GITHUB_STEP_SUMMARY

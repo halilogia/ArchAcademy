@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { 
   Layers, 
   ChevronDown, 
@@ -20,8 +21,14 @@ import {
 } from 'lucide-react';
 
 const Navbar: React.FC = () => {
+  const { t, i18n } = useTranslation(['navigation', 'common']);
   const location = useLocation();
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+
+  const toggleLanguage = () => {
+    const newLang = i18n.language === 'tr' ? 'en' : 'tr';
+    i18n.changeLanguage(newLang);
+  };
 
   const architectures = [
     { name: 'Clean Architecture', path: '/clean-arch', color: 'var(--primary)' },
@@ -59,15 +66,18 @@ const Navbar: React.FC = () => {
       background: 'rgba(2, 6, 23, 0.85)',
       backdropFilter: 'blur(12px)',
       borderBottom: '1px solid var(--glass-border)'
-    }}>
+    }}
+    role="navigation"
+    aria-label="Ana navigasyon"
+    >
       <div className="container" style={{
         height: '80px',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between'
       }}>
-        {/* Logo */}
-        <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+          {/* Logo */}
+        <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }} aria-label="ArchAcademy Ana Sayfa">
           <div style={{
             background: 'var(--primary)',
             padding: '8px',
@@ -84,16 +94,21 @@ const Navbar: React.FC = () => {
           </span>
         </Link>
         
-        {/* Main Navigation */}
-        <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
+          {/* Main Navigation */}
+        <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }} role="menubar">
           
           {/* CATALOGS DROPDOWN */}
           <div 
             onMouseEnter={() => setOpenDropdown('catalogs')} 
             onMouseLeave={() => setOpenDropdown(null)}
             style={{ position: 'relative' }}
+            role="menu"
           >
-            <button style={{ 
+            <button 
+              aria-haspopup="true"
+              aria-expanded={openDropdown === 'catalogs'}
+              aria-label="Katalog menüsünü aç"
+              style={{ 
               background: 'rgba(59, 130, 246, 0.1)', 
               color: '#60a5fa', 
               fontSize: '0.85rem', 
@@ -107,7 +122,7 @@ const Navbar: React.FC = () => {
               border: '1px solid rgba(59, 130, 246, 0.2)',
               cursor: 'pointer'
             }}>
-              Kataloglar <ChevronDown size={14} />
+              {t('catalogs')} <ChevronDown size={14} />
             </button>
             {openDropdown === 'catalogs' && (
               <div style={{
@@ -127,24 +142,24 @@ const Navbar: React.FC = () => {
               }}>
                 <Link to="/catalog" style={{ display: 'flex', alignItems: 'center', gap: '0.8rem', padding: '0.6rem 0.8rem', borderRadius: '8px', textDecoration: 'none', color: 'white', transition: 'background 0.2s' }}>
                   <div style={{ padding: '6px', background: '#3b82f620', borderRadius: '8px', color: '#3b82f6' }}><Library size={16} /></div>
-                  <div style={{ fontSize: '0.9rem', fontWeight: 600 }}>Code Org. & Patterns</div>
+                  <div style={{ fontSize: '0.9rem', fontWeight: 600 }}>{t('catalog.code_org')}</div>
                 </Link>
                 <Link to="/ui-catalog" style={{ display: 'flex', alignItems: 'center', gap: '0.8rem', padding: '0.6rem 0.8rem', borderRadius: '8px', textDecoration: 'none', color: 'white', transition: 'background 0.2s' }}>
                   <div style={{ padding: '6px', background: '#0ea5e920', borderRadius: '8px', color: '#0ea5e9' }}><Layers size={16} /></div>
-                  <div style={{ fontSize: '0.9rem', fontWeight: 600 }}>Visual Architecture</div>
+                  <div style={{ fontSize: '0.9rem', fontWeight: 600 }}>{t('catalog.visual_arch')}</div>
                 </Link>
                 <Link to="/data-ai-catalog" style={{ display: 'flex', alignItems: 'center', gap: '0.8rem', padding: '0.6rem 0.8rem', borderRadius: '8px', textDecoration: 'none', color: 'white', transition: 'background 0.2s' }}>
                   <div style={{ padding: '6px', background: '#8b5cf620', borderRadius: '8px', color: '#8b5cf6' }}><Sparkles size={16} /></div>
-                  <div style={{ fontSize: '0.9rem', fontWeight: 600 }}>Data & AI</div>
+                  <div style={{ fontSize: '0.9rem', fontWeight: 600 }}>{t('catalog.data_ai')}</div>
                 </Link>
                 <Link to="/cloud-catalog" style={{ display: 'flex', alignItems: 'center', gap: '0.8rem', padding: '0.6rem 0.8rem', borderRadius: '8px', textDecoration: 'none', color: 'white', transition: 'background 0.2s' }}>
                   <div style={{ padding: '6px', background: '#f9731620', borderRadius: '8px', color: '#f97316' }}><Cpu size={16} /></div>
-                  <div style={{ fontSize: '0.9rem', fontWeight: 600 }}>Cloud & DevOps</div>
+                  <div style={{ fontSize: '0.9rem', fontWeight: 600 }}>{t('catalog.cloud_devops')}</div>
                 </Link>
                 <div style={{ height: '1px', background: 'rgba(255,255,255,0.1)', margin: '0.4rem 0' }} />
                 <Link to="/discipline-catalog" style={{ display: 'flex', alignItems: 'center', gap: '0.8rem', padding: '0.6rem 0.8rem', borderRadius: '8px', textDecoration: 'none', color: 'white', transition: 'background 0.2s' }}>
                   <div style={{ padding: '6px', background: '#10b98120', borderRadius: '8px', color: '#10b981' }}><BookOpen size={16} /></div>
-                  <div style={{ fontSize: '0.9rem', fontWeight: 600 }}>Disiplin Matrisi</div>
+                  <div style={{ fontSize: '0.9rem', fontWeight: 600 }}>{t('catalog.discipline')}</div>
                 </Link>
               </div>
             )}
@@ -156,8 +171,13 @@ const Navbar: React.FC = () => {
             onMouseEnter={() => setOpenDropdown('labs')} 
             onMouseLeave={() => setOpenDropdown(null)}
             style={{ position: 'relative' }}
+            role="menu"
           >
-            <button style={{
+            <button
+              aria-haspopup="true"
+              aria-expanded={openDropdown === 'labs'}
+              aria-label="Atölye menüsünü aç"
+              style={{
               background: 'transparent',
               color: 'white',
               fontSize: '0.85rem',
@@ -171,7 +191,7 @@ const Navbar: React.FC = () => {
               border: 'none',
               cursor: 'pointer'
             }}>
-              Atölye <ChevronDown size={14} />
+              {t('labs')} <ChevronDown size={14} />
             </button>
             {openDropdown === 'labs' && (
               <div style={{
@@ -193,29 +213,29 @@ const Navbar: React.FC = () => {
                 <Link to="/assessment" style={{ display: 'flex', alignItems: 'center', gap: '1rem', padding: '0.8rem', borderRadius: '10px', textDecoration: 'none', color: 'white' }}>
                   <div style={{ color: '#f59e0b' }}><Target size={18} /></div>
                   <div>
-                    <div style={{ fontSize: '0.85rem', fontWeight: 700 }}>Architect Challenge</div>
-                    <div style={{ fontSize: '0.7rem', opacity: 0.5 }}>Bilgi Testi</div>
+                    <div style={{ fontSize: '0.85rem', fontWeight: 700 }}>{t('labs_menu.challenge')}</div>
+                    <div style={{ fontSize: '0.7rem', opacity: 0.5 }}>{t('labs_menu.challenge_desc')}</div>
                   </div>
                 </Link>
                 <Link to="/refactoring" style={{ display: 'flex', alignItems: 'center', gap: '1rem', padding: '0.8rem', borderRadius: '10px', textDecoration: 'none', color: 'white' }}>
                   <div style={{ color: '#ef4444' }}><Scissors size={18} /></div>
                   <div>
-                    <div style={{ fontSize: '0.85rem', fontWeight: 700 }}>Code Surgery</div>
-                    <div style={{ fontSize: '0.7rem', opacity: 0.5 }}>Refactoring Atölyesi</div>
+                    <div style={{ fontSize: '0.85rem', fontWeight: 700 }}>{t('labs_menu.surgery')}</div>
+                    <div style={{ fontSize: '0.7rem', opacity: 0.5 }}>{t('labs_menu.surgery_desc')}</div>
                   </div>
                 </Link>
                 <Link to="/roadmap" style={{ display: 'flex', alignItems: 'center', gap: '1rem', padding: '0.8rem', borderRadius: '10px', textDecoration: 'none', color: 'white' }}>
                   <div style={{ color: '#3b82f6' }}><Map size={18} /></div>
                   <div>
-                    <div style={{ fontSize: '0.85rem', fontWeight: 700 }}>Architect Roadmap</div>
-                    <div style={{ fontSize: '0.7rem', opacity: 0.5 }}>Kariyer Yol Haritası</div>
+                    <div style={{ fontSize: '0.85rem', fontWeight: 700 }}>{t('labs_menu.roadmap')}</div>
+                    <div style={{ fontSize: '0.7rem', opacity: 0.5 }}>{t('labs_menu.roadmap_desc')}</div>
                   </div>
                 </Link>
                 <Link to="/workshop" style={{ display: 'flex', alignItems: 'center', gap: '1rem', padding: '0.8rem', borderRadius: '10px', textDecoration: 'none', color: 'white' }}>
                   <div style={{ color: '#ec4899' }}><Layers size={18} /></div>
                   <div>
-                    <div style={{ fontSize: '0.85rem', fontWeight: 700 }}>Architecture Workshop</div>
-                    <div style={{ fontSize: '0.7rem', opacity: 0.5 }}>İnteraktif Atölye</div>
+                    <div style={{ fontSize: '0.85rem', fontWeight: 700 }}>{t('labs_menu.workshop')}</div>
+                    <div style={{ fontSize: '0.7rem', opacity: 0.5 }}>{t('labs_menu.workshop_desc')}</div>
                   </div>
                 </Link>
 
@@ -228,8 +248,13 @@ const Navbar: React.FC = () => {
             onMouseEnter={() => setOpenDropdown('docs')} 
             onMouseLeave={() => setOpenDropdown(null)}
             style={{ position: 'relative' }}
+            role="menu"
           >
-            <button style={{ 
+            <button 
+              aria-haspopup="true"
+              aria-expanded={openDropdown === 'docs'}
+              aria-label="Referans menüsünü aç"
+              style={{ 
               background: 'transparent', 
               color: 'white', 
               fontSize: '0.85rem', 
@@ -243,7 +268,7 @@ const Navbar: React.FC = () => {
               border: 'none',
               cursor: 'pointer'
             }}>
-              Referans <ChevronDown size={14} />
+              {t('docs')} <ChevronDown size={14} />
             </button>
             {openDropdown === 'docs' && (
               <div style={{
@@ -263,15 +288,15 @@ const Navbar: React.FC = () => {
               }}>
                 <Link to="/glossary" style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', padding: '0.6rem 1rem', borderRadius: '8px', textDecoration: 'none', color: 'white' }}>
                   <BookOpen size={16} style={{ color: 'var(--primary)' }} />
-                  <span style={{ fontSize: '0.85rem' }}>Terimler Sözlüğü</span>
+                  <span style={{ fontSize: '0.85rem' }}>{t('docs_menu.glossary')}</span>
                 </Link>
                 <Link to="/library" style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', padding: '0.6rem 1rem', borderRadius: '8px', textDecoration: 'none', color: 'white' }}>
                   <Library size={16} style={{ color: '#f59e0b' }} />
-                  <span style={{ fontSize: '0.85rem' }}>Usta Kitaplığı</span>
+                  <span style={{ fontSize: '0.85rem' }}>{t('docs_menu.library')}</span>
                 </Link>
                 <Link to="/project-arch" style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', padding: '0.6rem 1rem', borderRadius: '8px', textDecoration: 'none', color: 'white' }}>
                   <Code2 size={16} style={{ color: '#10b981' }} />
-                  <span style={{ fontSize: '0.85rem' }}>Project Architecture</span>
+                  <span style={{ fontSize: '0.85rem' }}>{t('docs_menu.project_arch')}</span>
                 </Link>
 
               </div>
@@ -281,6 +306,7 @@ const Navbar: React.FC = () => {
           {/* SEARCH BUTTON */}
           <button 
             onClick={() => window.dispatchEvent(new KeyboardEvent('keydown', { key: 'k', ctrlKey: true }))}
+            aria-label={t('search.open')}
             style={{
               background: 'rgba(255,255,255,0.05)',
               border: '1px solid var(--glass-border)',
@@ -296,7 +322,7 @@ const Navbar: React.FC = () => {
             }}
           >
             <Search size={14} />
-            <span style={{ fontSize: '0.75rem', fontWeight: 600 }}>Ara...</span>
+            <span style={{ fontSize: '0.75rem', fontWeight: 600 }}>{t('search.placeholder')}</span>
             <div style={{
               display: 'flex',
               alignItems: 'center',
@@ -315,7 +341,7 @@ const Navbar: React.FC = () => {
         {/* Global Action / Progress Info */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
           <div style={{ height: '24px', width: '1px', background: 'rgba(255,255,255,0.1)' }}></div>
-          <Link to="/compare" style={{
+          <Link to="/compare" role="button" aria-label="Mimari karşılaştırma matrisini aç" style={{
             background: 'var(--primary)',
             color: 'white',
             padding: '0.6rem 1.2rem',
@@ -330,8 +356,27 @@ const Navbar: React.FC = () => {
             gap: '0.5rem',
             transition: 'all 0.3s'
           }}>
-            <Sparkles size={14} /> Matrix
+            <Sparkles size={14} /> {t('matrix')}
           </Link>
+
+          {/* Language Toggle */}
+          <button
+            onClick={toggleLanguage}
+            aria-label={i18n.language === 'tr' ? 'Switch to English' : 'Türkçeye geç'}
+            style={{
+              background: 'rgba(255,255,255,0.05)',
+              border: '1px solid var(--glass-border)',
+              borderRadius: '10px',
+              padding: '0.4rem 0.75rem',
+              cursor: 'pointer',
+              color: 'var(--text-secondary)',
+              fontSize: '0.75rem',
+              fontWeight: 600,
+              transition: 'all 0.2s'
+            }}
+          >
+            {i18n.language === 'tr' ? 'EN' : 'TR'}
+          </button>
         </div>
       </div>
     </nav>

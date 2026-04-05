@@ -1,0 +1,23 @@
+{
+  "app_name": "ArchAcademy",
+  "app_tagline": "Senior Software Architecture Portal",
+  "loading": "Loading...",
+  "search": "Search...",
+  "search_placeholder": "Search architecture patterns...",
+  "no_results": "No results found",
+  "close": "Close",
+  "navigate": "Navigate",
+  "select": "Select",
+  "back_to_home": "Back to Home",
+  "not_found": "Page Not Found",
+  "not_found_desc": "The page you're looking for doesn't exist.",
+  "copyright": "© 2026 ArchAcademy. Open source education project.",
+  "theme": {
+    "dark": "Dark Theme",
+    "light": "Light Theme"
+  },
+  "language": {
+    "tr": "Türkçe",
+    "en": "English"
+  }
+}

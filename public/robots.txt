@@ -1,0 +1,45 @@
+# ArchAcademy - Robots.txt
+# Tüm arama motorları için erişim izni
+User-agent: *
+Allow: /
+
+# Google botları için özel izinler
+User-agent: Googlebot
+Allow: /
+Allow: /clean-arch
+Allow: /ddd
+Allow: /microservices
+Allow: /solid
+Allow: /hexagonal
+Allow: /compare
+
+# Bing botları
+User-agent: Bingbot
+Allow: /
+
+# Yandex botları
+User-agent: Yandex
+Allow: /
+
+# Sosyal medya crawler'ları
+User-agent: Twitterbot
+Allow: /
+
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: LinkedInBot
+Allow: /
+
+# İstenmeyen botlar (opsiyonel)
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+# Sitemap konumu
+Sitemap: https://archacademy.com/sitemap.xml

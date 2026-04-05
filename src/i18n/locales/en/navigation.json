@@ -1,0 +1,35 @@
+{
+  "catalogs": "Catalogs",
+  "labs": "Labs",
+  "docs": "Reference",
+  "matrix": "Matrix",
+  "catalog": {
+    "code_org": "Code Org. & Patterns",
+    "visual_arch": "Visual Architecture",
+    "data_ai": "Data & AI",
+    "cloud_devops": "Cloud & DevOps",
+    "discipline": "Discipline Matrix"
+  },
+  "labs_menu": {
+    "challenge": "Architect Challenge",
+    "challenge_desc": "Knowledge Test",
+    "surgery": "Code Surgery",
+    "surgery_desc": "Refactoring Workshop",
+    "roadmap": "Architect Roadmap",
+    "roadmap_desc": "Career Roadmap",
+    "workshop": "Architecture Workshop",
+    "workshop_desc": "Interactive Workshop"
+  },
+  "docs_menu": {
+    "glossary": "Glossary",
+    "library": "Master Library",
+    "project_arch": "Project Architecture"
+  },
+  "search": {
+    "open": "Open search panel (Ctrl+K)",
+    "placeholder": "Search...",
+    "navigate": "Navigate",
+    "select": "Select",
+    "close": "Close"
+  }
+}

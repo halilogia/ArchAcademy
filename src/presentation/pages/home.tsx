@@ -15,6 +15,7 @@ import {
   Target
 } from 'lucide-react';
 import HomeHero from '../components/HomeHero';
+import SEO from '../components/SEO';
 
 const FeatureCard = ({ title, icon, desc, path, color, label }: any) => (
   <Link to={path} style={{ textDecoration: 'none', color: 'inherit' }}>
@@ -69,12 +70,19 @@ const FeatureCard = ({ title, icon, desc, path, color, label }: any) => (
 
 const HomePage = () => {
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      style={{ background: 'var(--bg-dark)' }}
-    >
+    <>
+      <SEO
+        title="Ana Sayfa"
+        description="ArchAcademy - Yazılım mimarisi eğitimi için kapsamlı bir platform. Clean Architecture, DDD, Microservices, Event-Driven ve daha birçok mimari pattern hakkında derinlemesine bilgi edinin."
+        keywords="yazılım mimarisi, clean architecture, ddd, microservices, event-driven, hexagonal architecture, yazılım eğitimi, mimari patternler"
+        canonicalUrl="/"
+      />
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        style={{ background: 'var(--bg-dark)' }}
+      >
       <HomeHero />
 
       {/* --- THE MASTERPIECE SECTION (LEAN CLEAN) --- */}
@@ -342,6 +350,7 @@ const HomePage = () => {
         </div>
       </section>
     </motion.div>
+    </>
   );
 };
 

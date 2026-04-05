@@ -1,0 +1,23 @@
+{
+  "app_name": "ArchAcademy",
+  "app_tagline": "Kıdemli Yazılım Mimarisi Portalı",
+  "loading": "Yükleniyor...",
+  "search": "Ara...",
+  "search_placeholder": "Mimari pattern ara...",
+  "no_results": "Sonuç bulunamadı",
+  "close": "Kapat",
+  "navigate": "Gezin",
+  "select": "Seç",
+  "back_to_home": "Ana Sayfaya Dön",
+  "not_found": "Sayfa Bulunamadı",
+  "not_found_desc": "Aradığınız sayfa mevcut değil.",
+  "copyright": "© 2026 ArchAcademy. Açık kaynak eğitim projesi.",
+  "theme": {
+    "dark": "Koyu Tema",
+    "light": "Açık Tema"
+  },
+  "language": {
+    "tr": "Türkçe",
+    "en": "English"
+  }
+}
