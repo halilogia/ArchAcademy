@@ -54,3 +54,28 @@ Universal-Docs
 .snapshots/
 .agent/
 
+# Editor / IDE
+ .vscode/*
+ !.vscode/extensions.json
+ .idea
+ .DS_Store
+ *.suo
+ *.ntvs*
+ *.njsproj
+ *.sln
+ *.sw?
+ .eslintcache
+ 
++# Vite temporal files
++vite.config.js.timestamp-*
++vite.config.ts.timestamp-*
++
+ # TypeScript
++*.tsbuildinfo
++
+ # Testing
+ coverage
+ __snapshots__
+ .vitest.result.json
+
+

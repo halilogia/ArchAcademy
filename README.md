@@ -4,6 +4,8 @@
 [![React](https://img.shields.io/badge/React-19-blue.svg)](https://reactjs.org/)
 [![Vite](https://img.shields.io/badge/Vite-7-purple.svg)](https://vitejs.dev/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5-blue.svg)](https://www.typescriptlang.org/)
+[![PWA](https://img.shields.io/badge/PWA-Ready-orange.svg)](https://vite-pwa-org.netlify.app/)
+[![i18n](https://img.shields.io/badge/i18n-TR%2FEN-green.svg)](https://www.i18next.com/)
 
 **ArchAcademy** is a premium, high-performance educational portal designed for software engineers transitioning into senior architectural roles. It provides deep insights into sustainable software design, architectural patterns, and decision-making frameworks through an interactive, glassmorphic UI.
 
@@ -15,7 +17,7 @@ ArchAcademy is built upon three fundamental teaching philosophies:
 
 1.  **Visual First Philosophy**: Concepts like Clean Architecture or EDA are not just explained with text, but visualized through interactive diagrams and simulations.
 2.  **Trade-off Mindset**: Every architectural choice is a trade-off. ArchAcademy focuses on *why* and *when* to choose a pattern, rather than just *how*.
-3.  **Modern Aesthetics**: A premium Glassmorphic design system that reflects the quality and precision expected in high-level software architecture.
+3.  **Modern AI-Native Approach**: Covers contemporary patterns including Agentic AI, RAG (Retrieval-Augmented Generation), and LLM-Ops, alongside classic industry standards.
 
 ## 🚀 Key Features
 
@@ -28,11 +30,14 @@ An intelligent discovery tool that analyzes your project requirements (team size
 ### 🛣️ Architect's Journey (Roadmap)
 A step-by-step career path from **The Craftsman** to **The Visionary**, covering SOLID principles, patterns, and strategic leadership.
 
-### 📖 The Architect's Glossary
-A specialized dictionary of architectural terms (from *Inversion of Control* to *Vertical Slices*) with "Guru Tips" for practical understanding and interview preparation.
+### 🔍 Advanced Fuzzy Search
+Powered by **Fuse.js**, find any architectural concept instantly across 80+ pages with intelligent keyword matching.
 
-### 🎮 Architecture Workshop
-Interactive quizzes and level-based challenges that test your ability to structure folders, manage dependencies, and split monoliths.
+### 🌍 Multi-language & SEO
+Full **i18n** support (TR/EN) and optimized for search engines with dynamic meta tags, sitemaps, and structured data.
+
+### 📱 PWA & Offline Support
+Installable as a standalone app on desktop and mobile. All architectural guides are available offline for on-the-go learning.
 
 ## 🛠 Tech Stack
 
@@ -41,6 +46,10 @@ Interactive quizzes and level-based challenges that test your ability to structu
 - **Language**: [TypeScript 5](https://www.typescriptlang.org/)
 - **Routing**: [React Router DOM 7](https://reactrouter.com/)
 - **State Management**: [Zustand 5](https://zustand-demo.pmnd.rs/)
+- **Search Engine**: [Fuse.js](https://www.fusejs.io/)
+- **Localization**: [i18next](https://www.i18next.com/)
+- **SEO**: [React Helmet Async](https://github.com/staylor/react-helmet-async)
+- **PWA**: [Vite PWA Plugin](https://vite-pwa-org.netlify.app/)
 - **Animations**: [Framer Motion 12](https://www.framer.com/motion/)
 - **Icons**: [Lucide React](https://lucide.dev/)
 - **Styling**: Vanilla CSS (Modern CSS Variables & Glassmorphism)
@@ -79,18 +88,24 @@ Interactive quizzes and level-based challenges that test your ability to structu
 The project follows a modified Clean Architecture structure for the frontend:
 
 ```text
-src/
-├── domain/                    # Pure business logic (Entities, Use Cases, Repositories)
-├── infrastructure/            # Data repositories, External APIs, Config, Storage
-├── presentation/              # UI layer
-│   ├── components/            # Reusable UI elements
-│   ├── pages/                 # Main application views (40+ architecture pages)
-│   ├── context/               # Global State Management (Progress Context)
-│   ├── hooks/                 # Custom React hooks (useLocalStorage)
-│   ├── navigation/            # Routing configuration (AppRouter)
-│   └── themes/                # Design tokens and theme configuration
-├── tests/                     # Unit and integration tests
-└── assets/                    # Static assets (images, icons)
+.
+├── .github/workflows/         # CI/CD Pipelines (Build, Test, Deploy)
+├── public/                    # Static assets & Manifest (PWA, Sitemap, Robots)
+├── src/
+│   ├── domain/                # Pure business logic (Entities, Use Cases, Models)
+│   ├── infrastructure/        # Data providers, External APIs, Search Indexes
+│   ├── i18n/                  # Localization configuration and translations
+│   ├── presentation/          # UI layer
+│   │   ├── components/        # Reusable UI elements (SEO, Navbar, CommandPalette)
+│   │   ├── pages/             # 80+ architecture pages (Clean Arch, Agentic AI, etc.)
+│   │   ├── context/           # Global State Management
+│   │   ├── hooks/             # Custom React hooks (useLocalStorage, useDebounce)
+│   │   ├── navigation/        # Routing configuration (AppRouter)
+│   │   └── themes/            # Design tokens and theme configuration
+│   ├── tests/                 # Unit and integration tests (Vitest)
+│   └── assets/                # Local images and styles
+├── eslint.config.js           # Modern ESLint (v9+) configuration
+└── vite.config.js             # Vite configuration with PWA and Vitest setup
 ```
 
 ### Available Scripts
@@ -98,9 +113,12 @@ src/
 | Command | Description |
 |---------|-------------|
 | `npm run dev` | Start development server |
-| `npm run build` | Build for production |
-| `npm run preview` | Preview production build |
-| `npm run test` | Run test suite with Vitest |
+| `npm run build` | Build for production (PWA included) |
+| `npm run preview` | Preview production build locally |
+| `npm run test` | Run test suite with Vitest in watch mode |
+| `npm run test:run` | Run test suite once |
+| `npm run lint` | Run ESLint check |
+| `npm run lint:fix` | Run ESLint and automatically fix issues |
 | `npm run check` | Type-check with TypeScript |
 | `npm run scan` | Generate project dependency graph |
 
