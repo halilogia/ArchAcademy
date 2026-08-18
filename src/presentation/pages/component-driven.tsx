@@ -1,142 +1,127 @@
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
-import React from 'react';
-import { motion } from 'framer-motion';
-import { Box, Package, Layers, Library, Layout, Puzzle, MousePointer2, Smartphone } from 'lucide-react';
+import { Box, Layers, Database, Activity, LayoutGrid, BookOpen } from 'lucide-react';
 import ArchHero from '../components/ArchHero';
+import SEO from '../components/SEO';
+import { ComponentAtomicDesignTab } from '../components/componentdriven/ComponentAtomicDesignTab';
+import { ComponentStateManagementTab } from '../components/componentdriven/ComponentStateManagementTab';
+import { StateDrivenArchitectureTab } from '../components/componentdriven/StateDrivenArchitectureTab';
+import { ComponentLifecycleSimulationTab } from '../components/componentdriven/ComponentLifecycleSimulationTab';
 
-
-const ComponentDrivenPage = () => {
+const ComponentDrivenPage: React.FC = () => {
   const { i18n } = useTranslation();
   const isEn = (i18n.resolvedLanguage || i18n.language || 'tr').startsWith('en');
-  const illustration = (
-    <div style={{ position: 'relative', width: '400px', height: '400px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-      {/* Background Grid */}
-      <div style={{ position: 'absolute', inset: 0, opacity: 0.1, backgroundImage: 'radial-gradient(#f43f5e 1px, transparent 1px)', backgroundSize: '20px 20px' }} />
-
-      {/* Assembly Area */}
-      <motion.div
-        animate={{ scale: [1, 1.02, 1] }}
-        transition={{ duration: 4, repeat: Infinity }}
-        style={{
-          width: '240px',
-          height: '180px',
-          background: 'rgba(244, 63, 94, 0.05)',
-          border: '2px dashed rgba(244, 63, 94, 0.3)',
-          borderRadius: '24px',
-          display: 'flex',
-          flexDirection: 'column',
-          padding: '15px',
-          gap: '10px',
-          zIndex: 5
-        }}
-      >
-        {/* Skeleton UI assembling */}
-        <motion.div 
-            initial={{ width: 0 }} animate={{ width: '100%' }} transition={{ duration: 1.5, repeat: Infinity, repeatDelay: 1 }}
-            style={{ height: '30px', background: 'rgba(244, 63, 94, 0.2)', borderRadius: '8px' }} 
-        />
-        <div style={{ display: 'flex', gap: '10px', height: '100%' }}>
-            <motion.div 
-                initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.5, repeat: Infinity, repeatDelay: 2 }}
-                style={{ width: '40%', height: '80px', background: 'rgba(244, 63, 94, 0.4)', borderRadius: '8px' }} 
-            />
-            <motion.div 
-                initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5, delay: 0.8, repeat: Infinity, repeatDelay: 2 }}
-                style={{ width: '60%', height: '80px', background: 'rgba(244, 63, 94, 0.1)', border: '1px solid rgba(244, 63, 94, 0.5)', borderRadius: '8px' }} 
-            />
-        </div>
-      </motion.div>
-
-      {/* Flying "Bricks" (Components) */}
-      {[
-        { icon: <MousePointer2 size={16} />, color: '#f43f5e', delay: 0, x: -140, y: -120 },
-        { icon: <Box size={16} />, color: '#fb7185', delay: 0.5, x: 140, y: -100 },
-        { icon: <Package size={16} />, color: '#fda4af', delay: 1, x: 120, y: 120 },
-        { icon: <Puzzle size={16} />, color: '#f43f5e', delay: 1.5, x: -150, y: 100 }
-      ].map((brick, i) => (
-        <motion.div
-            key={i}
-            initial={{ x: brick.x, y: brick.y, opacity: 0 }}
-            animate={{ 
-                x: [brick.x, 0], 
-                y: [brick.y, 0], 
-                opacity: [0, 1, 0],
-                scale: [0.5, 1, 0.5]
-            }}
-            transition={{ duration: 2, repeat: Infinity, delay: brick.delay, ease: "circIn" }}
-            style={{
-                position: 'absolute',
-                padding: '12px',
-                background: '#0f172a',
-                border: `2px solid ${brick.color}`,
-                borderRadius: '12px',
-                color: brick.color,
-                zIndex: 10,
-                boxShadow: `0 0 20px ${brick.color}33`
-            }}
-        >
-            {brick.icon}
-        </motion.div>
-      ))}
-
-      {/* Methodology Label */}
-      <motion.div 
-        animate={{ y: [0, 5, 0] }}
-        style={{
-            position: 'absolute', top: '40px', left: '50%', transform: 'translateX(-50%)',
-            background: 'rgba(244, 63, 94, 0.1)', padding: '6px 16px', borderRadius: '100px',
-            border: '1px solid rgba(244, 63, 94, 0.3)', fontSize: '0.75rem', fontWeight: 900, color: 'white'
-        }}
-      >
-        BOTTOM-UP ASSEMBLY
-      </motion.div>
-    </div>
-  );
+  const [activeTab, setActiveTab] = useState<'atomic' | 'statemachine' | 'reactive' | 'simulation'>('atomic');
 
   return (
-    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} style={{ background: '#020617', minHeight: '100vh', paddingBottom: '100px' }}>
-      <ArchHero 
-        title="Component-Driven"
-        subtitle="Modern UI Assembly"
-        description="Uygulamaları büyük sayfalardan değil, en küçük yapı taşlarından (Atomic components) başlayarak yukarıya doğru inşa etme sanatı. Lego gibi modüler ve sarsılmaz."
-        badge="Dev Architecture"
-        color="#f43f5e"
-        illustration={illustration}
-        features={[
-          { icon: <Puzzle />, title: 'Atomic Design', desc: 'Bileşenler en küçük parçalara (Atoms) bölünür ve karmaşık yapılara dönüşür.' },
-          { icon: <Library />, title: 'Storybook Culture', desc: 'Bileşenler ana uygulamadan bağımsız bir laboratuvarda geliştirilir.' },
-          { icon: <Smartphone />, title: 'True Isolation', desc: 'Bir bileşenin hatası sistemin geri kalanını etkilemez, izole test edilebilir.' }
-        ]}
-      >
-        <div style={{ display: 'flex', gap: '1rem', marginTop: '2rem' }}>
-          <div style={{ background: 'rgba(244, 63, 94, 0.1)', padding: '12px 24px', borderRadius: '14px', border: '1px solid rgba(244, 63, 94, 0.2)', display: 'flex', alignItems: 'center', gap: '10px' }}>
-            <Layers size={18} color="#f43f5e" />
-            <span style={{ fontSize: '0.9rem', fontWeight: 700, color: 'white' }}>Scalable UI Logic</span>
+    <>
+      <SEO
+        title={isEn ? "Component-Driven Development & UI State Architecture | ArchAcademy" : "Bileşen Odaklı Geliştirme ve UI Durum Mimarisi | ArchAcademy"}
+        description={isEn 
+          ? "Master Atomic Design, Component-Driven Development (CDD), UI state categorization (Zustand/TanStack), and Finite State Machines." 
+          : "Atomic Design (Atomlar, Moleküller), Bileşen Odaklı Geliştirme (CDD), modern arayüz durum yönetimi ve Sonlu Durum Makineleri (FSM) rehberi."
+        }
+        keywords="component driven development, atomic design, ui state management, finite state machines, fsm, zustand, react query"
+        canonicalUrl="/component-driven"
+      />
+      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} style={{ background: 'var(--bg-dark)', minHeight: '100vh' }}>
+        <ArchHero 
+          title="Component"
+          subtitle={isEn ? "UI & State Architecture" : "Bileşen & Durum Mimarisi"}
+          description={isEn 
+            ? "Constructing scalable, resilient user interfaces from modular blocks. Atomic Design hierarchy, unidirectional data flow, and FSM state modeling." 
+            : "Modern arayüzlerin Lego blokları. Atomic Design hiyerarşisi, yerel/global/sunucu durum ayrıştırması ve UI = f(State) prensibi."
+          }
+          badge="Frontend Architecture"
+          color="#38bdf8"
+          illustration={
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '10px', width: '200px' }}>
+              {['#38bdf8', '#10b981', '#f59e0b', '#a855f7'].map((c, i) => (
+                <motion.div
+                  key={i}
+                  animate={{ scale: [1, 1.08, 1] }}
+                  transition={{ duration: 2, delay: i * 0.3, repeat: Infinity }}
+                  style={{ height: '70px', background: 'rgba(255,255,255,0.03)', border: `2px solid ${c}`, borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+                >
+                  <Box size={24} color={c} />
+                </motion.div>
+              ))}
+            </div>
+          }
+          features={[
+            { icon: <LayoutGrid />, title: isEn ? 'Atomic Design' : 'Atomic Design', desc: isEn ? 'Atoms -> Molecules -> Organisms -> Templates -> Pages.' : 'Atomlardan sayfalara katmanlı ve yeniden kullanılabilir bileşenler.' },
+            { icon: <Database />, title: isEn ? 'State Categorization' : 'Durum Ayrıştırması', desc: isEn ? 'Local, Shared Client, Server Cache, and URL state boundaries.' : 'Local, Global, Server ve URL durumlarının doğru izole edilmesi.' },
+            { icon: <Activity />, title: isEn ? 'FSM Modeling' : 'FSM Durum Makineleri', desc: isEn ? 'UI = f(State) modeling eliminating impossible error states.' : 'İmkansız durum bug\'larını engelleyen deterministik render döngüsü.' }
+          ]}
+        >
+          <div style={{ 
+            marginTop: '2rem',
+            padding: '6px', 
+            background: 'rgba(15, 23, 42, 0.4)', 
+            borderRadius: '24px', 
+            border: '1px solid rgba(255,255,255,0.05)',
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '4px',
+            backdropFilter: 'blur(10px)',
+            flexWrap: 'wrap'
+          }}>
+            {[
+              { id: 'atomic', label: isEn ? 'Atomic Design (CDD)' : 'Atomic Design (CDD)', icon: <LayoutGrid size={18} /> },
+              { id: 'statemachine', label: isEn ? 'State Categorization' : 'Durum Kategorizasyonu', icon: <Database size={18} /> },
+              { id: 'reactive', label: isEn ? 'State-Driven & FSM' : 'Durum Odaklı UI (FSM)', icon: <Activity size={18} /> },
+              { id: 'simulation', label: isEn ? 'Live Lifecycle Lab' : 'Render & State Simülatörü', icon: <Box size={18} /> }
+            ].map((tab) => (
+              <button
+                key={tab.id}
+                onClick={() => setActiveTab(tab.id as any)}
+                style={{
+                  padding: '10px 24px',
+                  borderRadius: '18px',
+                  border: 'none',
+                  background: activeTab === tab.id ? '#38bdf8' : 'transparent',
+                  color: activeTab === tab.id ? '#020617' : 'rgba(255,255,255,0.5)',
+                  cursor: 'pointer',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '8px',
+                  fontWeight: 700,
+                  fontSize: '0.9rem',
+                  transition: 'all 0.3s ease',
+                  boxShadow: activeTab === tab.id ? '0 4px 12px rgba(56, 189, 248, 0.3)' : 'none'
+                }}
+              >
+                {tab.icon} {tab.label}
+              </button>
+            ))}
           </div>
-        </div>
-      </ArchHero>
+        </ArchHero>
 
-      <div className="container" style={{ marginTop: '4rem' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem' }}>
-          <div className="glass-card">
-            <h3 style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '1.5rem', color: '#f43f5e' }}>
-              <Layout size={24} /> Neden CDD (Component-Driven Dev)?
-            </h3>
-            <p style={{ color: '#94a3b8', lineHeight: 1.7 }}>
-                Büyük projelerde sayfaları yönetmek imkansızdır. CDD ile odağımızı "Sayfa"dan "Bileşen"e kaydırırız. Bu sayede tasarım sistemleri (Design Systems) tutarlı ve sürdürülebilir hale gelir.
-            </p>
-          </div>
-          <div className="glass-card">
-            <h3 style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '1.5rem', color: '#f43f5e' }}>
-              <Package size={24} /> Paylaşılabilir Kütüphaneler
-            </h3>
-            <p style={{ color: '#94a3b8', lineHeight: 1.7 }}>
-                Doğru kurgulanmış bir bileşen, sadece o projede değil, şirketin tüm projelerinde (NPM paketleri aracılığıyla) tekrar tekrar kullanılabilir.
-            </p>
-          </div>
+        <div className="container" style={{ marginTop: '2rem' }}>
+          <AnimatePresence mode="wait">
+            {activeTab === 'atomic' && <ComponentAtomicDesignTab key="atomic" />}
+            {activeTab === 'statemachine' && <ComponentStateManagementTab key="statemachine" />}
+            {activeTab === 'reactive' && <StateDrivenArchitectureTab key="reactive" />}
+            {activeTab === 'simulation' && <ComponentLifecycleSimulationTab key="simulation" />}
+          </AnimatePresence>
         </div>
-      </div>
-    </motion.div>
+
+        <section style={{ padding: '4rem 0', background: 'rgba(0,0,0,0.3)', borderTop: '1px solid rgba(255,255,255,0.05)', marginTop: '4rem' }}>
+          <div className="container" style={{ textAlign: 'center' }}>
+             <div style={{ display: 'inline-flex', alignItems: 'center', gap: '1rem', background: 'rgba(56, 189, 248, 0.1)', padding: '1rem 2rem', borderRadius: '12px', border: '1px solid rgba(56, 189, 248, 0.2)' }}>
+                <BookOpen size={24} color="#38bdf8" />
+                <div style={{ textAlign: 'left' }}>
+                  <div style={{ fontSize: '0.8rem', color: '#7dd3fc', textTransform: 'uppercase' }}>
+                    {isEn ? "Core Reference Literature" : "Temel Kaynak"}
+                  </div>
+                  <div style={{ color: 'white', fontWeight: 600 }}>Atomic Design (Brad Frost) & Component-Driven UI Development</div>
+                </div>
+             </div>
+          </div>
+        </section>
+      </motion.div>
+    </>
   );
 };
 
