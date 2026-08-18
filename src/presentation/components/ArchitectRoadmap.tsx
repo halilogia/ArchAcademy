@@ -6,10 +6,8 @@ import {
   Target, 
   Zap, 
   CheckCircle2, 
-  Lock, 
-  Cpu, 
   Globe, 
-  Database, 
+  Cpu, 
   Box, 
   Award,
   ChevronRight,
@@ -17,190 +15,155 @@ import {
   Layers
 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { useProgress } from '../context/ProgressContext';
 
-const roadmapData = [
+interface RoadmapTask {
+  id: string;
+  title: string;
+  desc: { tr: string; en: string };
+  icon: React.ReactNode;
+  path: string;
+}
+
+interface RoadmapLevel {
+  level: { tr: string; en: string };
+  title: { tr: string; en: string };
+  color: string;
+  tasks: RoadmapTask[];
+}
+
+const roadmapData: RoadmapLevel[] = [
   {
-    level: "Seviye 1: The Craftsman",
-    title: "Temeller ve Yazılım Pratikleri",
+    level: { tr: "Seviye 1: The Craftsman", en: "Level 1: The Craftsman" },
+    title: { tr: "Temeller ve Yazılım Pratikleri", en: "Foundations & Code Craftsmanship" },
     color: "#6366f1",
     tasks: [
-      { id: 'solid', title: 'SOLID Prensipleri', desc: 'Esnek kodun temel taşları.', icon: <Shield size={18} />, path: '/solid' },
-      { id: 'clean-code', title: 'Clean Code', desc: 'Okunabilir ve sürdürülebilir kod sanatı.', icon: <Sparkles size={18} />, path: '/clean-code' },
-      { id: 'patterns', title: 'Design Patterns', desc: 'Tekrar eden sorunlara standart çözümler.', icon: <Box size={18} />, path: '/glossary' }
+      { id: 'solid', title: 'SOLID Principles', desc: { tr: 'Değişime açık, esnek kodun temel taşları.', en: 'Core cornerstones of maintainable code.' }, icon: <Shield size={18} />, path: '/solid' },
+      { id: 'clean-code', title: 'Clean Code', desc: { tr: 'Okunabilir, test edilebilir ve sürdürülebilir kod sanatı.', en: 'The art of readable, expressive, and testable code.' }, icon: <Sparkles size={18} />, path: '/clean-code' },
+      { id: 'patterns', title: 'Design Patterns', desc: { tr: 'Tekrar eden yapısal sorunlara GOF şablonları.', en: 'Proven GOF solutions for recurring structural challenges.' }, icon: <Box size={18} />, path: '/glossary' }
     ]
   },
   {
-    level: "Seviye 2: The Architect",
-    title: "Modern Mimari Stiller",
+    level: { tr: "Seviye 2: The Architect", en: "Level 2: The Architect" },
+    title: { tr: "Modern Mimari Stiller", en: "Modern Architectural Styles" },
     color: '#3b82f6',
     tasks: [
-      { id: 'vertical', title: 'Vertical Slice', desc: 'Hızlı ve bağımsız özellik geliştirme.', icon: <Zap size={18} />, path: '/vertical' },
-      { id: 'clean-arch', title: 'Clean Architecture', desc: 'Bağımsızlık ve test edilebilirlik.', icon: <Layout size={18} />, path: '/clean-arch' },
-      { id: 'ddd', title: 'Domain Driven Design', desc: 'Karmaşık iş mantığı yönetimi.', icon: <Target size={18} />, path: '/ddd' }
+      { id: 'vertical', title: 'Vertical Slice', desc: { tr: 'Hızlı, otonom ve özellik bazlı tasarım.', en: 'High-cohesion feature-first domain slices.' }, icon: <Zap size={18} />, path: '/vertical' },
+      { id: 'clean-arch', title: 'Clean Architecture', desc: { tr: 'Bağımsızlık ve katmanlı soyutlama.', en: 'Layers of independence and testable use cases.' }, icon: <Layout size={18} />, path: '/clean-arch' },
+      { id: 'ddd', title: 'Domain-Driven Design', desc: { tr: 'Karmaşık iş kurallarını Bounded Context ile modelleme.', en: 'Strategic modeling and bounded context isolation.' }, icon: <Target size={18} />, path: '/ddd' }
     ]
   },
   {
-    level: "Seviye 3: The System Builder",
-    title: "Frontend ve Dağıtık Yapılar",
+    level: { tr: "Seviye 3: The System Builder", en: "Level 3: The System Builder" },
+    title: { tr: "Frontend ve Dağıtık Yapılar", en: "Frontend & Distributed Systems" },
     color: '#a855f7',
     tasks: [
-      { id: 'fsd', title: 'Feature-Sliced Design', desc: 'Modern frontend organizasyonu.', icon: <Layers size={18} />, path: '/fsd' },
-      { id: 'eda', title: 'Event Driven Architecture', desc: 'Olay bazlı asenkron iletişim.', icon: <Zap size={18} />, path: '/eda' },
-      { id: 'microservices', title: 'Microservices & Systems', desc: 'Dağıtık sistem stratejileri.', icon: <Cpu size={18} />, path: '/system' }
+      { id: 'fsd', title: 'Feature-Sliced Design', desc: { tr: 'Büyük ölçekli modern frontend organizasyonu.', en: 'Scalable frontend module hierarchy.' }, icon: <Layers size={18} />, path: '/fsd' },
+      { id: 'eda', title: 'Event-Driven Architecture', desc: { tr: 'Olay bazlı asenkron haberleşme.', en: 'Asynchronous event emission and consumption.' }, icon: <Zap size={18} />, path: '/eda' },
+      { id: 'microservices', title: 'Microservices & Systems', desc: 'Dağıtık servis stratejileri ve dayanıklılık.', desc: { tr: 'Dağıtık servis stratejileri ve dayanıklılık.', en: 'Decoupled services, observability, and resilience.' }, icon: <Cpu size={18} />, path: '/microservices' }
     ]
   },
   {
-    level: "Seviye 4: The Visionary",
-    title: "Stratejik Liderlik",
+    level: { tr: "Seviye 4: The Visionary", en: "Level 4: The Visionary" },
+    title: { tr: "Stratejik Liderlik & Modernizasyon", en: "Strategic Leadership & Modernization" },
     color: '#f59e0b',
     tasks: [
-      { id: 'matrix', title: 'Master Matrix', desc: 'Stratejik mimari seçim yöntemleri.', icon: <Award size={18} />, path: '/compare' },
-      { id: 'evolution', title: 'Evolutionary Arch', desc: 'Değişime ayak uyduran sistemler.', icon: <Globe size={18} />, path: '/evolution' },
-      { id: 'surgery', title: 'Code Surgery', desc: 'Legacy sistem modernizasyon sanatı.', icon: <Cpu size={18} />, path: '/refactoring' }
+      { id: 'matrix', title: 'Master Matrix', desc: { tr: 'Stratejik mimari seçim ve kıyaslama yöntemleri.', en: 'Multi-criteria architectural evaluation & tradeoffs.' }, icon: <Award size={18} />, path: '/compare' },
+      { id: 'evolution', title: 'Evolutionary Architecture', desc: { tr: 'Değişime ve yüke ayak uyduran sistemler.', en: 'Building systems that embrace guided, incremental change.' }, icon: <Globe size={18} />, path: '/evolution' },
+      { id: 'surgery', title: 'Code Surgery', desc: { tr: 'Legacy sistem refactoring ve modernizasyon sanatı.', en: 'Transforming legacy code into clean modern patterns.' }, icon: <Cpu size={18} />, path: '/refactoring' }
     ]
   }
 ];
 
-const ArchitectRoadmap = ({ hideHeader }: { hideHeader?: boolean }) => {
+const ArchitectRoadmap: React.FC = () => {
+  const { i18n } = useTranslation();
+  const isEn = (i18n.resolvedLanguage || i18n.language || 'tr').startsWith('en');
   const navigate = useNavigate();
   const { progress } = useProgress();
 
   return (
-    <div style={{ padding: hideHeader ? '0 0 60px 0' : '60px 0', position: 'relative' }}>
-      <div className="container">
-        {!hideHeader && (
-          <div style={{ textAlign: 'center', marginBottom: '5rem' }}>
-            <h1 className="gradient-text" style={{ fontSize: '3.5rem', fontWeight: 900, marginBottom: '1rem' }}>Mimari Müfredat</h1>
-            <p style={{ color: 'var(--text-secondary)', fontSize: '1.2rem', maxWidth: '750px', margin: '0 auto' }}>
-                Yazılım mimarisi disiplinlerini en temelden en ileri seviyeye, yapılandırılmış bir müfredat eşliğinde keşfedin.
-                Hangi seviyedesin, seni neler bekliyor?
-            </p>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '3rem', maxWidth: '1000px', margin: '0 auto' }}>
+      {roadmapData.map((level, i) => (
+        <motion.div
+          key={i}
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: i * 0.1 }}
+          className="glass-card"
+          style={{ padding: '2.5rem', borderTop: `4px solid ${level.color}`, position: 'relative' }}
+        >
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem', flexWrap: 'wrap', gap: '1rem' }}>
+            <div>
+              <span style={{ fontSize: '0.8rem', fontWeight: 800, color: level.color, letterSpacing: '2px', textTransform: 'uppercase' }}>
+                {isEn ? level.level.en : level.level.tr}
+              </span>
+              <h2 style={{ fontSize: '1.8rem', fontWeight: 800, color: 'white', marginTop: '4px' }}>
+                {isEn ? level.title.en : level.title.tr}
+              </h2>
+            </div>
+            <div style={{ background: 'rgba(255,255,255,0.03)', padding: '6px 14px', borderRadius: '100px', border: '1px solid rgba(255,255,255,0.05)', fontSize: '0.85rem', color: 'var(--text-secondary)' }}>
+              {level.tasks.length} {isEn ? "Modules" : "Modül"}
+            </div>
           </div>
-        )}
 
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '6rem' }}>
-           {roadmapData.map((level, lIndex) => (
-             <motion.div 
-              key={lIndex}
-              initial={{ opacity: 0, x: lIndex % 2 === 0 ? -30 : 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              style={{ position: 'relative', zIndex: 1 }}
-             >
-                {/* Level Title */}
-                <div style={{ 
-                  display: 'flex', 
-                  flexDirection: lIndex % 2 === 0 ? 'row' : 'row-reverse',
-                  alignItems: 'center',
-                  gap: '2rem',
-                  marginBottom: '3rem'
-                }}>
-                   <div style={{ 
-                     background: level.color, 
-                     color: 'white', 
-                     padding: '0.5rem 1.5rem', 
-                     borderRadius: '100px',
-                     fontSize: '0.8rem',
-                     fontWeight: 900,
-                     textTransform: 'uppercase',
-                     boxShadow: `0 10px 30px ${level.color}40`
-                   }}>
-                     {level.level}
-                   </div>
-                   <h2 style={{ fontSize: '1.8rem', margin: 0 }}>{level.title}</h2>
-                   <div style={{ flex: 1, height: '1px', background: 'rgba(255,255,255,0.1)' }}></div>
-                </div>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem' }}>
+            {level.tasks.map((task) => {
+              const isCompleted = progress[task.path];
+              return (
+                <motion.div
+                  key={task.id}
+                  onClick={() => navigate(task.path)}
+                  whileHover={{ scale: 1.02 }}
+                  style={{
+                    padding: '1.5rem',
+                    background: 'rgba(255, 255, 255, 0.02)',
+                    borderRadius: '16px',
+                    border: '1px solid rgba(255, 255, 255, 0.05)',
+                    cursor: 'pointer',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'space-between',
+                    gap: '1rem'
+                  }}
+                >
+                  <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between' }}>
+                    <div style={{
+                      width: '40px',
+                      height: '40px',
+                      borderRadius: '12px',
+                      background: `${level.color}15`,
+                      color: level.color,
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center'
+                    }}>
+                      {task.icon}
+                    </div>
+                    {isCompleted && (
+                      <span style={{ display: 'flex', alignItems: 'center', gap: '4px', color: '#10b981', fontSize: '0.75rem', fontWeight: 800 }}>
+                        <CheckCircle2 size={16} /> {isEn ? "COMPLETED" : "TAMAMLANDI"}
+                      </span>
+                    )}
+                  </div>
 
-                {/* Task Grid */}
-                <div style={{ 
-                  display: 'grid', 
-                  gridTemplateColumns: 'repeat(3, 1fr)', 
-                  gap: '2rem' 
-                }}>
-                   {level.tasks.map((task, tIndex) => {
-                     const isCompleted = progress?.completedSteps?.includes(task.path);
-                     const isLocked = lIndex > 1 && !isCompleted; // Simple dummy logic for locking
+                  <div>
+                    <h3 style={{ fontSize: '1.1rem', fontWeight: 700, color: 'white', marginBottom: '4px' }}>{task.title}</h3>
+                    <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', margin: 0, lineHeight: 1.5 }}>
+                      {isEn ? task.desc.en : task.desc.tr}
+                    </p>
+                  </div>
 
-                     return (
-                       <motion.div
-                         key={tIndex}
-                         whileHover={{ scale: 1.03, y: -5 }}
-                         onClick={() => navigate(task.path)}
-                         className="glass-card"
-                         style={{
-                           padding: '2rem',
-                           border: isCompleted ? `1px solid ${level.color}50` : '1px solid var(--glass-border)',
-                           background: isCompleted ? `${level.color}05` : 'rgba(255,255,255,0.02)',
-                           cursor: 'pointer',
-                           position: 'relative',
-                           opacity: isLocked ? 0.6 : 1,
-                           filter: isLocked ? 'grayscale(0.5)' : 'none'
-                         }}
-                       >
-                          <div style={{ 
-                            width: '45px', 
-                            height: '45px', 
-                            borderRadius: '12px', 
-                            background: isCompleted ? level.color : 'rgba(255,255,255,0.05)',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            color: isCompleted ? 'white' : 'var(--text-secondary)',
-                            marginBottom: '1.5rem',
-                            transition: 'all 0.3s'
-                          }}>
-                             {isLocked ? <Lock size={20} /> : task.icon}
-                          </div>
-
-                          <h4 style={{ marginBottom: '0.5rem', color: isCompleted ? level.color : 'white' }}>{task.title}</h4>
-                          <p style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', lineHeight: 1.5, marginBottom: '1.5rem' }}>{task.desc}</p>
-                          
-                          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: 'auto' }}>
-                             <span style={{ fontSize: '0.7rem', fontWeight: 800, textTransform: 'uppercase', opacity: 0.5 }}>
-                               {isCompleted ? 'Tamamlandı' : isLocked ? 'Kilitli' : 'Başla'}
-                             </span>
-                             {isCompleted ? (
-                               <CheckCircle2 size={18} color="#10b981" />
-                             ) : (
-                               <ChevronRight size={16} color={level.color} />
-                             )}
-                          </div>
-
-                          {isCompleted && (
-                            <motion.div 
-                              layoutId={`sparkle-${task.id}`}
-                              style={{ position: 'absolute', top: '1rem', right: '1rem' }}
-                            >
-                               <Sparkles size={16} color={level.color} />
-                            </motion.div>
-                          )}
-                       </motion.div>
-                     );
-                   })}
-                </div>
-             </motion.div>
-           ))}
-        </div>
-
-        {/* Motivational Footer */}
-        <div style={{ textAlign: 'center', marginTop: '8rem' }}>
-           <div className="glass-card" style={{ 
-             display: 'inline-flex', 
-             alignItems: 'center', 
-             gap: '1rem', 
-             padding: '1.5rem 3rem',
-             borderRadius: '100px',
-             background: 'linear-gradient(90deg, #6366f105, #f59e0b10)'
-           }}>
-              <Award size={32} color="#f59e0b" />
-              <div style={{ textAlign: 'left' }}>
-                 <div style={{ fontWeight: 800, fontSize: '1.1rem' }}>Sürekli Gelişim Disiplini</div>
-                 <p style={{ margin: 0, fontSize: '0.8rem', opacity: 0.6 }}>Mimari bir varış noktası değil, bitmeyen bir yolculuktur.</p>
-              </div>
-           </div>
-        </div>
-      </div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '6px', color: level.color, fontSize: '0.85rem', fontWeight: 700 }}>
+                    {isEn ? "Start Module" : "Modülü Başlat"} <ChevronRight size={16} />
+                  </div>
+                </motion.div>
+              );
+            })}
+          </div>
+        </motion.div>
+      ))}
     </div>
   );
 };

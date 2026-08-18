@@ -1,330 +1,401 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Shield, Trophy, Target, ArrowRight, RefreshCw, Star, Zap, MessageSquare, Code2, Users, AlertCircle, CheckCircle2 } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
+import { Shield, Trophy, Target, ArrowRight, RefreshCw, Star, Zap, MessageSquare, AlertCircle, CheckCircle2 } from 'lucide-react';
 import { useProgress } from '../context/ProgressContext';
 
-const interviewQuestions = [
+interface QuizOption {
+  text: { tr: string; en: string };
+  score: { type: 'Architect' | 'Specialist' | 'OverKiller' | 'Junior'; value: number };
+  feedback: { tr: string; en: string };
+  interviewTip: { tr: string; en: string };
+}
+
+interface Question {
+  id: number;
+  title: { tr: string; en: string };
+  category: string;
+  scenario: { tr: string; en: string };
+  options: QuizOption[];
+}
+
+const interviewQuestions: Question[] = [
   {
     id: 1,
-    title: "Sistem Tasarımı: Ölçeklenebilirlik",
+    title: { tr: "Sistem Tasarımı: Ölçeklenebilirlik", en: "System Design: Scalability" },
     category: "System Design",
-    scenario: "Uygulaman bir anda 10 kat trafik aldı ve veritabanı 'connection pool' hataları vermeye başladı. Horizontal scaling (yatay ölçekleme) yapmadan önce mimari düzeyde ilk hamlen ne olurdu?",
+    scenario: {
+      tr: "Uygulamanız bir anda 10 kat trafik aldı ve veritabanı 'connection pool' hataları vermeye başladı. Yatay ölçekleme yapmadan önce mimari düzeyde ilk hamleniz ne olurdu?",
+      en: "Your app suddenly received 10x peak traffic and the database is throwing 'connection pool exhausted' errors. Before horizontally scaling, what is your immediate architectural move?"
+    },
     options: [
       { 
-        text: "Database önüne Redis Cache katmanı eklemek", 
+        text: { tr: "Database önüne Redis Cache katmanı eklemek", en: "Add an in-memory Redis Cache layer in front of the database" }, 
         score: { type: 'Architect', value: 10 }, 
-        feedback: "Guru: 'Mükemmel! Veritabanı yükünü azaltmak her zaman ilk savunma hattıdır.'",
-        interviewTip: "Mülakatta her zaman 'en ucuz ve en hızlı' çözümle başlayın."
+        feedback: { tr: "Guru: 'Mükemmel! Veritabanı yükünü okumalarda azaltmak her zaman ilk savunma hattıdır.'", en: "Guru: 'Excellent! Offloading read pressure from the database is always the primary line of defense.'" },
+        interviewTip: { tr: "Mülakatta her zaman 'en ucuz, en hızlı ve en etkili' çözümle başlayın.", en: "In interviews, always propose the highest-impact, most cost-effective solution first." }
       },
       { 
-        text: "Tüm sorguları optimize edip index atmak", 
+        text: { tr: "Tüm sorguları optimize edip index atmak", en: "Optimize queries and add composite database indexes" }, 
         score: { type: 'Specialist', value: 6 }, 
-        feedback: "Guru: 'Doğru bir adım ama milyonluk trafikte bazen index bile yetmeyebilir.'",
-        interviewTip: "Indexleme iyidir ama tek başına bir mimari strateji değildir."
+        feedback: { tr: "Guru: 'Doğru bir adım ama milyonluk trafikte bazen index bile yetmeyebilir.'", en: "Guru: 'Good step, but under massive concurrency, indexes alone won't prevent pool exhaustion.'" },
+        interviewTip: { tr: "Indexleme iyidir ama tek başına bir mimari ölçekleme stratejisi değildir.", en: "Indexing is table-stakes hygiene, not a standalone scaling architecture." }
       },
       { 
-        text: "Veritabanını microservices'lere bölmek", 
+        text: { tr: "Veritabanını doğrudan microservices'lere bölmek", en: "Immediately partition the database into distributed microservices" }, 
         score: { type: 'OverKiller', value: 3 }, 
-        feedback: "Guru: 'Yangın varken ev taşımaya çalışılmaz. Microservices uzun vadeli bir çözümdür.'",
-        interviewTip: "Acil durumlarda yapısal (structural) değişiklikler risklidir."
+        feedback: { tr: "Guru: 'Yangın varken ev taşınmaz! Microservices uzun vadeli bir evrimdir.'", en: "Guru: 'Never remodel the house during a fire! Microservices is a strategic evolution, not an emergency fix.'" },
+        interviewTip: { tr: "Acil üretim anlarında devasa yapısal değişiklikler risklidir.", en: "Avoid proposing massive distributed refactors during active production incidents." }
       }
     ]
   },
   {
     id: 2,
-    title: "Domain Modelleme Kapışması",
+    title: { tr: "Domain Modelleme & Sorumluluk", en: "Domain Modeling & Responsibilities" },
     category: "DDD / Domain",
-    scenario: "Bankacılık sisteminde 'Para Transferi' işlemini modelliyorsun. 'Transaction' mantığını nereye yazarsın?",
+    scenario: {
+      tr: "Bankacılık sisteminde 'Para Transferi' işlemini modelliyorsunuz. Çift taraflı hesap hareketini ve bakiye doğrulama mantığını nereye yazarsınız?",
+      en: "You are modeling a 'Fund Transfer' feature in a banking core. Where do you place the cross-account transaction & validation logic?"
+    },
     options: [
       { 
-        text: "Domain Service (Pure Logic Layer)", 
+        text: { tr: "Domain Service (Saf İş Mantığı Katmanı)", en: "Domain Service (Pure Domain Logic Layer)" }, 
         score: { type: 'Architect', value: 10 }, 
-        feedback: "Guru: 'DDD pürüzsüzlüğü! Birden fazla entity'i (hesaplar) yöneten mantık servise aittir.'",
-        interviewTip: "Entity'ler sadece kendi iç durumlarından sorumlu olmalıdır."
+        feedback: { tr: "Guru: 'DDD kusursuzluğu! Birden fazla entity'i (hesapları) koordine eden saf mantık Domain Service'e aittir.'", en: "Guru: 'Flawless DDD! Pure business logic that spans multiple aggregates belongs in a Domain Service.'" },
+        interviewTip: { tr: "Entity'ler sadece kendi iç durumundan (kendi bakiyesinden) sorumlu olmalıdır.", en: "Entities should only guard their own internal invariants." }
       },
       { 
-        text: "Controller / Web Layer", 
-        score: { type: 'Junior', value: 1 }, 
-        feedback: "Guru: 'Fat Controller problemi! İş mantığı asla sunum katmanında olmamalı.'",
-        interviewTip: "Katmanlar arası sızıntı (leakage) mülakatlarda büyük eksi puandır."
-      },
-      { 
-        text: "Application Service (Orchestration)", 
+        text: { tr: "Application Service (Orkestrasyon)", en: "Application Service (UseCase Orchestration)" }, 
         score: { type: 'Specialist', value: 7 }, 
-        feedback: "Guru: 'Kötü değil ancak karmaşık iş kuralları için Domain Service daha güvenlidir.'",
-        interviewTip: "Application service akışı yönetir, iş kuralını değil."
+        feedback: { tr: "Guru: 'Kötü değil; ancak karmaşık para transferi iş kuralları için Domain Service daha izoledir.'", en: "Guru: 'Acceptable for orchestration, but critical domain invariants belong in the Domain layer.'" },
+        interviewTip: { tr: "Application service akışı yönetir, iş kurallarını değil.", en: "Application services orchestrate workflows, not core business invariants." }
+      },
+      { 
+        text: { tr: "Controller / Web Katmanı", en: "Controller / Web API Layer" }, 
+        score: { type: 'Junior', value: 1 }, 
+        feedback: { tr: "Guru: 'Fat Controller anti-pattern'i! İş mantığı asla sunum katmanına sızmamalıdır.'", en: "Guru: 'Fat Controller anti-pattern! Business logic must never leak into transport layers.'" },
+        interviewTip: { tr: "Katmanlar arası mantık sızıntısı (leakage) mülakatlarda büyük eksi puandır.", en: "Cross-layer domain leakage is an immediate red flag in senior interviews." }
       }
     ]
   },
   {
     id: 3,
-    title: "Bağımlılık Yönetimi (SOLID)",
-    scenario: "Projenizde ödeme sistemi olarak Stripe kullanıyorsunuz. Yarın öbür gün PayPal'a geçmek isterseniz kodunuzun sadece %1'ini değiştirmek için ne yapmalısınız?",
+    title: { tr: "Bağımlılık Yönetimi (SOLID)", en: "Dependency Management (SOLID)" },
+    category: "Architecture Principles",
+    scenario: {
+      tr: "Projenizde ödeme sağlayıcısı olarak Stripe kullanıyorsunuz. Yarın PayPal'a geçmek isterseniz kodun %99'unu değiştirmeden korumak için ne yapmalısınız?",
+      en: "Your system uses Stripe for payments. To switch to PayPal tomorrow by modifying less than 1% of your code, how should you architect this?"
+    },
     options: [
       { 
-        text: "Interface (Abstraction) ve Adapter kullanmak", 
+        text: { tr: "Interface (Abstraction) ve Adapter Pattern kullanmak", en: "Introduce an IPaymentGateway Interface and Adapter Pattern" }, 
         score: { type: 'Architect', value: 10 }, 
-        feedback: "Guru: 'İşte bu! Dependency Inversion prensibini tam kalbinden vurdun.'",
-        interviewTip: "Third-party kütüphaneleri her zaman bir arayüz arkasına gizleyin."
+        feedback: { tr: "Guru: 'İşte bu! Dependency Inversion ve Hexagonal mimariyi tam kalbinden yakaladınız.'", en: "Guru: 'Spot on! Pure Dependency Inversion and Hexagonal Ports & Adapters in action.'" },
+        interviewTip: { tr: "Üçüncü parti kütüphaneleri her zaman bir arayüz (Port) arkasına gizleyin.", en: "Always wrap third-party SDKs behind domain-owned abstraction interfaces." }
       },
       { 
-        text: "Ödeme fonksiyonlarını ayrı bir klasöre koymak", 
-        score: { type: 'Junior', value: 3 }, 
-        feedback: "Guru: 'Klasörleme sadece düzen sağlar, bağımlılığı (coupling) çözmez.'",
-        interviewTip: "Fiziksel ayrım ile mantıksal ayrımı karıştırmayın."
+        text: { tr: "Her ödeme yapılan yerde if/else ile sağlayıcı kontrolü yapmak", en: "Use if/else provider checks directly in business logic" }, 
+        score: { type: 'Junior', value: 2 }, 
+        feedback: { tr: "Guru: 'Open/Closed prensibi ihlali! Her yeni ödeme yönteminde tüm kodu bozarsınız.'", en: "Guru: 'Violates Open/Closed! Adding a provider will require modifying core business logic.'" },
+        interviewTip: { tr: "Dinamik davranışlar için if/else yerine Polimorfizm veya Strateji deseni kullanın.", en: "Favor Polymorphic Strategy patterns over sprawling conditional branches." }
       },
       { 
-        text: "Switch-case ile ödeme tipini kontrol etmek", 
-        score: { type: 'Legacy', value: 2 }, 
-        feedback: "Guru: 'Open-Closed prensibine aykırı! Her yeni ödeme yöntemi için kodu açıp bozman gerekir.'",
-        interviewTip: "If-else kalabalığı mimari bir borçtur (Technical Debt)."
-      }
-    ]
-  },
-  {
-    id: 4,
-    title: "Modern Frontend Mimari",
-    category: "React / FSD",
-    scenario: "Büyük bir dashboard projesinde 'UserCard' bileşeni 20 farklı API isteğiyle besleniyor. Bu kargaşayı nasıl yönetirsin?",
-    options: [
-      { 
-        text: "Feature-Sliced Design (FSD) katmanları ile", 
-        score: { type: 'Modernist', value: 10 }, 
-        feedback: "Guru: 'Modern frontend ustalığı. Sorumlulukları bölmek spagettiyi engeller.'",
-        interviewTip: "Frontend'de sadece bileşen değil, mimari de mülakat konusudur."
-      },
-      { 
-        text: "Tüm datayı Context API'da toplamak", 
-        score: { type: 'Junior', value: 4 }, 
-        feedback: "Guru: 'Global State cehennemi! Gereksiz re-render'lar ile performansı öldürürsün.'",
-        interviewTip: "State'i mümkün olduğunca kullanıldığı yere yakın tutun (Colocation)."
-      },
-      { 
-        text: "Custom Hook'lar ile mantığı ayırmak", 
-        score: { type: 'Specialist', value: 8 }, 
-        feedback: "Guru: 'Güzel hamle. Mantık temizlenir ama component hiyerarşisi hala karmaşık kalabilir.'",
-        interviewTip: "Hook'lar birer araçtır, mimari birer yapıdır."
+        text: { tr: "Ödeme işlemlerini ayrı bir mikroservise taşımak", en: "Extract payment processing into a standalone dedicated microservice" }, 
+        score: { type: 'Specialist', value: 6 }, 
+        feedback: { tr: "Guru: 'Faydalı bir dağıtık adım ancak o servisin içinde de hala Adapter katmanı gerekecektir.'", en: "Guru: 'Helpful operational isolation, but inside that service, you still need an abstraction adapter.'" },
+        interviewTip: { tr: "Mimari temizlik sadece servis sınırlarında değil, kod düzeyinde de başlar.", en: "Clean architecture applies at the code boundary level as well as the service boundary." }
       }
     ]
   }
 ];
 
-const AssessmentQuiz = () => {
-  const { updateQuizResult } = useProgress();
-  const [currentStep, setCurrentStep] = useState(0);
-  const [score, setScore] = useState(0);
-  const [showResult, setShowResult] = useState(false);
-  const [selectedOption, setSelectedOption] = useState<any>(null);
-  const [isAnswering, setIsAnswering] = useState(true);
+const AssessmentQuiz: React.FC = () => {
+  const { i18n } = useTranslation();
+  const isEn = (i18n.resolvedLanguage || i18n.language || 'tr').startsWith('en');
 
-  useEffect(() => {
-    if (showResult) {
-      const rank = getRank();
-      updateQuizResult(score, rank.title);
-    }
-  }, [showResult]);
+  const { completeStep } = useProgress();
+  const [currentQIndex, setCurrentQIndex] = useState(0);
+  const [selectedOption, setSelectedOption] = useState<QuizOption | null>(null);
+  const [answers, setAnswers] = useState<{ questionId: number; option: QuizOption }[]>([]);
+  const [isCompleted, setIsCompleted] = useState(false);
+
+  const currentQ = interviewQuestions[currentQIndex];
+
+  const handleSelect = (opt: QuizOption) => {
+    if (selectedOption) return; // Prevent changing after selection
+    setSelectedOption(opt);
+  };
 
   const handleNext = () => {
-    if (currentStep < interviewQuestions.length - 1) {
-      setCurrentStep(currentStep + 1);
-      setSelectedOption(null);
-      setIsAnswering(true);
+    if (!selectedOption) return;
+    const newAnswers = [...answers, { questionId: currentQ.id, option: selectedOption }];
+    setAnswers(newAnswers);
+    setSelectedOption(null);
+
+    if (currentQIndex + 1 < interviewQuestions.length) {
+      setCurrentQIndex(prev => prev + 1);
     } else {
-      setShowResult(true);
+      setIsCompleted(true);
+      completeStep('/assessment');
     }
   };
 
-  const selectOption = (option: any) => {
-    if (!isAnswering) return;
-    setScore(prev => prev + option.score.value);
-    setSelectedOption(option);
-    setIsAnswering(false);
+  const handleRestart = () => {
+    setCurrentQIndex(0);
+    setSelectedOption(null);
+    setAnswers([]);
+    setIsCompleted(false);
   };
 
-  const getRank = () => {
-    if (score >= 35) return { title: "Lead Solutions Architect", desc: "Mülakatçıyı terlettin! Mimari vizyonun en üst seviyede.", color: "#8b5cf6", icon: <Trophy size={60} /> };
-    if (score >= 20) return { title: "Senior Software Engineer", desc: "Güçlü bir temel. Trade-off'ları iyi biliyorsun.", color: "var(--primary)", icon: <Shield size={60} /> };
-    return { title: "Mid-Level Specialist", desc: "Teknik bilgin iyi ama büyük resmi görmekte biraz daha pratik lazım.", color: "#f59e0b", icon: <Target size={60} /> };
+  // Calculate Profile
+  const calculateResult = () => {
+    const scores = { Architect: 0, Specialist: 0, OverKiller: 0, Junior: 0 };
+    answers.forEach(a => {
+      scores[a.option.score.type] += a.option.score.value;
+    });
+
+    let topType = 'Architect';
+    let maxScore = -1;
+    (Object.keys(scores) as (keyof typeof scores)[]).forEach(k => {
+      if (scores[k] > maxScore) {
+        maxScore = scores[k];
+        topType = k;
+      }
+    });
+
+    const profiles = {
+      Architect: {
+        title: isEn ? "Staff / Principal Software Architect" : "Kıdemli Sistem Mimarı (Principal Architect)",
+        badge: isEn ? "SENIOR / PRINCIPAL LEVEL" : "SENIOR / PRINCIPAL SEVİYESİ",
+        color: "#10b981",
+        desc: isEn 
+          ? "You balance pragmatism with clean design. You avoid premature optimization, favor loose coupling, and prioritize business velocity and fault tolerance."
+          : "Pragmatizm ile temiz mimariyi kusursuz dengeliyorsun. Gereksiz over-engineering yapmıyor, gevşek bağımlılık ve sistem dayanıklılığını ön planda tutuyorsun."
+      },
+      Specialist: {
+        title: isEn ? "Senior Engineering Specialist" : "Kıdemli Mühendis (Senior Specialist)",
+        badge: isEn ? "SENIOR LEVEL" : "SENIOR SEVİYESİ",
+        color: "#3b82f6",
+        desc: isEn 
+          ? "Deep technical competence and clean execution. Sharpen your high-level distributed trade-offs to reach Principal mastery."
+          : "Teknik bilgin çok derin ve çözümlerin sağlam. Büyük resim ve dağıtık sistem trade-off dengelerine biraz daha odaklanarak Principal seviyesine ulaşabilirsin."
+      },
+      OverKiller: {
+        title: isEn ? "Complex System Enthusiast" : "Over-Engineering Tutkunu",
+        badge: isEn ? "OPTIMIZATION ALERT" : "OPTIMİZASYON UYARISI",
+        color: "#f59e0b",
+        desc: isEn 
+          ? "You have strong distributed knowledge, but tend to reach for microservices and complex machinery before exhausting simpler, cheaper architectural solutions."
+          : "Güçlü bir vizyonun var ancak bazen basit bir soruna devasa mikroservisler ve karmaşık dağıtık sistemlerle yaklaşma eğilimindesin. 'KISS' prensibini hatırla!"
+      },
+      Junior: {
+        title: isEn ? "Aspiring Software Engineer" : "Gelişmekte Olan Yazılımcı",
+        badge: isEn ? "ACADEMY TRAINEE" : "AKADEMİ ÇIRAK SEVİYESİ",
+        color: "#ec4899",
+        desc: isEn 
+          ? "Great potential! Dive deeper into SOLID, Layered Abstractions, and Separation of Concerns on ArchAcademy to elevate your architectural mindset."
+          : "Harika bir öğrenme azmin var! ArchAcademy'deki SOLID, Clean Architecture ve Katmanlı Soyutlama modüllerini tamamlayarak mimari reflekslerini güçlendir."
+      }
+    };
+
+    return profiles[topType as keyof typeof profiles] || profiles.Architect;
   };
 
-  if (showResult) {
-    const rank = getRank();
-    return (
-      <div className="container" style={{ padding: '40px 0 100px' }}>
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="glass-card"
-          style={{ textAlign: 'center', padding: '5rem', border: `2px solid ${rank.color}40`, background: `${rank.color}05`, borderRadius: '40px' }}
-        >
-          <div style={{ color: rank.color, marginBottom: '2rem', display: 'flex', justifyContent: 'center' }}>{rank.icon}</div>
-          <h2 style={{ fontSize: '1.2rem', color: rank.color, textTransform: 'uppercase', letterSpacing: '4px', marginBottom: '1rem', fontWeight: 900 }}>Mülakat Sonucu</h2>
-          <h1 style={{ fontSize: '4.5rem', marginBottom: '1.5rem', fontWeight: 950, letterSpacing: '-2px' }}>{rank.title}</h1>
-          <p style={{ fontSize: '1.4rem', color: 'var(--text-secondary)', maxWidth: '700px', margin: '0 auto 4rem', lineHeight: 1.6 }}>
-            {rank.desc}
-          </p>
-
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '2rem', marginBottom: '4rem' }}>
-             <div className="glass-card" style={{ padding: '2rem' }}>
-                <div style={{ fontSize: '2.5rem', fontWeight: 950, color: rank.color }}>%{Math.round((score/40)*100)}</div>
-                <div style={{ fontSize: '0.8rem', fontWeight: 700, opacity: 0.5, letterSpacing: '1px' }}>TOTAL ACCURACY</div>
-             </div>
-             <div className="glass-card" style={{ padding: '2rem' }}>
-                <div style={{ fontSize: '2.5rem', fontWeight: 950, color: rank.color }}>{score}/40</div>
-                <div style={{ fontSize: '0.8rem', fontWeight: 700, opacity: 0.5, letterSpacing: '1px' }}>RAW SCORE</div>
-             </div>
-             <div className="glass-card" style={{ padding: '2rem' }}>
-                <div style={{ fontSize: '2.5rem', fontWeight: 950, color: rank.color }}>FAANG+</div>
-                <div style={{ fontSize: '0.8rem', fontWeight: 700, opacity: 0.5, letterSpacing: '1px' }}>MATCH LEVEL</div>
-             </div>
-          </div>
-
-          <button 
-            onClick={() => window.location.reload()}
-            style={{ background: rank.color, color: 'white', padding: '1.5rem 4rem', borderRadius: '24px', fontWeight: 900, fontSize: '1.2rem', border: 'none', cursor: 'pointer', boxShadow: `0 20px 40px ${rank.color}44`, display: 'inline-flex', alignItems: 'center', gap: '1rem' }}
-          >
-            <RefreshCw size={24} /> SİMÜLASYONU SIFIRLA
-          </button>
-        </motion.div>
-      </div>
-    );
-  }
-
-  const currentQuestion = interviewQuestions[currentStep];
+  const result = isCompleted ? calculateResult() : null;
 
   return (
-    <div className="container" style={{ padding: '40px 0 100px' }}>
-      <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0, 1.2fr) minmax(0, 1fr)', gap: '4rem' }}>
-        
-        {/* Left Side: Examiner View */}
-        <div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', marginBottom: '3rem' }}>
-             <div style={{ width: '60px', height: '60px', background: 'var(--primary)', borderRadius: '18px', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontWeight: 950, fontSize: '1.5rem', boxShadow: '0 10px 20px rgba(59, 130, 246, 0.3)' }}>
-               {currentStep + 1}
-             </div>
-             <div>
-                <div style={{ color: 'var(--primary)', fontWeight: 900, fontSize: '0.85rem', textTransform: 'uppercase', letterSpacing: '3px', marginBottom: '4px' }}>{currentQuestion.category || 'Architecture'}</div>
-                <div style={{ fontSize: '0.75rem', opacity: 0.6, fontWeight: 700 }}>Question {currentStep + 1} of {interviewQuestions.length}</div>
-             </div>
+    <div className="container" style={{ maxWidth: '900px', margin: '0 auto', paddingBottom: '80px' }}>
+      {!isCompleted ? (
+        <motion.div
+          key={currentQ.id}
+          initial={{ opacity: 0, x: 20 }}
+          animate={{ opacity: 1, x: 0 }}
+          exit={{ opacity: 0, x: -20 }}
+          className="glass-card"
+          style={{ padding: '3rem', borderTop: '4px solid var(--primary)' }}
+        >
+          {/* Progress Indicator */}
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
+            <span style={{ fontSize: '0.8rem', fontWeight: 800, color: 'var(--primary)', textTransform: 'uppercase', letterSpacing: '1px' }}>
+              {isEn ? `SCENARIO ${currentQIndex + 1} OF ${interviewQuestions.length}` : `SENARYO ${currentQIndex + 1} / ${interviewQuestions.length}`}
+            </span>
+            <span style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', background: 'rgba(255,255,255,0.05)', padding: '4px 12px', borderRadius: '100px' }}>
+              {currentQ.category}
+            </span>
           </div>
 
-          <AnimatePresence mode="wait">
-            <motion.div
-               key={currentStep}
-               initial={{ opacity: 0, x: -30 }}
-               animate={{ opacity: 1, x: 0 }}
-               exit={{ opacity: 0, x: -20 }}
-            >
-              <h2 style={{ fontSize: '2.8rem', fontWeight: 900, marginBottom: '2rem', color: 'var(--text-primary)', letterSpacing: '-1px' }}>{currentQuestion.title}</h2>
-              <div style={{ background: 'rgba(255, 255, 255, 0.02)', padding: '3rem', borderRadius: '40px', border: '1px solid var(--glass-border)', position: 'relative', minHeight: '300px' }}>
-                <div style={{ position: 'absolute', top: '-15px', left: '30px', background: 'var(--bg-dark)', padding: '6px 18px', borderRadius: '12px', display: 'flex', alignItems: 'center', gap: '8px', border: '1px solid var(--glass-border)', boxShadow: '0 4px 10px rgba(0,0,0,0.3)' }}>
-                   <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: 'var(--primary)', boxShadow: '0 0 10px var(--primary)' }} />
-                   <span style={{ fontSize: '0.75rem', fontWeight: 900, letterSpacing: '1px' }}>MÜLAKATÇI (GURU)</span>
-                </div>
-                <p style={{ fontSize: '1.4rem', lineHeight: 1.8, color: 'var(--text-primary)', fontWeight: 500, opacity: 0.9 }}>
-                  "{currentQuestion.scenario}"
-                </p>
-                
-                {selectedOption && (
-                  <motion.div 
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    style={{ marginTop: '2.5rem', padding: '2rem', borderRadius: '24px', background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.05)' }}
-                  >
-                    <div style={{ color: 'var(--primary)', fontWeight: 900, marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '10px' }}>
-                      <Zap size={18} /> FEEDBACK
-                    </div>
-                    <p style={{ fontSize: '1.1rem', fontStyle: 'italic', opacity: 0.9, lineHeight: 1.6 }}>{selectedOption.feedback}</p>
-                    <div style={{ marginTop: '1.5rem', display: 'flex', alignItems: 'start', gap: '12px', background: 'rgba(16, 185, 129, 0.1)', padding: '1rem', borderRadius: '15px', color: '#10b981' }}>
-                       <AlertCircle size={20} style={{ flexShrink: 0 }} />
-                       <span style={{ fontSize: '0.9rem', fontWeight: 700 }}>PRO TIP: {selectedOption.interviewTip}</span>
-                    </div>
-                  </motion.div>
-                )}
-              </div>
-            </motion.div>
-          </AnimatePresence>
-        </div>
+          <h2 style={{ fontSize: '1.8rem', fontWeight: 800, color: 'white', marginBottom: '1rem' }}>
+            {isEn ? currentQ.title.en : currentQ.title.tr}
+          </h2>
 
-        {/* Right Side: Options View */}
-        <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-            {currentQuestion.options.map((opt, i) => {
+          <div style={{
+            background: 'rgba(59, 130, 246, 0.05)',
+            borderLeft: '4px solid var(--primary)',
+            padding: '1.5rem',
+            borderRadius: '0 16px 16px 0',
+            marginBottom: '2.5rem',
+            lineHeight: 1.7,
+            color: '#cbd5e1',
+            fontSize: '1.05rem'
+          }}>
+            {isEn ? currentQ.scenario.en : currentQ.scenario.tr}
+          </div>
+
+          {/* Options List */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginBottom: '2rem' }}>
+            {currentQ.options.map((opt, idx) => {
               const isSelected = selectedOption === opt;
               return (
                 <motion.button
-                  key={i}
-                  disabled={!isAnswering}
-                  whileHover={isAnswering ? { scale: 1.02, x: 10 } : {}}
-                  onClick={() => selectOption(opt)}
-                  className="glass-card"
+                  key={idx}
+                  onClick={() => handleSelect(opt)}
+                  whileHover={!selectedOption ? { scale: 1.01 } : {}}
                   style={{
-                    padding: '2.5rem',
+                    padding: '1.4rem',
+                    borderRadius: '16px',
                     textAlign: 'left',
-                    cursor: isAnswering ? 'pointer' : 'default',
-                    background: isSelected ? 'rgba(59, 130, 246, 0.1)' : 'rgba(255, 255, 255, 0.03)',
-                    borderColor: isSelected ? 'var(--primary)' : 'var(--glass-border)',
-                    transition: 'all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
-                    position: 'relative',
-                    opacity: !isAnswering && !isSelected ? 0.4 : 1
+                    background: isSelected ? 'rgba(59, 130, 246, 0.15)' : 'rgba(255, 255, 255, 0.02)',
+                    border: isSelected ? '2px solid var(--primary)' : '1px solid rgba(255, 255, 255, 0.08)',
+                    color: isSelected ? 'white' : 'var(--text-secondary)',
+                    fontWeight: isSelected ? 700 : 500,
+                    cursor: selectedOption ? 'default' : 'pointer',
+                    transition: 'all 0.2s',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '12px'
                   }}
                 >
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '2rem' }}>
-                     <span style={{ fontSize: '1.2rem', fontWeight: 800, color: isSelected ? 'var(--text-primary)' : 'var(--text-secondary)', transition: 'color 0.3s' }}>{opt.text}</span>
-                     {isSelected ? (
-                       <div style={{ width: '28px', height: '28px', borderRadius: '50%', background: 'var(--primary)', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 0 15px rgba(59, 130, 246, 0.5)' }}>
-                         <CheckCircle2 size={18} color="white" />
-                       </div>
-                     ) : (
-                       <div style={{ width: '24px', height: '24px', borderRadius: '50%', border: '2px solid rgba(255,255,255,0.1)', transition: 'border-color 0.3s' }} />
-                     )}
+                  <div style={{
+                    width: '28px',
+                    height: '28px',
+                    borderRadius: '50%',
+                    background: isSelected ? 'var(--primary)' : 'rgba(255,255,255,0.05)',
+                    color: isSelected ? 'white' : 'var(--text-secondary)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    fontSize: '0.85rem',
+                    fontWeight: 800,
+                    flexShrink: 0
+                  }}>
+                    {String.fromCharCode(65 + idx)}
                   </div>
+                  <span style={{ fontSize: '1rem', lineHeight: 1.5 }}>
+                    {isEn ? opt.text.en : opt.text.tr}
+                  </span>
                 </motion.button>
               );
             })}
           </div>
 
-          {!isAnswering && (
-            <motion.button
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              onClick={handleNext}
+          {/* Guru Feedback HUD (After Selection) */}
+          <AnimatePresence>
+            {selectedOption && (
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                style={{
+                  background: 'rgba(16, 185, 129, 0.08)',
+                  border: '1px solid rgba(16, 185, 129, 0.2)',
+                  borderRadius: '16px',
+                  padding: '1.5rem',
+                  marginBottom: '2rem'
+                }}
+              >
+                <div style={{ color: '#10b981', fontWeight: 800, marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  <Zap size={18} /> {isEn ? "GURU FEEDBACK:" : "GURU GERİ BİLDİRİMİ:"}
+                </div>
+                <p style={{ color: '#e2e8f0', margin: '0 0 1rem', fontSize: '0.95rem', lineHeight: 1.6 }}>
+                  {isEn ? selectedOption.feedback.en : selectedOption.feedback.tr}
+                </p>
+                <div style={{ fontSize: '0.85rem', color: '#94a3b8', borderTop: '1px dashed rgba(255,255,255,0.1)', paddingTop: '0.75rem' }}>
+                  <strong style={{ color: '#60a5fa' }}>{isEn ? "💡 Interview Tip: " : "💡 Mülakat İpucu: "}</strong>
+                  {isEn ? selectedOption.interviewTip.en : selectedOption.interviewTip.tr}
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+
+          {/* Next Button */}
+          {selectedOption && (
+            <div style={{ textAlign: 'right' }}>
+              <button
+                onClick={handleNext}
+                style={{
+                  background: 'var(--primary)',
+                  color: 'white',
+                  padding: '1rem 2rem',
+                  borderRadius: '14px',
+                  fontWeight: 800,
+                  fontSize: '1rem',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '8px',
+                  boxShadow: '0 10px 25px rgba(59, 130, 246, 0.4)'
+                }}
+              >
+                {currentQIndex + 1 < interviewQuestions.length 
+                  ? (isEn ? "Next Scenario →" : "Sonraki Senaryo →") 
+                  : (isEn ? "View Evaluation Report 🏆" : "Değerlendirme Raporunu Gör 🏆")
+                }
+              </button>
+            </div>
+          )}
+        </motion.div>
+      ) : (
+        /* Completed Report Screen */
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          className="glass-card"
+          style={{ padding: '3.5rem', textAlign: 'center', borderTop: `5px solid ${result?.color}` }}
+        >
+          <div style={{
+            width: '80px',
+            height: '80px',
+            borderRadius: '24px',
+            background: `${result?.color}20`,
+            color: result?.color,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            margin: '0 auto 1.5rem'
+          }}>
+            <Trophy size={40} />
+          </div>
+
+          <span style={{ fontSize: '0.8rem', fontWeight: 800, color: result?.color, letterSpacing: '2px', textTransform: 'uppercase' }}>
+            {result?.badge}
+          </span>
+
+          <h2 style={{ fontSize: '2.5rem', fontWeight: 900, color: 'white', margin: '0.5rem 0 1.5rem' }}>
+            {result?.title}
+          </h2>
+
+          <p style={{ color: 'var(--text-secondary)', maxWidth: '650px', margin: '0 auto 2.5rem', fontSize: '1.1rem', lineHeight: 1.8 }}>
+            {result?.desc}
+          </p>
+
+          <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center' }}>
+            <button
+              onClick={handleRestart}
               style={{
-                marginTop: '3rem',
-                background: 'white',
-                color: 'black',
-                padding: '1.5rem',
-                borderRadius: '24px',
-                fontWeight: 900,
-                fontSize: '1.1rem',
-                border: 'none',
-                cursor: 'pointer',
+                background: 'rgba(255,255,255,0.05)',
+                color: 'white',
+                border: '1px solid rgba(255,255,255,0.1)',
+                padding: '1rem 2rem',
+                borderRadius: '14px',
+                fontWeight: 700,
                 display: 'flex',
                 alignItems: 'center',
-                justifyContent: 'center',
-                gap: '1rem',
-                boxShadow: '0 20px 40px rgba(255,255,255,0.1)'
+                gap: '8px'
               }}
             >
-              SONRAKİ SORUYA GEÇ <ArrowRight size={20} />
-            </motion.button>
-          )}
-
-          {/* Linear Progress */}
-          <div style={{ marginTop: '4rem' }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.8rem', fontWeight: 900, opacity: 0.4, marginBottom: '1rem', textTransform: 'uppercase', letterSpacing: '2px' }}>
-               <span>Interview Status</span>
-               <span>{currentStep + 1} / {interviewQuestions.length}</span>
-            </div>
-            <div style={{ width: '100%', height: '8px', background: 'rgba(255,255,255,0.05)', borderRadius: '10px', overflow: 'hidden' }}>
-              <motion.div 
-                animate={{ width: `${((currentStep + 1) / interviewQuestions.length) * 100}%` }}
-                style={{ height: '100%', background: 'linear-gradient(to right, var(--primary), #818cf8)' }} 
-              />
-            </div>
+              <RefreshCw size={18} /> {isEn ? "Restart Simulator" : "Simülasyonu Yeniden Başlat"}
+            </button>
           </div>
-        </div>
-      </div>
+        </motion.div>
+      )}
     </div>
   );
 };
