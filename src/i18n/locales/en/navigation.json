@@ -21,6 +21,7 @@
     "workshop_desc": "Interactive Workshop"
   },
   "docs_menu": {
+    "acronyms": "Acronyms & Cheat Sheet",
     "glossary": "Glossary",
     "library": "Master Library",
     "project_arch": "Project Architecture"

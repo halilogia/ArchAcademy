@@ -21,6 +21,7 @@
     "workshop_desc": "İnteraktif Atölye"
   },
   "docs_menu": {
+    "acronyms": "Kısaltmalar Kılavuzu (Cheat Sheet)",
     "glossary": "Terimler Sözlüğü",
     "library": "Usta Kitaplığı",
     "project_arch": "Project Architecture"
