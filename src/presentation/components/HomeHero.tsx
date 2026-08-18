@@ -1,10 +1,14 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { Sparkles, ArrowRight, BookOpen, GraduationCap, Shield } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
+import { Sparkles, ArrowRight, BookOpen, Shield } from 'lucide-react';
 import { theme } from '../themes/theme';
 
-const HomeHero = () => {
+const HomeHero: React.FC = () => {
+  const { i18n } = useTranslation();
+  const isEn = i18n.language === 'en';
+
   return (
     <>
       <section style={{
@@ -37,7 +41,7 @@ const HomeHero = () => {
               marginBottom: '2.5rem',
               boxShadow: '0 4px 20px rgba(0,0,0,0.2)'
             }}>
-              <Sparkles size={16} /> Kişisel Tasarım Defteri v2.0
+              <Sparkles size={16} /> {isEn ? "Architect's Field Guide v2.0" : "Kişisel Tasarım Defteri v2.0"}
             </div>
 
             <h1 className="gradient-text" style={{
@@ -47,7 +51,11 @@ const HomeHero = () => {
               marginBottom: '2.5rem',
               letterSpacing: '-4px'
             }}>
-              Yazılım Mimari <br /> <span style={{ opacity: 0.9 }}>Notlarım.</span>
+              {isEn ? (
+                <>Software Architecture <br /> <span style={{ opacity: 0.9 }}>Notebooks.</span></>
+              ) : (
+                <>Yazılım Mimari <br /> <span style={{ opacity: 0.9 }}>Notlarım.</span></>
+              )}
             </h1>
 
             <p style={{
@@ -58,8 +66,13 @@ const HomeHero = () => {
               lineHeight: 1.7,
               fontWeight: 500
             }}>
-              Karmaşık sistemleri basitleştirin, senior seviye kararlar alın ve <br />
-              geleceğin yazılım mimarisini bizzat inşa edin.
+              {isEn ? (
+                <>Simplify complex systems, make senior-level decisions, and <br />
+                personally build the software architectures of tomorrow.</>
+              ) : (
+                <>Karmaşık sistemleri basitleştirin, senior seviye kararlar alın ve <br />
+                geleceğin yazılım mimarisini bizzat inşa edin.</>
+              )}
             </p>
 
             <div style={{ display: 'flex', gap: '1.5rem', justifyContent: 'center' }}>
@@ -78,7 +91,7 @@ const HomeHero = () => {
                   border: 'none',
                   cursor: 'pointer'
                 }}>
-                  Eğitime Başla <ArrowRight size={20} />
+                  {isEn ? "Start Learning" : "Eğitime Başla"} <ArrowRight size={20} />
                 </button>
               </Link>
               <Link to="/compare" style={{ textDecoration: 'none' }}>
@@ -95,7 +108,7 @@ const HomeHero = () => {
                   gap: '0.75rem',
                   cursor: 'pointer'
                 }}>
-                  <BookOpen size={20} /> Müfredat
+                  <BookOpen size={20} /> {isEn ? "Master Matrix" : "Müfredat"}
                 </button>
               </Link>
             </div>
@@ -119,7 +132,7 @@ const HomeHero = () => {
         />
       </section>
 
-      {/* --- NEW SECTION: CORE PHILOSOPHY --- */}
+      {/* --- CORE PHILOSOPHY SECTION --- */}
       <section style={{ padding: '80px 0', position: 'relative' }}>
         <div className="container">
           <div className="glass-card" style={{
@@ -140,22 +153,34 @@ const HomeHero = () => {
               </div>
 
               <h2 style={{ fontSize: '3rem', fontWeight: 900, marginBottom: '1.5rem', lineHeight: 1.1 }}>
-                Domain Özgürdür. <br />
-                <span style={{ opacity: 0.5, fontSize: '2rem' }}>(Domain is Sovereign)</span>
+                {isEn ? "Domain is Sovereign." : "Domain Özgürdür."} <br />
+                <span style={{ opacity: 0.5, fontSize: '2rem' }}>
+                  {isEn ? "(Uncompromising Business Core)" : "(Domain is Sovereign)"}
+                </span>
               </h2>
 
               <p style={{ fontSize: '1.15rem', color: 'var(--text-secondary)', lineHeight: 1.8, marginBottom: '2rem' }}>
-                Yazılım dünyasında teknolojiler değişir, ama iş kuralları (Domain) kalıcıdır.
-                Gerçek temiz kod, iş mantığını <strong>Veritabanından, Arayüzden (UI) ve Frameworklerden</strong> tamamen izole etme sanatıdır.
-                Domain, dış dünyadaki bu detaylardan habersiz, saf ve özgür olmalıdır.
+                {isEn ? (
+                  <>Technologies come and go in the software world, but business rules (the Domain) endure.
+                  True clean code is the discipline of completely isolating domain logic from <strong>Databases, UI, and Frameworks</strong>.
+                  The Domain must remain unpolluted, pure, and free from external infrastructure concerns.</>
+                ) : (
+                  <>Yazılım dünyasında teknolojiler değişir, ama iş kuralları (Domain) kalıcıdır.
+                  Gerçek temiz kod, iş mantığını <strong>Veritabanından, Arayüzden (UI) ve Frameworklerden</strong> tamamen izole etme sanatıdır.
+                  Domain, dış dünyadaki bu detaylardan habersiz, saf ve özgür olmalıdır.</>
+                )}
               </p>
 
               <ul style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                {[
+                {(isEn ? [
+                  "Infrastructure Agnostic (Total tech independence)",
+                  "Isolated Testability (Test without DB or network)",
+                  "Longevity (Code designed to outlive frameworks)"
+                ] : [
                   "Teknoloji Bağımsızlığı (Infrastructure Agnostic)",
                   "Test Edilebilirlik (Veritabanı olmadan test)",
                   "Sürdürülebilirlik (Yıllara meydan okuyan kod)"
-                ].map((item, i) => (
+                ]).map((item, i) => (
                   <li key={i} style={{ display: 'flex', alignItems: 'center', gap: '10px', color: '#e2e8f0' }}>
                     <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#10b981' }} />
                     {item}
@@ -166,7 +191,6 @@ const HomeHero = () => {
 
             {/* Right: Visual Abstract Representation - THE DOMAIN FORTRESS */}
             <div style={{ position: 'relative', height: '100%', minHeight: '400px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-
               {/* 1. THE CORE (DOMAIN) */}
               <div style={{
                 position: 'relative',
@@ -199,25 +223,19 @@ const HomeHero = () => {
                 boxShadow: '0 0 30px rgba(16, 185, 129, 0.1) inset'
               }}></div>
 
-              {/* 3. THE EXTERNAL WORLD (DIRTY DETAILS) */}
-              {/* Fixed Positions for Symmetry */}
-
-              {/* Top: UI */}
+              {/* 3. THE EXTERNAL WORLD */}
               <div style={{ position: 'absolute', top: '10px', background: '#0f172a', padding: '6px 14px', borderRadius: '100px', border: '1px solid #334155', color: '#94a3b8', fontSize: '0.75rem', display: 'flex', alignItems: 'center', gap: '8px', zIndex: 4, boxShadow: '0 10px 20px rgba(0,0,0,0.3)' }}>
                 <div style={{ width: '6px', height: '6px', background: '#ef4444', borderRadius: '50%', boxShadow: '0 0 10px #ef4444' }}></div> UI / Web
               </div>
 
-              {/* Bottom: Database */}
               <div style={{ position: 'absolute', bottom: '10px', background: '#0f172a', padding: '6px 14px', borderRadius: '100px', border: '1px solid #334155', color: '#94a3b8', fontSize: '0.75rem', display: 'flex', alignItems: 'center', gap: '8px', zIndex: 4, boxShadow: '0 10px 20px rgba(0,0,0,0.3)' }}>
                 <div style={{ width: '6px', height: '6px', background: '#f59e0b', borderRadius: '50%', boxShadow: '0 0 10px #f59e0b' }}></div> Database
               </div>
 
-              {/* Left: Frameworks */}
               <div style={{ position: 'absolute', left: '-30px', background: '#0f172a', padding: '6px 14px', borderRadius: '100px', border: '1px solid #334155', color: '#94a3b8', fontSize: '0.75rem', display: 'flex', alignItems: 'center', gap: '8px', zIndex: 4, boxShadow: '0 10px 20px rgba(0,0,0,0.3)' }}>
                 <div style={{ width: '6px', height: '6px', background: '#3b82f6', borderRadius: '50%', boxShadow: '0 0 10px #3b82f6' }}></div> React / Next
               </div>
 
-              {/* Right: External APIs */}
               <div style={{ position: 'absolute', right: '-30px', background: '#0f172a', padding: '6px 14px', borderRadius: '100px', border: '1px solid #334155', color: '#94a3b8', fontSize: '0.75rem', display: 'flex', alignItems: 'center', gap: '8px', zIndex: 4, boxShadow: '0 10px 20px rgba(0,0,0,0.3)' }}>
                 <div style={{ width: '6px', height: '6px', background: '#a855f7', borderRadius: '50%', boxShadow: '0 0 10px #a855f7' }}></div> 3rd Party
               </div>

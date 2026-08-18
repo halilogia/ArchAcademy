@@ -1,6 +1,7 @@
 import React from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import {
   Library,
   ArrowUpRight,
@@ -17,7 +18,7 @@ import {
 import HomeHero from '../components/HomeHero';
 import SEO from '../components/SEO';
 
-const FeatureCard = ({ title, icon, desc, path, color, label }: any) => (
+const FeatureCard = ({ title, icon, desc, path, color, label, isEn }: any) => (
   <Link to={path} style={{ textDecoration: 'none', color: 'inherit' }}>
     <motion.div
       whileHover={{ y: -12, scale: 1.02 }}
@@ -62,19 +63,28 @@ const FeatureCard = ({ title, icon, desc, path, color, label }: any) => (
       <p style={{ color: 'var(--text-secondary)', lineHeight: 1.6, fontSize: '0.9rem' }}>{desc}</p>
 
       <div style={{ marginTop: '2rem', display: 'flex', alignItems: 'center', gap: '8px', color: color, fontWeight: 700, fontSize: '0.8rem' }}>
-        Keşfet <ArrowUpRight size={16} />
+        {isEn ? 'Explore' : 'Keşfet'} <ArrowUpRight size={16} />
       </div>
     </motion.div>
   </Link>
 );
 
-const HomePage = () => {
+const HomePage: React.FC = () => {
+  const { i18n } = useTranslation();
+  const isEn = i18n.language === 'en';
+
   return (
     <>
       <SEO
-        title="Ana Sayfa"
-        description="ArchAcademy - Yazılım mimarisi eğitimi için kapsamlı bir platform. Clean Architecture, DDD, Microservices, Event-Driven ve daha birçok mimari pattern hakkında derinlemesine bilgi edinin."
-        keywords="yazılım mimarisi, clean architecture, ddd, microservices, event-driven, hexagonal architecture, yazılım eğitimi, mimari patternler"
+        title={isEn ? "Home | ArchAcademy" : "Ana Sayfa | ArchAcademy"}
+        description={isEn 
+          ? "ArchAcademy - Master Senior Software Architecture. Explore Clean Architecture, DDD, Microservices, Event-Driven and modern design patterns."
+          : "ArchAcademy - Yazılım mimarisi eğitimi için kapsamlı bir platform. Clean Architecture, DDD, Microservices, Event-Driven ve daha birçok mimari pattern hakkında derinlemesine bilgi edinin."
+        }
+        keywords={isEn
+          ? "software architecture, clean architecture, ddd, microservices, event-driven, hexagonal architecture, software engineering, architecture patterns"
+          : "yazılım mimarisi, clean architecture, ddd, microservices, event-driven, hexagonal architecture, yazılım eğitimi, mimari patternler"
+        }
         canonicalUrl="/"
       />
       <motion.div
@@ -119,14 +129,17 @@ const HomePage = () => {
                 marginBottom: '1.5rem',
                 letterSpacing: '1px'
               }}>
-                <Sparkles size={14} /> USER CHOICE: THE MASTERPIECE
+                <Sparkles size={14} /> {isEn ? "USER CHOICE: THE MASTERPIECE" : "KULLANICI SEÇİMİ: BAŞYAPIT"}
               </div>
               <h2 style={{ fontSize: '4.5rem', fontWeight: 950, color: 'white', marginBottom: '1.5rem', lineHeight: 1, letterSpacing: '-3px' }}>
                 Lean Clean <br />
                 <span style={{ color: '#84cc16' }}>Architecture</span>
               </h2>
               <p style={{ fontSize: '1.4rem', color: 'var(--text-secondary)', lineHeight: 1.6, marginBottom: '3rem', maxWidth: '600px' }}>
-                Gereksiz katmanlardan ve dosya kalabalığından arındırılmış, pragmatik ve yüksek performanslı bir mimari yaklaşım.
+                {isEn 
+                  ? "A pragmatic, high-performance architectural approach stripped of unnecessary layers, boilerplate, and maintenance overhead."
+                  : "Gereksiz katmanlardan ve dosya kalabalığından arındırılmış, pragmatik ve yüksek performanslı bir mimari yaklaşım."
+                }
               </p>
               <Link to="/lean-architecture" style={{ textDecoration: 'none' }}>
                 <motion.button
@@ -147,7 +160,7 @@ const HomePage = () => {
                     transition: 'all 0.3s'
                   }}
                 >
-                  BAŞYAPITI KEŞFET <ArrowUpRight size={24} />
+                  {isEn ? "EXPLORE THE MASTERPIECE" : "BAŞYAPITI KEŞFET"} <ArrowUpRight size={24} />
                 </motion.button>
               </Link>
             </div>
@@ -170,7 +183,7 @@ const HomePage = () => {
                 />
                 <Target size={150} color="#84cc16" strokeWidth={1} style={{ opacity: 0.8 }} />
                 <div style={{ position: 'absolute', top: '-10px', right: '-10px', background: '#84cc16', color: '#0f172a', padding: '12px 24px', borderRadius: '100px', fontWeight: 950, fontSize: '0.8rem', boxShadow: '0 10px 30px rgba(132, 204, 22, 0.3)' }}>
-                  %100 PRAGMATİK
+                  {isEn ? "100% PRAGMATIC" : "%100 PRAGMATİK"}
                 </div>
               </div>
             </div>
@@ -188,10 +201,13 @@ const HomePage = () => {
               viewport={{ once: true }}
             >
               <h2 className="gradient-text" style={{ fontSize: '3.5rem', fontWeight: 900, letterSpacing: '-2px' }}>
-                Mimari Hub
+                {isEn ? "Architecture Hub" : "Mimari Hub"}
               </h2>
               <p style={{ color: 'var(--text-secondary)', fontSize: '1.2rem', maxWidth: '600px', margin: '1.5rem auto' }}>
-                Yazılımın 5 farklı boyutunu keşfedin. Her biri kendi derinliğine sahip, birbirine bağlı evrenler.
+                {isEn 
+                  ? "Explore 5 dimensions of modern software engineering. Distinct yet interconnected architectural domains."
+                  : "Yazılımın 5 farklı boyutunu keşfedin. Her biri kendi derinliğine sahip, birbirine bağlı evrenler."
+                }
               </p>
             </motion.div>
           </div>
@@ -202,44 +218,49 @@ const HomePage = () => {
             gap: '2rem'
           }}>
             <FeatureCard
-              title="Code Org. & Patterns"
+              title={isEn ? "Code Org. & Patterns" : "Code Org. & Patterns"}
               icon={<Library />}
-              desc="Microservices, DDD, Clean Arch ve MVC gibi kod organizasyon desenleri."
+              desc={isEn ? "Microservices, DDD, Clean Arch, and Modular Monolith organization patterns." : "Microservices, DDD, Clean Arch ve MVC gibi kod organizasyon desenleri."}
               path="/catalog"
               color="#3b82f6"
               label="CORE"
+              isEn={isEn}
             />
             <FeatureCard
-              title="Visual Architecture"
+              title={isEn ? "Visual Architecture" : "Visual Architecture"}
               icon={<Monitor />}
-              desc="Design Systems, Atomic Design, Micro-Frontends ve görsel inşa teknikleri."
+              desc={isEn ? "Design Systems, Atomic Design, Micro-Frontends, and UI architecture." : "Design Systems, Atomic Design, Micro-Frontends ve görsel inşa teknikleri."}
               path="/ui-catalog"
               color="#0ea5e9"
               label="VISUAL"
+              isEn={isEn}
             />
             <FeatureCard
-              title="Data & AI"
+              title={isEn ? "Data & AI Intelligence" : "Data & AI"}
               icon={<Database />}
-              desc="Big Data, RAG, AI Ajanları ve yoğun veri işleme modelleri."
+              desc={isEn ? "Big Data pipelines, RAG, Autonomous AI Agents, and heavy data systems." : "Big Data, RAG, AI Ajanları ve yoğun veri işleme modelleri."}
               path="/data-ai-catalog"
               color="#8b5cf6"
               label="INTELLIGENCE"
+              isEn={isEn}
             />
             <FeatureCard
-              title="Cloud & DevOps"
+              title={isEn ? "Cloud & DevOps" : "Cloud & DevOps"}
               icon={<Cloud />}
-              desc="Kubernetes, GitOps, Serverless ve ölçeklenebilir altyapı mimarileri."
+              desc={isEn ? "Kubernetes, GitOps, Serverless, and highly scalable cloud infrastructure." : "Kubernetes, GitOps, Serverless ve ölçeklenebilir altyapı mimarileri."}
               path="/cloud-catalog"
               color="#f97316"
               label="INFRA"
+              isEn={isEn}
             />
             <FeatureCard
-              title="Disiplin Matrisi"
+              title={isEn ? "Principles & Matrix" : "Disiplin Matrisi"}
               icon={<Scale />}
-              desc="SOLID, TDD, Clean Code gibi yazılım mühendisliği prensipleri."
+              desc={isEn ? "SOLID, TDD, Clean Code, KISS, DRY and foundational engineering rules." : "SOLID, TDD, Clean Code gibi yazılım mühendisliği prensipleri."}
               path="/discipline-catalog"
               color="#10b981"
               label="PRINCIPLES"
+              isEn={isEn}
             />
           </div>
         </div>
@@ -250,10 +271,10 @@ const HomePage = () => {
         <div className="container">
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '2rem' }}>
             {[
-              { val: '70+', lab: 'Mimari Konu' },
-              { val: '5', lab: 'Ana Evren' },
+              { val: '80+', lab: isEn ? 'Arch Topics' : 'Mimari Konu' },
+              { val: '5', lab: isEn ? 'Core Domains' : 'Ana Evren' },
               { val: '100%', lab: 'Open Source' },
-              { val: '∞', lab: 'Öğrenme Potansiyeli' }
+              { val: '∞', lab: isEn ? 'Learning Potential' : 'Öğrenme Potansiyeli' }
             ].map((s, i) => (
               <div key={i} style={{ textAlign: 'center' }}>
                 <div style={{ fontSize: '3rem', fontWeight: 950, color: 'white', marginBottom: '0.5rem' }}>{s.val}</div>
@@ -274,28 +295,38 @@ const HomePage = () => {
               viewport={{ once: true }}
             >
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.8rem', color: 'var(--primary)', fontWeight: 800, marginBottom: '1.5rem' }}>
-                <Milestone size={24} /> YOL HARİTASI
+                <Milestone size={24} /> {isEn ? "CAREER ROADMAP" : "YOL HARİTASI"}
               </div>
               <h2 style={{ fontSize: '3.5rem', fontWeight: 900, marginBottom: '2rem', lineHeight: 1.1 }}>
-                Stajyerlikten <br /> <span className="gradient-text">Baş Mimarlığa.</span>
+                {isEn ? (
+                  <>From Junior Dev <br /> <span className="gradient-text">To Principal Architect.</span></>
+                ) : (
+                  <>Stajyerlikten <br /> <span className="gradient-text">Baş Mimarlığa.</span></>
+                )}
               </h2>
               <p style={{ fontSize: '1.2rem', color: 'var(--text-secondary)', lineHeight: 1.8, marginBottom: '3rem' }}>
-                Yazılım dünyasında kaybolmayın. ArchAcademy, karmaşık konuları adım adım parçalara ayırır.
-                Her modül, bir sonrakinin temelini atar ve gerçek dünya projelerinde uygulamanız için sizi hazırlar.
+                {isEn 
+                  ? "Never get lost in architectural overload. ArchAcademy breaks down complex paradigms step-by-step, building a rock-solid foundation for real-world production systems."
+                  : "Yazılım dünyasında kaybolmayın. ArchAcademy, karmaşık konuları adım adım parçalara ayırır. Her modül, bir sonrakinin temelini atar ve gerçek dünya projelerinde uygulamanız için sizi hazırlar."
+                }
               </p>
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem' }}>
                 <div style={{ display: 'flex', gap: '1rem' }}>
                   <CheckCircle2 color="#10b981" style={{ flexShrink: 0 }} />
-                  <div style={{ fontSize: '0.9rem', color: 'white', fontWeight: 600 }}>Pratik Uygulamalı Kod Örnekleri</div>
+                  <div style={{ fontSize: '0.9rem', color: 'white', fontWeight: 600 }}>
+                    {isEn ? "Practical & Production Code Examples" : "Pratik Uygulamalı Kod Örnekleri"}
+                  </div>
                 </div>
                 <div style={{ display: 'flex', gap: '1rem' }}>
                   <CheckCircle2 color="#10b981" style={{ flexShrink: 0 }} />
-                  <div style={{ fontSize: '0.9rem', color: 'white', fontWeight: 600 }}>Sektör Standartı Metodolojiler</div>
+                  <div style={{ fontSize: '0.9rem', color: 'white', fontWeight: 600 }}>
+                    {isEn ? "Industry-Standard Methodologies" : "Sektör Standartı Metodolojiler"}
+                  </div>
                 </div>
               </div>
               <Link to="/roadmap" style={{ textDecoration: 'none' }}>
                 <button style={{ marginTop: '4rem', padding: '1.25rem 3rem', borderRadius: '100px', background: 'white', color: 'black', fontWeight: 900, border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                  YOL HARİTASINI İNCELE <Sparkles size={18} />
+                  {isEn ? "VIEW THE FULL ROADMAP" : "YOL HARİTASINI İNCELE"} <Sparkles size={18} />
                 </button>
               </Link>
             </motion.div>
@@ -305,12 +336,17 @@ const HomePage = () => {
                 <Command size={120} />
               </div>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-                {[
+                {(isEn ? [
+                  { step: 1, text: 'Master foundational principles (SOLID, DRY, KISS).', color: '#3b82f6' },
+                  { step: 2, text: 'Migrate from layered Monolith to Vertical Slice.', color: '#10b981' },
+                  { step: 3, text: 'Build domain-centric systems (Clean, Hexagonal, DDD).', color: '#f59e0b' },
+                  { step: 4, text: 'Scale distributed and Event-Driven systems.', color: '#8b5cf6' }
+                ] : [
                   { step: 1, text: 'Temel prensipleri (SOLID, DRY) kavra.', color: '#3b82f6' },
                   { step: 2, text: 'Monolit mimariden Vertical Slice\'a geç.', color: '#10b981' },
                   { step: 3, text: 'Domain merkezli sistemler (Clean, DDD) kur.', color: '#f59e0b' },
                   { step: 4, text: 'Dağıtık ve Olay-Güdümlü yapıları ölçeklendir.', color: '#8b5cf6' }
-                ].map((s, i) => (
+                ]).map((s, i) => (
                   <motion.div
                     key={i}
                     initial={{ opacity: 0, y: 20 }}
@@ -338,13 +374,19 @@ const HomePage = () => {
             borderRadius: '60px',
             border: '2px solid rgba(59, 130, 246, 0.2)'
           }}>
-            <h2 style={{ fontSize: '4.5rem', marginBottom: '1.5rem', fontWeight: 950, letterSpacing: '-3px', lineHeight: 1 }}>Better Code, <br /> Better Future.</h2>
+            <h2 style={{ fontSize: '4.5rem', marginBottom: '1.5rem', fontWeight: 950, letterSpacing: '-3px', lineHeight: 1 }}>
+              Better Code, <br /> Better Future.
+            </h2>
             <p style={{ maxWidth: '800px', margin: '0 auto 4rem', color: 'var(--text-secondary)', fontSize: '1.3rem', lineHeight: 1.8 }}>
-              Bu portal, topluluk tarafından geliştirilen açık kaynaklı bir eğitim projesidir.
-              Mimari becerilerinizi sürekli geliştirecek içerikler ve güncellemeler ekliyoruz.
+              {isEn 
+                ? "This portal is a community-driven open-source software engineering education project. Continuously evolving with cutting-edge architecture guides."
+                : "Bu portal, topluluk tarafından geliştirilen açık kaynaklı bir eğitim projesidir. Mimari becerilerinizi sürekli geliştirecek içerikler ve güncellemeler ekliyoruz."
+              }
             </p>
             <div style={{ display: 'flex', gap: '2rem', justifyContent: 'center' }}>
-              <a href="https://github.com/halilogia/ArchAcademy" target="_blank" rel="noopener noreferrer" style={{ padding: '1.25rem 3rem', background: 'white', color: 'black', borderRadius: '24px', fontWeight: 900, textDecoration: 'none', transition: 'all 0.3s', boxShadow: '0 10px 40px rgba(255,255,255,0.1)' }}>GitHub Arşivini Gez</a>
+              <a href="https://github.com/halilogia/ArchAcademy" target="_blank" rel="noopener noreferrer" style={{ padding: '1.25rem 3rem', background: 'white', color: 'black', borderRadius: '24px', fontWeight: 900, textDecoration: 'none', transition: 'all 0.3s', boxShadow: '0 10px 40px rgba(255,255,255,0.1)' }}>
+                {isEn ? "Explore GitHub Repository" : "GitHub Arşivini Gez"}
+              </a>
             </div>
           </div>
         </div>
