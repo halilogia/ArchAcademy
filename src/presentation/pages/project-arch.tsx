@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Layers, Palette, Sparkles, Wind, Brain, Activity, Layout, Shield, Cpu, Share2, Network, Database } from 'lucide-react';
@@ -9,6 +10,7 @@ import ProjectDecisionRecords from '../components/ProjectDecisionRecords';
 import ProjectDesignSystem from '../components/ProjectDesignSystem';
 import ArchHero from '../components/ArchHero';
 import { useLocation } from 'react-router-dom';
+
 
 const ArchBrainContent = ({ TabSwitcher }: { TabSwitcher: React.FC }) => {
   const nodes = [
@@ -94,6 +96,8 @@ const ArchBrainContent = ({ TabSwitcher }: { TabSwitcher: React.FC }) => {
 };
 
 const ProjectPage = () => {
+  const { i18n } = useTranslation();
+  const isEn = (i18n.resolvedLanguage || i18n.language || 'tr').startsWith('en');
   const location = useLocation();
   const [activeTab, setActiveTab] = useState(() => {
     const params = new URLSearchParams(location.search);

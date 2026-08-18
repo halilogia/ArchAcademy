@@ -1,6 +1,8 @@
+import { useTranslation } from 'react-i18next';
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
+
   Share2, Plus, Code2, Database, Zap, Sparkles, Trash2, 
   ArrowRight, Save, Link as LinkIcon, FolderTree, FileCode, 
   Settings, Activity, Eye, Layers, Brain
@@ -31,6 +33,8 @@ const MOCK_FILES = [
 ];
 
 const SynthesisLabPage = () => {
+  const { i18n } = useTranslation();
+  const isEn = (i18n.resolvedLanguage || i18n.language || 'tr').startsWith('en');
   const [nodes, setNodes] = useState<VisualNode[]>([
     { id: '1', type: 'Entity', name: 'User', code: 'export class User {\n  id: string;\n  email: string;\n}', x: 450, y: 200, health: 98 },
     { id: '2', type: 'Repository', name: 'UserRepository', code: 'interface IUserRepository {\n  save(user: User): void;\n}', x: 750, y: 350, health: 100 }

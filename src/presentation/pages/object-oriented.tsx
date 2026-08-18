@@ -1,9 +1,13 @@
+import { useTranslation } from 'react-i18next';
 import React from 'react';
 import { motion } from 'framer-motion';
 import ArchHero from '../components/ArchHero';
 import { Package, GitBranch, Target, Shield, Zap, BookOpen, Cpu, MessageSquare } from 'lucide-react';
 
+
 const ObjectOrientedPage = () => {
+  const { i18n } = useTranslation();
+  const isEn = (i18n.resolvedLanguage || i18n.language || 'tr').startsWith('en');
   const illu = (
     <div style={{ position: 'relative', width: '300px', height: '300px' }}>
       {[0, 1, 2].map((i) => (

@@ -1,7 +1,9 @@
+import { useTranslation } from 'react-i18next';
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import ArchHero from '../components/ArchHero';
 import { 
+
   Server, 
   Smartphone, 
   Database, 
@@ -15,6 +17,8 @@ import {
 } from 'lucide-react';
 
 const ClientServerPage = () => {
+  const { i18n } = useTranslation();
+  const isEn = (i18n.resolvedLanguage || i18n.language || 'tr').startsWith('en');
   const [activeTab, setActiveTab] = useState<'simulation' | 'comparison'>('comparison');
   const [requestStatus, setRequestStatus] = useState<'IDLE' | 'SENDING' | 'PROCESSING' | 'RECEIVING'>('IDLE');
   const [serverLoad, setServerLoad] = useState(0);

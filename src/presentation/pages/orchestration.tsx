@@ -1,9 +1,13 @@
+import { useTranslation } from 'react-i18next';
 import React from 'react';
 import { motion } from 'framer-motion';
 import ArchHero from '../components/ArchHero';
 import { Target, GitMerge, Cpu, Zap } from 'lucide-react';
 
+
 const OrchestrationPage = () => {
+  const { i18n } = useTranslation();
+  const isEn = (i18n.resolvedLanguage || i18n.language || 'tr').startsWith('en');
   const illu = (
     <div style={{ position: 'relative', width: '300px', height: '300px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
       {/* Central Background Pulse */}

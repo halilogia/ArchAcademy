@@ -1,10 +1,14 @@
+import { useTranslation } from 'react-i18next';
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Bot, Network, BrainCircuit, Activity, BookOpen } from 'lucide-react';
 import ArchHero from '../components/ArchHero';
 import { theme } from '../themes/theme';
 
+
 const AgenticAIPage = () => {
+  const { i18n } = useTranslation();
+  const isEn = (i18n.resolvedLanguage || i18n.language || 'tr').startsWith('en');
   return (
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} style={{ background: theme.colors.bgDark, minHeight: '100vh' }}>
       <ArchHero

@@ -1,9 +1,13 @@
+import { useTranslation } from 'react-i18next';
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Settings, BarChart, GitBranch, Terminal, BookOpen } from 'lucide-react';
 import ArchHero from '../components/ArchHero';
 
+
 const LLMOpsPage = () => {
+  const { i18n } = useTranslation();
+  const isEn = (i18n.resolvedLanguage || i18n.language || 'tr').startsWith('en');
   return (
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} style={{ background: 'var(--bg-dark)', minHeight: '100vh' }}>
       <ArchHero 

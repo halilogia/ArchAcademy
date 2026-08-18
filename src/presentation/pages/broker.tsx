@@ -1,7 +1,9 @@
+import { useTranslation } from 'react-i18next';
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import ArchHero from '../components/ArchHero';
 import { 
+
   Share2, 
   MessageSquare, 
   Zap, 
@@ -23,7 +25,9 @@ interface QueueMessage {
 }
 
 const BrokerPage = () => {
-    const [activeTab, setActiveTab] = useState<'simulation' | 'comparison'>('comparison');
+  const { i18n } = useTranslation();
+  const isEn = (i18n.resolvedLanguage || i18n.language || 'tr').startsWith('en');
+  const [activeTab, setActiveTab] = useState<'simulation' | 'comparison'>('comparison');
     const [queue, setQueue] = useState<QueueMessage[]>([]);
     const [consumers, setConsumers] = useState<{ id: number, type: string, busy: boolean }[]>([
         { id: 1, type: 'payment', busy: false },

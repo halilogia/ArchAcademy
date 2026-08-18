@@ -4,7 +4,6 @@ import { useTranslation } from 'react-i18next';
 import OnionHero from '../components/OnionHero';
 import OnionDiagram from '../components/OnionDiagram';
 import OnionPractical from '../components/OnionPractical';
-import OnionEN from '../locales/en/pages/onion.en';
 
 const OnionPage = () => {
   const { i18n } = useTranslation();

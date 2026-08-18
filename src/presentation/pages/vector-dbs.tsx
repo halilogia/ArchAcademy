@@ -1,9 +1,13 @@
+import { useTranslation } from 'react-i18next';
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Database, Search, Cpu, Zap, Share2, Box, Layers, MousePointer2, GitMerge } from 'lucide-react';
 import ArchHero from '../components/ArchHero';
 
+
 const VectorDBPage: React.FC = () => {
+  const { i18n } = useTranslation();
+  const isEn = (i18n.resolvedLanguage || i18n.language || 'tr').startsWith('en');
   return (
     <div style={{ minHeight: '100vh', background: '#020617', color: 'white' }}>
       <ArchHero 

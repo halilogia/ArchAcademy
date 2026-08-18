@@ -1,9 +1,13 @@
+import { useTranslation } from 'react-i18next';
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Compass, Home, Search, ArrowLeft } from 'lucide-react';
 
+
 const NotFoundPage = () => {
+  const { i18n } = useTranslation();
+  const isEn = (i18n.resolvedLanguage || i18n.language || 'tr').startsWith('en');
   return (
     <motion.div
       initial={{ opacity: 0 }}

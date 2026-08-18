@@ -1,8 +1,10 @@
+import { useTranslation } from 'react-i18next';
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import ArchHero from '../components/ArchHero';
 import { 
+
   Sparkles, 
   Code2, 
   Scissors, 
@@ -17,6 +19,8 @@ import {
 } from 'lucide-react';
 
 const CleanCodePage: React.FC = () => {
+  const { i18n } = useTranslation();
+  const isEn = (i18n.resolvedLanguage || i18n.language || 'tr').startsWith('en');
   const [activeTab, setActiveTab] = useState<'bad' | 'good'>('bad');
 
   return (

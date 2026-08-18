@@ -1,10 +1,14 @@
+import { useTranslation } from 'react-i18next';
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Ship, GraduationCap, ArrowRight, Sparkles, Trophy, Users, BookOpen } from 'lucide-react';
 import ArchitectRoadmap from '../components/ArchitectRoadmap';
 import ProductionFlow from '../components/ProductionFlow';
 
+
 const RoadmapPage = () => {
+  const { i18n } = useTranslation();
+  const isEn = (i18n.resolvedLanguage || i18n.language || 'tr').startsWith('en');
   const [activeTab, setActiveTab] = useState<'career' | 'production'>('career');
 
   const TabSwitcher = () => (

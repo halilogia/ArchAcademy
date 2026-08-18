@@ -1,7 +1,9 @@
+import { useTranslation } from 'react-i18next';
 import React from 'react';
 import { motion } from 'framer-motion';
 import ArchHero from '../components/ArchHero';
 import { 
+
   Share2, 
   Cpu, 
   Layers, 
@@ -18,6 +20,8 @@ import {
 } from 'lucide-react';
 
 const ComponentStatePage = () => {
+  const { i18n } = useTranslation();
+  const isEn = (i18n.resolvedLanguage || i18n.language || 'tr').startsWith('en');
   const illu = (
     <div style={{ position: 'relative', width: '350px', height: '350px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
       {/* Central State Sphere */}

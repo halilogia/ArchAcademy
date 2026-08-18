@@ -4,7 +4,6 @@ import { useTranslation } from 'react-i18next';
 import HexagonalHero from '../components/HexagonalHero';
 import HexagonalDiagram from '../components/HexagonalDiagram';
 import HexagonalPractical from '../components/HexagonalPractical';
-import HexagonalEN from '../locales/en/pages/hexagonal.en';
 
 const HexagonalPage = () => {
   const { i18n } = useTranslation();

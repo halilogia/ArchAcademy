@@ -1,8 +1,10 @@
+import { useTranslation } from 'react-i18next';
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import ArchHero from '../components/ArchHero';
 import { useProgress } from '../context/ProgressContext';
 import { 
+
   Map, 
   Share2, 
   Box, 
@@ -17,7 +19,9 @@ import {
 } from 'lucide-react';
 
 const MVVMCPage = () => {
-    const { completeStep } = useProgress();
+  const { i18n } = useTranslation();
+  const isEn = (i18n.resolvedLanguage || i18n.language || 'tr').startsWith('en');
+  const { completeStep } = useProgress();
     const [activeTab, setActiveTab] = useState<'concepts' | 'comparison'>('comparison');
 
   useEffect(() => {

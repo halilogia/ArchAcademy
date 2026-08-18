@@ -1,7 +1,9 @@
+import { useTranslation } from 'react-i18next';
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import ArchHero from '../components/ArchHero';
 import { 
+
   Layers, 
   Box, 
   Cpu, 
@@ -16,6 +18,8 @@ import {
 } from 'lucide-react';
 
 const AbstractionPage = () => {
+  const { i18n } = useTranslation();
+  const isEn = (i18n.resolvedLanguage || i18n.language || 'tr').startsWith('en');
   const [activeTab, setActiveTab] = useState<'simulation' | 'concept'>('concept');
   const [selectedProvider, setSelectedProvider] = useState<'stripe' | 'paypal' | 'crypto'>('stripe');
   const [log, setLog] = useState<string[]>([]);

@@ -1,8 +1,10 @@
+import { useTranslation } from 'react-i18next';
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import ArchHero from '../components/ArchHero';
 import { useProgress } from '../context/ProgressContext';
 import { 
+
   Box, 
   Layers, 
   Share2, 
@@ -19,6 +21,8 @@ import {
 } from 'lucide-react';
 
 const OOPFundamentalsPage = () => {
+  const { i18n } = useTranslation();
+  const isEn = (i18n.resolvedLanguage || i18n.language || 'tr').startsWith('en');
   const { completeStep } = useProgress();
   const [activeTab, setActiveTab] = useState<'encapsulation' | 'abstraction' | 'inheritance' | 'polymorphism'>('encapsulation');
 

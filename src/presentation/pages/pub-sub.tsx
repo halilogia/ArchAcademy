@@ -1,7 +1,9 @@
+import { useTranslation } from 'react-i18next';
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import ArchHero from '../components/ArchHero';
 import { 
+
   Radio, 
   Zap, 
   Target, 
@@ -26,7 +28,9 @@ interface Subscriber {
 }
 
 const PubSubPage = () => {
-    const [activeTab, setActiveTab] = useState<'simulation' | 'comparison'>('comparison');
+  const { i18n } = useTranslation();
+  const isEn = (i18n.resolvedLanguage || i18n.language || 'tr').startsWith('en');
+  const [activeTab, setActiveTab] = useState<'simulation' | 'comparison'>('comparison');
     const [subscribers, setSubscribers] = useState<Subscriber[]>([
         { id: 1, name: 'Web App', topics: ['tech'], isOnline: true, messages: [] },
         { id: 2, name: 'Mobile App', topics: ['sports', 'news'], isOnline: true, messages: [] },

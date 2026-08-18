@@ -1,7 +1,9 @@
+import { useTranslation } from 'react-i18next';
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import ArchHero from '../components/ArchHero';
 import { 
+
   Puzzle, 
   Power, 
   Settings, 
@@ -22,7 +24,9 @@ interface Extension {
 }
 
 const PlugInPage = () => {
-    const [activeTab, setActiveTab] = useState<'simulation' | 'concept'>('concept');
+  const { i18n } = useTranslation();
+  const isEn = (i18n.resolvedLanguage || i18n.language || 'tr').startsWith('en');
+  const [activeTab, setActiveTab] = useState<'simulation' | 'concept'>('concept');
     const [extensions, setExtensions] = useState<Extension[]>([
         { id: 'dark-mode', name: 'Dark Contrast', description: 'Injects dark CSS styles.', type: 'ui', active: false },
         { id: 'logger', name: 'Event Logger', description: 'Intercepts user clicks.', type: 'logic', active: false },

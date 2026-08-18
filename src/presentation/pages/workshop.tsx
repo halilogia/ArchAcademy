@@ -1,6 +1,8 @@
+import { useTranslation } from 'react-i18next';
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Hammer, Brain, FolderOpen, CheckCircle2, XCircle, Layers, FileCode, Folder, Play, Trophy, Sparkles, Code2, ShieldCheck, Zap, Monitor } from 'lucide-react';
+
 
 // --- CLEANED GAME CONTENT ---
 const masterLevels = [
@@ -73,6 +75,8 @@ const masterLevels = [
 ];
 
 const WorkshopPage = () => {
+  const { i18n } = useTranslation();
+  const isEn = (i18n.resolvedLanguage || i18n.language || 'tr').startsWith('en');
   const [gameStatus, setGameStatus] = useState<'intro' | 'playing' | 'finished'>('intro');
   const [currentLevelIndex, setCurrentLevelIndex] = useState(0);
   const [score, setScore] = useState(0);

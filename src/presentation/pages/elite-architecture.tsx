@@ -1,11 +1,15 @@
+import { useTranslation } from 'react-i18next';
 import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Hero from '../components/Hero';
 import { useProgress } from '../context/ProgressContext';
 import { Shield, Zap, Layout, Database, Activity, Volume2 } from 'lucide-react';
 
+
 const EliteArchitecturePage = () => {
-    const { completeStep } = useProgress();
+  const { i18n } = useTranslation();
+  const isEn = (i18n.resolvedLanguage || i18n.language || 'tr').startsWith('en');
+  const { completeStep } = useProgress();
     const [activeTab, setActiveTab] = useState<'overview' | 'layers' | 'patterns' | 'elite'>('overview');
 
     useEffect(() => {

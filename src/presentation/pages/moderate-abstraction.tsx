@@ -1,7 +1,9 @@
+import { useTranslation } from 'react-i18next';
 import React from 'react';
 import { motion } from 'framer-motion';
 import ArchHero from '../components/ArchHero';
 import { 
+
   Layers, 
   MousePointer2, 
   Gauge, 
@@ -10,7 +12,9 @@ import {
 } from 'lucide-react';
 
 const ModerateAbstractionPage = () => {
-    const illu = (
+  const { i18n } = useTranslation();
+  const isEn = (i18n.resolvedLanguage || i18n.language || 'tr').startsWith('en');
+  const illu = (
         <div style={{ position: 'relative', width: '300px', height: '300px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
             {/* The Balance Scale */}
              <motion.div 

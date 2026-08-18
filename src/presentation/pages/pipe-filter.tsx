@@ -1,7 +1,9 @@
+import { useTranslation } from 'react-i18next';
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import ArchHero from '../components/ArchHero';
 import { 
+
   Filter, 
   ArrowRight, 
   Activity, 
@@ -20,7 +22,9 @@ interface DataPacket {
 }
 
 const PipeFilterPage = () => {
-    const [activeTab, setActiveTab] = useState<'simulation' | 'concept'>('concept');
+  const { i18n } = useTranslation();
+  const isEn = (i18n.resolvedLanguage || i18n.language || 'tr').startsWith('en');
+  const [activeTab, setActiveTab] = useState<'simulation' | 'concept'>('concept');
     const [pipelineActive, setPipelineActive] = useState(false);
     const [processedPackets, setProcessedPackets] = useState<DataPacket[]>([]);
     

@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
@@ -9,7 +10,10 @@ import {
 import ArchHero from '../components/ArchHero';
 import ArchReferences from '../components/ArchReferences';
 
+
 const LeanArchitecturePage = () => {
+  const { i18n } = useTranslation();
+  const isEn = (i18n.resolvedLanguage || i18n.language || 'tr').startsWith('en');
   const [activeTab, setActiveTab] = useState(0);
 
   const principles = [

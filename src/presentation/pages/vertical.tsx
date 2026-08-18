@@ -4,7 +4,6 @@ import { useTranslation } from 'react-i18next';
 import VerticalHero from '../components/VerticalHero';
 import VerticalComparison from '../components/VerticalComparison';
 import VerticalPractical from '../components/VerticalPractical';
-import VerticalEN from '../locales/en/pages/vertical.en';
 
 const VerticalSlicePage = () => {
   const { i18n } = useTranslation();

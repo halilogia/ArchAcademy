@@ -1,9 +1,13 @@
+import { useTranslation } from 'react-i18next';
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Zap, Anchor, Layers, Smartphone, Layout, ShoppingBag } from 'lucide-react';
 import ArchHero from '../components/ArchHero';
 
+
 const IslandsArchPage = () => {
+  const { i18n } = useTranslation();
+  const isEn = (i18n.resolvedLanguage || i18n.language || 'tr').startsWith('en');
   const [activeIsland, setActiveIsland] = useState<string | null>(null);
 
   return (

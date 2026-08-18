@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import DDDHero from '../components/DDDHero';
@@ -7,7 +8,10 @@ import DDDSection from '../components/DDDSection';
 import DDDKeyConcepts from '../components/DDDKeyConcepts';
 import { useProgress } from '../context/ProgressContext';
 
+
 const DDDPage = () => {
+  const { i18n } = useTranslation();
+  const isEn = (i18n.resolvedLanguage || i18n.language || 'tr').startsWith('en');
   const { completeStep } = useProgress();
 
   useEffect(() => {

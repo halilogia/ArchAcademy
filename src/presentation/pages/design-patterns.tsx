@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import React from 'react';
 import { motion } from 'framer-motion';
 import { 
@@ -12,7 +13,10 @@ import {
 import ArchHero from '../components/ArchHero';
 import { useNavigate } from 'react-router-dom';
 
+
 const DesignPatternsPage = () => {
+  const { i18n } = useTranslation();
+  const isEn = (i18n.resolvedLanguage || i18n.language || 'tr').startsWith('en');
   const navigate = useNavigate();
 
   const categories = [

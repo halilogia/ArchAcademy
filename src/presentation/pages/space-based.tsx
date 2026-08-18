@@ -1,10 +1,14 @@
+import { useTranslation } from 'react-i18next';
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Database, Zap, Cpu, Server, Layers, ArrowDownUp, RefreshCcw, Box, HardDrive, Activity } from 'lucide-react';
 import ArchHero from '../components/ArchHero';
 
+
 const SpaceBasedPage = () => {
-    const [activeTab, setActiveTab] = useState<'simulation' | 'comparison'>('comparison');
+  const { i18n } = useTranslation();
+  const isEn = (i18n.resolvedLanguage || i18n.language || 'tr').startsWith('en');
+  const [activeTab, setActiveTab] = useState<'simulation' | 'comparison'>('comparison');
     const [requests, setRequests] = useState<number>(0);
     const [partitions, setPartitions] = useState([
         { id: 1, load: 0, range: 'A-M', color: '#eab308' },

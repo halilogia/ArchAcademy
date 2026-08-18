@@ -1,10 +1,14 @@
+import { useTranslation } from 'react-i18next';
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Database, Search, FileText, Cpu, BookOpen } from 'lucide-react';
 import ArchHero from '../components/ArchHero';
 import { theme } from '../themes/theme';
 
+
 const RAGPage = () => {
+  const { i18n } = useTranslation();
+  const isEn = (i18n.resolvedLanguage || i18n.language || 'tr').startsWith('en');
   const [activeStep] = useState(0);
 
   const steps = [

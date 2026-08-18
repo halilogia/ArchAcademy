@@ -1,7 +1,9 @@
+import { useTranslation } from 'react-i18next';
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import ArchHero from '../components/ArchHero';
 import { 
+
   Layout, 
   UserCheck, 
   Activity, 
@@ -19,7 +21,9 @@ import {
 } from 'lucide-react';
 
 const MVPPage = () => {
-    const [activeTab, setActiveTab] = useState<'concepts' | 'comparison'>('comparison');
+  const { i18n } = useTranslation();
+  const isEn = (i18n.resolvedLanguage || i18n.language || 'tr').startsWith('en');
+  const [activeTab, setActiveTab] = useState<'concepts' | 'comparison'>('comparison');
 
   const illu = (
     <div style={{ position: 'relative', width: '350px', height: '350px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'space-between' }}>

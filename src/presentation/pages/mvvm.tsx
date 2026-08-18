@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import ArchHero from '../components/ArchHero';
@@ -35,7 +36,10 @@ import {
 } from 'lucide-react';
 import { useProgress } from '../context/ProgressContext';
 
+
 const MVVMPage = () => {
+  const { i18n } = useTranslation();
+  const isEn = (i18n.resolvedLanguage || i18n.language || 'tr').startsWith('en');
   const { completeStep } = useProgress();
   const [activeTab, setActiveTab] = useState<'principles' | 'hybrid' | 'nia'>('principles');
 

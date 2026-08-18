@@ -1,7 +1,9 @@
+import { useTranslation } from 'react-i18next';
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import ArchHero from '../components/ArchHero';
 import { 
+
   Layout, 
   Database, 
   Settings, 
@@ -18,6 +20,8 @@ import {
 } from 'lucide-react';
 
 const MVCPage = () => {
+  const { i18n } = useTranslation();
+  const isEn = (i18n.resolvedLanguage || i18n.language || 'tr').startsWith('en');
   const [activeTab, setActiveTab] = useState<'concepts' | 'comparison'>('comparison');
 
   const illu = (

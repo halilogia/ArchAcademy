@@ -1,8 +1,10 @@
+import { useTranslation } from 'react-i18next';
 import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import ArchHero from '../components/ArchHero';
 import { useProgress } from '../context/ProgressContext';
 import { 
+
   Skull, 
   Trash2, 
   ZapOff, 
@@ -14,6 +16,8 @@ import {
 } from 'lucide-react';
 
 const AntiPatternsPage = () => {
+  const { i18n } = useTranslation();
+  const isEn = (i18n.resolvedLanguage || i18n.language || 'tr').startsWith('en');
   const { completeStep } = useProgress();
 
   useEffect(() => {

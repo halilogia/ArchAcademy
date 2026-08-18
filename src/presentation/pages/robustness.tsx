@@ -1,7 +1,9 @@
+import { useTranslation } from 'react-i18next';
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import ArchHero from '../components/ArchHero';
 import { 
+
   Activity, 
   AlertTriangle, 
   RefreshCw, 
@@ -18,7 +20,9 @@ import {
 } from 'lucide-react';
 
 const RobustnessPage = () => {
-    const [activeTab, setActiveTab] = useState<'simulation' | 'concept'>('concept');
+  const { i18n } = useTranslation();
+  const isEn = (i18n.resolvedLanguage || i18n.language || 'tr').startsWith('en');
+  const [activeTab, setActiveTab] = useState<'simulation' | 'concept'>('concept');
     const [circuitState, setCircuitState] = useState<'CLOSED' | 'OPEN' | 'HALF-OPEN'>('CLOSED');
     const [requestStatus, setRequestStatus] = useState<'idle' | 'success' | 'failed' | 'blocked'>('idle');
     const [failCount, setFailCount] = useState(0);

@@ -1,7 +1,9 @@
+import { useTranslation } from 'react-i18next';
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import ArchHero from '../components/ArchHero';
 import { 
+
   Code2, 
   Terminal, 
   Cpu, 
@@ -13,7 +15,9 @@ import {
 } from 'lucide-react';
 
 const InterpreterPage = () => {
-    const [activeTab, setActiveTab] = useState<'simulation' | 'concept'>('concept');
+  const { i18n } = useTranslation();
+  const isEn = (i18n.resolvedLanguage || i18n.language || 'tr').startsWith('en');
+  const [activeTab, setActiveTab] = useState<'simulation' | 'concept'>('concept');
     const [code, setCode] = useState<string>('SET price 100\nDISCOUNT 20\nTAX 18\nPRINT total');
     const [output, setOutput] = useState<string[]>([]);
     const [isRunning, setIsRunning] = useState(false);

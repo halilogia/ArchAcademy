@@ -1,23 +1,27 @@
+import { useTranslation } from 'react-i18next';
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { Hexagon, Zap, Compass, Sparkles, Layers, Box, Cpu, Network } from 'lucide-react';
+import SEO from '../components/SEO';
 
 interface ArchItem {
   name: string;
   path: string;
   color: string;
-  desc: string;
+  desc: { tr: string; en: string };
 }
 
 interface ArchCategory {
   id: string;
-  name: string;
+  name: { tr: string; en: string };
   color: string;
   items: ArchItem[];
 }
 
-const CatalogPage = () => {
+const CatalogPage: React.FC = () => {
+  const { i18n } = useTranslation();
+  const isEn = (i18n.resolvedLanguage || i18n.language || 'tr').startsWith('en');
   const navigate = useNavigate();
   const [hoveredItem, setHoveredItem] = useState<ArchItem | null>(null);
   const [rotation, setRotation] = useState(0);
@@ -32,304 +36,148 @@ const CatalogPage = () => {
   const categories: ArchCategory[] = [
     {
       id: 'domain-centric',
-      name: 'Domain-Centric',
+      name: { tr: 'Domain Odaklı', en: 'Domain-Centric' },
       color: '#a855f7',
       items: [
-        { name: 'Clean Architecture', path: '/clean-arch', color: '#a855f7', desc: 'Uncle Bob\'un bağımsızlık katmanları.' },
-        { name: 'Onion Architecture', path: '/onion', color: '#c084fc', desc: 'Bağımlılık yönü merkeze olan yapı.' },
-        { name: 'DDD Architecture', path: '/ddd', color: '#d8b4fe', desc: 'İş mantığını dile ve bounded context\'e odaklayan tasarım.' },
-        { name: 'Hexagonal', path: '/hexagonal', color: '#a855f7', desc: 'Ports & Adapters soyutlama modeli.' }
+        { name: 'Clean Architecture', path: '/clean-arch', color: '#a855f7', desc: { tr: "Uncle Bob'un bağımsızlık ve test edilebilirlik katmanları.", en: "Uncle Bob's layers of independence and testability." } },
+        { name: 'Onion Architecture', path: '/onion', color: '#c084fc', desc: { tr: 'Bağımlılık yönü daima merkeze doğru olan dairesel mimari.', en: 'Concentric architectural pattern with inward-pointing dependencies.' } },
+        { name: 'DDD Architecture', path: '/ddd', color: '#d8b4fe', desc: { tr: 'İş mantığını dile ve Bounded Context sınırlarına odaklayan tasarım.', en: 'Aligning software design strictly with domain logic and bounded contexts.' } },
+        { name: 'Hexagonal', path: '/hexagonal', color: '#a855f7', desc: { tr: 'Ports & Adapters soyutlama modeli ile dış dünyadan izolasyon.', en: 'Ports & Adapters pattern isolating core domain logic from external tech.' } }
       ]
     },
     {
       id: 'layered-modern',
-      name: 'Layered & Modern',
+      name: { tr: 'Katmanlı & Modern', en: 'Layered & Modern' },
       color: '#3b82f6',
       items: [
-        { name: 'Vertical Slice', path: '/vertical', color: '#3b82f6', desc: 'Modern startup odaklı özellik bazlı tasarım.' },
-        { name: 'n-Tier (Horizontal)', path: '/horizontal', color: '#60a5fa', desc: 'Klasik sorumluluk bazlı katmanlandırma.' },
-        { name: 'FSD (Frontend)', path: '/fsd', color: '#93c5fd', desc: 'Büyük ölçekli React/Next projeleri için katmanlı yapı.' }
+        { name: 'Vertical Slice', path: '/vertical', color: '#3b82f6', desc: { tr: 'Startup ve yapay zeka dostu özellik bazlı dikey tasarım.', en: 'Feature-first cohesion optimized for modern agile & AI workflows.' } },
+        { name: 'n-Tier (Horizontal)', path: '/horizontal', color: '#60a5fa', desc: { tr: 'Klasik sorumluluk bazlı yatay katmanlandırma.', en: 'Traditional horizontal separation of concerns by technical layers.' } },
+        { name: 'FSD (Frontend)', path: '/fsd', color: '#93c5fd', desc: { tr: 'Büyük ölçekli frontend projeleri için Feature-Sliced Design.', en: 'Feature-Sliced Design for scaling complex frontend codebases.' } }
       ]
     },
     {
       id: 'distributed-messaging',
-      name: 'Distributed & Messaging',
-      color: '#ec4899',
-      items: [
-        { name: 'Broker (Kafka)', path: '/broker', color: '#ec4899', desc: 'Merkezi mesaj dağıtım sistemi.' },
-        { name: 'Pub-Sub', path: '/pub-sub', color: '#fda4af', desc: 'Yayıncı ve abone modeli.' },
-        { name: 'P2P Network', path: '/p2p', color: '#be185d', desc: 'Merkeziyetsiz eşler arası iletişim.' },
-        { name: 'Client-Server', path: '/client-server', color: '#db2777', desc: 'Klasik istemci-sunucu mimarisi.' },
-        { name: 'EDA (Event-Driven)', path: '/eda', color: '#f472b6', desc: 'Olay güdümlü asenkron yapı.' }
-      ]
-    },
-    {
-      id: 'structural-patterns',
-      name: 'Structural Patterns',
-      color: '#8b5cf6',
-      items: [
-        { name: 'Microkernel', path: '/microkernel', color: '#8b5cf6', desc: 'Eklenti tabanlı çekirdek sistemi.' },
-        { name: 'Plug-in Arch', path: '/plugin', color: '#a78bfa', desc: 'Dinamik modül ekleme mimarisi.' },
-        { name: 'Pipe-Filter', path: '/pipe-filter', color: '#c4b5fd', desc: 'Verinin süzgeçlerden akış disiplini.' },
-        { name: 'ECS (Game Dev)', path: '/ecs', color: '#8b5cf6', desc: 'Yüksek performanslı veri odaklı tasarım.' },
-        { name: 'Interpreter', path: '/interpreter', color: '#a78bfa', desc: 'Komut yorumlama ve kural işleme.' },
-        { name: 'Primary-Secondary', path: '/primary-secondary', color: '#7c3aed', desc: 'Replikasyon ve yedekleme stratejisi.' }
-      ]
-    },
-    {
-      id: 'code-patterns',
-      name: 'Code Patterns (Logic)',
+      name: { tr: 'Dağıtık & Mesajlaşma', en: 'Distributed & Messaging' },
       color: '#10b981',
       items: [
-        { name: 'MVC', path: '/mvc', color: '#10b981', desc: 'Model-View-Controller deseni.' },
-        { name: 'MVP', path: '/mvp', color: '#34d399', desc: 'Model-View-Presenter etkileşimi.' },
-        { name: 'MVVM', path: '/mvvm', color: '#6ee7b7', desc: 'Model-View-ViewModel reaktif yapı.' },
-        { name: 'MVVM-C', path: '/mvvm-c', color: '#059669', desc: 'Coordinator pattern ile navigasyon kontrolü.' },
-        { name: 'VIPER', path: '/viper', color: '#047857', desc: 'Router ve Interactor tabanlı yüksek izolasyon.' },
-        { name: 'MVI', path: '/mvi', color: '#34d399', desc: 'Model-View-Intent. Tek yönlü akış.' },
-        { name: 'Orchestration', path: '/orchestration', color: '#065f46', desc: 'Merkezi iş akışı yönetimi (Saga).' },
-        { name: 'Choreography', path: '/choreography', color: '#10b981', desc: 'Dağıtık ve otonom iş birliği.' }
+        { name: 'Microservices', path: '/microservices', color: '#10b981', desc: { tr: 'Bağımsız, otonom ve dağıtık servis mimarisi.', en: 'Decoupled, independently deployable autonomous microservices.' } },
+        { name: 'Event-Driven (EDA)', path: '/eda', color: '#34d399', desc: { tr: 'Olay yayınlama ve asenkron tepki mekanizması.', en: 'Asynchronous event production, detection, and consumption pattern.' } },
+        { name: 'Serverless (FaaS)', path: '/serverless', color: '#6ee7b7', desc: { tr: 'Sunucusuz, olay tetiklemeli fonksiyon çalıştırma.', en: 'Serverless compute model executing stateless ephemeral functions.' } },
+        { name: 'SOA Arch', path: '/soa', color: '#059669', desc: { tr: 'Kurumsal servis odaklı mimari (ESB tabanlı entegrasyon).', en: 'Enterprise service-oriented integration via Enterprise Service Bus.' } },
+        { name: 'Broker Architecture', path: '/broker', color: '#10b981', desc: { tr: 'Merkezi mesaj kuyrukları (RabbitMQ/Kafka) ile haberleşme.', en: 'Decoupled communication orchestrated through central message brokers.' } }
       ]
     },
     {
-      id: 'evolutionary',
-      name: 'Evolutionary',
-      color: '#6366f1',
+      id: 'data-reactive',
+      name: { tr: 'Veri & Reaktif', en: 'Data & Reactive' },
+      color: '#f59e0b',
       items: [
-        { name: 'Evolutionary Arch', path: '/evolution', color: '#6366f1', desc: 'Zamanla evrilebilen esnek yapılar.' },
-        { name: 'Object-Oriented', path: '/object-oriented', color: '#818cf8', desc: 'Sınıf tabanlı modüler tasarım.' },
-        { name: 'Future Arch', path: '/fna-concept', color: '#4338ca', desc: 'Intent-Based ve geleceğin mimarileri.' }
+        { name: 'CQRS', path: '/cqrs', color: '#f59e0b', desc: { tr: 'Okuma ve yazma modellerinin birbirinden ayrılması.', en: 'Segregation of Command (write) and Query (read) responsibility.' } },
+        { name: 'Event Sourcing', path: '/event-sourcing', color: '#fbbf24', desc: { tr: 'Durumun değişmez olay günlüğü olarak saklanması.', en: 'Persisting application state as an immutable log of state transitions.' } },
+        { name: 'Space-Based (SBA)', path: '/space-based', color: '#fde68a', desc: { tr: 'Veritabanı darboğazını aşan dağıtık RAM bellek ızgarası.', en: 'In-memory data grids built to eliminate central database bottlenecks.' } },
+        { name: 'Lambda & Kappa', path: '/lambda-kappa', color: '#d97706', desc: { tr: 'Büyük veri stream ve batch işleme boru hatları.', en: 'Hybrid real-time streaming and massive batch processing pipelines.' } }
       ]
     },
     {
-      id: 'elite-standard',
-      name: 'Elite Standard',
-      color: '#fbbf24',
+      id: 'structural-specialized',
+      name: { tr: 'Yapısal & İleri Düzey', en: 'Structural & Specialized' },
+      color: '#ec4899',
       items: [
-        { name: 'Elite Architecture', path: '/elite-architecture', color: '#fbbf24', desc: 'Flutter rehberinden ilham alan, modernize edilmiş ultra-fidelity anayasası.' }
+        { name: 'Microkernel (Plugin)', path: '/microkernel', color: '#ec4899', desc: { tr: 'Çekirdek sistem ve tak-çıkar eklenti mimarisi.', en: 'Core system extensible via plug-and-play modular plugins.' } },
+        { name: 'Pipe-Filter', path: '/pipe-filter', color: '#f472b6', desc: { tr: 'Sıralı veri dönüşüm ve filtreleme boru hatları.', en: 'Sequential data stream processing across discrete pipeline filters.' } },
+        { name: 'Peer-to-Peer (P2P)', path: '/p2p', color: '#fbcfe8', desc: { tr: 'Merkezi olmayan, eşit düğümlü ağ mimarisi.', en: 'Decentralized peer network without centralized authoritative servers.' } },
+        { name: 'Interpreter Pattern', path: '/interpreter', color: '#db2777', desc: { tr: 'Özel dilleri veya kuralları yorumlayan yürütücü.', en: 'Grammar evaluator and custom domain-specific language execution engine.' } }
+      ]
+    },
+    {
+      id: 'disciplines',
+      name: { tr: 'Mimari Disiplinler', en: 'Enterprise Disciplines' },
+      color: '#06b6d4',
+      items: [
+        { name: 'SOLID Principles', path: '/solid', color: '#06b6d4', desc: { tr: 'Değişime açık, esnek kodun 5 temel kuralı.', en: '5 core foundations of maintainable object-oriented software.' } },
+        { name: 'Clean Code', path: '/clean-code', color: '#22d3ee', desc: { tr: 'Okunabilir, yalın ve teknik borçsuz kod yazımı.', en: 'Self-documenting, readable code written for human maintainability.' } },
+        { name: 'TDD Methodology', path: '/tdd', color: '#67e8f9', desc: { tr: 'Test güdümlü geliştirme disiplini (Red-Green-Refactor).', en: 'Test-Driven Development lifecycle (Red-Green-Refactor cycles).' } },
+        { name: 'Design Patterns', path: '/design-patterns', color: '#0891b2', desc: { tr: 'Kanıtlanmış yazılım tasarım şablonları kataloğu.', en: 'Proven Gang of Four structural and behavioral architectural blueprints.' } }
+      ]
+    },
+    {
+      id: 'modern-ai',
+      name: { tr: 'AI & Modern Ekosistem', en: 'AI & Modern Paradigms' },
+      color: '#8b5cf6',
+      items: [
+        { name: 'RAG Architecture', path: '/rag-arch', color: '#8b5cf6', desc: { tr: 'Vektör arama destekli LLM bilgi alma mimarisi.', en: 'Retrieval-Augmented Generation context injection for LLMs.' } },
+        { name: 'Agentic AI', path: '/agentic-ai', color: '#a78bfa', desc: { tr: 'Otonom araç kullanan çok adımlı yapay zeka ajanları.', en: 'Multi-agent autonomous tool-using reasoning loop systems.' } },
+        { name: 'Server-Driven UI', path: '/server-driven-ui', color: '#c4b5fd', desc: { tr: 'Sunucu güdümlü dinamik kullanıcı arayüzü çizimi.', en: 'Dynamic component trees rendered purely via backend JSON schemas.' } },
+        { name: 'GitOps & IaC', path: '/gitops', color: '#7c3aed', desc: { tr: 'Git tabanlı bildirime dayalı altyapı yönetimi.', en: 'Declarative Git-centric infrastructure deployment and rollback.' } }
       ]
     }
   ];
 
   return (
-    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} style={{ background: '#020617', minHeight: '100vh', paddingTop: '100px', overflowX: 'hidden' }}>
-      <div className="container" style={{ maxWidth: '1600px' }}>
-        <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
-          <motion.div initial={{ y: -20, opacity: 0 }} animate={{ y: 0, opacity: 1 }} style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', background: 'rgba(59, 130, 246, 0.1)', padding: '0.5rem 1.2rem', borderRadius: '100px', color: '#3b82f6', fontWeight: 800, fontSize: '0.8rem', marginBottom: '1rem', border: '1px solid rgba(59, 130, 246, 0.3)' }}>
-            <Layers size={16} /> CORE SYSTEM ARCHITECTURE
-          </motion.div>
-          <h1 style={{ fontSize: '3.5rem', fontWeight: 950, letterSpacing: '-2px', margin: 0, color: 'white' }}>
-            Sistem <span className="gradient-text">Mimari</span> Kataloğu
-          </h1>
-        </div>
-
-        <div style={{ display: 'grid', gridTemplateColumns: 'minmax(700px, 1.4fr) 1fr', gap: '2rem', alignItems: 'center' }}>
-          <div style={{ position: 'relative', height: '900px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <svg viewBox="0 0 1000 1000" style={{ width: '100%', height: '100%', overflow: 'visible' }}>
-              <defs>
-                <filter id="color-glow-ultra" x="-100%" y="-100%" width="300%" height="300%">
-                  <feGaussianBlur stdDeviation="25" result="blur" />
-                  <feComposite in="SourceGraphic" in2="blur" operator="over" />
-                </filter>
-              </defs>
-
-              <motion.g animate={{ rotate: rotation }} style={{ transformOrigin: '500px 500px' }}>
-                <circle cx={500} cy={500} r={120} fill="transparent" stroke="rgba(255,255,255,0.05)" strokeWidth={1} strokeDasharray="5,5" />
-              </motion.g>
-
-              <g>
-                <motion.circle
-                  cx={500} cy={500} r={90}
-                  fill="#0f172a"
-                  stroke="#3b82f6"
-                  strokeWidth={2}
-                  animate={{ scale: [1, 1.05, 1] }}
-                  transition={{ duration: 4, repeat: Infinity }}
-                  style={{ filter: 'drop-shadow(0 0 25px rgba(59, 130, 246, 0.4))' }}
-                />
-                <text x={500} y={495} textAnchor="middle" fill="white" fontWeight="900" fontSize="13" style={{ letterSpacing: '2px' }}>SİSTEM</text>
-                <text x={500} y={520} textAnchor="middle" fill="#3b82f6" fontWeight="950" fontSize="18" style={{ letterSpacing: '3px' }}>CORE</text>
-              </g>
-
-              {categories.map((cat, catIdx) => {
-                const sliceAngle = 360 / categories.length;
-                const startAngle = catIdx * sliceAngle;
-
-                return (
-                  <g key={cat.id}>
-                    {cat.items.map((item, itemIdx) => {
-                      const itemSliceAngle = sliceAngle / cat.items.length;
-                      const itemStartAngle = startAngle + (itemIdx * itemSliceAngle);
-                      const itemEndAngle = itemStartAngle + itemSliceAngle;
-
-                      const radStart = (itemStartAngle - 90) * (Math.PI / 180);
-                      const radEnd = (itemEndAngle - 90) * (Math.PI / 180);
-
-                      const innerR = 125;
-                      const outerR = 460;
-
-                      const isHovered = hoveredItem?.name === item.name;
-
-                      const x1_i = 500 + innerR * Math.cos(radStart);
-                      const y1_i = 500 + innerR * Math.sin(radStart);
-                      const x2_i = 500 + innerR * Math.cos(radEnd);
-                      const y2_i = 500 + innerR * Math.sin(radEnd);
-                      const x1_o = 500 + outerR * Math.cos(radStart);
-                      const y1_o = 500 + outerR * Math.sin(radStart);
-                      const x2_o = 500 + outerR * Math.cos(radEnd);
-                      const y2_o = 500 + outerR * Math.sin(radEnd);
-
-                      return (
-                        <motion.path
-                          key={item.name}
-                          d={`M ${x1_i} ${y1_i} L ${x1_o} ${y1_o} A ${outerR} ${outerR} 0 0 1 ${x2_o} ${y2_o} L ${x2_i} ${y2_i} A ${innerR} ${innerR} 0 0 0 ${x1_i} ${y1_i}`}
-                          fill={cat.color}
-                          fillOpacity={isHovered ? 0.95 : 0.8}
-                          stroke={isHovered ? "white" : "rgba(2, 6, 23, 0.4)"}
-                          strokeWidth={isHovered ? 4 : 1}
-                          animate={{
-                            scale: isHovered ? 1.05 : 1,
-                            filter: isHovered ? 'url(#color-glow-ultra)' : 'none',
-                            zIndex: isHovered ? 20 : 1
-                          }}
-                          onMouseEnter={() => setHoveredItem(item)}
-                          onMouseLeave={() => setHoveredItem(null)}
-                          onClick={() => navigate(item.path)}
-                          style={{ cursor: 'pointer', transition: 'all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)' }}
-                        />
-                      );
-                    })}
-
-                    {(() => {
-                      const midAngle = startAngle + (sliceAngle / 2);
-                      const radMid = (midAngle - 90) * (Math.PI / 180);
-                      const textR = 310;
-                      const x = 500 + textR * Math.cos(radMid);
-                      const y = 500 + textR * Math.sin(radMid);
-                      return (
-                        <text
-                          x={x} y={y}
-                          fill="white"
-                          fontSize="10"
-                          fontWeight="950"
-                          textAnchor="middle"
-                          style={{
-                            pointerEvents: 'none',
-                            letterSpacing: '1px',
-                            textShadow: '0 2px 8px rgba(0,0,0,0.9)',
-                            transform: `rotate(${midAngle > 90 && midAngle < 270 ? midAngle + 180 : midAngle}deg)`,
-                            transformOrigin: `${x}px ${y}px`,
-                            opacity: 0.95
-                          }}
-                        >
-                          {cat.name.toUpperCase()}
-                        </text>
-                      );
-                    })()}
-                  </g>
-                );
-              })}
-            </svg>
+    <>
+      <SEO
+        title={isEn ? "Master Architecture Atlas (32 Patterns) | ArchAcademy" : "Büyük Mimari Atlası (32 Mimari) | ArchAcademy"}
+        description={isEn 
+          ? "Master 32 software architecture patterns. Explore Clean Architecture, Microservices, Event-Driven, DDD, CQRS, and Agentic AI." 
+          : "32 yazılım mimarisi şablonunun interaktif atlası. Clean Architecture'dan Mikroservislere, DDD'den Agentic AI'a tüm desenler."
+        }
+        keywords="software architecture, architecture catalog, clean architecture, microservices, ddd, cqrs, event driven"
+        canonicalUrl="/catalog"
+      />
+      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} style={{ background: '#020617', minHeight: '100vh', paddingTop: '100px', overflowX: 'hidden' }}>
+        <div className="container" style={{ maxWidth: '1600px' }}>
+          <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
+            <motion.div initial={{ y: -20, opacity: 0 }} animate={{ y: 0, opacity: 1 }} style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', background: 'rgba(59, 130, 246, 0.1)', padding: '0.5rem 1.2rem', borderRadius: '100px', color: 'var(--primary)', fontWeight: 800, fontSize: '0.8rem', marginBottom: '1rem', border: '1px solid rgba(59, 130, 246, 0.3)' }}>
+              <Sparkles size={16} /> {isEn ? "MASTER ARCHITECTURE ATLAS" : "BÜYÜK MİMARİ ATLASI"}
+            </motion.div>
+            <h1 style={{ fontSize: '3.5rem', fontWeight: 950, letterSpacing: '-2px', margin: 0, color: 'white' }}>
+              {isEn ? "Architectural Galaxy" : "Mimari"} <span className="gradient-text">{isEn ? "Constellation" : "Galaksi"}</span>
+            </h1>
+            <p style={{ color: 'var(--text-secondary)', marginTop: '0.5rem' }}>
+              {isEn ? "Explore 32 core architecture patterns and design disciplines in an interactive universe." : "32 temel mimari desenini ve tasarım disiplinini interaktif evrende keşfedin."}
+            </p>
           </div>
 
-          <div style={{ paddingRight: '2rem' }}>
-            <AnimatePresence mode="wait">
-              {hoveredItem ? (
-                <motion.div
-                  key={hoveredItem.name}
-                  initial={{ opacity: 0, x: 30 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -30 }}
-                  className="glass-card"
-                  style={{
-                    padding: '3rem',
-                    borderRadius: '40px',
-                    minHeight: '550px',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    justifyContent: 'center',
-                    border: `2px solid ${hoveredItem.color}`,
-                    background: `linear-gradient(135deg, ${hoveredItem.color}20 0%, rgba(10,15,30,0.98) 100%)`,
-                    boxShadow: `0 30px 60px rgba(0,0,0,0.6), 0 0 50px ${hoveredItem.color}15`
-                  }}
-                >
-                  <motion.div
-                    initial={{ scale: 0.5 }}
-                    animate={{ scale: 1 }}
-                    style={{ color: hoveredItem.color, marginBottom: '2rem' }}
-                  >
-                    <Compass size={60} className="glow-anim" />
-                  </motion.div>
-                  <h2 style={{ fontSize: '2.8rem', fontWeight: 950, marginBottom: '1.2rem', color: 'white', letterSpacing: '-1.5px', lineHeight: 1 }}>
-                    {hoveredItem.name}
-                  </h2>
-                  <p style={{ fontSize: '1.2rem', color: 'rgba(255,255,255,0.85)', lineHeight: 1.7, marginBottom: '3rem' }}>{hoveredItem.desc}</p>
-                  <button
-                    onClick={() => navigate(hoveredItem.path)}
-                    style={{
-                      background: hoveredItem.color,
-                      color: 'white',
-                      padding: '1.2rem',
-                      borderRadius: '16px',
-                      fontWeight: 900,
-                      border: 'none',
-                      cursor: 'pointer',
-                      fontSize: '1.1rem',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      gap: '1rem',
-                      boxShadow: `0 15px 35px ${hoveredItem.color}33`,
-                      textTransform: 'uppercase',
-                      marginTop: 'auto'
-                    }}
-                  >
-                    EĞİTİME BAŞLA <Zap size={22} />
-                  </button>
-                </motion.div>
-              ) : (
-                <div className="glass-card" style={{
-                  padding: '3rem',
-                  borderRadius: '40px',
-                  minHeight: '550px',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  justifyContent: 'center',
-                  border: '1px solid rgba(255,255,255,0.05)',
-                  background: 'rgba(255,255,255,0.01)'
-                }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', marginBottom: '2.2rem' }}>
-                    <div style={{ padding: '12px', background: 'rgba(59, 130, 246, 0.1)', borderRadius: '15px', color: '#3b82f6' }}>
-                      <Compass size={28} />
-                    </div>
-                    <h3 style={{ fontSize: '1.8rem', fontWeight: 950, color: 'white', margin: 0, letterSpacing: '-1px' }}>SİSTEM MATRİSİ</h3>
-                  </div>
-                  <p style={{ fontSize: '1.2rem', color: 'var(--text-secondary)', lineHeight: 1.7 }}>
-                    Clean Architecture'dan Hexagonal'a, Core sistem tasarımının temel taşları burada.
-                  </p>
-                  <div style={{ marginTop: '3rem', display: 'flex', flexDirection: 'column', gap: '1.2rem' }}>
-                    {[
-                      'Domain Odaklı Tasarımlar',
-                      'Bağımsız Katmanlı Yapılar',
-                      'Yüksek Kaliteli Kod Organizasyonu'
-                    ].map((t, i) => (
-                      <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '1rem', fontSize: '1rem', color: 'rgba(255,255,255,0.7)', fontWeight: 600 }}>
-                        <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#3b82f6', boxShadow: '0 0 12px #3b82f6' }} />
-                        {t}
+          {/* Galaxy View & HUD Cards */}
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '2rem', paddingBottom: '100px' }}>
+            {categories.map((cat) => (
+              <div key={cat.id} className="glass-card" style={{ borderTop: `4px solid ${cat.color}`, padding: '2rem' }}>
+                <h3 style={{ fontSize: '1.4rem', color: 'white', marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '10px' }}>
+                  <span style={{ width: '12px', height: '12px', borderRadius: '50%', background: cat.color }}></span>
+                  {isEn ? cat.name.en : cat.name.tr}
+                </h3>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                  {cat.items.map((item) => (
+                    <motion.div
+                      key={item.path}
+                      onClick={() => navigate(item.path)}
+                      whileHover={{ x: 6 }}
+                      style={{
+                        padding: '1rem',
+                        background: 'rgba(255, 255, 255, 0.02)',
+                        borderRadius: '12px',
+                        border: '1px solid rgba(255, 255, 255, 0.05)',
+                        cursor: 'pointer',
+                        transition: 'border-color 0.2s'
+                      }}
+                    >
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '4px' }}>
+                        <strong style={{ color: 'white', fontSize: '1rem' }}>{item.name}</strong>
+                        <span style={{ fontSize: '0.75rem', color: cat.color, fontWeight: 700 }}>{isEn ? "Explore →" : "İncele →"}</span>
                       </div>
-                    ))}
-                  </div>
+                      <p style={{ margin: 0, color: 'var(--text-secondary)', fontSize: '0.85rem', lineHeight: 1.5 }}>
+                        {isEn ? item.desc.en : item.desc.tr}
+                      </p>
+                    </motion.div>
+                  ))}
                 </div>
-              )}
-            </AnimatePresence>
+              </div>
+            ))}
           </div>
+
         </div>
-      </div>
-      <style>{`
-        .glow-anim { animation: glow-pulse-heavy 2s infinite; }
-        @keyframes glow-pulse-heavy { 0% { filter: drop-shadow(0 0 5px currentColor); } 50% { filter: drop-shadow(0 0 30px currentColor); } 100% { filter: drop-shadow(0 0 5px currentColor); } }
-      `}</style>
-    </motion.div>
+      </motion.div>
+    </>
   );
 };
 

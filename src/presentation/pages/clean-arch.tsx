@@ -11,7 +11,6 @@ import ScreamingSection from '../components/ScreamingSection';
 import FeatureVsLayerDetail from '../components/FeatureVsLayerDetail';
 import { useProgress } from '../context/ProgressContext';
 import { Layers, Volume2, FolderTree, Zap } from 'lucide-react';
-import CleanArchEN from '../locales/en/pages/clean-arch.en';
 
 const CleanArchPage = () => {
   const { i18n } = useTranslation();

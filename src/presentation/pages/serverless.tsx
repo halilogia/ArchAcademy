@@ -1,10 +1,14 @@
+import { useTranslation } from 'react-i18next';
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Zap, Cloud, DollarSign, Activity, Clock, Server, ThermometerSnowflake, Gauge } from 'lucide-react';
 import ArchHero from '../components/ArchHero';
 
+
 const ServerlessPage = () => {
-    const [activeTab, setActiveTab] = useState<'simulation' | 'comparison'>('comparison');
+  const { i18n } = useTranslation();
+  const isEn = (i18n.resolvedLanguage || i18n.language || 'tr').startsWith('en');
+  const [activeTab, setActiveTab] = useState<'simulation' | 'comparison'>('comparison');
     const [requests, setRequests] = useState<number[]>([]);
     const [instances, setInstances] = useState<number>(0);
     const [coldStarts, setColdStarts] = useState<number>(0);

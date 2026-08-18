@@ -1,10 +1,14 @@
+import { useTranslation } from 'react-i18next';
 import React from 'react';
 import { motion } from 'framer-motion';
 import HorizontalHero from '../components/HorizontalHero';
 import HorizontalDiagram from '../components/HorizontalDiagram';
 import HorizontalPractical from '../components/HorizontalPractical';
 
+
 const HorizontalPage = () => {
+  const { i18n } = useTranslation();
+  const isEn = (i18n.resolvedLanguage || i18n.language || 'tr').startsWith('en');
   return (
     <motion.div
       initial={{ opacity: 0 }}

@@ -1,7 +1,9 @@
+import { useTranslation } from 'react-i18next';
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import ArchHero from '../components/ArchHero';
 import { 
+
   Database, 
   GitMerge, 
   ShieldCheck, 
@@ -14,7 +16,9 @@ import {
 } from 'lucide-react';
 
 const PrimarySecondaryPage = () => {
-    const [activeTab, setActiveTab] = useState<'simulation' | 'comparison'>('comparison');
+  const { i18n } = useTranslation();
+  const isEn = (i18n.resolvedLanguage || i18n.language || 'tr').startsWith('en');
+  const [activeTab, setActiveTab] = useState<'simulation' | 'comparison'>('comparison');
     const [replicationStatus, setReplicationStatus] = useState<'IDLE' | 'SYNCING' | 'SYNCED'>('IDLE');
     const [primaryData, setPrimaryData] = useState<string[]>([]);
     const [secondary1Data, setSecondary1Data] = useState<string[]>([]);

@@ -1,7 +1,9 @@
+import { useTranslation } from 'react-i18next';
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import ArchHero from '../components/ArchHero';
 import { 
+
   History, 
   Save, 
   RotateCcw, 
@@ -18,7 +20,9 @@ import {
 } from 'lucide-react';
 
 const EventSourcingPage = () => {
-    const [activeTab, setActiveTab] = useState<'simulation' | 'comparison'>('comparison');
+  const { i18n } = useTranslation();
+  const isEn = (i18n.resolvedLanguage || i18n.language || 'tr').startsWith('en');
+  const [activeTab, setActiveTab] = useState<'simulation' | 'comparison'>('comparison');
     const [events, setEvents] = useState([
         { id: 1, type: 'CartCreated', data: '{ userId: 1 }', time: '10:00:01' },
     ]);

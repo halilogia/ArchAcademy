@@ -1,9 +1,13 @@
+import { useTranslation } from 'react-i18next';
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Target, Workflow, Sparkles, Brain, ShieldAlert, Layers, Network, Zap, Cpu, Activity, LayoutTemplate, Eye } from 'lucide-react';
 import ArchHero from '../components/ArchHero';
 
+
 const IntentArchitecturePage = () => {
+  const { i18n } = useTranslation();
+  const isEn = (i18n.resolvedLanguage || i18n.language || 'tr').startsWith('en');
   return (
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} style={{ background: '#020617', minHeight: '100vh', color: 'white' }}>
       <ArchHero 

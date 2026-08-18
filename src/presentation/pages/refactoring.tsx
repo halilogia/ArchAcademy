@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import React, { useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Scissors, Microscope, Zap, BookOpen } from 'lucide-react';
@@ -6,7 +7,10 @@ import FolderSurgery from '../components/FolderSurgery';
 import { useProgress } from '../context/ProgressContext';
 import { useState } from 'react';
 
+
 const RefactoringPage = () => {
+  const { i18n } = useTranslation();
+  const isEn = (i18n.resolvedLanguage || i18n.language || 'tr').startsWith('en');
   const { completeStep } = useProgress();
   const [activeTab, setActiveTab] = useState('code');
 
