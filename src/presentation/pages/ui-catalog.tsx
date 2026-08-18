@@ -11,7 +11,8 @@ import {
     Layers,
     RefreshCcw,
     Globe,
-    Database
+    Database,
+    Monitor
 } from 'lucide-react';
 import { theme } from '../themes/theme';
 import SEO from '../components/SEO';
@@ -59,41 +60,41 @@ const UIArchitectureCatalogPage: React.FC = () => {
           color: '#8b5cf6', 
           icon: <Server size={24} />, 
           desc: {
-            tr: 'Backend ne derse onu çiz. App Store beklemeden dinamik ekran yönetimi.',
-            en: 'Server-driven layout rendering: Deploying dynamic UI experiments without client app store releases.'
+            tr: 'Backend JSON şeması ile istemci arayüzünü anlık render etme.',
+            en: 'Dynamic client rendering driven purely by backend JSON UI component schemas.'
           }
         },
         { 
           id: 'islands', 
           name: 'Islands Arch', 
           path: '/islands-arch', 
-          color: '#f59e0b', 
+          color: '#06b6d4', 
           icon: <Layout size={24} />, 
           desc: {
-            tr: 'Sadece interaktif adaları hydrate et (Astro). Sıfır gereksiz JavaScript.',
-            en: 'Partial hydration: Rendering static HTML by default and only hydrating dynamic interactive islands.'
+            tr: 'Statik HTML okyanusunda sadece interaktif bileşenleri hydrate etme (Astro).',
+            en: 'Selective hydration of interactive component islands within static HTML (Astro).'
+          }
+        },
+        { 
+          id: 'micro-frontends', 
+          name: 'Micro-Frontends', 
+          path: '/micro-frontends', 
+          color: '#ec4899', 
+          icon: <Layers size={24} />, 
+          desc: {
+            tr: 'Büyük web uygulamalarını bağımsız deploy edilebilir alt parçalara bölme.',
+            en: 'Decomposing complex frontend monoliths into independently deployable domain apps.'
           }
         },
         { 
           id: 'tokens', 
           name: 'Design Tokens', 
           path: '/design-tokens', 
-          color: '#ec4899', 
+          color: '#f59e0b', 
           icon: <CreditCard size={24} />, 
           desc: {
-            tr: 'Renk, font, spacing... Tasarım sisteminin platformdan bağımsız atomik sabitleri.',
-            en: 'Agnostic atomic design variables (colors, typography, spacing) across multi-platform apps.'
-          }
-        },
-        { 
-          id: 'microfe', 
-          name: 'Micro-Frontends', 
-          path: '/micro-frontends', 
-          color: '#06b6d4', 
-          icon: <Puzzle size={24} />, 
-          desc: {
-            tr: 'Monolitik frontend kod tabanını otonom mikro uygulamalara bölme.',
-            en: 'Decomposing complex frontend monoliths into independently deployed micro-applications.'
+            tr: 'Renk, tipografi ve boşlukların platformdan bağımsız ortak değişkenleri.',
+            en: 'Platform-agnostic visual design tokens governing colors, typography, and spacing.'
           }
         },
         { 
@@ -103,8 +104,8 @@ const UIArchitectureCatalogPage: React.FC = () => {
           color: '#22c55e', 
           icon: <RefreshCcw size={24} />, 
           desc: {
-            tr: 'UI = f(State). Reaktif ve deterministik arayüz yönetim paradigması.',
-            en: 'UI = f(State): Deterministic reactive rendering driven by predictable state transitions.'
+            tr: 'UI = f(State). Reaktif, öngörülebilir arayüz paradigması.',
+            en: 'UI = f(State): Declarative reactive interface paradigm and deterministic rendering.'
           }
         },
         { 
@@ -156,12 +157,12 @@ const UIArchitectureCatalogPage: React.FC = () => {
     return (
         <>
             <SEO 
-                title={isEn ? "UI & Frontend Architectures Catalog | ArchAcademy" : "Kullanıcı Arayüzü & Frontend Mimarileri | ArchAcademy"}
+                title={isEn ? "Visual Architecture & Frontend Ecosystem | ArchAcademy" : "Görsel Mimari & Frontend Ekosistemi | ArchAcademy"}
                 description={isEn 
-                  ? "Explore modern UI architectures: Atomic Design, Server-Driven UI, Islands Architecture, Micro-Frontends, and Design Tokens." 
-                  : "Modern arayüz mimarileri: Atomic Design, Server-Driven UI, Islands Mimarisi, Mikro-Frontendler ve Tasarım Belirteçleri."
+                  ? "Pixel-perfect rendering, Design Systems, and UI consistency disciplines in an orbital constellation." 
+                  : "Pixel-perfect rendering, Design Systems ve görsel tutarlılık disiplinleri."
                 }
-                keywords="ui architecture, frontend architecture, atomic design, server driven ui, islands architecture, micro frontends"
+                keywords="visual architecture, ui architecture, frontend architecture, design systems, atomic design"
                 canonicalUrl="/ui-catalog"
             />
             <div style={{ minHeight: '100vh', padding: '0', background: theme.colors.bgDark, overflow: 'hidden', position: 'relative' }}>
@@ -172,77 +173,130 @@ const UIArchitectureCatalogPage: React.FC = () => {
                     <div style={{ position: 'absolute', bottom: '10%', right: '10%', width: '300px', height: '300px', background: `radial-gradient(circle, ${theme.colors.layers.infrastructure}1a 0%, transparent 70%)`, filter: 'blur(40px)' }} />
                 </div>
 
-                {/* Header */}
-                <div style={{ position: 'relative', zIndex: 10, textAlign: 'center', paddingTop: '120px', paddingBottom: '40px' }}>
-                    <motion.div initial={{ y: -20, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.8 }}>
-                        <span style={{ fontSize: '0.8rem', fontWeight: 800, color: theme.colors.primary, letterSpacing: '4px', textTransform: 'uppercase' }}>
-                            {isEn ? "FRONTEND & UI ECOSYSTEM" : "FRONTEND & UI EKOSİSTEMİ"}
-                        </span>
-                        <h1 className="gradient-text" style={{ fontSize: '3.5rem', fontWeight: 900, marginTop: '10px' }}>
-                            {isEn ? "UI Architecture Constellation" : "Arayüz Mimarileri Takımyıldızı"}
-                        </h1>
-                        <p style={{ color: theme.colors.textSecondary, maxWidth: '600px', margin: '15px auto 0', fontSize: '1.1rem' }}>
-                            {isEn 
-                              ? "Modern component architectures, rendering paradigms, and state flow models."
-                              : "Modern bileşen mimarileri, render stratejileri ve durum akış modelleri."
-                            }
-                        </p>
-                    </motion.div>
+                {/* Title */}
+                <div style={{ position: 'relative', zIndex: 10, textAlign: 'center', paddingTop: '4rem', marginBottom: '1rem' }}>
+                    <h1 style={{
+                        fontSize: '3.5rem',
+                        fontWeight: 800,
+                        background: 'linear-gradient(to right, #60a5fa, #c084fc)',
+                        WebkitBackgroundClip: 'text',
+                        WebkitTextFillColor: 'transparent',
+                        marginBottom: '1rem',
+                        letterSpacing: '-1px'
+                    }}>
+                        {isEn ? "Visual Architecture" : "Görsel Mimari"}
+                    </h1>
+                    <p style={{ fontSize: '1.2rem', color: theme.colors.textSecondary, maxWidth: '600px', margin: '0 auto' }}>
+                        {isEn 
+                          ? "Pixel-perfect rendering, Design Systems, and visual consistency disciplines."
+                          : "Pixel-perfect rendering, Design Systems ve görsel tutarlılık disiplinleri."
+                        }
+                    </p>
                 </div>
 
-                {/* Main Grid List */}
-                <div className="container" style={{ position: 'relative', zIndex: 10, paddingBottom: '100px' }}>
-                    <div style={{
-                        display: 'grid',
-                        gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-                        gap: '2rem'
-                    }}>
-                        {items.map((item, index) => (
+                {/* Orbit Visualization */}
+                <div style={{ position: 'relative', height: '600px', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 10 }}>
+
+                    {/* Center Core */}
+                    <div style={{ position: 'absolute', zIndex: 20 }}>
+                        <motion.div
+                            animate={{ boxShadow: ['0 0 20px rgba(99, 102, 241, 0.4)', '0 0 50px rgba(99, 102, 241, 0.6)', '0 0 20px rgba(99, 102, 241, 0.4)'] }}
+                            transition={{ duration: 3, repeat: Infinity }}
+                            style={{
+                                width: '140px', height: '140px',
+                                borderRadius: '50%',
+                                background: '#1e1b4b',
+                                display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
+                                border: '4px solid #6366f1',
+                                cursor: 'default'
+                            }}
+                        >
+                            <Monitor size={40} color="#818cf8" />
+                            <div style={{ color: 'white', fontWeight: 900, fontSize: '1rem', marginTop: '8px' }}>DESIGN</div>
+                            <div style={{ color: '#818cf8', fontSize: '0.7rem' }}>SYSTEMS</div>
+                        </motion.div>
+                    </div>
+
+                    {/* Orbital Ring */}
+                    <motion.div
+                        animate={{ rotate: rotation }}
+                        style={{
+                            width: '500px', height: '500px',
+                            position: 'absolute',
+                            borderRadius: '50%',
+                            border: '1px dashed rgba(255,255,255,0.1)'
+                        }}
+                    >
+                        {items.map((item, index) => {
+                            const angle = (360 / items.length) * index;
+                            const rad = angle * (Math.PI / 180);
+                            const radius = 250;
+                            const x = radius * Math.cos(rad) + 250 - 35;
+                            const y = radius * Math.sin(rad) + 250 - 35;
+
+                            return (
+                                <motion.div
+                                    key={item.id}
+                                    style={{
+                                        position: 'absolute',
+                                        left: x, top: y,
+                                        width: '70px', height: '70px',
+                                        borderRadius: '50%',
+                                        background: theme.colors.surface,
+                                        border: `2px solid ${item.color}`,
+                                        display: 'flex', alignItems: 'center', justifyContent: 'center',
+                                        cursor: 'pointer',
+                                        boxShadow: hoveredItem?.id === item.id ? `0 0 30px ${item.color}` : 'none'
+                                    }}
+                                    whileHover={{ scale: 1.2, zIndex: 100 }}
+                                    onClick={(e) => {
+                                        e.stopPropagation();
+                                        navigate(item.path);
+                                    }}
+                                    onMouseEnter={() => setHoveredItem(item)}
+                                    onMouseLeave={() => setHoveredItem(null)}
+                                >
+                                    {/* Counter-rotate icon so it stays upright */}
+                                    <motion.div style={{ color: item.color }} animate={{ rotate: -rotation }}>
+                                        {item.icon}
+                                    </motion.div>
+                                </motion.div>
+                            );
+                        })}
+                    </motion.div>
+
+                    {/* Info Card (Dynamic Holographic HUD) */}
+                    <AnimatePresence>
+                        {hoveredItem && (
                             <motion.div
-                                key={item.id}
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: index * 0.05 }}
-                                onClick={() => navigate(item.path)}
-                                whileHover={{ scale: 1.03 }}
-                                className="glass-card"
+                                initial={{ opacity: 0, y: 20, scale: 0.9 }}
+                                animate={{ opacity: 1, y: 0, scale: 1 }}
+                                exit={{ opacity: 0, scale: 0.9 }}
                                 style={{
-                                    cursor: 'pointer',
-                                    borderTop: `4px solid ${item.color}`,
-                                    display: 'flex',
-                                    flexDirection: 'column',
-                                    gap: '1.2rem',
-                                    padding: '2rem'
+                                    position: 'absolute',
+                                    bottom: '20px',
+                                    background: 'rgba(30, 41, 59, 0.9)',
+                                    backdropFilter: 'blur(10px)',
+                                    padding: '1.5rem',
+                                    borderRadius: '16px',
+                                    border: `1px solid ${hoveredItem.color}`,
+                                    textAlign: 'center',
+                                    maxWidth: '400px',
+                                    zIndex: 50,
+                                    boxShadow: '0 20px 50px rgba(0,0,0,0.5)'
                                 }}
                             >
-                                <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                                    <div style={{
-                                        width: '48px',
-                                        height: '48px',
-                                        borderRadius: '14px',
-                                        background: `${item.color}20`,
-                                        color: item.color,
-                                        display: 'flex',
-                                        alignItems: 'center',
-                                        justifyContent: 'center'
-                                    }}>
-                                        {item.icon}
-                                    </div>
-                                    <h3 style={{ margin: 0, color: 'white', fontSize: '1.25rem' }}>{item.name}</h3>
-                                </div>
-
-                                <p style={{ margin: 0, color: 'var(--text-secondary)', fontSize: '0.9rem', lineHeight: 1.6 }}>
-                                    {isEn ? item.desc.en : item.desc.tr}
+                                <h3 style={{ color: hoveredItem.color, marginBottom: '0.5rem', fontSize: '1.5rem' }}>{hoveredItem.name}</h3>
+                                <p style={{ color: theme.colors.textSecondary, lineHeight: 1.5 }}>
+                                    {isEn ? hoveredItem.desc.en : hoveredItem.desc.tr}
                                 </p>
-
-                                <div style={{ marginTop: 'auto', display: 'flex', alignItems: 'center', gap: '8px', color: item.color, fontSize: '0.85rem', fontWeight: 700 }}>
-                                    {isEn ? "Explore Architecture →" : "Detayları Keşfet →"}
+                                <div style={{ marginTop: '10px', fontSize: '0.8rem', color: theme.colors.textSecondary, opacity: 0.6 }}>
+                                    {isEn ? "Click to explore pattern" : "Deseni keşfetmek için tıklayın"}
                                 </div>
                             </motion.div>
-                        ))}
-                    </div>
+                        )}
+                    </AnimatePresence>
                 </div>
-
             </div>
         </>
     );
