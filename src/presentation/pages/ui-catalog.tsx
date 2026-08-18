@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import {
     CreditCard,
     Server,
@@ -10,10 +11,10 @@ import {
     Layers,
     RefreshCcw,
     Globe,
-    Monitor,
     Database
 } from 'lucide-react';
 import { theme } from '../themes/theme';
+import SEO from '../components/SEO';
 
 interface UIArchItem {
     id: string;
@@ -21,11 +22,14 @@ interface UIArchItem {
     path: string;
     color: string;
     icon: React.ReactNode;
-    desc: string;
+    desc: { tr: string; en: string };
 }
 
-const UIArchitectureCatalogPage = () => {
+const UIArchitectureCatalogPage: React.FC = () => {
     const navigate = useNavigate();
+    const { i18n } = useTranslation();
+    const isEn = (i18n.resolvedLanguage || i18n.language || 'tr').startsWith('en');
+
     const [hoveredItem, setHoveredItem] = useState<UIArchItem | null>(null);
     const [rotation, setRotation] = useState(0);
 
@@ -37,145 +41,210 @@ const UIArchitectureCatalogPage = () => {
     }, []);
 
     const items: UIArchItem[] = [
-        { id: 'atomic', name: 'Atomic Design', path: '/atomic-design', color: '#3b82f6', icon: <Palette size={24} />, desc: 'Atom -> Molekül -> Organizma. UI bileşen hiyerarşisi.' },
-        { id: 'sdui', name: 'Server-Driven UI', path: '/server-driven-ui', color: '#8b5cf6', icon: <Server size={24} />, desc: 'Backend ne derse onu çiz. Dinamik UI yönetimi.' },
-        { id: 'islands', name: 'Islands Arch', path: '/islands-arch', color: '#f59e0b', icon: <Layout size={24} />, desc: 'Sadece interaktif adaları hydrate et (Astro).' },
-        { id: 'tokens', name: 'Design Tokens', path: '/design-tokens', color: '#ec4899', icon: <CreditCard size={24} />, desc: 'Renk, font, spacing... Tasarımın atomik sabitleri.' },
-        { id: 'microfe', name: 'Micro-Frontends', path: '/micro-frontends', color: '#06b6d4', icon: <Puzzle size={24} />, desc: 'Monolitik frontendi parçala ve yönet.' },
-        { id: 'state', name: 'State-Driven UI', path: '/state-driven', color: '#22c55e', icon: <RefreshCcw size={24} />, desc: 'UI = f(State). Reaktif arayüz paradigması.' },
-        { id: 'cdd', name: 'Component-Driven', path: '/component-driven', color: '#f43f5e', icon: <Puzzle size={24} />, desc: 'Sayfalardan değil, bileşenlerden başlama (CDD).' },
-        { id: 'composite', name: 'Composite UI', path: '/composite-ui', color: '#8b5cf6', icon: <Layers size={24} />, desc: 'Farklı modüllerin runtime anında birleşmesi.' },
-        { id: 'spa-mpa', name: 'SPA vs MPA', path: '/spa-vs-mpa', color: '#10b981', icon: <Globe size={24} />, desc: 'Tek Sayfa (SPA) ile Çok Sayfa (MPA) render stratejileri.' },
-        { id: 'comp-state', name: 'Component State', path: '/component-state', color: '#6366f1', icon: <Database size={24} />, desc: 'Bileşen tabanlı durum yönetimi ve veri akışı.' }
+        { 
+          id: 'atomic', 
+          name: 'Atomic Design', 
+          path: '/atomic-design', 
+          color: '#3b82f6', 
+          icon: <Palette size={24} />, 
+          desc: {
+            tr: 'Atom -> Molekül -> Organizma. UI bileşen hiyerarşisi ve modüler tasarım.',
+            en: 'Atoms -> Molecules -> Organisms: Methodological hierarchy for scalable component systems.'
+          }
+        },
+        { 
+          id: 'sdui', 
+          name: 'Server-Driven UI', 
+          path: '/server-driven-ui', 
+          color: '#8b5cf6', 
+          icon: <Server size={24} />, 
+          desc: {
+            tr: 'Backend ne derse onu çiz. App Store beklemeden dinamik ekran yönetimi.',
+            en: 'Server-driven layout rendering: Deploying dynamic UI experiments without client app store releases.'
+          }
+        },
+        { 
+          id: 'islands', 
+          name: 'Islands Arch', 
+          path: '/islands-arch', 
+          color: '#f59e0b', 
+          icon: <Layout size={24} />, 
+          desc: {
+            tr: 'Sadece interaktif adaları hydrate et (Astro). Sıfır gereksiz JavaScript.',
+            en: 'Partial hydration: Rendering static HTML by default and only hydrating dynamic interactive islands.'
+          }
+        },
+        { 
+          id: 'tokens', 
+          name: 'Design Tokens', 
+          path: '/design-tokens', 
+          color: '#ec4899', 
+          icon: <CreditCard size={24} />, 
+          desc: {
+            tr: 'Renk, font, spacing... Tasarım sisteminin platformdan bağımsız atomik sabitleri.',
+            en: 'Agnostic atomic design variables (colors, typography, spacing) across multi-platform apps.'
+          }
+        },
+        { 
+          id: 'microfe', 
+          name: 'Micro-Frontends', 
+          path: '/micro-frontends', 
+          color: '#06b6d4', 
+          icon: <Puzzle size={24} />, 
+          desc: {
+            tr: 'Monolitik frontend kod tabanını otonom mikro uygulamalara bölme.',
+            en: 'Decomposing complex frontend monoliths into independently deployed micro-applications.'
+          }
+        },
+        { 
+          id: 'state', 
+          name: 'State-Driven UI', 
+          path: '/state-driven', 
+          color: '#22c55e', 
+          icon: <RefreshCcw size={24} />, 
+          desc: {
+            tr: 'UI = f(State). Reaktif ve deterministik arayüz yönetim paradigması.',
+            en: 'UI = f(State): Deterministic reactive rendering driven by predictable state transitions.'
+          }
+        },
+        { 
+          id: 'cdd', 
+          name: 'Component-Driven', 
+          path: '/component-driven', 
+          color: '#f43f5e', 
+          icon: <Puzzle size={24} />, 
+          desc: {
+            tr: 'Sayfalardan değil, izole bileşenlerden başlama yaklaşımı (Storybook).',
+            en: 'Bottom-up UI development building from isolated components up to complete pages.'
+          }
+        },
+        { 
+          id: 'composite', 
+          name: 'Composite UI', 
+          path: '/composite-ui', 
+          color: '#8b5cf6', 
+          icon: <Layers size={24} />, 
+          desc: {
+            tr: 'Farklı ekiplerin widget parçalarının runtime anında tek ekranda birleşmesi.',
+            en: 'Runtime composition of decoupled UI widgets developed by independent domain teams.'
+          }
+        },
+        { 
+          id: 'spa-mpa', 
+          name: 'SPA vs MPA', 
+          path: '/spa-vs-mpa', 
+          color: '#10b981', 
+          icon: <Globe size={24} />, 
+          desc: {
+            tr: 'Tek Sayfa (SPA) ile Çok Sayfa (MPA) mimarilerinin render ve performans kıyası.',
+            en: 'Architectural trade-off analysis between Single-Page (SPA) and Multi-Page (MPA) applications.'
+          }
+        },
+        { 
+          id: 'comp-state', 
+          name: 'Component State', 
+          path: '/component-state', 
+          color: '#6366f1', 
+          icon: <Database size={24} />, 
+          desc: {
+            tr: 'Bileşen tabanlı durum yönetimi, prop drilling önleme ve veri akışı.',
+            en: 'Component-level state lifecycle, avoiding prop drilling, and unidirectional data flow.'
+          }
+        }
     ];
 
     return (
-        <div style={{ minHeight: '100vh', padding: '0', background: theme.colors.bgDark, overflow: 'hidden', position: 'relative' }}>
+        <>
+            <SEO 
+                title={isEn ? "UI & Frontend Architectures Catalog | ArchAcademy" : "Kullanıcı Arayüzü & Frontend Mimarileri | ArchAcademy"}
+                description={isEn 
+                  ? "Explore modern UI architectures: Atomic Design, Server-Driven UI, Islands Architecture, Micro-Frontends, and Design Tokens." 
+                  : "Modern arayüz mimarileri: Atomic Design, Server-Driven UI, Islands Mimarisi, Mikro-Frontendler ve Tasarım Belirteçleri."
+                }
+                keywords="ui architecture, frontend architecture, atomic design, server driven ui, islands architecture, micro frontends"
+                canonicalUrl="/ui-catalog"
+            />
+            <div style={{ minHeight: '100vh', padding: '0', background: theme.colors.bgDark, overflow: 'hidden', position: 'relative' }}>
 
-            {/* Background Ambience */}
-            <div style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, zIndex: 0 }}>
-                <div style={{ position: 'absolute', top: '20%', left: '10%', width: '400px', height: '400px', background: `radial-gradient(circle, ${theme.colors.primary}1a 0%, transparent 70%)`, filter: 'blur(40px)' }} />
-                <div style={{ position: 'absolute', bottom: '10%', right: '10%', width: '300px', height: '300px', background: `radial-gradient(circle, ${theme.colors.layers.infrastructure}1a 0%, transparent 70%)`, filter: 'blur(40px)' }} />
-            </div>
+                {/* Background Ambience */}
+                <div style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, zIndex: 0 }}>
+                    <div style={{ position: 'absolute', top: '20%', left: '10%', width: '400px', height: '400px', background: `radial-gradient(circle, ${theme.colors.primary}1a 0%, transparent 70%)`, filter: 'blur(40px)' }} />
+                    <div style={{ position: 'absolute', bottom: '10%', right: '10%', width: '300px', height: '300px', background: `radial-gradient(circle, ${theme.colors.layers.infrastructure}1a 0%, transparent 70%)`, filter: 'blur(40px)' }} />
+                </div>
 
-            {/* Title */}
-            <div style={{ position: 'relative', zIndex: 10, textAlign: 'center', paddingTop: '4rem', marginBottom: '1rem' }}>
-                <h1 style={{
-                    fontSize: '3.5rem',
-                    fontWeight: 800,
-                    background: 'linear-gradient(to right, #60a5fa, #c084fc)',
-                    WebkitBackgroundClip: 'text',
-                    WebkitTextFillColor: 'transparent',
-                    marginBottom: '1rem',
-                    letterSpacing: '-1px'
-                }}>
-                    Visual Architecture
-                </h1>
-                <p style={{ fontSize: '1.2rem', color: theme.colors.textSecondary, maxWidth: '600px', margin: '0 auto' }}>
-                    Pixel-perfect rendering, Design Systems ve görsel tutarlılık disiplinleri.
-                </p>
-            </div>
-
-            {/* Orbit Visualization */}
-            <div style={{ position: 'relative', height: '600px', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 10 }}>
-
-                {/* Center Core */}
-                <div style={{ position: 'absolute', zIndex: 20 }}>
-                    <motion.div
-                        animate={{ boxShadow: ['0 0 20px rgba(99, 102, 241, 0.4)', '0 0 50px rgba(99, 102, 241, 0.6)', '0 0 20px rgba(99, 102, 241, 0.4)'] }}
-                        transition={{ duration: 3, repeat: Infinity }}
-                        style={{
-                            width: '140px', height: '140px',
-                            borderRadius: '50%',
-                            background: '#1e1b4b',
-                            display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
-                            border: '4px solid #6366f1',
-                            cursor: 'default'
-                        }}
-                    >
-                        <Monitor size={40} color="#818cf8" />
-                        <div style={{ color: 'white', fontWeight: 900, fontSize: '1rem', marginTop: '8px' }}>DESIGN</div>
-                        <div style={{ color: '#818cf8', fontSize: '0.7rem' }}>SYSTEMS</div>
+                {/* Header */}
+                <div style={{ position: 'relative', zIndex: 10, textAlign: 'center', paddingTop: '120px', paddingBottom: '40px' }}>
+                    <motion.div initial={{ y: -20, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.8 }}>
+                        <span style={{ fontSize: '0.8rem', fontWeight: 800, color: theme.colors.primary, letterSpacing: '4px', textTransform: 'uppercase' }}>
+                            {isEn ? "FRONTEND & UI ECOSYSTEM" : "FRONTEND & UI EKOSİSTEMİ"}
+                        </span>
+                        <h1 className="gradient-text" style={{ fontSize: '3.5rem', fontWeight: 900, marginTop: '10px' }}>
+                            {isEn ? "UI Architecture Constellation" : "Arayüz Mimarileri Takımyıldızı"}
+                        </h1>
+                        <p style={{ color: theme.colors.textSecondary, maxWidth: '600px', margin: '15px auto 0', fontSize: '1.1rem' }}>
+                            {isEn 
+                              ? "Modern component architectures, rendering paradigms, and state flow models."
+                              : "Modern bileşen mimarileri, render stratejileri ve durum akış modelleri."
+                            }
+                        </p>
                     </motion.div>
                 </div>
 
-                {/* Orbital Ring */}
-                <motion.div
-                    animate={{ rotate: rotation }}
-                    style={{
-                        width: '500px', height: '500px',
-                        position: 'absolute',
-                        borderRadius: '50%',
-                        border: '1px dashed rgba(255,255,255,0.1)'
-                    }}
-                >
-                    {items.map((item, index) => {
-                        const angle = (360 / items.length) * index;
-                        const rad = angle * (Math.PI / 180);
-                        const radius = 250;
-                        const x = radius * Math.cos(rad) + 250 - 35;
-                        const y = radius * Math.sin(rad) + 250 - 35;
-
-                        return (
+                {/* Main Grid List */}
+                <div className="container" style={{ position: 'relative', zIndex: 10, paddingBottom: '100px' }}>
+                    <div style={{
+                        display: 'grid',
+                        gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+                        gap: '2rem'
+                    }}>
+                        {items.map((item, index) => (
                             <motion.div
                                 key={item.id}
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: index * 0.05 }}
+                                onClick={() => navigate(item.path)}
+                                whileHover={{ scale: 1.03 }}
+                                className="glass-card"
                                 style={{
-                                    position: 'absolute',
-                                    left: x, top: y,
-                                    width: '70px', height: '70px',
-                                    borderRadius: '50%',
-                                    background: theme.colors.surface,
-                                    border: `2px solid ${item.color}`,
-                                    display: 'flex', alignItems: 'center', justifyContent: 'center',
                                     cursor: 'pointer',
-                                    boxShadow: hoveredItem?.id === item.id ? `0 0 30px ${item.color}` : 'none'
+                                    borderTop: `4px solid ${item.color}`,
+                                    display: 'flex',
+                                    flexDirection: 'column',
+                                    gap: '1.2rem',
+                                    padding: '2rem'
                                 }}
-                                whileHover={{ scale: 1.2, zIndex: 100 }}
-                                onClick={(e) => {
-                                    e.stopPropagation();
-                                    navigate(item.path);
-                                }}
-                                onMouseEnter={() => setHoveredItem(item)}
-                                onMouseLeave={() => setHoveredItem(null)}
                             >
-                                {/* Counter-rotate icon so it stays upright */}
-                                <motion.div style={{ color: item.color }} animate={{ rotate: -rotation }}>
-                                    {item.icon}
-                                </motion.div>
-                            </motion.div>
-                        );
-                    })}
-                </motion.div>
+                                <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                                    <div style={{
+                                        width: '48px',
+                                        height: '48px',
+                                        borderRadius: '14px',
+                                        background: `${item.color}20`,
+                                        color: item.color,
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        justifyContent: 'center'
+                                    }}>
+                                        {item.icon}
+                                    </div>
+                                    <h3 style={{ margin: 0, color: 'white', fontSize: '1.25rem' }}>{item.name}</h3>
+                                </div>
 
-                {/* Info Card (Dynamic) */}
-                <AnimatePresence>
-                    {hoveredItem && (
-                        <motion.div
-                            initial={{ opacity: 0, y: 20, scale: 0.9 }}
-                            animate={{ opacity: 1, y: 0, scale: 1 }}
-                            exit={{ opacity: 0, scale: 0.9 }}
-                            style={{
-                                position: 'absolute',
-                                bottom: '20px',
-                                background: 'rgba(30, 41, 59, 0.9)',
-                                backdropFilter: 'blur(10px)',
-                                padding: '1.5rem',
-                                borderRadius: '16px',
-                                border: `1px solid ${hoveredItem.color}`,
-                                textAlign: 'center',
-                                maxWidth: '400px',
-                                zIndex: 50,
-                                boxShadow: '0 20px 50px rgba(0,0,0,0.5)'
-                            }}
-                        >
-                            <h3 style={{ color: hoveredItem.color, marginBottom: '0.5rem', fontSize: '1.5rem' }}>{hoveredItem.name}</h3>
-                            <p style={{ color: theme.colors.textSecondary, lineHeight: 1.5 }}>{hoveredItem.desc}</p>
-                            <div style={{ marginTop: '10px', fontSize: '0.8rem', color: theme.colors.textSecondary, opacity: 0.6 }}>Click to explore pattern</div>
-                        </motion.div>
-                    )}
-                </AnimatePresence>
+                                <p style={{ margin: 0, color: 'var(--text-secondary)', fontSize: '0.9rem', lineHeight: 1.6 }}>
+                                    {isEn ? item.desc.en : item.desc.tr}
+                                </p>
+
+                                <div style={{ marginTop: 'auto', display: 'flex', alignItems: 'center', gap: '8px', color: item.color, fontSize: '0.85rem', fontWeight: 700 }}>
+                                    {isEn ? "Explore Architecture →" : "Detayları Keşfet →"}
+                                </div>
+                            </motion.div>
+                        ))}
+                    </div>
+                </div>
+
             </div>
-        </div>
+        </>
     );
 };
 
