@@ -1,0 +1,227 @@
+import React from 'react';
+import { motion } from 'framer-motion';
+import { 
+  Compass, 
+  Layers, 
+  CheckCircle2, 
+  FolderTree, 
+  Settings, 
+  Code2, 
+  Zap, 
+  Database, 
+  Layout, 
+  ArrowRight, 
+  Sparkles 
+} from 'lucide-react';
+import WhyLayered from '../WhyLayered';
+import RefactoringGuide from '../RefactoringGuide';
+import ArchReferences from '../ArchReferences';
+
+export const MVVMHybridTab: React.FC = () => {
+  return (
+    <motion.div
+      key="hybrid"
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -20 }}
+    >
+      {/* Customized for Hybrid Approach */}
+      <WhyLayered
+        badge="NEDEN HYBRID-FIRST?"
+        title={<>Google Neden Hibrit <br /><span className="gradient-text">Yapıyı Öneriyor?</span></>}
+        description="Google'ın resmi mimari vaka çalışmaları, MVVM'in esnekliği ile katmanlı yapının disiplinini birleştiren Hibrit modeli savunur. Bu sayede hem hız hem de ölçeklenebilirlik korunur."
+      />
+
+      <section style={{ padding: '100px 0', background: 'rgba(59, 130, 246, 0.03)', borderTop: '1px solid var(--glass-border)' }}>
+        <div className="container">
+          <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
+            <div style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '0.5rem',
+              padding: '0.5rem 1rem',
+              marginBottom: '1.5rem',
+              borderRadius: '100px',
+              background: 'rgba(59, 130, 246, 0.1)',
+              color: '#3b82f6',
+              border: '1px solid rgba(59, 130, 246, 0.2)'
+            }}>
+              <Compass size={16} />
+              <span style={{ fontSize: '0.8rem', fontWeight: 700, textTransform: 'uppercase' }}>Google Engineering Standard</span>
+            </div>
+            <h2 style={{ fontSize: '2.5rem', fontWeight: 900, marginBottom: '1rem' }}>Hibrit MVVM Yaklaşımı</h2>
+            <p style={{ color: 'var(--text-secondary)', maxWidth: '700px', margin: '0 auto' }}>
+              Büyük ölçekli projelerde bağımlılıkları yönetmenin en asil yolu: Veriyi merkezi, arayüzü özellik bazlı kurgulamaktır.
+            </p>
+          </div>
+
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4rem', alignItems: 'center' }}>
+            <div>
+              <h3 style={{ fontSize: '1.8rem', marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                <Layers color="#3b82f6" /> Merkezi Mantık vs. Özellik Bazlı UI
+              </h3>
+              <p style={{ color: 'var(--text-secondary)', lineHeight: 1.8, marginBottom: '2rem' }}>
+                Google'ın önerdiği bu hibrit yapı, uygulamanın farklı katmanlarını "değişim sıklığına" göre gruplar.
+                Data ve Domain katmanları bir kütüphane gibi <strong>merkezi (Type-based)</strong> dururken, UI katmanı tamamen bağımsız <strong>özelliklere (Feature-based)</strong> bölünür.
+              </p>
+
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                <div className="glass-card" style={{ padding: '1.5rem', borderLeft: '4px solid #3b82f6' }}>
+                  <div style={{ fontWeight: 800, marginBottom: '0.5rem' }}>lib/data & lib/domain (Horizontal)</div>
+                  <div style={{ fontSize: '0.9rem', color: 'var(--text-secondary)' }}>Repositories ve Modeller merkezi kalır. Her feature bunlara erişebilir.</div>
+                </div>
+                <div className="glass-card" style={{ padding: '1.5rem', borderLeft: '4px solid #10b981' }}>
+                  <div style={{ fontWeight: 800, marginBottom: '0.5rem' }}>lib/ui/features (Vertical)</div>
+                  <div style={{ fontSize: '0.9rem', color: 'var(--text-secondary)' }}>Her sayfa (Auth, Home vb.) kendi ViewModel ve Widget'larını içinde saklar.</div>
+                </div>
+              </div>
+            </div>
+
+            <div style={{ background: 'rgba(0,0,0,0.3)', padding: '2rem', borderRadius: '32px', border: '1px solid var(--glass-border)' }}>
+              <h4 style={{ marginBottom: '1.5rem', color: '#3b82f6', fontSize: '1.1rem' }}>Mimarinin Faydaları:</h4>
+              {[
+                "Farklı ekipler aynı data katmanını kullanıp farklı featurelar geliştirebilir.",
+                "Bir feature silindiğinde diğerlerini asla etkilemez.",
+                "Unit testler domain katmanında, Widget testler feature katmanında izole edilir.",
+                "Uygulama büyüdükçe lib klasörü bir çöplüğe dönüşmez."
+              ].map((text, i) => (
+                <div key={i} style={{ display: 'flex', gap: '1rem', marginBottom: '1rem', alignItems: 'flex-start' }}>
+                  <CheckCircle2 size={18} color="#3b82f6" style={{ flexShrink: 0, marginTop: '2px' }} />
+                  <span style={{ fontSize: '0.95rem', color: 'rgba(255,255,255,0.8)' }}>{text}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* --- ARCHITECTURE BLUEPRINT (FOLDER STRUCTURE & EXAMPLE) --- */}
+      <section style={{ padding: '80px 0', background: 'rgba(15, 23, 42, 0.4)' }}>
+        <div className="container">
+          <div style={{ display: 'grid', gridTemplateColumns: 'minmax(300px, 400px) 1fr', gap: '4rem', alignItems: 'start' }}>
+            {/* VS Code Inspired Folder Structure */}
+            <div className="glass-card" style={{ padding: '2rem', border: '1px solid rgba(255,255,255,0.05)', background: '#0f172a' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '2rem', borderBottom: '1px solid rgba(255,255,255,0.1)', paddingBottom: '1rem' }}>
+                <FolderTree size={18} color="#3b82f6" />
+                <span style={{ fontWeight: 800, fontSize: '0.9rem', color: 'white', textTransform: 'uppercase', letterSpacing: '1px' }}>Project Blueprint</span>
+              </div>
+
+              <div style={{ fontSize: '0.9rem', color: 'rgba(255,255,255,0.8)', fontFamily: 'monospace' }}>
+                <div style={{ display: 'flex', gap: '8px', marginBottom: '12px' }}><FolderTree size={16} color="#f59e0b" /> <strong>lib/</strong> <span style={{ color: '#64748b' }}></span></div>
+                <div style={{ paddingLeft: '20px' }}>
+
+                  {/* UI LAYER */}
+                  <div style={{ display: 'flex', gap: '8px', marginBottom: '8px', color: '#10b981' }}><FolderTree size={16} /> <strong>ui/</strong> <span style={{ color: '#64748b' }}>(Kullanıcı Arayüzü)</span></div>
+                  <div style={{ paddingLeft: '20px', borderLeft: '1px dashed rgba(255,255,255,0.1)', marginLeft: '8px' }}>
+                    <div style={{ display: 'flex', gap: '8px', marginBottom: '8px' }}><FolderTree size={16} color="#64748b" /> <strong>core/</strong> <span style={{ color: '#64748b' }}>(Ortak Bileşenler & Temalar)</span></div>
+
+                    <div style={{ display: 'flex', gap: '8px', marginBottom: '8px' }}><FolderTree size={16} color="#f59e0b" /> <strong>vocabulary/</strong> <span style={{ color: '#64748b' }}>(Kelime Öğrenme Modülü)</span></div>
+                    <div style={{ paddingLeft: '20px' }}>
+                      <div style={{ display: 'flex', gap: '8px', marginBottom: '4px' }}><Settings size={16} color="#ec4899" /> vocabulary_view_model.dart</div>
+                      <div style={{ display: 'flex', gap: '8px', marginBottom: '4px' }}><Code2 size={16} color="#ec4899" /> flashcard_screen.dart</div>
+                    </div>
+
+                    <div style={{ display: 'flex', gap: '8px', marginTop: '8px', marginBottom: '8px' }}><FolderTree size={16} color="#f59e0b" /> <strong>lessons/</strong> <span style={{ color: '#64748b' }}>(Gramatik & Alıştırmalar)</span></div>
+                    <div style={{ paddingLeft: '20px' }}>
+                      <div style={{ display: 'flex', gap: '8px', marginBottom: '4px' }}><Settings size={16} color="#ec4899" /> lesson_view_model.dart</div>
+                      <div style={{ display: 'flex', gap: '8px', marginBottom: '4px' }}><Code2 size={16} color="#ec4899" /> quiz_screen.dart</div>
+                    </div>
+                  </div>
+
+                  {/* DOMAIN LAYER */}
+                  <div style={{ display: 'flex', gap: '8px', marginTop: '16px', marginBottom: '8px', color: '#3b82f6' }}><FolderTree size={16} /> <strong>domain/</strong> <span style={{ color: '#64748b' }}>(Sadece Tipler & İş Mantığı)</span></div>
+                  <div style={{ paddingLeft: '20px' }}>
+                    <div style={{ display: 'flex', gap: '8px', marginBottom: '4px' }}><Code2 size={16} /> word_model.dart <span style={{ color: '#64748b' }}>(Kelime Tipi / Interface)</span></div>
+                    <div style={{ display: 'flex', gap: '8px', marginBottom: '4px' }}><Code2 size={16} /> lesson_entity.dart <span style={{ color: '#64748b' }}>(Ders Yapısı / Types)</span></div>
+                  </div>
+
+                  {/* DATA LAYER */}
+                  <div style={{ display: 'flex', gap: '8px', marginTop: '16px', marginBottom: '8px', color: '#3b82f6' }}><FolderTree size={16} /> <strong>data/</strong> <span style={{ color: '#64748b' }}>(Veri Kaynakları & Repos)</span></div>
+                  <div style={{ paddingLeft: '20px' }}>
+                    <div style={{ display: 'flex', gap: '8px', marginBottom: '4px' }}><Settings size={16} /> vocabulary_repository.dart</div>
+                    <div style={{ display: 'flex', gap: '8px', marginBottom: '4px' }}><Zap size={16} /> local_storage_service.dart</div>
+                  </div>
+
+                  {/* APP INFRASTRUCTURE (Cross-Cutting Concerns) */}
+                  <div style={{ marginTop: '20px', paddingTop: '10px', borderTop: '1px dashed rgba(255,255,255,0.1)' }}>
+                    <div style={{ display: 'flex', gap: '8px', marginBottom: '8px', color: '#94a3b8' }}><FolderTree size={16} /> <strong>config/</strong> <span style={{ color: '#64748b' }}>(Env, Theme, Constants)</span></div>
+                    <div style={{ display: 'flex', gap: '8px', marginBottom: '8px', color: '#94a3b8' }}><FolderTree size={16} /> <strong>routing/</strong> <span style={{ color: '#64748b' }}>(GoRouter, Navigasyon)</span></div>
+                    <div style={{ display: 'flex', gap: '8px', marginBottom: '8px', color: '#94a3b8' }}><FolderTree size={16} /> <strong>utils/</strong> <span style={{ color: '#64748b' }}>(Helpers, Extensions)</span></div>
+                    <div style={{ display: 'flex', gap: '8px', marginTop: '12px', color: '#f8fafc' }}><Code2 size={16} /> main_development.dart</div>
+                    <div style={{ display: 'flex', gap: '8px', color: '#f8fafc' }}><Code2 size={16} /> main_production.dart</div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Architect's Perspective Note */}
+              <div style={{ marginTop: '2rem', padding: '1.5rem', borderRadius: '16px', background: 'rgba(245, 158, 11, 0.05)', border: '1px solid rgba(245, 158, 11, 0.2)' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '10px', color: '#f59e0b', marginBottom: '0.8rem' }}>
+                  <Sparkles size={18} />
+                  <span style={{ fontWeight: 800, fontSize: '0.9rem', textTransform: 'uppercase', letterSpacing: '1px' }}>Mimarın Notu: Esneklik</span>
+                </div>
+                <p style={{ fontSize: '0.9rem', color: 'rgba(255,255,255,0.7)', lineHeight: 1.6 }}>
+                  Bu klasörleme yapısı, Google'ın <strong>The Compass</strong> vaka çalışması için sunduğu kurumsal bir referanstır.
+                  Mimari bir varış noktası değil, bir yolculuktur. Projeniz küçükse bu yapı "overkill" olabilir; çok devasa ise katmanları
+                  ayrı paketlere (Internal Packages) bölmek daha doğru bir adım olabilir. <strong>Önemli olan klasör ismi değil, bağımlılıkların yönüdür.</strong>
+                </p>
+              </div>
+            </div>
+
+            {/* Flow Explanation */}
+            <div>
+              <h3 style={{ fontSize: '2rem', fontWeight: 900, marginBottom: '1.5rem' }}>Dil Öğrenme Uygulaması: Akış Örneği</h3>
+              <p style={{ color: 'var(--text-secondary)', marginBottom: '2.5rem', fontSize: '1.1rem', lineHeight: 1.6 }}>
+                Bir kelimeyi havuzdan alıp ekranda göstermeye kadar süren o kusursuz yolculuk:
+              </p>
+
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+                <div className="glass-card" style={{ display: 'flex', gap: '20px', alignItems: 'center', background: 'rgba(59, 130, 246, 0.05)' }}>
+                  <div style={{ background: '#3b82f6', width: '40px', height: '40px', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                    <Database color="white" size={20} />
+                  </div>
+                  <div>
+                    <h4 style={{ marginBottom: '4px' }}>1. Kelime Havuzu (Data)</h4>
+                    <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}><code>VocabularyRepository</code> local veritabanından kelimeleri çeker.</p>
+                  </div>
+                </div>
+
+                <div style={{ display: 'flex', justifyContent: 'center', color: '#64748b' }}>
+                  <ArrowRight style={{ transform: 'rotate(90deg)' }} />
+                </div>
+
+                <div className="glass-card" style={{ display: 'flex', gap: '20px', alignItems: 'center', background: 'rgba(236, 72, 153, 0.05)' }}>
+                  <div style={{ background: '#ec4899', width: '40px', height: '40px', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                    <Settings color="white" size={20} />
+                  </div>
+                  <div>
+                    <h4 style={{ marginBottom: '4px' }}>2. Öğrenme Mantığı (Logic)</h4>
+                    <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}><code>VocabularyViewModel</code> kelimeleri karıştırır ve "Öğrenildi" bilgisini işler.</p>
+                  </div>
+                </div>
+
+                <div style={{ display: 'flex', justifyContent: 'center', color: '#64748b' }}>
+                  <ArrowRight style={{ transform: 'rotate(90deg)' }} />
+                </div>
+
+                <div className="glass-card" style={{ display: 'flex', gap: '20px', alignItems: 'center' }}>
+                  <div style={{ background: '#10b981', width: '40px', height: '40px', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                    <Layout color="white" size={20} />
+                  </div>
+                  <div>
+                    <h4 style={{ marginBottom: '4px' }}>3. Flashcard Arayüzü (View)</h4>
+                    <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}><code>FlashcardScreen</code> sadece ViewModel'den gelen kelimeyi ekranda parlatır.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <RefactoringGuide />
+      <ArchReferences />
+    </motion.div>
+  );
+};
+
+export default MVVMHybridTab;

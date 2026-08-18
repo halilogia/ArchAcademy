@@ -1,131 +1,221 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Scissors, Sparkles, AlertTriangle, CheckCircle2, ArrowRight, Code2, Bot, Ghost } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-import { Scissors, Sparkles, AlertTriangle, CheckCircle2, ArrowRight, Code2 } from 'lucide-react';
 
-interface Scenario {
-  id: number;
-  title: { tr: string; en: string };
-  problem: { tr: string; en: string };
-  category: string;
-  dirtyCode: string;
-  cleanCode: string;
-  explanation: { tr: string; en: string };
-}
-
-const scenarios: Scenario[] = [
+const scenarios = [
   {
     id: 1,
-    title: { tr: "1. The God Function (Her Şeyi Yapan)", en: "1. The God Function (Anti-Pattern)" },
+    title: { tr: "1. The God Function (Her Şeyi Yapan)", en: "1. The God Function (Monolithic Action)" },
     problem: { 
       tr: "Tek bir fonksiyonda; doğrulama, veritabanı kaydı, e-posta gönderimi ve loglama yapılıyor. Kodun okunması ve test edilmesi imkansız.",
-      en: "A single monolithic function handles validation, direct SQL queries, SMTP email dispatch, and file logging. Zero testability and extreme fragility."
+      en: "A single function handles validation, direct SQL, email dispatch, and file logging. Zero testability and extreme fragility."
     },
     category: "SOLID Violations (SRP)",
     dirtyCode: `function createUser(user) {
-  // 1. Validation
+  // 1. Validasyon
   if (!user.email.includes('@')) {
     throw new Error('Invalid email');
   }
   
-  // 2. Database (Direct SQL)
+  // 2. Database (Doğrudan SQL)
   db.query('INSERT INTO users...', user);
   
-  // 3. Email Dispatch
+  // 3. Email Gönderimi
   smtp.send('Welcome!', user.email);
   
-  // 4. File Logging
+  // 4. Dosyaya Loglama
   fs.writeFileSync('log.txt', 'User created');
 }`,
-    cleanCode: `// Repository (Data Access Only)
+    cleanCode: `// Repository (Sadece DB işleri)
 class UserRepository {
   async save(user) { ... }
 }
 
-// Service (Workflow Orchestration)
+// Service (Sadece İş Akışı)
 class UserService {
-  constructor(userRepo, mailer, logger) {
+  constructor(userRepo, mailer) {
     this.userRepo = userRepo;
     this.mailer = mailer;
-    this.logger = logger;
   }
 
   async create(user) {
-    validateUser(user);
+    validateUser(user); // Helper
     await this.userRepo.save(user);
     await this.mailer.sendWelcome(user.email);
-    this.logger.info('User created');
   }
 }`,
     explanation: {
       tr: "Single Responsibility Principle (SRP) uygulandı. İş mantığı, veri erişimi ve bildirimler farklı sınıflara bölündü.",
-      en: "Applied Single Responsibility Principle (SRP). Business logic, persistence, and external notifications are cleanly decoupled."
+      en: "Single Responsibility Principle (SRP) applied. Business logic, persistence, and external notifications are cleanly decoupled."
     }
   },
   {
     id: 2,
     title: { tr: "2. Spagetti İf-Else (Arrow Code)", en: "2. Nested Conditional Arrow Anti-Pattern" },
     problem: {
-      tr: "Kod sağa doğru bir ok gibi kayıyor. Okumak ve hata ayıklamak için sürekli zihinsel takip gerekiyor.",
+      tr: "Kod sağa doğru bir ok gibi kayıyor. Okumak için sürekli zihinsel takip gerekiyor.",
       en: "Deep nested conditionals drifting rightward like an arrow. Causes high cognitive complexity and edge-case bugs."
     },
     category: "Code Hygiene",
     dirtyCode: `function getPayAmount() {
   let result;
-  if (isDead) {
+  if (isDead){
     result = deadAmount();
   } else {
-    if (isSeparated) {
+    if (isSeparated){
       result = separatedAmount();
     } else {
-      if (isRetired) {
+      if (isRetired){
         result = retiredAmount();
       } else {
-        result = normalAmount();
+        result = normalPayAmount();
       }
     }
   }
   return result;
 }`,
-    cleanCode: `// Guard Clauses (Early Return)
-function getPayAmount() {
+    cleanCode: `function getPayAmount() {
+  // Guard Clauses (Erken Dönüş)
   if (isDead) return deadAmount();
   if (isSeparated) return separatedAmount();
   if (isRetired) return retiredAmount();
   
-  return normalAmount();
+  // Happy Path (En sona kalan)
+  return normalPayAmount();
 }`,
     explanation: {
-      tr: "Guard Clauses (Erken Dönüş) tekniğiyle iç içe if/else blokları temizlendi. Kod düz bir şerit gibi okunabilir hale geldi.",
-      en: "Refactored with Guard Clauses (Early Returns). Eliminates nested indentation and makes the happy path linear."
+      tr: "Erken Return (Guard Clause) tekniğiyle iç içe if bloklarını yok ettik. Kod artık dümdüz okunuyor.",
+      en: "Eliminated nested if-else ladders using Guard Clauses (Early Return). The happy path reads linearly."
     }
   },
   {
     id: 3,
-    title: { tr: "3. Primitive Obsession (İlkel Tip Saplantısı)", en: "3. Primitive Obsession (Value Object Pattern)" },
+    title: { tr: "3. İlkel Takıntısı (Primitive Obsession)", en: "3. Primitive Obsession (Value Object Pattern)" },
     problem: {
-      tr: "Tüm değerler ilkel tiplerle (string, number) tutuluyor. Para birimleri ve negatif değer kontrolleri her yerde kopyalanıyor.",
-      en: "Financial amounts and currencies stored as raw numbers and strings, scattering domain validation across the codebase."
+      tr: "Para birimi, tarih veya adres gibi kompleks yapıları hala raw (ilkel) string/number olarak tutmak hata payını artırır.",
+      en: "Storing domain concepts like money, currency, or dates as raw strings and numbers leads to duplicated validations and bugs."
     },
     category: "Domain Modeling",
-    dirtyCode: `function processOrder(price: number, currency: string) {
-  if (price < 0) throw new Error('Invalid price');
-  // Currency mismatch risks...
-  return price * 1.18;
+    dirtyCode: `function processPayment(amount, currency) {
+  if (amount < 0) throw new Error();
+  if (currency !== 'USD' && currency !== 'EUR') throw new Error();
+  // ...
 }`,
-    cleanCode: `// Value Object Pattern
-class Money {
-  constructor(public readonly amount: number, public readonly currency: string) {
-    if (amount < 0) throw new Error('Invalid price');
+    cleanCode: `class Money {
+  constructor(amount, currency) {
+    if (amount < 0) throw new Error();
+    this.amount = amount;
+    this.currency = currency;
   }
+}
 
-  addTax(rate: number): Money {
-    return new Money(this.amount * (1 + rate), this.currency);
-  }
+function processPayment(money) {
+  // Sadece Money objesini kabul et
+  // Validasyon zaten Money içinde yapıldı
 }`,
     explanation: {
-      tr: "Value Object (Değer Nesnesi) deseni uygulandı. Kurallar tek bir yerde kapsullendi ve nesne değişmez (immutable) kılındı.",
-      en: "Applied Value Object pattern. Business invariants are encapsulated once, making the domain entity immutable and safe."
+      tr: "Veriyi 'Value Object' haline getirerek her fonksiyonda tekrar eden kontrolleri ortadan kaldırdık.",
+      en: "Wrapped raw data into an immutable Value Object, eliminating repetitive validation guards across use-cases."
+    }
+  },
+  {
+    id: 4,
+    title: { tr: "4. Parametre Çorbası (Long Parameter List)", en: "4. Long Parameter List Anti-Pattern" },
+    problem: {
+      tr: "Bir fonksiyona 7-8 tane parametre geçmek parametrelerin sırasının karışmasına yol açar.",
+      en: "Passing 7-8 parameters into a single function leads to accidental argument transpositions and rigid signatures."
+    },
+    category: "Clean Code",
+    dirtyCode: `function searchUsers(name, age, city, sortBy, sortOrder, limit, offset) {
+  // Parametre sırası karışabilir
+}`,
+    cleanCode: `// Parameter Object (DTO)
+interface SearchOptions {
+  name?: string;
+  age?: number;
+  city?: string;
+  pagination?: { limit: number; offset: number };
+}
+
+function searchUsers(options: SearchOptions) {
+  // Temiz, güvenli ve genişletilebilir
+}`,
+    explanation: {
+      tr: "Parametreleri bir DTO / Object altında toplayarak hem sırayı önemsiz kıldık hem de yeni filtreler eklemeyi kolaylaştırdık.",
+      en: "Encapsulated arguments inside a parameter DTO, enabling optional fields and order-independent calling."
+    }
+  },
+  {
+    id: 5,
+    title: { tr: "5. Bağımlılık Spagettisi (Tight Coupling)", en: "5. Tight Coupling Anti-Pattern" },
+    problem: {
+      tr: "Bir sınıf başka bir somut sınıfa (concrete class) doğrudan new ile bağlanırsa o sınıfı mocklamak veya değiştirmek imkansızlaşır.",
+      en: "Instantiating concrete classes with 'new' directly inside business services prevents mocking and breaks testability."
+    },
+    category: "SOLID (DIP)",
+    dirtyCode: `class OrderService {
+  private emailService = new SmtpEmailService();
+  // SmtpEmailService'e göbekten bağlı
+}`,
+    cleanCode: `class OrderService {
+  // Dependency Injection (Interface)
+  constructor(private emailService: IEmailService) {}
+}`,
+    explanation: {
+      tr: "Dependency Inversion uygulandı. Somut sınıfa değil 'IEmailService' arayüzüne bağımlı olundu. Artık testlerde mock servis verilebilir.",
+      en: "Applied Dependency Inversion. OrderService now depends on an IEmailService abstraction injected via constructor."
+    }
+  },
+  {
+    id: 6,
+    title: { tr: "6. Framework Tuzağı (Architecture Leak)", en: "6. Framework Entity Leakage" },
+    problem: {
+      tr: "ORM veya Web framework modellerini (örn: TypeORM / Entity Framework entity'leri) doğrudan UI veya API response olarak dönmek.",
+      en: "Leaking raw database ORM entities directly into API responses or UI view layers."
+    },
+    category: "Clean Architecture",
+    dirtyCode: `// Controller
+async function getUser(req, res) {
+  const user = await UserOrmEntity.findOne(req.id);
+  return res.json(user); // PasswordHash dışarı sızabilir!
+}`,
+    cleanCode: `// Mapper Pattern
+async function getUser(req, res) {
+  const user = await this.userService.getUser(req.id);
+  const userDto = UserMapper.toResponseDto(user);
+  return res.json(userDto);
+}`,
+    explanation: {
+      tr: "DTO (Data Transfer Object) ve Mapper kullanarak veritabanı şemasını dış dünyadan gizledik.",
+      en: "Used DTOs and Mappers to decouple internal database schemas from outward-facing API contracts."
+    }
+  },
+  {
+    id: 7,
+    title: { tr: "7. Switch Case Cehennemi (Polymorphism)", en: "7. Switch-Case Hell (Replace with Polymorphism)" },
+    problem: {
+      tr: "Her yeni tip eklendiğinde tüm dosyalardaki switch/case bloklarını bulup değiştirmek zorunda kalmak (OCP ihlali).",
+      en: "Adding new behavior requires modifying switch-case blocks across multiple files, violating Open/Closed."
+    },
+    category: "Refactoring Patterns",
+    dirtyCode: `function calculateDiscount(userType, amount) {
+  switch(userType) {
+    case 'GOLD': return amount * 0.2;
+    case 'SILVER': return amount * 0.1;
+    default: return 0;
+  }
+}`,
+    cleanCode: `// Strategy / Polymorphism
+interface DiscountStrategy {
+  calculate(amount: number): number;
+}
+class GoldDiscount implements DiscountStrategy {
+  calculate(amount: number) { return amount * 0.2; }
+}`,
+    explanation: {
+      tr: "Switch blokları yerine Strategy Pattern kullanarak sistemi 'Gelişime açık, değişime kapalı' (Open-Closed) hale getirdik.",
+      en: "Replaced branching switch statements with polymorphic Strategy patterns honoring the Open/Closed Principle."
     }
   }
 ];
@@ -133,139 +223,162 @@ class Money {
 const RefactoringSurgery: React.FC = () => {
   const { i18n } = useTranslation();
   const isEn = (i18n.resolvedLanguage || i18n.language || 'tr').startsWith('en');
-  const [activeScenarioId, setActiveScenarioId] = useState(1);
-  const [isOperated, setIsOperated] = useState(false);
 
-  const scenario = scenarios.find(s => s.id === activeScenarioId) || scenarios[0];
+  const [activeScenario, setActiveScenario] = useState(0);
+  const [isSurgeryDone, setIsSurgeryDone] = useState(false);
+
+  const nextScenario = () => {
+    setActiveScenario((prev) => (prev + 1) % scenarios.length);
+    setIsSurgeryDone(false);
+  };
+
+  const s = scenarios[activeScenario];
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '2.5rem' }}>
-      {/* Scenario Selector */}
-      <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', justifyContent: 'center' }}>
-        {scenarios.map(s => (
-          <button
-            key={s.id}
-            onClick={() => {
-              setActiveScenarioId(s.id);
-              setIsOperated(false);
-            }}
-            style={{
-              padding: '12px 24px',
-              borderRadius: '16px',
-              background: activeScenarioId === s.id ? 'var(--primary)' : 'rgba(255,255,255,0.03)',
-              color: activeScenarioId === s.id ? 'white' : 'var(--text-secondary)',
-              border: '1px solid var(--glass-border)',
-              fontWeight: 700,
-              fontSize: '0.9rem',
-              cursor: 'pointer',
-              transition: 'all 0.2s'
-            }}
-          >
-            {isEn ? s.title.en : s.title.tr}
-          </button>
-        ))}
-      </div>
-
-      {/* Code Operating Theater */}
-      <div className="glass-card" style={{ padding: '3rem', borderTop: '4px solid #ef4444' }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem', flexWrap: 'wrap', gap: '1rem' }}>
-          <div>
-            <span style={{ fontSize: '0.8rem', fontWeight: 800, color: '#ef4444', textTransform: 'uppercase', letterSpacing: '1px' }}>
-              {scenario.category}
-            </span>
-            <h2 style={{ fontSize: '1.8rem', fontWeight: 800, color: 'white', marginTop: '4px' }}>
-              {isEn ? scenario.title.en : scenario.title.tr}
-            </h2>
+    <div className="container" style={{ padding: '60px 0' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 2fr', gap: '3rem' }}>
+        
+        {/* Left Info Panel */}
+        <div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '2rem' }}>
+             <div style={{ background: 'rgba(239, 68, 68, 0.1)', padding: '12px', borderRadius: '16px', color: '#ef4444' }}>
+                <Scissors size={24} />
+             </div>
+             <div>
+                <span style={{ fontSize: '0.8rem', fontWeight: 800, color: 'var(--primary)', textTransform: 'uppercase' }}>{s.category}</span>
+                <h2 style={{ fontSize: '2rem', color: 'white' }}>{isEn ? s.title.en : s.title.tr}</h2>
+             </div>
           </div>
-          <button
-            onClick={() => setIsOperated(prev => !prev)}
-            style={{
-              background: isOperated ? '#10b981' : '#ef4444',
-              color: 'white',
-              border: 'none',
-              padding: '12px 28px',
-              borderRadius: '14px',
-              fontWeight: 800,
-              display: 'flex',
-              alignItems: 'center',
-              gap: '8px',
-              boxShadow: isOperated ? '0 10px 25px rgba(16, 185, 129, 0.4)' : '0 10px 25px rgba(239, 68, 68, 0.4)',
-              cursor: 'pointer',
-              transition: 'all 0.3s'
-            }}
+
+          <div className="glass-card" style={{ padding: '2rem', marginBottom: '2rem', borderLeft: '4px solid #ef4444' }}>
+             <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#ef4444', marginBottom: '1rem', fontWeight: 700 }}>
+                <AlertTriangle size={18} /> {isEn ? "PATHOLOGICAL FINDING" : "PATOLOJİK BULGU"}
+             </div>
+             <p style={{ color: 'var(--text-secondary)', lineHeight: 1.6 }}>{isEn ? s.problem.en : s.problem.tr}</p>
+          </div>
+
+          <AnimatePresence mode="wait">
+            {isSurgeryDone && (
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="glass-card" 
+                style={{ padding: '2rem', borderLeft: '4px solid var(--primary)', background: 'rgba(59, 130, 246, 0.05)' }}
+              >
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--primary)', marginBottom: '1rem', fontWeight: 700 }}>
+                    <Sparkles size={18} /> {isEn ? "SURGERY RESULT" : "CERRAHİ SONUÇ"}
+                </div>
+                <p style={{ color: 'var(--text-secondary)', lineHeight: 1.6 }}>{isEn ? s.explanation.en : s.explanation.tr}</p>
+              </motion.div>
+            )}
+          </AnimatePresence>
+
+          <button 
+            onClick={nextScenario}
+            style={{ marginTop: '2.5rem', display: 'flex', alignItems: 'center', gap: '0.75rem', background: 'transparent', border: 'none', color: 'var(--primary)', fontWeight: 700, cursor: 'pointer' }}
           >
-            <Scissors size={18} />
-            {isOperated 
-              ? (isEn ? "Undo Surgery (View Legacy)" : "Ameliyatı Geri Al (Eski Kod)") 
-              : (isEn ? "Perform Code Surgery ⚡" : "Kodu Ameliyat Et ⚡")
-            }
+            {isEn ? "Next Case" : "Sonraki Vaka"} ({activeScenario + 1} / {scenarios.length}) <ArrowRight size={18} />
           </button>
         </div>
 
-        <p style={{ color: 'var(--text-secondary)', fontSize: '1.05rem', lineHeight: 1.7, marginBottom: '2rem' }}>
-          {isEn ? scenario.problem.en : scenario.problem.tr}
-        </p>
+        {/* Right Code Panel */}
+        <div style={{ position: 'relative' }}>
+           <div className="glass-card" style={{ 
+             padding: '0', 
+             overflow: 'hidden', 
+             minHeight: '650px', 
+             display: 'flex',
+             flexDirection: 'column',
+             background: '#0a0f1e', 
+             border: '1px solid var(--glass-border)',
+             boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.5)'
+           }}>
+              {/* Editor Header */}
+              <div style={{ background: '#1a1f2e', padding: '1.5rem 2rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
+                 <div style={{ display: 'flex', gap: '0.6rem' }}>
+                    <div style={{ width: '14px', height: '14px', borderRadius: '50%', background: '#ff5f56' }}></div>
+                    <div style={{ width: '14px', height: '14px', borderRadius: '50%', background: '#ffbd2e' }}></div>
+                    <div style={{ width: '14px', height: '14px', borderRadius: '50%', background: '#27c93f' }}></div>
+                 </div>
+                 <div style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', fontWeight: 700, letterSpacing: '1.5px', opacity: 0.8 }}>
+                    {isSurgeryDone ? 'CLEAN_CODE.TS' : 'DIRTY_CODE.JS'}
+                 </div>
+                 <div style={{ color: 'var(--text-secondary)', opacity: 0.5 }}><Code2 size={18} /></div>
+              </div>
 
-        {/* Code Block Container */}
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={isOperated ? 'clean' : 'dirty'}
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.2 }}
-            style={{
-              background: '#0a0f1d',
-              borderRadius: '18px',
-              border: `1px solid ${isOperated ? '#10b98144' : '#ef444444'}`,
-              overflow: 'hidden'
-            }}
-          >
-            <div style={{
-              padding: '12px 20px',
-              background: isOperated ? 'rgba(16, 185, 129, 0.1)' : 'rgba(239, 68, 68, 0.1)',
-              borderBottom: '1px solid rgba(255,255,255,0.05)',
-              display: 'flex',
-              justifyContent: 'space-between',
-              alignItems: 'center'
-            }}>
-              <span style={{ fontWeight: 800, fontSize: '0.85rem', color: isOperated ? '#10b981' : '#ef4444', display: 'flex', alignItems: 'center', gap: '6px' }}>
-                {isOperated ? <CheckCircle2 size={16} /> : <AlertTriangle size={16} />}
-                {isOperated 
-                  ? (isEn ? "CLEAN ARCHITECTURE / REFACTORED CODE" : "TEMİZ MİMARİ / AMELİYAT EDİLMİŞ KOD") 
-                  : (isEn ? "DIRTY / SMELLY LEGACY CODE" : "KİRLİ / TEKNİK BORÇLU ESKİ KOD")
-                }
-              </span>
-              <span style={{ fontSize: '0.75rem', color: '#64748b', fontFamily: 'monospace' }}>TypeScript</span>
-            </div>
+              {/* Code Content */}
+              <div style={{ padding: '3rem 2.5rem', flex: 1, minHeight: '350px', position: 'relative' }}>
+                <AnimatePresence mode="wait">
+                  {!isSurgeryDone ? (
+                    <motion.pre
+                      key={`dirty-${activeScenario}`}
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      exit={{ opacity: 0, x: 20 }}
+                      style={{ margin: 0, color: '#e2e8f0', fontFamily: 'monospace', fontSize: '1rem', lineHeight: 1.7, overflowX: 'auto' }}
+                    >
+                      <code>{s.dirtyCode}</code>
+                      <Ghost size={60} style={{ opacity: 0.05, position: 'absolute', bottom: '1rem', right: '1rem' }} />
+                    </motion.pre>
+                  ) : (
+                    <motion.pre
+                      key={`clean-${activeScenario}`}
+                      initial={{ opacity: 0, scale: 0.98 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      style={{ margin: 0, color: '#60a5fa', fontFamily: 'monospace', fontSize: '1rem', lineHeight: 1.7, overflowX: 'auto' }}
+                    >
+                      <code>{s.cleanCode}</code>
+                      <Bot size={60} style={{ opacity: 0.1, position: 'absolute', bottom: '1rem', right: '1rem', color: '#60a5fa' }} />
+                    </motion.pre>
+                  )}
+                </AnimatePresence>
+              </div>
 
-            <pre style={{ padding: '1.5rem', margin: 0, color: '#e2e8f0', fontSize: '0.9rem', lineHeight: 1.7, overflowX: 'auto', fontFamily: 'monospace' }}>
-              <code>{isOperated ? scenario.cleanCode : scenario.dirtyCode}</code>
-            </pre>
-          </motion.div>
-        </AnimatePresence>
+              {/* Action Button - Pushed Down */}
+              <div style={{ padding: '3rem', borderTop: '1px solid rgba(255,255,255,0.05)', background: 'rgba(0,0,0,0.3)' }}>
+                 <button 
+                  onClick={() => setIsSurgeryDone(!isSurgeryDone)}
+                  className="surgery-btn"
+                  style={{
+                    width: '100%',
+                    padding: '1.5rem',
+                    borderRadius: '16px',
+                    border: 'none',
+                    background: isSurgeryDone ? 'rgba(39, 201, 63, 0.15)' : 'var(--primary)',
+                    color: isSurgeryDone ? '#4ade80' : 'white',
+                    fontWeight: 900,
+                    fontSize: '1.2rem',
+                    cursor: 'pointer',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: '1.2rem',
+                    transition: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
+                    boxShadow: isSurgeryDone ? 'none' : '0 10px 40px var(--primary-glow)'
+                  }}
+                 >
+                   {isSurgeryDone ? (
+                     <><CheckCircle2 size={24} /> {isEn ? "Operation Complete (Revert)" : "Operasyon Tamamlandı (Geri Dön)"}</>
+                   ) : (
+                     <><Scissors size={24} /> {isEn ? "Initiate Code Surgery ⚡" : "Cerrahi Müdahaleyi Başlat ⚡"}</>
+                   )}
+                 </button>
+              </div>
+           </div>
 
-        {/* Explanation HUD */}
-        {isOperated && (
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            style={{
-              marginTop: '2rem',
-              background: 'rgba(16, 185, 129, 0.08)',
-              border: '1px solid rgba(16, 185, 129, 0.2)',
-              borderRadius: '16px',
-              padding: '1.5rem'
-            }}
-          >
-            <div style={{ color: '#10b981', fontWeight: 800, marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <Sparkles size={18} /> {isEn ? "SURGERY RATIONALE:" : "AMELİYAT GEREKÇESİ:"}
-            </div>
-            <p style={{ color: '#cbd5e1', margin: 0, fontSize: '0.95rem', lineHeight: 1.6 }}>
-              {isEn ? scenario.explanation.en : scenario.explanation.tr}
-            </p>
-          </motion.div>
-        )}
+           {/* Backdrop Glow */}
+           <div style={{ 
+             position: 'absolute', 
+             top: '50%', 
+             left: '50%', 
+             transform: 'translate(-50%, -50%)', 
+             width: '100%', 
+             height: '100%', 
+             background: isSurgeryDone ? 'radial-gradient(circle, rgba(59, 130, 246, 0.1) 0%, transparent 70%)' : 'radial-gradient(circle, rgba(239, 68, 68, 0.1) 0%, transparent 70%)',
+             zIndex: -1,
+             transition: 'all 0.5s'
+           }}></div>
+        </div>
       </div>
     </div>
   );

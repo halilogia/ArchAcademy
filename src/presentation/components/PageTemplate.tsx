@@ -4,8 +4,11 @@ import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { ArrowRight, BookOpen, Code2, Lightbulb, Scale, CheckCircle2, XCircle, Sparkles } from 'lucide-react';
 import SEO from './SEO';
+import { Card } from './Card';
+import { Section } from './Section';
+import { SectionTitle } from './SectionTitle';
 
-interface PageTemplateProps {
+export interface PageTemplateProps {
   // SEO
   seoTitle: string;
   seoDescription: string;
@@ -70,37 +73,6 @@ interface PageTemplateProps {
   // Custom Children
   children?: React.ReactNode;
 }
-
-const Card: React.FC<{ children: React.ReactNode; style?: React.CSSProperties }> = ({ children, style }) => (
-  <motion.div
-    whileHover={{ y: -4 }}
-    transition={{ duration: 0.2 }}
-    className="glass-card"
-    style={{
-      padding: '2rem',
-      borderRadius: '24px',
-      border: '1px solid var(--glass-border)',
-      ...style
-    }}
-  >
-    {children}
-  </motion.div>
-);
-
-const SectionTitle: React.FC<{ children: React.ReactNode; icon?: React.ReactNode }> = ({ children, icon }) => (
-  <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '2rem' }}>
-    {icon && <div style={{ color: 'var(--primary)' }}>{icon}</div>}
-    <h2 style={{ fontSize: '2rem', fontWeight: 800, color: 'white', letterSpacing: '-0.5px' }}>
-      {children}
-    </h2>
-  </div>
-);
-
-const Section: React.FC<{ children: React.ReactNode; style?: React.CSSProperties }> = ({ children, style }) => (
-  <section style={{ padding: '4rem 0', ...style }}>
-    <div className="container">{children}</div>
-  </section>
-);
 
 export const PageTemplate: React.FC<PageTemplateProps> = ({
   seoTitle,

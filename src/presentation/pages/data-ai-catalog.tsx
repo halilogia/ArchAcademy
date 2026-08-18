@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence, useMotionValue, useTransform, useSpring } from 'framer-motion';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { 
@@ -32,29 +32,13 @@ const DataAICatalogPage: React.FC = () => {
 
   const [hoveredItem, setHoveredItem] = useState<ArchItem | null>(null);
 
-  // Parallax Logic
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
-
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      mouseX.set(e.clientX - window.innerWidth / 2);
-      mouseY.set(e.clientY - window.innerHeight / 2);
-    };
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, [mouseX, mouseY]);
-
-  const xPos = useSpring(useTransform(mouseX, [-500, 500], [-30, 30]));
-  const yPos = useSpring(useTransform(mouseY, [-500, 500], [-30, 30]));
-
   const items: ArchItem[] = [
     { 
       id: 'rag', 
       name: 'RAG Arch', 
       path: '/rag-arch', 
       color: '#8b5cf6', 
-      icon: <Brain />, 
+      icon: <Brain size={24} />, 
       desc: { 
         tr: 'Retrieval Augmented Generation: LLM verimliliği ve halüsinasyon engelleme.', 
         en: 'Retrieval-Augmented Generation: External knowledge retrieval and hallucination mitigation.' 
@@ -66,7 +50,7 @@ const DataAICatalogPage: React.FC = () => {
       name: 'Agentic AI', 
       path: '/agentic-ai', 
       color: '#ef4444', 
-      icon: <Cpu />, 
+      icon: <Cpu size={24} />, 
       desc: { 
         tr: 'Otonom karar veren yapay zeka ajanları ve araç kullanımı.', 
         en: 'Autonomous decision-making AI agents with multi-step tool invocation.' 
@@ -78,7 +62,7 @@ const DataAICatalogPage: React.FC = () => {
       name: 'Vector DBs', 
       path: '/vector-dbs', 
       color: '#3b82f6', 
-      icon: <Database />, 
+      icon: <Database size={24} />, 
       desc: { 
         tr: 'Yüksek boyutlu verileri (Embeddings) verimli saklama ve semantik arama.', 
         en: 'Storing high-dimensional embeddings and high-performance semantic vector search.' 
@@ -90,7 +74,7 @@ const DataAICatalogPage: React.FC = () => {
       name: 'CQRS', 
       path: '/cqrs', 
       color: '#ec4899', 
-      icon: <Activity />, 
+      icon: <Activity size={24} />, 
       desc: { 
         tr: 'Command (Yazma) ve Query (Okuma) sorumluluklarının ayrımı.', 
         en: 'Strict segregation of Command (Write) and Query (Read) data models.' 
@@ -102,7 +86,7 @@ const DataAICatalogPage: React.FC = () => {
       name: 'Event Sourcing', 
       path: '/event-sourcing', 
       color: '#f59e0b', 
-      icon: <Layers />, 
+      icon: <Layers size={24} />, 
       desc: { 
         tr: 'Durumun salt-okunur olay dizisi (Event Stream) olarak saklanması.', 
         en: 'Persisting application state as an append-only sequence of immutable events.' 
@@ -114,7 +98,7 @@ const DataAICatalogPage: React.FC = () => {
       name: 'CAP Theorem', 
       path: '/cap-theorem', 
       color: '#3b82f6', 
-      icon: <Search />, 
+      icon: <Search size={24} />, 
       desc: { 
         tr: 'Tutarlılık, Erişilebilirlik ve Bölünme Toleransı dengeleri.', 
         en: 'Consistency, Availability, and Partition Tolerance trade-offs in distributed systems.' 
@@ -126,7 +110,7 @@ const DataAICatalogPage: React.FC = () => {
       name: 'ACID', 
       path: '/acid', 
       color: '#10b981', 
-      icon: <ShieldCheck />, 
+      icon: <ShieldCheck size={24} />, 
       desc: { 
         tr: 'İlişkisel veritabanı işlem bütünlüğü ve izolasyon kuralları.', 
         en: 'Relational database transaction guarantees: Atomicity, Consistency, Isolation, Durability.' 
@@ -138,7 +122,7 @@ const DataAICatalogPage: React.FC = () => {
       name: 'Lambda & Kappa', 
       path: '/lambda-kappa', 
       color: '#06b6d4', 
-      icon: <Network />, 
+      icon: <Network size={24} />, 
       desc: { 
         tr: 'Büyük veri işleme (Stream vs Batch) hibrit mimarileri.', 
         en: 'Big data processing paradigms: Real-time stream processing vs batch pipelines.' 
@@ -150,7 +134,7 @@ const DataAICatalogPage: React.FC = () => {
       name: 'LLMOps', 
       path: '/llm-ops', 
       color: '#6366f1', 
-      icon: <Zap />, 
+      icon: <Zap size={24} />, 
       desc: { 
         tr: 'Yapay zeka modellerinin yaşam döngüsü ve üretim ortamı operasyonları.', 
         en: 'Operational pipelines, prompt versioning, observability, and lifecycle of LLMs.' 
@@ -206,7 +190,7 @@ const DataAICatalogPage: React.FC = () => {
                               x2={`${target.pos.x}%`} y2={`${target.pos.y}%`}
                               stroke={item.color}
                               strokeWidth="1"
-                              strokeOpacity="0.1"
+                              strokeOpacity="0.12"
                               initial={{ pathLength: 0 }}
                               animate={{ pathLength: 1 }}
                               transition={{ duration: 2 }}
@@ -216,20 +200,18 @@ const DataAICatalogPage: React.FC = () => {
               ))}
            </svg>
 
-           {/* Floating Nodes Container with Parallax */}
-           <motion.div 
+           {/* Stable Fixed Position Floating Nodes Container */}
+           <div 
               style={{ 
                  position: 'absolute', 
                  inset: 0, 
-                 x: xPos, 
-                 y: yPos,
-                 zIndex: 2
+                 zIndex: 2 
               }}
            >
               {items.map((item) => {
                  const isHovered = hoveredItem?.id === item.id;
                  return (
-                    <motion.div
+                    <div
                        key={item.id}
                        onClick={() => navigate(item.path)}
                        onMouseEnter={() => setHoveredItem(item)}
@@ -243,46 +225,48 @@ const DataAICatalogPage: React.FC = () => {
                           display: 'flex',
                           flexDirection: 'column',
                           alignItems: 'center',
-                          gap: '8px'
+                          gap: '8px',
+                          zIndex: isHovered ? 50 : 2
                        }}
-                       whileHover={{ scale: 1.25 }}
-                       transition={{ type: 'spring', stiffness: 300, damping: 20 }}
                     >
-                       <div 
+                       <motion.div 
+                          animate={{ scale: isHovered ? 1.15 : 1 }}
+                          transition={{ type: 'spring', stiffness: 400, damping: 25 }}
                           style={{
-                             width: isHovered ? '70px' : '55px',
-                             height: isHovered ? '70px' : '55px',
+                             width: '60px',
+                             height: '60px',
                              borderRadius: '50%',
-                             background: isHovered ? `${item.color}` : `rgba(15, 23, 42, 0.8)`,
+                             background: isHovered ? `${item.color}` : `rgba(15, 23, 42, 0.85)`,
                              border: `2px solid ${item.color}`,
                              display: 'flex',
                              alignItems: 'center',
                              justifyContent: 'center',
                              color: isHovered ? '#fff' : item.color,
-                             boxShadow: isHovered ? `0 0 40px ${item.color}` : `0 0 15px ${item.color}33`,
+                             boxShadow: isHovered ? `0 0 35px ${item.color}88` : `0 0 15px ${item.color}33`,
                              backdropFilter: 'blur(10px)',
-                             transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)'
+                             transition: 'background 0.2s ease, box-shadow 0.2s ease, color 0.2s ease'
                           }}
                        >
                           {item.icon}
-                       </div>
+                       </motion.div>
                        <span style={{ 
                           color: isHovered ? '#fff' : 'rgba(255,255,255,0.7)', 
                           fontSize: '0.85rem', 
                           fontWeight: 700,
                           letterSpacing: '0.5px',
                           textShadow: isHovered ? `0 0 10px ${item.color}` : 'none',
-                          background: 'rgba(2, 6, 23, 0.7)',
+                          background: 'rgba(2, 6, 23, 0.75)',
                           padding: '2px 8px',
                           borderRadius: '10px',
-                          border: '1px solid rgba(255,255,255,0.05)'
+                          border: '1px solid rgba(255,255,255,0.08)',
+                          transition: 'color 0.2s ease, text-shadow 0.2s ease'
                        }}>
                           {item.name}
                        </span>
-                    </motion.div>
+                    </div>
                  );
               })}
-           </motion.div>
+           </div>
 
            {/* Holographic Detail HUD (On Hover) */}
            <AnimatePresence>
@@ -299,10 +283,11 @@ const DataAICatalogPage: React.FC = () => {
                        left: '40px',
                        maxWidth: '400px',
                        borderLeft: `4px solid ${hoveredItem.color}`,
-                       background: 'rgba(15, 23, 42, 0.85)',
+                       background: 'rgba(15, 23, 42, 0.9)',
                        backdropFilter: 'blur(16px)',
                        padding: '2rem',
-                       zIndex: 10
+                       zIndex: 100,
+                       pointerEvents: 'none'
                     }}
                  >
                     <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '1rem' }}>

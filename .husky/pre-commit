@@ -1,1 +1,2 @@
+python "C:/Users/Halil Emre/.git-template/hooks/loss-guard.py"
 npm run build

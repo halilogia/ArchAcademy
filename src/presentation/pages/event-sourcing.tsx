@@ -1,73 +1,18 @@
-import { useTranslation } from 'react-i18next';
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
+import { History, Save, RotateCcw, Database, FileClock, GitCommitHorizontal, Play } from 'lucide-react';
 import ArchHero from '../components/ArchHero';
-import { 
+import SEO from '../components/SEO';
+import { EventSourcingComparisonTab } from '../components/eventsourcing/EventSourcingComparisonTab';
+import { EventSourcingSimulationTab } from '../components/eventsourcing/EventSourcingSimulationTab';
 
-  History, 
-  Save, 
-  RotateCcw, 
-  Database, 
-  FileClock, 
-  GitCommitHorizontal,
-  ArrowDown,
-  Play,
-  ListVideo,
-  SearchCheck,
-  PackagePlus,
-  PackageMinus,
-  ShoppingCart
-} from 'lucide-react';
-
-const EventSourcingPage = () => {
+const EventSourcingPage: React.FC = () => {
   const { i18n } = useTranslation();
   const isEn = (i18n.resolvedLanguage || i18n.language || 'tr').startsWith('en');
   const [activeTab, setActiveTab] = useState<'simulation' | 'comparison'>('comparison');
-    const [events, setEvents] = useState([
-        { id: 1, type: 'CartCreated', data: '{ userId: 1 }', time: '10:00:01' },
-    ]);
-    const [currentState, setCurrentState] = useState({ items: 0, total: 0 });
 
-    const addEvent = (type: string, price: number) => {
-        const newEvent = { 
-            id: events.length + 1, 
-            type, 
-            data: type === 'ItemAdded' ? `{ price: $${price} }` : `{ price: $${price} }`, 
-            time: new Date().toLocaleTimeString() 
-        };
-        setEvents([...events, newEvent]);
-
-        // Replay logic (projection) - In real world this happens on read side
-        if (type === 'ItemAdded') {
-            setCurrentState(prev => ({ items: prev.items + 1, total: prev.total + price }));
-        } else if (type === 'ItemRemoved') {
-            setCurrentState(prev => ({ items: Math.max(0, prev.items - 1), total: Math.max(0, prev.total - price) }));
-        }
-    };
-
-    const replayEvents = () => {
-        setCurrentState({ items: 0, total: 0 });
-        let tempState = { items: 0, total: 0 };
-        
-        events.forEach((ev, i) => {
-            setTimeout(() => {
-                if (ev.type === 'ItemAdded') {
-                   const price = parseInt(ev.data.match(/\d+/)?.[0] || '0');
-                   tempState.items += 1;
-                   tempState.total += price;
-                } else if (ev.type === 'ItemRemoved') {
-                    const price = parseInt(ev.data.match(/\d+/)?.[0] || '0');
-                    tempState.items -= 1;
-                    tempState.total -= price;
-                } else if (ev.type === 'CartCreated') {
-                    // init
-                }
-                setCurrentState({ ...tempState });
-            }, (i + 1) * 800);
-        });
-    };
-
-  const illu = (
+  const heroIllustration = (
     <div style={{ position: 'relative', width: '380px', height: '350px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
       {/* Event Stream (The Log) */}
       <div style={{ width: '100%', height: '220px', position: 'relative', overflow: 'hidden', background: 'rgba(99, 102, 241, 0.05)', borderRadius: '20px', border: '1px solid rgba(99, 102, 241, 0.2)', padding: '35px 15px 15px 15px' }}>
@@ -126,235 +71,133 @@ const EventSourcingPage = () => {
   );
 
   return (
-    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} style={{ paddingBottom: '100px' }}>
-      <ArchHero 
-        title="Event Sourcing"
-        subtitle="The Source of Truth"
-        description="Veritabanında verinin son halini değil, o hale gelmesini sağlayan tüm olayların (Events) tarihçesini saklama sanatıdır. Muhasebe defteri mantığıyla çalışır."
-        badge="Audit & Replay"
-        color="#6366f1"
-        illustration={illu}
-        features={[
-          { icon: <History />, title: 'Time Travel', desc: 'Sisteme "Geçen Salı saat 14:00\'te durum neydi?" diye sorabilirsiniz.' },
-          { icon: <FileClock />, title: 'Audit Log', desc: 'Kayıtlar asla silinmez veya güncellenmez (Immutable), sadece eklenir.' },
-          { icon: <RotateCcw />, title: 'Replay', desc: 'Bir hata olduğunda tüm olayları yeniden oynatarak hatayı analiz edebilirsiniz.' }
-        ]}
-      >
-        <div style={{ 
-          marginTop: '2rem',
-          padding: '6px', 
-          background: 'rgba(15, 23, 42, 0.4)', 
-          borderRadius: '24px', 
-          border: '1px solid rgba(255,255,255,0.05)',
-          display: 'inline-flex',
-          alignItems: 'center',
-          gap: '4px',
-          backdropFilter: 'blur(10px)'
-        }}>
-          {[
-            { id: 'comparison', label: 'CRUD vs Event Sourcing', icon: <Database size={18} /> },
-            { id: 'simulation', label: 'Live Simulation', icon: <Play size={18} /> }
-          ].map((tab) => (
-            <button
-              key={tab.id}
-              onClick={() => setActiveTab(tab.id as any)}
-              style={{
-                padding: '10px 24px',
-                borderRadius: '18px',
-                border: 'none',
-                background: activeTab === tab.id ? '#6366f1' : 'transparent',
-                color: activeTab === tab.id ? 'white' : 'rgba(255,255,255,0.5)',
-                cursor: 'pointer',
-                display: 'flex',
-                alignItems: 'center',
-                gap: '8px',
-                fontWeight: 700,
-                fontSize: '0.9rem',
-                transition: 'all 0.3s ease',
-                boxShadow: activeTab === tab.id ? '0 4px 12px rgba(99, 102, 241, 0.3)' : 'none'
-              }}
-            >
-              {tab.icon} {tab.label}
-            </button>
-          ))}
+    <>
+      <SEO
+        title={isEn ? "Event Sourcing Architecture Pattern | ArchAcademy" : "Event Sourcing Mimari Deseni | ArchAcademy"}
+        description={isEn 
+          ? "Master Event Sourcing, append-only event stores, state projection, time-travel debugging, and CQRS integration." 
+          : "Event Sourcing mimarisi, değişmez olay kütüğü, durum projeksiyonu, zaman yolculuğu hata ayıklaması ve denetim izleri."
+        }
+        keywords="event sourcing, event store, append only log, martin fowler, cqrs, projection, time travel debugging"
+        canonicalUrl="/event-sourcing"
+      />
+      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} style={{ paddingBottom: '100px' }}>
+        <ArchHero 
+          title="Event Sourcing"
+          subtitle="The Source of Truth"
+          description={isEn 
+            ? "Never store just the current state snapshot; record the full immutable history of every domain event that led to it. Operates on ledger principles." 
+            : "Veritabanında verinin son halini değil, o hale gelmesini sağlayan tüm olayların (Events) tarihçesini saklama sanatıdır. Muhasebe defteri mantığıyla çalışır."
+          }
+          badge="Audit & Replay"
+          color="#6366f1"
+          illustration={heroIllustration}
+          features={[
+            { 
+              icon: <History />, 
+              title: isEn ? 'Time Travel' : 'Zaman Yolculuğu (Time Travel)', 
+              desc: isEn ? 'Reconstruct exact system state at any arbitrary historical timestamp.' : 'Sisteme "Geçen Salı saat 14:00\'te durum neydi?" diye sorabilirsiniz.' 
+            },
+            { 
+              icon: <FileClock />, 
+              title: isEn ? 'Audit Log' : 'Eksiksiz Denetim İzi (Audit)', 
+              desc: isEn ? 'Domain events are immutable and append-only; state changes are never deleted.' : 'Kayıtlar asla silinmez veya güncellenmez (Immutable), sadece eklenir.' 
+            },
+            { 
+              icon: <RotateCcw />, 
+              title: isEn ? 'State Replay' : 'Yeniden Oynatma (Replay)', 
+              desc: isEn ? 'Reproject bugged projections by replaying recorded event streams with updated logic.' : 'Bir hata olduğunda tüm olayları yeniden oynatarak hatayı analiz edebilirsiniz.' 
+            }
+          ]}
+        >
+          <div style={{ 
+            marginTop: '2rem',
+            padding: '6px', 
+            background: 'rgba(15, 23, 42, 0.4)', 
+            borderRadius: '24px', 
+            border: '1px solid rgba(255,255,255,0.05)',
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '4px',
+            backdropFilter: 'blur(10px)'
+          }}>
+            {[
+              { id: 'comparison', label: isEn ? 'CRUD vs Event Sourcing' : 'CRUD vs Event Sourcing', icon: <Database size={18} /> },
+              { id: 'simulation', label: isEn ? 'Live Simulation' : 'Canlı Sepet Simülasyonu', icon: <Play size={18} /> }
+            ].map((tab) => (
+              <button
+                key={tab.id}
+                onClick={() => setActiveTab(tab.id as any)}
+                style={{
+                  padding: '10px 24px',
+                  borderRadius: '18px',
+                  border: 'none',
+                  background: activeTab === tab.id ? '#6366f1' : 'transparent',
+                  color: activeTab === tab.id ? 'white' : 'rgba(255,255,255,0.5)',
+                  cursor: 'pointer',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '8px',
+                  fontWeight: 700,
+                  fontSize: '0.9rem',
+                  transition: 'all 0.3s ease',
+                  boxShadow: activeTab === tab.id ? '0 4px 12px rgba(99, 102, 241, 0.3)' : 'none'
+                }}
+              >
+                {tab.icon} {tab.label}
+              </button>
+            ))}
+          </div>
+        </ArchHero>
+
+        <div className="container" style={{ marginTop: '2rem' }}>
+          <AnimatePresence mode="wait">
+            {activeTab === 'comparison' && <EventSourcingComparisonTab key="comparison" />}
+            {activeTab === 'simulation' && <EventSourcingSimulationTab key="simulation" />}
+          </AnimatePresence>
         </div>
-      </ArchHero>
-
-      <div className="container" style={{ marginTop: '2rem' }}>
-        <AnimatePresence mode="wait">
-            {activeTab === 'comparison' && (
-                <motion.div
-                    key="comparison"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -20 }}
-                >
-                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '3rem' }}>
-                        <div className="glass-card" style={{ borderTop: '4px solid #64748b' }}>
-                            <h3 style={{ fontSize: '1.5rem', fontWeight: 800, marginBottom: '1.5rem', color: '#64748b', display: 'flex', alignItems: 'center', gap: '10px' }}>
-                                <Database size={24} /> Geleneksel (CRUD)
-                            </h3>
-                            <p style={{ color: 'var(--text-secondary)', marginBottom: '2rem' }}>
-                                Veritabanında bir satır vardır. Güncelleme yapıldığında eski veri silinir, üzerine yenisi yazılır.
-                            </p>
-                            
-                            <div style={{ background: '#0f172a', padding: '1.5rem', borderRadius: '12px', fontFamily: 'monospace', border: '1px solid #334155' }}>
-                                <div style={{ color: '#94a3b8', marginBottom: '10px' }}>// UPDATE users SET balance = 100 WHERE id = 1</div>
-                                <div style={{ display: 'flex', justifyContent: 'space-between', borderBottom: '1px solid #334155', paddingBottom: '5px', marginBottom: '5px' }}>
-                                    <span>ID</span> <span>NAME</span> <span>BALANCE</span>
-                                </div>
-                                <div style={{ display: 'flex', justifyContent: 'space-between', color: '#10b981' }}>
-                                    <span>1</span> <span>Ali</span> <span>$100</span>
-                                </div>
-                            </div>
-                            <div style={{ marginTop: '1rem', fontSize: '0.85rem', color: '#ef4444', display: 'flex', alignItems: 'center', gap: '6px' }}>
-                                <RotateCcw size={14} /> Eski bakiye ($50) sonsuza dek kayboldu.
-                            </div>
-                        </div>
-
-                        <div className="glass-card" style={{ borderTop: '4px solid #6366f1' }}>
-                            <h3 style={{ fontSize: '1.5rem', fontWeight: 800, marginBottom: '1.5rem', color: '#6366f1', display: 'flex', alignItems: 'center', gap: '10px' }}>
-                                <History size={24} /> Event Sourcing
-                            </h3>
-                            <p style={{ color: 'var(--text-secondary)', marginBottom: '2rem' }}>
-                                Veritabanında satır güncellenmez. Sadece yeni "olay" eklenir. Mevcut durum, olayların toplamıdır.
-                            </p>
-
-                             <div style={{ background: '#0f172a', padding: '1.5rem', borderRadius: '12px', fontFamily: 'monospace', border: '1px solid #334155' }}>
-                                <div style={{ color: '#94a3b8', marginBottom: '10px' }}>// INSERT INTO events (type, amount) ...</div>
-                                <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                                    <div style={{ display: 'flex', alignItems: 'center', gap: '10px', color: '#94a3b8' }}>
-                                        <GitCommitHorizontal size={14} /> UserCreated (Balance: 0)
-                                    </div>
-                                    <div style={{ display: 'flex', alignItems: 'center', gap: '10px', color: '#10b981' }}>
-                                        <GitCommitHorizontal size={14} /> MoneyDeposited (+$50)
-                                    </div>
-                                    <div style={{ display: 'flex', alignItems: 'center', gap: '10px', color: '#10b981' }}>
-                                        <GitCommitHorizontal size={14} /> MoneyDeposited (+$50)
-                                    </div>
-                                </div>
-                            </div>
-                            <div style={{ marginTop: '1rem', fontSize: '0.85rem', color: '#6366f1', display: 'flex', alignItems: 'center', gap: '6px' }}>
-                                <RotateCcw size={14} /> İstediğimiz an geçmişe dönüp bakiyenin neden $100 olduğunu ispatlayabiliriz.
-                            </div>
-                        </div>
-                    </div>
-                </motion.div>
-            )}
-
-            {activeTab === 'simulation' && (
-                <motion.div
-                    key="simulation"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -20 }}
-                >
-                    <div style={{ display: 'grid', gridTemplateColumns: 'minmax(300px, 1fr) 1fr', gap: '2rem' }}>
-                        
-                        {/* Control Panel */}
-                        <div className="glass-card">
-                            <h3 style={{ marginBottom: '1.5rem' }}>Alışveriş Simülasyonu</h3>
-                            <div style={{ display: 'flex', gap: '10px', marginBottom: '2rem' }}>
-                                <button onClick={() => addEvent('ItemAdded', 50)} className="btn-primary" style={{ background: '#10b981', flex: 1, padding: '12px', border: 'none', borderRadius: '8px', color: 'white', fontWeight: 700, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '5px' }}>
-                                    <PackagePlus size={18} /> Ürün Ekle ($50)
-                                </button>
-                                <button onClick={() => addEvent('ItemRemoved', 50)} className="btn-secondary" style={{ background: '#ef4444', flex: 1, padding: '12px', border: 'none', borderRadius: '8px', color: 'white', fontWeight: 700, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '5px' }}>
-                                    <PackageMinus size={18} /> Çıkar ($50)
-                                </button>
-                            </div>
-                            
-                            <div style={{ paddingTop: '2rem', borderTop: '1px dashed rgba(255,255,255,0.1)' }}>
-                                <h4 style={{ color: '#6366f1', marginBottom: '1rem' }}>Sistem Durumu (State)</h4>
-                                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: 'rgba(99, 102, 241, 0.1)', padding: '1.5rem', borderRadius: '16px' }}>
-                                    <div style={{ textAlign: 'center' }}>
-                                        <div style={{ fontSize: '2rem', fontWeight: 900, color: 'white' }}>{currentState.items}</div>
-                                        <div style={{ fontSize: '0.8rem', opacity: 0.7 }}>ADET</div>
-                                    </div>
-                                    <ShoppingCart size={32} color="#6366f1" />
-                                    <div style={{ textAlign: 'center' }}>
-                                        <div style={{ fontSize: '2rem', fontWeight: 900, color: 'white' }}>${currentState.total}</div>
-                                        <div style={{ fontSize: '0.8rem', opacity: 0.7 }}>TOPLAM</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        {/* Event Log */}
-                        <div className="glass-card" style={{ background: '#020617', border: '1px solid #334155', height: '500px', display: 'flex', flexDirection: 'column' }}>
-                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
-                                <h3 style={{ display: 'flex', alignItems: 'center', gap: '10px' }}><ListVideo size={20} /> Event Store (Log)</h3>
-                                <button onClick={replayEvents} style={{ background: 'white', color: 'black', border: 'none', padding: '6px 12px', borderRadius: '6px', cursor: 'pointer', fontWeight: 700, display: 'flex', alignItems: 'center', gap: '5px', fontSize: '0.8rem' }}>
-                                    <RotateCcw size={14} /> Replay
-                                </button>
-                            </div>
-                            
-                            <div style={{ overflowY: 'auto', flex: 1, paddingRight: '5px' }}>
-                                {events.slice().reverse().map((ev) => (
-                                    <motion.div 
-                                        key={ev.id}
-                                        initial={{ opacity: 0, x: -20 }}
-                                        animate={{ opacity: 1, x: 0 }}
-                                        style={{ 
-                                            padding: '12px', 
-                                            background: 'rgba(255,255,255,0.05)', 
-                                            borderRadius: '8px', 
-                                            marginBottom: '8px',
-                                            borderLeft: `3px solid ${ev.type === 'ItemRemoved' ? '#ef4444' : ev.type === 'ItemAdded' ? '#10b981' : '#6366f1'}`
-                                        }}
-                                    >
-                                        <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '4px' }}>
-                                            <span style={{ fontWeight: 700, fontSize: '0.9rem', color: 'white' }}>{ev.type}</span>
-                                            <span style={{ fontSize: '0.7rem', opacity: 0.5 }}>{ev.time}</span>
-                                        </div>
-                                        <div style={{ fontFamily: 'monospace', fontSize: '0.8rem', color: '#94a3b8' }}>
-                                            {ev.data}
-                                        </div>
-                                    </motion.div>
-                                ))}
-                            </div>
-                        </div>
-                    </div>
-                </motion.div>
-            )}
-        </AnimatePresence>
-      </div>
-      
-      <section style={{ padding: '4rem 0', background: 'rgba(0,0,0,0.3)', borderTop: '1px solid rgba(255,255,255,0.05)', marginTop: '4rem' }}>
-        <div className="container" style={{ textAlign: 'center' }}>
-           <div style={{ 
-             background: 'linear-gradient(180deg, rgba(15, 23, 42, 0) 0%, rgba(15, 23, 42, 0.5) 100%)', 
-             padding: '3rem', 
-             borderRadius: '24px', 
-             border: '1px solid rgba(255,255,255,0.05)',
-             maxWidth: '900px',
-             margin: '0 auto'
-           }}>
-              <div style={{ fontSize: '0.8rem', letterSpacing: '2px', fontWeight: 800, color: 'rgba(255,255,255,0.4)', marginBottom: '1rem', textTransform: 'uppercase' }}>
-                Core Concept
-              </div>
-              <p style={{ color: '#94a3b8', marginBottom: '2rem', fontSize: '1.1rem', lineHeight: 1.6 }}>
-                Uygulama durumunun (State) olaylar dizisi olarak saklanması konseptini derinlemesine anlamak için en güvenilir kaynak yine Martin Fowler'dır.
-              </p>
-              
-              <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
-                 <a 
-                   href="https://martinfowler.com/eaaDev/EventSourcing.html" 
-                   target="_blank" 
-                   rel="noopener noreferrer"
-                   style={{ 
-                     display: 'flex', alignItems: 'center', gap: '8px', 
-                     background: 'rgba(99, 102, 241, 0.15)', color: '#a5b4fc', 
-                     padding: '12px 24px', borderRadius: '12px', textDecoration: 'none', fontWeight: 600,
-                     border: '1px solid rgba(99, 102, 241, 0.2)', transition: 'all 0.2s'
-                   }}
-                 >
-                    Event Sourcing Pattern <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-                 </a>
-              </div>
-           </div>
-        </div>
-      </section>
-    </motion.div>
+        
+        {/* Core Concept Reference Section */}
+        <section style={{ padding: '4rem 0', background: 'rgba(0,0,0,0.3)', borderTop: '1px solid rgba(255,255,255,0.05)', marginTop: '4rem' }}>
+          <div className="container" style={{ textAlign: 'center' }}>
+             <div style={{ 
+               background: 'linear-gradient(180deg, rgba(15, 23, 42, 0) 0%, rgba(15, 23, 42, 0.5) 100%)', 
+               padding: '3rem', 
+               borderRadius: '24px', 
+               border: '1px solid rgba(255,255,255,0.05)',
+               maxWidth: '900px',
+               margin: '0 auto'
+             }}>
+                <div style={{ fontSize: '0.8rem', letterSpacing: '2px', fontWeight: 800, color: 'rgba(255,255,255,0.4)', marginBottom: '1rem', textTransform: 'uppercase' }}>
+                  {isEn ? "Core Architecture Concept" : "Temel Mimari Konsept"}
+                </div>
+                <p style={{ color: '#94a3b8', marginBottom: '2rem', fontSize: '1.1rem', lineHeight: 1.6 }}>
+                  {isEn 
+                    ? "Martin Fowler's foundational essay on Event Sourcing remains the industry-standard benchmark." 
+                    : "Uygulama durumunun (State) olaylar dizisi olarak saklanması konseptini derinlemesine anlamak için en güvenilir kaynak Martin Fowler'dır."
+                  }
+                </p>
+                
+                <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+                   <a 
+                     href="https://martinfowler.com/eaaDev/EventSourcing.html" 
+                     target="_blank" 
+                     rel="noopener noreferrer"
+                     style={{ 
+                       display: 'flex', alignItems: 'center', gap: '8px', 
+                       background: 'rgba(99, 102, 241, 0.15)', color: '#a5b4fc', 
+                       padding: '12px 24px', borderRadius: '12px', textDecoration: 'none', fontWeight: 600,
+                       border: '1px solid rgba(99, 102, 241, 0.2)', transition: 'all 0.2s'
+                     }}
+                   >
+                      Event Sourcing Pattern (Martin Fowler) <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                   </a>
+                </div>
+             </div>
+          </div>
+        </section>
+      </motion.div>
+    </>
   );
 };
 
