@@ -1,7 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { ArrowRight, BookOpen, Code2, Lightbulb, Scale, CheckCircle2 } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
+import { ArrowRight, BookOpen, Code2, Lightbulb, Scale, CheckCircle2, XCircle, Sparkles } from 'lucide-react';
 import SEO from './SEO';
 
 interface PageTemplateProps {
@@ -66,35 +67,42 @@ interface PageTemplateProps {
     description: string;
   }[];
 
-  // Custom Content (optional)
+  // Custom Children
   children?: React.ReactNode;
 }
 
-const Section: React.FC<{ id?: string; className?: string; children: React.ReactNode }> = ({ id, className = '', children }) => (
-  <section id={id} className={`container ${className}`} style={{ padding: '4rem 0' }}>
+const Card: React.FC<{ children: React.ReactNode; style?: React.CSSProperties }> = ({ children, style }) => (
+  <motion.div
+    whileHover={{ y: -4 }}
+    transition={{ duration: 0.2 }}
+    className="glass-card"
+    style={{
+      padding: '2rem',
+      borderRadius: '24px',
+      border: '1px solid var(--glass-border)',
+      ...style
+    }}
+  >
     {children}
-  </section>
+  </motion.div>
 );
 
 const SectionTitle: React.FC<{ children: React.ReactNode; icon?: React.ReactNode }> = ({ children, icon }) => (
-  <div style={{ display: 'flex', alignItems: 'center', gap: '0.8rem', marginBottom: '2rem' }}>
+  <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '2rem' }}>
     {icon && <div style={{ color: 'var(--primary)' }}>{icon}</div>}
-    <h2 style={{ fontSize: '2rem', fontWeight: 800, color: 'white', letterSpacing: '-1px' }}>{children}</h2>
+    <h2 style={{ fontSize: '2rem', fontWeight: 800, color: 'white', letterSpacing: '-0.5px' }}>
+      {children}
+    </h2>
   </div>
 );
 
-const Card: React.FC<{ children: React.ReactNode; className?: string }> = ({ children, className = '' }) => (
-  <div className={`glass-card ${className}`} style={{
-    padding: '2rem',
-    borderRadius: '20px',
-    border: '1px solid var(--glass-border)',
-    background: 'rgba(255,255,255,0.02)'
-  }}>
-    {children}
-  </div>
+const Section: React.FC<{ children: React.ReactNode; style?: React.CSSProperties }> = ({ children, style }) => (
+  <section style={{ padding: '4rem 0', ...style }}>
+    <div className="container">{children}</div>
+  </section>
 );
 
-const PageTemplate: React.FC<PageTemplateProps> = ({
+export const PageTemplate: React.FC<PageTemplateProps> = ({
   seoTitle,
   seoDescription,
   seoKeywords,
@@ -103,25 +111,35 @@ const PageTemplate: React.FC<PageTemplateProps> = ({
   heroSubtitle,
   heroIcon,
   heroColor = 'var(--primary)',
-  overviewTitle = 'Genel Bakış',
+  overviewTitle,
   overviewDescription,
   overviewWhenToUse,
-  coreConceptsTitle = 'Temel Kavramlar',
+  coreConceptsTitle,
   coreConcepts,
-  architectureTitle = 'Mimari Yapı',
+  architectureTitle,
   architectureDescription,
   architectureLayers,
-  codeExamplesTitle = 'Kod Örnekleri',
+  codeExamplesTitle,
   codeExamples,
-  prosConsTitle = 'Avantajlar & Dezavantajlar',
+  prosConsTitle,
   pros,
   cons,
-  whenToUseTitle = 'Ne Zaman Kullanılır?',
+  whenToUseTitle,
   whenToUse,
   whenNotToUse,
   relatedPages,
   children
 }) => {
+  const { i18n } = useTranslation();
+  const isEn = (i18n.resolvedLanguage || i18n.language || 'tr').startsWith('en');
+
+  const resolvedOverviewTitle = overviewTitle || (isEn ? 'Overview' : 'Genel Bakış');
+  const resolvedCoreConceptsTitle = coreConceptsTitle || (isEn ? 'Core Concepts' : 'Temel Kavramlar');
+  const resolvedArchitectureTitle = architectureTitle || (isEn ? 'Architecture Structure' : 'Mimari Yapı');
+  const resolvedCodeExamplesTitle = codeExamplesTitle || (isEn ? 'Code Examples' : 'Kod Örnekleri');
+  const resolvedProsConsTitle = prosConsTitle || (isEn ? 'Advantages & Trade-offs' : 'Avantajlar & Dezavantajlar');
+  const resolvedWhenToUseTitle = whenToUseTitle || (isEn ? 'When to Use' : 'Ne Zaman Kullanılır?');
+
   return (
     <>
       <SEO title={seoTitle} description={seoDescription} keywords={seoKeywords} canonicalUrl={canonicalUrl} />
@@ -165,7 +183,7 @@ const PageTemplate: React.FC<PageTemplateProps> = ({
         {/* Overview Section */}
         <Section>
           <Card>
-            <SectionTitle icon={<BookOpen size={24} />}>{overviewTitle}</SectionTitle>
+            <SectionTitle icon={<BookOpen size={24} />}>{resolvedOverviewTitle}</SectionTitle>
             <p style={{ fontSize: '1.1rem', color: 'var(--text-secondary)', lineHeight: 1.8, marginBottom: '1.5rem' }}>
               {overviewDescription}
             </p>
@@ -176,7 +194,7 @@ const PageTemplate: React.FC<PageTemplateProps> = ({
                 borderRadius: '16px',
                 border: '1px solid rgba(59, 130, 246, 0.2)'
               }}>
-                <strong style={{ color: '#60a5fa' }}>💡 Ne Zaman Kullanılır:</strong>
+                <strong style={{ color: '#60a5fa' }}>{isEn ? "💡 When to Use:" : "💡 Ne Zaman Kullanılır:"}</strong>
                 <p style={{ color: 'var(--text-secondary)', marginTop: '0.5rem', lineHeight: 1.7 }}>{overviewWhenToUse}</p>
               </div>
             )}
@@ -185,7 +203,7 @@ const PageTemplate: React.FC<PageTemplateProps> = ({
 
         {/* Core Concepts */}
         <Section>
-          <SectionTitle icon={<Lightbulb size={24} />}>{coreConceptsTitle}</SectionTitle>
+          <SectionTitle icon={<Lightbulb size={24} />}>{resolvedCoreConceptsTitle}</SectionTitle>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem' }}>
             {coreConcepts.map((concept, index) => (
               <Card key={index}>
@@ -212,53 +230,47 @@ const PageTemplate: React.FC<PageTemplateProps> = ({
         {/* Architecture Structure */}
         {architectureLayers.length > 0 && (
           <Section>
-            <SectionTitle icon={<Code2 size={24} />}>{architectureTitle}</SectionTitle>
+            <SectionTitle icon={<Code2 size={24} />}>{resolvedArchitectureTitle}</SectionTitle>
             {architectureDescription && (
               <p style={{ fontSize: '1rem', color: 'var(--text-secondary)', marginBottom: '2rem', lineHeight: 1.7 }}>
                 {architectureDescription}
               </p>
             )}
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
               {architectureLayers.map((layer, index) => (
-                <Card key={index}>
-                  <div style={{ display: 'flex', alignItems: 'flex-start', gap: '1.5rem' }}>
-                    <div style={{
-                      width: '48px',
-                      height: '48px',
-                      background: `${layer.color || heroColor}20`,
-                      borderRadius: '14px',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      color: layer.color || heroColor,
-                      fontWeight: 800,
-                      flexShrink: 0
-                    }}>
-                      {index + 1}
-                    </div>
-                    <div style={{ flex: 1 }}>
-                      <h3 style={{ fontSize: '1.2rem', fontWeight: 700, color: 'white', marginBottom: '0.5rem' }}>
-                        {layer.name}
-                      </h3>
-                      <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', lineHeight: 1.7, marginBottom: '1rem' }}>
-                        {layer.description}
-                      </p>
-                      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
-                        {layer.examples.map((example, i) => (
-                          <span key={i} style={{
-                            padding: '4px 12px',
-                            background: 'rgba(255,255,255,0.05)',
-                            borderRadius: '100px',
+                <div
+                  key={index}
+                  style={{
+                    padding: '1.5rem',
+                    background: 'rgba(255, 255, 255, 0.02)',
+                    borderRadius: '16px',
+                    border: '1px solid var(--glass-border)',
+                    borderLeft: `4px solid ${layer.color || 'var(--primary)'}`
+                  }}
+                >
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem' }}>
+                    <h3 style={{ fontSize: '1.1rem', fontWeight: 700, color: 'white' }}>{layer.name}</h3>
+                    <div style={{ display: 'flex', gap: '0.5rem' }}>
+                      {layer.examples.map((ex, i) => (
+                        <span
+                          key={i}
+                          style={{
                             fontSize: '0.75rem',
+                            padding: '2px 8px',
+                            background: 'rgba(255, 255, 255, 0.05)',
+                            borderRadius: '6px',
                             color: 'var(--text-secondary)'
-                          }}>
-                            {example}
-                          </span>
-                        ))}
-                      </div>
+                          }}
+                        >
+                          {ex}
+                        </span>
+                      ))}
                     </div>
                   </div>
-                </Card>
+                  <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', lineHeight: 1.6 }}>
+                    {layer.description}
+                  </p>
+                </div>
               ))}
             </div>
           </Section>
@@ -267,28 +279,27 @@ const PageTemplate: React.FC<PageTemplateProps> = ({
         {/* Code Examples */}
         {codeExamples.length > 0 && (
           <Section>
-            <SectionTitle icon={<Code2 size={24} />}>{codeExamplesTitle}</SectionTitle>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+            <SectionTitle icon={<Code2 size={24} />}>{resolvedCodeExamplesTitle}</SectionTitle>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '1.5rem' }}>
               {codeExamples.map((example, index) => (
                 <Card key={index}>
                   <h3 style={{ fontSize: '1.1rem', fontWeight: 700, color: 'white', marginBottom: '0.5rem' }}>
                     {example.title}
                   </h3>
-                  <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', marginBottom: '1.5rem', lineHeight: 1.6 }}>
+                  <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', marginBottom: '1rem', lineHeight: 1.6 }}>
                     {example.description}
                   </p>
-                  <pre style={{
-                    background: 'rgba(0,0,0,0.3)',
-                    padding: '1.5rem',
+                  <div style={{
+                    background: '#0a0f1d',
                     borderRadius: '12px',
-                    overflow: 'auto',
-                    fontSize: '0.85rem',
-                    lineHeight: 1.6,
-                    color: '#e2e8f0',
-                    border: '1px solid rgba(255,255,255,0.05)'
+                    padding: '1rem',
+                    overflowX: 'auto',
+                    border: '1px solid rgba(255, 255, 255, 0.05)'
                   }}>
-                    <code>{example.code}</code>
-                  </pre>
+                    <pre style={{ margin: 0, fontSize: '0.85rem', color: '#e2e8f0', fontFamily: 'monospace' }}>
+                      <code>{example.code}</code>
+                    </pre>
+                  </div>
                 </Card>
               ))}
             </div>
@@ -297,29 +308,36 @@ const PageTemplate: React.FC<PageTemplateProps> = ({
 
         {/* Pros & Cons */}
         <Section>
-          <SectionTitle icon={<Scale size={24} />}>{prosConsTitle}</SectionTitle>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '1.5rem' }}>
-            <Card>
-              <h3 style={{ fontSize: '1.1rem', fontWeight: 700, color: '#10b981', marginBottom: '1rem' }}>
-                ✅ Avantajlar
-              </h3>
-              <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
+          <SectionTitle icon={<Scale size={24} />}>{resolvedProsConsTitle}</SectionTitle>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem' }}>
+            <Card style={{ borderTop: '4px solid #10b981' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1.5rem' }}>
+                <CheckCircle2 color="#10b981" size={24} />
+                <h3 style={{ fontSize: '1.2rem', fontWeight: 700, color: '#10b981' }}>
+                  {isEn ? "Advantages" : "Avantajlar"}
+                </h3>
+              </div>
+              <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
                 {pros.map((pro, index) => (
-                  <li key={index} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.8rem', marginBottom: '0.8rem', color: 'var(--text-secondary)', fontSize: '0.9rem' }}>
-                    <CheckCircle2 size={16} color="#10b981" style={{ flexShrink: 0, marginTop: '2px' }} />
+                  <li key={index} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.5rem', fontSize: '0.95rem', color: 'var(--text-secondary)' }}>
+                    <span style={{ color: '#10b981' }}>•</span>
                     {pro}
                   </li>
                 ))}
               </ul>
             </Card>
-            <Card>
-              <h3 style={{ fontSize: '1.1rem', fontWeight: 700, color: '#ef4444', marginBottom: '1rem' }}>
-                ❌ Dezavantajlar
-              </h3>
-              <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
+
+            <Card style={{ borderTop: '4px solid #ef4444' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1.5rem' }}>
+                <XCircle color="#ef4444" size={24} />
+                <h3 style={{ fontSize: '1.2rem', fontWeight: 700, color: '#ef4444' }}>
+                  {isEn ? "Disadvantages & Trade-offs" : "Dezavantajlar"}
+                </h3>
+              </div>
+              <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
                 {cons.map((con, index) => (
-                  <li key={index} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.8rem', marginBottom: '0.8rem', color: 'var(--text-secondary)', fontSize: '0.9rem' }}>
-                    <span style={{ color: '#ef4444', fontWeight: 700, flexShrink: 0 }}>•</span>
+                  <li key={index} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.5rem', fontSize: '0.95rem', color: 'var(--text-secondary)' }}>
+                    <span style={{ color: '#ef4444' }}>•</span>
                     {con}
                   </li>
                 ))}
@@ -330,30 +348,31 @@ const PageTemplate: React.FC<PageTemplateProps> = ({
 
         {/* When to Use */}
         <Section>
-          <SectionTitle icon={<Lightbulb size={24} />}>{whenToUseTitle}</SectionTitle>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '1.5rem' }}>
-            <Card>
+          <SectionTitle icon={<CheckCircle2 size={24} />}>{resolvedWhenToUseTitle}</SectionTitle>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem' }}>
+            <Card style={{ background: 'linear-gradient(135deg, rgba(16, 185, 129, 0.05) 0%, transparent 100%)' }}>
               <h3 style={{ fontSize: '1.1rem', fontWeight: 700, color: '#10b981', marginBottom: '1rem' }}>
-                ✅ Kullanım Durumları
+                {isEn ? "🚀 Ideal Use Cases" : "🚀 En İdeal Senaryolar"}
               </h3>
-              <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
+              <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
                 {whenToUse.map((item, index) => (
-                  <li key={index} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.8rem', marginBottom: '0.8rem', color: 'var(--text-secondary)', fontSize: '0.9rem' }}>
-                    <CheckCircle2 size={16} color="#10b981" style={{ flexShrink: 0, marginTop: '2px' }} />
+                  <li key={index} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.5rem', fontSize: '0.95rem', color: 'var(--text-secondary)' }}>
+                    <span style={{ color: '#10b981' }}>✓</span>
                     {item}
                   </li>
                 ))}
               </ul>
             </Card>
+
             {whenNotToUse && whenNotToUse.length > 0 && (
-              <Card>
+              <Card style={{ background: 'linear-gradient(135deg, rgba(239, 68, 68, 0.05) 0%, transparent 100%)' }}>
                 <h3 style={{ fontSize: '1.1rem', fontWeight: 700, color: '#ef4444', marginBottom: '1rem' }}>
-                  ❌ Kullanılmaması Gereken Durumlar
+                  {isEn ? "⚠️ When to Avoid" : "⚠️ Tercih Edilmemesi Gereken Durumlar"}
                 </h3>
-                <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
+                <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
                   {whenNotToUse.map((item, index) => (
-                    <li key={index} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.8rem', marginBottom: '0.8rem', color: 'var(--text-secondary)', fontSize: '0.9rem' }}>
-                      <span style={{ color: '#ef4444', fontWeight: 700, flexShrink: 0 }}>•</span>
+                    <li key={index} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.5rem', fontSize: '0.95rem', color: 'var(--text-secondary)' }}>
+                      <span style={{ color: '#ef4444' }}>✗</span>
                       {item}
                     </li>
                   ))}
@@ -366,18 +385,22 @@ const PageTemplate: React.FC<PageTemplateProps> = ({
         {/* Related Pages */}
         {relatedPages && relatedPages.length > 0 && (
           <Section>
-            <SectionTitle icon={<BookOpen size={24} />}>İlgili Sayfalar</SectionTitle>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem' }}>
+            <SectionTitle icon={<Sparkles size={24} />}>{isEn ? "Related Architectures" : "İlgili Mimariler"}</SectionTitle>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '1.5rem' }}>
               {relatedPages.map((page, index) => (
-                <Link key={index} to={page.path} style={{ textDecoration: 'none', color: 'inherit' }}>
-                  <Card>
-                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.5rem' }}>
-                      <h3 style={{ fontSize: '1rem', fontWeight: 700, color: 'white' }}>{page.title}</h3>
-                      <ArrowRight size={16} color="var(--primary)" />
+                <Link key={index} to={page.path} style={{ textDecoration: 'none' }}>
+                  <Card style={{ height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+                    <div>
+                      <h3 style={{ fontSize: '1.1rem', fontWeight: 700, color: 'white', marginBottom: '0.5rem' }}>
+                        {page.title}
+                      </h3>
+                      <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', lineHeight: 1.6 }}>
+                        {page.description}
+                      </p>
                     </div>
-                    <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', lineHeight: 1.6 }}>
-                      {page.description}
-                    </p>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--primary)', fontWeight: 600, fontSize: '0.85rem', marginTop: '1.5rem' }}>
+                      {isEn ? "Explore" : "İncele"} <ArrowRight size={14} />
+                    </div>
                   </Card>
                 </Link>
               ))}
