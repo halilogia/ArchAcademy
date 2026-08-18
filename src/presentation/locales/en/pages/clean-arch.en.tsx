@@ -1,22 +1,17 @@
 import React, { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
-import { useTranslation } from 'react-i18next';
-import Hero from '../components/Hero';
-import Theory from '../components/Theory';
-import UncleBobStructure from '../components/UncleBobStructure';
-import ArchitectureFlow from '../components/ArchitectureFlow';
-import Practical from '../components/Practical';
-import ArchitecturalTruths from '../components/ArchitecturalTruths';
-import ScreamingSection from '../components/ScreamingSection';
-import FeatureVsLayerDetail from '../components/FeatureVsLayerDetail';
-import { useProgress } from '../context/ProgressContext';
+import { motion, AnimatePresence } from 'framer-motion';
+import Hero from '../../../components/Hero';
+import Theory from '../../../components/Theory';
+import UncleBobStructure from '../../../components/UncleBobStructure';
+import ArchitectureFlow from '../../../components/ArchitectureFlow';
+import Practical from '../../../components/Practical';
+import ArchitecturalTruths from '../../../components/ArchitecturalTruths';
+import ScreamingSection from '../../../components/ScreamingSection';
+import FeatureVsLayerDetail from '../../../components/FeatureVsLayerDetail';
+import { useProgress } from '../../../context/ProgressContext';
 import { Layers, Volume2, FolderTree, Zap } from 'lucide-react';
-import CleanArchEN from '../locales/en/pages/clean-arch.en';
 
 const CleanArchPage = () => {
-  const { i18n } = useTranslation();
-  const isEn = (i18n.resolvedLanguage || i18n.language || 'tr').startsWith('en');
-
   const { completeStep } = useProgress();
   const [activeTab, setActiveTab] = useState<'clean' | 'scream' | 'layer' | 'feature'>('clean');
 
@@ -26,10 +21,6 @@ const CleanArchPage = () => {
     }, 2000);
     return () => clearTimeout(timer);
   }, []);
-
-  if (isEn) {
-    return <CleanArchEN />;
-  }
 
   // Map 4 tabs directly to 4 Hero modes
   const heroMode = activeTab === 'layer' ? 'classic' : activeTab === 'feature' ? 'modern' : activeTab;
@@ -55,9 +46,9 @@ const CleanArchPage = () => {
           flexWrap: 'wrap'
         }}>
           {[
-            { id: 'clean', label: 'Prensipler', icon: <Layers size={16} /> },
-            { id: 'scream', label: 'Amaç', icon: <Volume2 size={16} /> },
-            { id: 'layer', label: 'Klasik', icon: <FolderTree size={16} /> },
+            { id: 'clean', label: 'Principles', icon: <Layers size={16} /> },
+            { id: 'scream', label: 'Intent', icon: <Volume2 size={16} /> },
+            { id: 'layer', label: 'Classic', icon: <FolderTree size={16} /> },
             { id: 'feature', label: 'Modern', icon: <Zap size={16} /> }
           ].map((tab) => (
             <button
@@ -67,55 +58,46 @@ const CleanArchPage = () => {
                 padding: '10px 20px',
                 borderRadius: '18px',
                 border: 'none',
-                background: activeTab === tab.id ? 'var(--primary)' : 'transparent',
-                color: activeTab === tab.id ? 'white' : 'var(--text-secondary)',
-                fontWeight: activeTab === tab.id ? 700 : 500,
-                fontSize: '0.9rem',
+                background: activeTab === tab.id ? '#3b82f6' : 'transparent',
+                color: activeTab === tab.id ? 'white' : 'rgba(255,255,255,0.5)',
                 cursor: 'pointer',
                 display: 'flex',
                 alignItems: 'center',
                 gap: '8px',
-                transition: 'all 0.3s'
+                fontWeight: 700,
+                fontSize: '0.85rem',
+                transition: 'all 0.3s ease'
               }}
             >
-              {tab.icon}
-              {tab.label}
+              {tab.icon} {tab.label}
             </button>
           ))}
         </div>
       </Hero>
 
-      <div className="container">
+      <AnimatePresence mode="wait">
         {activeTab === 'clean' && (
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+          <motion.div key="clean" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }}>
             <Theory />
-            <ArchitecturalTruths />
             <UncleBobStructure />
-            <ArchitectureFlow />
+            <ArchitecturalTruths />
             <Practical />
+            <ArchitectureFlow />
           </motion.div>
         )}
-
         {activeTab === 'scream' && (
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+          <motion.div key="scream" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }}>
             <ScreamingSection />
           </motion.div>
         )}
-
-        {activeTab === 'layer' && (
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-            <FeatureVsLayerDetail defaultTab="layer" />
+        {(activeTab === 'layer' || activeTab === 'feature') && (
+          <motion.div key="strategy" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }}>
+            <FeatureVsLayerDetail forcedMode={activeTab === 'layer' ? 'layer' : 'feature'} />
           </motion.div>
         )}
+      </AnimatePresence>
 
-        {activeTab === 'feature' && (
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-            <FeatureVsLayerDetail defaultTab="feature" />
-          </motion.div>
-        )}
-      </div>
-
-      <section style={{ padding: '4rem 0', background: 'rgba(0,0,0,0.3)', borderTop: '1px solid rgba(255,255,255,0.05)', marginTop: '4rem' }}>
+      <section style={{ padding: '4rem 0', background: 'rgba(0,0,0,0.3)', borderTop: '1px solid rgba(255,255,255,0.05)' }}>
         <div className="container" style={{ textAlign: 'center' }}>
            <div style={{ 
              background: 'linear-gradient(180deg, rgba(15, 23, 42, 0) 0%, rgba(15, 23, 42, 0.5) 100%)', 
@@ -126,10 +108,10 @@ const CleanArchPage = () => {
              margin: '0 auto'
            }}>
               <div style={{ fontSize: '0.8rem', letterSpacing: '2px', fontWeight: 800, color: 'rgba(255,255,255,0.4)', marginBottom: '1rem', textTransform: 'uppercase' }}>
-                The Origin
+                Reference & Original Paper
               </div>
               <p style={{ color: '#94a3b8', marginBottom: '2rem', fontSize: '1.1rem', lineHeight: 1.6 }}>
-                2012 yılında Robert C. Martin (Uncle Bob) tarafından yayınlanan ve Clean Architecture'ın manifestosu sayılan orijinal blog yazısını okuyun.
+                This architecture draws from the original blog post by Robert C. Martin (Uncle Bob) — a post that revolutionized the software world — and from his book 'Clean Architecture'.
               </p>
               
               <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
@@ -144,7 +126,7 @@ const CleanArchPage = () => {
                      border: '1px solid rgba(59, 130, 246, 0.2)', transition: 'all 0.2s'
                    }}
                  >
-                    The Clean Architecture (Uncle Bob) <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                    The Clean Architecture Blog <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
                  </a>
               </div>
            </div>

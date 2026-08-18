@@ -1,14 +1,11 @@
 import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { useTranslation } from 'react-i18next';
-import SOLIDHero from '../components/SOLIDHero';
-import SOLIDSection from '../components/SOLIDSection';
-import { useProgress } from '../context/ProgressContext';
+import SOLIDHero from '../../../components/SOLIDHero';
+import SOLIDSection from '../../../components/SOLIDSection';
+import { useProgress } from '../../../context/ProgressContext';
 
 const SOLIDPage = () => {
   const { completeStep } = useProgress();
-  const { i18n } = useTranslation();
-  const isEn = (i18n.resolvedLanguage || i18n.language || 'tr').startsWith('en');
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -16,34 +13,6 @@ const SOLIDPage = () => {
     }, 2000);
     return () => clearTimeout(timer);
   }, []);
-
-  const principles = [
-    { 
-      id: 'S', 
-      t: 'Single Responsibility', 
-      d: isEn ? 'A class should have one, and only one, reason to change.' : 'Bir sınıfın değişmesi için sadece tek bir sebebi olmalıdır.' 
-    },
-    { 
-      id: 'O', 
-      t: 'Open/Closed', 
-      d: isEn ? 'Software entities should be open for extension, but closed for modification.' : 'Sınıflar genişletilmeye açık, değişikliğe kapalı olmalıdır.' 
-    },
-    { 
-      id: 'L', 
-      t: 'Liskov Substitution', 
-      d: isEn ? 'Subtypes must be substitutable for their base types without altering system behavior.' : 'Alt sınıflar, üst sınıfların yerine geçebilmelidir.' 
-    },
-    { 
-      id: 'I', 
-      t: 'Interface Segregation', 
-      d: isEn ? 'Clients should not be forced to depend upon interfaces that they do not use.' : 'Kullanılmayan metodlar sınıflara zorla implemente ettirilmemelidir.' 
-    },
-    { 
-      id: 'D', 
-      t: 'Dependency Inversion', 
-      d: isEn ? 'High-level modules should not depend on low-level modules. Both should depend on abstractions.' : 'Yüksek seviyeli modüller, düşük seviyeli modüllere bağımlı olmamalıdır.' 
-    }
-  ];
 
   return (
     <motion.div
@@ -58,14 +27,18 @@ const SOLIDPage = () => {
       <section style={{ padding: '80px 0', background: 'rgba(2, 6, 23, 0.3)' }}>
         <div className="container">
           <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
-            <h2 className="section-title">{isEn ? "Principles Summary" : "Prensiplerin Özeti"}</h2>
-            <p style={{ color: 'var(--text-secondary)' }}>
-              {isEn ? "5 golden rules for flexible, testable, and maintainable software architecture." : "Daha esnek, test edilebilir ve sürdürülebilir kod için 5 altın kural."}
-            </p>
+            <h2 className="section-title">Principles Summary</h2>
+            <p style={{ color: 'var(--text-secondary)' }}>5 golden rules for more flexible, testable, and maintainable code.</p>
           </div>
 
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '20px' }}>
-            {principles.map((item) => (
+            {[
+              { id: 'S', t: 'Single Responsibility', d: 'A class should have only one reason to change.' },
+              { id: 'O', t: 'Open/Closed', d: 'Classes should be open for extension, closed for modification.' },
+              { id: 'L', t: 'Liskov Substitution', d: 'Subclasses should be substitutable for their base classes.' },
+              { id: 'I', t: 'Interface Segregation', d: 'Clients should not be forced to depend on methods they do not use.' },
+              { id: 'D', t: 'Dependency Inversion', d: 'High-level modules should not depend on low-level modules.' }
+            ].map((item) => (
               <div key={item.id} className="glass-card" style={{ borderTop: '4px solid #3b82f6' }}>
                 <div style={{ fontSize: '3rem', fontWeight: 900, color: '#3b82f6', opacity: 0.2, lineHeight: 1 }}>{item.id}</div>
                 <h3 style={{ fontSize: '1.2rem', color: 'white', marginBottom: '10px' }}>{item.t}</h3>
@@ -90,10 +63,7 @@ const SOLIDPage = () => {
                 The Origin
               </div>
               <p style={{ color: '#94a3b8', marginBottom: '2rem', fontSize: '1.1rem', lineHeight: 1.6 }}>
-                {isEn 
-                  ? "The origin of SOLID principles, 'Design Principles and Design Patterns', was published by Robert C. Martin (Uncle Bob) in 2000."
-                  : "SOLID prensiplerinin kaynağı olan 'Design Principles and Design Patterns' makalesi, Robert C. Martin (Uncle Bob) tarafından 2000 yılında yayınlanmıştır."
-                }
+                The article "Design Principles and Design Patterns," the source of the SOLID principles, was published by Robert C. Martin (Uncle Bob) in 2000.
               </p>
               
               <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>

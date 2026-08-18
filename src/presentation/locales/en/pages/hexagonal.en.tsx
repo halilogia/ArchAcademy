@@ -1,19 +1,10 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { useTranslation } from 'react-i18next';
-import HexagonalHero from '../components/HexagonalHero';
-import HexagonalDiagram from '../components/HexagonalDiagram';
-import HexagonalPractical from '../components/HexagonalPractical';
-import HexagonalEN from '../locales/en/pages/hexagonal.en';
+import HexagonalHero from '../../../components/HexagonalHero';
+import HexagonalDiagram from '../../../components/HexagonalDiagram';
+import HexagonalPractical from '../../../components/HexagonalPractical';
 
 const HexagonalPage = () => {
-  const { i18n } = useTranslation();
-  const isEn = (i18n.resolvedLanguage || i18n.language || 'tr').startsWith('en');
-
-  if (isEn) {
-    return <HexagonalEN />;
-  }
-
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -28,8 +19,8 @@ const HexagonalPage = () => {
       <section style={{ padding: '80px 0', background: 'rgba(2, 6, 23, 0.4)' }}>
         <div className="container">
           <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
-            <h2 className="section-title">Portlar ve Adaptörler</h2>
-            <p style={{ color: 'var(--text-secondary)' }}>Uygulamanızın dış dünya ile imzaladığı sözleşmeler.</p>
+            <h2 className="section-title">Ports and Adapters</h2>
+            <p style={{ color: 'var(--text-secondary)' }}>Contracts your application signs with the outside world.</p>
           </div>
 
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '3rem' }}>
@@ -39,10 +30,10 @@ const HexagonalPage = () => {
                 Driving (Primary)
               </h3>
               <p style={{ color: 'var(--text-secondary)', lineHeight: 1.8 }}>
-                Uygulamanızı "harekete geçiren" taraftır. Kullanıcılar veya diğer sistemler uygulamanızı tetikler.
+                The side that "drives" your application. Users or other systems trigger it.
                 <br/><br/>
-                <strong>Adaptörler:</strong> REST Controller, CLI, Desktop UI.<br/>
-                <strong>Port:</strong> Application API (Sizin UseCase/Service katmanınız).
+                <strong>Adapters:</strong> REST Controller, CLI, Desktop UI.<br/>
+                <strong>Port:</strong> Application API (your UseCase/Service layer).
               </p>
             </div>
 
@@ -52,19 +43,19 @@ const HexagonalPage = () => {
                 Driven (Secondary)
               </h3>
               <p style={{ color: 'var(--text-secondary)', lineHeight: 1.8 }}>
-                Uygulamanızın "ihtiyaç duyduğu" taraftır. Uygulama, işini tamamlamak için dışarıdaki bir sisteme erişir.
+                The side your application "needs". The application accesses an external system to complete its work.
                 <br/><br/>
                 <strong>Port:</strong> Repository Interface, Mail Service Interface.<br/>
-                <strong>Adaptörler:</strong> SQL Database, Kafka, SendGrid API.
+                <strong>Adapters:</strong> SQL Database, Kafka, SendGrid API.
               </p>
             </div>
           </div>
 
           <div style={{ marginTop: '4rem', padding: '2rem', background: 'rgba(255,255,255,0.02)', borderRadius: '24px', border: '1px solid rgba(255,255,255,0.05)' }}>
-             <h4 style={{ marginBottom: '1rem', textAlign: 'center' }}>Altın Kural: Bağımlılık İçeri Doğrudur</h4>
+             <h4 style={{ marginBottom: '1rem', textAlign: 'center' }}>Golden Rule: Dependencies Point Inward</h4>
              <p style={{ color: '#94a3b8', fontSize: '0.95rem', textAlign: 'center', maxWidth: '800px', margin: '0 auto' }}>
-                Dışarıdaki hiçbir teknoloji (Adaptör), içerideki iş mantığına (Domain) doğrudan sızamaz. 
-                Adaptörler, Domain katmanının tanımladığı <strong>Port</strong> (Interface) kurallarına uymak zorundadır.
+                No external technology (Adapter) can leak directly into the inner business logic (Domain). 
+                Adapters must conform to the <strong>Port</strong> (Interface) rules defined by the Domain layer.
              </p>
           </div>
         </div>
@@ -78,11 +69,11 @@ const HexagonalPage = () => {
             textAlign: 'center',
             padding: '4rem'
           }}>
-            <h2 style={{ marginBottom: '1.5rem' }}>Neden Hexagonal Mimari?</h2>
+            <h2 style={{ marginBottom: '1.5rem' }}>Why Hexagonal Architecture?</h2>
             <p style={{ maxWidth: '800px', margin: '0 auto', color: 'var(--text-secondary)', lineHeight: 1.8 }}>
-              Yazılımın ömrünü uzatır. Teknoloji her gün değişir; bugün kullandığınız veri tabanı yarın eski kalabilir. 
-              Hexagonal mimari ile "iş mantığınızı" teknolojiden korursunuz. Bu sayede test edilmesi kolay, 
-              teknolojiye dirençli ve tertemiz bir kod tabanı elde edersiniz.
+              It extends the lifespan of software. Technology changes every day; the database you use today may be obsolete tomorrow. 
+              With Hexagonal Architecture, you protect your "business logic" from technology. The result: a codebase that is easy to test, 
+              resilient to technology shifts, and clean.
             </p>
           </div>
         </div>
@@ -102,7 +93,7 @@ const HexagonalPage = () => {
                 Original Paper
               </div>
               <p style={{ color: '#94a3b8', marginBottom: '2rem', fontSize: '1.1rem', lineHeight: 1.6 }}>
-                Hexagonal Mimari (Ports & Adapters), Alistair Cockburn tarafından 2005 yılında yazılan ve yazılımın dış dünyadan izolasyonunu konu alan orijinal makaleye dayanır.
+                Hexagonal Architecture (Ports & Adapters) is based on the original paper written by Alistair Cockburn in 2005, which focuses on isolating software from the outside world.
               </p>
               
               <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>

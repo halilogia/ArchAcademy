@@ -1,19 +1,10 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { useTranslation } from 'react-i18next';
-import VerticalHero from '../components/VerticalHero';
-import VerticalComparison from '../components/VerticalComparison';
-import VerticalPractical from '../components/VerticalPractical';
-import VerticalEN from '../locales/en/pages/vertical.en';
+import VerticalHero from '../../../components/VerticalHero';
+import VerticalComparison from '../../../components/VerticalComparison';
+import VerticalPractical from '../../../components/VerticalPractical';
 
 const VerticalSlicePage = () => {
-  const { i18n } = useTranslation();
-  const isEn = (i18n.resolvedLanguage || i18n.language || 'tr').startsWith('en');
-
-  if (isEn) {
-    return <VerticalEN />;
-  }
-
   return (
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
       <VerticalHero />
@@ -26,34 +17,34 @@ const VerticalSlicePage = () => {
             {/* Folder Structure Visualization */}
             <div className="glass-card" style={{ background: '#0f172a', padding: '2rem' }}>
               <h4 style={{ marginBottom: '1.5rem', color: '#f97316', display: 'flex', alignItems: 'center', gap: '8px' }}>
-                📂 Proje Klasör Yapısı
+                📂 Project Folder Structure
               </h4>
               <div style={{ fontFamily: 'monospace', fontSize: '0.9rem', color: '#94a3b8' }}>
                 <div>src/</div>
                 <div style={{ paddingLeft: '20px' }}>Features/</div>
-                <div style={{ paddingLeft: '40px', color: '#f97316' }}>Siparişler/</div>
-                <div style={{ paddingLeft: '60px' }}>📦 SiparişVer.cs</div>
-                <div style={{ paddingLeft: '60px' }}>📦 SiparişDetay.cs</div>
-                <div style={{ paddingLeft: '60px' }}>📦 SiparişRepository.cs</div>
-                <div style={{ paddingLeft: '40px', color: '#10b981' }}>Ürünler/</div>
-                <div style={{ paddingLeft: '60px' }}>📦 ÜrünListele.cs</div>
-                <div style={{ paddingLeft: '60px' }}>📦 ÜrünAra.cs</div>
+                <div style={{ paddingLeft: '40px', color: '#f97316' }}>Orders/</div>
+                <div style={{ paddingLeft: '60px' }}>📦 PlaceOrder.cs</div>
+                <div style={{ paddingLeft: '60px' }}>📦 OrderDetail.cs</div>
+                <div style={{ paddingLeft: '60px' }}>📦 OrderRepository.cs</div>
+                <div style={{ paddingLeft: '40px', color: '#10b981' }}>Products/</div>
+                <div style={{ paddingLeft: '60px' }}>📦 ListProducts.cs</div>
+                <div style={{ paddingLeft: '60px' }}>📦 SearchProducts.cs</div>
                 <div style={{ paddingLeft: '20px' }}>Infrastructure/</div>
                 <div style={{ paddingLeft: '40px' }}>DatabaseContext.cs</div>
               </div>
               <p style={{ marginTop: '1.5rem', fontSize: '0.8rem', fontStyle: 'italic' }}>
-                * Her klasör kendi içinde tamamen bağımsız bir minyatür mimaridir.
+                * Each folder is an independent miniature architecture in itself.
               </p>
             </div>
 
             {/* Core Rules */}
             <div>
-              <h3 style={{ fontSize: '2rem', fontWeight: 800, marginBottom: '2rem' }}>Dikey Dilim Kuralları</h3>
+              <h3 style={{ fontSize: '2rem', fontWeight: 800, marginBottom: '2rem' }}>Vertical Slice Rules</h3>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
                 {[
-                  { t: 'Özellik Bazlı Gruplama', d: 'Kodu teknik katmanlara (Controller/Service) göre değil, iş özelliklerine göre gruplayın.' },
-                  { t: 'Minimum Paylaşım', d: 'Dilimler arasında kod paylaşımından kaçının. Kod tekrarı, sıkı bağımlılıktan (Coupling) daha iyidir.' },
-                  { t: 'Esnek İç Yapı', d: 'Bir dilim basit bir SQL sorgusu kullanırken, diğeri karmaşık bir DDD Aggregate kullanabilir.' }
+                  { t: 'Feature-First Grouping', d: 'Group code by business features rather than technical layers (Controller/Service).' },
+                  { t: 'Minimize Sharing', d: 'Avoid code sharing across slices. Duplicate code is far cheaper than tight coupling.' },
+                  { t: 'Flexible Internal Structure', d: 'One slice can use a raw SQL query, while another uses a full DDD Aggregate.' }
                 ].map((rule, i) => (
                   <div key={i} style={{ display: 'flex', gap: '1rem' }}>
                     <div style={{ width: '24px', height: '24px', borderRadius: '50%', background: 'rgba(249, 115, 22, 0.2)', color: '#f97316', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, fontWeight: 800, fontSize: '0.8rem' }}>{i+1}</div>
@@ -79,36 +70,37 @@ const VerticalSlicePage = () => {
             borderRadius: '24px'
           }}>
             <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', background: 'rgba(249, 115, 22, 0.2)', color: '#f97316', padding: '6px 16px', borderRadius: '100px', fontSize: '0.85rem', fontWeight: 800, marginBottom: '1.5rem' }}>
-              🤖 AI-NATIVE & VIBE CODING ŞAMPİYONU (5/5 ⭐)
+              🤖 AI-NATIVE & VIBE CODING CHAMPION (5/5 ⭐)
             </div>
             <h3 style={{ fontSize: '2.2rem', fontWeight: 800, marginBottom: '1.5rem' }}>
-              Neden AI ve Vibe-Coding İçin 1 Numara?
+              Why #1 for AI and Vibe Coding?
             </h3>
             <p style={{ color: 'var(--text-secondary)', fontSize: '1.05rem', lineHeight: 1.8, marginBottom: '2.5rem' }}>
-              Geleneksel katmanlı mimarilerde (Clean/Hexagonal) tek bir alanı değiştirmek için AI'ın 5 farklı klasör arasında zıplaması gerekirken, Vertical Slice mimarisinde tüm iş mantığı, veri sorgusu ve arayüz aynı dilimde yer alır.
+              Unlike traditional layered architectures where an AI must jump across 5 different folders, Vertical Slice keeps business logic, queries, and UI within a single cohesive slice.
             </p>
 
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem' }}>
               <div style={{ background: 'rgba(0,0,0,0.3)', padding: '1.5rem', borderRadius: '16px', border: '1px solid rgba(255,255,255,0.05)' }}>
                 <div style={{ fontSize: '1.5rem', marginBottom: '0.5rem' }}>📁</div>
-                <h4 style={{ color: '#f97316', marginBottom: '0.5rem' }}>1. Minimum Klasör Gezintisi</h4>
+                <h4 style={{ color: '#f97316', marginBottom: '0.5rem' }}>1. Minimal Context Traversal</h4>
                 <p style={{ color: '#94a3b8', fontSize: '0.9rem', lineHeight: 1.6 }}>
-                  AI modeline sadece <code>Features/Sepetim</code> klasörünü vermeniz yeterlidir. Context token israfı ve halüsinasyon riski sıfıra iner.\n                </p>
+                  Simply supply the <code>Features/Cart</code> directory to the LLM. Eliminates token waste and hallucination risks.
+                </p>
               </div>
 
               <div style={{ background: 'rgba(0,0,0,0.3)', padding: '1.5rem', borderRadius: '16px', border: '1px solid rgba(255,255,255,0.05)' }}>
                 <div style={{ fontSize: '1.5rem', marginBottom: '0.5rem' }}>⭐</div>
-                <h4 style={{ color: '#38bdf8', marginBottom: '0.5rem' }}>2. Yüksek GitHub Popülaritesi</h4>
+                <h4 style={{ color: '#38bdf8', marginBottom: '0.5rem' }}>2. High GitHub Popularity</h4>
                 <p style={{ color: '#94a3b8', fontSize: '0.9rem', lineHeight: 1.6 }}>
-                  Modern Next.js, React ve .NET dünyasında en çok yıldız alan ve benimsenen çağdaş mimari stili haline gelmiştir.
+                  Widely adopted across modern Next.js, React, and .NET enterprise ecosystems as a leading architectural paradigm.
                 </p>
               </div>
 
               <div style={{ background: 'rgba(0,0,0,0.3)', padding: '1.5rem', borderRadius: '16px', border: '1px solid rgba(255,255,255,0.05)' }}>
                 <div style={{ fontSize: '1.5rem', marginBottom: '0.5rem' }}>🧘</div>
-                <h4 style={{ color: '#a855f7', marginBottom: '0.5rem' }}>3. Kod Bilmeyenler İçin Anlaşılır</h4>
+                <h4 style={{ color: '#a855f7', marginBottom: '0.5rem' }}>3. Accessible Architecture</h4>
                 <p style={{ color: '#94a3b8', fontSize: '0.9rem', lineHeight: 1.6 }}>
-                  Soyut katmanlara (Port, Adapter, Aggregate) boğulmadan, doğrudan işlev adlarıyla organize edildiği için vibe coding için mükemmeldir.
+                  Organized directly by clear feature domains without drowning in complex abstract layers, making it ideal for rapid development.
                 </p>
               </div>
             </div>
@@ -130,7 +122,7 @@ const VerticalSlicePage = () => {
                 Architecture Origin
               </div>
               <p style={{ color: '#94a3b8', marginBottom: '2rem', fontSize: '1.1rem', lineHeight: 1.6 }}>
-                Minimalist CQRS ve Vertical Slice mimarisinin öncüsü Jimmy Bogard'ın (MediatR yaratıcısı) makalesini okuyun.
+                Read the article by Jimmy Bogard (creator of MediatR), pioneer of minimalist CQRS and Vertical Slice architecture.
               </p>
               
               <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
