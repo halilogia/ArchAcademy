@@ -290,13 +290,13 @@ const Navbar: React.FC = () => {
                 flexDirection: 'column',
                 gap: '0.4rem'
               }}>
-                <Link to="/acronyms" style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', padding: '0.6rem 1rem', borderRadius: '8px', textDecoration: 'none', color: 'white' }}>
-                  <FileText size={16} style={{ color: '#06b6d4' }} />
-                  <span style={{ fontSize: '0.85rem' }}>{t('docs_menu.acronyms')}</span>
-                </Link>
                 <Link to="/glossary" style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', padding: '0.6rem 1rem', borderRadius: '8px', textDecoration: 'none', color: 'white' }}>
                   <BookOpen size={16} style={{ color: 'var(--primary)' }} />
                   <span style={{ fontSize: '0.85rem' }}>{t('docs_menu.glossary')}</span>
+                </Link>
+                <Link to="/acronyms" style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', padding: '0.6rem 1rem', borderRadius: '8px', textDecoration: 'none', color: 'white' }}>
+                  <FileText size={16} style={{ color: '#06b6d4' }} />
+                  <span style={{ fontSize: '0.85rem' }}>{t('docs_menu.acronyms')}</span>
                 </Link>
                 <Link to="/library" style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', padding: '0.6rem 1rem', borderRadius: '8px', textDecoration: 'none', color: 'white' }}>
                   <Library size={16} style={{ color: '#f59e0b' }} />

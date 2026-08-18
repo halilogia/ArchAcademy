@@ -1,59 +1,36 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import SEO from '../components/SEO';
-import { SynthesisSidebar } from '../components/synthesislab/SynthesisSidebar';
-import { SynthesisCanvas } from '../components/synthesislab/SynthesisCanvas';
-import { SynthesisInspector } from '../components/synthesislab/SynthesisInspector';
-import { SynthesisResultModal } from '../components/synthesislab/SynthesisResultModal';
-import { useSynthesisLab } from '../components/synthesislab/useSynthesisLab';
+import { WorkInProgressView } from '../components/WorkInProgressView';
 
 const SynthesisLabPage: React.FC = () => {
   const { i18n } = useTranslation();
   const isEn = (i18n.resolvedLanguage || i18n.language || 'tr').startsWith('en');
-  
-  const lab = useSynthesisLab();
 
   return (
     <>
       <SEO
-        title={isEn ? "Interactive Architecture Synthesis Lab | ArchAcademy" : "İnteraktif Mimari Sentez Laboratuvarı | ArchAcademy"}
+        title={isEn ? "Architecture Synthesis Lab (Under Construction) | ArchAcademy" : "Mimari Sentez Laboratuvarı (Geliştirme Aşamasında) | ArchAcademy"}
         description={isEn 
-          ? "Design, connect, and synthesize Clean Architecture layers visually on an interactive canvas." 
-          : "Görsel tuval üzerinde Clean Architecture katmanlarını bağlayın, tasarlayın ve kod sentezleyin."
+          ? "The Architecture Synthesis Canvas is being upgraded with AI Code Generation and AST inspection." 
+          : "Görsel Mimari Sentez Tuvali, yapay zeka kod üretimi ve AST doğrulaması ile geliştirilmektedir."
         }
-        keywords="architecture synthesis, visual architecture designer, clean architecture canvas, code generator"
+        keywords="architecture synthesis, visual architecture canvas, code generator, work in progress"
         canonicalUrl="/synthesis-lab"
       />
-      <div style={{ display: 'flex', height: '100vh', background: '#020617', color: '#e2e8f0', overflow: 'hidden' }}>
-        <SynthesisSidebar 
-          activeTab={lab.activeTab} 
-          setActiveTab={lab.setActiveTab} 
-        />
-
-        <SynthesisCanvas
-          containerRef={lab.containerRef}
-          nodes={lab.nodes}
-          setNodes={lab.setNodes}
-          connections={lab.connections}
-          setConnections={lab.setConnections}
-          pendingConnection={lab.pendingConnection}
-          setPendingConnection={lab.setPendingConnection}
-          mousePos={lab.mousePos}
-          onDropFile={lab.onDropFile}
-        />
-
-        <SynthesisInspector 
-          nodes={lab.nodes} 
-          connections={lab.connections} 
-          onSynthesize={lab.handleSynthesize} 
-          isSynthesizing={lab.isSynthesizing} 
-        />
-
-        <SynthesisResultModal
-          synthesizedCode={lab.synthesizedCode}
-          onClose={() => lab.setSynthesizedCode(null)}
-        />
-      </div>
+      <WorkInProgressView
+        title={{
+          tr: "Mimari Sentez & Kod Üretim Tuvali",
+          en: "Architecture Synthesis & Code Canvas"
+        }}
+        subtitle={{
+          tr: "Sürükle-bırak mimari tuvalimiz, yeni nesil AI Kod Sentezi ve otomatik AST doğrulama motoruyla birleştirilmek üzere bakıma alınmıştır.",
+          en: "Our visual architecture canvas is undergoing maintenance to integrate Next-Gen AI Code Synthesis and AST validation."
+        }}
+        color="#a855f7"
+        badge={isEn ? "CANVAS RE-ENGINEERING" : "YAPIM AŞAMASINDA"}
+        estimatedRelease="ArchAcademy v2.5"
+      />
     </>
   );
 };

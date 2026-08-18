@@ -1,3 +1,5 @@
+import { ACRONYMS_DATA } from './AcronymsData';
+
 export interface GlossaryTerm {
   id: number;
   term: string;
@@ -10,7 +12,7 @@ export interface GlossaryTerm {
   guruTip_en?: string;
 }
 
-export const GLOSSARY_TERMS: GlossaryTerm[] = [
+const RAW_GLOSSARY_TERMS: GlossaryTerm[] = [
     {
       id: 1,
       term: 'Separation of Concerns (SoC)',
@@ -3344,4 +3346,22 @@ export const GLOSSARY_TERMS: GlossaryTerm[] = [
       guruTip: "Dogmatik mimarilerden kaçının. En iyi sistemler, ihtiyaca göre sentezlenen hibrit mimarilerdir.",
       guruTip_en: "Avoid architectural dogmatism. The most resilient production systems are pragmatically synthesized hybrids."
     }
+];
+
+// Dynamically generate and merge acronym terms to ensure Wiki covers 100% of all software acronyms
+const ACRONYM_GLOSSARY_TERMS: GlossaryTerm[] = ACRONYMS_DATA.map((acronym, idx) => ({
+  id: 1000 + idx,
+  term: `${acronym.name} (${acronym.fullName.tr})`,
+  term_en: `${acronym.name} (${acronym.fullName.en})`,
+  definition: acronym.description.tr,
+  definition_en: acronym.description.en,
+  category: 'Acronyms & Principles',
+  category_en: 'Acronyms & Principles',
+  guruTip: acronym.tagline.tr,
+  guruTip_en: acronym.tagline.en
+}));
+
+export const GLOSSARY_TERMS: GlossaryTerm[] = [
+  ...RAW_GLOSSARY_TERMS,
+  ...ACRONYM_GLOSSARY_TERMS
 ];

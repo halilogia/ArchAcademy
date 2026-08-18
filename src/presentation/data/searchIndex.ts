@@ -752,6 +752,60 @@ export const SEARCH_INDEX: SearchIndexItem[] = [
     content: 'Architecture Comparison Matrix - Compare architectural patterns side-by-side across multiple dimensions: complexity, testability, scalability, team size requirements and more.'
   },
   {
+    id: 'component-state',
+    title: 'Component State & Atomic Architecture',
+    description: 'Component-Driven UI & State Management',
+    path: '/component-state',
+    category: 'UI',
+    keywords: ['component', 'state', 'atomic design', 'react', 'redux', 'zustand', 'ui'],
+    content: 'Component State & Atomic Design - State-driven frontend architectures, Atomic Design methodology and component lifecycle management.'
+  },
+  {
+    id: 'elite-architecture',
+    title: 'Elite System Architecture & High-Scale Design',
+    description: 'Advanced Enterprise Patterns & High-Concurrency Systems',
+    path: '/elite-architecture',
+    category: 'System',
+    keywords: ['elite', 'high-scale', 'concurrency', 'enterprise', 'distributed'],
+    content: 'Elite System Architecture - Scalable, highly available distributed architecture patterns for enterprise production environments.'
+  },
+  {
+    id: 'fsd',
+    title: 'Feature-Sliced Design (FSD)',
+    description: 'Frontend architectural methodology for scalable web apps',
+    path: '/fsd',
+    category: 'UI',
+    keywords: ['fsd', 'feature-sliced', 'frontend', 'slices', 'layers', 'widgets', 'features'],
+    content: 'Feature-Sliced Design (FSD) - Structural methodology for frontend projects. Layers: app, processes, pages, widgets, features, entities, shared.'
+  },
+  {
+    id: 'mvvm-c',
+    title: 'MVVM-C (Model-View-ViewModel-Coordinator)',
+    description: 'Decoupled navigation and screen flow architecture',
+    path: '/mvvm-c',
+    category: 'UI',
+    keywords: ['mvvm-c', 'coordinator', 'mvvm', 'ios', 'flutter', 'navigation', 'mobile'],
+    content: 'MVVM-C Architecture - Isolates view navigation and routing from ViewModel into dedicated Coordinator objects.'
+  },
+  {
+    id: 'oop-fundamentals',
+    title: 'OOP Fundamentals & Rich Domain Modeling',
+    description: 'Object-Oriented Design, Encapsulation, Polymorphism & Anemic vs Rich Domain',
+    path: '/oop-fundamentals',
+    category: 'Principles',
+    keywords: ['oop', 'object-oriented', 'polymorphism', 'inheritance', 'encapsulation', 'rich domain'],
+    content: 'OOP Fundamentals - Object-oriented programming pillars, composition over inheritance, polymorphism and rich domain models.'
+  },
+  {
+    id: 'vector-dbs',
+    title: 'Vector Databases & Similarity Search',
+    description: 'High-dimensional embeddings, HNSW indexes & Semantic Retrieval',
+    path: '/vector-dbs',
+    category: 'Data & AI',
+    keywords: ['vector', 'database', 'embedding', 'hnsw', 'pinecone', 'milvus', 'chroma', 'similarity', 'rag'],
+    content: 'Vector Databases & Similarity Search - High-dimensional vector indexing, HNSW algorithms, cosine distance and semantic retrieval architectures.'
+  },
+  {
     id: 'home',
     title: 'ArchAcademy Home',
     description: 'Senior Software Architecture Portal',
