@@ -1,9 +1,13 @@
-interface GlossaryTerm {
+export interface GlossaryTerm {
   id: number;
   term: string;
+  term_en?: string;
   definition: string;
+  definition_en?: string;
   category: string;
+  category_en?: string;
   guruTip: string;
+  guruTip_en?: string;
 }
 
 export const GLOSSARY_TERMS: GlossaryTerm[] = [
@@ -3163,7 +3167,181 @@ export const GLOSSARY_TERMS: GlossaryTerm[] = [
       definition: 'Sadece sayfanın interaktif olan kısımlarının (adalar) JavaScript ile canlandırıldığı, geri kalanının statik HTML kaldığı modern frontend mimarisidir.',
       category: 'UI Architecture',
       guruTip: 'Astro gibi frameworklerin temelidir. Gereksiz JavaScript yükünü (vampire code) yok eder.'
+    },
+    {
+      id: 453,
+      term: "Agentic AI (Otonom Ajan Mimarisi)",
+      term_en: "Agentic AI Architecture",
+      definition: "Kendi kararlarını alabilen, araçları (tools) kullanabilen, çok adımlı planlar yapıp hedefe ulaşana kadar otonom çalışan yapay zeka sistem mimarisidir.",
+      definition_en: "An autonomous AI system architecture that can make independent decisions, invoke tools, plan multi-step workflows, and iterate until reaching a designated goal.",
+      category: "Data & AI",
+      category_en: "Data & AI",
+      guruTip: "Statik promptlar yerine 'ReAct' (Reasoning + Acting) döngüsü kurarak karmaşık operasyonları sıfır insan müdahalesiyle çözer.",
+      guruTip_en: "Replaces static prompting with the 'ReAct' (Reasoning + Acting) loop to solve complex tasks with zero human intervention."
+    },
+    {
+      id: 454,
+      term: "LLMOps (Large Language Model Operations)",
+      term_en: "LLMOps",
+      definition: "Büyük dil modellerinin (LLM) geliştirilmesi, fine-tuning, prompt versiyonlama, token maliyet optimizasyonu ve üretim ortamında izlenmesi pratikleridir.",
+      definition_en: "The operational practices and pipeline infrastructure for managing the lifecycle of Large Language Models, including fine-tuning, prompt versioning, token cost optimization, and observability.",
+      category: "Data & AI",
+      category_en: "Data & AI",
+      guruTip: "DevOps yazılım için neyse, LLMOps da yapay zeka modelleri için odur. Prompt drift ve halüsinasyonları erken yakalar.",
+      guruTip_en: "What DevOps is to software, LLMOps is to AI systems. It catches prompt drift and hallucinations early in production."
+    },
+    {
+      id: 455,
+      term: "Vector Databases (Vektör Veritabanları)",
+      term_en: "Vector Databases",
+      definition: "Metin, ses veya görsel verilerin gömülmüş (embedding) çok boyutlu matematiksel vektörlerini saklayan ve semantik (anlamsal) benzerlik araması yapan veritabanlarıdır.",
+      definition_en: "High-dimensional databases specialized in storing embeddings and performing fast semantic similarity searches using algorithms like Cosine Similarity or HNSW.",
+      category: "Data & AI",
+      category_en: "Data & AI",
+      guruTip: "Pinecone, Qdrant, Milvus ve pgvector gibi teknolojiler RAG mimarisinin belkemiğidir.",
+      guruTip_en: "Engines like Pinecone, Qdrant, Milvus, and pgvector are the architectural backbone of modern RAG systems."
+    },
+    {
+      id: 456,
+      term: "RAG (Retrieval-Augmented Generation)",
+      term_en: "Retrieval-Augmented Generation (RAG)",
+      definition: "LLM modellerini harici ve güncel bir bilgi bankasından ilgili dökümanları çekerek (Retrieval) besleyen ve halüsinasyonu önleyen mimari desendir.",
+      definition_en: "An architectural pattern that enhances LLM responses by retrieving relevant external context from a vector database before generating an answer, preventing hallucinations.",
+      category: "Data & AI",
+      category_en: "Data & AI",
+      guruTip: "Modeli sıfırdan eğitmek yerine RAG kullanmak maliyeti %95 düşürür ve özel kurumsal verilerin gizliliğini korur.",
+      guruTip_en: "Using RAG instead of model retraining slashes costs by 95% while keeping private enterprise data secure."
+    },
+    {
+      id: 457,
+      term: "Pipe-Filter Architecture (Boru-Filtre Mimarisi)",
+      term_en: "Pipe-Filter Architecture",
+      definition: "Verinin sıralı bir filtreleme hattından (pipeline) geçtiği, her filtrenin bağımsız bir dönüşüm yaptığı klasik ve güçlü veri işleme mimarisidir.",
+      definition_en: "A stream data processing architecture where data flows sequentially through independent filters via pipes, each performing a discrete transformation.",
+      category: "System Design",
+      category_en: "System Design",
+      guruTip: "Unix pipeları (|) ve video/görüntü işleme kütüphaneleri bu mimarinin en saf örneğidir.",
+      guruTip_en: "Unix pipelines (|) and multimedia processing engines are the purest demonstrations of this pattern."
+    },
+    {
+      id: 458,
+      term: "Pub-Sub (Publish-Subscribe Pattern)",
+      term_en: "Publish-Subscribe Pattern (Pub-Sub)",
+      definition: "Mesajı üreten ile tüketen tarafların birbirini tanımadığı, aracı bir mesaj broker'ı üzerinden asenkron haberleştiği dağıtık mimari desendir.",
+      definition_en: "An asynchronous messaging paradigm where message senders (publishers) do not program the messages to be sent directly to specific receivers (subscribers), decoupling systems.",
+      category: "Communication",
+      category_en: "Communication",
+      guruTip: "Sistemler arası Loose Coupling (gevşek bağlılık) sağlamanın en kanıtlanmış yöntemidir.",
+      guruTip_en: "The gold standard for achieving loose coupling and temporal decoupling between distributed services."
+    },
+    {
+      id: 459,
+      term: "Space-Based Architecture (SBA)",
+      term_en: "Space-Based Architecture",
+      definition: "Merkezi veritabanı darboğazını yok etmek için veriyi dağıtık RAM bellek alanlarında (shared memory space) çoğaltan ve işleyen ultra yüksek performans mimarisidir.",
+      definition_en: "An architecture designed to eliminate central database bottlenecks by distributing and replicating data across in-memory processing grids.",
+      category: "System Design",
+      category_en: "System Design",
+      guruTip: "Borsa işlem motorları, biletleme sistemleri ve Black Friday gibi aşırı yük anlarında tercih edilir.",
+      guruTip_en: "Ideal for high-concurrency workloads like stock exchanges, live ticketing, and Black Friday flash sales."
+    },
+    {
+      id: 460,
+      term: "Primary-Secondary (Leader-Follower Mimarisi)",
+      term_en: "Primary-Secondary (Leader-Follower)",
+      definition: "Tüm yazma (write) işlemlerinin tek bir Primary düğüme yapıldığı, okuma (read) işlemlerinin ise çoklu Secondary kopyalara dağıtıldığı veritabanı replikasyon mimarisidir.",
+      definition_en: "A replication pattern where write operations are directed to a single Primary (leader) node, while read operations scale horizontally across Secondary (follower) replicas.",
+      category: "Data & AI",
+      category_en: "Data & AI",
+      guruTip: "Okuma yoğun sistemlerde performansı katlar; ancak replikasyon gecikmesi yönetilmelidir.",
+      guruTip_en: "Significantly boosts throughput in read-heavy applications; requires careful handling of replication lag."
+    },
+    {
+      id: 461,
+      term: "Server-Driven UI (SDUI)",
+      term_en: "Server-Driven UI (SDUI)",
+      definition: "Mobil veya web ekranlarının yerleşim, bileşen ve görsel verilerinin sunucudan gelen JSON şemasıyla dinamik olarak çizdirildiği modern frontend mimarisidir.",
+      definition_en: "A modern UI architecture where mobile and web view layouts, component hierarchies, and visual styles are dictated dynamically by backend JSON schemas without app store releases.",
+      category: "UI Architecture",
+      category_en: "UI Architecture",
+      guruTip: "App Store onay süreçlerini beklemeden saniyeler içinde A/B testi ve yeni ekran tasarımı yayınlamanızı sağlar.",
+      guruTip_en: "Allows deploying UI redesigns and A/B test experiments instantly without waiting for App Store review cycles."
+    },
+    {
+      id: 462,
+      term: "Composite UI (Mikro-Frontend Bileşimi)",
+      term_en: "Composite UI Pattern",
+      definition: "Tek bir kullanıcı arayüzü sayfasının, farklı bağımsız ekipler tarafından geliştirilen mikro-frontend parçalarının birleşimiyle oluşturulmasıdır.",
+      definition_en: "A frontend composite pattern where a single screen is seamlessly assembled from independent micro-frontend widgets built by decoupled feature teams.",
+      category: "UI Architecture",
+      category_en: "UI Architecture",
+      guruTip: "Büyük e-ticaret sitelerinde sepet, ürün detayı ve öneri panellerinin bağımsız deploy edilmesini sağlar.",
+      guruTip_en: "Enables large e-commerce platforms to deploy cart, product details, and recommendation panels completely independently."
+    },
+    {
+      id: 463,
+      term: "ECS (Entity Component System)",
+      term_en: "Entity Component System (ECS)",
+      definition: "Nesneleri saf kimlikler (Entity), saf veriler (Component) ve saf davranışlar (System) olarak ayıran, bellek dostu oyun ve simülasyon mimarisidir.",
+      definition_en: "An architectural pattern focused on data-oriented design, decomposing objects into pure IDs (Entities), raw data (Components), and execution logic (Systems) for maximum CPU cache locality.",
+      category: "System Design",
+      category_en: "System Design",
+      guruTip: "OOP kalıtım cehenneminden kurtarır ve milyonlarca nesneyi 60 FPS'te akıcı çalıştırmanızı sağlar.",
+      guruTip_en: "Eliminates OOP inheritance bloat and unlocks 60 FPS performance across millions of concurrent game entities."
+    },
+    {
+      id: 464,
+      term: "Zero Trust Architecture (Sıfır Güven Mimarisi)",
+      term_en: "Zero Trust Architecture",
+      definition: "Asla güvenme, her zaman doğrula ilkesi üzerine kurulu, ağın içi dahil her isteğin kimliğini ve yetkisini zorunlu kılan güvenlik mimarisidir.",
+      definition_en: "A comprehensive security model founded on the principle Never Trust, Always Verify, requiring micro-segmentation, continuous authentication, and strict least-privilege access across all layers.",
+      category: "Foundation",
+      category_en: "Foundation",
+      guruTip: "Geleneksel kale-hendek mantığını tamamen yıkar; bulut dünyasının zorunluluğudur.",
+      guruTip_en: "Displaces outdated perimeter-based defenses; an indispensable security foundation for distributed cloud systems."
+    },
+    {
+      id: 465,
+      term: "GitOps (Bildirime Dayalı Dağıtım)",
+      term_en: "GitOps",
+      definition: "Altyapı ve uygulama dağıtımlarının tek doğruluk kaynağı olarak Git depolarını kullanan modern DevOps mimarisidir.",
+      definition_en: "An operational framework that uses Git repositories as the single source of truth for declarative infrastructure and continuous deployment automation.",
+      category: "System Design",
+      category_en: "System Design",
+      guruTip: "Geri alma (Rollback) yapmak sadece git revert yapmak kadar basittir.",
+      guruTip_en: "Rolling back a production deployment is as simple as running git revert, ensuring 100% auditable history."
+    },
+    {
+      id: 466,
+      term: "Anti-Patterns (Kaçınılması Gereken Mimari Hatalar)",
+      term_en: "Architectural Anti-Patterns",
+      definition: "İlk bakışta cazip veya kolay görünen ancak uzun vadede bakım maliyetini, kırılganlığı ve teknik borcu katlayan kötü tasarım modelleridir.",
+      definition_en: "Common architectural responses to recurring problems that initially appear beneficial but ultimately result in catastrophic technical debt, tight coupling, and fragility.",
+      category: "Quality",
+      category_en: "Quality",
+      guruTip: "God Object, Spaghetti Code, Golden Hammer ve STUPID anti-patternlerini tanımak en az iyi patternleri bilmek kadar değerlidir.",
+      guruTip_en: "Recognizing God Object, Spaghetti Code, Golden Hammer, and STUPID patterns is just as critical as mastering SOLID."
+    },
+    {
+      id: 467,
+      term: "MVVM-C (Model-View-ViewModel-Coordinator)",
+      term_en: "MVVM-C Architecture",
+      definition: "MVVM mimarisindeki sayfa geçiş ve navigasyon sorumluluğunu ViewModel'dan alıp bağımsız Coordinator nesnelerine veren mobil mimari desendir.",
+      definition_en: "An evolution of MVVM that isolates navigation and screen flow responsibilities into dedicated Coordinator objects, keeping ViewModels completely presentation-focused.",
+      category: "UI Architecture",
+      category_en: "UI Architecture",
+      guruTip: "iOS ve Flutter projelerinde ViewModel'ların şişmesini (Massive ViewModel) engeller.",
+      guruTip_en: "Prevents Massive ViewModel syndrome in iOS and Flutter codebases by fully decoupling view routing."
+    },
+    {
+      id: 468,
+      term: "Synthesis Lab (Mimari Sentez Laboratuvarı)",
+      term_en: "Synthesis Lab",
+      definition: "Farklı mimari desenleri birleştirerek projeye özel melez (hybrid) çözümler üreten mimari deney alanıdır.",
+      definition_en: "An architectural playground and synthesis engine for combining diverse design patterns (e.g., Clean + Vertical Slice + EDA) into tailored hybrid architectures.",
+      category: "Foundation",
+      category_en: "Foundation",
+      guruTip: "Dogmatik mimarilerden kaçının. En iyi sistemler, ihtiyaca göre sentezlenen hibrit mimarilerdir.",
+      guruTip_en: "Avoid architectural dogmatism. The most resilient production systems are pragmatically synthesized hybrids."
     }
 ];
-
-
