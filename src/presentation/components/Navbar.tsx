@@ -25,9 +25,12 @@ const Navbar: React.FC = () => {
   const location = useLocation();
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
 
+  const currentLang = i18n.resolvedLanguage || i18n.language || 'tr';
+  const isEn = currentLang.startsWith('en');
+
   const toggleLanguage = () => {
-    const newLang = i18n.language === 'tr' ? 'en' : 'tr';
-    i18n.changeLanguage(newLang);
+    const nextLang = isEn ? 'tr' : 'en';
+    i18n.changeLanguage(nextLang);
   };
 
   const architectures = [
@@ -362,7 +365,7 @@ const Navbar: React.FC = () => {
           {/* Language Toggle */}
           <button
             onClick={toggleLanguage}
-            aria-label={i18n.language === 'tr' ? 'Switch to English' : 'Türkçeye geç'}
+            aria-label={isEn ? 'Türkçeye geç' : 'Switch to English'}
             style={{
               background: 'rgba(255,255,255,0.05)',
               border: '1px solid var(--glass-border)',
@@ -375,7 +378,7 @@ const Navbar: React.FC = () => {
               transition: 'all 0.2s'
             }}
           >
-            {i18n.language === 'tr' ? 'EN' : 'TR'}
+            {isEn ? 'TR' : 'EN'}
           </button>
         </div>
       </div>
