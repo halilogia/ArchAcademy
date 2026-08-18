@@ -61,7 +61,7 @@ const roadmapData: RoadmapLevel[] = [
     tasks: [
       { id: 'fsd', title: 'Feature-Sliced Design', desc: { tr: 'Büyük ölçekli modern frontend organizasyonu.', en: 'Scalable frontend module hierarchy.' }, icon: <Layers size={18} />, path: '/fsd' },
       { id: 'eda', title: 'Event-Driven Architecture', desc: { tr: 'Olay bazlı asenkron haberleşme.', en: 'Asynchronous event emission and consumption.' }, icon: <Zap size={18} />, path: '/eda' },
-      { id: 'microservices', title: 'Microservices & Systems', desc: 'Dağıtık servis stratejileri ve dayanıklılık.', desc: { tr: 'Dağıtık servis stratejileri ve dayanıklılık.', en: 'Decoupled services, observability, and resilience.' }, icon: <Cpu size={18} />, path: '/microservices' }
+      { id: 'microservices', title: 'Microservices & Systems', desc: { tr: 'Dağıtık servis stratejileri ve dayanıklılık.', en: 'Decoupled services, observability, and resilience.' }, icon: <Cpu size={18} />, path: '/microservices' }
     ]
   },
   {
@@ -110,7 +110,7 @@ const ArchitectRoadmap: React.FC = () => {
 
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem' }}>
             {level.tasks.map((task) => {
-              const isCompleted = progress[task.path];
+              const isCompleted = progress.completedSteps.includes(task.path);
               return (
                 <motion.div
                   key={task.id}

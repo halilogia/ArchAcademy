@@ -153,7 +153,7 @@ const PrimarySecondaryPage: React.FC = () => {
                 primaryData={simulation.primaryData}
                 secondary1Data={simulation.secondary1Data}
                 secondary2Data={simulation.secondary2Data}
-                writeData={simulation.writeData}
+                onWriteData={simulation.writeData}
               />
             )}
           </AnimatePresence>

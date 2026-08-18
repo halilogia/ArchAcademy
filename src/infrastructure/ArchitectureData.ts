@@ -147,7 +147,7 @@ export const WIZARD_QUESTIONS: Question[] = [
   },
   {
     id: 'ai',
-    title: 'AI / Vibe Coding ile aran nasıl?',
+    title: 'Geliştirme tarzınız ve AI (Vibe-Coding) kullanımınız nedir?',
     type: 'choice',
     desc: 'Vibe Coding, AI yardımuyla sadece "ne istediğinizi" söyleyerek hızlıca kod üretmektir. Bazı mimariler AI\'nın daha az hata yapmasını sağlar.',
     options: [

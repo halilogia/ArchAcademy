@@ -151,7 +151,7 @@ const SOAPage: React.FC = () => {
                 key="simulation"
                 busActive={simulation.busActive}
                 messageLog={simulation.messageLog}
-                triggerESB={simulation.triggerESB}
+                modernWeb="idle" legacyCRM="idle" sapSystem="idle" onTriggerESB={simulation.triggerESB}
               />
             )}
           </AnimatePresence>

@@ -143,13 +143,13 @@ const CAPTheoremPage: React.FC = () => {
               <CAPSimulationTab 
                 key="simulation"
                 activeMode={simulation.activeMode}
-                setActiveMode={simulation.setActiveMode}
+                onSetMode={simulation.setActiveMode}
                 isPartitioned={simulation.isPartitioned}
-                setIsPartitioned={simulation.setIsPartitioned}
+                onTogglePartition={() => simulation.setIsPartitioned(!simulation.isPartitioned)}
                 nodeAData={simulation.nodeAData}
                 nodeBData={simulation.nodeBData}
                 writeStatus={simulation.writeStatus}
-                handleWrite={simulation.handleWrite}
+                onWrite={simulation.handleWrite}
               />
             )}
           </AnimatePresence>

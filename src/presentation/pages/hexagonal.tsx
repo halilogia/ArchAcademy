@@ -9,9 +9,7 @@ const HexagonalPage = () => {
   const { i18n } = useTranslation();
   const isEn = (i18n.resolvedLanguage || i18n.language || 'tr').startsWith('en');
 
-  if (isEn) {
-    return <HexagonalEN />;
-  }
+  
 
   return (
     <motion.div

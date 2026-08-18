@@ -137,9 +137,9 @@ const ACIDPage: React.FC = () => {
                 accountB={simulation.accountB}
                 step={simulation.step}
                 errorMode={simulation.errorMode}
-                setErrorMode={simulation.setErrorMode}
+                onErrorModeChange={simulation.setErrorMode}
                 logs={simulation.logs}
-                runTransaction={simulation.runTransaction}
+                onRunTransaction={simulation.runTransaction}
               />
             )}
           </AnimatePresence>

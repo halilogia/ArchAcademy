@@ -5,7 +5,7 @@ import FeatureVsLayerDetail from '../FeatureVsLayerDetail';
 export const CleanArchClassicLayerTab: React.FC = () => {
   return (
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-      <FeatureVsLayerDetail defaultTab="layer" />
+      <FeatureVsLayerDetail forcedMode="layer" />
     </motion.div>
   );
 };

@@ -61,7 +61,8 @@ export const DISCIPLINE_CHAIN_DATA: DisciplineChainCategory[] = [
 ];
 
 export const useDisciplineStreak = () => {
-  const { completedSteps } = useProgress();
+  const { progress } = useProgress();
+  const completedSteps = progress.completedSteps;
 
   let totalLinks = 0;
   let completedCount = 0;

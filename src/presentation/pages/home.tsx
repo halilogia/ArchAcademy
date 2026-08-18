@@ -16,6 +16,7 @@ import {
   Target
 } from 'lucide-react';
 import HomeHero from '../components/HomeHero';
+import HomeVibeSpotlight from '../components/HomeVibeSpotlight';
 import SEO from '../components/SEO';
 
 const FeatureCard = ({ title, icon, desc, path, color, label, isEn }: any) => (
@@ -129,7 +130,7 @@ const HomePage: React.FC = () => {
                 marginBottom: '1.5rem',
                 letterSpacing: '1px'
               }}>
-                <Sparkles size={14} /> {isEn ? "USER CHOICE: THE MASTERPIECE" : "KULLANICI SEÇİMİ: BAŞYAPIT"}
+                <Sparkles size={14} /> {isEn ? "CLASSIC ENGINEERING BENCHMARK" : "KLASİK MÜHENDİSLİK REFERANSI"}
               </div>
               <h2 style={{ fontSize: '4.5rem', fontWeight: 950, color: 'white', marginBottom: '1.5rem', lineHeight: 1, letterSpacing: '-3px' }}>
                 Lean Clean <br />
@@ -137,8 +138,8 @@ const HomePage: React.FC = () => {
               </h2>
               <p style={{ fontSize: '1.4rem', color: 'var(--text-secondary)', lineHeight: 1.6, marginBottom: '3rem', maxWidth: '600px' }}>
                 {isEn 
-                  ? "A pragmatic, high-performance architectural approach stripped of unnecessary layers, boilerplate, and maintenance overhead."
-                  : "Gereksiz katmanlardan ve dosya kalabalığından arındırılmış, pragmatik ve yüksek performanslı bir mimari yaklaşım."
+                  ? "The battle-tested benchmark of human-engineered systems. Stripped of unnecessary layers, boilerplate, and maintenance overhead."
+                  : "Geleneksel insan mühendisliğinin kanıtlanmış referans mimarisi. Gereksiz katmanlardan ve dosya kalabalığından arındırılmış, pragmatik bir temel."
                 }
               </p>
               <Link to="/lean-architecture" style={{ textDecoration: 'none' }}>
@@ -190,6 +191,8 @@ const HomePage: React.FC = () => {
           </motion.div>
         </div>
       </section>
+
+      <HomeVibeSpotlight />
 
       {/* --- CORE ECOSYSTEM SECTION --- */}
       <section style={{ padding: '80px 0', position: 'relative' }}>
