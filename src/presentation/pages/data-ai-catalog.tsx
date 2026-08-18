@@ -104,68 +104,84 @@ const DataAICatalogPage: React.FC = () => {
          </svg>
 
          {/* Floating Nodes */}
-         {items.map((item) => (
-            <motion.div
-               key={item.id}
-               style={{
-                  position: 'absolute',
-                  left: `${item.pos.x}%`,
-                  top: `${item.pos.y}%`,
-                  x: xPos,
-                  y: yPos,
-                  zIndex: 10
-               }}
-            >
+         {items.map((item) => {
+            const isHovered = hoveredItem?.id === item.id;
+            return (
                <motion.div
-                  onMouseEnter={() => setHoveredItem(item)}
-                  onMouseLeave={() => setHoveredItem(null)}
-                  onClick={() => item.path !== '#' && navigate(item.path)}
-                  initial={{ scale: 0, opacity: 0 }}
-                  animate={{ scale: 1, opacity: 1 }}
-                  whileHover={{ scale: 1.25, zIndex: 50 }}
-                  transition={{ type: "spring", stiffness: 260, damping: 20 }}
+                  key={item.id}
                   style={{
-                     transform: 'translate(-50%, -50%)',
-                     cursor: item.path !== '#' ? 'pointer' : 'default',
-                     position: 'relative'
+                     position: 'absolute',
+                     left: `${item.pos.x}%`,
+                     top: `${item.pos.y}%`,
+                     x: xPos,
+                     y: yPos,
+                     zIndex: isHovered ? 50 : 10
                   }}
                >
-                   {/* Node Glow */}
-                   <motion.div 
-                     animate={{ opacity: [0.2, 0.5, 0.2], scale: [1, 1.3, 1] }}
-                     transition={{ duration: 4, repeat: Infinity }}
-                     style={{ position: 'absolute', inset: -25, background: item.color, filter: 'blur(35px)', borderRadius: '50%', zIndex: -1 }} 
-                   />
+                  <motion.div
+                     onMouseEnter={() => setHoveredItem(item)}
+                     onMouseLeave={() => setHoveredItem(null)}
+                     onClick={() => item.path !== '#' && navigate(item.path)}
+                     initial={{ scale: 0, opacity: 0 }}
+                     animate={{ scale: 1, opacity: 1 }}
+                     whileHover={{ scale: 1.25 }}
+                     transition={{ type: "spring", stiffness: 260, damping: 20 }}
+                     style={{
+                        transform: 'translate(-50%, -50%)',
+                        cursor: item.path !== '#' ? 'pointer' : 'default',
+                        position: 'relative'
+                     }}
+                  >
+                      {/* Node Glow (Triggers on Mouse Hover Only) */}
+                      <motion.div 
+                        animate={{ 
+                          opacity: isHovered ? 0.45 : 0, 
+                          scale: isHovered ? 1.3 : 0.7 
+                        }}
+                        transition={{ duration: 0.25, ease: 'easeOut' }}
+                        style={{ 
+                          position: 'absolute', 
+                          inset: -20, 
+                          background: item.color, 
+                          filter: 'blur(35px)', 
+                          borderRadius: '50%', 
+                          zIndex: -1,
+                          pointerEvents: 'none'
+                        }} 
+                      />
 
-                   {/* Node Body */}
-                   <div style={{ 
-                      width: '90px', height: '90px', 
-                      background: 'rgba(15, 23, 42, 0.9)', 
-                      backdropFilter: 'blur(12px)',
-                      border: `2px solid ${item.color}66`, 
-                      borderRadius: '50%', 
-                      display: 'flex', alignItems: 'center', justifyContent: 'center',
-                      boxShadow: `0 0 25px ${item.color}30`
-                   }}>
-                      <div style={{ color: item.color }}>
-                         {React.cloneElement(item.icon as React.ReactElement<any>, { size: 36 })}
+                      {/* Node Body */}
+                      <div style={{ 
+                         width: '90px', height: '90px', 
+                         background: isHovered ? 'rgba(15, 23, 42, 0.98)' : 'rgba(15, 23, 42, 0.85)', 
+                         backdropFilter: 'blur(12px)',
+                         border: `2px solid ${isHovered ? item.color : `${item.color}44`}`, 
+                         borderRadius: '50%', 
+                         display: 'flex', alignItems: 'center', justifyContent: 'center',
+                         boxShadow: isHovered ? `0 0 35px ${item.color}60` : `0 0 15px ${item.color}15`,
+                         transition: 'border-color 0.2s, box-shadow 0.2s, background 0.2s'
+                      }}>
+                         <div style={{ color: item.color }}>
+                            {React.cloneElement(item.icon as React.ReactElement<any>, { size: 36 })}
+                         </div>
                       </div>
-                   </div>
 
-                   {/* Subtle Label */}
-                   <div style={{ 
-                      position: 'absolute', top: '105px', left: '50%', transform: 'translateX(-50%)', 
-                      color: 'white', whiteSpace: 'nowrap', fontWeight: 900, fontSize: '0.8rem',
-                      background: 'rgba(2, 6, 23, 0.6)', padding: '4px 12px', borderRadius: '100px',
-                      border: `1px solid ${item.color}33`, letterSpacing: '1px'
-                   }}>
-                      {item.name}
-                   </div>
+                      {/* Subtle Label */}
+                      <div style={{ 
+                         position: 'absolute', top: '105px', left: '50%', transform: 'translateX(-50%)', 
+                         color: 'white', whiteSpace: 'nowrap', fontWeight: 900, fontSize: '0.8rem',
+                         background: 'rgba(2, 6, 23, 0.75)', padding: '4px 12px', borderRadius: '100px',
+                         border: `1px solid ${isHovered ? item.color : `${item.color}33`}`, letterSpacing: '1px',
+                         transition: 'border-color 0.2s'
+                      }}>
+                         {item.name}
+                      </div>
+                  </motion.div>
                </motion.div>
-            </motion.div>
-         ))}
+            );
+         })}
 
-         {/* Detailed Info Panel */}
+         {/* Detailed Info Panel - pointerEvents: none to prevent cursor trapping */}
          <AnimatePresence>
             {hoveredItem && (
                <motion.div
@@ -183,8 +199,9 @@ const DataAICatalogPage: React.FC = () => {
                      padding: '2.5rem',
                      borderRadius: '24px',
                      backdropFilter: 'blur(30px)',
-                     boxShadow: `0 30px 100px rgba(0,0,0,0.8)`,
-                     zIndex: 1000
+                     boxShadow: `0 30px 100px rgba(0,0,0,0.8), 0 0 30px ${hoveredItem.color}25`,
+                     zIndex: 1000,
+                     pointerEvents: 'none'
                   }}
                >
                   <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', marginBottom: '1.5rem' }}>

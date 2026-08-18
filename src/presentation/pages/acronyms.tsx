@@ -1,6 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { 
   Search, 
   Sparkles, 
@@ -11,13 +12,11 @@ import {
   Database, 
   CheckCircle2, 
   AlertTriangle,
-  ExternalLink,
   BookOpen,
-  ArrowRight,
-  Filter
+  ArrowRight
 } from 'lucide-react';
 import SEO from '../components/SEO';
-import { ACRONYMS_DATA, ACRONYM_CATEGORIES, AcronymItem } from '../../infrastructure/AcronymsData';
+import { ACRONYMS_DATA, ACRONYM_CATEGORIES } from '../../infrastructure/AcronymsData';
 
 const iconMap: Record<string, React.ReactNode> = {
   Sparkles: <Sparkles size={18} />,
@@ -31,26 +30,35 @@ const iconMap: Record<string, React.ReactNode> = {
 };
 
 const AcronymsPage: React.FC = () => {
+  const { i18n } = useTranslation();
+  const lang = (i18n.language === 'en' ? 'en' : 'tr') as 'tr' | 'en';
+
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');
 
   const filteredItems = useMemo(() => {
     return ACRONYMS_DATA.filter(item => {
       const matchesCategory = selectedCategory === 'all' || item.category === selectedCategory;
+      const name = item.name.toLowerCase();
+      const fullName = (item.fullName[lang] || item.fullName.tr).toLowerCase();
+      const tagline = (item.tagline[lang] || item.tagline.tr).toLowerCase();
+      const description = (item.description[lang] || item.description.tr).toLowerCase();
+      const q = searchQuery.toLowerCase();
+
       const matchesSearch = 
-        item.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        item.fullName.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        item.tagline.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        item.description.toLowerCase().includes(searchQuery.toLowerCase());
+        name.includes(q) ||
+        fullName.includes(q) ||
+        tagline.includes(q) ||
+        description.includes(q);
       return matchesCategory && matchesSearch;
     });
-  }, [searchQuery, selectedCategory]);
+  }, [searchQuery, selectedCategory, lang]);
 
   return (
     <div style={{ minHeight: '100vh', background: 'var(--bg-dark)', color: 'var(--text-primary)', paddingTop: '100px', paddingBottom: '120px' }}>
       <SEO 
-        title="Yazılım ve Mimari Kısaltmalar Rehberi (Cheat Sheet) | ArchAcademy"
-        description="KISS, DRY, WET, AHA, YAGNI, SOLID, GRASP, ACID, FIRST ve STUPID gibi temel yazılım ve mimari prensiplerinin teknik başucu kılavuzu."
+        title={lang === 'en' ? "Software & Architecture Acronyms Cheat Sheet | ArchAcademy" : "Yazılım ve Mimari Kısaltmalar Rehberi (Cheat Sheet) | ArchAcademy"}
+        description={lang === 'en' ? "Essential software engineering cheat sheet: KISS, DRY, WET, AHA, YAGNI, SOLID, GRASP, ACID, FIRST, STUPID." : "KISS, DRY, WET, AHA, YAGNI, SOLID, GRASP, ACID, FIRST ve STUPID gibi temel yazılım ve mimari prensiplerinin teknik başucu kılavuzu."}
       />
 
       {/* Hero Section */}
@@ -81,12 +89,24 @@ const AcronymsPage: React.FC = () => {
           animate={{ opacity: 1, y: 0 }}
           style={{ fontSize: '3.8rem', fontWeight: 800, lineHeight: 1.15, marginBottom: '1.5rem', letterSpacing: '-1.5px' }}
         >
-          Yazılım & Mimari <br />
-          <span style={{ fontSize: '2.8rem', opacity: 0.9 }}>Kısaltma ve Prensipler Kılavuzu</span>
+          {lang === 'en' ? (
+            <>
+              Software & Architecture <br />
+              <span style={{ fontSize: '2.8rem', opacity: 0.9 }}>Acronyms & Principles Guide</span>
+            </>
+          ) : (
+            <>
+              Yazılım & Mimari <br />
+              <span style={{ fontSize: '2.8rem', opacity: 0.9 }}>Kısaltma ve Prensipler Kılavuzu</span>
+            </>
+          )}
         </motion.h1>
 
         <p style={{ color: 'var(--text-secondary)', fontSize: '1.2rem', maxWidth: '800px', margin: '0 auto 2.5rem', lineHeight: 1.7 }}>
-          Günlük kodlama, mimari kararlar ve teknik mülakatlar için tasarlanmış; KISS'ten GRASP'e, ACID'den FIRST kurallarına kadar <strong>{ACRONYMS_DATA.length}+ temel prensip</strong>.
+          {lang === 'en' 
+            ? `Engineered for daily coding, system design, and technical interviews. Covering ${ACRONYMS_DATA.length}+ industry-standard principles from KISS to GRASP, ACID to FIRST.`
+            : `Günlük kodlama, mimari kararlar ve teknik mülakatlar için tasarlanmış; KISS'ten GRASP'e, ACID'den FIRST kurallarına kadar ${ACRONYMS_DATA.length}+ temel prensip.`
+          }
         </p>
 
         {/* Search Bar */}
@@ -96,7 +116,7 @@ const AcronymsPage: React.FC = () => {
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="Kısaltma veya prensip ara (örn: KISS, DRY, Demeter, ACID, FIRST)..."
+            placeholder={lang === 'en' ? "Search acronym or rule (e.g. KISS, DRY, Demeter, ACID, FIRST)..." : "Kısaltma veya prensip ara (örn: KISS, DRY, Demeter, ACID, FIRST)..."}
             style={{
               width: '100%',
               padding: '16px 20px 16px 54px',
@@ -139,7 +159,7 @@ const AcronymsPage: React.FC = () => {
                 }}
               >
                 <span style={{ color: cat.color }}>{iconMap[cat.icon]}</span>
-                {cat.title}
+                {cat.title[lang] || cat.title.tr}
               </button>
             );
           })}
@@ -151,8 +171,8 @@ const AcronymsPage: React.FC = () => {
         {filteredItems.length === 0 ? (
           <div style={{ textAlign: 'center', padding: '5rem 0', color: 'var(--text-secondary)' }}>
             <AlertTriangle size={48} color="#f59e0b" style={{ marginBottom: '1rem' }} />
-            <h3>Sonuç Bulunamadı</h3>
-            <p>"{searchQuery}" aramasıyla eşleşen bir prensip bulunamadı.</p>
+            <h3>{lang === 'en' ? "No Results Found" : "Sonuç Bulunamadı"}</h3>
+            <p>{lang === 'en' ? `No principle matched "${searchQuery}".` : `"${searchQuery}" aramasıyla eşleşen bir prensip bulunamadı.`}</p>
           </div>
         ) : (
           <div style={{
@@ -168,7 +188,7 @@ const AcronymsPage: React.FC = () => {
                   initial={{ opacity: 0, y: 15 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, scale: 0.95 }}
-                  transition={{ delay: idx * 0.03 }}
+                  transition={{ delay: idx * 0.02 }}
                   className="glass-card"
                   style={{
                     background: 'linear-gradient(180deg, rgba(30, 41, 59, 0.4) 0%, rgba(15, 23, 42, 0.4) 100%)',
@@ -203,20 +223,20 @@ const AcronymsPage: React.FC = () => {
                     </div>
 
                     <h3 style={{ fontSize: '1.15rem', fontWeight: 700, marginBottom: '0.3rem', color: '#f8fafc' }}>
-                      {item.fullName}
+                      {item.fullName[lang] || item.fullName.tr}
                     </h3>
                     
                     <div style={{ fontSize: '0.85rem', color: item.badgeColor, fontWeight: 600, marginBottom: '1rem', fontStyle: 'italic' }}>
-                      "{item.tagline}"
+                      "{item.tagline[lang] || item.tagline.tr}"
                     </div>
 
                     <p style={{ color: 'var(--text-secondary)', fontSize: '0.92rem', lineHeight: 1.6, marginBottom: '1.25rem' }}>
-                      {item.description}
+                      {item.description[lang] || item.description.tr}
                     </p>
 
-                    {item.details && item.details.length > 0 && (
+                    {item.details && (item.details[lang] || item.details.tr) && (
                       <ul style={{ paddingLeft: '1.25rem', marginBottom: '1.25rem', color: '#94a3b8', fontSize: '0.85rem', lineHeight: 1.6 }}>
-                        {item.details.map((detail, dIdx) => (
+                        {(item.details[lang] || item.details.tr).map((detail, dIdx) => (
                           <li key={dIdx} style={{ marginBottom: '4px' }}>{detail}</li>
                         ))}
                       </ul>
@@ -253,7 +273,7 @@ const AcronymsPage: React.FC = () => {
                           textDecoration: 'none'
                         }}
                       >
-                        Detaylı İncele <ArrowRight size={14} />
+                        {lang === 'en' ? 'Deep Dive' : 'Detaylı İncele'} <ArrowRight size={14} />
                       </Link>
                     </div>
                   )}
@@ -274,10 +294,13 @@ const AcronymsPage: React.FC = () => {
           textAlign: 'center'
         }}>
           <h3 style={{ fontSize: '1.8rem', fontWeight: 800, marginBottom: '1rem' }}>
-            📜 Prensipler Kural Değil, Pusuladır
+            {lang === 'en' ? '📜 Principles Are Compasses, Not Dogmas' : '📜 Prensipler Kural Değil, Pusuladır'}
           </h3>
           <p style={{ color: 'var(--text-secondary)', maxWidth: '800px', margin: '0 auto 1.5rem', lineHeight: 1.7, fontSize: '1rem' }}>
-            "KISS ve YAGNI size sadeliği, DRY ve SOLID sürdürülebilirliği, WET ve AHA ise gereksiz soyutlamalardan kaçınmayı öğretir. İyi bir kıdemli yazılım mimarı, bu prensipler arasında bağnazlık yapmadan projenin ihtiyacına göre doğru tavizi (trade-off) veren kişidir."
+            {lang === 'en'
+              ? '"KISS and YAGNI teach simplicity; DRY and SOLID teach sustainability; while WET and AHA guide you away from premature abstractions. A great senior architect selects the appropriate trade-off without dogmatic adherence."'
+              : '"KISS ve YAGNI size sadeliği, DRY ve SOLID sürdürülebilirliği, WET ve AHA ise gereksiz soyutlamalardan kaçınmayı öğretir. İyi bir kıdemli yazılım mimarı, bu prensipler arasında bağnazlık yapmadan projenin ihtiyacına göre doğru tavizi (trade-off) veren kişidir."'
+            }
           </p>
           <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
             <Link
@@ -295,7 +318,7 @@ const AcronymsPage: React.FC = () => {
                 border: '1px solid rgba(99, 102, 241, 0.3)'
               }}
             >
-              Master Matrix'e Dön <ArrowRight size={16} />
+              {lang === 'en' ? 'Return to Master Matrix' : 'Master Matrix\'e Dön'} <ArrowRight size={16} />
             </Link>
             <Link
               to="/discipline-catalog"
@@ -312,7 +335,7 @@ const AcronymsPage: React.FC = () => {
                 border: '1px solid rgba(255, 255, 255, 0.1)'
               }}
             >
-              Disiplinler Kataloğu <ArrowRight size={16} />
+              {lang === 'en' ? 'Discipline Catalog' : 'Disiplinler Kataloğu'} <ArrowRight size={16} />
             </Link>
           </div>
         </div>
