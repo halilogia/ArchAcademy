@@ -68,100 +68,128 @@ const CloudCatalogPage = () => {
           maxWidth: '1200px',
           margin: '0 auto'
         }}>
-           {items.map((item) => (
-             <motion.div
-               key={item.id}
-               style={{ position: 'relative', display: 'flex', justifyContent: 'center', margin: '10px' }}
-               initial={{ opacity: 0, scale: 0.8 }}
-               animate={{ opacity: 1, scale: 1 }}
-               whileHover={{ scale: 1.1, zIndex: 20 }}
-               transition={{ type: 'spring', stiffness: 200, damping: 15 }}
-               onMouseEnter={() => setHoveredItem(item)}
-               onMouseLeave={() => setHoveredItem(null)}
-               onClick={() => item.id !== 'cloud-center' && navigate(item.path)}
-             >
-                {/* Hexagon Shape */}
-                <div style={{ 
-                   width: '180px', 
-                   height: '200px', 
-                   clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)',
-                   background: item.id === 'cloud-center' ? 'rgba(255,255,255,0.05)' : 'rgba(30, 41, 59, 0.8)',
-                   backdropFilter: 'blur(10px)',
-                   display: 'flex',
-                   flexDirection: 'column',
-                   alignItems: 'center',
-                   justifyContent: 'center',
-                   cursor: item.id === 'cloud-center' ? 'default' : 'pointer',
-                   border: 'none', // Clip-path handles shape, border tricky
-                   position: 'relative'
-                }}>
-                   {/* Inner Border using pseudo or careful overlay - simpler to use SVG overlay */}
-                   <svg style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', pointerEvents: 'none' }} viewBox="0 0 100 115" preserveAspectRatio="none">
-                      <polygon points="50,1 99,28 99,86 50,114 1,86 1,28" fill="none" stroke={item.color} strokeWidth="2" vectorEffect="non-scaling-stroke" />
-                   </svg>
+           {items.map((item) => {
+             const isHovered = hoveredItem?.id === item.id;
+             return (
+               <motion.div
+                 key={item.id}
+                 style={{ 
+                   position: 'relative', 
+                   display: 'flex', 
+                   justifyContent: 'center', 
+                   margin: '10px',
+                   zIndex: isHovered ? 30 : 1
+                 }}
+                 initial={{ opacity: 0, scale: 0.8 }}
+                 animate={{ opacity: 1, scale: isHovered ? 1.12 : 1 }}
+                 transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+                 onMouseEnter={() => setHoveredItem(item)}
+                 onMouseLeave={() => setHoveredItem(null)}
+                 onClick={() => item.id !== 'cloud-center' && navigate(item.path)}
+               >
+                  {/* Hexagon Shape */}
+                  <div style={{ 
+                     width: '180px', 
+                     height: '200px', 
+                     clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)',
+                     background: isHovered 
+                       ? 'rgba(30, 41, 59, 0.95)' 
+                       : (item.id === 'cloud-center' ? 'rgba(255,255,255,0.05)' : 'rgba(30, 41, 59, 0.75)'),
+                     backdropFilter: 'blur(10px)',
+                     display: 'flex',
+                     flexDirection: 'column',
+                     alignItems: 'center',
+                     justifyContent: 'center',
+                     cursor: item.id === 'cloud-center' ? 'default' : 'pointer',
+                     position: 'relative',
+                     transition: 'background 0.2s ease, filter 0.2s ease',
+                     filter: isHovered ? `drop-shadow(0 0 10px ${item.color}40)` : 'none'
+                  }}>
+                     {/* Inner Border using SVG overlay */}
+                     <svg style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', pointerEvents: 'none' }} viewBox="0 0 100 115" preserveAspectRatio="none">
+                        <polygon 
+                          points="50,1 99,28 99,86 50,114 1,86 1,28" 
+                          fill="none" 
+                          stroke={item.color} 
+                          strokeWidth={isHovered ? "2.5" : "1.5"} 
+                          vectorEffect="non-scaling-stroke" 
+                          style={{ transition: 'stroke-width 0.2s ease' }}
+                        />
+                     </svg>
 
-                   <motion.div 
-                     style={{ color: item.color, marginBottom: '10px' }}
-                     animate={item.id === 'cloud-center' ? { opacity: [0.5, 1, 0.5], scale: [1, 1.1, 1] } : {}}
-                     transition={{ duration: 3, repeat: Infinity }}
-                   >
-                      {item.icon}
-                   </motion.div>
-                   
-                   {item.id !== 'cloud-center' && (
-                     <span style={{ 
-                       color: 'white', 
-                       fontWeight: 700, 
-                       fontSize: '0.9rem', 
-                       textAlign: 'center', 
-                       maxWidth: '120px',
-                       textShadow: '0 2px 4px rgba(0,0,0,0.8)'
-                     }}>
-                       {item.name}
-                     </span>
-                   )}
-                </div>
+                     <motion.div 
+                       style={{ color: item.color, marginBottom: '10px' }}
+                       animate={isHovered ? { scale: 1.1, y: -2 } : { scale: 1, y: 0 }}
+                       transition={{ type: 'spring', stiffness: 300, damping: 15 }}
+                     >
+                        {item.icon}
+                     </motion.div>
+                     
+                     {item.id !== 'cloud-center' && (
+                       <span style={{ 
+                         color: 'white', 
+                         fontWeight: 700, 
+                         fontSize: '0.9rem', 
+                         textAlign: 'center', 
+                         maxWidth: '120px',
+                         textShadow: '0 2px 4px rgba(0,0,0,0.8)'
+                       }}>
+                         {item.name}
+                       </span>
+                     )}
+                  </div>
 
-                {/* Hover Glow */}
-                <motion.div 
-                   style={{ 
-                     position: 'absolute', inset: -20, background: item.color, 
-                     filter: 'blur(40px)', opacity: 0, zIndex: -1, borderRadius: '50%' 
-                   }}
-                   whileHover={{ opacity: 0.4 }}
-                />
+                  {/* Soft & Subtle Hover Glow */}
+                  <motion.div 
+                     style={{ 
+                       position: 'absolute', 
+                       inset: -12, 
+                       background: item.color, 
+                       filter: 'blur(30px)', 
+                       zIndex: -1, 
+                       borderRadius: '50%',
+                       pointerEvents: 'none' 
+                     }}
+                     animate={{ 
+                       opacity: isHovered ? 0.22 : 0, 
+                       scale: isHovered ? 1.15 : 0.7 
+                     }}
+                     transition={{ duration: 0.25, ease: 'easeOut' }}
+                  />
 
-             </motion.div>
-           ))}
+               </motion.div>
+             );
+           })}
         </div>
 
-        {/* Info Panel Overlap (Bottom) */}
-         {/* Info Panel Overlap (Bottom) */}
-         <AnimatePresence>
-            {hoveredItem && hoveredItem.id !== 'cloud-center' && (
-              <div style={{ position: 'fixed', left: 0, right: 0, bottom: '30px', zIndex: 9999, pointerEvents: 'none', display: 'flex', justifyContent: 'center' }}>
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: 20 }}
-                    style={{
-                        background: 'rgba(15, 23, 42, 0.95)',
-                        border: `1px solid ${hoveredItem.color}`,
-                        padding: '1.5rem 3rem',
-                        borderRadius: '100px',
-                        boxShadow: `0 10px 40px rgba(0,0,0,0.5)`,
-                        textAlign: 'center',
-                        minWidth: '500px',
-                        pointerEvents: 'auto',
-                        backdropFilter: 'blur(10px)'
-                    }}
-                  >
-                      <h3 style={{ color: hoveredItem.color, margin: 0, fontSize: '1.5rem' }}>{hoveredItem.name}</h3>
-                      <p style={{ color: '#cbd5e1', margin: '5px 0 0', fontSize: '1rem' }}>{hoveredItem.desc}</p>
-                  </motion.div>
-              </div>
-            )}
-         </AnimatePresence>
+        {/* Info Panel Overlap (Bottom) - pointerEvents: 'none' prevents hover flickering */}
+        <AnimatePresence>
+           {hoveredItem && hoveredItem.id !== 'cloud-center' && (
+             <div style={{ position: 'fixed', left: 0, right: 0, bottom: '30px', zIndex: 9999, pointerEvents: 'none', display: 'flex', justifyContent: 'center' }}>
+                 <motion.div
+                   initial={{ opacity: 0, y: 20 }}
+                   animate={{ opacity: 1, y: 0 }}
+                   exit={{ opacity: 0, y: 20 }}
+                   transition={{ duration: 0.2 }}
+                   style={{
+                       background: 'rgba(15, 23, 42, 0.95)',
+                       border: `1px solid ${hoveredItem.color}`,
+                       padding: '1.25rem 2.5rem',
+                       borderRadius: '100px',
+                       boxShadow: `0 10px 40px rgba(0,0,0,0.6), 0 0 25px ${hoveredItem.color}33`,
+                       textAlign: 'center',
+                       minWidth: '450px',
+                       maxWidth: '90vw',
+                       pointerEvents: 'none',
+                       backdropFilter: 'blur(12px)'
+                   }}
+                 >
+                     <h3 style={{ color: hoveredItem.color, margin: 0, fontSize: '1.4rem', fontWeight: 800 }}>{hoveredItem.name}</h3>
+                     <p style={{ color: '#cbd5e1', margin: '6px 0 0', fontSize: '0.95rem' }}>{hoveredItem.desc}</p>
+                 </motion.div>
+             </div>
+           )}
+        </AnimatePresence>
 
       </div>
     </motion.div>

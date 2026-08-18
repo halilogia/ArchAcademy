@@ -30,11 +30,28 @@ An intelligent discovery tool that analyzes your project requirements (team size
 ### 🛣️ Architect's Journey (Roadmap)
 A step-by-step career path from **The Craftsman** to **The Visionary**, covering SOLID principles, patterns, and strategic leadership.
 
+### 📜 Architect's Cheat Sheet (`/acronyms`)
+Comprehensive reference guide for software engineering acronyms & core principles: **KISS, DRY, WET, AHA, YAGNI, SOLID, GRASP, ACID, CAP, FIRST, STUPID**, and more.
+
 ### 🔍 Advanced Fuzzy Search
 Powered by **Fuse.js**, find any architectural concept instantly across 80+ pages with intelligent keyword matching.
 
 ### 🌍 Multi-language & SEO
 Full **i18n** support (TR/EN) and optimized for search engines with dynamic meta tags, sitemaps, and structured data.
+
+### 🤖 AI-Native & Vibe Coding Mimari Matrisi (AI Context & Locality)
+ArchAcademy, mimarileri sadece geleneksel metriklerle değil; **AI-Native geliştirme (Vibe Coding, Context Locality, Klasör Atlama)** ekseninde de değerlendirir:
+
+| Mimari / Stil | 📁 AI Locality (Klasör Atlama) | ⭐ GitHub Popülaritesi | 🧘 Vibe Coding (Anlaşılabilirlik) | 🎯 Toplam |
+| :--- | :---: | :---: | :---: | :---: |
+| 👑 **Vertical Slice Architecture** | ⭐⭐⭐⭐⭐ (5/5) | ⭐⭐⭐⭐ (4/5) | ⭐⭐⭐⭐⭐ (5/5) | **14 / 15** |
+| 🚀 **Pragmatic Monolith (Modular)** | ⭐⭐⭐⭐ (4/5) | ⭐⭐⭐⭐⭐ (5/5) | ⭐⭐⭐⭐⭐ (5/5) | **14 / 15** |
+| ⚛️ **Component-Driven / Islands** | ⭐⭐⭐⭐ (4/5) | ⭐⭐⭐⭐⭐ (5/5) | ⭐⭐⭐⭐ (4/5) | **13 / 15** |
+| 🌐 **Classic MVC** | ⭐⭐⭐ (3/5) | ⭐⭐⭐⭐⭐ (5/5) | ⭐⭐⭐⭐ (4/5) | **12 / 15** |
+| ⚡ **Serverless / FaaS** | ⭐⭐⭐⭐ (4/5) | ⭐⭐⭐⭐ (4/5) | ⭐⭐⭐ (3/5) | **11 / 15** |
+| 🧱 **n-Tier / Katmanlı Mimari** | ⭐⭐ (2/5) | ⭐⭐⭐⭐⭐ (5/5) | ⭐⭐⭐ (3/5) | **10 / 15** |
+| 💎 **Clean Architecture** | ⭐⭐ (2/5) | ⭐⭐⭐⭐⭐ (5/5) | ⭐⭐ (2/5) | **9 / 15** |
+| ⬡ **Hexagonal (Ports & Adapters)** | ⭐⭐ (2/5) | ⭐⭐⭐⭐ (4/5) | ⭐⭐ (2/5) | **8 / 15** |
 
 ### 📱 PWA & Offline Support
 Installable as a standalone app on desktop and mobile. All architectural guides are available offline for on-the-go learning.

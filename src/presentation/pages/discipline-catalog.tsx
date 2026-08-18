@@ -60,6 +60,7 @@ const DisciplineCatalogPage = () => {
       name: 'Engineering DNA',
       color: '#f43f5e',
       items: [
+        { name: 'Kısaltmalar (Cheat Sheet)', path: '/acronyms', color: '#818cf8', icon: <BookOpen size={24} />, desc: 'KISS, DRY, WET, AHA, GRASP, SOLID ve temel kodlama kısaltmaları.' },
         { name: 'OOP Fundamentals', path: '/oop-fundamentals', color: '#f43f5e', icon: <Box size={24} />, desc: 'Abstraction, Encapsulation, Inheritance ve Polymorphism.' },
         { name: 'SOLID Principles', path: '/solid', color: '#fb7185', icon: <ShieldCheck size={24} />, desc: 'Değişime direnç göstermeyen, esnek kodun 5 ana kuralı.' },
         { name: 'Separation of Concerns', path: '/abstraction', color: '#fda4af', icon: <Scissors size={24} />, desc: 'Sorumlulukların mantıksal ve fiziksel olarak ayrıştırılması.' }

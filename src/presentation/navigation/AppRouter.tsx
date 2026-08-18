@@ -90,6 +90,7 @@ const MVIPage = lazy(() => import('../pages/mvi'));
 const SPAvsMPAPage = lazy(() => import('../pages/spa-vs-mpa'));
 const ComponentStatePage = lazy(() => import('../pages/component-state'));
 const EliteArchitecturePage = lazy(() => import('../pages/elite-architecture'));
+const AcronymsPage = lazy(() => import('../pages/acronyms'));
 
 const LoadingFallback = () => (
   <div style={{ height: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--primary)' }}>
@@ -116,6 +117,7 @@ const AppRouter: React.FC = () => {
           <Route path="/microkernel" element={<MicrokernelPage />} />
           <Route path="/serverless" element={<ServerlessPage />} />
           <Route path="/compare" element={<ComparisonPage />} />
+          <Route path="/acronyms" element={<AcronymsPage />} />
           <Route path="/project-arch" element={<ProjectPage />} />
           <Route path="/solid" element={<SOLIDPage />} />
           <Route path="/glossary" element={<GlossaryPage />} />

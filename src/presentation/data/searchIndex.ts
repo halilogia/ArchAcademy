@@ -9,7 +9,16 @@ export interface SearchIndexItem {
 }
 
 export const SEARCH_INDEX: SearchIndexItem[] = [
-  // --- MAIN CATALOGS ---
+  // --- MAIN CATALOGS & CHEATSHEET ---
+  {
+    id: 'acronyms',
+    title: 'Yazılım ve Mimari Kısaltmalar Rehberi (Cheat Sheet)',
+    description: 'KISS, DRY, WET, AHA, YAGNI, SOLID, GRASP, ACID, FIRST, STUPID',
+    path: '/acronyms',
+    category: 'Guide',
+    keywords: ['acronyms', 'kısaltmalar', 'kiss', 'dry', 'oaoo', 'wet', 'aha', 'yagni', 'grasp', 'solid', 'acid', 'first', 'stupid', 'cheat sheet', 'temiz kod'],
+    content: 'Yazılım ve Mimari Kısaltmalar Rehberi (The Architect\'s Cheat Sheet) - KISS (Keep It Simple, Stupid), DRY, WET, AHA, YAGNI, SOLID, GRASP, ACID, BASE, CAP, FIRST, AAA, Right-BICEP, CORRECT, STUPID anti-patternleri.'
+  },
   {
     id: 'catalog',
     title: 'System Architecture Catalog',

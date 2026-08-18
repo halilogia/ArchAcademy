@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import { Check, X, Star, Zap, Gauge, Code2, Users, Sparkles, Layers, ChevronUp, ChevronDown, Shield, Microscope, Minimize2 } from 'lucide-react';
+import { Star, Zap, Users, Layers, ChevronUp, ChevronDown, Minimize2, Repeat, ShieldCheck, FolderTree } from 'lucide-react';
 
 type SortConfig = {
   key: string;
@@ -18,12 +18,11 @@ const ComparisonMatrix = () => {
       size: 'Büyük (Large)',
       sizeValue: 3,
       speed: 2,
-      learning: 2,
-      maint: 5,
-      test: 5,
-      ai: 3,
+      kiss: 2,
+      dry: 5,
+      maintAndTest: 5,
       flex: 5,
-      simplicity: 2,
+      aiLocality: 2,
       color: 'var(--primary)',
       bestFor: 'Karmaşık Kurumsal Sistemler',
       path: '/clean-arch'
@@ -33,14 +32,13 @@ const ComparisonMatrix = () => {
       size: 'Küçük/Orta',
       sizeValue: 2,
       speed: 5,
-      learning: 4,
-      maint: 4,
-      test: 4,
-      ai: 5,
+      kiss: 4,
+      dry: 2,
+      maintAndTest: 4,
       flex: 5,
-      simplicity: 4,
+      aiLocality: 5,
       color: '#f97316',
-      bestFor: 'Hızlı Özellik Geliştirme (Feature-First)',
+      bestFor: 'Hızlı Özellik Geliştirme (Feature-First & AI)',
       path: '/vertical'
     },
     {
@@ -48,12 +46,11 @@ const ComparisonMatrix = () => {
       size: 'Büyük (Large)',
       sizeValue: 3,
       speed: 1,
-      learning: 1,
-      maint: 5,
-      test: 4,
-      ai: 4,
+      kiss: 1,
+      dry: 5,
+      maintAndTest: 5,
       flex: 4,
-      simplicity: 1,
+      aiLocality: 1,
       color: '#a78bfa',
       bestFor: 'Karmaşık İş Mantığına Sahip Domainler',
       path: '/ddd'
@@ -63,12 +60,11 @@ const ComparisonMatrix = () => {
       size: 'Her boyuta uygun',
       sizeValue: 2,
       speed: 5,
-      learning: 3,
-      maint: 4,
-      test: 3,
-      ai: 4,
+      kiss: 3,
+      dry: 3,
+      maintAndTest: 4,
       flex: 5,
-      simplicity: 3,
+      aiLocality: 4,
       color: '#f59e0b',
       bestFor: 'Yüksek Performanslı İçerik Odaklı Siteler',
       path: '/glossary?search=Islands'
@@ -78,12 +74,11 @@ const ComparisonMatrix = () => {
       size: 'Orta/Büyük',
       sizeValue: 2.5,
       speed: 2,
-      learning: 2,
-      maint: 4,
-      test: 5,
-      ai: 4,
+      kiss: 2,
+      dry: 4,
+      maintAndTest: 5,
       flex: 3,
-      simplicity: 2,
+      aiLocality: 1,
       color: '#eab308',
       bestFor: 'Yüksek Okuma/Yazma Trafikli Sistemler',
       path: '/cqrs'
@@ -93,12 +88,11 @@ const ComparisonMatrix = () => {
       size: 'Tüm projeler',
       sizeValue: 1,
       speed: 3,
-      learning: 3,
-      maint: 5,
-      test: 5,
-      ai: 5,
+      kiss: 3,
+      dry: 5,
+      maintAndTest: 5,
       flex: 5,
-      simplicity: 3,
+      aiLocality: 4,
       color: '#6366f1',
       bestFor: 'Temel Kod Kalitesi ve Sürdürülebilirlik',
       path: '/solid'
@@ -108,12 +102,11 @@ const ComparisonMatrix = () => {
       size: 'Orta/Büyük',
       sizeValue: 2.5,
       speed: 3,
-      learning: 2,
-      maint: 5,
-      test: 5,
-      ai: 4,
+      kiss: 2,
+      dry: 5,
+      maintAndTest: 5,
       flex: 5,
-      simplicity: 2,
+      aiLocality: 2,
       color: '#10b981',
       bestFor: 'Teknoloji Bağımsız Uygulamalar',
       path: '/hexagonal'
@@ -123,12 +116,11 @@ const ComparisonMatrix = () => {
       size: 'Orta/Büyük',
       sizeValue: 2.5,
       speed: 3,
-      learning: 2,
-      maint: 5,
-      test: 5,
-      ai: 4,
+      kiss: 2,
+      dry: 5,
+      maintAndTest: 5,
       flex: 5,
-      simplicity: 2,
+      aiLocality: 2,
       color: '#f43f5e',
       bestFor: 'Domain Odaklı Uygulamalar',
       path: '/onion'
@@ -138,12 +130,11 @@ const ComparisonMatrix = () => {
       size: 'Orta/Büyük',
       sizeValue: 2.5,
       speed: 3,
-      learning: 2,
-      maint: 4,
-      test: 3,
-      ai: 4,
+      kiss: 2,
+      dry: 4,
+      maintAndTest: 4,
       flex: 4,
-      simplicity: 2,
+      aiLocality: 4,
       color: '#06b6d4',
       bestFor: 'Karmaşık React/Next.js Projeleri',
       path: '/fsd'
@@ -153,12 +144,11 @@ const ComparisonMatrix = () => {
       size: 'Çok Büyük',
       sizeValue: 4,
       speed: 2,
-      learning: 1,
-      maint: 4,
-      test: 3,
-      ai: 3,
+      kiss: 1,
+      dry: 3,
+      maintAndTest: 4,
       flex: 5,
-      simplicity: 1,
+      aiLocality: 2,
       color: '#a855f7',
       bestFor: 'Dağıtık Mikroservis Sistemleri',
       path: '/eda'
@@ -168,12 +158,11 @@ const ComparisonMatrix = () => {
       size: 'Küçük/Orta',
       sizeValue: 2,
       speed: 4,
-      learning: 3,
-      maint: 4,
-      test: 4,
-      ai: 3,
+      kiss: 3,
+      dry: 4,
+      maintAndTest: 4,
       flex: 5,
-      simplicity: 3,
+      aiLocality: 4,
       color: '#3b82f6',
       bestFor: 'Eklenti Tabanlı Uygulamalar (IDE, OS)',
       path: '/microkernel'
@@ -183,12 +172,11 @@ const ComparisonMatrix = () => {
       size: 'Değişken',
       sizeValue: 2,
       speed: 5,
-      learning: 4,
-      maint: 3,
-      test: 2,
-      ai: 4,
+      kiss: 4,
+      dry: 2,
+      maintAndTest: 3,
       flex: 4,
-      simplicity: 4,
+      aiLocality: 4,
       color: '#ec4899',
       bestFor: 'Olay Tetiklemeli İş Mantığı ve Ölçeklenme',
       path: '/serverless'
@@ -198,12 +186,11 @@ const ComparisonMatrix = () => {
       size: 'Orta/Büyük',
       sizeValue: 2.5,
       speed: 1,
-      learning: 1,
-      maint: 4,
-      test: 5,
-      ai: 5,
+      kiss: 1,
+      dry: 4,
+      maintAndTest: 5,
       flex: 2,
-      simplicity: 1,
+      aiLocality: 1,
       color: '#6366f1',
       bestFor: 'Denetim Odaklı Finansal Uygulamalar',
       path: '/event-sourcing'
@@ -213,14 +200,13 @@ const ComparisonMatrix = () => {
       size: 'Devasa',
       sizeValue: 4,
       speed: 2,
-      learning: 1,
-      maint: 3,
-      test: 2,
-      ai: 2,
+      kiss: 1,
+      dry: 3,
+      maintAndTest: 3,
       flex: 2,
-      simplicity: 1,
+      aiLocality: 1,
       color: '#eab308',
-      bestFor: 'Ultra Yüksek Eşzamanlılık Gereken Sitemler',
+      bestFor: 'Ultra Yüksek Eşzamanlılık Gereken Sistemler',
       path: '/space-based'
     },
     {
@@ -228,12 +214,11 @@ const ComparisonMatrix = () => {
       size: 'Değişken',
       sizeValue: 2,
       speed: 3,
-      learning: 1,
-      maint: 2,
-      test: 2,
-      ai: 2,
+      kiss: 2,
+      dry: 3,
+      maintAndTest: 2,
       flex: 3,
-      simplicity: 2,
+      aiLocality: 2,
       color: '#10b981',
       bestFor: 'Merkeziyetsiz Ağlar ve Dosya Paylaşımı',
       path: '/p2p'
@@ -243,12 +228,11 @@ const ComparisonMatrix = () => {
       size: 'Büyük (Large)',
       sizeValue: 3,
       speed: 2,
-      learning: 2,
-      maint: 3,
-      test: 3,
-      ai: 3,
+      kiss: 2,
+      dry: 4,
+      maintAndTest: 3,
       flex: 2,
-      simplicity: 2,
+      aiLocality: 2,
       color: '#3b82f6',
       bestFor: 'Kurumsal Entegrasyon ve Servis Yönetimi',
       path: '/soa'
@@ -258,12 +242,11 @@ const ComparisonMatrix = () => {
       size: 'Her boyuta uygun',
       sizeValue: 2,
       speed: 4,
-      learning: 5,
-      maint: 2,
-      test: 3,
-      ai: 2,
+      kiss: 4,
+      dry: 4,
+      maintAndTest: 3,
       flex: 3,
-      simplicity: 4,
+      aiLocality: 2,
       color: '#3b82f6',
       bestFor: 'Klasik Katmanlı Uygulamalar',
       path: '/horizontal'
@@ -273,12 +256,11 @@ const ComparisonMatrix = () => {
       size: 'Devasa',
       sizeValue: 4,
       speed: 2,
-      learning: 2,
-      maint: 4,
-      test: 3,
-      ai: 3,
+      kiss: 2,
+      dry: 4,
+      maintAndTest: 4,
       flex: 4,
-      simplicity: 2,
+      aiLocality: 2,
       color: '#fda4af',
       bestFor: 'Servisler Arası Mesajlaşma Hattı',
       path: '/broker'
@@ -288,12 +270,11 @@ const ComparisonMatrix = () => {
       size: 'Orta/Büyük',
       sizeValue: 2.5,
       speed: 4,
-      learning: 4,
-      maint: 4,
-      test: 3,
-      ai: 3,
+      kiss: 4,
+      dry: 4,
+      maintAndTest: 4,
       flex: 4,
-      simplicity: 4,
+      aiLocality: 3,
       color: '#fb923c',
       bestFor: 'Gevşek Bağlı Bildirim Sistemleri',
       path: '/pub-sub'
@@ -303,12 +284,11 @@ const ComparisonMatrix = () => {
       size: 'Orta',
       sizeValue: 2,
       speed: 3,
-      learning: 4,
-      maint: 4,
-      test: 5,
-      ai: 4,
+      kiss: 4,
+      dry: 4,
+      maintAndTest: 5,
       flex: 5,
-      simplicity: 4,
+      aiLocality: 4,
       color: '#8b5cf6',
       bestFor: 'Veri İşleme ve Dönüştürme Hatları',
       path: '/pipe-filter'
@@ -318,12 +298,11 @@ const ComparisonMatrix = () => {
       size: 'Çok Büyük',
       sizeValue: 4,
       speed: 3,
-      learning: 1,
-      maint: 3,
-      test: 3,
-      ai: 2,
+      kiss: 1,
+      dry: 2,
+      maintAndTest: 3,
       flex: 5,
-      simplicity: 1,
+      aiLocality: 2,
       color: '#6366f1',
       bestFor: 'Çoklu Ekip Gerektiren Devasa Frontend Projeleri',
       path: '/glossary?search=Micro'
@@ -333,12 +312,11 @@ const ComparisonMatrix = () => {
       size: 'Küçük (Small)',
       sizeValue: 1,
       speed: 5,
-      learning: 5,
-      maint: 2,
-      test: 2,
-      ai: 2,
+      kiss: 5,
+      dry: 4,
+      maintAndTest: 3,
       flex: 3,
-      simplicity: 5,
+      aiLocality: 3,
       color: '#ec4899',
       bestFor: 'Basit Web Siteleri ve Prototipler',
       path: '/mvc'
@@ -348,12 +326,11 @@ const ComparisonMatrix = () => {
       size: 'Orta (Medium)',
       sizeValue: 2,
       speed: 3,
-      learning: 3,
-      maint: 4,
-      test: 5,
-      ai: 3,
+      kiss: 3,
+      dry: 4,
+      maintAndTest: 5,
       flex: 4,
-      simplicity: 3,
+      aiLocality: 2,
       color: '#db2777',
       bestFor: 'Test Odaklı Legacy Desktop/Android',
       path: '/mvp'
@@ -363,12 +340,11 @@ const ComparisonMatrix = () => {
       size: 'Orta/Büyük',
       sizeValue: 2.5,
       speed: 4,
-      learning: 2,
-      maint: 5,
-      test: 5,
-      ai: 5,
+      kiss: 3,
+      dry: 4,
+      maintAndTest: 5,
       flex: 5,
-      simplicity: 4,
+      aiLocality: 4,
       color: '#be185d',
       bestFor: 'Modern Reaktif UI (React, Flutter)',
       path: '/mvvm'
@@ -378,12 +354,11 @@ const ComparisonMatrix = () => {
       size: 'Her boyuta uygun',
       sizeValue: 2,
       speed: 1,
-      learning: 1,
-      maint: 4,
-      test: 4,
-      ai: 3,
+      kiss: 1,
+      dry: 3,
+      maintAndTest: 4,
       flex: 4,
-      simplicity: 1,
+      aiLocality: 2,
       color: '#10b981',
       bestFor: 'Ekstrem Performans ve Oyun Geliştirme',
       path: '/ecs'
@@ -393,12 +368,11 @@ const ComparisonMatrix = () => {
       size: 'Devasa',
       sizeValue: 4,
       speed: 1,
-      learning: 1,
-      maint: 3,
-      test: 2,
-      ai: 3,
+      kiss: 1,
+      dry: 3,
+      maintAndTest: 3,
       flex: 2,
-      simplicity: 1,
+      aiLocality: 2,
       color: '#06b6d4',
       bestFor: 'Büyük Veri Analitiği ve İşleme',
       path: '/big-data'
@@ -408,12 +382,11 @@ const ComparisonMatrix = () => {
       size: 'Devasa',
       sizeValue: 4,
       speed: 3,
-      learning: 1,
-      maint: 4,
-      test: 2,
-      ai: 2,
+      kiss: 1,
+      dry: 2,
+      maintAndTest: 3,
       flex: 5,
-      simplicity: 1,
+      aiLocality: 2,
       color: '#f472b6',
       bestFor: 'Merkezi Olmayan Servis Koordinasyonu',
       path: '/choreography'
@@ -423,12 +396,11 @@ const ComparisonMatrix = () => {
       size: 'Büyük (Large)',
       sizeValue: 3,
       speed: 4,
-      learning: 3,
-      maint: 3,
-      test: 4,
-      ai: 3,
+      kiss: 2,
+      dry: 4,
+      maintAndTest: 4,
       flex: 4,
-      simplicity: 2,
+      aiLocality: 3,
       color: '#8b5cf6',
       bestFor: 'Merkezi İş Akışı ve Saga Yönetimi',
       path: '/orchestration'
@@ -438,12 +410,11 @@ const ComparisonMatrix = () => {
       size: 'Küçük',
       sizeValue: 1,
       speed: 2,
-      learning: 2,
-      maint: 5,
-      test: 5,
-      ai: 5,
+      kiss: 2,
+      dry: 5,
+      maintAndTest: 5,
       flex: 5,
-      simplicity: 2,
+      aiLocality: 3,
       color: '#06b6d4',
       bestFor: 'Dinamik Kural Motorları ve DSL Tasarımı',
       path: '/interpreter'
@@ -453,12 +424,11 @@ const ComparisonMatrix = () => {
       size: 'Orta',
       sizeValue: 2,
       speed: 4,
-      learning: 4,
-      maint: 3,
-      test: 4,
-      ai: 2,
+      kiss: 3,
+      dry: 4,
+      maintAndTest: 4,
       flex: 2,
-      simplicity: 3,
+      aiLocality: 3,
       color: '#a78bfa',
       bestFor: 'Veritabanı Yüksek Erişilebilirlik Mimarisi',
       path: '/primary-secondary'
@@ -468,12 +438,11 @@ const ComparisonMatrix = () => {
       size: 'Küçük/Orta',
       sizeValue: 1.5,
       speed: 5,
-      learning: 5,
-      maint: 3,
-      test: 3,
-      ai: 5,
+      kiss: 5,
+      dry: 3,
+      maintAndTest: 3,
       flex: 3,
-      simplicity: 5,
+      aiLocality: 4,
       color: '#f43f5e',
       bestFor: 'Tek Kişilik Ekipler ve Hızlı MVP Projeleri',
       path: '/system'
@@ -483,18 +452,16 @@ const ComparisonMatrix = () => {
       size: 'Büyük (Large)',
       sizeValue: 3,
       speed: 1,
-      learning: 1,
-      maint: 5,
-      test: 5,
-      ai: 3,
+      kiss: 1,
+      dry: 5,
+      maintAndTest: 5,
       flex: 3,
-      simplicity: 1,
+      aiLocality: 1,
       color: '#ef4444',
       bestFor: 'Büyük Ölçekli iOS Uygulamaları',
       path: '/viper'
     }
   ];
-
 
   const sortedData = useMemo(() => {
     let sortableData = [...initialData];
@@ -525,13 +492,13 @@ const ComparisonMatrix = () => {
 
   const renderStars = (count: number) => {
     return (
-      <div style={{ display: 'flex', gap: '2px' }}>
+      <div style={{ display: 'flex', gap: '2px', justifyContent: 'center' }}>
         {[...Array(5)].map((_, i) => (
           <Star 
             key={i} 
             size={12} 
             fill={i < count ? "currentColor" : "transparent"} 
-            color={i < count ? "inherit" : "rgba(255,255,255,0.05)"} 
+            color={i < count ? "inherit" : "rgba(255,255,255,0.08)"} 
           />
         ))}
       </div>
@@ -544,18 +511,18 @@ const ComparisonMatrix = () => {
   };
 
   return (
-    <section style={{ padding: '100px 0' }}>
+    <section style={{ padding: '80px 0' }}>
       <div className="container" style={{ maxWidth: '1600px', width: '95%' }}>
         <motion.div
            initial={{ opacity: 0, y: 20 }}
            whileInView={{ opacity: 1, y: 0 }}
            viewport={{ once: true }}
-           style={{ textAlign: 'center', marginBottom: '4rem' }}
+           style={{ textAlign: 'center', marginBottom: '3.5rem' }}
         >
           <h2 className="gradient-text" style={{ fontSize: '3.5rem', fontWeight: 800 }}>THE MASTER MATRIX</h2>
           <p style={{ color: 'var(--text-secondary)', maxWidth: '750px', margin: '1.5rem auto', lineHeight: 1.8 }}>
-            Mimari stiller, disiplinler ve prensiplerin stratejik kıyaslaması. 
-            Sıralamak için başlıkların üzerine tıklayın.
+            Temel mimari stiller ve disiplinlerin 7 stratejik boyutta kıyaslaması. 
+            Sıralamak için sütun başlıklarına tıklayın.
           </p>
         </motion.div>
 
@@ -564,13 +531,13 @@ const ComparisonMatrix = () => {
             width: '100%',
             borderCollapse: 'separate',
             borderSpacing: '0 8px',
-            minWidth: '1350px'
+            minWidth: '1200px'
           }}>
             <thead>
               <tr style={{ color: 'var(--text-secondary)', fontSize: '0.85rem' }}>
                 <th 
                   onClick={() => requestSort('name')}
-                  style={{ textAlign: 'left', padding: '1rem 2rem', cursor: 'pointer', verticalAlign: 'middle' }}
+                  style={{ textAlign: 'left', padding: '1rem 2rem', cursor: 'pointer', verticalAlign: 'middle', width: '28%' }}
                 >
                   <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                      Arch / Style / Pattern {getSortIcon('name')}
@@ -578,7 +545,8 @@ const ComparisonMatrix = () => {
                 </th>
                 <th 
                   onClick={() => requestSort('sizeValue')}
-                  style={{ textAlign: 'center', padding: '1rem', cursor: 'pointer' }}
+                  style={{ textAlign: 'center', padding: '1rem', cursor: 'pointer', width: '12%' }}
+                  title="Ekip ve Proje Ölçeği"
                 >
                   <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '5px' }}>
                     <Users size={18} /> 
@@ -586,66 +554,63 @@ const ComparisonMatrix = () => {
                   </div>
                 </th>
                 <th 
-                  onClick={() => requestSort('simplicity')}
-                  style={{ textAlign: 'center', padding: '1rem', cursor: 'pointer' }}
-                >
-                  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '5px' }}>
-                    <Minimize2 size={18} /> 
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>Basitlik {getSortIcon('simplicity')}</div>
-                  </div>
-                </th>
-                <th 
                   onClick={() => requestSort('speed')}
-                  style={{ textAlign: 'center', padding: '1rem', cursor: 'pointer' }}
+                  style={{ textAlign: 'center', padding: '1rem', cursor: 'pointer', width: '10%' }}
+                  title="Velocity / Hızlı Teslimat & Time-to-Market"
                 >
                   <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '5px' }}>
                     <Zap size={18} /> 
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>Hız {getSortIcon('speed')}</div>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>Velocity {getSortIcon('speed')}</div>
                   </div>
                 </th>
                 <th 
-                  onClick={() => requestSort('learning')}
-                  style={{ textAlign: 'center', padding: '1rem', cursor: 'pointer' }}
+                  onClick={() => requestSort('kiss')}
+                  style={{ textAlign: 'center', padding: '1rem', cursor: 'pointer', width: '10%' }}
+                  title="KISS: Keep It Simple, Stupid (Sadelik & Düşük Öğrenme Eğrisi)"
                 >
                   <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '5px' }}>
-                    <Gauge size={18} /> 
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>Öğrenme {getSortIcon('learning')}</div>
+                    <Minimize2 size={18} /> 
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>KISS {getSortIcon('kiss')}</div>
+                  </div>
+                </th>
+                <th 
+                  onClick={() => requestSort('dry')}
+                  style={{ textAlign: 'center', padding: '1rem', cursor: 'pointer', width: '10%' }}
+                  title="DRY Disiplini (5★ = Sıfır Kod Tekrarı, 1★ = WET/AHA Bağımsızlık)"
+                >
+                  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '5px' }}>
+                    <Repeat size={18} /> 
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>DRY {getSortIcon('dry')}</div>
                   </div>
                 </th>
                 <th 
                   onClick={() => requestSort('flex')}
-                  style={{ textAlign: 'center', padding: '1rem', cursor: 'pointer' }}
+                  style={{ textAlign: 'center', padding: '1rem', cursor: 'pointer', width: '10%' }}
+                  title="Flexibility & Modularity (Değişime ve Eklentilere Açıklık)"
                 >
                   <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '5px' }}>
                     <Layers size={18} /> 
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>Esneklik {getSortIcon('flex')}</div>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>Flexibility {getSortIcon('flex')}</div>
                   </div>
                 </th>
                 <th 
-                  onClick={() => requestSort('maint')}
-                  style={{ textAlign: 'center', padding: '1rem', cursor: 'pointer' }}
+                  onClick={() => requestSort('maintAndTest')}
+                  style={{ textAlign: 'center', padding: '1rem', cursor: 'pointer', width: '10%' }}
+                  title="Bakım ve Test Edilebilirlik Gücü"
                 >
                   <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '5px' }}>
-                    <Check size={18} /> 
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>Bakım {getSortIcon('maint')}</div>
+                    <ShieldCheck size={18} /> 
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>Bakım & Test {getSortIcon('maintAndTest')}</div>
                   </div>
                 </th>
                 <th 
-                  onClick={() => requestSort('test')}
-                  style={{ textAlign: 'center', padding: '1rem', cursor: 'pointer' }}
+                  onClick={() => requestSort('aiLocality')}
+                  style={{ textAlign: 'center', padding: '1rem', cursor: 'pointer', width: '10%' }}
+                  title="AI Locality (Vibe): Minimum klasör atlama ve yüksek özellik bütünlüğü"
                 >
                   <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '5px' }}>
-                    <Code2 size={18} /> 
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>Test {getSortIcon('test')}</div>
-                  </div>
-                </th>
-                <th 
-                  onClick={() => requestSort('ai')}
-                  style={{ textAlign: 'center', padding: '1rem', cursor: 'pointer' }}
-                >
-                  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '5px' }}>
-                    <Sparkles size={18} /> 
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>AI Context {getSortIcon('ai')}</div>
+                    <FolderTree size={18} /> 
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>Locality (Vibe) {getSortIcon('aiLocality')}</div>
                   </div>
                 </th>
               </tr>
@@ -672,31 +637,34 @@ const ComparisonMatrix = () => {
                       <div style={{ fontSize: '0.7rem', color: row.color, fontWeight: 600 }}>BEST FOR: {row.bestFor}</div>
                     </td>
                     <td style={{ textAlign: 'center', padding: '1.25rem', fontSize: '0.8rem' }}>{row.size}</td>
-                    <td style={{ textAlign: 'center', padding: '1.25rem', color: '#84cc16' }}>{renderStars(row.simplicity)}</td>
                     <td style={{ textAlign: 'center', padding: '1.25rem', color: '#f59e0b' }}>{renderStars(row.speed)}</td>
-                    <td style={{ textAlign: 'center', padding: '1.25rem', color: '#3b82f6' }}>{renderStars(row.learning)}</td>
+                    <td style={{ textAlign: 'center', padding: '1.25rem', color: '#84cc16' }}>{renderStars(row.kiss)}</td>
+                    <td style={{ textAlign: 'center', padding: '1.25rem', color: '#6366f1' }}>{renderStars(row.dry)}</td>
                     <td style={{ textAlign: 'center', padding: '1.25rem', color: '#10b981' }}>{renderStars(row.flex)}</td>
-                    <td style={{ textAlign: 'center', padding: '1.25rem', color: '#10b981' }}>{renderStars(row.maint)}</td>
-                    <td style={{ textAlign: 'center', padding: '1.25rem', color: '#a855f7' }}>{renderStars(row.test)}</td>
-                    <td style={{ textAlign: 'center', padding: '1.25rem', borderRadius: '0 16px 16px 0', color: '#6366f1' }}>{renderStars(row.ai)}</td>
+                    <td style={{ textAlign: 'center', padding: '1.25rem', color: '#06b6d4' }}>{renderStars(row.maintAndTest)}</td>
+                    <td style={{ textAlign: 'center', padding: '1.25rem', borderRadius: '0 16px 16px 0', color: '#f97316' }}>{renderStars(row.aiLocality)}</td>
                   </tr>
                 ))}
             </tbody>
           </table>
         </div>
 
-        <div style={{ marginTop: '5rem', display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '2rem' }}>
-          <div className="glass-card" style={{ textAlign: 'center' }}>
-            <h4 style={{ marginBottom: '1rem', color: '#f59e0b' }}>Yüksek Hız (Speed)</h4>
-            <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}>Vertical Slice ve Monolith, hızlı MVP çıkarmak için en idealidir.</p>
+        <div style={{ marginTop: '4rem', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '1.5rem' }}>
+          <div className="glass-card" style={{ textAlign: 'center', border: '1px solid rgba(249, 115, 22, 0.3)' }}>
+            <h4 style={{ marginBottom: '0.75rem', color: '#f97316' }}>📁 Locality (Vibe Coding)</h4>
+            <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}>AI'ın tek klasörde çalışabilme yeteneği. Vertical Slice ve Monolith, prompt context'ini bölmeden maksimum verim sunar.</p>
           </div>
-          <div className="glass-card" style={{ textAlign: 'center' }}>
-            <h4 style={{ marginBottom: '1rem', color: '#10b981' }}>Yüksek Esneklik (Flexibility)</h4>
-            <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}>Microkernel ve Pipe-Filter, değişken sistem gereksinimleri için en iyisidir.</p>
+          <div className="glass-card" style={{ textAlign: 'center', border: '1px solid rgba(99, 102, 241, 0.3)' }}>
+            <h4 style={{ marginBottom: '0.75rem', color: '#6366f1' }}>🔄 DRY vs WET / AHA</h4>
+            <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}>Katı DRY mimarileri (Clean/DDD) sıfır kod tekrarı isterken, VSA gibi yapılar bağımsızlık için kontrollü tekrarı (WET/AHA) savunur.</p>
           </div>
-          <div className="glass-card" style={{ textAlign: 'center' }}>
-            <h4 style={{ marginBottom: '1rem', color: '#6366f1' }}>AI Destekli Geliştirme</h4>
-            <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}>Yüksek "AI Context" puanlı mimariler, Cursor/ChatGPT gibi araçlarla mükemmel uyum sağlar.</p>
+          <div className="glass-card" style={{ textAlign: 'center', border: '1px solid rgba(132, 204, 22, 0.3)' }}>
+            <h4 style={{ marginBottom: '0.75rem', color: '#84cc16' }}>🧘 KISS (Keep It Simple, Stupid)</h4>
+            <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}>Gereksiz katman ve soyutlamadan kaçınma. Basit tasarlanan mimariler en az bilişsel yük (cognitive load) üretir.</p>
+          </div>
+          <div className="glass-card" style={{ textAlign: 'center', border: '1px solid rgba(6, 182, 212, 0.3)' }}>
+            <h4 style={{ marginBottom: '0.75rem', color: '#06b6d4' }}>🛡️ Bakım & Test Güvencesi</h4>
+            <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}>Hexagonal, Clean ve Onion mimarileri bağımlılık izolasyonu ile maksimum test kapsamı ve uzun ömür sağlar.</p>
           </div>
         </div>
       </div>

@@ -1,5 +1,5 @@
-import React from 'react';
-import { ExternalLink } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { ExternalLink, BookOpen } from 'lucide-react';
 
 const ArchReferences = () => {
   return (
@@ -16,10 +16,13 @@ const ArchReferences = () => {
       marginBottom: '2rem'
     }}>
       <div style={{ color: '#64748b', fontSize: '0.8rem', fontWeight: 800, textTransform: 'uppercase', marginBottom: '1rem', letterSpacing: '2px' }}>Reference & Case Study</div>
-      <p style={{ color: 'var(--text-secondary)', marginBottom: '1.5rem', maxWidth: '600px' }}>
-        Bu mimari yaklaşımlar ve rehberler, Google'ın resmi (Android & Flutter) mühendislik vaka çalışmalarından ve modern uygulama mimarisi kılavuzlarından ilham almıştır.
+      <p style={{ color: 'var(--text-secondary)', marginBottom: '1.5rem', maxWidth: '650px' }}>
+        Bu mimari yaklaşımlar ve rehberler; Google mühendislik vaka çalışmalarından ve endüstri standardı prensiplerden (KISS, DRY, SOLID, GRASP) ilham almıştır.
       </p>
       <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', justifyContent: 'center' }}>
+        <Link to="/acronyms" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', color: '#818cf8', fontWeight: 700, textDecoration: 'none', padding: '0.8rem 1.5rem', background: 'rgba(99, 102, 241, 0.15)', borderRadius: '12px', border: '1px solid rgba(99, 102, 241, 0.3)', transition: 'all 0.2s' }}>
+          <BookOpen size={16} /> Kısaltmalar & Prensipler Kılavuzu (Cheat Sheet)
+        </Link>
         <a href="https://docs.flutter.dev/app-architecture/case-study" target="_blank" rel="noopener noreferrer" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', color: '#3b82f6', fontWeight: 700, textDecoration: 'none', padding: '0.8rem 1.5rem', background: 'rgba(59, 130, 246, 0.1)', borderRadius: '12px', transition: 'all 0.2s' }}>
           Google Architecture Case Study <ExternalLink size={16} />
         </a>
