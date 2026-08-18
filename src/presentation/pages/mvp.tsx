@@ -1,33 +1,20 @@
-import { useTranslation } from 'react-i18next';
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
+import { Layout, UserCheck, Activity, GitCompare, Box } from 'lucide-react';
 import ArchHero from '../components/ArchHero';
-import { 
+import SEO from '../components/SEO';
+import { MVPComparisonTab } from '../components/mvp/MVPComparisonTab';
+import { MVPConceptsTab } from '../components/mvp/MVPConceptsTab';
 
-  Layout, 
-  UserCheck, 
-  Activity, 
-  ArrowRightLeft, 
-  CheckCircle2, 
-  XCircle, 
-  GitCompare, 
-  Box, 
-  Database,
-  Monitor,
-  Mic2,
-  Settings,
-  Zap,
-  RefreshCw,
-} from 'lucide-react';
-
-const MVPPage = () => {
+const MVPPage: React.FC = () => {
   const { i18n } = useTranslation();
   const isEn = (i18n.resolvedLanguage || i18n.language || 'tr').startsWith('en');
   const [activeTab, setActiveTab] = useState<'concepts' | 'comparison'>('comparison');
 
-  const illu = (
+  const heroIllustration = (
     <div style={{ position: 'relative', width: '350px', height: '350px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'space-between' }}>
-      {/* View (Pasif) */}
+      {/* View (Passive) */}
       <motion.div
         animate={{ opacity: [0.6, 1, 0.6] }}
         transition={{ duration: 4, repeat: Infinity }}
@@ -84,260 +71,133 @@ const MVPPage = () => {
   );
 
   return (
-    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} style={{ paddingBottom: '100px' }}>
-      <ArchHero 
-      title="MVP"
-      subtitle="Strict Separation"
-      description="View ve Model arasındaki tüm iletişimi Presenter üzerinden yürüterek arayüzü tamamen pasif (Passive View) hale getiren, test edilebilirliği maksimize eden mimari."
-      badge="Interaction Pattern"
-      color="#34d399"
-      illustration={illu}
-      features={[
-        { icon: <UserCheck />, title: 'Presenter', desc: 'Arayüzün yöneticisi. Viewdan olayları alır, Modeli günceller, Viewa ne yapacağını söyler.' },
-        { icon: <Layout />, title: 'Passive View', desc: 'Kendi başına karar veremeyen aptal (dumb) arayüz katmanı.' },
-        { icon: <Activity />, title: 'Testability', desc: 'UI framework bağımlılığı olmadan %100 Unit Test imkanı.' }
-      ]}
-    >
-        <div style={{ 
-          marginTop: '2rem',
-          padding: '6px', 
-          background: 'rgba(15, 23, 42, 0.4)', 
-          borderRadius: '24px', 
-          border: '1px solid rgba(255,255,255,0.05)',
-          display: 'inline-flex',
-          alignItems: 'center',
-          gap: '4px',
-          backdropFilter: 'blur(10px)'
-        }}>
-          {[
-            { id: 'comparison', label: 'MVP vs MVVM', icon: <GitCompare size={18} /> },
-            { id: 'concepts', label: 'Core Concepts', icon: <Box size={18} /> }
-          ].map((tab) => (
-            <button
-              key={tab.id}
-              onClick={() => setActiveTab(tab.id as any)}
-              style={{
-                padding: '10px 24px',
-                borderRadius: '18px',
-                border: 'none',
-                background: activeTab === tab.id ? '#34d399' : 'transparent',
-                color: activeTab === tab.id ? '#020617' : 'rgba(255,255,255,0.5)',
-                cursor: 'pointer',
-                display: 'flex',
-                alignItems: 'center',
-                gap: '8px',
-                fontWeight: 700,
-                fontSize: '0.9rem',
-                transition: 'all 0.3s ease',
-                boxShadow: activeTab === tab.id ? '0 4px 12px rgba(52, 211, 153, 0.3)' : 'none'
-              }}
-            >
-              {tab.icon} {tab.label}
-            </button>
-          ))}
+    <>
+      <SEO
+        title={isEn ? "Model-View-Presenter (MVP) Pattern | ArchAcademy" : "Model-View-Presenter (MVP) Deseni | ArchAcademy"}
+        description={isEn 
+          ? "Master the Model-View-Presenter (MVP) architecture pattern, Passive View, Humble Object, and testing advantages." 
+          : "Model-View-Presenter (MVP) mimarisi, Pasif Görünüm (Passive View), Presenter yönetimi ve test edilebilirlik rehberi."
+        }
+        keywords="mvp architecture, model view presenter, passive view, humble object, martin fowler mvp, mvp vs mvvm"
+        canonicalUrl="/mvp"
+      />
+      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} style={{ paddingBottom: '100px' }}>
+        <ArchHero 
+          title="MVP"
+          subtitle="Strict Separation"
+          description={isEn 
+            ? "Channels all communication between View and Model strictly through the Presenter, turning UI components into entirely Passive (Humble) Views to maximize unit testability." 
+            : "View ve Model arasındaki tüm iletişimi Presenter üzerinden yürüterek arayüzü tamamen pasif (Passive View) hale getiren, test edilebilirliği maksimize eden mimari."
+          }
+          badge="Interaction Pattern"
+          color="#34d399"
+          illustration={heroIllustration}
+          features={[
+            { 
+              icon: <UserCheck />, 
+              title: 'Presenter', 
+              desc: isEn ? 'The module captain. Intercepts view actions, updates Model, and drives Passive View UI.' : 'Arayüzün yöneticisi. Viewdan olayları alır, Modeli günceller, Viewa ne yapacağını söyler.' 
+            },
+            { 
+              icon: <Layout />, 
+              title: isEn ? 'Passive View' : 'Pasif Görünüm (Passive View)', 
+              desc: isEn ? 'Dumb presentation layer making zero decisions and holding zero autonomous business state.' : 'Kendi başına karar veremeyen mütevazı (humble) arayüz katmanı.' 
+            },
+            { 
+              icon: <Activity />, 
+              title: isEn ? 'Testability' : 'Yüksek Test Edilebilirlik', 
+              desc: isEn ? 'Presenters can be 100% unit tested in headless test runners without mocking UI windows.' : 'UI framework bağımlılığı olmadan %100 Unit Test imkanı.' 
+            }
+          ]}
+        >
+          <div style={{ 
+            marginTop: '2rem',
+            padding: '6px', 
+            background: 'rgba(15, 23, 42, 0.4)', 
+            borderRadius: '24px', 
+            border: '1px solid rgba(255,255,255,0.05)',
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '4px',
+            backdropFilter: 'blur(10px)'
+          }}>
+            {[
+              { id: 'comparison', label: isEn ? 'MVP vs MVVM' : 'MVP vs MVVM', icon: <GitCompare size={18} /> },
+              { id: 'concepts', label: isEn ? 'Core Concepts' : 'Temel Kavramlar', icon: <Box size={18} /> }
+            ].map((tab) => (
+              <button
+                key={tab.id}
+                onClick={() => setActiveTab(tab.id as any)}
+                style={{
+                  padding: '10px 24px',
+                  borderRadius: '18px',
+                  border: 'none',
+                  background: activeTab === tab.id ? '#34d399' : 'transparent',
+                  color: activeTab === tab.id ? '#020617' : 'rgba(255,255,255,0.5)',
+                  cursor: 'pointer',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '8px',
+                  fontWeight: 700,
+                  fontSize: '0.9rem',
+                  transition: 'all 0.3s ease',
+                  boxShadow: activeTab === tab.id ? '0 4px 12px rgba(52, 211, 153, 0.3)' : 'none'
+                }}
+              >
+                {tab.icon} {tab.label}
+              </button>
+            ))}
+          </div>
+        </ArchHero>
+
+        <div className="container" style={{ marginTop: '2rem' }}>
+          <AnimatePresence mode="wait">
+            {activeTab === 'comparison' && <MVPComparisonTab key="comparison" />}
+            {activeTab === 'concepts' && <MVPConceptsTab key="concepts" />}
+          </AnimatePresence>
         </div>
-      </ArchHero>
-
-      <div className="container" style={{ marginTop: '2rem' }}>
-        <AnimatePresence mode="wait">
-          {activeTab === 'comparison' && (
-            <motion.div
-              key="comparison"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-            >
-              <h2 className="section-title text-center" style={{ marginBottom: '3rem' }}>
-                Kardeşlerin Savaşı: <span className="gradient-text" style={{ backgroundImage: 'linear-gradient(to right, #34d399, #10b981)' }}>MVP vs MVVM</span>
-              </h2>
-
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr auto 1fr', gap: '2rem', alignItems: 'stretch' }}>
+        
+        {/* Pattern Definition Reference */}
+        <section style={{ padding: '4rem 0', background: 'rgba(0,0,0,0.3)', borderTop: '1px solid rgba(255,255,255,0.05)', marginTop: '4rem' }}>
+          <div className="container" style={{ textAlign: 'center' }}>
+             <div style={{ 
+               background: 'linear-gradient(180deg, rgba(15, 23, 42, 0) 0%, rgba(15, 23, 42, 0.5) 100%)', 
+               padding: '3rem', 
+               borderRadius: '24px', 
+               border: '1px solid rgba(255,255,255,0.05)',
+               maxWidth: '900px',
+               margin: '0 auto'
+             }}>
+                <div style={{ fontSize: '0.8rem', letterSpacing: '2px', fontWeight: 800, color: 'rgba(255,255,255,0.4)', marginBottom: '1rem', textTransform: 'uppercase' }}>
+                  {isEn ? "Pattern Definition" : "Desen Tanımı"}
+                </div>
+                <p style={{ color: '#94a3b8', marginBottom: '2rem', fontSize: '1.1rem', lineHeight: 1.6 }}>
+                  {isEn 
+                    ? "MVP (Passive View) completely isolates UI logic from the window to boost testability. Read Martin Fowler's classic paper." 
+                    : "MVP (Passive View), test edilebilirliği artırmak için UI mantığını görünümden tamamen ayıran bir desendir. Detayları Martin Fowler'ın makalesinde mevcuttur."
+                  }
+                </p>
                 
-                {/* MVP CARD */}
-                <div className="glass-card" style={{ borderTop: '4px solid #34d399', position: 'relative', overflow: 'hidden' }}>
-                  <div style={{ position: 'absolute', top: -10, right: -10, opacity: 0.1 }}>
-                    <Mic2 size={150} color="#34d399" />
-                  </div>
-                  <h3 style={{ fontSize: '1.8rem', fontWeight: 900, marginBottom: '0.5rem', color: '#34d399' }}>MVP</h3>
-                  <p style={{ color: 'var(--text-secondary)', marginBottom: '2rem' }}>Model - View - Presenter</p>
-                  
-                  <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: '1.2rem' }}>
-                    <li style={{ display: 'flex', gap: '12px' }}>
-                      <ArrowRightLeft size={20} color="#34d399" />
-                      <div>
-                        <strong style={{ color: 'white' }}>İletişim:</strong> Presenter, View'un metotlarını (Interface) doğrudan çağırır. <br/><span style={{fontSize: '0.85rem', opacity: 0.7}}><code>view.showLoading()</code></span>
-                      </div>
-                    </li>
-                    <li style={{ display: 'flex', gap: '12px' }}>
-                      <Monitor size={20} color="#34d399" />
-                      <div>
-                        <strong style={{ color: 'white' }}>One-to-One:</strong> Genelde her View için (Activity/Fragment) bir Presenter vardır. Sıkı bir bağdır.
-                      </div>
-                    </li>
-                    <li style={{ display: 'flex', gap: '12px' }}>
-                      <Box size={20} color="#34d399" />
-                      <div>
-                        <strong style={{ color: 'white' }}>State:</strong> View kendi state'ini tutmaz, Presenter ne derse o olur.
-                      </div>
-                    </li>
-                  </ul>
+                <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+                   <a 
+                     href="https://martinfowler.com/eaaDev/PassiveScreen.html" 
+                     target="_blank" 
+                     rel="noopener noreferrer"
+                     style={{ 
+                       display: 'flex', alignItems: 'center', gap: '8px', 
+                       background: 'rgba(52, 211, 153, 0.15)', color: '#6ee7b7', 
+                       padding: '12px 24px', borderRadius: '12px', textDecoration: 'none', fontWeight: 600,
+                       border: '1px solid rgba(52, 211, 153, 0.2)', transition: 'all 0.2s'
+                     }}
+                   >
+                      Passive View Pattern (Martin Fowler) <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                   </a>
                 </div>
-
-                {/* VS Badge */}
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                    <div style={{ background: '#0f172a', border: '1px solid var(--glass-border)', borderRadius: '50%', width: '60px', height: '60px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 900, fontSize: '1.2rem', color: 'white', zIndex: 10 }}>VS</div>
-                </div>
-
-                {/* MVVM CARD */}
-                <div className="glass-card" style={{ borderTop: '4px solid #10b981', position: 'relative', overflow: 'hidden' }}>
-                   <div style={{ position: 'absolute', top: -10, right: -10, opacity: 0.1 }}>
-                    <RefreshCw size={150} color="#10b981" />
-                  </div>
-                  <h3 style={{ fontSize: '1.8rem', fontWeight: 900, marginBottom: '0.5rem', color: '#10b981' }}>MVVM</h3>
-                  <p style={{ color: 'var(--text-secondary)', marginBottom: '2rem' }}>Model - View - ViewModel</p>
-                  
-                  <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: '1.2rem' }}>
-                    <li style={{ display: 'flex', gap: '12px' }}>
-                      <Zap size={20} color="#10b981" />
-                      <div>
-                        <strong style={{ color: 'white' }}>Binding:</strong> ViewModel, View'a emir vermez. State yayınlar (Publish). View bu state'i dinler (Subscribe).
-                      </div>
-                    </li>
-                    <li style={{ display: 'flex', gap: '12px' }}>
-                      <CheckCircle2 size={20} color="#10b981" />
-                      <div>
-                        <strong style={{ color: 'white' }}>One-to-Many:</strong> Bir ViewModel birden fazla View tarafından dinlenebilir.
-                      </div>
-                    </li>
-                    <li style={{ display: 'flex', gap: '12px' }}>
-                      <Settings size={20} color="#10b981" />
-                      <div>
-                        <strong style={{ color: 'white' }}>Boilerplate:</strong> MVP'ye göre Interface (Sözleşme) yazma yükü daha azdır ama Binding setup'ı gerekebilir.
-                      </div>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-              
-              <div style={{ marginTop: '4rem', background: 'rgba(0,0,0,0.2)', padding: '2rem', borderRadius: '24px', border: '1px solid var(--glass-border)' }}>
-                <h3 style={{ fontSize: '1.5rem', fontWeight: 800, marginBottom: '1.5rem', textAlign: 'center' }}>Özet: Hangisini Seçmeli?</h3>
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem' }}>
-                    <div style={{ display: 'flex', gap: '1rem' }}>
-                        <div style={{ background: 'rgba(52, 211, 153, 0.1)', padding: '10px', borderRadius: '8px', height: 'fit-content' }}><Mic2 color="#34d399" /></div>
-                        <div>
-                            <h4 style={{ color: 'white', marginBottom: '0.5rem' }}>MVP Seç eğer...</h4>
-                            <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)' }}>
-                                Framework "Data Binding" desteklemiyorsa (eski Android, WinForms) veya çok net, manuel kontrol istiyorsan. "Sihir" (Magic Code) sevmiyorsan.
-                            </p>
-                        </div>
-                    </div>
-                    <div style={{ display: 'flex', gap: '1rem' }}>
-                         <div style={{ background: 'rgba(16, 185, 129, 0.1)', padding: '10px', borderRadius: '8px', height: 'fit-content' }}><RefreshCw color="#10b981" /></div>
-                        <div>
-                            <h4 style={{ color: 'white', marginBottom: '0.5rem' }}>MVVM Seç eğer...</h4>
-                            <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)' }}>
-                                React, Vue, Flutter, Compose, SwiftUI gibi "Declarative" veya "Binding" destekli modern platformlarda geliştirme yapıyorsan.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-              </div>
-            </motion.div>
-          )}
-
-          {activeTab === 'concepts' && (
-             <motion.div
-             key="concepts"
-             initial={{ opacity: 0, y: 20 }}
-             animate={{ opacity: 1, y: 0 }}
-             exit={{ opacity: 0, y: -20 }}
-           >
-             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem' }}>
-               <div className="glass-card">
-                   <h3 style={{ fontSize: '1.4rem', fontWeight: 800, marginBottom: '1rem', color: '#34d399', display: 'flex', alignItems: 'center', gap: '10px' }}>
-                       <Activity size={24} /> Model
-                   </h3>
-                   <p style={{ lineHeight: 1.6, color: 'var(--text-secondary)' }}>
-                       Tıpkı MVC ve MVVM'deki gibi, veriyi ve veriye erişim kurallarını barındırır. Presenter veriyi buradan ister.
-                       <br/><br/>
-                       <span style={{ color: 'white', fontWeight: 600 }}>Örnek:</span> `UserRepository`, `PaymentService`.
-                   </p>
-               </div>
-               <div className="glass-card">
-                   <h3 style={{ fontSize: '1.4rem', fontWeight: 800, marginBottom: '1rem', color: '#60a5fa', display: 'flex', alignItems: 'center', gap: '10px' }}>
-                       <Layout size={24} /> View (Passive)
-                   </h3>
-                   <p style={{ lineHeight: 1.6, color: 'var(--text-secondary)' }}>
-                       Kasıtlı olarak "aptallaştırılmıştır". Karar vermez, mantık yürütmez. Sadece Presenter'ın "Göster" dediğini gösterir, "Gizle" dediğini gizler.
-                       <br/><br/>
-                       <span style={{ color: 'white', fontWeight: 600 }}>Slogan:</span> "Humble View" (Mütevazı Görünüm)
-                   </p>
-               </div>
-               <div className="glass-card">
-                   <h3 style={{ fontSize: '1.4rem', fontWeight: 800, marginBottom: '1rem', color: '#f472b6', display: 'flex', alignItems: 'center', gap: '10px' }}>
-                       <UserCheck size={24} /> Presenter
-                   </h3>
-                   <p style={{ lineHeight: 1.6, color: 'var(--text-secondary)' }}>
-                       Orkestra şefi. View ve Model arasındaki köprüdür. View'dan olayları dinler (onClick gibi), Model'den veriyi alır, formatlar ve tekrar View'a geri gönderir.
-                       <br/><br/>
-                       <span style={{ color: 'white', fontWeight: 600 }}>Farkı:</span> View'u bir "Interface" üzerinden yönettiği için View implementation'ından bağımsızdır.
-                   </p>
-               </div>
              </div>
-
-             <div style={{ marginTop: '3rem', padding: '2rem', background: 'var(--bg-dark)', borderRadius: '24px' }}>
-                 <h3 style={{ fontSize: '1.5rem', fontWeight: 800, marginBottom: '1.5rem' }}>MVP'nin Altın Kuralı</h3>
-                 <div style={{ background: 'rgba(255,255,255,0.05)', padding: '1.5rem', borderRadius: '12px', border: '1px dashed rgba(255,255,255,0.2)' }}>
-                    <p style={{ fontSize: '1.1rem', color: '#e2e8f0', fontStyle: 'italic', textAlign: 'center' }}>
-                        "View asla Model ile konuşmaz. Model asla View ile konuşmaz. Her şey Presenter üzerinden akmak zorundadır."
-                    </p>
-                 </div>
-                 <div style={{ marginTop: '2rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '1rem' }}>
-                    <div style={{ padding: '0.5rem 1rem', background: 'rgba(52, 211, 153, 0.1)', borderRadius: '100px', color: '#34d399', fontSize: '0.9rem', fontWeight: 700 }}>Strict Separation</div>
-                    <div style={{ padding: '0.5rem 1rem', background: 'rgba(52, 211, 153, 0.1)', borderRadius: '100px', color: '#34d399', fontSize: '0.9rem', fontWeight: 700 }}>Interface-Driven</div>
-                 </div>
-             </div>
-           </motion.div>
-          )}
-        </AnimatePresence>
-      </div>
-      
-      <section style={{ padding: '4rem 0', background: 'rgba(0,0,0,0.3)', borderTop: '1px solid rgba(255,255,255,0.05)', marginTop: '4rem' }}>
-        <div className="container" style={{ textAlign: 'center' }}>
-           <div style={{ 
-             background: 'linear-gradient(180deg, rgba(15, 23, 42, 0) 0%, rgba(15, 23, 42, 0.5) 100%)', 
-             padding: '3rem', 
-             borderRadius: '24px', 
-             border: '1px solid rgba(255,255,255,0.05)',
-             maxWidth: '900px',
-             margin: '0 auto'
-           }}>
-              <div style={{ fontSize: '0.8rem', letterSpacing: '2px', fontWeight: 800, color: 'rgba(255,255,255,0.4)', marginBottom: '1rem', textTransform: 'uppercase' }}>
-                Pattern Definition
-              </div>
-              <p style={{ color: '#94a3b8', marginBottom: '2rem', fontSize: '1.1rem', lineHeight: 1.6 }}>
-                MVP (Passive View), test edilebilirliği artırmak için UI mantığını görünümden tamamen ayıran bir desendir. Detayları Martin Fowler'ın makalesinde mevcuttur.
-              </p>
-              
-              <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
-                 <a 
-                   href="https://martinfowler.com/eaaDev/PassiveScreen.html" 
-                   target="_blank" 
-                   rel="noopener noreferrer"
-                   style={{ 
-                     display: 'flex', alignItems: 'center', gap: '8px', 
-                     background: 'rgba(52, 211, 153, 0.15)', color: '#6ee7b7', 
-                     padding: '12px 24px', borderRadius: '12px', textDecoration: 'none', fontWeight: 600,
-                     border: '1px solid rgba(52, 211, 153, 0.2)', transition: 'all 0.2s'
-                   }}
-                 >
-                    Passive View Pattern <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-                 </a>
-              </div>
-           </div>
-        </div>
-      </section>
-    </motion.div>
+          </div>
+        </section>
+      </motion.div>
+    </>
   );
 };
 
