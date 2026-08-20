@@ -68,6 +68,75 @@ export const VerticalVsHorizontalTab: React.FC = () => {
           </table>
         </div>
       </div>
+
+      {/* MASTERCLASS: FRONTEND VERTICAL SLICE ARCHITECTURE (STUDIO / CANVAS PATTERN) */}
+      <div className="glass-card" style={{ padding: '2.5rem', borderTop: '4px solid #f97316' }}>
+        <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', background: 'rgba(249, 115, 22, 0.15)', color: '#f97316', padding: '6px 14px', borderRadius: '100px', fontSize: '0.75rem', fontWeight: 800, marginBottom: '1.5rem' }}>
+          🎨 FRONTEND PATTERN: CANVAS, EDITOR & STUDIO APPLICATIONS
+        </div>
+
+        <h3 style={{ fontSize: '1.8rem', fontWeight: 800, color: 'white', marginBottom: '1rem' }}>
+          {isEn ? "Frontend Vertical Slice: The Studio & Canvas Architecture Pattern" : "Frontend Dünyasında Vertical Slice: Editör, Studio & Canvas Mimarisi"}
+        </h3>
+        
+        <p style={{ color: 'var(--text-secondary)', fontSize: '1rem', lineHeight: 1.8, marginBottom: '2.5rem', maxWidth: '900px' }}>
+          {isEn 
+            ? "Why do traditional layered architectures (FSD, Clean) fail in rich UI apps like Figma, WebGL/Canvas editors, and Dashboard studios? By partitioning into `src/core/` and `src/slices/`, you achieve supreme modularity and AI generation velocity." 
+            : "Figma benzeri grafik editörleri, Canvas/WebGL harita motorları veya zengin Dashboard araçlarında geleneksel katmanlar (FSD/Clean) hantallaşır. Çekirdek motoru `src/core/` altında izole edip, her aracı `src/slices/` altında bağımsız dikey dilim yapmak frontend'de devrimsel bir hız kazandırır."
+          }
+        </p>
+
+        {/* 4 Super Powers Grid */}
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem', marginBottom: '2.5rem' }}>
+          <div style={{ background: '#020617', padding: '1.5rem', borderRadius: '14px', border: '1px solid rgba(249, 115, 22, 0.2)' }}>
+            <div style={{ fontSize: '1.2rem', marginBottom: '0.5rem' }}>🚀 100x Geliştirme Hızı</div>
+            <p style={{ color: '#94a3b8', fontSize: '0.85rem', lineHeight: 1.6, margin: 0 }}>
+              <strong style={{ color: 'white' }}>Zero Context Switching:</strong> Yeni bir fırça veya araç eklemek için sadece kendi dilim klasörünü açarsınız. UI paneli, araç parametreleri ve render mantığı aynı yerdedir.
+            </p>
+          </div>
+
+          <div style={{ background: '#020617', padding: '1.5rem', borderRadius: '14px', border: '1px solid rgba(56, 189, 248, 0.2)' }}>
+            <div style={{ fontSize: '1.2rem', marginBottom: '0.5rem' }}>🤖 Kusursuz AI Locality (5/5 ⭐)</div>
+            <p style={{ color: '#94a3b8', fontSize: '0.85rem', lineHeight: 1.6, margin: 0 }}>
+              <strong style={{ color: 'white' }}>Sıfır Halüsinasyon:</strong> LLM ajanına sadece çekirdek API'yi ve hedef dilimi verirsiniz. AI farklı klasörler arasında kaybolmadan 10 saniyede hatasız çalışır dilim üretir.
+            </p>
+          </div>
+
+          <div style={{ background: '#020617', padding: '1.5rem', borderRadius: '14px', border: '1px solid rgba(16, 185, 129, 0.2)' }}>
+            <div style={{ fontSize: '1.2rem', marginBottom: '0.5rem' }}>🗑️ Tak-Çıkar Bağımsızlık</div>
+            <p style={{ color: '#94a3b8', fontSize: '0.85rem', lineHeight: 1.6, margin: 0 }}>
+              <strong style={{ color: 'white' }}>Drop-in Feature Toggle:</strong> Bir özelliği projeden kaldırmak istediğinizde o dilim klasörünü silmeniz yeterlidir. Projede tek bir kırık import (broken reference) bile kalmaz.
+            </p>
+          </div>
+
+          <div style={{ background: '#020617', padding: '1.5rem', borderRadius: '14px', border: '1px solid rgba(168, 85, 247, 0.2)' }}>
+            <div style={{ fontSize: '1.2rem', marginBottom: '0.5rem' }}>🔒 Çekirdek Motorun Korunması</div>
+            <p style={{ color: '#94a3b8', fontSize: '0.85rem', lineHeight: 1.6, margin: 0 }}>
+              <strong style={{ color: 'white' }}>Protected Core (`src/core/`):</strong> Canvas render döngüsü, matematiksel hesaplamalar ve koordinat motoru `src/core/` içinde saf kalır; UI fırçalarındaki hatalar motoru çökertemez.
+            </p>
+          </div>
+        </div>
+
+        {/* Concrete Architecture Structure Box */}
+        <div style={{ background: '#020617', padding: '2rem', borderRadius: '16px', border: '1px solid rgba(255,255,255,0.1)' }}>
+          <h4 style={{ color: '#f97316', fontWeight: 800, marginBottom: '1rem', fontSize: '1.1rem' }}>
+            📂 Frontend Vertical Slice Örnek Proje Ağacı (Studio & Canvas Modeli)
+          </h4>
+          <pre style={{ margin: 0, fontSize: '0.85rem', color: '#38bdf8', fontFamily: 'monospace', lineHeight: 1.7, overflowX: 'auto' }}>
+{`📁 src/
+  📁 core/                 --> 🧠 Ortak Çekirdek Motor (Saf Matematik, Render Döngüsü, Viewport)
+    📄 viewport-engine.ts  (Canvas / WebGL Çizim Döngüsü)
+    📄 math-geometry.ts    (Koordinat Dönüşümleri & Geometri Hesapları)
+    📄 noise-generator.ts  (Prosedürel Algoritmalar)
+  📁 slices/               --> 🍕 Dikey Dilimler (Her biri tamamen otonom bir araç / fırça)
+    📁 terrain-sculptor/   --> (Yükseklik Şekillendirici: Araç Paneli UI + Fırça Matematiği + State)
+    📁 texture-painter/    --> (Doku Boyama Aracı: Renk Paleti UI + Shader Mantığı + State)
+    📁 asset-stamper/      --> (Nesne/Ağaç Yerleştirici: Varlık Seçici UI + Grid Hesaplayıcı)
+    📁 scene-exporter/     --> (Sahne Dışa Aktarma: Modal UI + PNG/JSON/GLTF Export)
+  📄 main.ts               --> 🔌 Çekirdek Motoru Başlat ve Dilim Eklentilerini Kaydet (Registry)`}
+          </pre>
+        </div>
+      </div>
     </motion.div>
   );
 };
