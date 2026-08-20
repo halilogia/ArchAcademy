@@ -233,7 +233,7 @@ export const MATRIX_DATA: MatrixRowItem[] = [
     dry: 4,
     maintAndTest: 4,
     flex: 4,
-    aiLocality: 4,
+    aiLocality: 2,
     color: '#06b6d4',
     bestFor: { tr: 'Karmaşık React/Next.js Projeleri', en: 'Scalable React & Next.js Frontends' },
     path: '/fsd'
