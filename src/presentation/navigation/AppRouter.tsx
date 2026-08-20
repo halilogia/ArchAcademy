@@ -13,6 +13,7 @@ const HexagonalPage = lazy(() => import('../pages/hexagonal'));
 const OnionPage = lazy(() => import('../pages/onion'));
 const FSDPage = lazy(() => import('../pages/fsd'));
 const VerticalSlicePage = lazy(() => import('../pages/vertical'));
+const ModularMonolithPage = lazy(() => import('../pages/modular-monolith'));
 const CQRSPage = lazy(() => import('../pages/cqrs'));
 const HorizontalPage = lazy(() => import('../pages/horizontal'));
 const EDAPage = lazy(() => import('../pages/eda'));
@@ -113,6 +114,7 @@ const AppRouter: React.FC = () => {
           <Route path="/onion" element={<OnionPage />} />
           <Route path="/fsd" element={<FSDPage />} />
           <Route path="/vertical" element={<VerticalSlicePage />} />
+          <Route path="/modular-monolith" element={<ModularMonolithPage />} />
           <Route path="/cqrs" element={<CQRSPage />} />
           <Route path="/horizontal" element={<HorizontalPage />} />
           <Route path="/eda" element={<EDAPage />} />

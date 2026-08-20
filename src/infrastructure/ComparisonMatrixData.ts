@@ -71,6 +71,20 @@ export const MATRIX_SUMMARY_CARDS: SummaryCardItem[] = [
 
 export const MATRIX_DATA: MatrixRowItem[] = [
   {
+    name: 'Modular Monolith (PMA)',
+    size: { tr: 'Her boyuta uygun', en: 'All Scales' },
+    sizeValue: 2.5,
+    speed: 5,
+    kiss: 4,
+    dry: 4,
+    maintAndTest: 5,
+    flex: 5,
+    aiLocality: 5,
+    color: '#38bdf8',
+    bestFor: { tr: 'Hızlı & Güvenli Kurumsal Ürünler (Hybrid VSA/FSD)', en: 'High Velocity Enterprise Products (Hybrid VSA/FSD)' },
+    path: '/modular-monolith'
+  },
+  {
     name: 'Use-Case Driven (BCE)',
     size: { tr: 'Orta/Büyük', en: 'Medium/Large' },
     sizeValue: 3,
