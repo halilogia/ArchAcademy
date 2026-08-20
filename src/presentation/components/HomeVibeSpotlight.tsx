@@ -62,7 +62,7 @@ export const HomeVibeSpotlight: React.FC = () => {
                   style={{
                     padding: '1.25rem 2.5rem',
                     background: '#f97316',
-                    color: 'w(ite',
+                    color: 'white',
                     border: 'none',
                     borderRadius: '20px',
                     fontWeight: 900,
@@ -74,6 +74,27 @@ export const HomeVibeSpotlight: React.FC = () => {
                   }}
                 >
                   {isEn ? 'Vertical Slice (VSA)' : 'Dikey Dilim (VSA)'} <ArrowUpRight size={20} />
+                </motion.button>
+              </Link>
+              <Link to="/modular-monolith" style={{ textDecoration: 'none' }}>
+                <motion.button
+                  whileHover={{ scale: 1.05, background: 'rgba(56, 189, 248, 0.2)' }}
+                  whileTap={{ scale: 0.95 }}
+                  style={{
+                    padding: '1.25rem 2.5rem',
+                    background: 'rgba(56, 189, 248, 0.12)',
+                    color: '#38bdf8',
+                    border: '1px solid rgba(56, 189, 248, 0.35)',
+                    borderRadius: '20px',
+                    fontWeight: 900,
+                    fontSize: '1.05rem',
+                    cursor: 'pointer',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '10px'
+                  }}
+                >
+                  {isEn ? 'Pragmatic Modular (PMA)' : 'Pragmatik Modüler (PMA)'} <ArrowUpRight size={20} />
                 </motion.button>
               </Link>
               <Link to="/fsd" style={{ textDecoration: 'none' }}>

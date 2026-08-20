@@ -52,7 +52,7 @@
       "id": "infrastructure/ComparisonMatrixData.ts",
       "label": "ComparisonMatrixData.ts",
       "category": "Infra",
-      "size": 15044
+      "size": 15446
     },
     {
       "id": "infrastructure/GlossaryData.ts",
@@ -1288,7 +1288,7 @@
       "id": "presentation/components/vertical/VerticalVsHorizontalTab.tsx",
       "label": "VerticalVsHorizontalTab.tsx",
       "category": "Component",
-      "size": 9969
+      "size": 19361
     },
     {
       "id": "presentation/components/VerticalComparison.tsx",
@@ -1360,7 +1360,7 @@
       "id": "presentation/navigation/AppRouter.tsx",
       "label": "AppRouter.tsx",
       "category": "App",
-      "size": 12486
+      "size": 12642
     },
     {
       "id": "presentation/pages/abstraction.tsx",
@@ -1667,6 +1667,12 @@
       "label": "moderate-abstraction.tsx",
       "category": "Page",
       "size": 272
+    },
+    {
+      "id": "presentation/pages/modular-monolith.tsx",
+      "label": "modular-monolith.tsx",
+      "category": "Page",
+      "size": 17583
     },
     {
       "id": "presentation/pages/mvc.tsx",
@@ -3104,6 +3110,16 @@
     {
       "source": "presentation/pages/moderate-abstraction.tsx",
       "target": "presentation/pages/abstraction.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/modular-monolith.tsx",
+      "target": "presentation/components/ArchHero.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/modular-monolith.tsx",
+      "target": "presentation/components/SEO.tsx",
       "value": 1
     },
     {
