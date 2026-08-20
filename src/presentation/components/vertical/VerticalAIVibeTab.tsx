@@ -57,6 +57,98 @@ export const VerticalAIVibeTab: React.FC = () => {
           ))}
         </div>
       </div>
+
+      {/* AI LOCALITY LEADERBOARD & COMPARISON TABLE */}
+      <div className="glass-card" style={{ padding: '2.5rem', borderTop: '4px solid #f97316' }}>
+        <h3 style={{ fontSize: '1.6rem', fontWeight: 800, color: 'white', marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '8px' }}>
+          📊 {isEn ? "AI Locality & Vibe-Coding Leaderboard" : "Mimarilerin AI Locality (Vibe-Coding) Sıralaması"}
+        </h3>
+        <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem', lineHeight: 1.7, marginBottom: '2rem' }}>
+          {isEn 
+            ? "How effectively can LLMs (ChatGPT, Claude, Cursor) generate code without jumping across fragmented directories and losing prompt context?" 
+            : "Yapay zeka modellerinin (Cursor, Copilot, Claude, GPT) bağlamı (context) kaybetmeden ve klasörler arasında zıplamadan kod üretebilme gücü kıyaslaması:"
+          }
+        </p>
+
+        <div style={{ overflowX: 'auto' }}>
+          <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left', minWidth: '700px' }}>
+            <thead>
+              <tr style={{ borderBottom: '1px solid rgba(255,255,255,0.1)', color: 'var(--text-secondary)', fontSize: '0.85rem' }}>
+                <th style={{ padding: '1rem', width: '8%' }}>{isEn ? "Rank" : "Sıra"}</th>
+                <th style={{ padding: '1rem', width: '28%' }}>{isEn ? "Architecture / Style" : "Mimari / Yaklaşım"}</th>
+                <th style={{ padding: '1rem', width: '18%', textAlign: 'center' }}>{isEn ? "AI Locality" : "AI Locality Puanı"}</th>
+                <th style={{ padding: '1rem', width: '46%' }}>{isEn ? "Rationale / Prompt Efficiency" : "Neden ve AI Etkisi"}</th>
+              </tr>
+            </thead>
+            <tbody style={{ fontSize: '0.9rem' }}>
+              <tr style={{ borderBottom: '1px solid rgba(255,255,255,0.05)', background: 'rgba(249, 115, 22, 0.05)' }}>
+                <td style={{ padding: '1.2rem 1rem', fontWeight: 800, fontSize: '1.2rem' }}>🥇</td>
+                <td style={{ padding: '1.2rem 1rem', fontWeight: 800, color: '#f97316' }}>
+                  Vertical Slice (VSA)
+                </td>
+                <td style={{ padding: '1.2rem 1rem', textAlign: 'center', color: '#f97316', fontWeight: 800 }}>
+                  5 / 5 ⭐⭐⭐⭐⭐
+                </td>
+                <td style={{ padding: '1.2rem 1rem', color: '#cbd5e1', lineHeight: 1.5 }}>
+                  <strong style={{ color: 'white' }}>Zirvede:</strong> Tüm UI, API, Handler ve SQL tek bir `SiparisVer.cs` veya `ProfileSlice.ts` içinde biter. AI sıfır zıplamayla tam bağlamda yazar.
+                </td>
+              </tr>
+
+              <tr style={{ borderBottom: '1px solid rgba(255,255,255,0.05)', background: 'rgba(56, 189, 248, 0.03)' }}>
+                <td style={{ padding: '1.2rem 1rem', fontWeight: 800, fontSize: '1.2rem' }}>🥈</td>
+                <td style={{ padding: '1.2rem 1rem', fontWeight: 800, color: '#38bdf8' }}>
+                  Sayfa İçi Kolokasyon (Next.js Page Co-location)
+                </td>
+                <td style={{ padding: '1.2rem 1rem', textAlign: 'center', color: '#38bdf8', fontWeight: 800 }}>
+                  5 / 5 ⭐⭐⭐⭐⭐
+                </td>
+                <td style={{ padding: '1.2rem 1rem', color: '#cbd5e1', lineHeight: 1.5 }}>
+                  `app/dashboard/` klasöründe o sayfaya ait her şey bir aradadır. AI sadece o klasöre odaklanır, token tasarrufu sağlar.
+                </td>
+              </tr>
+
+              <tr style={{ borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
+                <td style={{ padding: '1.2rem 1rem', fontWeight: 800, fontSize: '1.2rem' }}>🥉</td>
+                <td style={{ padding: '1.2rem 1rem', fontWeight: 700, color: 'white' }}>
+                  Monolith / Flat Modüler
+                </td>
+                <td style={{ padding: '1.2rem 1rem', textAlign: 'center', color: '#84cc16', fontWeight: 800 }}>
+                  4 / 5 ⭐⭐⭐⭐
+                </td>
+                <td style={{ padding: '1.2rem 1rem', color: '#94a3b8', lineHeight: 1.5 }}>
+                  Klasik `components/` ve `pages/` yapısı. Küçükken çok basittir, proje büyüdükçe parçalanma artar.
+                </td>
+              </tr>
+
+              <tr style={{ borderBottom: '1px solid rgba(255,255,255,0.05)', background: 'rgba(234, 179, 8, 0.03)' }}>
+                <td style={{ padding: '1.2rem 1rem', fontWeight: 800, fontSize: '1.1rem' }}>⚠️</td>
+                <td style={{ padding: '1.2rem 1rem', fontWeight: 700, color: '#06b6d4' }}>
+                  FSD (Feature-Sliced Design)
+                </td>
+                <td style={{ padding: '1.2rem 1rem', textAlign: 'center', color: '#f59e0b', fontWeight: 800 }}>
+                  2 / 5 ⭐⭐
+                </td>
+                <td style={{ padding: '1.2rem 1rem', color: '#94a3b8', lineHeight: 1.5 }}>
+                  6 katı katman (app &rarr; pages &rarr; widgets &rarr; features &rarr; entities &rarr; shared) ve her slice içi 4 alt klasör (`api/model/ui`). AI çok fazla zıplar ve token kaybeder.
+                </td>
+              </tr>
+
+              <tr style={{ background: 'rgba(239, 68, 68, 0.03)' }}>
+                <td style={{ padding: '1.2rem 1rem', fontWeight: 800, fontSize: '1.1rem' }}>🛑</td>
+                <td style={{ padding: '1.2rem 1rem', fontWeight: 700, color: '#ef4444' }}>
+                  Clean Arch / Hexagonal / CQRS
+                </td>
+                <td style={{ padding: '1.2rem 1rem', textAlign: 'center', color: '#ef4444', fontWeight: 800 }}>
+                  1 - 2 / 5 ⭐
+                </td>
+                <td style={{ padding: '1.2rem 1rem', color: '#94a3b8', lineHeight: 1.5 }}>
+                  <strong style={{ color: '#ef4444' }}>En Düşük AI Yerelliği:</strong> 1 basit özellik için Domain, Application, Infrastructure, Presentation, Mapper, DTO gibi 7-8 katman gezilir.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </motion.div>
   );
 };
