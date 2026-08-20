@@ -142,28 +142,52 @@ const HomePage: React.FC = () => {
                   : "Geleneksel insan mühendisliğinin kanıtlanmış referans mimarisi. Gereksiz katmanlardan ve dosya kalabalığından arındırılmış, pragmatik bir temel."
                 }
               </p>
-              <Link to="/lean-architecture" style={{ textDecoration: 'none' }}>
-                <motion.button
-                  whileHover={{ scale: 1.05, boxShadow: '0 20px 40px rgba(132, 204, 22, 0.2)' }}
-                  whileTap={{ scale: 0.95 }}
-                  style={{
-                    padding: '1.5rem 3rem',
-                    background: '#84cc16',
-                    color: '#0f172a',
-                    border: 'none',
-                    borderRadius: '24px',
-                    fontWeight: 950,
-                    fontSize: '1.1rem',
-                    cursor: 'pointer',
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '12px',
-                    transition: 'all 0.3s'
-                  }}
-                >
-                  {isEn ? "EXPLORE THE MASTERPIECE" : "BAŞYAPITI KEŞFET"} <ArrowUpRight size={24} />
-                </motion.button>
-              </Link>
+              <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+                <Link to="/lean-architecture" style={{ textDecoration: 'none' }}>
+                  <motion.button
+                    whileHover={{ scale: 1.05, boxShadow: '0 20px 40px rgba(132, 204, 22, 0.2)' }}
+                    whileTap={{ scale: 0.95 }}
+                    style={{
+                      padding: '1.25rem 2.5rem',
+                      background: '#84cc16',
+                      color: '#0f172a',
+                      border: 'none',
+                      borderRadius: '20px',
+                      fontWeight: 950,
+                      fontSize: '1.05rem',
+                      cursor: 'pointer',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '10px',
+                      transition: 'all 0.3s'
+                    }}
+                  >
+                    {isEn ? "Lean Architecture" : "Yalın Mimari (Lean)"} <ArrowUpRight size={20} />
+                  </motion.button>
+                </Link>
+                <Link to="/clean-arch" style={{ textDecoration: 'none' }}>
+                  <motion.button
+                    whileHover={{ scale: 1.05, background: 'rgba(255,255,255,0.1)' }}
+                    whileTap={{ scale: 0.95 }}
+                    style={{
+                      padding: '1.25rem 2.5rem',
+                      background: 'rgba(255,255,255,0.05)',
+                      color: 'white',
+                      border: '1px solid rgba(255,255,255,0.15)',
+                      borderRadius: '20px',
+                      fontWeight: 800,
+                      fontSize: '1.05rem',
+                      cursor: 'pointer',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '10px',
+                      transition: 'all 0.3s'
+                    }}
+                  >
+                    {isEn ? "Clean Architecture" : "Clean Architecture"} <ArrowUpRight size={20} />
+                  </motion.button>
+                </Link>
+              </div>
             </div>
             <div style={{ position: 'relative', display: 'flex', justifyContent: 'center' }}>
               <div style={{
