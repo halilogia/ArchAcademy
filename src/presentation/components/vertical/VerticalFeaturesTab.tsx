@@ -68,6 +68,51 @@ export const VerticalFeaturesTab: React.FC = () => {
           </div>
         </div>
       </div>
+
+      {/* Decision Guide: When NOT to use features/ */}
+      <div className="glass-card" style={{ marginTop: '2.5rem', padding: '2.5rem', borderLeft: '4px solid #ef4444' }}>
+        <h3 style={{ fontSize: '1.5rem', fontWeight: 800, color: 'white', marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '8px' }}>
+          🎯 {isEn ? "Decision Guide: When NOT to use `features/` folders?" : "Karar Rehberi: Ne Zaman `features/` Yapmamalısınız?"}
+        </h3>
+        <p style={{ color: 'var(--text-secondary)', fontSize: '1rem', lineHeight: 1.7, marginBottom: '2rem' }}>
+          {isEn 
+            ? "YAGNI (You Ain't Gonna Need It) & KISS principles dictate: Do not over-engineer. Slicing everything into features/ adds unnecessary cognitive load for smaller projects." 
+            : "YAGNI ve KISS prensipleri uyarınca: Aşırı mühendislikten (over-engineering) kaçının. Her projeyi zorla features/ klasörlerine bölmek küçük projelerde hız keser."
+          }
+        </p>
+
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem' }}>
+          <div style={{ background: '#020617', padding: '1.5rem', borderRadius: '14px', border: '1px solid rgba(239, 68, 68, 0.2)' }}>
+            <h4 style={{ color: '#ef4444', fontWeight: 800, marginBottom: '0.5rem' }}>❌ 1-3 Kişilik Ekipler & Startup / MVP</h4>
+            <p style={{ color: '#94a3b8', fontSize: '0.85rem', lineHeight: 1.6, margin: 0 }}>
+              {isEn 
+                ? "Use classic components/ + pages/ or Next.js App Router co-location. Maximizes shipping velocity." 
+                : "Standart components/ + pages/ veya sayfa içi dosyalar kullanın. Erken aşamada en yüksek hızı verir."
+              }
+            </p>
+          </div>
+
+          <div style={{ background: '#020617', padding: '1.5rem', borderRadius: '14px', border: '1px solid rgba(245, 158, 11, 0.2)' }}>
+            <h4 style={{ color: '#f59e0b', fontWeight: 800, marginBottom: '0.5rem' }}>❌ İçerik, Blog ve Dokümantasyon Siteleri</h4>
+            <p style={{ color: '#94a3b8', fontSize: '0.85rem', lineHeight: 1.6, margin: 0 }}>
+              {isEn 
+                ? "Static content sites do not have complex transactional business state. Flat modular structures are superior." 
+                : "Karmaşık iş akışı olmayan içerik sitelerinde düz klasör yapısı (Flat layout) çok daha temizdir."
+              }
+            </p>
+          </div>
+
+          <div style={{ background: '#020617', padding: '1.5rem', borderRadius: '14px', border: '1px solid rgba(16, 185, 129, 0.2)' }}>
+            <h4 style={{ color: '#10b981', fontWeight: 800, marginBottom: '0.5rem' }}>✅ Ne Zaman `features/` Kullanmalı?</h4>
+            <p style={{ color: '#94a3b8', fontSize: '0.85rem', lineHeight: 1.6, margin: 0 }}>
+              {isEn 
+                ? "SaaS with 20+ distinct workflows, multi-dev teams, or when optimizing specifically for AI Vibe-Coding." 
+                : "20+ farklı iş akışı olan SaaS platformları, çoklu ekipler ve AI ile tek klasörde izole kodlama yaparken."
+              }
+            </p>
+          </div>
+        </div>
+      </div>
     </motion.div>
   );
 };

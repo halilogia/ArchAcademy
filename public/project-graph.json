@@ -52,7 +52,7 @@
       "id": "infrastructure/ComparisonMatrixData.ts",
       "label": "ComparisonMatrixData.ts",
       "category": "Infra",
-      "size": 15039
+      "size": 15044
     },
     {
       "id": "infrastructure/GlossaryData.ts",
@@ -1342,7 +1342,7 @@
       "id": "presentation/data/searchIndex.ts",
       "label": "searchIndex.ts",
       "category": "Other",
-      "size": 42070
+      "size": 42075
     },
     {
       "id": "presentation/hooks/useAssessmentQuiz.ts",
@@ -1360,7 +1360,7 @@
       "id": "presentation/navigation/AppRouter.tsx",
       "label": "AppRouter.tsx",
       "category": "App",
-      "size": 12336
+      "size": 12486
     },
     {
       "id": "presentation/pages/abstraction.tsx",
@@ -1426,7 +1426,7 @@
       "id": "presentation/pages/catalog.tsx",
       "label": "catalog.tsx",
       "category": "Page",
-      "size": 19478
+      "size": 19483
     },
     {
       "id": "presentation/pages/choreography.tsx",
@@ -1859,6 +1859,12 @@
       "label": "ui-catalog.tsx",
       "category": "Page",
       "size": 14005
+    },
+    {
+      "id": "presentation/pages/use-case-driven.tsx",
+      "label": "use-case-driven.tsx",
+      "category": "Page",
+      "size": 15568
     },
     {
       "id": "presentation/pages/vector-dbs.tsx",
@@ -3672,6 +3678,16 @@
     },
     {
       "source": "presentation/pages/ui-catalog.tsx",
+      "target": "presentation/components/SEO.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/use-case-driven.tsx",
+      "target": "presentation/components/ArchHero.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/use-case-driven.tsx",
       "target": "presentation/components/SEO.tsx",
       "value": 1
     },
