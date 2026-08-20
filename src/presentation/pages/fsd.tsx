@@ -67,6 +67,113 @@ const FSDPage = () => {
         </div>
       </section>
       
+      {/* FSD 3.0 / AI-Native Lean Modernization Section */}
+      <section style={{ padding: '80px 0', borderTop: '1px solid var(--glass-border)' }}>
+        <div className="container">
+          <div className="glass-card" style={{ padding: '3.5rem', borderTop: '4px solid #06b6d4' }}>
+            <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', background: 'rgba(6, 182, 212, 0.15)', color: '#06b6d4', padding: '6px 16px', borderRadius: '100px', fontSize: '0.8rem', fontWeight: 900, marginBottom: '1.5rem' }}>
+              🚀 YENİ NESİL: FSD 3.0 & AI-NATIVE LEAN FRONTEND
+            </div>
+            
+            <h2 style={{ fontSize: '2.5rem', fontWeight: 900, color: 'white', marginBottom: '1rem', letterSpacing: '-1px' }}>
+              {isEn ? "FSD 3.0: Modernizing for AI Locality & High Velocity" : "FSD 3.0: Klasik FSD'yi AI-Native ve Yalın Hale Getirmek"}
+            </h2>
+            
+            <p style={{ color: 'var(--text-secondary)', fontSize: '1.1rem', lineHeight: 1.8, marginBottom: '3rem', maxWidth: '900px' }}>
+              {isEn 
+                ? "Traditional FSD mandates strict sub-segmenting (api, model, ui, lib) inside every slice, which hurts AI LLM locality (2/5). FSD 3.0 merges Vertical Slice's flat cohesion with FSD's boundary rules, elevating AI Locality to 4.5/5 ⭐." 
+                : "Klasik FSD her dilimin altına zorla 4 alt klasör (api, model, ui, lib) açtığı için yapay zeka (LLM) bağlamını parçalar (2/5). FSD 3.0 (Lean FSD), Vertical Slice'ın tek dosyada bitirme hızını FSD'nin bağımlılık kurallarıyla birleştirerek AI Locality puanını zirveye (4.5/5 ⭐) taşır."
+              }
+            </p>
+
+            {/* Visual Side-by-Side Comparison */}
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '2rem', marginBottom: '3rem' }}>
+              {/* Classic FSD */}
+              <div style={{ background: '#020617', padding: '2rem', borderRadius: '16px', border: '1px solid rgba(239, 68, 68, 0.3)' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
+                  <h4 style={{ color: '#ef4444', fontWeight: 800, margin: 0 }}>❌ Geleneksel Aşırı Parçalı FSD (2/5 ⭐)</h4>
+                  <span style={{ fontSize: '0.75rem', background: 'rgba(239, 68, 68, 0.2)', color: '#ef4444', padding: '2px 8px', borderRadius: '6px' }}>Hantal</span>
+                </div>
+                <pre style={{ fontSize: '0.8rem', color: '#94a3b8', fontFamily: 'monospace', lineHeight: 1.6, background: 'rgba(0,0,0,0.4)', padding: '1rem', borderRadius: '10px' }}>
+{`📁 features/user-profile/
+  📁 api/
+    📄 getUser.ts
+  📁 ui/
+    📄 ProfileAvatar.tsx
+    📄 ProfileCard.tsx
+  📁 model/
+    📄 profileTypes.ts
+  📁 lib/
+    📄 formatBio.ts
+  📄 index.ts (2 satırlık export)`}
+                </pre>
+                <p style={{ marginTop: '1rem', fontSize: '0.85rem', color: '#f87171', lineHeight: 1.5, margin: 0 }}>
+                  ⚠️ <strong>Sorun:</strong> Basit bir profil kartı için AI 5 dosya ve 4 klasör gezer. Token israfı ve bağlam kopukluğu yaşanır.
+                </p>
+              </div>
+
+              {/* Modern Lean FSD */}
+              <div style={{ background: '#020617', padding: '2rem', borderRadius: '16px', border: '1px solid rgba(6, 182, 212, 0.3)' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
+                  <h4 style={{ color: '#06b6d4', fontWeight: 800, margin: 0 }}>✅ FSD 3.0 / AI-Native Lean (4.5/5 ⭐)</h4>
+                  <span style={{ fontSize: '0.75rem', background: 'rgba(6, 182, 212, 0.2)', color: '#06b6d4', padding: '2px 8px', borderRadius: '6px' }}>Yalın & Hızlı</span>
+                </div>
+                <pre style={{ fontSize: '0.8rem', color: '#38bdf8', fontFamily: 'monospace', lineHeight: 1.6, background: 'rgba(0,0,0,0.4)', padding: '1rem', borderRadius: '10px' }}>
+{`📁 features/user-profile/
+  📄 ProfileCard.tsx  (UI + Fetcher + Types aynı dosyada)
+  📄 index.ts         (Public API export)
+
+// ⚡ 6 Katman yerine 4 Katman:
+📁 app/
+📁 pages/
+📁 features/ (Vertical Flat Slices)
+📁 shared/   (UI Kit & Utils)`}
+                </pre>
+                <p style={{ marginTop: '1rem', fontSize: '0.85rem', color: '#67e8f9', lineHeight: 1.5, margin: 0 }}>
+                  🚀 <strong>Kazanım:</strong> AI tek bir dosyada tüm özelliği yazar. Dışa aktarma yine `index.ts` ile korunur.
+                </p>
+              </div>
+            </div>
+
+            {/* 4 Modernization Golden Rules */}
+            <h3 style={{ fontSize: '1.5rem', fontWeight: 800, color: 'white', marginBottom: '1.5rem' }}>
+              {isEn ? "4 Rules to Modernize Your FSD Architecture" : "FSD'yi Modernleştiren 4 Altın Kural"}
+            </h3>
+
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '1.5rem' }}>
+              <div style={{ background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.06)', padding: '1.5rem', borderRadius: '14px' }}>
+                <div style={{ color: '#06b6d4', fontWeight: 800, marginBottom: '0.5rem' }}>1. Segment Çökertme (Flat Slice)</div>
+                <p style={{ color: 'var(--text-secondary)', fontSize: '0.85rem', lineHeight: 1.6, margin: 0 }}>
+                  Gereksiz `api/`, `model/`, `ui/` alt klasörlerini açmayın. İhtiyaç büyüyene kadar dosya sayısını 1-2'de tutun (AHA / KISS).
+                </p>
+              </div>
+
+              <div style={{ background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.06)', padding: '1.5rem', borderRadius: '14px' }}>
+                <div style={{ color: '#06b6d4', fontWeight: 800, marginBottom: '0.5rem' }}>2. Widgets Katmanını İsteğe Bağlı Yapın</div>
+                <p style={{ color: 'var(--text-secondary)', fontSize: '0.85rem', lineHeight: 1.6, margin: 0 }}>
+                  Her projede `widgets/` açmak katman hiyerarşisini şişirir. Birleştirici büyük bloklar yoksa doğrudan `pages/` içinde çözün.
+                </p>
+              </div>
+
+              <div style={{ background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.06)', padding: '1.5rem', borderRadius: '14px' }}>
+                <div style={{ color: '#06b6d4', fontWeight: 800, marginBottom: '0.5rem' }}>3. Entities Katmanını Sadeleştirin</div>
+                <p style={{ color: 'var(--text-secondary)', fontSize: '0.85rem', lineHeight: 1.6, margin: 0 }}>
+                  Sunucu durumlarını (TanStack Query / RTK Query) doğrudan API ile bağlayın; içi boş sahte `entities/` klasörleri üretmeyin.
+                </p>
+              </div>
+
+              <div style={{ background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.06)', padding: '1.5rem', borderRadius: '14px' }}>
+                <div style={{ color: '#06b6d4', fontWeight: 800, marginBottom: '0.5rem' }}>4. AI-Context Dostu Public API</div>
+                <p style={{ color: 'var(--text-secondary)', fontSize: '0.85rem', lineHeight: 1.6, margin: 0 }}>
+                  `index.ts` dosyalarını temiz tutun ve JSDoc ile dilimin ne iş yaptığını AI modellerine tek bakışta anlatın.
+                </p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
       {/* Summary Section */}
       <section style={{ padding: '80px 0', borderTop: '1px solid var(--glass-border)' }}>
         <div className="container">
