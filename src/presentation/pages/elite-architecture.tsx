@@ -15,6 +15,14 @@ const EliteArchitecturePage: React.FC = () => {
   const isEn = (i18n.resolvedLanguage || i18n.language || 'tr').startsWith('en');
   const { completeStep } = useProgress();
   const [activeTab, setActiveTab] = useState<'overview' | 'layers' | 'patterns' | 'elite'>('overview');
+  const scrollToSection = (id: 'overview' | 'layers' | 'patterns' | 'elite') => {
+    setActiveTab(id);
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
+
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -81,6 +89,9 @@ const EliteArchitecturePage: React.FC = () => {
               backdropFilter: 'blur(10px)',
               boxShadow: '0 10px 30px rgba(0,0,0,0.3)',
               flexWrap: 'wrap',
+            position: 'sticky',
+            top: '80px',
+            zIndex: 30,
               justifyContent: 'center'
             }}>
               {[
@@ -91,7 +102,7 @@ const EliteArchitecturePage: React.FC = () => {
               ].map((tab) => (
                 <button
                   key={tab.id}
-                  onClick={() => setActiveTab(tab.id as any)}
+                  onClick={() => scrollToSection(tab.id as any)}
                   style={{
                     padding: '12px 24px',
                     borderRadius: '18px',
@@ -115,12 +126,20 @@ const EliteArchitecturePage: React.FC = () => {
         </Hero>
 
         <div className="container" style={{ padding: '4rem 1rem', maxWidth: '1100px', margin: '0 auto' }}>
-          <AnimatePresence mode="wait">
-            {activeTab === 'overview' && <EliteOverviewTab key="overview" />}
-            {activeTab === 'layers' && <EliteLayersTab key="layers" />}
-            {activeTab === 'patterns' && <ElitePatternsTab key="patterns" />}
-            {activeTab === 'elite' && <EliteStandardsTab key="elite" />}
-          </AnimatePresence>
+          <div style={{ display: "flex", flexDirection: "column", gap: "4rem" }}>
+          <div id="overview" style={{ scrollMarginTop: "100px" }}>
+            <EliteOverviewTab />
+          </div>
+          <div id="layers" style={{ scrollMarginTop: "100px" }}>
+            <EliteLayersTab />
+          </div>
+          <div id="patterns" style={{ scrollMarginTop: "100px" }}>
+            <ElitePatternsTab />
+          </div>
+          <div id="elite" style={{ scrollMarginTop: "100px" }}>
+            <EliteStandardsTab />
+          </div>
+        </div>
         </div>
 
         <section style={{ padding: '6rem 0', textAlign: 'center' }}>

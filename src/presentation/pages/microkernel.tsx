@@ -11,6 +11,14 @@ const MicrokernelPage: React.FC = () => {
   const { i18n } = useTranslation();
   const isEn = (i18n.resolvedLanguage || i18n.language || 'tr').startsWith('en');
   const [activeTab, setActiveTab] = useState<'concept' | 'simulation'>('concept');
+  const scrollToSection = (id: 'concept' | 'simulation') => {
+    setActiveTab(id);
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
+
   const [coreColor, setCoreColor] = useState('#10b981'); 
 
   const [plugins, setPlugins] = useState<Plugin[]>([
@@ -170,7 +178,7 @@ const MicrokernelPage: React.FC = () => {
             ].map((tab) => (
                <button
                 key={tab.id}
-                onClick={() => setActiveTab(tab.id as any)}
+                onClick={() => scrollToSection(tab.id as any)}
                 style={{
                   padding: '10px 24px',
                   borderRadius: '18px',
@@ -194,17 +202,11 @@ const MicrokernelPage: React.FC = () => {
         </ArchHero>
 
         <div className="container" style={{ marginTop: '2rem' }}>
-          <AnimatePresence mode="wait">
-            {activeTab === 'concept' && <MicrokernelConceptTab key="concept" />}
-            {activeTab === 'simulation' && (
-              <MicrokernelSimulationTab 
-                key="simulation" 
-                plugins={plugins} 
-                setPlugins={setPlugins} 
-                onCorePing={handleCorePing}
-              />
-            )}
-          </AnimatePresence>
+          <div style={{ display: "flex", flexDirection: "column", gap: "4rem" }}>
+          <div id="concept" style={{ scrollMarginTop: "100px" }}>
+            <MicrokernelConceptTab />
+          </div>
+        </div>
         </div>
 
         {/* Eclipse Reference */}
@@ -228,7 +230,10 @@ const MicrokernelPage: React.FC = () => {
                   }
                 </p>
                 
-                <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+                <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap',
+            position: 'sticky',
+            top: '80px',
+            zIndex: 30 }}>
                    <a 
                      href="https://www.eclipse.org/articles/Article-Plug-in-architecture/plugin_architecture.html" 
                      target="_blank" 

@@ -14,6 +14,14 @@ const CAPTheoremPage: React.FC = () => {
   const isEn = (i18n.resolvedLanguage || i18n.language || 'tr').startsWith('en');
   const { completeStep } = useProgress();
   const [activeTab, setActiveTab] = useState<'simulation' | 'concept'>('concept');
+  const scrollToSection = (id: 'simulation' | 'concept') => {
+    setActiveTab(id);
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
+
   
   const simulation = useCapSimulation();
 
@@ -113,7 +121,7 @@ const CAPTheoremPage: React.FC = () => {
             ].map((tab) => (
               <button
                 key={tab.id}
-                onClick={() => setActiveTab(tab.id as any)}
+                onClick={() => scrollToSection(tab.id as any)}
                 style={{
                   padding: '10px 24px',
                   borderRadius: '18px',
@@ -137,22 +145,11 @@ const CAPTheoremPage: React.FC = () => {
         </ArchHero>
 
         <div className="container" style={{ marginTop: '2rem' }}>
-          <AnimatePresence mode="wait">
-            {activeTab === 'concept' && <CAPConceptTab key="concept" />}
-            {activeTab === 'simulation' && (
-              <CAPSimulationTab 
-                key="simulation"
-                activeMode={simulation.activeMode}
-                onSetMode={simulation.setActiveMode}
-                isPartitioned={simulation.isPartitioned}
-                onTogglePartition={() => simulation.setIsPartitioned(!simulation.isPartitioned)}
-                nodeAData={simulation.nodeAData}
-                nodeBData={simulation.nodeBData}
-                writeStatus={simulation.writeStatus}
-                onWrite={simulation.handleWrite}
-              />
-            )}
-          </AnimatePresence>
+          <div style={{ display: "flex", flexDirection: "column", gap: "4rem" }}>
+          <div id="concept" style={{ scrollMarginTop: "100px" }}>
+            <CAPConceptTab />
+          </div>
+        </div>
         </div>
       </motion.div>
     </>

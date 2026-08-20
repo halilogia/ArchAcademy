@@ -4,19 +4,25 @@
       "id": "App.tsx",
       "label": "App.tsx",
       "category": "Other",
-      "size": 14925
+      "size": 1163
     },
     {
-      "id": "main.tsx",
-      "label": "main.tsx",
+      "id": "data/assessmentQuestions.ts",
+      "label": "assessmentQuestions.ts",
       "category": "Other",
-      "size": 250
+      "size": 10058
     },
     {
-      "id": "domain/entities/Layer.ts",
-      "label": "Layer.ts",
+      "id": "data/leanPrinciplesData.ts",
+      "label": "leanPrinciplesData.ts",
+      "category": "Other",
+      "size": 5463
+    },
+    {
+      "id": "domain/usecases/ArchitectureCalculator.ts",
+      "label": "ArchitectureCalculator.ts",
       "category": "Domain",
-      "size": 715
+      "size": 2417
     },
     {
       "id": "domain/usecases/SimulationUseCase.ts",
@@ -25,52 +31,322 @@
       "size": 1339
     },
     {
-      "id": "domain/usecases/ArchitectureCalculator.ts",
-      "label": "ArchitectureCalculator.ts",
-      "category": "Domain",
-      "size": 2379
+      "id": "i18n/index.ts",
+      "label": "index.ts",
+      "category": "Other",
+      "size": 992
     },
     {
-      "id": "infrastructure/data/ArchitectureData.ts",
+      "id": "infrastructure/AcronymsData.ts",
+      "label": "AcronymsData.ts",
+      "category": "Infra",
+      "size": 28395
+    },
+    {
+      "id": "infrastructure/ArchitectureData.ts",
       "label": "ArchitectureData.ts",
       "category": "Infra",
-      "size": 6867
+      "size": 6892
     },
     {
-      "id": "infrastructure/data/GlossaryData.ts",
+      "id": "infrastructure/ComparisonMatrixData.ts",
+      "label": "ComparisonMatrixData.ts",
+      "category": "Infra",
+      "size": 16096
+    },
+    {
+      "id": "infrastructure/GlossaryData.ts",
       "label": "GlossaryData.ts",
       "category": "Infra",
-      "size": 184211
+      "size": 202999
     },
     {
-      "id": "presentation/components/Navbar.tsx",
-      "label": "Navbar.tsx",
-      "category": "Component",
-      "size": 15548
+      "id": "main.tsx",
+      "label": "main.tsx",
+      "category": "Other",
+      "size": 398
     },
     {
-      "id": "presentation/components/ArchitectureWizard.tsx",
-      "label": "ArchitectureWizard.tsx",
+      "id": "presentation/components/abstraction/AbstractionConceptTab.tsx",
+      "label": "AbstractionConceptTab.tsx",
       "category": "Component",
-      "size": 11377
+      "size": 3921
+    },
+    {
+      "id": "presentation/components/abstraction/AbstractionLevelsTab.tsx",
+      "label": "AbstractionLevelsTab.tsx",
+      "category": "Component",
+      "size": 4903
+    },
+    {
+      "id": "presentation/components/abstraction/AbstractionPaymentSimulationTab.tsx",
+      "label": "AbstractionPaymentSimulationTab.tsx",
+      "category": "Component",
+      "size": 7566
+    },
+    {
+      "id": "presentation/components/acid/ACIDConceptTab.tsx",
+      "label": "ACIDConceptTab.tsx",
+      "category": "Component",
+      "size": 2657
+    },
+    {
+      "id": "presentation/components/acid/ACIDSimulationTab.tsx",
+      "label": "ACIDSimulationTab.tsx",
+      "category": "Component",
+      "size": 4220
+    },
+    {
+      "id": "presentation/components/acid/useAcidSimulation.ts",
+      "label": "useAcidSimulation.ts",
+      "category": "Component",
+      "size": 1621
+    },
+    {
+      "id": "presentation/components/agenticai/AgenticCorePatternsTab.tsx",
+      "label": "AgenticCorePatternsTab.tsx",
+      "category": "Component",
+      "size": 3255
+    },
+    {
+      "id": "presentation/components/agenticai/AgentSwarmSimulationTab.tsx",
+      "label": "AgentSwarmSimulationTab.tsx",
+      "category": "Component",
+      "size": 5370
+    },
+    {
+      "id": "presentation/components/agenticai/MultiAgentOrchestrationTab.tsx",
+      "label": "MultiAgentOrchestrationTab.tsx",
+      "category": "Component",
+      "size": 3064
+    },
+    {
+      "id": "presentation/components/AndroidPrinciples.tsx",
+      "label": "AndroidPrinciples.tsx",
+      "category": "Component",
+      "size": 5046
+    },
+    {
+      "id": "presentation/components/ArchHero.tsx",
+      "label": "ArchHero.tsx",
+      "category": "Component",
+      "size": 2867
     },
     {
       "id": "presentation/components/ArchitectRoadmap.tsx",
       "label": "ArchitectRoadmap.tsx",
       "category": "Component",
-      "size": 9407
+      "size": 8503
+    },
+    {
+      "id": "presentation/components/ArchitecturalTruths.tsx",
+      "label": "ArchitecturalTruths.tsx",
+      "category": "Component",
+      "size": 4448
+    },
+    {
+      "id": "presentation/components/ArchitectureFlow.tsx",
+      "label": "ArchitectureFlow.tsx",
+      "category": "Component",
+      "size": 10627
+    },
+    {
+      "id": "presentation/components/ArchitectureWizard.tsx",
+      "label": "ArchitectureWizard.tsx",
+      "category": "Component",
+      "size": 11296
+    },
+    {
+      "id": "presentation/components/ArchReferences.tsx",
+      "label": "ArchReferences.tsx",
+      "category": "Component",
+      "size": 2429
     },
     {
       "id": "presentation/components/AssessmentQuiz.tsx",
       "label": "AssessmentQuiz.tsx",
       "category": "Component",
-      "size": 17321
+      "size": 8808
+    },
+    {
+      "id": "presentation/components/bff/BFFComparisonTab.tsx",
+      "label": "BFFComparisonTab.tsx",
+      "category": "Component",
+      "size": 3787
+    },
+    {
+      "id": "presentation/components/bff/BFFSimulationTab.tsx",
+      "label": "BFFSimulationTab.tsx",
+      "category": "Component",
+      "size": 6349
+    },
+    {
+      "id": "presentation/components/broker/BrokerComparisonTab.tsx",
+      "label": "BrokerComparisonTab.tsx",
+      "category": "Component",
+      "size": 4028
+    },
+    {
+      "id": "presentation/components/broker/BrokerSimulationTab.tsx",
+      "label": "BrokerSimulationTab.tsx",
+      "category": "Component",
+      "size": 9074
+    },
+    {
+      "id": "presentation/components/cap/CAPConceptTab.tsx",
+      "label": "CAPConceptTab.tsx",
+      "category": "Component",
+      "size": 4750
+    },
+    {
+      "id": "presentation/components/cap/CAPSimulationTab.tsx",
+      "label": "CAPSimulationTab.tsx",
+      "category": "Component",
+      "size": 6526
+    },
+    {
+      "id": "presentation/components/cap/useCapSimulation.ts",
+      "label": "useCapSimulation.ts",
+      "category": "Component",
+      "size": 1121
+    },
+    {
+      "id": "presentation/components/Card.tsx",
+      "label": "Card.tsx",
+      "category": "Component",
+      "size": 632
+    },
+    {
+      "id": "presentation/components/choreography/ChoreographyComparisonTab.tsx",
+      "label": "ChoreographyComparisonTab.tsx",
+      "category": "Component",
+      "size": 3237
+    },
+    {
+      "id": "presentation/components/choreography/ChoreographySimulationTab.tsx",
+      "label": "ChoreographySimulationTab.tsx",
+      "category": "Component",
+      "size": 6775
+    },
+    {
+      "id": "presentation/components/cleanarch/CleanArchClassicLayerTab.tsx",
+      "label": "CleanArchClassicLayerTab.tsx",
+      "category": "Component",
+      "size": 404
+    },
+    {
+      "id": "presentation/components/cleanarch/CleanArchModernFeatureTab.tsx",
+      "label": "CleanArchModernFeatureTab.tsx",
+      "category": "Component",
+      "size": 408
+    },
+    {
+      "id": "presentation/components/cleanarch/CleanArchPrinciplesTab.tsx",
+      "label": "CleanArchPrinciplesTab.tsx",
+      "category": "Component",
+      "size": 646
+    },
+    {
+      "id": "presentation/components/cleanarch/CleanArchScreamingTab.tsx",
+      "label": "CleanArchScreamingTab.tsx",
+      "category": "Component",
+      "size": 367
+    },
+    {
+      "id": "presentation/components/cleancode/BoyScoutRuleSection.tsx",
+      "label": "BoyScoutRuleSection.tsx",
+      "category": "Component",
+      "size": 2012
+    },
+    {
+      "id": "presentation/components/cleancode/CodeSpecComparisonTab.tsx",
+      "label": "CodeSpecComparisonTab.tsx",
+      "category": "Component",
+      "size": 6304
+    },
+    {
+      "id": "presentation/components/cleancode/FunctionsAndCommentsSection.tsx",
+      "label": "FunctionsAndCommentsSection.tsx",
+      "category": "Component",
+      "size": 2759
+    },
+    {
+      "id": "presentation/components/cleancode/NamingConventionsSection.tsx",
+      "label": "NamingConventionsSection.tsx",
+      "category": "Component",
+      "size": 3437
+    },
+    {
+      "id": "presentation/components/clientserver/ClientServerComparisonTab.tsx",
+      "label": "ClientServerComparisonTab.tsx",
+      "category": "Component",
+      "size": 3424
+    },
+    {
+      "id": "presentation/components/clientserver/ClientServerSimulationTab.tsx",
+      "label": "ClientServerSimulationTab.tsx",
+      "category": "Component",
+      "size": 5111
+    },
+    {
+      "id": "presentation/components/CommandPalette.tsx",
+      "label": "CommandPalette.tsx",
+      "category": "Component",
+      "size": 11847
     },
     {
       "id": "presentation/components/ComparisonMatrix.tsx",
       "label": "ComparisonMatrix.tsx",
       "category": "Component",
-      "size": 19864
+      "size": 12578
+    },
+    {
+      "id": "presentation/components/componentdriven/ComponentAtomicDesignTab.tsx",
+      "label": "ComponentAtomicDesignTab.tsx",
+      "category": "Component",
+      "size": 3139
+    },
+    {
+      "id": "presentation/components/componentdriven/ComponentLifecycleSimulationTab.tsx",
+      "label": "ComponentLifecycleSimulationTab.tsx",
+      "category": "Component",
+      "size": 6034
+    },
+    {
+      "id": "presentation/components/componentdriven/ComponentStateManagementTab.tsx",
+      "label": "ComponentStateManagementTab.tsx",
+      "category": "Component",
+      "size": 3686
+    },
+    {
+      "id": "presentation/components/componentdriven/StateDrivenArchitectureTab.tsx",
+      "label": "StateDrivenArchitectureTab.tsx",
+      "category": "Component",
+      "size": 2854
+    },
+    {
+      "id": "presentation/components/containerization/ContainerFundamentalsTab.tsx",
+      "label": "ContainerFundamentalsTab.tsx",
+      "category": "Component",
+      "size": 4216
+    },
+    {
+      "id": "presentation/components/containerization/ContainerLifecycleSimulationTab.tsx",
+      "label": "ContainerLifecycleSimulationTab.tsx",
+      "category": "Component",
+      "size": 5389
+    },
+    {
+      "id": "presentation/components/containerization/DockerfileOptimizationTab.tsx",
+      "label": "DockerfileOptimizationTab.tsx",
+      "category": "Component",
+      "size": 3708
+    },
+    {
+      "id": "presentation/components/containerization/KubernetesOrchestrationTab.tsx",
+      "label": "KubernetesOrchestrationTab.tsx",
+      "category": "Component",
+      "size": 3442
     },
     {
       "id": "presentation/components/CQRSDiagram.tsx",
@@ -88,19 +364,25 @@
       "id": "presentation/components/CQRSPractical.tsx",
       "label": "CQRSPractical.tsx",
       "category": "Component",
-      "size": 4953
+      "size": 5197
     },
     {
       "id": "presentation/components/CQRSSection.tsx",
       "label": "CQRSSection.tsx",
       "category": "Component",
-      "size": 5515
+      "size": 5666
     },
     {
       "id": "presentation/components/DDDHero.tsx",
       "label": "DDDHero.tsx",
       "category": "Component",
       "size": 3990
+    },
+    {
+      "id": "presentation/components/DDDKeyConcepts.tsx",
+      "label": "DDDKeyConcepts.tsx",
+      "category": "Component",
+      "size": 5203
     },
     {
       "id": "presentation/components/DDDSection.tsx",
@@ -112,7 +394,73 @@
       "id": "presentation/components/DDDSimulation.tsx",
       "label": "DDDSimulation.tsx",
       "category": "Component",
-      "size": 6289
+      "size": 6481
+    },
+    {
+      "id": "presentation/components/disciplinechain/DisciplineChainColumn.tsx",
+      "label": "DisciplineChainColumn.tsx",
+      "category": "Component",
+      "size": 1800
+    },
+    {
+      "id": "presentation/components/disciplinechain/DisciplineChainHeader.tsx",
+      "label": "DisciplineChainHeader.tsx",
+      "category": "Component",
+      "size": 3924
+    },
+    {
+      "id": "presentation/components/disciplinechain/DisciplineChainNode.tsx",
+      "label": "DisciplineChainNode.tsx",
+      "category": "Component",
+      "size": 4467
+    },
+    {
+      "id": "presentation/components/disciplinechain/useDisciplineStreak.ts",
+      "label": "useDisciplineStreak.ts",
+      "category": "Component",
+      "size": 5627
+    },
+    {
+      "id": "presentation/components/docsannotations/ADRArchitectureTab.tsx",
+      "label": "ADRArchitectureTab.tsx",
+      "category": "Component",
+      "size": 3059
+    },
+    {
+      "id": "presentation/components/docsannotations/ADRBuilderSimulationTab.tsx",
+      "label": "ADRBuilderSimulationTab.tsx",
+      "category": "Component",
+      "size": 5111
+    },
+    {
+      "id": "presentation/components/docsannotations/ArchitectureDiagramsTab.tsx",
+      "label": "ArchitectureDiagramsTab.tsx",
+      "category": "Component",
+      "size": 3169
+    },
+    {
+      "id": "presentation/components/docsannotations/C4ModelHierarchyTab.tsx",
+      "label": "C4ModelHierarchyTab.tsx",
+      "category": "Component",
+      "size": 3500
+    },
+    {
+      "id": "presentation/components/ecs/ECSCodeExample.tsx",
+      "label": "ECSCodeExample.tsx",
+      "category": "Component",
+      "size": 5821
+    },
+    {
+      "id": "presentation/components/ecs/ECSPrinciplesDeepDive.tsx",
+      "label": "ECSPrinciplesDeepDive.tsx",
+      "category": "Component",
+      "size": 4288
+    },
+    {
+      "id": "presentation/components/ecs/ECSStructureAndComparison.tsx",
+      "label": "ECSStructureAndComparison.tsx",
+      "category": "Component",
+      "size": 7013
     },
     {
       "id": "presentation/components/EDADiagram.tsx",
@@ -130,19 +478,67 @@
       "id": "presentation/components/EDAPractical.tsx",
       "label": "EDAPractical.tsx",
       "category": "Component",
-      "size": 4255
+      "size": 4508
+    },
+    {
+      "id": "presentation/components/elitearch/EliteLayersTab.tsx",
+      "label": "EliteLayersTab.tsx",
+      "category": "Component",
+      "size": 2929
+    },
+    {
+      "id": "presentation/components/elitearch/EliteOverviewTab.tsx",
+      "label": "EliteOverviewTab.tsx",
+      "category": "Component",
+      "size": 2784
+    },
+    {
+      "id": "presentation/components/elitearch/ElitePatternsTab.tsx",
+      "label": "ElitePatternsTab.tsx",
+      "category": "Component",
+      "size": 1591
+    },
+    {
+      "id": "presentation/components/elitearch/EliteStandardsTab.tsx",
+      "label": "EliteStandardsTab.tsx",
+      "category": "Component",
+      "size": 3184
     },
     {
       "id": "presentation/components/ErrorBoundary.tsx",
       "label": "ErrorBoundary.tsx",
       "category": "Component",
-      "size": 3982
+      "size": 4206
+    },
+    {
+      "id": "presentation/components/eventsourcing/EventSourcingComparisonTab.tsx",
+      "label": "EventSourcingComparisonTab.tsx",
+      "category": "Component",
+      "size": 4645
+    },
+    {
+      "id": "presentation/components/eventsourcing/EventSourcingSimulationTab.tsx",
+      "label": "EventSourcingSimulationTab.tsx",
+      "category": "Component",
+      "size": 6683
+    },
+    {
+      "id": "presentation/components/FeatureVsLayerDetail.tsx",
+      "label": "FeatureVsLayerDetail.tsx",
+      "category": "Component",
+      "size": 6665
+    },
+    {
+      "id": "presentation/components/FlutterBestPractices.tsx",
+      "label": "FlutterBestPractices.tsx",
+      "category": "Component",
+      "size": 5853
     },
     {
       "id": "presentation/components/FolderSurgery.tsx",
       "label": "FolderSurgery.tsx",
       "category": "Component",
-      "size": 11513
+      "size": 11658
     },
     {
       "id": "presentation/components/Footer.tsx",
@@ -166,7 +562,19 @@
       "id": "presentation/components/FSDPractical.tsx",
       "label": "FSDPractical.tsx",
       "category": "Component",
-      "size": 4959
+      "size": 5091
+    },
+    {
+      "id": "presentation/components/gitops/GitOpsPipelineStepper.tsx",
+      "label": "GitOpsPipelineStepper.tsx",
+      "category": "Component",
+      "size": 3714
+    },
+    {
+      "id": "presentation/components/gitops/GitOpsReferenceFooter.tsx",
+      "label": "GitOpsReferenceFooter.tsx",
+      "category": "Component",
+      "size": 2569
     },
     {
       "id": "presentation/components/Hero.tsx",
@@ -190,19 +598,19 @@
       "id": "presentation/components/HexagonalPractical.tsx",
       "label": "HexagonalPractical.tsx",
       "category": "Component",
-      "size": 4409
+      "size": 4653
     },
     {
       "id": "presentation/components/HomeHero.tsx",
       "label": "HomeHero.tsx",
       "category": "Component",
-      "size": 10686
+      "size": 12011
     },
     {
-      "id": "presentation/components/HomeRoadmap.tsx",
-      "label": "HomeRoadmap.tsx",
+      "id": "presentation/components/HomeVibeSpotlight.tsx",
+      "label": "HomeVibeSpotlight.tsx",
       "category": "Component",
-      "size": 4675
+      "size": 6208
     },
     {
       "id": "presentation/components/HorizontalDiagram.tsx",
@@ -220,7 +628,169 @@
       "id": "presentation/components/HorizontalPractical.tsx",
       "label": "HorizontalPractical.tsx",
       "category": "Component",
-      "size": 4357
+      "size": 4601
+    },
+    {
+      "id": "presentation/components/interpreter/InterpreterConceptTab.tsx",
+      "label": "InterpreterConceptTab.tsx",
+      "category": "Component",
+      "size": 4024
+    },
+    {
+      "id": "presentation/components/interpreter/InterpreterSimulationTab.tsx",
+      "label": "InterpreterSimulationTab.tsx",
+      "category": "Component",
+      "size": 6276
+    },
+    {
+      "id": "presentation/components/lambdakappa/KappaReplaySimTab.tsx",
+      "label": "KappaReplaySimTab.tsx",
+      "category": "Component",
+      "size": 6578
+    },
+    {
+      "id": "presentation/components/lambdakappa/LambdaKappaOverviewTab.tsx",
+      "label": "LambdaKappaOverviewTab.tsx",
+      "category": "Component",
+      "size": 4973
+    },
+    {
+      "id": "presentation/components/lambdakappa/LambdaServingSimTab.tsx",
+      "label": "LambdaServingSimTab.tsx",
+      "category": "Component",
+      "size": 5239
+    },
+    {
+      "id": "presentation/components/lean/LeanCleanDeepDive.tsx",
+      "label": "LeanCleanDeepDive.tsx",
+      "category": "Component",
+      "size": 6526
+    },
+    {
+      "id": "presentation/components/lean/LeanCodeComparison.tsx",
+      "label": "LeanCodeComparison.tsx",
+      "category": "Component",
+      "size": 3207
+    },
+    {
+      "id": "presentation/components/lean/LeanMaturityModel.tsx",
+      "label": "LeanMaturityModel.tsx",
+      "category": "Component",
+      "size": 9660
+    },
+    {
+      "id": "presentation/components/lean/LeanPrinciplesViewer.tsx",
+      "label": "LeanPrinciplesViewer.tsx",
+      "category": "Component",
+      "size": 6166
+    },
+    {
+      "id": "presentation/components/llmops/LLMOpsPillarsTab.tsx",
+      "label": "LLMOpsPillarsTab.tsx",
+      "category": "Component",
+      "size": 2856
+    },
+    {
+      "id": "presentation/components/llmops/LLMOpsSimulationTab.tsx",
+      "label": "LLMOpsSimulationTab.tsx",
+      "category": "Component",
+      "size": 8250
+    },
+    {
+      "id": "presentation/components/llmops/useLLMOpsSimulation.ts",
+      "label": "useLLMOpsSimulation.ts",
+      "category": "Component",
+      "size": 2257
+    },
+    {
+      "id": "presentation/components/microkernel/MicrokernelConceptTab.tsx",
+      "label": "MicrokernelConceptTab.tsx",
+      "category": "Component",
+      "size": 3140
+    },
+    {
+      "id": "presentation/components/microkernel/MicrokernelSimulationTab.tsx",
+      "label": "MicrokernelSimulationTab.tsx",
+      "category": "Component",
+      "size": 6075
+    },
+    {
+      "id": "presentation/components/mvc/MVCComparisonTab.tsx",
+      "label": "MVCComparisonTab.tsx",
+      "category": "Component",
+      "size": 7901
+    },
+    {
+      "id": "presentation/components/mvc/MVCConceptsTab.tsx",
+      "label": "MVCConceptsTab.tsx",
+      "category": "Component",
+      "size": 5281
+    },
+    {
+      "id": "presentation/components/mvi/MVIFlowTab.tsx",
+      "label": "MVIFlowTab.tsx",
+      "category": "Component",
+      "size": 3482
+    },
+    {
+      "id": "presentation/components/mvi/MVISimulationTab.tsx",
+      "label": "MVISimulationTab.tsx",
+      "category": "Component",
+      "size": 4466
+    },
+    {
+      "id": "presentation/components/mvp/MVPComparisonTab.tsx",
+      "label": "MVPComparisonTab.tsx",
+      "category": "Component",
+      "size": 7943
+    },
+    {
+      "id": "presentation/components/mvp/MVPConceptsTab.tsx",
+      "label": "MVPConceptsTab.tsx",
+      "category": "Component",
+      "size": 4971
+    },
+    {
+      "id": "presentation/components/mvvm/MVVMHybridTab.tsx",
+      "label": "MVVMHybridTab.tsx",
+      "category": "Component",
+      "size": 15449
+    },
+    {
+      "id": "presentation/components/mvvm/MVVMNiaTab.tsx",
+      "label": "MVVMNiaTab.tsx",
+      "category": "Component",
+      "size": 8034
+    },
+    {
+      "id": "presentation/components/mvvm/MVVMPrinciplesTab.tsx",
+      "label": "MVVMPrinciplesTab.tsx",
+      "category": "Component",
+      "size": 10877
+    },
+    {
+      "id": "presentation/components/mvvmc/MVVMCComparisonTab.tsx",
+      "label": "MVVMCComparisonTab.tsx",
+      "category": "Component",
+      "size": 10201
+    },
+    {
+      "id": "presentation/components/mvvmc/MVVMCConceptsTab.tsx",
+      "label": "MVVMCConceptsTab.tsx",
+      "category": "Component",
+      "size": 5646
+    },
+    {
+      "id": "presentation/components/MVVMFlow.tsx",
+      "label": "MVVMFlow.tsx",
+      "category": "Component",
+      "size": 5753
+    },
+    {
+      "id": "presentation/components/Navbar.tsx",
+      "label": "Navbar.tsx",
+      "category": "Component",
+      "size": 17850
     },
     {
       "id": "presentation/components/OnionDiagram.tsx",
@@ -238,19 +808,151 @@
       "id": "presentation/components/OnionPractical.tsx",
       "label": "OnionPractical.tsx",
       "category": "Component",
-      "size": 3805
+      "size": 3975
+    },
+    {
+      "id": "presentation/components/oop/AbstractionTab.tsx",
+      "label": "AbstractionTab.tsx",
+      "category": "Component",
+      "size": 4420
+    },
+    {
+      "id": "presentation/components/oop/EncapsulationTab.tsx",
+      "label": "EncapsulationTab.tsx",
+      "category": "Component",
+      "size": 5285
+    },
+    {
+      "id": "presentation/components/oop/InheritanceTab.tsx",
+      "label": "InheritanceTab.tsx",
+      "category": "Component",
+      "size": 3910
+    },
+    {
+      "id": "presentation/components/oop/PolymorphismTab.tsx",
+      "label": "PolymorphismTab.tsx",
+      "category": "Component",
+      "size": 3500
+    },
+    {
+      "id": "presentation/components/oopfundamentals/AnemicVsRichDomainTab.tsx",
+      "label": "AnemicVsRichDomainTab.tsx",
+      "category": "Component",
+      "size": 4786
+    },
+    {
+      "id": "presentation/components/oopfundamentals/CompositionOverInheritanceTab.tsx",
+      "label": "CompositionOverInheritanceTab.tsx",
+      "category": "Component",
+      "size": 4809
+    },
+    {
+      "id": "presentation/components/oopfundamentals/OOPPillarsTab.tsx",
+      "label": "OOPPillarsTab.tsx",
+      "category": "Component",
+      "size": 2989
+    },
+    {
+      "id": "presentation/components/oopfundamentals/OOPPolymorphismSimulationTab.tsx",
+      "label": "OOPPolymorphismSimulationTab.tsx",
+      "category": "Component",
+      "size": 5160
+    },
+    {
+      "id": "presentation/components/p2p/P2PComparisonTab.tsx",
+      "label": "P2PComparisonTab.tsx",
+      "category": "Component",
+      "size": 3916
+    },
+    {
+      "id": "presentation/components/p2p/P2PSimulationTab.tsx",
+      "label": "P2PSimulationTab.tsx",
+      "category": "Component",
+      "size": 7525
+    },
+    {
+      "id": "presentation/components/PageTemplate.tsx",
+      "label": "PageTemplate.tsx",
+      "category": "Component",
+      "size": 15800
+    },
+    {
+      "id": "presentation/components/pipefilter/PipeFilterConceptTab.tsx",
+      "label": "PipeFilterConceptTab.tsx",
+      "category": "Component",
+      "size": 3945
+    },
+    {
+      "id": "presentation/components/pipefilter/PipeFilterSimulationTab.tsx",
+      "label": "PipeFilterSimulationTab.tsx",
+      "category": "Component",
+      "size": 4708
+    },
+    {
+      "id": "presentation/components/plugin/PluginConceptTab.tsx",
+      "label": "PluginConceptTab.tsx",
+      "category": "Component",
+      "size": 3369
+    },
+    {
+      "id": "presentation/components/plugin/PluginSimulationTab.tsx",
+      "label": "PluginSimulationTab.tsx",
+      "category": "Component",
+      "size": 6231
     },
     {
       "id": "presentation/components/Practical.tsx",
       "label": "Practical.tsx",
       "category": "Component",
-      "size": 9887
+      "size": 10158
+    },
+    {
+      "id": "presentation/components/primarysecondary/PrimarySecondaryComparisonTab.tsx",
+      "label": "PrimarySecondaryComparisonTab.tsx",
+      "category": "Component",
+      "size": 3528
+    },
+    {
+      "id": "presentation/components/primarysecondary/PrimarySecondarySimulationTab.tsx",
+      "label": "PrimarySecondarySimulationTab.tsx",
+      "category": "Component",
+      "size": 5249
+    },
+    {
+      "id": "presentation/components/primarysecondary/useReplicationSimulation.ts",
+      "label": "useReplicationSimulation.ts",
+      "category": "Component",
+      "size": 893
+    },
+    {
+      "id": "presentation/components/ProductionFlow.tsx",
+      "label": "ProductionFlow.tsx",
+      "category": "Component",
+      "size": 7992
+    },
+    {
+      "id": "presentation/components/projectarch/ProjectArchitectureTab.tsx",
+      "label": "ProjectArchitectureTab.tsx",
+      "category": "Component",
+      "size": 6902
+    },
+    {
+      "id": "presentation/components/projectarch/ProjectBrainTab.tsx",
+      "label": "ProjectBrainTab.tsx",
+      "category": "Component",
+      "size": 5569
+    },
+    {
+      "id": "presentation/components/projectarch/ProjectDesignTab.tsx",
+      "label": "ProjectDesignTab.tsx",
+      "category": "Component",
+      "size": 4898
     },
     {
       "id": "presentation/components/ProjectDecisionRecords.tsx",
       "label": "ProjectDecisionRecords.tsx",
       "category": "Component",
-      "size": 5465
+      "size": 6233
     },
     {
       "id": "presentation/components/ProjectDependency.tsx",
@@ -268,25 +970,181 @@
       "id": "presentation/components/ProjectHero.tsx",
       "label": "ProjectHero.tsx",
       "category": "Component",
-      "size": 3181
+      "size": 3240
     },
     {
       "id": "presentation/components/ProjectStructure.tsx",
       "label": "ProjectStructure.tsx",
       "category": "Component",
-      "size": 12198
+      "size": 11551
     },
     {
       "id": "presentation/components/ProjectTechStack.tsx",
       "label": "ProjectTechStack.tsx",
       "category": "Component",
-      "size": 2201
+      "size": 2982
+    },
+    {
+      "id": "presentation/components/pubsub/PubSubComparisonTab.tsx",
+      "label": "PubSubComparisonTab.tsx",
+      "category": "Component",
+      "size": 3887
+    },
+    {
+      "id": "presentation/components/pubsub/PubSubSimulationTab.tsx",
+      "label": "PubSubSimulationTab.tsx",
+      "category": "Component",
+      "size": 6684
+    },
+    {
+      "id": "presentation/components/ragarch/AdvancedRAGTab.tsx",
+      "label": "AdvancedRAGTab.tsx",
+      "category": "Component",
+      "size": 3497
+    },
+    {
+      "id": "presentation/components/ragarch/RAGPipelineTab.tsx",
+      "label": "RAGPipelineTab.tsx",
+      "category": "Component",
+      "size": 3134
+    },
+    {
+      "id": "presentation/components/ragarch/RAGRetrievalSimulationTab.tsx",
+      "label": "RAGRetrievalSimulationTab.tsx",
+      "category": "Component",
+      "size": 4271
+    },
+    {
+      "id": "presentation/components/RefactoringGuide.tsx",
+      "label": "RefactoringGuide.tsx",
+      "category": "Component",
+      "size": 6993
     },
     {
       "id": "presentation/components/RefactoringSurgery.tsx",
       "label": "RefactoringSurgery.tsx",
       "category": "Component",
-      "size": 15307
+      "size": 16790
+    },
+    {
+      "id": "presentation/components/roadmap/RoadmapCurriculumTab.tsx",
+      "label": "RoadmapCurriculumTab.tsx",
+      "category": "Component",
+      "size": 482
+    },
+    {
+      "id": "presentation/components/roadmap/RoadmapHero.tsx",
+      "label": "RoadmapHero.tsx",
+      "category": "Component",
+      "size": 4755
+    },
+    {
+      "id": "presentation/components/roadmap/RoadmapImpactFooter.tsx",
+      "label": "RoadmapImpactFooter.tsx",
+      "category": "Component",
+      "size": 3033
+    },
+    {
+      "id": "presentation/components/roadmap/RoadmapProductionTab.tsx",
+      "label": "RoadmapProductionTab.tsx",
+      "category": "Component",
+      "size": 480
+    },
+    {
+      "id": "presentation/components/robustness/RobustnessCircuitBreakerSimulationTab.tsx",
+      "label": "RobustnessCircuitBreakerSimulationTab.tsx",
+      "category": "Component",
+      "size": 6271
+    },
+    {
+      "id": "presentation/components/robustness/RobustnessConceptTab.tsx",
+      "label": "RobustnessConceptTab.tsx",
+      "category": "Component",
+      "size": 4074
+    },
+    {
+      "id": "presentation/components/ScreamingSection.tsx",
+      "label": "ScreamingSection.tsx",
+      "category": "Component",
+      "size": 6259
+    },
+    {
+      "id": "presentation/components/ScrollToTop.tsx",
+      "label": "ScrollToTop.tsx",
+      "category": "Component",
+      "size": 488
+    },
+    {
+      "id": "presentation/components/Section.tsx",
+      "label": "Section.tsx",
+      "category": "Component",
+      "size": 398
+    },
+    {
+      "id": "presentation/components/SectionTitle.tsx",
+      "label": "SectionTitle.tsx",
+      "category": "Component",
+      "size": 583
+    },
+    {
+      "id": "presentation/components/security/AppSecOWASPTab.tsx",
+      "label": "AppSecOWASPTab.tsx",
+      "category": "Component",
+      "size": 2884
+    },
+    {
+      "id": "presentation/components/security/SecurityDefenseSimulationTab.tsx",
+      "label": "SecurityDefenseSimulationTab.tsx",
+      "category": "Component",
+      "size": 6537
+    },
+    {
+      "id": "presentation/components/security/useSecuritySimulation.ts",
+      "label": "useSecuritySimulation.ts",
+      "category": "Component",
+      "size": 2569
+    },
+    {
+      "id": "presentation/components/security/ZeroTrustNISTTab.tsx",
+      "label": "ZeroTrustNISTTab.tsx",
+      "category": "Component",
+      "size": 3513
+    },
+    {
+      "id": "presentation/components/SEO.tsx",
+      "label": "SEO.tsx",
+      "category": "Component",
+      "size": 2868
+    },
+    {
+      "id": "presentation/components/serverless/ServerlessComparisonTab.tsx",
+      "label": "ServerlessComparisonTab.tsx",
+      "category": "Component",
+      "size": 3717
+    },
+    {
+      "id": "presentation/components/serverless/ServerlessSimulationTab.tsx",
+      "label": "ServerlessSimulationTab.tsx",
+      "category": "Component",
+      "size": 5077
+    },
+    {
+      "id": "presentation/components/soa/SOAComparisonTab.tsx",
+      "label": "SOAComparisonTab.tsx",
+      "category": "Component",
+      "size": 3947
+    },
+    {
+      "id": "presentation/components/soa/SOASimulationTab.tsx",
+      "label": "SOASimulationTab.tsx",
+      "category": "Component",
+      "size": 4732
+    },
+    {
+      "id": "presentation/components/soa/useESBSimulation.ts",
+      "label": "useESBSimulation.ts",
+      "category": "Component",
+      "size": 1761
     },
     {
       "id": "presentation/components/SOLIDHero.tsx",
@@ -298,13 +1156,67 @@
       "id": "presentation/components/SOLIDSection.tsx",
       "label": "SOLIDSection.tsx",
       "category": "Component",
-      "size": 7821
+      "size": 7902
+    },
+    {
+      "id": "presentation/components/spacebased/SpaceBasedComparisonTab.tsx",
+      "label": "SpaceBasedComparisonTab.tsx",
+      "category": "Component",
+      "size": 4112
+    },
+    {
+      "id": "presentation/components/spacebased/SpaceBasedSimulationTab.tsx",
+      "label": "SpaceBasedSimulationTab.tsx",
+      "category": "Component",
+      "size": 4565
+    },
+    {
+      "id": "presentation/components/spampa/SPAMPAComparisonTab.tsx",
+      "label": "SPAMPAComparisonTab.tsx",
+      "category": "Component",
+      "size": 5097
+    },
+    {
+      "id": "presentation/components/spampa/SPAMPASimulationTab.tsx",
+      "label": "SPAMPASimulationTab.tsx",
+      "category": "Component",
+      "size": 6527
     },
     {
       "id": "presentation/components/StrategicDetails.tsx",
       "label": "StrategicDetails.tsx",
       "category": "Component",
       "size": 4744
+    },
+    {
+      "id": "presentation/components/synthesislab/SynthesisCanvas.tsx",
+      "label": "SynthesisCanvas.tsx",
+      "category": "Component",
+      "size": 8179
+    },
+    {
+      "id": "presentation/components/synthesislab/SynthesisInspector.tsx",
+      "label": "SynthesisInspector.tsx",
+      "category": "Component",
+      "size": 2156
+    },
+    {
+      "id": "presentation/components/synthesislab/SynthesisResultModal.tsx",
+      "label": "SynthesisResultModal.tsx",
+      "category": "Component",
+      "size": 2272
+    },
+    {
+      "id": "presentation/components/synthesislab/SynthesisSidebar.tsx",
+      "label": "SynthesisSidebar.tsx",
+      "category": "Component",
+      "size": 3597
+    },
+    {
+      "id": "presentation/components/synthesislab/useSynthesisLab.ts",
+      "label": "useSynthesisLab.ts",
+      "category": "Component",
+      "size": 3494
     },
     {
       "id": "presentation/components/SystemChoice.tsx",
@@ -325,6 +1237,60 @@
       "size": 2625
     },
     {
+      "id": "presentation/components/testing/TDDLifecycleTab.tsx",
+      "label": "TDDLifecycleTab.tsx",
+      "category": "Component",
+      "size": 6207
+    },
+    {
+      "id": "presentation/components/testing/TestingStrategiesTab.tsx",
+      "label": "TestingStrategiesTab.tsx",
+      "category": "Component",
+      "size": 2951
+    },
+    {
+      "id": "presentation/components/testing/TestPyramidTab.tsx",
+      "label": "TestPyramidTab.tsx",
+      "category": "Component",
+      "size": 4350
+    },
+    {
+      "id": "presentation/components/testing/useTDDSimulation.ts",
+      "label": "useTDDSimulation.ts",
+      "category": "Component",
+      "size": 3080
+    },
+    {
+      "id": "presentation/components/Theory.tsx",
+      "label": "Theory.tsx",
+      "category": "Component",
+      "size": 4192
+    },
+    {
+      "id": "presentation/components/UncleBobStructure.tsx",
+      "label": "UncleBobStructure.tsx",
+      "category": "Component",
+      "size": 6024
+    },
+    {
+      "id": "presentation/components/vertical/VerticalAIVibeTab.tsx",
+      "label": "VerticalAIVibeTab.tsx",
+      "category": "Component",
+      "size": 3761
+    },
+    {
+      "id": "presentation/components/vertical/VerticalFeaturesTab.tsx",
+      "label": "VerticalFeaturesTab.tsx",
+      "category": "Component",
+      "size": 4537
+    },
+    {
+      "id": "presentation/components/vertical/VerticalVsHorizontalTab.tsx",
+      "label": "VerticalVsHorizontalTab.tsx",
+      "category": "Component",
+      "size": 4256
+    },
+    {
       "id": "presentation/components/VerticalComparison.tsx",
       "label": "VerticalComparison.tsx",
       "category": "Component",
@@ -340,85 +1306,19 @@
       "id": "presentation/components/VerticalPractical.tsx",
       "label": "VerticalPractical.tsx",
       "category": "Component",
-      "size": 4158
+      "size": 4386
     },
     {
-      "id": "presentation/components/CommandPalette.tsx",
-      "label": "CommandPalette.tsx",
+      "id": "presentation/components/viper/VIPERAnatomyTab.tsx",
+      "label": "VIPERAnatomyTab.tsx",
       "category": "Component",
-      "size": 19803
+      "size": 4198
     },
     {
-      "id": "presentation/components/ArchitecturalTruths.tsx",
-      "label": "ArchitecturalTruths.tsx",
+      "id": "presentation/components/viper/VIPERComparisonTab.tsx",
+      "label": "VIPERComparisonTab.tsx",
       "category": "Component",
-      "size": 4448
-    },
-    {
-      "id": "presentation/components/ArchHero.tsx",
-      "label": "ArchHero.tsx",
-      "category": "Component",
-      "size": 2867
-    },
-    {
-      "id": "presentation/components/ScrollToTop.tsx",
-      "label": "ScrollToTop.tsx",
-      "category": "Component",
-      "size": 264
-    },
-    {
-      "id": "presentation/components/ProductionFlow.tsx",
-      "label": "ProductionFlow.tsx",
-      "category": "Component",
-      "size": 7992
-    },
-    {
-      "id": "presentation/components/UncleBobStructure.tsx",
-      "label": "UncleBobStructure.tsx",
-      "category": "Component",
-      "size": 6024
-    },
-    {
-      "id": "presentation/components/Theory.tsx",
-      "label": "Theory.tsx",
-      "category": "Component",
-      "size": 4192
-    },
-    {
-      "id": "presentation/components/ArchitectureFlow.tsx",
-      "label": "ArchitectureFlow.tsx",
-      "category": "Component",
-      "size": 10627
-    },
-    {
-      "id": "presentation/components/ScreamingSection.tsx",
-      "label": "ScreamingSection.tsx",
-      "category": "Component",
-      "size": 6259
-    },
-    {
-      "id": "presentation/components/FeatureVsLayerDetail.tsx",
-      "label": "FeatureVsLayerDetail.tsx",
-      "category": "Component",
-      "size": 6665
-    },
-    {
-      "id": "presentation/components/DDDKeyConcepts.tsx",
-      "label": "DDDKeyConcepts.tsx",
-      "category": "Component",
-      "size": 5203
-    },
-    {
-      "id": "presentation/components/MVVMFlow.tsx",
-      "label": "MVVMFlow.tsx",
-      "category": "Component",
-      "size": 5753
-    },
-    {
-      "id": "presentation/components/FlutterBestPractices.tsx",
-      "label": "FlutterBestPractices.tsx",
-      "category": "Component",
-      "size": 5853
+      "size": 9678
     },
     {
       "id": "presentation/components/WhyLayered.tsx",
@@ -427,538 +1327,28 @@
       "size": 4532
     },
     {
-      "id": "presentation/components/RefactoringGuide.tsx",
-      "label": "RefactoringGuide.tsx",
+      "id": "presentation/components/WorkInProgressView.tsx",
+      "label": "WorkInProgressView.tsx",
       "category": "Component",
-      "size": 6993
+      "size": 5138
     },
     {
-      "id": "presentation/components/AndroidPrinciples.tsx",
-      "label": "AndroidPrinciples.tsx",
-      "category": "Component",
-      "size": 5046
+      "id": "presentation/context/ProgressContext.tsx",
+      "label": "ProgressContext.tsx",
+      "category": "State",
+      "size": 1680
     },
     {
-      "id": "presentation/components/ArchReferences.tsx",
-      "label": "ArchReferences.tsx",
-      "category": "Component",
-      "size": 2003
+      "id": "presentation/data/searchIndex.ts",
+      "label": "searchIndex.ts",
+      "category": "Other",
+      "size": 42070
     },
     {
-      "id": "presentation/pages/AssessmentPage.tsx",
-      "label": "AssessmentPage.tsx",
-      "category": "Page",
-      "size": 3353
-    },
-    {
-      "id": "presentation/pages/CleanArchPage.tsx",
-      "label": "CleanArchPage.tsx",
-      "category": "Page",
-      "size": 6122
-    },
-    {
-      "id": "presentation/pages/ComparisonPage.tsx",
-      "label": "ComparisonPage.tsx",
-      "category": "Page",
-      "size": 2433
-    },
-    {
-      "id": "presentation/pages/CQRSPage.tsx",
-      "label": "CQRSPage.tsx",
-      "category": "Page",
-      "size": 3014
-    },
-    {
-      "id": "presentation/pages/DDDPage.tsx",
-      "label": "DDDPage.tsx",
-      "category": "Page",
-      "size": 3344
-    },
-    {
-      "id": "presentation/pages/EDAPage.tsx",
-      "label": "EDAPage.tsx",
-      "category": "Page",
-      "size": 2729
-    },
-    {
-      "id": "presentation/pages/FSDPage.tsx",
-      "label": "FSDPage.tsx",
-      "category": "Page",
-      "size": 3739
-    },
-    {
-      "id": "presentation/pages/HexagonalPage.tsx",
-      "label": "HexagonalPage.tsx",
-      "category": "Page",
-      "size": 3750
-    },
-    {
-      "id": "presentation/pages/HomePage.tsx",
-      "label": "HomePage.tsx",
-      "category": "Page",
-      "size": 11566
-    },
-    {
-      "id": "presentation/pages/HorizontalPage.tsx",
-      "label": "HorizontalPage.tsx",
-      "category": "Page",
-      "size": 1759
-    },
-    {
-      "id": "presentation/pages/OnionPage.tsx",
-      "label": "OnionPage.tsx",
-      "category": "Page",
-      "size": 3726
-    },
-    {
-      "id": "presentation/pages/ProjectPage.tsx",
-      "label": "ProjectPage.tsx",
-      "category": "Page",
-      "size": 18574
-    },
-    {
-      "id": "presentation/pages/RefactoringPage.tsx",
-      "label": "RefactoringPage.tsx",
-      "category": "Page",
-      "size": 7587
-    },
-    {
-      "id": "presentation/pages/RoadmapPage.tsx",
-      "label": "RoadmapPage.tsx",
-      "category": "Page",
-      "size": 11336
-    },
-    {
-      "id": "presentation/pages/SOLIDPage.tsx",
-      "label": "SOLIDPage.tsx",
-      "category": "Page",
-      "size": 2911
-    },
-    {
-      "id": "presentation/pages/VerticalSlicePage.tsx",
-      "label": "VerticalSlicePage.tsx",
-      "category": "Page",
-      "size": 2751
-    },
-    {
-      "id": "presentation/pages/CleanCodePage.tsx",
-      "label": "CleanCodePage.tsx",
-      "category": "Page",
-      "size": 18687
-    },
-    {
-      "id": "presentation/pages/WorkshopPage.tsx",
-      "label": "WorkshopPage.tsx",
-      "category": "Page",
-      "size": 17500
-    },
-    {
-      "id": "presentation/pages/EvolutionaryPage.tsx",
-      "label": "EvolutionaryPage.tsx",
-      "category": "Page",
-      "size": 6006
-    },
-    {
-      "id": "presentation/pages/GlossaryPage.tsx",
-      "label": "GlossaryPage.tsx",
-      "category": "Page",
-      "size": 8917
-    },
-    {
-      "id": "presentation/pages/MicrokernelPage.tsx",
-      "label": "MicrokernelPage.tsx",
-      "category": "Page",
-      "size": 19048
-    },
-    {
-      "id": "presentation/pages/ServerlessPage.tsx",
-      "label": "ServerlessPage.tsx",
-      "category": "Page",
-      "size": 16127
-    },
-    {
-      "id": "presentation/pages/SpaceBasedPage.tsx",
-      "label": "SpaceBasedPage.tsx",
-      "category": "Page",
-      "size": 18245
-    },
-    {
-      "id": "presentation/pages/P2PPage.tsx",
-      "label": "P2PPage.tsx",
-      "category": "Page",
-      "size": 20825
-    },
-    {
-      "id": "presentation/pages/SOAPage.tsx",
-      "label": "SOAPage.tsx",
-      "category": "Page",
-      "size": 18609
-    },
-    {
-      "id": "presentation/pages/CatalogPage.tsx",
-      "label": "CatalogPage.tsx",
-      "category": "Page",
-      "size": 17012
-    },
-    {
-      "id": "presentation/pages/ObjectOrientedPage.tsx",
-      "label": "ObjectOrientedPage.tsx",
-      "category": "Page",
-      "size": 8891
-    },
-    {
-      "id": "presentation/pages/PipeFilterPage.tsx",
-      "label": "PipeFilterPage.tsx",
-      "category": "Page",
-      "size": 18038
-    },
-    {
-      "id": "presentation/pages/InterpreterPage.tsx",
-      "label": "InterpreterPage.tsx",
-      "category": "Page",
-      "size": 18224
-    },
-    {
-      "id": "presentation/pages/BrokerPage.tsx",
-      "label": "BrokerPage.tsx",
-      "category": "Page",
-      "size": 22040
-    },
-    {
-      "id": "presentation/pages/OrchestrationPage.tsx",
-      "label": "OrchestrationPage.tsx",
-      "category": "Page",
-      "size": 11472
-    },
-    {
-      "id": "presentation/pages/ChoreographyPage.tsx",
-      "label": "ChoreographyPage.tsx",
-      "category": "Page",
-      "size": 19759
-    },
-    {
-      "id": "presentation/pages/EventSourcingPage.tsx",
-      "label": "EventSourcingPage.tsx",
-      "category": "Page",
-      "size": 20698
-    },
-    {
-      "id": "presentation/pages/MVCPage.tsx",
-      "label": "MVCPage.tsx",
-      "category": "Page",
-      "size": 19936
-    },
-    {
-      "id": "presentation/pages/MVPPage.tsx",
-      "label": "MVPPage.tsx",
-      "category": "Page",
-      "size": 19456
-    },
-    {
-      "id": "presentation/pages/PubSubPage.tsx",
-      "label": "PubSubPage.tsx",
-      "category": "Page",
-      "size": 17798
-    },
-    {
-      "id": "presentation/pages/PrimarySecondaryPage.tsx",
-      "label": "PrimarySecondaryPage.tsx",
-      "category": "Page",
-      "size": 16243
-    },
-    {
-      "id": "presentation/pages/MVVMPage.tsx",
-      "label": "MVVMPage.tsx",
-      "category": "Page",
-      "size": 30074
-    },
-    {
-      "id": "presentation/pages/PlugInPage.tsx",
-      "label": "PlugInPage.tsx",
-      "category": "Page",
-      "size": 18219
-    },
-    {
-      "id": "presentation/pages/ECSPage.tsx",
-      "label": "ECSPage.tsx",
-      "category": "Page",
-      "size": 12710
-    },
-    {
-      "id": "presentation/pages/NotFoundPage.tsx",
-      "label": "NotFoundPage.tsx",
-      "category": "Page",
-      "size": 4893
-    },
-    {
-      "id": "presentation/pages/SecurityPage.tsx",
-      "label": "SecurityPage.tsx",
-      "category": "Page",
-      "size": 4561
-    },
-    {
-      "id": "presentation/pages/RobustnessPage.tsx",
-      "label": "RobustnessPage.tsx",
-      "category": "Page",
-      "size": 15000
-    },
-    {
-      "id": "presentation/pages/TestingPage.tsx",
-      "label": "TestingPage.tsx",
-      "category": "Page",
-      "size": 4338
-    },
-    {
-      "id": "presentation/pages/AbstractionPage.tsx",
-      "label": "AbstractionPage.tsx",
-      "category": "Page",
-      "size": 16817
-    },
-    {
-      "id": "presentation/pages/DisciplineCatalogPage.tsx",
-      "label": "DisciplineCatalogPage.tsx",
-      "category": "Page",
-      "size": 15998
-    },
-    {
-      "id": "presentation/pages/BookshelfPage.tsx",
-      "label": "BookshelfPage.tsx",
-      "category": "Page",
-      "size": 12008
-    },
-    {
-      "id": "presentation/pages/LeanArchitecturePage.tsx",
-      "label": "LeanArchitecturePage.tsx",
-      "category": "Page",
-      "size": 12718
-    },
-    {
-      "id": "presentation/pages/AtomicDesignPage.tsx",
-      "label": "AtomicDesignPage.tsx",
-      "category": "Page",
-      "size": 8093
-    },
-    {
-      "id": "presentation/pages/DesignPatternsPage.tsx",
-      "label": "DesignPatternsPage.tsx",
-      "category": "Page",
-      "size": 8042
-    },
-    {
-      "id": "presentation/pages/DesignTokensPage.tsx",
-      "label": "DesignTokensPage.tsx",
-      "category": "Page",
-      "size": 6818
-    },
-    {
-      "id": "presentation/pages/FNAConceptPage.tsx",
-      "label": "FNAConceptPage.tsx",
-      "category": "Page",
-      "size": 7267
-    },
-    {
-      "id": "presentation/pages/ArchBrainPage.tsx",
-      "label": "ArchBrainPage.tsx",
-      "category": "Page",
-      "size": 1945
-    },
-    {
-      "id": "presentation/pages/FutureArchitecturePage.tsx",
-      "label": "FutureArchitecturePage.tsx",
-      "category": "Page",
-      "size": 10675
-    },
-    {
-      "id": "presentation/pages/SynthesisLabPage.tsx",
-      "label": "SynthesisLabPage.tsx",
-      "category": "Page",
-      "size": 18181
-    },
-    {
-      "id": "presentation/pages/TDDPage.tsx",
-      "label": "TDDPage.tsx",
-      "category": "Page",
-      "size": 5723
-    },
-    {
-      "id": "presentation/pages/OOPFundamentalsPage.tsx",
-      "label": "OOPFundamentalsPage.tsx",
-      "category": "Page",
-      "size": 26206
-    },
-    {
-      "id": "presentation/pages/CAPTheoremPage.tsx",
-      "label": "CAPTheoremPage.tsx",
-      "category": "Page",
-      "size": 20159
-    },
-    {
-      "id": "presentation/pages/ACIDPage.tsx",
-      "label": "ACIDPage.tsx",
-      "category": "Page",
-      "size": 13768
-    },
-    {
-      "id": "presentation/pages/VIPERPage.tsx",
-      "label": "VIPERPage.tsx",
-      "category": "Page",
-      "size": 18696
-    },
-    {
-      "id": "presentation/pages/MVVMCPage.tsx",
-      "label": "MVVMCPage.tsx",
-      "category": "Page",
-      "size": 19976
-    },
-    {
-      "id": "presentation/pages/AntiPatternsPage.tsx",
-      "label": "AntiPatternsPage.tsx",
-      "category": "Page",
-      "size": 8175
-    },
-    {
-      "id": "presentation/pages/ClientServerPage.tsx",
-      "label": "ClientServerPage.tsx",
-      "category": "Page",
-      "size": 15463
-    },
-    {
-      "id": "presentation/pages/DocumentationPage.tsx",
-      "label": "DocumentationPage.tsx",
-      "category": "Page",
-      "size": 4268
-    },
-    {
-      "id": "presentation/pages/ServerDrivenUIPage.tsx",
-      "label": "ServerDrivenUIPage.tsx",
-      "category": "Page",
-      "size": 7198
-    },
-    {
-      "id": "presentation/pages/IslandsArchPage.tsx",
-      "label": "IslandsArchPage.tsx",
-      "category": "Page",
-      "size": 10243
-    },
-    {
-      "id": "presentation/pages/MicroFrontendsPage.tsx",
-      "label": "MicroFrontendsPage.tsx",
-      "category": "Page",
-      "size": 3821
-    },
-    {
-      "id": "presentation/pages/StateDrivenPage.tsx",
-      "label": "StateDrivenPage.tsx",
-      "category": "Page",
-      "size": 1585
-    },
-    {
-      "id": "presentation/pages/ComponentDrivenPage.tsx",
-      "label": "ComponentDrivenPage.tsx",
-      "category": "Page",
-      "size": 1197
-    },
-    {
-      "id": "presentation/pages/CompositeUIPage.tsx",
-      "label": "CompositeUIPage.tsx",
-      "category": "Page",
-      "size": 1214
-    },
-    {
-      "id": "presentation/pages/UIArchitectureCatalogPage.tsx",
-      "label": "UIArchitectureCatalogPage.tsx",
-      "category": "Page",
-      "size": 9002
-    },
-    {
-      "id": "presentation/pages/GitOpsPage.tsx",
-      "label": "GitOpsPage.tsx",
-      "category": "Page",
-      "size": 6960
-    },
-    {
-      "id": "presentation/pages/ContainerizationPage.tsx",
-      "label": "ContainerizationPage.tsx",
-      "category": "Page",
-      "size": 4046
-    },
-    {
-      "id": "presentation/pages/ZeroTrustPage.tsx",
-      "label": "ZeroTrustPage.tsx",
-      "category": "Page",
-      "size": 4150
-    },
-    {
-      "id": "presentation/pages/RAGPage.tsx",
-      "label": "RAGPage.tsx",
-      "category": "Page",
-      "size": 4971
-    },
-    {
-      "id": "presentation/pages/AgenticAIPage.tsx",
-      "label": "AgenticAIPage.tsx",
-      "category": "Page",
-      "size": 3266
-    },
-    {
-      "id": "presentation/pages/LLMOpsPage.tsx",
-      "label": "LLMOpsPage.tsx",
-      "category": "Page",
-      "size": 2635
-    },
-    {
-      "id": "presentation/pages/DataAICatalogPage.tsx",
-      "label": "DataAICatalogPage.tsx",
-      "category": "Page",
-      "size": 9957
-    },
-    {
-      "id": "presentation/pages/CloudCatalogPage.tsx",
-      "label": "CloudCatalogPage.tsx",
-      "category": "Page",
-      "size": 8296
-    },
-    {
-      "id": "presentation/pages/BFFPage.tsx",
-      "label": "BFFPage.tsx",
-      "category": "Page",
-      "size": 19705
-    },
-    {
-      "id": "presentation/pages/MVIPage.tsx",
-      "label": "MVIPage.tsx",
-      "category": "Page",
-      "size": 17022
-    },
-    {
-      "id": "presentation/pages/SPAvsMPAPage.tsx",
-      "label": "SPAvsMPAPage.tsx",
-      "category": "Page",
-      "size": 20725
-    },
-    {
-      "id": "presentation/pages/MicroservicesPage.tsx",
-      "label": "MicroservicesPage.tsx",
-      "category": "Page",
-      "size": 3816
-    },
-    {
-      "id": "presentation/pages/DependencyManagementPage.tsx",
-      "label": "DependencyManagementPage.tsx",
-      "category": "Page",
-      "size": 6515
-    },
-    {
-      "id": "presentation/pages/ModerateAbstractionPage.tsx",
-      "label": "ModerateAbstractionPage.tsx",
-      "category": "Page",
-      "size": 6487
-    },
-    {
-      "id": "presentation/pages/LambdaKappaPage.tsx",
-      "label": "LambdaKappaPage.tsx",
-      "category": "Page",
-      "size": 22458
+      "id": "presentation/hooks/useAssessmentQuiz.ts",
+      "label": "useAssessmentQuiz.ts",
+      "category": "Hook",
+      "size": 2593
     },
     {
       "id": "presentation/hooks/useLocalStorage.ts",
@@ -967,802 +1357,2398 @@
       "size": 1265
     },
     {
-      "id": "context/ProgressContext.tsx",
-      "label": "ProgressContext.tsx",
-      "category": "State",
-      "size": 1693
+      "id": "presentation/navigation/AppRouter.tsx",
+      "label": "AppRouter.tsx",
+      "category": "App",
+      "size": 12336
+    },
+    {
+      "id": "presentation/pages/abstraction.tsx",
+      "label": "abstraction.tsx",
+      "category": "Page",
+      "size": 6653
+    },
+    {
+      "id": "presentation/pages/acid.tsx",
+      "label": "acid.tsx",
+      "category": "Page",
+      "size": 7591
+    },
+    {
+      "id": "presentation/pages/acronyms.tsx",
+      "label": "acronyms.tsx",
+      "category": "Page",
+      "size": 15694
+    },
+    {
+      "id": "presentation/pages/agentic-ai.tsx",
+      "label": "agentic-ai.tsx",
+      "category": "Page",
+      "size": 7708
+    },
+    {
+      "id": "presentation/pages/anti-patterns.tsx",
+      "label": "anti-patterns.tsx",
+      "category": "Page",
+      "size": 8520
+    },
+    {
+      "id": "presentation/pages/assessment.tsx",
+      "label": "assessment.tsx",
+      "category": "Page",
+      "size": 4883
+    },
+    {
+      "id": "presentation/pages/atomic-design.tsx",
+      "label": "atomic-design.tsx",
+      "category": "Page",
+      "size": 8432
+    },
+    {
+      "id": "presentation/pages/bff.tsx",
+      "label": "bff.tsx",
+      "category": "Page",
+      "size": 11311
+    },
+    {
+      "id": "presentation/pages/broker.tsx",
+      "label": "broker.tsx",
+      "category": "Page",
+      "size": 11072
+    },
+    {
+      "id": "presentation/pages/cap-theorem.tsx",
+      "label": "cap-theorem.tsx",
+      "category": "Page",
+      "size": 8333
+    },
+    {
+      "id": "presentation/pages/catalog.tsx",
+      "label": "catalog.tsx",
+      "category": "Page",
+      "size": 19478
+    },
+    {
+      "id": "presentation/pages/choreography.tsx",
+      "label": "choreography.tsx",
+      "category": "Page",
+      "size": 10984
+    },
+    {
+      "id": "presentation/pages/clean-arch.tsx",
+      "label": "clean-arch.tsx",
+      "category": "Page",
+      "size": 7529
+    },
+    {
+      "id": "presentation/pages/clean-code.tsx",
+      "label": "clean-code.tsx",
+      "category": "Page",
+      "size": 9326
+    },
+    {
+      "id": "presentation/pages/client-server.tsx",
+      "label": "client-server.tsx",
+      "category": "Page",
+      "size": 11695
+    },
+    {
+      "id": "presentation/pages/cloud-catalog.tsx",
+      "label": "cloud-catalog.tsx",
+      "category": "Page",
+      "size": 11662
+    },
+    {
+      "id": "presentation/pages/compare.tsx",
+      "label": "compare.tsx",
+      "category": "Page",
+      "size": 2503
+    },
+    {
+      "id": "presentation/pages/component-driven.tsx",
+      "label": "component-driven.tsx",
+      "category": "Page",
+      "size": 7900
+    },
+    {
+      "id": "presentation/pages/component-state.tsx",
+      "label": "component-state.tsx",
+      "category": "Page",
+      "size": 284
+    },
+    {
+      "id": "presentation/pages/composite-ui.tsx",
+      "label": "composite-ui.tsx",
+      "category": "Page",
+      "size": 8637
+    },
+    {
+      "id": "presentation/pages/containerization.tsx",
+      "label": "containerization.tsx",
+      "category": "Page",
+      "size": 8189
+    },
+    {
+      "id": "presentation/pages/cqrs.tsx",
+      "label": "cqrs.tsx",
+      "category": "Page",
+      "size": 5811
+    },
+    {
+      "id": "presentation/pages/data-ai-catalog.tsx",
+      "label": "data-ai-catalog.tsx",
+      "category": "Page",
+      "size": 12881
+    },
+    {
+      "id": "presentation/pages/ddd.tsx",
+      "label": "ddd.tsx",
+      "category": "Page",
+      "size": 6766
+    },
+    {
+      "id": "presentation/pages/dependency-management.tsx",
+      "label": "dependency-management.tsx",
+      "category": "Page",
+      "size": 6816
+    },
+    {
+      "id": "presentation/pages/design-patterns.tsx",
+      "label": "design-patterns.tsx",
+      "category": "Page",
+      "size": 8383
+    },
+    {
+      "id": "presentation/pages/design-tokens.tsx",
+      "label": "design-tokens.tsx",
+      "category": "Page",
+      "size": 7140
+    },
+    {
+      "id": "presentation/pages/discipline-catalog.tsx",
+      "label": "discipline-catalog.tsx",
+      "category": "Page",
+      "size": 3885
+    },
+    {
+      "id": "presentation/pages/docs-annotations.tsx",
+      "label": "docs-annotations.tsx",
+      "category": "Page",
+      "size": 8045
+    },
+    {
+      "id": "presentation/pages/ecs.tsx",
+      "label": "ecs.tsx",
+      "category": "Page",
+      "size": 9902
+    },
+    {
+      "id": "presentation/pages/eda.tsx",
+      "label": "eda.tsx",
+      "category": "Page",
+      "size": 6380
+    },
+    {
+      "id": "presentation/pages/elite-architecture.tsx",
+      "label": "elite-architecture.tsx",
+      "category": "Page",
+      "size": 7372
+    },
+    {
+      "id": "presentation/pages/event-sourcing.tsx",
+      "label": "event-sourcing.tsx",
+      "category": "Page",
+      "size": 11348
+    },
+    {
+      "id": "presentation/pages/evolution.tsx",
+      "label": "evolution.tsx",
+      "category": "Page",
+      "size": 8473
+    },
+    {
+      "id": "presentation/pages/fna-concept.tsx",
+      "label": "fna-concept.tsx",
+      "category": "Page",
+      "size": 14087
+    },
+    {
+      "id": "presentation/pages/fsd.tsx",
+      "label": "fsd.tsx",
+      "category": "Page",
+      "size": 6839
+    },
+    {
+      "id": "presentation/pages/gitops.tsx",
+      "label": "gitops.tsx",
+      "category": "Page",
+      "size": 3973
+    },
+    {
+      "id": "presentation/pages/glossary.tsx",
+      "label": "glossary.tsx",
+      "category": "Page",
+      "size": 11380
+    },
+    {
+      "id": "presentation/pages/hexagonal.tsx",
+      "label": "hexagonal.tsx",
+      "category": "Page",
+      "size": 6775
+    },
+    {
+      "id": "presentation/pages/home.tsx",
+      "label": "home.tsx",
+      "category": "Page",
+      "size": 19989
+    },
+    {
+      "id": "presentation/pages/horizontal.tsx",
+      "label": "horizontal.tsx",
+      "category": "Page",
+      "size": 291
+    },
+    {
+      "id": "presentation/pages/interpreter.tsx",
+      "label": "interpreter.tsx",
+      "category": "Page",
+      "size": 11972
+    },
+    {
+      "id": "presentation/pages/islands-arch.tsx",
+      "label": "islands-arch.tsx",
+      "category": "Page",
+      "size": 12802
+    },
+    {
+      "id": "presentation/pages/lambda-kappa.tsx",
+      "label": "lambda-kappa.tsx",
+      "category": "Page",
+      "size": 11217
+    },
+    {
+      "id": "presentation/pages/lean-architecture.tsx",
+      "label": "lean-architecture.tsx",
+      "category": "Page",
+      "size": 5172
+    },
+    {
+      "id": "presentation/pages/library.tsx",
+      "label": "library.tsx",
+      "category": "Page",
+      "size": 12489
+    },
+    {
+      "id": "presentation/pages/llm-ops.tsx",
+      "label": "llm-ops.tsx",
+      "category": "Page",
+      "size": 6787
+    },
+    {
+      "id": "presentation/pages/micro-frontends.tsx",
+      "label": "micro-frontends.tsx",
+      "category": "Page",
+      "size": 7532
+    },
+    {
+      "id": "presentation/pages/microkernel.tsx",
+      "label": "microkernel.tsx",
+      "category": "Page",
+      "size": 12023
+    },
+    {
+      "id": "presentation/pages/microservices.tsx",
+      "label": "microservices.tsx",
+      "category": "Page",
+      "size": 6940
+    },
+    {
+      "id": "presentation/pages/moderate-abstraction.tsx",
+      "label": "moderate-abstraction.tsx",
+      "category": "Page",
+      "size": 272
+    },
+    {
+      "id": "presentation/pages/mvc.tsx",
+      "label": "mvc.tsx",
+      "category": "Page",
+      "size": 11040
+    },
+    {
+      "id": "presentation/pages/mvi.tsx",
+      "label": "mvi.tsx",
+      "category": "Page",
+      "size": 11429
+    },
+    {
+      "id": "presentation/pages/mvp.tsx",
+      "label": "mvp.tsx",
+      "category": "Page",
+      "size": 11332
+    },
+    {
+      "id": "presentation/pages/mvvm-c.tsx",
+      "label": "mvvm-c.tsx",
+      "category": "Page",
+      "size": 11505
+    },
+    {
+      "id": "presentation/pages/mvvm.tsx",
+      "label": "mvvm.tsx",
+      "category": "Page",
+      "size": 7323
+    },
+    {
+      "id": "presentation/pages/not-found.tsx",
+      "label": "not-found.tsx",
+      "category": "Page",
+      "size": 5209
+    },
+    {
+      "id": "presentation/pages/object-oriented.tsx",
+      "label": "object-oriented.tsx",
+      "category": "Page",
+      "size": 273
+    },
+    {
+      "id": "presentation/pages/onion.tsx",
+      "label": "onion.tsx",
+      "category": "Page",
+      "size": 4679
+    },
+    {
+      "id": "presentation/pages/oop-fundamentals.tsx",
+      "label": "oop-fundamentals.tsx",
+      "category": "Page",
+      "size": 8163
+    },
+    {
+      "id": "presentation/pages/orchestration.tsx",
+      "label": "orchestration.tsx",
+      "category": "Page",
+      "size": 11860
+    },
+    {
+      "id": "presentation/pages/p2p.tsx",
+      "label": "p2p.tsx",
+      "category": "Page",
+      "size": 10345
+    },
+    {
+      "id": "presentation/pages/pipe-filter.tsx",
+      "label": "pipe-filter.tsx",
+      "category": "Page",
+      "size": 10978
+    },
+    {
+      "id": "presentation/pages/plugin.tsx",
+      "label": "plugin.tsx",
+      "category": "Page",
+      "size": 11343
+    },
+    {
+      "id": "presentation/pages/primary-secondary.tsx",
+      "label": "primary-secondary.tsx",
+      "category": "Page",
+      "size": 8859
+    },
+    {
+      "id": "presentation/pages/project-arch.tsx",
+      "label": "project-arch.tsx",
+      "category": "Page",
+      "size": 4804
+    },
+    {
+      "id": "presentation/pages/pub-sub.tsx",
+      "label": "pub-sub.tsx",
+      "category": "Page",
+      "size": 9928
+    },
+    {
+      "id": "presentation/pages/rag-arch.tsx",
+      "label": "rag-arch.tsx",
+      "category": "Page",
+      "size": 7637
+    },
+    {
+      "id": "presentation/pages/refactoring.tsx",
+      "label": "refactoring.tsx",
+      "category": "Page",
+      "size": 6562
+    },
+    {
+      "id": "presentation/pages/roadmap.tsx",
+      "label": "roadmap.tsx",
+      "category": "Page",
+      "size": 2288
+    },
+    {
+      "id": "presentation/pages/robustness.tsx",
+      "label": "robustness.tsx",
+      "category": "Page",
+      "size": 7179
+    },
+    {
+      "id": "presentation/pages/security.tsx",
+      "label": "security.tsx",
+      "category": "Page",
+      "size": 7443
+    },
+    {
+      "id": "presentation/pages/server-driven-ui.tsx",
+      "label": "server-driven-ui.tsx",
+      "category": "Page",
+      "size": 7515
+    },
+    {
+      "id": "presentation/pages/serverless.tsx",
+      "label": "serverless.tsx",
+      "category": "Page",
+      "size": 10317
+    },
+    {
+      "id": "presentation/pages/soa.tsx",
+      "label": "soa.tsx",
+      "category": "Page",
+      "size": 8930
+    },
+    {
+      "id": "presentation/pages/solid.tsx",
+      "label": "solid.tsx",
+      "category": "Page",
+      "size": 5833
+    },
+    {
+      "id": "presentation/pages/spa-vs-mpa.tsx",
+      "label": "spa-vs-mpa.tsx",
+      "category": "Page",
+      "size": 10639
+    },
+    {
+      "id": "presentation/pages/space-based.tsx",
+      "label": "space-based.tsx",
+      "category": "Page",
+      "size": 10999
+    },
+    {
+      "id": "presentation/pages/state-driven.tsx",
+      "label": "state-driven.tsx",
+      "category": "Page",
+      "size": 278
+    },
+    {
+      "id": "presentation/pages/synthesis-lab.tsx",
+      "label": "synthesis-lab.tsx",
+      "category": "Page",
+      "size": 1630
+    },
+    {
+      "id": "presentation/pages/tdd.tsx",
+      "label": "tdd.tsx",
+      "category": "Page",
+      "size": 211
+    },
+    {
+      "id": "presentation/pages/testing.tsx",
+      "label": "testing.tsx",
+      "category": "Page",
+      "size": 7439
+    },
+    {
+      "id": "presentation/pages/ui-catalog.tsx",
+      "label": "ui-catalog.tsx",
+      "category": "Page",
+      "size": 14005
+    },
+    {
+      "id": "presentation/pages/vector-dbs.tsx",
+      "label": "vector-dbs.tsx",
+      "category": "Page",
+      "size": 8594
+    },
+    {
+      "id": "presentation/pages/vertical.tsx",
+      "label": "vertical.tsx",
+      "category": "Page",
+      "size": 9744
+    },
+    {
+      "id": "presentation/pages/viper.tsx",
+      "label": "viper.tsx",
+      "category": "Page",
+      "size": 11654
+    },
+    {
+      "id": "presentation/pages/workshop.tsx",
+      "label": "workshop.tsx",
+      "category": "Page",
+      "size": 1550
+    },
+    {
+      "id": "presentation/pages/zero-trust.tsx",
+      "label": "zero-trust.tsx",
+      "category": "Page",
+      "size": 253
+    },
+    {
+      "id": "presentation/themes/theme.ts",
+      "label": "theme.ts",
+      "category": "Other",
+      "size": 971
+    },
+    {
+      "id": "presentation/themes/typography.ts",
+      "label": "typography.ts",
+      "category": "Other",
+      "size": 1522
+    },
+    {
+      "id": "tests/setup.ts",
+      "label": "setup.ts",
+      "category": "Other",
+      "size": 36
     }
   ],
   "links": [
     {
       "source": "App.tsx",
       "target": "presentation/components/Navbar.tsx",
-      "type": "import"
+      "value": 1
     },
     {
       "source": "App.tsx",
       "target": "presentation/components/Footer.tsx",
-      "type": "import"
+      "value": 1
     },
     {
       "source": "App.tsx",
-      "target": "context/ProgressContext.tsx",
-      "type": "import"
+      "target": "presentation/context/ProgressContext.tsx",
+      "value": 1
     },
     {
       "source": "App.tsx",
       "target": "presentation/components/ErrorBoundary.tsx",
-      "type": "import"
+      "value": 1
     },
     {
       "source": "App.tsx",
       "target": "presentation/components/CommandPalette.tsx",
-      "type": "import"
+      "value": 1
     },
     {
       "source": "App.tsx",
       "target": "presentation/components/ScrollToTop.tsx",
-      "type": "import"
+      "value": 1
+    },
+    {
+      "source": "App.tsx",
+      "target": "presentation/navigation/AppRouter.tsx",
+      "value": 1
+    },
+    {
+      "source": "domain/usecases/ArchitectureCalculator.ts",
+      "target": "infrastructure/ArchitectureData.ts",
+      "value": 1
+    },
+    {
+      "source": "infrastructure/GlossaryData.ts",
+      "target": "infrastructure/AcronymsData.ts",
+      "value": 1
     },
     {
       "source": "main.tsx",
       "target": "App.tsx",
-      "type": "import"
+      "value": 1
     },
     {
-      "source": "domain/usecases/ArchitectureCalculator.ts",
-      "target": "infrastructure/data/ArchitectureData.ts",
-      "type": "import"
+      "source": "presentation/components/ArchitectRoadmap.tsx",
+      "target": "presentation/context/ProgressContext.tsx",
+      "value": 1
     },
     {
       "source": "presentation/components/ArchitectureWizard.tsx",
-      "target": "infrastructure/data/ArchitectureData.ts",
-      "type": "import"
+      "target": "infrastructure/ArchitectureData.ts",
+      "value": 1
     },
     {
       "source": "presentation/components/ArchitectureWizard.tsx",
       "target": "domain/usecases/ArchitectureCalculator.ts",
-      "type": "import"
-    },
-    {
-      "source": "presentation/components/ArchitectRoadmap.tsx",
-      "target": "context/ProgressContext.tsx",
-      "type": "import"
+      "value": 1
     },
     {
       "source": "presentation/components/AssessmentQuiz.tsx",
-      "target": "context/ProgressContext.tsx",
-      "type": "import"
+      "target": "presentation/hooks/useAssessmentQuiz.ts",
+      "value": 1
+    },
+    {
+      "source": "presentation/components/cleanarch/CleanArchClassicLayerTab.tsx",
+      "target": "presentation/components/FeatureVsLayerDetail.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/components/cleanarch/CleanArchModernFeatureTab.tsx",
+      "target": "presentation/components/FeatureVsLayerDetail.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/components/cleanarch/CleanArchPrinciplesTab.tsx",
+      "target": "presentation/components/Theory.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/components/cleanarch/CleanArchPrinciplesTab.tsx",
+      "target": "presentation/components/ArchitecturalTruths.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/components/cleanarch/CleanArchPrinciplesTab.tsx",
+      "target": "presentation/components/UncleBobStructure.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/components/cleanarch/CleanArchPrinciplesTab.tsx",
+      "target": "presentation/components/ArchitectureFlow.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/components/cleanarch/CleanArchPrinciplesTab.tsx",
+      "target": "presentation/components/Practical.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/components/cleanarch/CleanArchScreamingTab.tsx",
+      "target": "presentation/components/ScreamingSection.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/components/CommandPalette.tsx",
+      "target": "presentation/data/searchIndex.ts",
+      "value": 1
+    },
+    {
+      "source": "presentation/components/ComparisonMatrix.tsx",
+      "target": "infrastructure/ComparisonMatrixData.ts",
+      "value": 1
+    },
+    {
+      "source": "presentation/components/disciplinechain/DisciplineChainColumn.tsx",
+      "target": "presentation/components/disciplinechain/useDisciplineStreak.ts",
+      "value": 1
+    },
+    {
+      "source": "presentation/components/disciplinechain/DisciplineChainColumn.tsx",
+      "target": "presentation/components/disciplinechain/DisciplineChainNode.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/components/disciplinechain/DisciplineChainNode.tsx",
+      "target": "presentation/components/disciplinechain/useDisciplineStreak.ts",
+      "value": 1
+    },
+    {
+      "source": "presentation/components/disciplinechain/useDisciplineStreak.ts",
+      "target": "presentation/context/ProgressContext.tsx",
+      "value": 1
     },
     {
       "source": "presentation/components/EDAHero.tsx",
       "target": "presentation/components/ArchHero.tsx",
-      "type": "import"
+      "value": 1
     },
     {
       "source": "presentation/components/Hero.tsx",
       "target": "presentation/components/ArchHero.tsx",
-      "type": "import"
+      "value": 1
     },
     {
       "source": "presentation/components/HexagonalHero.tsx",
       "target": "presentation/components/ArchHero.tsx",
-      "type": "import"
+      "value": 1
     },
     {
-      "source": "presentation/components/HomeRoadmap.tsx",
-      "target": "context/ProgressContext.tsx",
-      "type": "import"
+      "source": "presentation/components/HomeHero.tsx",
+      "target": "presentation/themes/theme.ts",
+      "value": 1
     },
     {
       "source": "presentation/components/HorizontalHero.tsx",
       "target": "presentation/components/ArchHero.tsx",
-      "type": "import"
+      "value": 1
+    },
+    {
+      "source": "presentation/components/lean/LeanPrinciplesViewer.tsx",
+      "target": "data/leanPrinciplesData.ts",
+      "value": 1
+    },
+    {
+      "source": "presentation/components/llmops/LLMOpsSimulationTab.tsx",
+      "target": "presentation/components/llmops/useLLMOpsSimulation.ts",
+      "value": 1
+    },
+    {
+      "source": "presentation/components/mvvm/MVVMHybridTab.tsx",
+      "target": "presentation/components/WhyLayered.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/components/mvvm/MVVMHybridTab.tsx",
+      "target": "presentation/components/RefactoringGuide.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/components/mvvm/MVVMHybridTab.tsx",
+      "target": "presentation/components/ArchReferences.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/components/mvvm/MVVMPrinciplesTab.tsx",
+      "target": "presentation/components/MVVMFlow.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/components/mvvm/MVVMPrinciplesTab.tsx",
+      "target": "presentation/components/FlutterBestPractices.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/components/mvvm/MVVMPrinciplesTab.tsx",
+      "target": "presentation/components/AndroidPrinciples.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/components/mvvm/MVVMPrinciplesTab.tsx",
+      "target": "presentation/components/RefactoringGuide.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/components/mvvm/MVVMPrinciplesTab.tsx",
+      "target": "presentation/components/ArchReferences.tsx",
+      "value": 1
     },
     {
       "source": "presentation/components/OnionHero.tsx",
       "target": "presentation/components/ArchHero.tsx",
-      "type": "import"
+      "value": 1
+    },
+    {
+      "source": "presentation/components/PageTemplate.tsx",
+      "target": "presentation/components/SEO.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/components/PageTemplate.tsx",
+      "target": "presentation/components/Card.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/components/PageTemplate.tsx",
+      "target": "presentation/components/Section.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/components/PageTemplate.tsx",
+      "target": "presentation/components/SectionTitle.tsx",
+      "value": 1
     },
     {
       "source": "presentation/components/Practical.tsx",
       "target": "domain/usecases/SimulationUseCase.ts",
-      "type": "import"
+      "value": 1
+    },
+    {
+      "source": "presentation/components/projectarch/ProjectArchitectureTab.tsx",
+      "target": "presentation/components/ProjectHero.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/components/projectarch/ProjectArchitectureTab.tsx",
+      "target": "presentation/components/ProjectDecisionRecords.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/components/projectarch/ProjectArchitectureTab.tsx",
+      "target": "presentation/components/ProjectDependency.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/components/projectarch/ProjectArchitectureTab.tsx",
+      "target": "presentation/components/ProjectStructure.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/components/projectarch/ProjectArchitectureTab.tsx",
+      "target": "presentation/components/ProjectTechStack.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/components/projectarch/ProjectBrainTab.tsx",
+      "target": "presentation/components/ArchHero.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/components/projectarch/ProjectDesignTab.tsx",
+      "target": "presentation/components/ArchHero.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/components/projectarch/ProjectDesignTab.tsx",
+      "target": "presentation/components/ProjectDesignSystem.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/components/roadmap/RoadmapCurriculumTab.tsx",
+      "target": "presentation/components/ArchitectRoadmap.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/components/roadmap/RoadmapProductionTab.tsx",
+      "target": "presentation/components/ProductionFlow.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/components/ScrollToTop.tsx",
+      "target": "presentation/context/ProgressContext.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/components/security/SecurityDefenseSimulationTab.tsx",
+      "target": "presentation/components/security/useSecuritySimulation.ts",
+      "value": 1
+    },
+    {
+      "source": "presentation/components/synthesislab/SynthesisInspector.tsx",
+      "target": "presentation/components/synthesislab/SynthesisCanvas.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/components/synthesislab/useSynthesisLab.ts",
+      "target": "presentation/components/synthesislab/SynthesisCanvas.tsx",
+      "value": 1
     },
     {
       "source": "presentation/components/SystemHero.tsx",
       "target": "presentation/components/ArchHero.tsx",
-      "type": "import"
+      "value": 1
     },
     {
-      "source": "presentation/components/CommandPalette.tsx",
-      "target": "infrastructure/data/GlossaryData.ts",
-      "type": "import"
+      "source": "presentation/components/testing/TDDLifecycleTab.tsx",
+      "target": "presentation/components/testing/useTDDSimulation.ts",
+      "value": 1
     },
     {
-      "source": "presentation/pages/AssessmentPage.tsx",
-      "target": "presentation/components/AssessmentQuiz.tsx",
-      "type": "import"
-    },
-    {
-      "source": "presentation/pages/CleanArchPage.tsx",
-      "target": "presentation/components/Hero.tsx",
-      "type": "import"
-    },
-    {
-      "source": "presentation/pages/CleanArchPage.tsx",
-      "target": "presentation/components/Theory.tsx",
-      "type": "import"
-    },
-    {
-      "source": "presentation/pages/CleanArchPage.tsx",
-      "target": "presentation/components/UncleBobStructure.tsx",
-      "type": "import"
-    },
-    {
-      "source": "presentation/pages/CleanArchPage.tsx",
-      "target": "presentation/components/ArchitectureFlow.tsx",
-      "type": "import"
-    },
-    {
-      "source": "presentation/pages/CleanArchPage.tsx",
-      "target": "presentation/components/Practical.tsx",
-      "type": "import"
-    },
-    {
-      "source": "presentation/pages/CleanArchPage.tsx",
-      "target": "presentation/components/ArchitecturalTruths.tsx",
-      "type": "import"
-    },
-    {
-      "source": "presentation/pages/CleanArchPage.tsx",
-      "target": "presentation/components/ScreamingSection.tsx",
-      "type": "import"
-    },
-    {
-      "source": "presentation/pages/CleanArchPage.tsx",
-      "target": "presentation/components/FeatureVsLayerDetail.tsx",
-      "type": "import"
-    },
-    {
-      "source": "presentation/pages/CleanArchPage.tsx",
-      "target": "context/ProgressContext.tsx",
-      "type": "import"
-    },
-    {
-      "source": "presentation/pages/ComparisonPage.tsx",
-      "target": "context/ProgressContext.tsx",
-      "type": "import"
-    },
-    {
-      "source": "presentation/pages/ComparisonPage.tsx",
-      "target": "presentation/components/ComparisonMatrix.tsx",
-      "type": "import"
-    },
-    {
-      "source": "presentation/pages/ComparisonPage.tsx",
-      "target": "presentation/components/ArchitectureWizard.tsx",
-      "type": "import"
-    },
-    {
-      "source": "presentation/pages/CQRSPage.tsx",
-      "target": "presentation/components/CQRSHero.tsx",
-      "type": "import"
-    },
-    {
-      "source": "presentation/pages/CQRSPage.tsx",
-      "target": "presentation/components/CQRSDiagram.tsx",
-      "type": "import"
-    },
-    {
-      "source": "presentation/pages/CQRSPage.tsx",
-      "target": "presentation/components/CQRSPractical.tsx",
-      "type": "import"
-    },
-    {
-      "source": "presentation/pages/CQRSPage.tsx",
-      "target": "presentation/components/CQRSSection.tsx",
-      "type": "import"
-    },
-    {
-      "source": "presentation/pages/DDDPage.tsx",
-      "target": "presentation/components/DDDHero.tsx",
-      "type": "import"
-    },
-    {
-      "source": "presentation/pages/DDDPage.tsx",
-      "target": "presentation/components/StrategicDetails.tsx",
-      "type": "import"
-    },
-    {
-      "source": "presentation/pages/DDDPage.tsx",
-      "target": "presentation/components/DDDSimulation.tsx",
-      "type": "import"
-    },
-    {
-      "source": "presentation/pages/DDDPage.tsx",
-      "target": "presentation/components/DDDSection.tsx",
-      "type": "import"
-    },
-    {
-      "source": "presentation/pages/DDDPage.tsx",
-      "target": "presentation/components/DDDKeyConcepts.tsx",
-      "type": "import"
-    },
-    {
-      "source": "presentation/pages/DDDPage.tsx",
-      "target": "context/ProgressContext.tsx",
-      "type": "import"
-    },
-    {
-      "source": "presentation/pages/EDAPage.tsx",
-      "target": "presentation/components/EDAHero.tsx",
-      "type": "import"
-    },
-    {
-      "source": "presentation/pages/EDAPage.tsx",
-      "target": "presentation/components/EDADiagram.tsx",
-      "type": "import"
-    },
-    {
-      "source": "presentation/pages/EDAPage.tsx",
-      "target": "presentation/components/EDAPractical.tsx",
-      "type": "import"
-    },
-    {
-      "source": "presentation/pages/FSDPage.tsx",
-      "target": "presentation/components/FSDHero.tsx",
-      "type": "import"
-    },
-    {
-      "source": "presentation/pages/FSDPage.tsx",
-      "target": "presentation/components/FSDDiagram.tsx",
-      "type": "import"
-    },
-    {
-      "source": "presentation/pages/FSDPage.tsx",
-      "target": "presentation/components/FSDPractical.tsx",
-      "type": "import"
-    },
-    {
-      "source": "presentation/pages/HexagonalPage.tsx",
-      "target": "presentation/components/HexagonalHero.tsx",
-      "type": "import"
-    },
-    {
-      "source": "presentation/pages/HexagonalPage.tsx",
-      "target": "presentation/components/HexagonalDiagram.tsx",
-      "type": "import"
-    },
-    {
-      "source": "presentation/pages/HexagonalPage.tsx",
-      "target": "presentation/components/HexagonalPractical.tsx",
-      "type": "import"
-    },
-    {
-      "source": "presentation/pages/HomePage.tsx",
-      "target": "presentation/components/HomeHero.tsx",
-      "type": "import"
-    },
-    {
-      "source": "presentation/pages/HorizontalPage.tsx",
-      "target": "presentation/components/HorizontalHero.tsx",
-      "type": "import"
-    },
-    {
-      "source": "presentation/pages/HorizontalPage.tsx",
-      "target": "presentation/components/HorizontalDiagram.tsx",
-      "type": "import"
-    },
-    {
-      "source": "presentation/pages/HorizontalPage.tsx",
-      "target": "presentation/components/HorizontalPractical.tsx",
-      "type": "import"
-    },
-    {
-      "source": "presentation/pages/OnionPage.tsx",
-      "target": "presentation/components/OnionHero.tsx",
-      "type": "import"
-    },
-    {
-      "source": "presentation/pages/OnionPage.tsx",
-      "target": "presentation/components/OnionDiagram.tsx",
-      "type": "import"
-    },
-    {
-      "source": "presentation/pages/OnionPage.tsx",
-      "target": "presentation/components/OnionPractical.tsx",
-      "type": "import"
-    },
-    {
-      "source": "presentation/pages/ProjectPage.tsx",
-      "target": "presentation/components/ProjectHero.tsx",
-      "type": "import"
-    },
-    {
-      "source": "presentation/pages/ProjectPage.tsx",
-      "target": "presentation/components/ProjectStructure.tsx",
-      "type": "import"
-    },
-    {
-      "source": "presentation/pages/ProjectPage.tsx",
-      "target": "presentation/components/ProjectDependency.tsx",
-      "type": "import"
-    },
-    {
-      "source": "presentation/pages/ProjectPage.tsx",
-      "target": "presentation/components/ProjectTechStack.tsx",
-      "type": "import"
-    },
-    {
-      "source": "presentation/pages/ProjectPage.tsx",
-      "target": "presentation/components/ProjectDecisionRecords.tsx",
-      "type": "import"
-    },
-    {
-      "source": "presentation/pages/ProjectPage.tsx",
-      "target": "presentation/components/ProjectDesignSystem.tsx",
-      "type": "import"
-    },
-    {
-      "source": "presentation/pages/ProjectPage.tsx",
-      "target": "presentation/components/ArchHero.tsx",
-      "type": "import"
-    },
-    {
-      "source": "presentation/pages/RefactoringPage.tsx",
-      "target": "presentation/components/RefactoringSurgery.tsx",
-      "type": "import"
-    },
-    {
-      "source": "presentation/pages/RefactoringPage.tsx",
-      "target": "presentation/components/FolderSurgery.tsx",
-      "type": "import"
-    },
-    {
-      "source": "presentation/pages/RefactoringPage.tsx",
-      "target": "context/ProgressContext.tsx",
-      "type": "import"
-    },
-    {
-      "source": "presentation/pages/RoadmapPage.tsx",
-      "target": "presentation/components/ArchitectRoadmap.tsx",
-      "type": "import"
-    },
-    {
-      "source": "presentation/pages/RoadmapPage.tsx",
-      "target": "presentation/components/ProductionFlow.tsx",
-      "type": "import"
-    },
-    {
-      "source": "presentation/pages/SOLIDPage.tsx",
-      "target": "presentation/components/SOLIDHero.tsx",
-      "type": "import"
-    },
-    {
-      "source": "presentation/pages/SOLIDPage.tsx",
-      "target": "presentation/components/SOLIDSection.tsx",
-      "type": "import"
-    },
-    {
-      "source": "presentation/pages/SOLIDPage.tsx",
-      "target": "context/ProgressContext.tsx",
-      "type": "import"
-    },
-    {
-      "source": "presentation/pages/VerticalSlicePage.tsx",
-      "target": "presentation/components/ArchHero.tsx",
-      "type": "import"
-    },
-    {
-      "source": "presentation/pages/VerticalSlicePage.tsx",
-      "target": "presentation/components/VerticalHero.tsx",
-      "type": "import"
-    },
-    {
-      "source": "presentation/pages/VerticalSlicePage.tsx",
-      "target": "presentation/components/VerticalComparison.tsx",
-      "type": "import"
-    },
-    {
-      "source": "presentation/pages/VerticalSlicePage.tsx",
-      "target": "presentation/components/VerticalPractical.tsx",
-      "type": "import"
-    },
-    {
-      "source": "presentation/pages/CleanCodePage.tsx",
-      "target": "presentation/components/ArchHero.tsx",
-      "type": "import"
-    },
-    {
-      "source": "presentation/pages/EvolutionaryPage.tsx",
-      "target": "presentation/components/ArchHero.tsx",
-      "type": "import"
-    },
-    {
-      "source": "presentation/pages/GlossaryPage.tsx",
-      "target": "infrastructure/data/GlossaryData.ts",
-      "type": "import"
-    },
-    {
-      "source": "presentation/pages/MicrokernelPage.tsx",
-      "target": "presentation/components/ArchHero.tsx",
-      "type": "import"
-    },
-    {
-      "source": "presentation/pages/ServerlessPage.tsx",
-      "target": "presentation/components/ArchHero.tsx",
-      "type": "import"
-    },
-    {
-      "source": "presentation/pages/SpaceBasedPage.tsx",
-      "target": "presentation/components/ArchHero.tsx",
-      "type": "import"
-    },
-    {
-      "source": "presentation/pages/P2PPage.tsx",
-      "target": "presentation/components/ArchHero.tsx",
-      "type": "import"
-    },
-    {
-      "source": "presentation/pages/SOAPage.tsx",
-      "target": "presentation/components/ArchHero.tsx",
-      "type": "import"
-    },
-    {
-      "source": "presentation/pages/ObjectOrientedPage.tsx",
-      "target": "presentation/components/ArchHero.tsx",
-      "type": "import"
-    },
-    {
-      "source": "presentation/pages/PipeFilterPage.tsx",
-      "target": "presentation/components/ArchHero.tsx",
-      "type": "import"
-    },
-    {
-      "source": "presentation/pages/InterpreterPage.tsx",
-      "target": "presentation/components/ArchHero.tsx",
-      "type": "import"
-    },
-    {
-      "source": "presentation/pages/BrokerPage.tsx",
-      "target": "presentation/components/ArchHero.tsx",
-      "type": "import"
-    },
-    {
-      "source": "presentation/pages/OrchestrationPage.tsx",
-      "target": "presentation/components/ArchHero.tsx",
-      "type": "import"
-    },
-    {
-      "source": "presentation/pages/ChoreographyPage.tsx",
-      "target": "presentation/components/ArchHero.tsx",
-      "type": "import"
-    },
-    {
-      "source": "presentation/pages/EventSourcingPage.tsx",
-      "target": "presentation/components/ArchHero.tsx",
-      "type": "import"
-    },
-    {
-      "source": "presentation/pages/MVCPage.tsx",
-      "target": "presentation/components/ArchHero.tsx",
-      "type": "import"
-    },
-    {
-      "source": "presentation/pages/MVPPage.tsx",
-      "target": "presentation/components/ArchHero.tsx",
-      "type": "import"
-    },
-    {
-      "source": "presentation/pages/PubSubPage.tsx",
-      "target": "presentation/components/ArchHero.tsx",
-      "type": "import"
-    },
-    {
-      "source": "presentation/pages/PrimarySecondaryPage.tsx",
-      "target": "presentation/components/ArchHero.tsx",
-      "type": "import"
-    },
-    {
-      "source": "presentation/pages/MVVMPage.tsx",
-      "target": "presentation/components/ArchHero.tsx",
-      "type": "import"
-    },
-    {
-      "source": "presentation/pages/MVVMPage.tsx",
-      "target": "presentation/components/MVVMFlow.tsx",
-      "type": "import"
-    },
-    {
-      "source": "presentation/pages/MVVMPage.tsx",
-      "target": "presentation/components/WhyLayered.tsx",
-      "type": "import"
-    },
-    {
-      "source": "presentation/pages/MVVMPage.tsx",
-      "target": "presentation/components/FlutterBestPractices.tsx",
-      "type": "import"
-    },
-    {
-      "source": "presentation/pages/MVVMPage.tsx",
-      "target": "presentation/components/AndroidPrinciples.tsx",
-      "type": "import"
-    },
-    {
-      "source": "presentation/pages/MVVMPage.tsx",
-      "target": "presentation/components/ArchReferences.tsx",
-      "type": "import"
-    },
-    {
-      "source": "presentation/pages/MVVMPage.tsx",
-      "target": "presentation/components/RefactoringGuide.tsx",
-      "type": "import"
-    },
-    {
-      "source": "presentation/pages/MVVMPage.tsx",
-      "target": "context/ProgressContext.tsx",
-      "type": "import"
-    },
-    {
-      "source": "presentation/pages/PlugInPage.tsx",
-      "target": "presentation/components/ArchHero.tsx",
-      "type": "import"
-    },
-    {
-      "source": "presentation/pages/ECSPage.tsx",
-      "target": "presentation/components/ArchHero.tsx",
-      "type": "import"
-    },
-    {
-      "source": "presentation/pages/SecurityPage.tsx",
-      "target": "presentation/components/ArchHero.tsx",
-      "type": "import"
-    },
-    {
-      "source": "presentation/pages/RobustnessPage.tsx",
-      "target": "presentation/components/ArchHero.tsx",
-      "type": "import"
-    },
-    {
-      "source": "presentation/pages/TestingPage.tsx",
-      "target": "presentation/components/ArchHero.tsx",
-      "type": "import"
-    },
-    {
-      "source": "presentation/pages/AbstractionPage.tsx",
-      "target": "presentation/components/ArchHero.tsx",
-      "type": "import"
-    },
-    {
-      "source": "presentation/pages/LeanArchitecturePage.tsx",
-      "target": "presentation/components/ArchHero.tsx",
-      "type": "import"
-    },
-    {
-      "source": "presentation/pages/AtomicDesignPage.tsx",
-      "target": "presentation/components/ArchHero.tsx",
-      "type": "import"
-    },
-    {
-      "source": "presentation/pages/DesignPatternsPage.tsx",
-      "target": "presentation/components/ArchHero.tsx",
-      "type": "import"
-    },
-    {
-      "source": "presentation/pages/DesignTokensPage.tsx",
-      "target": "presentation/components/ArchHero.tsx",
-      "type": "import"
-    },
-    {
-      "source": "presentation/pages/DesignTokensPage.tsx",
-      "target": "context/ProgressContext.tsx",
-      "type": "import"
-    },
-    {
-      "source": "presentation/pages/FNAConceptPage.tsx",
-      "target": "presentation/components/ArchHero.tsx",
-      "type": "import"
-    },
-    {
-      "source": "presentation/pages/ArchBrainPage.tsx",
-      "target": "presentation/components/ArchHero.tsx",
-      "type": "import"
-    },
-    {
-      "source": "presentation/pages/FutureArchitecturePage.tsx",
-      "target": "presentation/components/ArchHero.tsx",
-      "type": "import"
-    },
-    {
-      "source": "presentation/pages/TDDPage.tsx",
-      "target": "presentation/components/ArchHero.tsx",
-      "type": "import"
-    },
-    {
-      "source": "presentation/pages/TDDPage.tsx",
-      "target": "context/ProgressContext.tsx",
-      "type": "import"
-    },
-    {
-      "source": "presentation/pages/OOPFundamentalsPage.tsx",
-      "target": "presentation/components/ArchHero.tsx",
-      "type": "import"
-    },
-    {
-      "source": "presentation/pages/OOPFundamentalsPage.tsx",
-      "target": "context/ProgressContext.tsx",
-      "type": "import"
-    },
-    {
-      "source": "presentation/pages/CAPTheoremPage.tsx",
-      "target": "presentation/components/ArchHero.tsx",
-      "type": "import"
-    },
-    {
-      "source": "presentation/pages/CAPTheoremPage.tsx",
-      "target": "context/ProgressContext.tsx",
-      "type": "import"
-    },
-    {
-      "source": "presentation/pages/ACIDPage.tsx",
-      "target": "presentation/components/ArchHero.tsx",
-      "type": "import"
-    },
-    {
-      "source": "presentation/pages/ACIDPage.tsx",
-      "target": "context/ProgressContext.tsx",
-      "type": "import"
-    },
-    {
-      "source": "presentation/pages/VIPERPage.tsx",
-      "target": "presentation/components/ArchHero.tsx",
-      "type": "import"
-    },
-    {
-      "source": "presentation/pages/VIPERPage.tsx",
-      "target": "context/ProgressContext.tsx",
-      "type": "import"
-    },
-    {
-      "source": "presentation/pages/MVVMCPage.tsx",
-      "target": "presentation/components/ArchHero.tsx",
-      "type": "import"
-    },
-    {
-      "source": "presentation/pages/MVVMCPage.tsx",
-      "target": "context/ProgressContext.tsx",
-      "type": "import"
-    },
-    {
-      "source": "presentation/pages/AntiPatternsPage.tsx",
-      "target": "presentation/components/ArchHero.tsx",
-      "type": "import"
-    },
-    {
-      "source": "presentation/pages/AntiPatternsPage.tsx",
-      "target": "context/ProgressContext.tsx",
-      "type": "import"
-    },
-    {
-      "source": "presentation/pages/ClientServerPage.tsx",
-      "target": "presentation/components/ArchHero.tsx",
-      "type": "import"
-    },
-    {
-      "source": "presentation/pages/DocumentationPage.tsx",
-      "target": "presentation/components/ArchHero.tsx",
-      "type": "import"
-    },
-    {
-      "source": "presentation/pages/ServerDrivenUIPage.tsx",
-      "target": "presentation/components/ArchHero.tsx",
-      "type": "import"
-    },
-    {
-      "source": "presentation/pages/IslandsArchPage.tsx",
-      "target": "presentation/components/ArchHero.tsx",
-      "type": "import"
-    },
-    {
-      "source": "presentation/pages/MicroFrontendsPage.tsx",
-      "target": "presentation/components/ArchHero.tsx",
-      "type": "import"
-    },
-    {
-      "source": "presentation/pages/StateDrivenPage.tsx",
-      "target": "presentation/components/ArchHero.tsx",
-      "type": "import"
-    },
-    {
-      "source": "presentation/pages/ComponentDrivenPage.tsx",
-      "target": "presentation/components/ArchHero.tsx",
-      "type": "import"
-    },
-    {
-      "source": "presentation/pages/CompositeUIPage.tsx",
-      "target": "presentation/components/ArchHero.tsx",
-      "type": "import"
-    },
-    {
-      "source": "presentation/pages/GitOpsPage.tsx",
-      "target": "presentation/components/ArchHero.tsx",
-      "type": "import"
-    },
-    {
-      "source": "presentation/pages/ContainerizationPage.tsx",
-      "target": "presentation/components/ArchHero.tsx",
-      "type": "import"
-    },
-    {
-      "source": "presentation/pages/ZeroTrustPage.tsx",
-      "target": "presentation/components/ArchHero.tsx",
-      "type": "import"
-    },
-    {
-      "source": "presentation/pages/RAGPage.tsx",
-      "target": "presentation/components/ArchHero.tsx",
-      "type": "import"
-    },
-    {
-      "source": "presentation/pages/AgenticAIPage.tsx",
-      "target": "presentation/components/ArchHero.tsx",
-      "type": "import"
-    },
-    {
-      "source": "presentation/pages/LLMOpsPage.tsx",
-      "target": "presentation/components/ArchHero.tsx",
-      "type": "import"
-    },
-    {
-      "source": "presentation/pages/BFFPage.tsx",
-      "target": "presentation/components/ArchHero.tsx",
-      "type": "import"
-    },
-    {
-      "source": "presentation/pages/MVIPage.tsx",
-      "target": "presentation/components/ArchHero.tsx",
-      "type": "import"
-    },
-    {
-      "source": "presentation/pages/SPAvsMPAPage.tsx",
-      "target": "presentation/components/ArchHero.tsx",
-      "type": "import"
-    },
-    {
-      "source": "presentation/pages/MicroservicesPage.tsx",
-      "target": "presentation/components/SystemHero.tsx",
-      "type": "import"
-    },
-    {
-      "source": "presentation/pages/MicroservicesPage.tsx",
-      "target": "presentation/components/SystemComparison.tsx",
-      "type": "import"
-    },
-    {
-      "source": "presentation/pages/MicroservicesPage.tsx",
-      "target": "presentation/components/SystemChoice.tsx",
-      "type": "import"
-    },
-    {
-      "source": "presentation/pages/DependencyManagementPage.tsx",
-      "target": "presentation/components/ArchHero.tsx",
-      "type": "import"
-    },
-    {
-      "source": "presentation/pages/ModerateAbstractionPage.tsx",
-      "target": "presentation/components/ArchHero.tsx",
-      "type": "import"
-    },
-    {
-      "source": "presentation/pages/LambdaKappaPage.tsx",
-      "target": "presentation/components/ArchHero.tsx",
-      "type": "import"
-    },
-    {
-      "source": "context/ProgressContext.tsx",
+      "source": "presentation/context/ProgressContext.tsx",
       "target": "presentation/hooks/useLocalStorage.ts",
-      "type": "import"
+      "value": 1
+    },
+    {
+      "source": "presentation/hooks/useAssessmentQuiz.ts",
+      "target": "presentation/context/ProgressContext.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/hooks/useAssessmentQuiz.ts",
+      "target": "data/assessmentQuestions.ts",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/abstraction.tsx",
+      "target": "presentation/components/ArchHero.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/abstraction.tsx",
+      "target": "presentation/components/SEO.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/abstraction.tsx",
+      "target": "presentation/components/abstraction/AbstractionConceptTab.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/abstraction.tsx",
+      "target": "presentation/components/abstraction/AbstractionLevelsTab.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/abstraction.tsx",
+      "target": "presentation/components/abstraction/AbstractionPaymentSimulationTab.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/acid.tsx",
+      "target": "presentation/components/ArchHero.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/acid.tsx",
+      "target": "presentation/components/SEO.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/acid.tsx",
+      "target": "presentation/context/ProgressContext.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/acid.tsx",
+      "target": "presentation/components/acid/ACIDConceptTab.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/acid.tsx",
+      "target": "presentation/components/acid/ACIDSimulationTab.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/acid.tsx",
+      "target": "presentation/components/acid/useAcidSimulation.ts",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/acronyms.tsx",
+      "target": "presentation/components/SEO.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/acronyms.tsx",
+      "target": "infrastructure/AcronymsData.ts",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/agentic-ai.tsx",
+      "target": "presentation/components/ArchHero.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/agentic-ai.tsx",
+      "target": "presentation/components/SEO.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/agentic-ai.tsx",
+      "target": "presentation/components/agenticai/AgenticCorePatternsTab.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/agentic-ai.tsx",
+      "target": "presentation/components/agenticai/MultiAgentOrchestrationTab.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/agentic-ai.tsx",
+      "target": "presentation/components/agenticai/AgentSwarmSimulationTab.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/anti-patterns.tsx",
+      "target": "presentation/components/ArchHero.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/anti-patterns.tsx",
+      "target": "presentation/context/ProgressContext.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/assessment.tsx",
+      "target": "presentation/components/AssessmentQuiz.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/assessment.tsx",
+      "target": "presentation/components/SEO.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/atomic-design.tsx",
+      "target": "presentation/components/ArchHero.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/bff.tsx",
+      "target": "presentation/components/ArchHero.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/bff.tsx",
+      "target": "presentation/components/SEO.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/bff.tsx",
+      "target": "presentation/components/bff/BFFComparisonTab.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/bff.tsx",
+      "target": "presentation/components/bff/BFFSimulationTab.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/broker.tsx",
+      "target": "presentation/components/ArchHero.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/broker.tsx",
+      "target": "presentation/components/SEO.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/broker.tsx",
+      "target": "presentation/components/broker/BrokerComparisonTab.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/broker.tsx",
+      "target": "presentation/components/broker/BrokerSimulationTab.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/cap-theorem.tsx",
+      "target": "presentation/components/ArchHero.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/cap-theorem.tsx",
+      "target": "presentation/components/SEO.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/cap-theorem.tsx",
+      "target": "presentation/context/ProgressContext.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/cap-theorem.tsx",
+      "target": "presentation/components/cap/CAPConceptTab.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/cap-theorem.tsx",
+      "target": "presentation/components/cap/CAPSimulationTab.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/cap-theorem.tsx",
+      "target": "presentation/components/cap/useCapSimulation.ts",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/catalog.tsx",
+      "target": "presentation/components/SEO.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/choreography.tsx",
+      "target": "presentation/components/ArchHero.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/choreography.tsx",
+      "target": "presentation/components/SEO.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/choreography.tsx",
+      "target": "presentation/components/choreography/ChoreographyComparisonTab.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/choreography.tsx",
+      "target": "presentation/components/choreography/ChoreographySimulationTab.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/clean-arch.tsx",
+      "target": "presentation/components/Hero.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/clean-arch.tsx",
+      "target": "presentation/components/SEO.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/clean-arch.tsx",
+      "target": "presentation/context/ProgressContext.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/clean-arch.tsx",
+      "target": "presentation/components/cleanarch/CleanArchPrinciplesTab.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/clean-arch.tsx",
+      "target": "presentation/components/cleanarch/CleanArchScreamingTab.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/clean-arch.tsx",
+      "target": "presentation/components/cleanarch/CleanArchClassicLayerTab.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/clean-arch.tsx",
+      "target": "presentation/components/cleanarch/CleanArchModernFeatureTab.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/clean-code.tsx",
+      "target": "presentation/components/ArchHero.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/clean-code.tsx",
+      "target": "presentation/components/SEO.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/clean-code.tsx",
+      "target": "presentation/components/cleancode/BoyScoutRuleSection.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/clean-code.tsx",
+      "target": "presentation/components/cleancode/NamingConventionsSection.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/clean-code.tsx",
+      "target": "presentation/components/cleancode/CodeSpecComparisonTab.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/clean-code.tsx",
+      "target": "presentation/components/cleancode/FunctionsAndCommentsSection.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/client-server.tsx",
+      "target": "presentation/components/ArchHero.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/client-server.tsx",
+      "target": "presentation/components/SEO.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/client-server.tsx",
+      "target": "presentation/components/clientserver/ClientServerComparisonTab.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/client-server.tsx",
+      "target": "presentation/components/clientserver/ClientServerSimulationTab.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/cloud-catalog.tsx",
+      "target": "presentation/components/SEO.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/compare.tsx",
+      "target": "presentation/context/ProgressContext.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/compare.tsx",
+      "target": "presentation/components/ComparisonMatrix.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/compare.tsx",
+      "target": "presentation/components/ArchitectureWizard.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/component-driven.tsx",
+      "target": "presentation/components/ArchHero.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/component-driven.tsx",
+      "target": "presentation/components/SEO.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/component-driven.tsx",
+      "target": "presentation/components/componentdriven/ComponentAtomicDesignTab.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/component-driven.tsx",
+      "target": "presentation/components/componentdriven/ComponentStateManagementTab.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/component-driven.tsx",
+      "target": "presentation/components/componentdriven/StateDrivenArchitectureTab.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/component-driven.tsx",
+      "target": "presentation/components/componentdriven/ComponentLifecycleSimulationTab.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/component-state.tsx",
+      "target": "presentation/pages/component-driven.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/composite-ui.tsx",
+      "target": "presentation/components/ArchHero.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/containerization.tsx",
+      "target": "presentation/components/ArchHero.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/containerization.tsx",
+      "target": "presentation/components/SEO.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/containerization.tsx",
+      "target": "presentation/components/containerization/ContainerFundamentalsTab.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/containerization.tsx",
+      "target": "presentation/components/containerization/DockerfileOptimizationTab.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/containerization.tsx",
+      "target": "presentation/components/containerization/KubernetesOrchestrationTab.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/containerization.tsx",
+      "target": "presentation/components/containerization/ContainerLifecycleSimulationTab.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/cqrs.tsx",
+      "target": "presentation/components/CQRSHero.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/cqrs.tsx",
+      "target": "presentation/components/CQRSDiagram.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/cqrs.tsx",
+      "target": "presentation/components/CQRSPractical.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/cqrs.tsx",
+      "target": "presentation/components/CQRSSection.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/data-ai-catalog.tsx",
+      "target": "presentation/components/SEO.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/ddd.tsx",
+      "target": "presentation/components/DDDHero.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/ddd.tsx",
+      "target": "presentation/components/StrategicDetails.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/ddd.tsx",
+      "target": "presentation/components/DDDSimulation.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/ddd.tsx",
+      "target": "presentation/components/DDDSection.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/ddd.tsx",
+      "target": "presentation/components/DDDKeyConcepts.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/ddd.tsx",
+      "target": "presentation/context/ProgressContext.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/dependency-management.tsx",
+      "target": "presentation/components/ArchHero.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/design-patterns.tsx",
+      "target": "presentation/components/ArchHero.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/design-tokens.tsx",
+      "target": "presentation/components/ArchHero.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/design-tokens.tsx",
+      "target": "presentation/context/ProgressContext.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/discipline-catalog.tsx",
+      "target": "presentation/components/SEO.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/discipline-catalog.tsx",
+      "target": "presentation/components/disciplinechain/useDisciplineStreak.ts",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/discipline-catalog.tsx",
+      "target": "presentation/components/disciplinechain/DisciplineChainHeader.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/discipline-catalog.tsx",
+      "target": "presentation/components/disciplinechain/DisciplineChainColumn.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/docs-annotations.tsx",
+      "target": "presentation/components/ArchHero.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/docs-annotations.tsx",
+      "target": "presentation/components/SEO.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/docs-annotations.tsx",
+      "target": "presentation/components/docsannotations/ADRArchitectureTab.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/docs-annotations.tsx",
+      "target": "presentation/components/docsannotations/C4ModelHierarchyTab.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/docs-annotations.tsx",
+      "target": "presentation/components/docsannotations/ArchitectureDiagramsTab.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/docs-annotations.tsx",
+      "target": "presentation/components/docsannotations/ADRBuilderSimulationTab.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/ecs.tsx",
+      "target": "presentation/components/ArchHero.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/ecs.tsx",
+      "target": "presentation/components/SEO.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/ecs.tsx",
+      "target": "presentation/components/ecs/ECSPrinciplesDeepDive.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/ecs.tsx",
+      "target": "presentation/components/ecs/ECSCodeExample.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/ecs.tsx",
+      "target": "presentation/components/ecs/ECSStructureAndComparison.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/eda.tsx",
+      "target": "presentation/components/EDAHero.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/eda.tsx",
+      "target": "presentation/components/EDADiagram.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/eda.tsx",
+      "target": "presentation/components/EDAPractical.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/elite-architecture.tsx",
+      "target": "presentation/components/Hero.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/elite-architecture.tsx",
+      "target": "presentation/components/SEO.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/elite-architecture.tsx",
+      "target": "presentation/context/ProgressContext.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/elite-architecture.tsx",
+      "target": "presentation/components/elitearch/EliteOverviewTab.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/elite-architecture.tsx",
+      "target": "presentation/components/elitearch/EliteLayersTab.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/elite-architecture.tsx",
+      "target": "presentation/components/elitearch/ElitePatternsTab.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/elite-architecture.tsx",
+      "target": "presentation/components/elitearch/EliteStandardsTab.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/event-sourcing.tsx",
+      "target": "presentation/components/ArchHero.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/event-sourcing.tsx",
+      "target": "presentation/components/SEO.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/event-sourcing.tsx",
+      "target": "presentation/components/eventsourcing/EventSourcingComparisonTab.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/event-sourcing.tsx",
+      "target": "presentation/components/eventsourcing/EventSourcingSimulationTab.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/evolution.tsx",
+      "target": "presentation/components/ArchHero.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/fna-concept.tsx",
+      "target": "presentation/components/ArchHero.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/fsd.tsx",
+      "target": "presentation/components/FSDHero.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/fsd.tsx",
+      "target": "presentation/components/FSDDiagram.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/fsd.tsx",
+      "target": "presentation/components/FSDPractical.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/gitops.tsx",
+      "target": "presentation/components/ArchHero.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/gitops.tsx",
+      "target": "presentation/components/SEO.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/gitops.tsx",
+      "target": "presentation/components/gitops/GitOpsPipelineStepper.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/gitops.tsx",
+      "target": "presentation/components/gitops/GitOpsReferenceFooter.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/glossary.tsx",
+      "target": "infrastructure/GlossaryData.ts",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/glossary.tsx",
+      "target": "presentation/components/SEO.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/hexagonal.tsx",
+      "target": "presentation/components/HexagonalHero.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/hexagonal.tsx",
+      "target": "presentation/components/HexagonalDiagram.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/hexagonal.tsx",
+      "target": "presentation/components/HexagonalPractical.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/home.tsx",
+      "target": "presentation/components/HomeHero.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/home.tsx",
+      "target": "presentation/components/HomeVibeSpotlight.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/home.tsx",
+      "target": "presentation/components/SEO.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/horizontal.tsx",
+      "target": "presentation/pages/vertical.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/interpreter.tsx",
+      "target": "presentation/components/ArchHero.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/interpreter.tsx",
+      "target": "presentation/components/SEO.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/interpreter.tsx",
+      "target": "presentation/components/interpreter/InterpreterConceptTab.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/interpreter.tsx",
+      "target": "presentation/components/interpreter/InterpreterSimulationTab.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/islands-arch.tsx",
+      "target": "presentation/components/ArchHero.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/lambda-kappa.tsx",
+      "target": "presentation/components/ArchHero.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/lambda-kappa.tsx",
+      "target": "presentation/components/SEO.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/lambda-kappa.tsx",
+      "target": "presentation/components/lambdakappa/LambdaKappaOverviewTab.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/lambda-kappa.tsx",
+      "target": "presentation/components/lambdakappa/LambdaServingSimTab.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/lambda-kappa.tsx",
+      "target": "presentation/components/lambdakappa/KappaReplaySimTab.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/lean-architecture.tsx",
+      "target": "presentation/components/ArchHero.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/lean-architecture.tsx",
+      "target": "presentation/components/SEO.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/lean-architecture.tsx",
+      "target": "presentation/components/lean/LeanCleanDeepDive.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/lean-architecture.tsx",
+      "target": "presentation/components/lean/LeanPrinciplesViewer.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/lean-architecture.tsx",
+      "target": "presentation/components/lean/LeanCodeComparison.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/lean-architecture.tsx",
+      "target": "presentation/components/lean/LeanMaturityModel.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/llm-ops.tsx",
+      "target": "presentation/components/ArchHero.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/llm-ops.tsx",
+      "target": "presentation/components/SEO.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/llm-ops.tsx",
+      "target": "presentation/components/llmops/LLMOpsPillarsTab.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/llm-ops.tsx",
+      "target": "presentation/components/llmops/LLMOpsSimulationTab.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/llm-ops.tsx",
+      "target": "presentation/components/llmops/useLLMOpsSimulation.ts",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/micro-frontends.tsx",
+      "target": "presentation/components/ArchHero.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/micro-frontends.tsx",
+      "target": "presentation/themes/theme.ts",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/microkernel.tsx",
+      "target": "presentation/components/ArchHero.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/microkernel.tsx",
+      "target": "presentation/components/SEO.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/microkernel.tsx",
+      "target": "presentation/components/microkernel/MicrokernelConceptTab.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/microkernel.tsx",
+      "target": "presentation/components/microkernel/MicrokernelSimulationTab.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/microservices.tsx",
+      "target": "presentation/components/SystemHero.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/microservices.tsx",
+      "target": "presentation/components/SystemComparison.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/microservices.tsx",
+      "target": "presentation/components/SystemChoice.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/moderate-abstraction.tsx",
+      "target": "presentation/pages/abstraction.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/mvc.tsx",
+      "target": "presentation/components/ArchHero.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/mvc.tsx",
+      "target": "presentation/components/SEO.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/mvc.tsx",
+      "target": "presentation/components/mvc/MVCComparisonTab.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/mvc.tsx",
+      "target": "presentation/components/mvc/MVCConceptsTab.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/mvi.tsx",
+      "target": "presentation/components/ArchHero.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/mvi.tsx",
+      "target": "presentation/components/SEO.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/mvi.tsx",
+      "target": "presentation/components/mvi/MVIFlowTab.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/mvi.tsx",
+      "target": "presentation/components/mvi/MVISimulationTab.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/mvp.tsx",
+      "target": "presentation/components/ArchHero.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/mvp.tsx",
+      "target": "presentation/components/SEO.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/mvp.tsx",
+      "target": "presentation/components/mvp/MVPComparisonTab.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/mvp.tsx",
+      "target": "presentation/components/mvp/MVPConceptsTab.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/mvvm-c.tsx",
+      "target": "presentation/components/ArchHero.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/mvvm-c.tsx",
+      "target": "presentation/components/SEO.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/mvvm-c.tsx",
+      "target": "presentation/context/ProgressContext.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/mvvm-c.tsx",
+      "target": "presentation/components/mvvmc/MVVMCComparisonTab.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/mvvm-c.tsx",
+      "target": "presentation/components/mvvmc/MVVMCConceptsTab.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/mvvm.tsx",
+      "target": "presentation/components/ArchHero.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/mvvm.tsx",
+      "target": "presentation/context/ProgressContext.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/mvvm.tsx",
+      "target": "presentation/components/mvvm/MVVMPrinciplesTab.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/mvvm.tsx",
+      "target": "presentation/components/mvvm/MVVMHybridTab.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/mvvm.tsx",
+      "target": "presentation/components/mvvm/MVVMNiaTab.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/object-oriented.tsx",
+      "target": "presentation/pages/oop-fundamentals.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/onion.tsx",
+      "target": "presentation/components/OnionHero.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/onion.tsx",
+      "target": "presentation/components/OnionDiagram.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/onion.tsx",
+      "target": "presentation/components/OnionPractical.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/oop-fundamentals.tsx",
+      "target": "presentation/components/ArchHero.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/oop-fundamentals.tsx",
+      "target": "presentation/components/SEO.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/oop-fundamentals.tsx",
+      "target": "presentation/components/oopfundamentals/OOPPillarsTab.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/oop-fundamentals.tsx",
+      "target": "presentation/components/oopfundamentals/CompositionOverInheritanceTab.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/oop-fundamentals.tsx",
+      "target": "presentation/components/oopfundamentals/AnemicVsRichDomainTab.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/oop-fundamentals.tsx",
+      "target": "presentation/components/oopfundamentals/OOPPolymorphismSimulationTab.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/orchestration.tsx",
+      "target": "presentation/components/ArchHero.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/p2p.tsx",
+      "target": "presentation/components/ArchHero.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/p2p.tsx",
+      "target": "presentation/components/SEO.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/p2p.tsx",
+      "target": "presentation/components/p2p/P2PComparisonTab.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/p2p.tsx",
+      "target": "presentation/components/p2p/P2PSimulationTab.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/pipe-filter.tsx",
+      "target": "presentation/components/ArchHero.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/pipe-filter.tsx",
+      "target": "presentation/components/SEO.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/pipe-filter.tsx",
+      "target": "presentation/components/pipefilter/PipeFilterConceptTab.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/pipe-filter.tsx",
+      "target": "presentation/components/pipefilter/PipeFilterSimulationTab.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/plugin.tsx",
+      "target": "presentation/components/ArchHero.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/plugin.tsx",
+      "target": "presentation/components/SEO.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/plugin.tsx",
+      "target": "presentation/components/plugin/PluginConceptTab.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/plugin.tsx",
+      "target": "presentation/components/plugin/PluginSimulationTab.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/primary-secondary.tsx",
+      "target": "presentation/components/ArchHero.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/primary-secondary.tsx",
+      "target": "presentation/components/SEO.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/primary-secondary.tsx",
+      "target": "presentation/components/primarysecondary/PrimarySecondaryComparisonTab.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/primary-secondary.tsx",
+      "target": "presentation/components/primarysecondary/PrimarySecondarySimulationTab.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/primary-secondary.tsx",
+      "target": "presentation/components/primarysecondary/useReplicationSimulation.ts",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/project-arch.tsx",
+      "target": "presentation/components/SEO.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/project-arch.tsx",
+      "target": "presentation/components/projectarch/ProjectArchitectureTab.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/project-arch.tsx",
+      "target": "presentation/components/projectarch/ProjectBrainTab.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/project-arch.tsx",
+      "target": "presentation/components/projectarch/ProjectDesignTab.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/pub-sub.tsx",
+      "target": "presentation/components/ArchHero.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/pub-sub.tsx",
+      "target": "presentation/components/SEO.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/pub-sub.tsx",
+      "target": "presentation/components/pubsub/PubSubComparisonTab.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/pub-sub.tsx",
+      "target": "presentation/components/pubsub/PubSubSimulationTab.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/rag-arch.tsx",
+      "target": "presentation/components/ArchHero.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/rag-arch.tsx",
+      "target": "presentation/components/SEO.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/rag-arch.tsx",
+      "target": "presentation/components/ragarch/RAGPipelineTab.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/rag-arch.tsx",
+      "target": "presentation/components/ragarch/AdvancedRAGTab.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/rag-arch.tsx",
+      "target": "presentation/components/ragarch/RAGRetrievalSimulationTab.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/refactoring.tsx",
+      "target": "presentation/components/RefactoringSurgery.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/refactoring.tsx",
+      "target": "presentation/components/FolderSurgery.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/refactoring.tsx",
+      "target": "presentation/context/ProgressContext.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/refactoring.tsx",
+      "target": "presentation/components/SEO.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/roadmap.tsx",
+      "target": "presentation/components/SEO.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/roadmap.tsx",
+      "target": "presentation/components/roadmap/RoadmapHero.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/roadmap.tsx",
+      "target": "presentation/components/roadmap/RoadmapCurriculumTab.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/roadmap.tsx",
+      "target": "presentation/components/roadmap/RoadmapProductionTab.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/roadmap.tsx",
+      "target": "presentation/components/roadmap/RoadmapImpactFooter.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/robustness.tsx",
+      "target": "presentation/components/ArchHero.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/robustness.tsx",
+      "target": "presentation/components/SEO.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/robustness.tsx",
+      "target": "presentation/components/robustness/RobustnessConceptTab.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/robustness.tsx",
+      "target": "presentation/components/robustness/RobustnessCircuitBreakerSimulationTab.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/security.tsx",
+      "target": "presentation/components/ArchHero.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/security.tsx",
+      "target": "presentation/components/SEO.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/security.tsx",
+      "target": "presentation/components/security/AppSecOWASPTab.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/security.tsx",
+      "target": "presentation/components/security/ZeroTrustNISTTab.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/security.tsx",
+      "target": "presentation/components/security/SecurityDefenseSimulationTab.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/security.tsx",
+      "target": "presentation/components/security/useSecuritySimulation.ts",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/server-driven-ui.tsx",
+      "target": "presentation/components/ArchHero.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/serverless.tsx",
+      "target": "presentation/components/ArchHero.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/serverless.tsx",
+      "target": "presentation/components/SEO.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/serverless.tsx",
+      "target": "presentation/components/serverless/ServerlessComparisonTab.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/serverless.tsx",
+      "target": "presentation/components/serverless/ServerlessSimulationTab.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/soa.tsx",
+      "target": "presentation/components/ArchHero.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/soa.tsx",
+      "target": "presentation/components/SEO.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/soa.tsx",
+      "target": "presentation/components/soa/SOAComparisonTab.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/soa.tsx",
+      "target": "presentation/components/soa/SOASimulationTab.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/soa.tsx",
+      "target": "presentation/components/soa/useESBSimulation.ts",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/solid.tsx",
+      "target": "presentation/components/SOLIDHero.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/solid.tsx",
+      "target": "presentation/components/SOLIDSection.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/solid.tsx",
+      "target": "presentation/context/ProgressContext.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/spa-vs-mpa.tsx",
+      "target": "presentation/components/ArchHero.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/spa-vs-mpa.tsx",
+      "target": "presentation/components/SEO.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/spa-vs-mpa.tsx",
+      "target": "presentation/components/spampa/SPAMPAComparisonTab.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/spa-vs-mpa.tsx",
+      "target": "presentation/components/spampa/SPAMPASimulationTab.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/space-based.tsx",
+      "target": "presentation/components/ArchHero.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/space-based.tsx",
+      "target": "presentation/components/SEO.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/space-based.tsx",
+      "target": "presentation/components/spacebased/SpaceBasedComparisonTab.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/space-based.tsx",
+      "target": "presentation/components/spacebased/SpaceBasedSimulationTab.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/state-driven.tsx",
+      "target": "presentation/pages/component-driven.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/synthesis-lab.tsx",
+      "target": "presentation/components/SEO.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/synthesis-lab.tsx",
+      "target": "presentation/components/WorkInProgressView.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/tdd.tsx",
+      "target": "presentation/pages/testing.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/testing.tsx",
+      "target": "presentation/components/ArchHero.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/testing.tsx",
+      "target": "presentation/components/SEO.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/testing.tsx",
+      "target": "presentation/components/testing/TestPyramidTab.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/testing.tsx",
+      "target": "presentation/components/testing/TDDLifecycleTab.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/testing.tsx",
+      "target": "presentation/components/testing/TestingStrategiesTab.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/testing.tsx",
+      "target": "presentation/components/testing/useTDDSimulation.ts",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/ui-catalog.tsx",
+      "target": "presentation/themes/theme.ts",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/ui-catalog.tsx",
+      "target": "presentation/components/SEO.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/vector-dbs.tsx",
+      "target": "presentation/components/ArchHero.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/vertical.tsx",
+      "target": "presentation/components/ArchHero.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/vertical.tsx",
+      "target": "presentation/components/SEO.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/vertical.tsx",
+      "target": "presentation/components/vertical/VerticalFeaturesTab.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/vertical.tsx",
+      "target": "presentation/components/vertical/VerticalVsHorizontalTab.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/vertical.tsx",
+      "target": "presentation/components/vertical/VerticalAIVibeTab.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/viper.tsx",
+      "target": "presentation/components/ArchHero.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/viper.tsx",
+      "target": "presentation/components/SEO.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/viper.tsx",
+      "target": "presentation/context/ProgressContext.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/viper.tsx",
+      "target": "presentation/components/viper/VIPERComparisonTab.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/viper.tsx",
+      "target": "presentation/components/viper/VIPERAnatomyTab.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/workshop.tsx",
+      "target": "presentation/components/SEO.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/workshop.tsx",
+      "target": "presentation/components/WorkInProgressView.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/zero-trust.tsx",
+      "target": "presentation/pages/security.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/themes/theme.ts",
+      "target": "presentation/themes/typography.ts",
+      "value": 1
     }
   ]
 }

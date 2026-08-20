@@ -13,6 +13,14 @@ const MVVMCPage: React.FC = () => {
   const isEn = (i18n.resolvedLanguage || i18n.language || 'tr').startsWith('en');
   const { completeStep } = useProgress();
   const [activeTab, setActiveTab] = useState<'concepts' | 'comparison'>('comparison');
+  const scrollToSection = (id: 'concepts' | 'comparison') => {
+    setActiveTab(id);
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
+
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -128,7 +136,7 @@ const MVVMCPage: React.FC = () => {
             ].map((tab) => (
               <button
                 key={tab.id}
-                onClick={() => setActiveTab(tab.id as any)}
+                onClick={() => scrollToSection(tab.id as any)}
                 style={{
                   padding: '10px 24px',
                   borderRadius: '18px',
@@ -152,10 +160,14 @@ const MVVMCPage: React.FC = () => {
         </ArchHero>
 
         <div className="container" style={{ marginTop: '2rem' }}>
-          <AnimatePresence mode="wait">
-            {activeTab === 'comparison' && <MVVMCComparisonTab key="comparison" />}
-            {activeTab === 'concepts' && <MVVMCConceptsTab key="concepts" />}
-          </AnimatePresence>
+          <div style={{ display: "flex", flexDirection: "column", gap: "4rem" }}>
+          <div id="comparison" style={{ scrollMarginTop: "100px" }}>
+            <MVVMCComparisonTab />
+          </div>
+          <div id="concepts" style={{ scrollMarginTop: "100px" }}>
+            <MVVMCConceptsTab />
+          </div>
+        </div>
         </div>
 
         {/* Architecture Origin Section */}
@@ -179,7 +191,10 @@ const MVVMCPage: React.FC = () => {
                   }
                 </p>
                 
-                <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+                <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap',
+            position: 'sticky',
+            top: '80px',
+            zIndex: 30 }}>
                    <a 
                      href="https://khanlou.com/2015/01/the-coordinator/" 
                      target="_blank" 

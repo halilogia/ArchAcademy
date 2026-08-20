@@ -13,6 +13,14 @@ const TestingPage: React.FC = () => {
   const { i18n } = useTranslation();
   const isEn = (i18n.resolvedLanguage || i18n.language || 'tr').startsWith('en');
   const [activeTab, setActiveTab] = useState<'pyramid' | 'tdd' | 'strategies'>('pyramid');
+  const scrollToSection = (id: 'pyramid' | 'tdd' | 'strategies') => {
+    setActiveTab(id);
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
+
 
   const tdd = useTDDSimulation();
 
@@ -60,7 +68,10 @@ const TestingPage: React.FC = () => {
             alignItems: 'center',
             gap: '4px',
             backdropFilter: 'blur(10px)',
-            flexWrap: 'wrap'
+            flexWrap: 'wrap',
+            position: 'sticky',
+            top: '80px',
+            zIndex: 30
           }}>
             {[
               { id: 'pyramid', label: isEn ? 'Test Pyramid' : 'Test Piramidi', icon: <Layers size={18} /> },
@@ -69,7 +80,7 @@ const TestingPage: React.FC = () => {
             ].map((tab) => (
               <button
                 key={tab.id}
-                onClick={() => setActiveTab(tab.id as any)}
+                onClick={() => scrollToSection(tab.id as any)}
                 style={{
                   padding: '10px 24px',
                   borderRadius: '18px',
@@ -93,21 +104,14 @@ const TestingPage: React.FC = () => {
         </ArchHero>
 
         <div className="container" style={{ marginTop: '2rem' }}>
-          <AnimatePresence mode="wait">
-            {activeTab === 'pyramid' && <TestPyramidTab key="pyramid" />}
-            {activeTab === 'tdd' && (
-              <TDDLifecycleTab 
-                key="tdd"
-                currentPhase={tdd.currentPhase}
-                setCurrentPhase={tdd.setCurrentPhase}
-                testCount={tdd.testCount}
-                isRunning={tdd.isRunning}
-                onAdvance={tdd.advancePhase}
-                activeInfo={tdd.activeInfo}
-              />
-            )}
-            {activeTab === 'strategies' && <TestingStrategiesTab key="strategies" />}
-          </AnimatePresence>
+          <div style={{ display: "flex", flexDirection: "column", gap: "4rem" }}>
+          <div id="pyramid" style={{ scrollMarginTop: "100px" }}>
+            <TestPyramidTab />
+          </div>
+          <div id="strategies" style={{ scrollMarginTop: "100px" }}>
+            <TestingStrategiesTab />
+          </div>
+        </div>
         </div>
 
         <section style={{ padding: '4rem 0', background: 'rgba(0,0,0,0.3)', borderTop: '1px solid rgba(255,255,255,0.05)', marginTop: '4rem' }}>

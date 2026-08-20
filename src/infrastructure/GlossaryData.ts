@@ -14,6 +14,28 @@ export interface GlossaryTerm {
 
 const RAW_GLOSSARY_TERMS: GlossaryTerm[] = [
     {
+      id: 9901,
+      term: 'Use-Case (Kullanım Senaryosu)',
+      term_en: 'Use-Case / Interactor',
+      definition: 'Bir aktörün (kullanıcı veya dış sistem) sistemde belirli bir hedefi gerçekleştirmek için yürüttüğü adımlar dizisidir. Mimaride saf iş akışını (Application Layer) temsil eder.',
+      definition_en: 'A sequence of actions executed by an actor to achieve a specific business goal. Represents pure workflow orchestration in the Application / Interactor layer.',
+      category: 'Foundation',
+      category_en: 'Foundation',
+      guruTip: 'Clean Architecture\'ın 2. halkasıdır. Veritabanından ve UI\'dan tamamen bağımsızdır.',
+      guruTip_en: 'The 2nd ring of Clean Architecture. Completely independent from database models and UI frameworks.'
+    },
+    {
+      id: 9902,
+      term: 'BCE Deseni (Boundary-Control-Entity)',
+      term_en: 'BCE Pattern (Boundary-Control-Entity)',
+      definition: 'Ivar Jacobson tarafından 1992\'de önerilen ve Use-Case Driven Architecture\'ın temelini oluşturan 3 katmanlı sorumluluk ayrımıdır: Sınır (Boundary), Denetleyici/İş Akışı (Control) ve Varlık (Entity).',
+      definition_en: 'A tripartite responsibility assignment pattern introduced by Ivar Jacobson in 1992: Boundary (UI/API), Control (Use Case Orchestrator), and Entity (Domain Rules).',
+      category: 'Foundation',
+      category_en: 'Foundation',
+      guruTip: 'Uncle Bob\'un Clean Architecture ve Screaming Architecture felsefesinin doğrudan atasıdır.',
+      guruTip_en: 'The direct conceptual ancestor of Uncle Bob\'s Clean Architecture and Screaming Architecture.'
+    },
+    {
       id: 1,
       term: 'Separation of Concerns (SoC)',
       definition: 'Yazılımın farklı teknik veya iş mantığı katmanlarına bölünmesi prensibidir. Her parçanın kendine ait net bir sorumluluğu olmalıdır.',

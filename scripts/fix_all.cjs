@@ -205,8 +205,69 @@ let c_ps = fs.readFileSync(p_ps, 'utf8');
 c_ps = c_ps.replace('writeData={simulation.writeData}', 'onWriteData={simulation.writeData}');
 fs.writeFileSync(p_ps, c_ps, 'utf8');
 
-const p_soa = 'src/presentation/pages/soa.tsx';
-let c_soa = fs.readFileSync(p_soa, 'utf8');
-c_soa = c_soa.replace('triggerESB={simulation.triggerESB}', 'modernWeb="idle" legacyCRM="idle" sapSystem="idle" onTriggerESB={simulation.triggerESB}');
-fs.writeFileSync(p_soa, c_soa, 'utf8');
-console.log('Simulation Pages updated!');
+const path = require('path');
+const pagesDir = path.resolve('src/presentation/pages');
+const files = fs.readdirSync(pagesDir).filter(f => f.endsWith('.tsx'));
+let count = 0;
+for (const file of files) {
+  const filePath = path.join(pagesDir, file);
+  let content = fs.readFileSync(filePath, 'utf8');
+  if (content.includes('activeTab ===') && content.includes('<AnimatePresence') && (content.includes('ArchHero') || content.includes('Hero'))) {
+    if (content.includes('scrollToSection')) continue;
+    const tabMatch = content.match(/const\s+\[activeTab,\s*setActiveTab\]\s*=\s*useState<([^>]+)>\(([^)]+)\);/);
+    if (!tabMatch) continue;
+    const tabType = tabMatch[1];
+    const scrollFunc = '  const scrollToSection = (id: ' + tabType + ') => {\n    setActiveTab(id);\n    const element = document.getElementById(id);\n    if (element) {\n      element.scrollIntoView({ behavior: "smooth", block: "start" });\n    }\n  };\n';
+    content = content.replace(tabMatch[0], tabMatch[0] + '\n' + scrollFunc);
+    content = content.replace(/onClick=\{\(\)\s*=>\s*setActiveTab\(tab\.id\s+as\s+any\)\}/g, 'onClick={() => scrollToSection(tab.id as any)}');
+    content = content.replace(/onClick=\{\(\)\s*=>\s*setActiveTab\(tab\.id\)\}/g, 'onClick={() => scrollToSection(tab.id as any)}');
+    content = content.replace(/flexWrap:\s*['"]wrap['"]/g, "flexWrap: 'wrap',\n            position: 'sticky',\n            top: '80px',\n            zIndex: 30");
+    const animMatch = content.match(/<AnimatePresence[^>]*>([\s\S]*?)<\/AnimatePresence>/);
+    if (animMatch) {
+      const inner = animMatch[1];
+      const branchRegex = /\{activeTab\s*===\s*['"]([^'"]+)['"]\s*&&\s*<([^/>]+)(?:\s+key=['"][^'"]+['"])?\s*\/>\}/g;
+      let branchMatch;
+      let newSections = [];
+      while ((branchMatch = branchRegex.exec(inner)) !== null) {
+        const tabId = branchMatch[1];
+        const compTag = branchMatch[2].replace(/\s*key=['"][^'"]+['"]/, '').trim();
+        newSections.push('          <div id="' + tabId + '" style={{ scrollMarginTop: "100px" }}>\n            <' + compTag + ' />\n          </div>');
+      }
+      if (newSections.length > 0) {
+        const replacement = '<div style={{ display: "flex", flexDirection: "column", gap: "4rem" }}>\n' + newSections.join('\n') + '\n        </div>';
+        content = content.replace(animMatch[0], replacement);
+        fs.writeFileSync(filePath, content, 'utf8');
+        console.log('Converted to sequential scroll:', file, '(' + newSections.length + ' sections)');
+        count++;
+      }
+    }
+  }
+}
+// 5. Update Matrix Data
+const p_matrix_data = 'src/infrastructure/ComparisonMatrixData.ts';
+let c_matrix_data = fs.readFileSync(p_matrix_data, 'utf8');
+c_matrix_data = c_matrix_data.replace(/\s*githubPopularity:\s*number;\n?/, '\n');
+c_matrix_data = c_matrix_data.replace(/\{\s*id:\s*['"]github['"][\s\S]*?borderColor:\s*['"]rgba\(234,\s*179,\s*8,\s*0\.3\)['"]\s*\},?\s*/, '');
+c_matrix_data = c_matrix_data.replace(/\s*githubPopularity:\s*\d+,?\n?/g, '\n');
+
+const useCaseMatrixRow = `  {
+    name: 'Use-Case Driven (BCE)',
+    size: { tr: 'Orta/Büyük', en: 'Medium/Large' },
+    sizeValue: 3,
+    speed: 3,
+    kiss: 3,
+    dry: 4,
+    maintAndTest: 5,
+    flex: 4,
+    aiLocality: 4,
+    color: '#f59e0b',
+    bestFor: { tr: 'İş Akışı ve Senaryo Yoğun Sistemler (BCE Modeli)', en: 'Workflow & Scenario-Dense Systems (BCE Model)' },
+    path: '/clean-arch'
+  },\n`;
+
+if (!c_matrix_data.includes("Use-Case Driven (BCE)")) {
+  c_matrix_data = c_matrix_data.replace("export const MATRIX_DATA: MatrixRowItem[] = [\n", "export const MATRIX_DATA: MatrixRowItem[] = [\n" + useCaseMatrixRow);
+}
+fs.writeFileSync(p_matrix_data, c_matrix_data, 'utf8');
+console.log('ComparisonMatrixData.ts updated!');
+

@@ -1,8 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { Github, Youtube, Linkedin } from 'lucide-react';
 
-const Footer = () => {
+const Footer: React.FC = () => {
+  const { i18n } = useTranslation();
+  const isEn = (i18n.resolvedLanguage || i18n.language || 'tr').startsWith('en');
+
   return (
     <footer style={{ 
       padding: '80px 0 40px', 
@@ -12,7 +16,7 @@ const Footer = () => {
       <div className="container">
         <div style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(4, 1fr)',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
           gap: '4rem',
           marginBottom: '4rem'
         }}>
@@ -21,8 +25,10 @@ const Footer = () => {
               ArchAcademy
             </h3>
             <p style={{ color: 'var(--text-secondary)', maxWidth: '400px', marginBottom: '2rem', lineHeight: 1.6 }}>
-              Yazılım mimarisi üzerine aldığım kişisel notlar ve modern mühendislik pratikleri arşivi. 
-              Karmaşıklığı yönetmek için dürüst ve pratik bir rehber.
+              {isEn 
+                ? "An engineering notebook and modern architecture archive. A practical, honest guide to mastering software complexity."
+                : "Yazılım mimarisi üzerine aldığım kişisel notlar ve modern mühendislik pratikleri arşivi. Karmaşıklığı yönetmek için dürüst ve pratik bir rehber."
+              }
             </p>
             <div style={{ display: 'flex', gap: '1rem' }}>
               <a href="https://github.com/halilogia/ArchAcademy" target="_blank" rel="noopener noreferrer" style={{ 
@@ -59,17 +65,21 @@ const Footer = () => {
           </div>
           
           <div>
-            <h4 style={{ marginBottom: '1.5rem', fontWeight: 700 }}>Hızlı Bağlantılar</h4>
+            <h4 style={{ marginBottom: '1.5rem', fontWeight: 700 }}>
+              {isEn ? "Quick Links" : "Hızlı Bağlantılar"}
+            </h4>
             <ul style={{ display: 'flex', flexDirection: 'column', gap: '1rem', color: 'var(--text-secondary)', fontSize: '0.9rem', listStyle: 'none', padding: 0 }}>
-              <li><Link to="/assessment" style={{ color: 'inherit', textDecoration: 'none' }}>Mimari Sihirbazı</Link></li>
-              <li><Link to="/solid" style={{ color: 'inherit', textDecoration: 'none' }}>SOLID Prensipleri</Link></li>
-              <li><Link to="/glossary" style={{ color: 'inherit', textDecoration: 'none' }}>Mimari Sözlük</Link></li>
-              <li><Link to="/workshop" style={{ color: 'inherit', textDecoration: 'none' }}>Pratik Atölye</Link></li>
+              <li><Link to="/assessment" style={{ color: 'inherit', textDecoration: 'none' }}>{isEn ? "Architecture Wizard" : "Mimari Sihirbazı"}</Link></li>
+              <li><Link to="/solid" style={{ color: 'inherit', textDecoration: 'none' }}>{isEn ? "SOLID Principles" : "SOLID Prensipleri"}</Link></li>
+              <li><Link to="/glossary" style={{ color: 'inherit', textDecoration: 'none' }}>{isEn ? "Architect's Glossary" : "Mimari Sözlük"}</Link></li>
+              <li><Link to="/workshop" style={{ color: 'inherit', textDecoration: 'none' }}>{isEn ? "Practical Workshop" : "Pratik Atölye"}</Link></li>
             </ul>
           </div>
 
           <div>
-            <h4 style={{ marginBottom: '1.5rem', fontWeight: 700 }}>Dış Kaynaklar</h4>
+            <h4 style={{ marginBottom: '1.5rem', fontWeight: 700 }}>
+              {isEn ? "External Resources" : "Dış Kaynaklar"}
+            </h4>
             <ul style={{ display: 'flex', flexDirection: 'column', gap: '1rem', color: 'var(--text-secondary)', fontSize: '0.9rem', listStyle: 'none', padding: 0 }}>
               <li><a href="http://blog.cleancoder.com/" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'none' }}>Uncle Bob's Blog</a></li>
               <li><a href="https://martinfowler.com" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'none' }}>Martin Fowler</a></li>
@@ -87,7 +97,7 @@ const Footer = () => {
           fontSize: '0.85rem',
           opacity: 0.7
         }}>
-          © 2026 ArchAcademy. Sevgiyle ve temiz kodla inşa edildi.
+          {isEn ? "© 2026 ArchAcademy. Built with passion and clean code." : "© 2026 ArchAcademy. Sevgiyle ve temiz kodla inşa edildi."}
         </div>
       </div>
     </footer>

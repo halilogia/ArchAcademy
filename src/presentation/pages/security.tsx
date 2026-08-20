@@ -13,6 +13,14 @@ const SecurityPage: React.FC = () => {
   const { i18n } = useTranslation();
   const isEn = (i18n.resolvedLanguage || i18n.language || 'tr').startsWith('en');
   const [activeTab, setActiveTab] = useState<'appsec' | 'zerotrust' | 'defense'>('appsec');
+  const scrollToSection = (id: 'appsec' | 'zerotrust' | 'defense') => {
+    setActiveTab(id);
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
+
 
   const security = useSecuritySimulation();
 
@@ -70,7 +78,10 @@ const SecurityPage: React.FC = () => {
             alignItems: 'center',
             gap: '4px',
             backdropFilter: 'blur(10px)',
-            flexWrap: 'wrap'
+            flexWrap: 'wrap',
+            position: 'sticky',
+            top: '80px',
+            zIndex: 30
           }}>
             {[
               { id: 'appsec', label: isEn ? 'AppSec & OWASP' : 'OWASP Top 10 Savunması', icon: <ShieldCheck size={18} /> },
@@ -79,7 +90,7 @@ const SecurityPage: React.FC = () => {
             ].map((tab) => (
               <button
                 key={tab.id}
-                onClick={() => setActiveTab(tab.id as any)}
+                onClick={() => scrollToSection(tab.id as any)}
                 style={{
                   padding: '10px 24px',
                   borderRadius: '18px',
@@ -103,24 +114,14 @@ const SecurityPage: React.FC = () => {
         </ArchHero>
 
         <div className="container" style={{ marginTop: '2rem' }}>
-          <AnimatePresence mode="wait">
-            {activeTab === 'appsec' && <AppSecOWASPTab key="appsec" />}
-            {activeTab === 'zerotrust' && <ZeroTrustNISTTab key="zerotrust" />}
-            {activeTab === 'defense' && (
-              <SecurityDefenseSimulationTab 
-                key="defense"
-                zeroTrustActive={security.zeroTrustActive}
-                setZeroTrustActive={security.setZeroTrustActive}
-                mTLSActive={security.mTLSActive}
-                setMTLSActive={security.setMTLSActive}
-                wafActive={security.wafActive}
-                setWafActive={security.setWafActive}
-                isSimulating={security.isSimulating}
-                logs={security.logs}
-                onLaunchAttack={security.launchAttack}
-              />
-            )}
-          </AnimatePresence>
+          <div style={{ display: "flex", flexDirection: "column", gap: "4rem" }}>
+          <div id="appsec" style={{ scrollMarginTop: "100px" }}>
+            <AppSecOWASPTab />
+          </div>
+          <div id="zerotrust" style={{ scrollMarginTop: "100px" }}>
+            <ZeroTrustNISTTab />
+          </div>
+        </div>
         </div>
 
         <section style={{ padding: '4rem 0', background: 'rgba(0,0,0,0.3)', borderTop: '1px solid rgba(255,255,255,0.05)', marginTop: '4rem' }}>

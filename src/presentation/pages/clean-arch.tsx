@@ -16,6 +16,14 @@ const CleanArchPage: React.FC = () => {
 
   const { completeStep } = useProgress();
   const [activeTab, setActiveTab] = useState<'clean' | 'scream' | 'layer' | 'feature'>('clean');
+  const scrollToSection = (id: 'clean' | 'scream' | 'layer' | 'feature') => {
+    setActiveTab(id);
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
+
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -55,7 +63,10 @@ const CleanArchPage: React.FC = () => {
             boxShadow: '0 10px 30px rgba(0,0,0,0.3)',
             width: 'fit-content',
             marginTop: '1rem',
-            flexWrap: 'wrap'
+            flexWrap: 'wrap',
+            position: 'sticky',
+            top: '80px',
+            zIndex: 30
           }}>
             {[
               { id: 'clean', label: isEn ? 'Principles' : 'Prensipler', icon: <Layers size={16} /> },
@@ -65,7 +76,7 @@ const CleanArchPage: React.FC = () => {
             ].map((tab) => (
               <button
                 key={tab.id}
-                onClick={() => setActiveTab(tab.id as any)}
+                onClick={() => scrollToSection(tab.id as any)}
                 style={{
                   padding: '10px 20px',
                   borderRadius: '18px',
@@ -89,12 +100,20 @@ const CleanArchPage: React.FC = () => {
         </Hero>
 
         <div className="container">
-          <AnimatePresence mode="wait">
-            {activeTab === 'clean' && <CleanArchPrinciplesTab key="clean" />}
-            {activeTab === 'scream' && <CleanArchScreamingTab key="scream" />}
-            {activeTab === 'layer' && <CleanArchClassicLayerTab key="layer" />}
-            {activeTab === 'feature' && <CleanArchModernFeatureTab key="feature" />}
-          </AnimatePresence>
+          <div style={{ display: "flex", flexDirection: "column", gap: "4rem" }}>
+          <div id="clean" style={{ scrollMarginTop: "100px" }}>
+            <CleanArchPrinciplesTab />
+          </div>
+          <div id="scream" style={{ scrollMarginTop: "100px" }}>
+            <CleanArchScreamingTab />
+          </div>
+          <div id="layer" style={{ scrollMarginTop: "100px" }}>
+            <CleanArchClassicLayerTab />
+          </div>
+          <div id="feature" style={{ scrollMarginTop: "100px" }}>
+            <CleanArchModernFeatureTab />
+          </div>
+        </div>
         </div>
 
         <section style={{ padding: '4rem 0', background: 'rgba(0,0,0,0.3)', borderTop: '1px solid rgba(255,255,255,0.05)', marginTop: '4rem' }}>
@@ -117,7 +136,10 @@ const CleanArchPage: React.FC = () => {
                   }
                 </p>
                 
-                <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+                <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap',
+            position: 'sticky',
+            top: '80px',
+            zIndex: 30 }}>
                    <a 
                      href="https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html" 
                      target="_blank" 

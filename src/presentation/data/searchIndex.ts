@@ -76,6 +76,15 @@ export const SEARCH_INDEX: SearchIndexItem[] = [
     content: 'Clean Architecture by Uncle Bob - The definitive guide to building maintainable software systems. Learn about dependency inversion, entity boundaries, use cases and the dependency rule. Clean Architecture separates concerns into concentric layers: Entities, Use Cases, Interface Adapters and Frameworks & Drivers.'
   },
   {
+    id: 'use-case-driven',
+    title: 'Use-Case Driven Architecture (BCE)',
+    description: 'Ivar Jacobson BCE Pattern & Scenario-First Interactors',
+    path: '/clean-arch',
+    category: 'System',
+    keywords: ['use case', 'usecase', 'bce', 'ivar jacobson', 'interactor', 'boundary', 'control', 'entity', 'screaming architecture'],
+    content: 'Use-Case Driven Architecture - An architectural approach pioneered by Ivar Jacobson and popularized by Clean Architecture. Structures applications around user intents and business scenarios using Boundary-Control-Entity (BCE) patterns instead of database CRUD tables.'
+  },
+  {
     id: 'onion',
     title: 'Onion Architecture',
     description: 'Dependency inversion core',

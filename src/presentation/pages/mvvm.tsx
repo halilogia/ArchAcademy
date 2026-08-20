@@ -24,6 +24,14 @@ const MVVMPage: React.FC = () => {
   const isEn = (i18n.resolvedLanguage || i18n.language || 'tr').startsWith('en');
   const { completeStep } = useProgress();
   const [activeTab, setActiveTab] = useState<'principles' | 'hybrid' | 'nia'>('principles');
+  const scrollToSection = (id: 'principles' | 'hybrid' | 'nia') => {
+    setActiveTab(id);
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
+
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -154,11 +162,17 @@ const MVVMPage: React.FC = () => {
         </div>
       </ArchHero>
 
-      <AnimatePresence mode="wait">
-        {activeTab === 'principles' && <MVVMPrinciplesTab key="principles" />}
-        {activeTab === 'hybrid' && <MVVMHybridTab key="hybrid" />}
-        {activeTab === 'nia' && <MVVMNiaTab key="nia" />}
-      </AnimatePresence>
+      <div style={{ display: "flex", flexDirection: "column", gap: "4rem" }}>
+          <div id="principles" style={{ scrollMarginTop: "100px" }}>
+            <MVVMPrinciplesTab />
+          </div>
+          <div id="hybrid" style={{ scrollMarginTop: "100px" }}>
+            <MVVMHybridTab />
+          </div>
+          <div id="nia" style={{ scrollMarginTop: "100px" }}>
+            <MVVMNiaTab />
+          </div>
+        </div>
     </motion.div>
   );
 };

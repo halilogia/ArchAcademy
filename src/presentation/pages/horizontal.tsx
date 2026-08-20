@@ -3,7 +3,7 @@ import VerticalSlicePage from './vertical';
 
 // Unified into Vertical Slice & Layering Architectures Masterclass (SRP & Consolidation)
 const HorizontalPage: React.FC = () => {
-  return <VerticalSlicePage />;
+  return <VerticalSlicePage initialTab="compare" />;
 };
 
 export default HorizontalPage;

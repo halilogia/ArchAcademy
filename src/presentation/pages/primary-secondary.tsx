@@ -12,6 +12,14 @@ const PrimarySecondaryPage: React.FC = () => {
   const { i18n } = useTranslation();
   const isEn = (i18n.resolvedLanguage || i18n.language || 'tr').startsWith('en');
   const [activeTab, setActiveTab] = useState<'simulation' | 'comparison'>('comparison');
+  const scrollToSection = (id: 'simulation' | 'comparison') => {
+    setActiveTab(id);
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
+
   
   const simulation = useReplicationSimulation();
 
@@ -120,7 +128,7 @@ const PrimarySecondaryPage: React.FC = () => {
             ].map((tab) => (
               <button
                 key={tab.id}
-                onClick={() => setActiveTab(tab.id as any)}
+                onClick={() => scrollToSection(tab.id as any)}
                 style={{
                   padding: '10px 24px',
                   borderRadius: '18px',
@@ -144,19 +152,11 @@ const PrimarySecondaryPage: React.FC = () => {
         </ArchHero>
 
         <div className="container" style={{ marginTop: '2rem' }}>
-          <AnimatePresence mode="wait">
-            {activeTab === 'comparison' && <PrimarySecondaryComparisonTab key="comparison" />}
-            {activeTab === 'simulation' && (
-              <PrimarySecondarySimulationTab 
-                key="simulation"
-                replicationStatus={simulation.replicationStatus}
-                primaryData={simulation.primaryData}
-                secondary1Data={simulation.secondary1Data}
-                secondary2Data={simulation.secondary2Data}
-                onWriteData={simulation.writeData}
-              />
-            )}
-          </AnimatePresence>
+          <div style={{ display: "flex", flexDirection: "column", gap: "4rem" }}>
+          <div id="comparison" style={{ scrollMarginTop: "100px" }}>
+            <PrimarySecondaryComparisonTab />
+          </div>
+        </div>
         </div>
       </motion.div>
     </>

@@ -11,6 +11,14 @@ const PipeFilterPage: React.FC = () => {
   const { i18n } = useTranslation();
   const isEn = (i18n.resolvedLanguage || i18n.language || 'tr').startsWith('en');
   const [activeTab, setActiveTab] = useState<'simulation' | 'concept'>('concept');
+  const scrollToSection = (id: 'simulation' | 'concept') => {
+    setActiveTab(id);
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
+
   const [pipelineActive, setPipelineActive] = useState(false);
   const [processedPackets, setProcessedPackets] = useState<DataPacket[]>([]);
 
@@ -148,7 +156,7 @@ const PipeFilterPage: React.FC = () => {
             ].map((tab) => (
               <button
                 key={tab.id}
-                onClick={() => setActiveTab(tab.id as any)}
+                onClick={() => scrollToSection(tab.id as any)}
                 style={{
                   padding: '10px 24px',
                   borderRadius: '18px',
@@ -172,17 +180,11 @@ const PipeFilterPage: React.FC = () => {
         </ArchHero>
 
         <div className="container" style={{ marginTop: '2rem' }}>
-          <AnimatePresence mode="wait">
-            {activeTab === 'concept' && <PipeFilterConceptTab key="concept" />}
-            {activeTab === 'simulation' && (
-              <PipeFilterSimulationTab 
-                key="simulation"
-                pipelineActive={pipelineActive}
-                processedPackets={processedPackets}
-                onRunPipeline={runPipeline}
-              />
-            )}
-          </AnimatePresence>
+          <div style={{ display: "flex", flexDirection: "column", gap: "4rem" }}>
+          <div id="concept" style={{ scrollMarginTop: "100px" }}>
+            <PipeFilterConceptTab />
+          </div>
+        </div>
         </div>
 
         {/* Enterprise Integration Patterns Reference */}
@@ -206,7 +208,10 @@ const PipeFilterPage: React.FC = () => {
                   }
                 </p>
                 
-                <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+                <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap',
+            position: 'sticky',
+            top: '80px',
+            zIndex: 30 }}>
                    <a 
                      href="https://www.enterpriseintegrationpatterns.com/patterns/messaging/PipesAndFilters.html" 
                      target="_blank" 

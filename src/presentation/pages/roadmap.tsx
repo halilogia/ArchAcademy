@@ -11,6 +11,14 @@ const RoadmapPage: React.FC = () => {
   const { i18n } = useTranslation();
   const isEn = (i18n.resolvedLanguage || i18n.language || 'tr').startsWith('en');
   const [activeTab, setActiveTab] = useState<'career' | 'production'>('career');
+  const scrollToSection = (id: 'career' | 'production') => {
+    setActiveTab(id);
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
+
 
   return (
     <>
@@ -35,10 +43,14 @@ const RoadmapPage: React.FC = () => {
         />
 
         <div style={{ paddingBottom: '120px' }}>
-          <AnimatePresence mode="wait">
-            {activeTab === 'career' && <RoadmapCurriculumTab key="career" />}
-            {activeTab === 'production' && <RoadmapProductionTab key="production" />}
-          </AnimatePresence>
+          <div style={{ display: "flex", flexDirection: "column", gap: "4rem" }}>
+          <div id="career" style={{ scrollMarginTop: "100px" }}>
+            <RoadmapCurriculumTab />
+          </div>
+          <div id="production" style={{ scrollMarginTop: "100px" }}>
+            <RoadmapProductionTab />
+          </div>
+        </div>
         </div>
 
         <RoadmapImpactFooter />

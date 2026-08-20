@@ -13,6 +13,14 @@ const VIPERPage: React.FC = () => {
   const isEn = (i18n.resolvedLanguage || i18n.language || 'tr').startsWith('en');
   const { completeStep } = useProgress();
   const [activeTab, setActiveTab] = useState<'anatomy' | 'comparison'>('comparison');
+  const scrollToSection = (id: 'anatomy' | 'comparison') => {
+    setActiveTab(id);
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
+
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -128,7 +136,7 @@ const VIPERPage: React.FC = () => {
             ].map((tab) => (
               <button
                 key={tab.id}
-                onClick={() => setActiveTab(tab.id as any)}
+                onClick={() => scrollToSection(tab.id as any)}
                 style={{
                   padding: '10px 24px',
                   borderRadius: '18px',
@@ -152,10 +160,14 @@ const VIPERPage: React.FC = () => {
         </ArchHero>
 
         <div className="container" style={{ marginTop: '2rem' }}>
-          <AnimatePresence mode="wait">
-            {activeTab === 'comparison' && <VIPERComparisonTab key="comparison" />}
-            {activeTab === 'anatomy' && <VIPERAnatomyTab key="anatomy" />}
-          </AnimatePresence>
+          <div style={{ display: "flex", flexDirection: "column", gap: "4rem" }}>
+          <div id="comparison" style={{ scrollMarginTop: "100px" }}>
+            <VIPERComparisonTab />
+          </div>
+          <div id="anatomy" style={{ scrollMarginTop: "100px" }}>
+            <VIPERAnatomyTab />
+          </div>
+        </div>
         </div>
 
         {/* Clean Mobile Architecture Reference */}
@@ -179,7 +191,10 @@ const VIPERPage: React.FC = () => {
                   }
                 </p>
                 
-                <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+                <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap',
+            position: 'sticky',
+            top: '80px',
+            zIndex: 30 }}>
                    <a 
                      href="https://www.objc.io/issues/13-architecture/viper/" 
                      target="_blank" 

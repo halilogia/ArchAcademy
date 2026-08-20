@@ -11,6 +11,14 @@ const PubSubPage: React.FC = () => {
   const { i18n } = useTranslation();
   const isEn = (i18n.resolvedLanguage || i18n.language || 'tr').startsWith('en');
   const [activeTab, setActiveTab] = useState<'simulation' | 'comparison'>('comparison');
+  const scrollToSection = (id: 'simulation' | 'comparison') => {
+    setActiveTab(id);
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
+
 
   const heroIllustration = (
     <div style={{ position: 'relative', width: '380px', height: '350px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
@@ -121,7 +129,7 @@ const PubSubPage: React.FC = () => {
             ].map((tab) => (
                <button
                 key={tab.id}
-                onClick={() => setActiveTab(tab.id as any)}
+                onClick={() => scrollToSection(tab.id as any)}
                 style={{
                   padding: '10px 24px',
                   borderRadius: '18px',
@@ -145,10 +153,14 @@ const PubSubPage: React.FC = () => {
         </ArchHero>
 
         <div className="container" style={{ marginTop: '2rem' }}>
-          <AnimatePresence mode="wait">
-            {activeTab === 'comparison' && <PubSubComparisonTab key="comparison" />}
-            {activeTab === 'simulation' && <PubSubSimulationTab key="simulation" />}
-          </AnimatePresence>
+          <div style={{ display: "flex", flexDirection: "column", gap: "4rem" }}>
+          <div id="comparison" style={{ scrollMarginTop: "100px" }}>
+            <PubSubComparisonTab />
+          </div>
+          <div id="simulation" style={{ scrollMarginTop: "100px" }}>
+            <PubSubSimulationTab />
+          </div>
+        </div>
         </div>
 
         {/* Technical Deep Dive Section */}
@@ -172,7 +184,10 @@ const PubSubPage: React.FC = () => {
                   }
                 </p>
                 
-                <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+                <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap',
+            position: 'sticky',
+            top: '80px',
+            zIndex: 30 }}>
                    <a 
                      href="https://aws.amazon.com/pub-sub-messaging/" 
                      target="_blank" 

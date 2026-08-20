@@ -5,9 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "npm run scan && vite build",
     "preview": "vite preview",
-    "scan": "python3 scripts/generate_graph.py",
+    "scan": "node scripts/generate_graph.mjs",
     "check": "tsc --noEmit",
     "lint": "eslint . --ext .ts,.tsx --report-unused-disable-directives --max-warnings 0",
     "lint:fix": "eslint . --ext .ts,.tsx --fix",

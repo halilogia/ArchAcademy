@@ -71,6 +71,20 @@ export const MATRIX_SUMMARY_CARDS: SummaryCardItem[] = [
 
 export const MATRIX_DATA: MatrixRowItem[] = [
   {
+    name: 'Use-Case Driven (BCE)',
+    size: { tr: 'Orta/Büyük', en: 'Medium/Large' },
+    sizeValue: 3,
+    speed: 3,
+    kiss: 3,
+    dry: 4,
+    maintAndTest: 5,
+    flex: 4,
+    aiLocality: 4,
+    color: '#f59e0b',
+    bestFor: { tr: 'İş Akışı ve Senaryo Yoğun Sistemler (BCE Modeli)', en: 'Workflow & Scenario-Dense Systems (BCE Model)' },
+    path: '/clean-arch'
+  },
+  {
     name: 'Clean Architecture',
     size: { tr: 'Büyük (Large)', en: 'Large Enterprise' },
     sizeValue: 3,
@@ -99,6 +113,48 @@ export const MATRIX_DATA: MatrixRowItem[] = [
     path: '/vertical'
   },
   {
+    name: 'Microservices',
+    size: { tr: 'Çok Büyük', en: 'Enterprise Distributed' },
+    sizeValue: 4,
+    speed: 3,
+    kiss: 1,
+    dry: 3,
+    maintAndTest: 4,
+    flex: 5,
+    aiLocality: 3,
+    color: '#38bdf8',
+    bestFor: { tr: 'Bağımsız Ekipler ve Çoklu Dağıtık Servisler', en: 'Independent Multi-Team Distributed Systems' },
+    path: '/microservices'
+  },
+  {
+    name: 'Agentic AI Architecture',
+    size: { tr: 'Orta/Büyük', en: 'AI Autonomous' },
+    sizeValue: 2.5,
+    speed: 4,
+    kiss: 2,
+    dry: 3,
+    maintAndTest: 4,
+    flex: 5,
+    aiLocality: 5,
+    color: '#10b981',
+    bestFor: { tr: 'Otonom AI Ajanları & Multi-Agent İş Akışları', en: 'Autonomous AI Agents & Multi-Agent Workflows' },
+    path: '/agentic-ai'
+  },
+  {
+    name: 'RAG Architecture',
+    size: { tr: 'Orta/Büyük', en: 'LLM Systems' },
+    sizeValue: 2.5,
+    speed: 4,
+    kiss: 3,
+    dry: 4,
+    maintAndTest: 4,
+    flex: 4,
+    aiLocality: 4,
+    color: '#a855f7',
+    bestFor: { tr: 'Vektör Arama & Kurumsal Bilgi Tabanlı LLM', en: 'Vector Search & Knowledge Retrieval LLM' },
+    path: '/rag-arch'
+  },
+  {
     name: 'DDD (Methodology)',
     size: { tr: 'Büyük (Large)', en: 'Large Complex' },
     sizeValue: 3,
@@ -123,8 +179,8 @@ export const MATRIX_DATA: MatrixRowItem[] = [
     flex: 5,
     aiLocality: 4,
     color: '#f59e0b',
-    bestFor: { tr: 'Yüksek Performanslı İçerik Odaklı Siteler', en: 'High-Performance Content-Heavy Web' },
-    path: '/glossary?search=Islands'
+    bestFor: { tr: 'Yüksek Performanslı İçerik Odaklı Siteler (Astro/Fresh)', en: 'High-Performance Content Sites (Astro/Fresh)' },
+    path: '/islands-arch'
   },
   {
     name: 'CQRS (Pattern)',
@@ -139,20 +195,6 @@ export const MATRIX_DATA: MatrixRowItem[] = [
     color: '#eab308',
     bestFor: { tr: 'Yüksek Okuma/Yazma Trafikli Sistemler', en: 'Asymmetric High Read/Write Traffic' },
     path: '/cqrs'
-  },
-  {
-    name: 'SOLID Principles',
-    size: { tr: 'Tüm projeler', en: 'All Projects' },
-    sizeValue: 1,
-    speed: 3,
-    kiss: 3,
-    dry: 5,
-    maintAndTest: 5,
-    flex: 5,
-    aiLocality: 4,
-    color: '#6366f1',
-    bestFor: { tr: 'Temel Kod Kalitesi ve Sürdürülebilirlik', en: 'Foundational Code Quality & Clean OOP' },
-    path: '/solid'
   },
   {
     name: 'Hexagonal',

@@ -13,6 +13,14 @@ const OOPFundamentalsPage: React.FC = () => {
   const { i18n } = useTranslation();
   const isEn = (i18n.resolvedLanguage || i18n.language || 'tr').startsWith('en');
   const [activeTab, setActiveTab] = useState<'pillars' | 'composition' | 'domainmodels' | 'simulation'>('pillars');
+  const scrollToSection = (id: 'pillars' | 'composition' | 'domainmodels' | 'simulation') => {
+    setActiveTab(id);
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
+
 
   return (
     <>
@@ -64,7 +72,10 @@ const OOPFundamentalsPage: React.FC = () => {
             alignItems: 'center',
             gap: '4px',
             backdropFilter: 'blur(10px)',
-            flexWrap: 'wrap'
+            flexWrap: 'wrap',
+            position: 'sticky',
+            top: '80px',
+            zIndex: 30
           }}>
             {[
               { id: 'pillars', label: isEn ? '4 Pillars of OOP' : 'OOP 4 Temel Direği', icon: <Box size={18} /> },
@@ -74,7 +85,7 @@ const OOPFundamentalsPage: React.FC = () => {
             ].map((tab) => (
               <button
                 key={tab.id}
-                onClick={() => setActiveTab(tab.id as any)}
+                onClick={() => scrollToSection(tab.id as any)}
                 style={{
                   padding: '10px 24px',
                   borderRadius: '18px',
@@ -98,12 +109,20 @@ const OOPFundamentalsPage: React.FC = () => {
         </ArchHero>
 
         <div className="container" style={{ marginTop: '2rem' }}>
-          <AnimatePresence mode="wait">
-            {activeTab === 'pillars' && <OOPPillarsTab key="pillars" />}
-            {activeTab === 'composition' && <CompositionOverInheritanceTab key="composition" />}
-            {activeTab === 'domainmodels' && <AnemicVsRichDomainTab key="domainmodels" />}
-            {activeTab === 'simulation' && <OOPPolymorphismSimulationTab key="simulation" />}
-          </AnimatePresence>
+          <div style={{ display: "flex", flexDirection: "column", gap: "4rem" }}>
+          <div id="pillars" style={{ scrollMarginTop: "100px" }}>
+            <OOPPillarsTab />
+          </div>
+          <div id="composition" style={{ scrollMarginTop: "100px" }}>
+            <CompositionOverInheritanceTab />
+          </div>
+          <div id="domainmodels" style={{ scrollMarginTop: "100px" }}>
+            <AnemicVsRichDomainTab />
+          </div>
+          <div id="simulation" style={{ scrollMarginTop: "100px" }}>
+            <OOPPolymorphismSimulationTab />
+          </div>
+        </div>
         </div>
 
         <section style={{ padding: '4rem 0', background: 'rgba(0,0,0,0.3)', borderTop: '1px solid rgba(255,255,255,0.05)', marginTop: '4rem' }}>

@@ -161,7 +161,7 @@ const ComparisonMatrix: React.FC = () => {
                 </th>
                 <th 
                   onClick={() => requestSort('aiLocality')}
-                  style={{ textAlign: 'center', padding: '1rem', cursor: 'pointer', width: '10%' }}
+                  style={{ textAlign: 'center', padding: '1rem', cursor: 'pointer', width: '12%' }}
                   title={lang === 'en' ? "AI Locality: Minimum folder hopping and high feature cohesion for Vibe Coding" : "AI Locality (Vibe): Minimum klasör atlama ve yüksek özellik bütünlüğü"}
                 >
                   <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '5px' }}>
