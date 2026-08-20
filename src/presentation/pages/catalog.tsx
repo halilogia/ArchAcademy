@@ -40,7 +40,7 @@ const CatalogPage: React.FC = () => {
       color: '#a855f7',
       items: [
         { name: 'Clean Architecture', path: '/clean-arch', color: '#a855f7', desc: { tr: "Uncle Bob'un bağımsızlık katmanları.", en: "Uncle Bob's layers of independence and testability." } },
-        { name: 'Use-Case Driven (BCE)', path: '/clean-arch', color: '#f59e0b', desc: { tr: 'Ivar Jacobson BCE ve senaryo odaklı interactor modeli.', en: 'Ivar Jacobson BCE & scenario-first interactor execution model.' } },
+        { name: 'Use-Case Driven (BCE)', path: '/use-case-driven', color: '#f59e0b', desc: { tr: 'Ivar Jacobson BCE ve senaryo odaklı interactor modeli.', en: 'Ivar Jacobson BCE & scenario-first interactor execution model.' } },
         { name: 'Onion Architecture', path: '/onion', color: '#c084fc', desc: { tr: 'Bağımlılık yönü merkeze olan yapı.', en: 'Concentric architectural pattern with inward-pointing dependencies.' } },
         { name: 'DDD Architecture', path: '/ddd', color: '#d8b4fe', desc: { tr: 'İş mantığını dile ve bounded context\'e odaklayan tasarım.', en: 'Aligning design strictly with domain logic and bounded contexts.' } },
         { name: 'Hexagonal', path: '/hexagonal', color: '#a855f7', desc: { tr: 'Ports & Adapters soyutlama modeli.', en: 'Ports & Adapters pattern isolating core domain from external tech.' } }

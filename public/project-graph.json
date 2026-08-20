@@ -52,7 +52,7 @@
       "id": "infrastructure/ComparisonMatrixData.ts",
       "label": "ComparisonMatrixData.ts",
       "category": "Infra",
-      "size": 16096
+      "size": 15039
     },
     {
       "id": "infrastructure/GlossaryData.ts",
@@ -298,7 +298,7 @@
       "id": "presentation/components/ComparisonMatrix.tsx",
       "label": "ComparisonMatrix.tsx",
       "category": "Component",
-      "size": 12578
+      "size": 11573
     },
     {
       "id": "presentation/components/componentdriven/ComponentAtomicDesignTab.tsx",
@@ -544,7 +544,7 @@
       "id": "presentation/components/Footer.tsx",
       "label": "Footer.tsx",
       "category": "Component",
-      "size": 4950
+      "size": 5640
     },
     {
       "id": "presentation/components/FSDDiagram.tsx",

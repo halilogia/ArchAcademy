@@ -82,7 +82,7 @@ export const MATRIX_DATA: MatrixRowItem[] = [
     aiLocality: 4,
     color: '#f59e0b',
     bestFor: { tr: 'İş Akışı ve Senaryo Yoğun Sistemler (BCE Modeli)', en: 'Workflow & Scenario-Dense Systems (BCE Model)' },
-    path: '/clean-arch'
+    path: '/use-case-driven'
   },
   {
     name: 'Clean Architecture',

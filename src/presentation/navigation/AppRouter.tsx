@@ -5,6 +5,7 @@ import { AnimatePresence } from 'framer-motion';
 // Lazy Load Pages for Fault Isolation & Performance
 const HomePage = lazy(() => import('../pages/home'));
 const CleanArchPage = lazy(() => import('../pages/clean-arch'));
+const UseCaseDrivenPage = lazy(() => import('../pages/use-case-driven'));
 const ClientServerPage = lazy(() => import('../pages/client-server'));
 const IntentArchitecturePage = lazy(() => import('../pages/fna-concept'));
 const DDDPage = lazy(() => import('../pages/ddd'));
@@ -105,6 +106,7 @@ const AppRouter: React.FC = () => {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/clean-arch" element={<CleanArchPage />} />
+          <Route path="/use-case-driven" element={<UseCaseDrivenPage />} />
           <Route path="/fna-concept" element={<IntentArchitecturePage />} />
           <Route path="/ddd" element={<DDDPage />} />
           <Route path="/hexagonal" element={<HexagonalPage />} />

@@ -79,7 +79,7 @@ export const SEARCH_INDEX: SearchIndexItem[] = [
     id: 'use-case-driven',
     title: 'Use-Case Driven Architecture (BCE)',
     description: 'Ivar Jacobson BCE Pattern & Scenario-First Interactors',
-    path: '/clean-arch',
+    path: '/use-case-driven',
     category: 'System',
     keywords: ['use case', 'usecase', 'bce', 'ivar jacobson', 'interactor', 'boundary', 'control', 'entity', 'screaming architecture'],
     content: 'Use-Case Driven Architecture - An architectural approach pioneered by Ivar Jacobson and popularized by Clean Architecture. Structures applications around user intents and business scenarios using Boundary-Control-Entity (BCE) patterns instead of database CRUD tables.'
