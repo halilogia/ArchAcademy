@@ -16,8 +16,8 @@ export const ModularBlueprintSection: React.FC = () => {
       </h3>
       <p style={{ color: 'var(--text-secondary)', fontSize: '1.05rem', lineHeight: 1.8, marginBottom: '2.5rem', maxWidth: '850px' }}>
         {isEn 
-          ? "A 4-pillar unified architecture engineered to eliminate over-engineering while preserving enterprise safety and extreme AI context locality. The secret is not the folders — it is the dependency rules."
-          : "Aşırı mühendisliği (Over-Engineering) çöpe atan; aynı zamanda kurumsal güvenlik, tasarım tutarlılığı ve 5/5 AI Locality sağlayan 4 ayaklı hibrit mimari. Sırrı klasörlerde değil, bağımlılık kurallarındadır."
+          ? "A 4-layer unified architecture (core / shared / pipelines / features) + an optional plugin extension boundary, engineered to eliminate over-engineering while preserving enterprise safety and extreme AI context locality. The secret is not the folders — it is the dependency rules."
+          : "Aşırı mühendisliği (Over-Engineering) çöpe atan; aynı zamanda kurumsal güvenlik, tasarım tutarlılığı ve 5/5 AI Locality sağlayan 4 temel katmanlı (core / shared / pipelines / features) + opsiyonel plugin sınırlı hibrit mimari. Sırrı klasörlerde değil, bağımlılık kurallarındadır."
         }
       </p>
 
@@ -25,15 +25,15 @@ export const ModularBlueprintSection: React.FC = () => {
         <pre style={{ margin: 0, fontSize: '0.85rem', color: '#38bdf8', fontFamily: 'monospace', lineHeight: 1.7, overflowX: 'auto' }}>
 {`📁 src/
 │
-├── 📁 core/                 --> 🧠 1. MOTOR & KRİTİK KURALLAR (Pure Logic — Sıfır Dış Bağımlılık)
-│   ├── 📁 engine/           (Canvas/WebGL veya Ana Hesaplama Motoru)
+├── 📁 core/                 --> 🧠 1. MOTOR & KRİTİK KURALLAR (Zero App Dependency)
+│   ├── 📁 engine/           (Saf çekirdek: render loop, ECS runtime — renderer değil)
 │   ├── 📁 domain/           (tax-calculator.ts — saf iş kuralları, Single Source of Truth)
-│   └── 📁 math/             (vector.ts, interpolation.ts — herkesin kullandığı saf matematik)
+│   └── 📁 math/             (vector.ts, interpolation.ts — saf matematik)
 │
 ├── 📁 shared/               --> 🎨 2. ORTAK TASARIM SİSTEMİ (Uygulamanın Anlamını Bilmez)
 │   ├── 📁 ui/               (Button, Input, Modal, Dropdown — tek tip kurumsal UI)
 │   ├── 📁 utils/            (formatNumber, debounce, clamp — framework-agnostic)
-│   └── 📁 contracts/        (Feature'lar arası tip sözleşmeleri)
+│   └── 📁 contracts/        (Yalnızca stabil sınır sözleşmeleri — domain deposu değil!)
 │
 ├── 📁 pipelines/            --> 🛡️ 3. ÇAPRAZ DENETLEYİCİLER (Cross-Cutting Middleware)
 │   ├── 📄 auth-guard.ts     (Yetkilendirme kalkanı)
@@ -82,7 +82,7 @@ export const ModularBlueprintSection: React.FC = () => {
             </tr>
             <tr style={{ borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
               <td style={{ padding: '1rem', color: '#38bdf8', fontWeight: 800 }}>core/</td>
-              <td style={{ padding: '1rem', color: 'white' }}>{isEn ? 'Immutable domain rules, algorithms, engine (pure)' : 'Değişmez domain kuralları, algoritmalar, motor (saf)'}</td>
+              <td style={{ padding: '1rem', color: 'white' }}>{isEn ? 'Immutable domain rules, algorithms, engine — zero app/framework/runtime dependency' : 'Değişmez domain kuralları, algoritmalar, motor — sıfır uygulama/framework/runtime bağımlılığı'}</td>
             </tr>
             <tr style={{ borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
               <td style={{ padding: '1rem', color: '#06b6d4', fontWeight: 800 }}>shared/</td>
@@ -90,7 +90,7 @@ export const ModularBlueprintSection: React.FC = () => {
             </tr>
             <tr style={{ borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
               <td style={{ padding: '1rem', color: '#10b981', fontWeight: 800 }}>pipelines/</td>
-              <td style={{ padding: '1rem', color: 'white' }}>{isEn ? 'External concerns: auth, persistence, telemetry' : 'Dış dünya: auth, persistence, telemetry'}</td>
+              <td style={{ padding: '1rem', color: 'white' }}>{isEn ? 'Cross-cutting execution policies: auth, authorization, tenant filtering, validation, audit hooks' : 'Çapraz yürütme politikaları: auth, yetkilendirme, tenant filtreleme, validation, audit hookları'}</td>
             </tr>
             <tr>
               <td style={{ padding: '1rem', color: '#a855f7', fontWeight: 800 }}>main.ts</td>
@@ -107,32 +107,34 @@ export const ModularBlueprintSection: React.FC = () => {
         </h4>
         <p style={{ color: '#94a3b8', fontSize: '0.95rem', lineHeight: 1.7, marginBottom: '1.5rem', maxWidth: '850px' }}>
           {isEn 
-            ? "The same rules applied to game development: mechanics live in core/, screens live in features/. They never import each other — battle calls combat."
-            : "Aynı kuralların oyun geliştirmeye uygulanmış hali: mekanik core/'da, ekranlar features/'da yaşar. İkisi asla birbirini import etmez — battle, combat'ı çağırır."
+            ? "The same rules applied to game development: mechanics live in core/, screens live in features/. Direction: core never imports features — but features may call core. BattleScreen imports combat, never the other way."
+            : "Aynı kuralların oyun geliştirmeye uygulanmış hali: mekanik core/'da, ekranlar features/'da yaşar. Yön: core asla feature import etmez — ama feature core'u çağırabilir. BattleScreen combat'ı import eder, asla tersi."
           }
         </p>
         <pre style={{ margin: 0, fontSize: '0.85rem', color: '#10b981', fontFamily: 'monospace', lineHeight: 1.7, overflowX: 'auto', background: '#020617', padding: '1.5rem', borderRadius: '12px' }}>
 {`📁 src/ (Oyun Varyantı)
 │
-├── 📁 core/            --> 🧠 MEKANİK (UI'den bağımsız, saf)
-│   ├── 📁 engine/      (render loop, ECS)
+├── 📁 core/            --> 🧠 MEKANİK (UI'den bağımsız, zero app dependency)
+│   ├── 📁 engine/      (render loop, ECS — saf çekirdek)
 │   ├── 📁 math/        (vector, interpolation)
 │   ├── 📁 combat/      (calculateDamage, resolveAttack)
 │   └── 📁 world/       (terrainHeight, findPath)
 │
 ├── 📁 shared/          --> 🎨 TASARIM SİSTEMİ
 │   ├── 📁 ui/          (HUD, menü bileşenleri)
-│   └── 📁 assets/      (sprite, ses)
+│   ├── 📁 assets/      (Yalnızca ortak: logo, ikon, font, ortak sprite)
+│   └── 📁 contracts/   (events/InventoryChanged.ts, events/PlayerLeveledUp.ts)
 │
 ├── 📁 features/        --> 🍕 EKRANLAR & AKIŞLAR
 │   ├── 📁 inventory/   (InventoryPanel, useInventory)
-│   ├── 📁 battle/      (BattleScreen, BattleHUD, useBattle)
+│   ├── 📁 battle/      (BattleScreen, BattleHUD, useBattle + battle-background.png)
 │   └── 📁 settlement/  (SettlementPanel)
 │
 ├── 📁 infrastructure/  --> 🌍 DIŞ DÜNYA
 │   ├── 📁 save/        (localStorage / IndexedDB)
 │   ├── 📁 audio/       (ses motoru)
-│   └── 📁 networking/  (multiplayer)
+│   ├── 📁 networking/  (multiplayer)
+│   └── 📁 rendering/   (canvas/, webgl/ — gerçek renderer, core/engine değil)
 │
 └── 📄 main.ts          (Composition Root)`}
         </pre>

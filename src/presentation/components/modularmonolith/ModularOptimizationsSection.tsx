@@ -16,8 +16,8 @@ export const ModularOptimizationsSection: React.FC = () => {
           <div style={{ color: '#10b981', fontWeight: 800, fontSize: '1.1rem', marginBottom: '0.5rem' }}>1. 🛡️ {isEn ? 'Protected Core Domain' : 'Korunan Core Domain'}</div>
           <p style={{ color: '#94a3b8', fontSize: '0.85rem', lineHeight: 1.6, margin: 0 }}>
             {isEn 
-              ? 'Critical tax, finance and math algorithms live as pure functions in src/core/. Zero external dependencies: slices call them instead of copying.'
-              : 'Kritik faiz, vergi ve matematiksel algoritmalar src/core/ içinde saf fonksiyon olarak yaşar. Sıfır dış bağımlılık: dilimler kopyalamak yerine çağırır.'}
+              ? 'Critical tax, finance and math algorithms live as pure functions in src/core/. Zero application/framework/runtime dependency — pure utility libraries (decimal.js, date-fns) are allowed. Slices call core instead of copying.'
+              : 'Kritik faiz, vergi ve matematiksel algoritmalar src/core/ içinde saf fonksiyon olarak yaşar. Sıfır uygulama/framework/runtime bağımlılığı — saf yardımcı kütüphaneler (decimal.js, date-fns) serbest. Dilimler core\'u çağırır, kopyalamaz.'}
           </p>
         </div>
 
@@ -65,31 +65,35 @@ export const ModularOptimizationsSection: React.FC = () => {
         </h4>
         <p style={{ color: '#94a3b8', fontSize: '0.95rem', lineHeight: 1.7, marginBottom: '1.5rem', maxWidth: '850px' }}>
           {isEn 
-            ? "A pragmatic architecture also knows when to be pragmatic. Not every project needs PMA."
-            : "Pragmatik mimari, pragmatik olmayı da bilir. Her proje PMA istemez."}
+            ? "Headcount alone is not the criterion — a 4-person team can build a complex game engine while a 15-person team can build a simple CRUD SaaS. Decide on these signals instead:"
+            : "Tek başına ekip büyüklüğü kriter değildir — 4 kişilik ekip karmaşık oyun motoru, 15 kişilik ekip basit CRUD SaaS yapabilir. Bu sinyallere göre karar verin:"}
         </p>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem' }}>
           <div style={{ background: '#020617', borderRadius: '14px', border: '1px solid rgba(239, 68, 68, 0.3)', padding: '1.5rem' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
               <span style={{ color: '#ef4444', fontWeight: 800, fontSize: '0.85rem' }}>{isEn ? 'DON\'T' : 'KULLANMAYIN'}</span>
-              <span style={{ background: 'rgba(239, 68, 68, 0.15)', color: '#ef4444', padding: '4px 10px', borderRadius: '8px', fontSize: '0.8rem', fontWeight: 700 }}>❌ 1-3 {isEn ? 'Devs / MVP' : 'Kişi / MVP'}</span>
+              <span style={{ background: 'rgba(239, 68, 68, 0.15)', color: '#ef4444', padding: '4px 10px', borderRadius: '8px', fontSize: '0.8rem', fontWeight: 700 }}>❌ {isEn ? 'Düşük Sinyaller' : 'Düşük Sinyaller'}</span>
             </div>
-            <p style={{ color: '#94a3b8', fontSize: '0.85rem', lineHeight: 1.7, margin: 0 }}>
-              {isEn 
-                ? 'Flat components/pages/services suffice. PMA is over-engineering at this scale. If a component belongs to one page only, co-locate it next to that page — do not promote it to features/.'
-                : 'Düz components/pages/services yeterli. PMA bu ölçekte over-engineering\'dir. Bileşen yalnızca tek sayfaya aitse features/\'a çıkarmayın; sayfanın yanına koyun (co-location).'}
-            </p>
+            <ul style={{ margin: 0, paddingLeft: '1.2rem', color: '#94a3b8', fontSize: '0.85rem', lineHeight: 2 }}>
+              <li>{isEn ? 'Düşük domain karmaşıklığı (CRUD ağırlıklı)' : 'Low domain complexity (CRUD-heavy)'}</li>
+              <li>{isEn ? 'Az sayıda bağımsız feature' : 'Few independent features'}</li>
+              <li>{isEn ? 'Kısa ömürlü / prototype proje' : 'Short-lived / prototype project'}</li>
+              <li>{isEn ? 'Tek kişi seri geliştirme' : 'Solo sequential development'}</li>
+              <li>{isEn ? 'Bileşen tek sayfaya aitse → co-locate, features/\'a çıkarma' : 'Component belongs to one page → co-locate, do not promote to features/'}</li>
+            </ul>
           </div>
           <div style={{ background: '#020617', borderRadius: '14px', border: '1px solid rgba(16, 185, 129, 0.3)', padding: '1.5rem' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
               <span style={{ color: '#10b981', fontWeight: 800, fontSize: '0.85rem' }}>{isEn ? 'DO' : 'KULLANIN'}</span>
-              <span style={{ background: 'rgba(16, 185, 129, 0.15)', color: '#10b981', padding: '4px 10px', borderRadius: '8px', fontSize: '0.8rem', fontWeight: 700 }}>✅ 10+ {isEn ? 'Devs / Engine' : 'Kişi / Oyun Motoru'}</span>
+              <span style={{ background: 'rgba(16, 185, 129, 0.15)', color: '#10b981', padding: '4px 10px', borderRadius: '8px', fontSize: '0.8rem', fontWeight: 700 }}>✅ {isEn ? 'Yüksek Sinyaller' : 'Yüksek Sinyaller'}</span>
             </div>
-            <p style={{ color: '#94a3b8', fontSize: '0.85rem', lineHeight: 1.7, margin: 0 }}>
-              {isEn 
-                ? '10+ developers or 20+ business processes: merge-conflict prevention and domain ownership matter. Game engines: the mechanics (core) vs screens (features) split is inevitable.'
-                : '10+ geliştirici veya 20+ iş süreci: merge conflict önleme ve domain ownership şart. Oyun motorlarında: mekanik (core) ile ekran (feature) ayrımı kaçınılmazdır.'}
-            </p>
+            <ul style={{ margin: 0, paddingLeft: '1.2rem', color: '#94a3b8', fontSize: '0.85rem', lineHeight: 2 }}>
+              <li>{isEn ? 'Yüksek domain karmaşıklığı (oyun motoru, finans)' : 'High domain complexity (game engine, finance)'}</li>
+              <li>{isEn ? 'Çok sayıda bağımsız feature' : 'Many independent features'}</li>
+              <li>{isEn ? 'Uzun ömürlü proje + paralel geliştirme' : 'Long-lived project + parallel development'}</li>
+              <li>{isEn ? 'Belirgin domain sınırları' : 'Clear domain boundaries'}</li>
+              <li>{isEn ? 'AI-assisted development (locality avantajı)' : 'AI-assisted development (locality advantage)'}</li>
+            </ul>
           </div>
         </div>
         <p style={{ marginTop: '1.5rem', marginBottom: 0, fontSize: '0.8rem', color: '#64748b', fontStyle: 'italic', lineHeight: 1.6 }}>
