@@ -1,16 +1,22 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
-import { Box, Layers, ShieldCheck, Zap, Sparkles, FolderTree, Cpu, RefreshCw, BookOpen } from 'lucide-react';
+import { Box, Layers, ShieldCheck, Zap, GitBranch, RefreshCw, BookOpen } from 'lucide-react';
 import ArchHero from '../components/ArchHero';
 import SEO from '../components/SEO';
+import { ModularBlueprintSection } from '../components/modularmonolith/ModularBlueprintSection';
+import { ModularRulesSection } from '../components/modularmonolith/ModularRulesSection';
+import { ModularOptimizationsSection } from '../components/modularmonolith/ModularOptimizationsSection';
+import { ModularSynthesisSection } from '../components/modularmonolith/ModularSynthesisSection';
+
+type SectionId = 'architecture' | 'rules' | 'optimizations' | 'synthesis';
 
 export const ModularMonolithPage: React.FC = () => {
   const { i18n } = useTranslation();
   const isEn = (i18n.resolvedLanguage || i18n.language || 'tr').startsWith('en');
-  const [activeTab, setActiveTab] = useState<'architecture' | 'optimizations' | 'synthesis'>('architecture');
+  const [activeTab, setActiveTab] = useState<SectionId>('architecture');
 
-  const scrollToSection = (id: 'architecture' | 'optimizations' | 'synthesis') => {
+  const scrollToSection = (id: SectionId) => {
     setActiveTab(id);
     const element = document.getElementById(id);
     if (element) {
@@ -23,10 +29,10 @@ export const ModularMonolithPage: React.FC = () => {
       <SEO
         title={isEn ? "Pragmatic Modular Architecture & Modular Monolith | ArchAcademy" : "Pragmatik Modüler Mimari & Modüler Monolit (Hybrid VSA/FSD) | ArchAcademy"}
         description={isEn 
-          ? "Master Pragmatic Modular Architecture (Hybrid Feature-Sliced VSA). The golden equilibrium between Vertical Slice velocity and Clean Architecture domain safety." 
-          : "ArchAcademy özel sentezi: Pragmatik Modüler Mimari (Hybrid Feature-Sliced VSA). Vertical Slice hızı ile Clean Architecture güvenliğini birleştiren modern standart."
+          ? "Master Pragmatic Modular Architecture (Hybrid Feature-Sliced VSA). Dependency rules, protected core, feature vs plugin separation and AI-native locality."
+          : "ArchAcademy özel sentezi: Pragmatik Modüler Mimari (Hybrid Feature-Sliced VSA). Bağımlılık kuralları, korunan çekirdek, feature-plugin ayrımı ve AI-native locality."
         }
-        keywords="modular monolith, pragmatic modular architecture, hybrid feature sliced vsa, modern feature driven, vertical slice optimization"
+        keywords="modular monolith, pragmatic modular architecture, dependency rules, protected core, feature vs plugin, hybrid feature sliced vsa, vertical slice optimization"
         canonicalUrl="/modular-monolith"
       />
       <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} style={{ background: 'var(--bg-dark)', minHeight: '100vh' }}>
@@ -34,7 +40,7 @@ export const ModularMonolithPage: React.FC = () => {
           title="Modular Monolith"
           subtitle={isEn ? "Pragmatic Modular Architecture (Hybrid VSA / FSD)" : "Pragmatik Modüler Mimari (Hybrid VSA / FSD)"}
           description={isEn 
-            ? "The definitive modern software architecture. Synthesizes Vertical Slice development velocity (5/5 AI Locality) with Clean Architecture core protection and FSD design system discipline." 
+            ? "The definitive modern software architecture. Synthesizes Vertical Slice development velocity (5/5 AI Locality) with Clean Architecture core protection and FSD design system discipline."
             : "Modern yazılım mühendisliğinin ulaştığı altın denge. Vertical Slice'ın tek klasörde bitirme hızını (5/5 AI Locality), Clean Architecture'ın çekirdek domain güvenliği ve FSD'nin kurumsal tasarım disipliniyle birleştirir."
           }
           badge="ArchAcademy Signature Pattern"
@@ -74,18 +80,19 @@ export const ModularMonolithPage: React.FC = () => {
             zIndex: 30
           }}>
             {[
-              { id: 'architecture', label: isEn ? 'Core Architecture Blueprint' : 'Mimari Şablon & Yapı', icon: <Box size={18} /> },
-              { id: 'optimizations', label: isEn ? '5 Vertical Optimizations' : '5 Altın Optimizasyon', icon: <ShieldCheck size={18} /> },
-              { id: 'synthesis', label: isEn ? 'Genetic Lineage & Synthesis' : 'Mimari Gen Haritası', icon: <RefreshCw size={18} /> }
+              { id: 'architecture' as SectionId, label: isEn ? 'Core Architecture Blueprint' : 'Mimari Şablon & Yapı', icon: <Box size={18} />, color: '#38bdf8' },
+              { id: 'rules' as SectionId, label: isEn ? 'Dependency & Test Rules' : 'Bağımlılık & Test Kuralları', icon: <GitBranch size={18} />, color: '#f59e0b' },
+              { id: 'optimizations' as SectionId, label: isEn ? '5 Golden Optimizations' : '5 Altın Optimizasyon', icon: <ShieldCheck size={18} />, color: '#10b981' },
+              { id: 'synthesis' as SectionId, label: isEn ? 'Genetic Lineage & Synthesis' : 'Mimari Gen Haritası', icon: <RefreshCw size={18} />, color: '#a855f7' }
             ].map((tab) => (
               <button
                 key={tab.id}
-                onClick={() => scrollToSection(tab.id as any)}
+                onClick={() => scrollToSection(tab.id)}
                 style={{
                   padding: '10px 24px',
                   borderRadius: '18px',
                   border: 'none',
-                  background: activeTab === tab.id ? '#38bdf8' : 'transparent',
+                  background: activeTab === tab.id ? tab.color : 'transparent',
                   color: activeTab === tab.id ? '#0f172a' : 'white',
                   cursor: 'pointer',
                   display: 'flex',
@@ -104,151 +111,21 @@ export const ModularMonolithPage: React.FC = () => {
         </ArchHero>
 
         <div className="container" style={{ marginTop: '3rem', display: 'flex', flexDirection: 'column', gap: '4rem' }}>
-          
-          {/* ARCHITECTURE BLUEPRINT SECTION */}
           <div id="architecture" style={{ scrollMarginTop: '100px' }}>
-            <div className="glass-card" style={{ padding: '3rem', borderTop: '4px solid #38bdf8' }}>
-              <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', background: 'rgba(56, 189, 248, 0.15)', color: '#38bdf8', padding: '6px 14px', borderRadius: '100px', fontSize: '0.75rem', fontWeight: 800, marginBottom: '1.5rem' }}>
-                ARCHACADEMY MASTER BLUEPRINT
-              </div>
-              <h3 style={{ fontSize: '2rem', fontWeight: 800, color: 'white', marginBottom: '1rem' }}>
-                {isEn ? "The Pragmatic Modular Architecture (PMA) Blueprint" : "Pragmatik Modüler Mimari (PMA) Şablonu"}
-              </h3>
-              <p style={{ color: 'var(--text-secondary)', fontSize: '1.05rem', lineHeight: 1.8, marginBottom: '2.5rem', maxWidth: '850px' }}>
-                {isEn 
-                  ? "A 4-pillar unified architecture engineered to eliminate over-engineering while preserving enterprise safety and extreme AI context locality." 
-                  : "Aşırı mühendisliği (Over-Engineering) çöpe atan; aynı zamanda kurumsal güvenlik, tasarım tutarlılığı ve 5/5 AI Locality sağlayan 4 ayaklı hibrit mimari."
-                }
-              </p>
-
-              <div style={{ background: '#020617', padding: '2rem', borderRadius: '16px', border: '1px solid rgba(255,255,255,0.1)' }}>
-                <pre style={{ margin: 0, fontSize: '0.85rem', color: '#38bdf8', fontFamily: 'monospace', lineHeight: 1.7, overflowX: 'auto' }}>
-{`📁 src/
-│
-├── 📁 core/                 --> 🧠 1. MOTOR & KRİTİK KURALLAR (Pure Logic / Math / Domain)
-│   ├── 📄 engine.ts         (Canvas/WebGL veya Ana Hesaplama Motoru)
-│   ├── 📄 tax-calculator.ts (Hata kabul etmeyen saf iş kuralları - Single Source of Truth)
-│   └── 📄 types.ts          (Global domain modelleri)
-│
-├── 📁 shared/               --> 🎨 2. ORTAK TASARIM SİSTEMİ (Design System / UI Kit)
-│   ├── 📁 ui/               (Button, Input, Modal, Dropdown - Tek tip kurumsal UI)
-│   └── 📁 utils/            (Formatters, Helpers)
-│
-├── 📁 pipelines/            --> 🛡️ 3. ÇAPRAZ DENETLEYİCİLER (Cross-Cutting Middleware)
-│   ├── 📄 auth-guard.ts     (Yetkilendirme kalkanı)
-│   └── 📄 tenant-filter.ts  (Multi-tenant veri izolasyonu)
-│
-├── 📁 features/ (veya slices/) --> 🍕 4. DİKEY DİLİMLER (VSA Mantığında Otonom Modüller)
-│   │
-│   ├── 📁 order-checkout/   --> [Dilim 1]
-│   │   ├── 📄 CheckoutCard.tsx  (UI)
-│   │   ├── 📄 useCheckout.ts    (State / API)
-│   │   └── 📄 index.ts          (Public API Export)
-│   │
-│   ├── 📁 terrain-sculptor/ --> [Dilim 2]
-│   │   ├── 📄 SculptorPanel.tsx (UI)
-│   │   ├── 📄 brushMath.ts      (Fırça mantığı)
-│   │   └── 📄 index.ts          (IStudioTool Registry)
-│   │
-│   └── 📁 invoice-generator/--> [Dilim 3]
-│       ├── 📄 InvoiceView.tsx
-│       └── 📄 index.ts
-│
-└── 📄 main.ts               --> 🔌 Sistemin Giriş Noktası (Features Registry & Init)`}
-                </pre>
-              </div>
-            </div>
+            <ModularBlueprintSection />
           </div>
 
-          {/* 5 OPTIMIZATIONS SECTION */}
+          <div id="rules" style={{ scrollMarginTop: '100px' }}>
+            <ModularRulesSection />
+          </div>
+
           <div id="optimizations" style={{ scrollMarginTop: '100px' }}>
-            <div className="glass-card" style={{ padding: '3rem', borderTop: '4px solid #10b981' }}>
-              <h3 style={{ fontSize: '1.8rem', fontWeight: 800, color: 'white', marginBottom: '1.5rem' }}>
-                {isEn ? "The 5 Golden Optimizations of Pragmatic Architecture" : "Vertical Slice'ı Kusursuzlaştıran 5 Altın Optimizasyon"}
-              </h3>
-              
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem' }}>
-                <div style={{ background: '#020617', padding: '1.5rem', borderRadius: '14px', border: '1px solid rgba(16, 185, 129, 0.2)' }}>
-                  <div style={{ color: '#10b981', fontWeight: 800, fontSize: '1.1rem', marginBottom: '0.5rem' }}>1. 🛡️ Shared Core Domain</div>
-                  <p style={{ color: '#94a3b8', fontSize: '0.85rem', lineHeight: 1.6, margin: 0 }}>
-                    Kritik faiz, vergi ve matematiksel algoritmalar src/core/ içinde saf fonksiyon olarak yaşar. Dilimler kopyalamak yerine bunu çağırır.
-                  </p>
-                </div>
-
-                <div style={{ background: '#020617', padding: '1.5rem', borderRadius: '14px', border: '1px solid rgba(56, 189, 248, 0.2)' }}>
-                  <div style={{ color: '#38bdf8', fontWeight: 800, fontSize: '1.1rem', marginBottom: '0.5rem' }}>2. 🎨 Shared UI Kit & Tokens</div>
-                  <p style={{ color: '#94a3b8', fontSize: '0.85rem', lineHeight: 1.6, margin: 0 }}>
-                    Dilimler sıfırdan buton yazmaz; src/shared/ui/ bileşenlerini tüketir. Tasarım tutarlılığı %100 garanti altına alınır.
-                  </p>
-                </div>
-
-                <div style={{ background: '#020617', padding: '1.5rem', borderRadius: '14px', border: '1px solid rgba(245, 158, 11, 0.2)' }}>
-                  <div style={{ color: '#f59e0b', fontWeight: 800, fontSize: '1.1rem', marginBottom: '0.5rem' }}>3. ⚙️ Pipeline Behaviors</div>
-                  <p style={{ color: '#94a3b8', fontSize: '0.85rem', lineHeight: 1.6, margin: 0 }}>
-                    TenantId izolasyonu ve GDPR audit logları her dilime tek tek yazılmaz; MediatR/Middleware pipeline ile otomatik işletilir.
-                  </p>
-                </div>
-
-                <div style={{ background: '#020617', padding: '1.5rem', borderRadius: '14px', border: '1px solid rgba(168, 85, 247, 0.2)' }}>
-                  <div style={{ color: '#a855f7', fontWeight: 800, fontSize: '1.1rem', marginBottom: '0.5rem' }}>4. 🗄️ DTO Projections</div>
-                  <p style={{ color: '#94a3b8', fontSize: '0.85rem', lineHeight: 1.6, margin: 0 }}>
-                    Dilimler SELECT * yerine sadece kendi ihtiyacı olan DTO alanını sorgular. ORM kolon değişiklikleri derleme anında yakalanır.
-                  </p>
-                </div>
-
-                <div style={{ background: '#020617', padding: '1.5rem', borderRadius: '14px', border: '1px solid rgba(239, 68, 68, 0.2)' }}>
-                  <div style={{ color: '#ef4444', fontWeight: 800, fontSize: '1.1rem', marginBottom: '0.5rem' }}>5. 🔌 Slice Registry (Plugin SDK)</div>
-                  <p style={{ color: '#94a3b8', fontSize: '0.85rem', lineHeight: 1.6, margin: 0 }}>
-                    Her dilim standart bir arayüz (IStudioTool / register()) uygular. Çekirdek motor dilimleri dinamik eklenti gibi yükler.
-                  </p>
-                </div>
-              </div>
-            </div>
+            <ModularOptimizationsSection />
           </div>
 
-          {/* GENETIC LINEAGE & SYNTHESIS */}
           <div id="synthesis" style={{ scrollMarginTop: '100px' }}>
-            <div className="glass-card" style={{ padding: '3rem', borderTop: '4px solid #a855f7' }}>
-              <h3 style={{ fontSize: '1.8rem', fontWeight: 800, color: 'white', marginBottom: '1.5rem' }}>
-                {isEn ? "Genetic Lineage: What Did We Inherit?" : "Mimari Gen Haritası: Hangi Mimariden Neyi Devraldık?"}
-              </h3>
-
-              <div style={{ overflowX: 'auto' }}>
-                <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left' }}>
-                  <thead>
-                    <tr style={{ borderBottom: '2px solid rgba(255,255,255,0.1)', color: 'var(--text-secondary)', fontSize: '0.85rem' }}>
-                      <th style={{ padding: '1rem', width: '30%' }}>Kaynak Mimari</th>
-                      <th style={{ padding: '1rem', width: '35%' }}>Devralınan Süper Güç</th>
-                      <th style={{ padding: '1rem', width: '35%' }}>Çöpe Atılan İsraf (Waste)</th>
-                    </tr>
-                  </thead>
-                  <tbody style={{ fontSize: '0.9rem' }}>
-                    <tr style={{ borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
-                      <td style={{ padding: '1rem', color: '#f97316', fontWeight: 800 }}>🍕 Vertical Slice (VSA)</td>
-                      <td style={{ padding: '1rem', color: 'white' }}>Tek klasörde bitirme hızı & 5/5 AI Locality</td>
-                      <td style={{ padding: '1rem', color: '#94a3b8' }}>Kontrolsüz kopya kod ve UI stil kaosları</td>
-                    </tr>
-                    <tr style={{ borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
-                      <td style={{ padding: '1rem', color: '#06b6d4', fontWeight: 800 }}>🎨 FSD (Feature-Sliced Design)</td>
-                      <td style={{ padding: '1rem', color: 'white' }}>Kurumsal Shared UI Kit & index.ts Public API</td>
-                      <td style={{ padding: '1rem', color: '#94a3b8' }}>Her dilim içi 4 alt klasör eziyeti (Over-segmenting)</td>
-                    </tr>
-                    <tr style={{ borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
-                      <td style={{ padding: '1rem', color: '#38bdf8', fontWeight: 800 }}>🏛️ Clean Architecture</td>
-                      <td style={{ padding: '1rem', color: 'white' }}>Saf iş kurallarının ve motorun src/core/ ile korunması</td>
-                      <td style={{ padding: '1rem', color: '#94a3b8' }}>1 basit özellik için 7 katman ve 20 interface açma zorunluluğu</td>
-                    </tr>
-                    <tr>
-                      <td style={{ padding: '1rem', color: '#a855f7', fontWeight: 800 }}>🛡️ Hexagonal / CQRS</td>
-                      <td style={{ padding: '1rem', color: 'white' }}>Merkezi güvenlik ve yetki boru hatları (Pipelines)</td>
-                      <td style={{ padding: '1rem', color: '#94a3b8' }}>Aşırı karmaşık Event Bus ve asenkron senkronizasyon yükü</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
+            <ModularSynthesisSection />
           </div>
-
         </div>
 
         <section style={{ padding: '4rem 0', background: 'rgba(0,0,0,0.3)', borderTop: '1px solid rgba(255,255,255,0.05)', marginTop: '4rem' }}>
@@ -259,7 +136,7 @@ export const ModularMonolithPage: React.FC = () => {
                   <div style={{ fontSize: '0.8rem', color: '#38bdf8', textTransform: 'uppercase' }}>
                     ArchAcademy Engineering Standard
                   </div>
-                  <div style={{ color: 'white', fontWeight: 600 }}>Pragmatic Modular Architecture: Zero Waste, Extreme Velocity & Bulletproof Core</div>
+                  <div style={{ color: 'white', fontWeight: 600 }}>{isEn ? "Pragmatic Modular Architecture: Zero Waste, Extreme Velocity & Protected Core" : "Pragmatik Modüler Mimari: Zero Waste, Extreme Velocity & Protected Core"}</div>
                 </div>
              </div>
           </div>

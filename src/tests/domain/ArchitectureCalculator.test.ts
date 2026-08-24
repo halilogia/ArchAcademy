@@ -7,15 +7,17 @@ describe("ArchitectureCalculator Domain Logic", () => {
     {
       id: "team_size",
       title: "Team Size",
+      desc: "Ekip büyüklüğü",
       type: "choice",
       options: [
-        { label: "Solo / 1-2", weights: { monolith: 5, vertical: 4 } },
-        { label: "Enterprise 50+", weights: { clean: 5, eda: 4 } }
+        { text: "Solo / 1-2", weights: { monolith: 5, vertical: 4 } },
+        { text: "Enterprise 50+", weights: { clean: 5, eda: 4 } }
       ]
     },
     {
       id: "time_horizon",
       title: "Time Horizon",
+      desc: "Zaman ufku",
       type: "range",
       weights: {
         low: { monolith: 3, vertical: 2 },

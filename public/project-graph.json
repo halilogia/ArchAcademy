@@ -715,6 +715,30 @@
       "size": 6075
     },
     {
+      "id": "presentation/components/modularmonolith/ModularBlueprintSection.tsx",
+      "label": "ModularBlueprintSection.tsx",
+      "category": "Component",
+      "size": 9676
+    },
+    {
+      "id": "presentation/components/modularmonolith/ModularOptimizationsSection.tsx",
+      "label": "ModularOptimizationsSection.tsx",
+      "category": "Component",
+      "size": 8823
+    },
+    {
+      "id": "presentation/components/modularmonolith/ModularRulesSection.tsx",
+      "label": "ModularRulesSection.tsx",
+      "category": "Component",
+      "size": 8833
+    },
+    {
+      "id": "presentation/components/modularmonolith/ModularSynthesisSection.tsx",
+      "label": "ModularSynthesisSection.tsx",
+      "category": "Component",
+      "size": 3835
+    },
+    {
       "id": "presentation/components/mvc/MVCComparisonTab.tsx",
       "label": "MVCComparisonTab.tsx",
       "category": "Component",
@@ -1600,7 +1624,7 @@
       "id": "presentation/pages/home.tsx",
       "label": "home.tsx",
       "category": "Page",
-      "size": 19989
+      "size": 21172
     },
     {
       "id": "presentation/pages/horizontal.tsx",
@@ -1672,7 +1696,7 @@
       "id": "presentation/pages/modular-monolith.tsx",
       "label": "modular-monolith.tsx",
       "category": "Page",
-      "size": 17583
+      "size": 8584
     },
     {
       "id": "presentation/pages/mvc.tsx",
@@ -3120,6 +3144,26 @@
     {
       "source": "presentation/pages/modular-monolith.tsx",
       "target": "presentation/components/SEO.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/modular-monolith.tsx",
+      "target": "presentation/components/modularmonolith/ModularBlueprintSection.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/modular-monolith.tsx",
+      "target": "presentation/components/modularmonolith/ModularRulesSection.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/modular-monolith.tsx",
+      "target": "presentation/components/modularmonolith/ModularOptimizationsSection.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/modular-monolith.tsx",
+      "target": "presentation/components/modularmonolith/ModularSynthesisSection.tsx",
       "value": 1
     },
     {
