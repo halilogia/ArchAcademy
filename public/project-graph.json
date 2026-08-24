@@ -718,7 +718,7 @@
       "id": "presentation/components/modularmonolith/ModularBlueprintSection.tsx",
       "label": "ModularBlueprintSection.tsx",
       "category": "Component",
-      "size": 10041
+      "size": 10425
     },
     {
       "id": "presentation/components/modularmonolith/ModularOptimizationsSection.tsx",
@@ -730,7 +730,7 @@
       "id": "presentation/components/modularmonolith/ModularRulesSection.tsx",
       "label": "ModularRulesSection.tsx",
       "category": "Component",
-      "size": 11109
+      "size": 11212
     },
     {
       "id": "presentation/components/modularmonolith/ModularSynthesisSection.tsx",

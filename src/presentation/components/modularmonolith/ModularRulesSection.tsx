@@ -36,8 +36,10 @@ plugins   ──► core/shared (eklentiler aynı
         <div style={{ background: 'rgba(239, 68, 68, 0.04)', border: '1px solid rgba(239, 68, 68, 0.2)', padding: '1.5rem', borderRadius: '14px' }}>
           <div style={{ color: '#ef4444', fontWeight: 800, fontSize: '1rem', marginBottom: '1rem' }}>❌ {isEn ? 'Forbidden' : 'Yasak'}</div>
           <pre style={{ margin: 0, fontSize: '0.8rem', color: '#94a3b8', fontFamily: 'monospace', lineHeight: 1.8 }}>
-{`core      ──► hiçbir şey  (zero app dependency
-                            → test edilebilirlik)
+{`core      ──► hiçbir şey  (core asla features/
+                            shared/pipelines'e
+                            bağımlı olamaz — yalnızca
+                            saf kütüphaneler)
 shared    ──► core        (shared uygulamanın
                             anlamını bilmez)
 shared    ──► feature     (asla)
