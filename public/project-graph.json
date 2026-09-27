@@ -19,16 +19,70 @@
       "size": 5463
     },
     {
+      "id": "domain/entities/CmsEntry.ts",
+      "label": "CmsEntry.ts",
+      "category": "Domain",
+      "size": 697
+    },
+    {
+      "id": "domain/entities/Progress.ts",
+      "label": "Progress.ts",
+      "category": "Domain",
+      "size": 1934
+    },
+    {
+      "id": "domain/entities/Sandbox.ts",
+      "label": "Sandbox.ts",
+      "category": "Domain",
+      "size": 5862
+    },
+    {
+      "id": "domain/repositories/ContentRepository.ts",
+      "label": "ContentRepository.ts",
+      "category": "Domain",
+      "size": 411
+    },
+    {
+      "id": "domain/repositories/ProgressRepository.ts",
+      "label": "ProgressRepository.ts",
+      "category": "Domain",
+      "size": 346
+    },
+    {
+      "id": "domain/usecases/AdrGenerator.ts",
+      "label": "AdrGenerator.ts",
+      "category": "Domain",
+      "size": 7073
+    },
+    {
       "id": "domain/usecases/ArchitectureCalculator.ts",
       "label": "ArchitectureCalculator.ts",
       "category": "Domain",
       "size": 2417
     },
     {
+      "id": "domain/usecases/ProgressMerger.ts",
+      "label": "ProgressMerger.ts",
+      "category": "Domain",
+      "size": 4436
+    },
+    {
+      "id": "domain/usecases/QuizScorer.ts",
+      "label": "QuizScorer.ts",
+      "category": "Domain",
+      "size": 2857
+    },
+    {
       "id": "domain/usecases/SimulationUseCase.ts",
       "label": "SimulationUseCase.ts",
       "category": "Domain",
       "size": 1339
+    },
+    {
+      "id": "domain/usecases/TopologyAnalyzer.ts",
+      "label": "TopologyAnalyzer.ts",
+      "category": "Domain",
+      "size": 8698
     },
     {
       "id": "i18n/index.ts",
@@ -49,16 +103,82 @@
       "size": 6892
     },
     {
+      "id": "infrastructure/cms/CmsContentRepository.ts",
+      "label": "CmsContentRepository.ts",
+      "category": "Infra",
+      "size": 3528
+    },
+    {
+      "id": "infrastructure/cms/HttpContentClient.ts",
+      "label": "HttpContentClient.ts",
+      "category": "Infra",
+      "size": 2293
+    },
+    {
+      "id": "infrastructure/cms/seed/index.ts",
+      "label": "index.ts",
+      "category": "Infra",
+      "size": 685
+    },
+    {
+      "id": "infrastructure/cms/seed/searchIndex.seed.ts",
+      "label": "searchIndex.seed.ts",
+      "category": "Infra",
+      "size": 43736
+    },
+    {
       "id": "infrastructure/ComparisonMatrixData.ts",
       "label": "ComparisonMatrixData.ts",
       "category": "Infra",
       "size": 15446
     },
     {
+      "id": "infrastructure/config/env.ts",
+      "label": "env.ts",
+      "category": "Infra",
+      "size": 1548
+    },
+    {
       "id": "infrastructure/GlossaryData.ts",
       "label": "GlossaryData.ts",
       "category": "Infra",
       "size": 202999
+    },
+    {
+      "id": "infrastructure/repositories/CloudProgressRepository.ts",
+      "label": "CloudProgressRepository.ts",
+      "category": "Infra",
+      "size": 4107
+    },
+    {
+      "id": "infrastructure/repositories/LocalProgressCache.ts",
+      "label": "LocalProgressCache.ts",
+      "category": "Infra",
+      "size": 1528
+    },
+    {
+      "id": "infrastructure/repositories/SyncingProgressRepository.ts",
+      "label": "SyncingProgressRepository.ts",
+      "category": "Infra",
+      "size": 2273
+    },
+    {
+      "id": "infrastructure/storage/SafeStorage.ts",
+      "label": "SafeStorage.ts",
+      "category": "Infra",
+      "size": 2630
+    },
+    {
+      "id": "infrastructure/stores/progressStore.ts",
+      "label": "progressStore.ts",
+      "category": "Infra",
+      "size": 4156
+    },
+    {
+      "id": "infrastructure/stores/sandboxStore.ts",
+      "label": "sandboxStore.ts",
+      "category": "Infra",
+      "size": 8335
     },
     {
       "id": "main.tsx",
@@ -101,6 +221,12 @@
       "label": "useAcidSimulation.ts",
       "category": "Component",
       "size": 1621
+    },
+    {
+      "id": "presentation/components/adr/AdrGeneratorPanel.tsx",
+      "label": "AdrGeneratorPanel.tsx",
+      "category": "Component",
+      "size": 14851
     },
     {
       "id": "presentation/components/agenticai/AgenticCorePatternsTab.tsx",
@@ -166,7 +292,7 @@
       "id": "presentation/components/AssessmentQuiz.tsx",
       "label": "AssessmentQuiz.tsx",
       "category": "Component",
-      "size": 8808
+      "size": 11999
     },
     {
       "id": "presentation/components/bff/BFFComparisonTab.tsx",
@@ -292,7 +418,7 @@
       "id": "presentation/components/CommandPalette.tsx",
       "label": "CommandPalette.tsx",
       "category": "Component",
-      "size": 11847
+      "size": 12011
     },
     {
       "id": "presentation/components/ComparisonMatrix.tsx",
@@ -430,7 +556,7 @@
       "id": "presentation/components/docsannotations/ADRBuilderSimulationTab.tsx",
       "label": "ADRBuilderSimulationTab.tsx",
       "category": "Component",
-      "size": 5111
+      "size": 1695
     },
     {
       "id": "presentation/components/docsannotations/ArchitectureDiagramsTab.tsx",
@@ -814,7 +940,7 @@
       "id": "presentation/components/Navbar.tsx",
       "label": "Navbar.tsx",
       "category": "Component",
-      "size": 17850
+      "size": 18972
     },
     {
       "id": "presentation/components/OnionDiagram.tsx",
@@ -1085,6 +1211,30 @@
       "label": "RobustnessConceptTab.tsx",
       "category": "Component",
       "size": 4074
+    },
+    {
+      "id": "presentation/components/sandbox/SandboxCanvas.tsx",
+      "label": "SandboxCanvas.tsx",
+      "category": "Component",
+      "size": 11390
+    },
+    {
+      "id": "presentation/components/sandbox/SandboxInspector.tsx",
+      "label": "SandboxInspector.tsx",
+      "category": "Component",
+      "size": 8498
+    },
+    {
+      "id": "presentation/components/sandbox/SandboxPalette.tsx",
+      "label": "SandboxPalette.tsx",
+      "category": "Component",
+      "size": 4915
+    },
+    {
+      "id": "presentation/components/sandbox/TopologyIssueList.tsx",
+      "label": "TopologyIssueList.tsx",
+      "category": "Component",
+      "size": 4503
     },
     {
       "id": "presentation/components/ScreamingSection.tsx",
@@ -1360,19 +1510,19 @@
       "id": "presentation/context/ProgressContext.tsx",
       "label": "ProgressContext.tsx",
       "category": "State",
-      "size": 1680
-    },
-    {
-      "id": "presentation/data/searchIndex.ts",
-      "label": "searchIndex.ts",
-      "category": "Other",
-      "size": 42075
+      "size": 2895
     },
     {
       "id": "presentation/hooks/useAssessmentQuiz.ts",
       "label": "useAssessmentQuiz.ts",
       "category": "Hook",
-      "size": 2593
+      "size": 3281
+    },
+    {
+      "id": "presentation/hooks/useCmsCollection.ts",
+      "label": "useCmsCollection.ts",
+      "category": "Hook",
+      "size": 2032
     },
     {
       "id": "presentation/hooks/useLocalStorage.ts",
@@ -1384,7 +1534,7 @@
       "id": "presentation/navigation/AppRouter.tsx",
       "label": "AppRouter.tsx",
       "category": "App",
-      "size": 12642
+      "size": 12908
     },
     {
       "id": "presentation/pages/abstraction.tsx",
@@ -1403,6 +1553,12 @@
       "label": "acronyms.tsx",
       "category": "Page",
       "size": 15694
+    },
+    {
+      "id": "presentation/pages/adr-generator.tsx",
+      "label": "adr-generator.tsx",
+      "category": "Page",
+      "size": 5897
     },
     {
       "id": "presentation/pages/agentic-ai.tsx",
@@ -1819,6 +1975,12 @@
       "size": 7179
     },
     {
+      "id": "presentation/pages/sandbox.tsx",
+      "label": "sandbox.tsx",
+      "category": "Page",
+      "size": 15160
+    },
+    {
       "id": "presentation/pages/security.tsx",
       "label": "security.tsx",
       "category": "Page",
@@ -1982,8 +2144,98 @@
       "value": 1
     },
     {
+      "source": "domain/entities/Progress.ts",
+      "target": "domain/entities/Sandbox.ts",
+      "value": 1
+    },
+    {
+      "source": "domain/repositories/ContentRepository.ts",
+      "target": "domain/entities/CmsEntry.ts",
+      "value": 1
+    },
+    {
+      "source": "domain/repositories/ProgressRepository.ts",
+      "target": "domain/entities/Progress.ts",
+      "value": 1
+    },
+    {
+      "source": "domain/usecases/AdrGenerator.ts",
+      "target": "domain/entities/Sandbox.ts",
+      "value": 1
+    },
+    {
+      "source": "domain/usecases/AdrGenerator.ts",
+      "target": "domain/usecases/TopologyAnalyzer.ts",
+      "value": 1
+    },
+    {
       "source": "domain/usecases/ArchitectureCalculator.ts",
       "target": "infrastructure/ArchitectureData.ts",
+      "value": 1
+    },
+    {
+      "source": "domain/usecases/ProgressMerger.ts",
+      "target": "domain/entities/Progress.ts",
+      "value": 1
+    },
+    {
+      "source": "domain/usecases/ProgressMerger.ts",
+      "target": "domain/entities/Sandbox.ts",
+      "value": 1
+    },
+    {
+      "source": "domain/usecases/QuizScorer.ts",
+      "target": "domain/entities/Progress.ts",
+      "value": 1
+    },
+    {
+      "source": "domain/usecases/TopologyAnalyzer.ts",
+      "target": "domain/entities/Sandbox.ts",
+      "value": 1
+    },
+    {
+      "source": "infrastructure/cms/CmsContentRepository.ts",
+      "target": "domain/entities/CmsEntry.ts",
+      "value": 1
+    },
+    {
+      "source": "infrastructure/cms/CmsContentRepository.ts",
+      "target": "domain/repositories/ContentRepository.ts",
+      "value": 1
+    },
+    {
+      "source": "infrastructure/cms/CmsContentRepository.ts",
+      "target": "infrastructure/config/env.ts",
+      "value": 1
+    },
+    {
+      "source": "infrastructure/cms/CmsContentRepository.ts",
+      "target": "infrastructure/cms/HttpContentClient.ts",
+      "value": 1
+    },
+    {
+      "source": "infrastructure/cms/CmsContentRepository.ts",
+      "target": "infrastructure/cms/seed/index.ts",
+      "value": 1
+    },
+    {
+      "source": "infrastructure/cms/HttpContentClient.ts",
+      "target": "domain/entities/CmsEntry.ts",
+      "value": 1
+    },
+    {
+      "source": "infrastructure/cms/seed/index.ts",
+      "target": "domain/entities/CmsEntry.ts",
+      "value": 1
+    },
+    {
+      "source": "infrastructure/cms/seed/index.ts",
+      "target": "infrastructure/cms/seed/searchIndex.seed.ts",
+      "value": 1
+    },
+    {
+      "source": "infrastructure/cms/seed/searchIndex.seed.ts",
+      "target": "domain/entities/CmsEntry.ts",
       "value": 1
     },
     {
@@ -1992,8 +2244,113 @@
       "value": 1
     },
     {
+      "source": "infrastructure/repositories/CloudProgressRepository.ts",
+      "target": "domain/entities/Progress.ts",
+      "value": 1
+    },
+    {
+      "source": "infrastructure/repositories/CloudProgressRepository.ts",
+      "target": "infrastructure/config/env.ts",
+      "value": 1
+    },
+    {
+      "source": "infrastructure/repositories/CloudProgressRepository.ts",
+      "target": "infrastructure/storage/SafeStorage.ts",
+      "value": 1
+    },
+    {
+      "source": "infrastructure/repositories/LocalProgressCache.ts",
+      "target": "domain/entities/Progress.ts",
+      "value": 1
+    },
+    {
+      "source": "infrastructure/repositories/LocalProgressCache.ts",
+      "target": "infrastructure/storage/SafeStorage.ts",
+      "value": 1
+    },
+    {
+      "source": "infrastructure/repositories/SyncingProgressRepository.ts",
+      "target": "domain/entities/Progress.ts",
+      "value": 1
+    },
+    {
+      "source": "infrastructure/repositories/SyncingProgressRepository.ts",
+      "target": "domain/repositories/ProgressRepository.ts",
+      "value": 1
+    },
+    {
+      "source": "infrastructure/repositories/SyncingProgressRepository.ts",
+      "target": "domain/usecases/ProgressMerger.ts",
+      "value": 1
+    },
+    {
+      "source": "infrastructure/repositories/SyncingProgressRepository.ts",
+      "target": "infrastructure/config/env.ts",
+      "value": 1
+    },
+    {
+      "source": "infrastructure/repositories/SyncingProgressRepository.ts",
+      "target": "infrastructure/repositories/CloudProgressRepository.ts",
+      "value": 1
+    },
+    {
+      "source": "infrastructure/repositories/SyncingProgressRepository.ts",
+      "target": "infrastructure/repositories/LocalProgressCache.ts",
+      "value": 1
+    },
+    {
+      "source": "infrastructure/stores/progressStore.ts",
+      "target": "domain/entities/Progress.ts",
+      "value": 1
+    },
+    {
+      "source": "infrastructure/stores/progressStore.ts",
+      "target": "domain/repositories/ProgressRepository.ts",
+      "value": 1
+    },
+    {
+      "source": "infrastructure/stores/progressStore.ts",
+      "target": "domain/entities/Sandbox.ts",
+      "value": 1
+    },
+    {
+      "source": "infrastructure/stores/progressStore.ts",
+      "target": "domain/usecases/ProgressMerger.ts",
+      "value": 1
+    },
+    {
+      "source": "infrastructure/stores/progressStore.ts",
+      "target": "infrastructure/repositories/SyncingProgressRepository.ts",
+      "value": 1
+    },
+    {
+      "source": "infrastructure/stores/progressStore.ts",
+      "target": "infrastructure/storage/SafeStorage.ts",
+      "value": 1
+    },
+    {
+      "source": "infrastructure/stores/sandboxStore.ts",
+      "target": "domain/entities/Sandbox.ts",
+      "value": 1
+    },
+    {
       "source": "main.tsx",
       "target": "App.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/components/adr/AdrGeneratorPanel.tsx",
+      "target": "domain/entities/Sandbox.ts",
+      "value": 1
+    },
+    {
+      "source": "presentation/components/adr/AdrGeneratorPanel.tsx",
+      "target": "domain/usecases/AdrGenerator.ts",
+      "value": 1
+    },
+    {
+      "source": "presentation/components/adr/AdrGeneratorPanel.tsx",
+      "target": "domain/usecases/TopologyAnalyzer.ts",
       "value": 1
     },
     {
@@ -2014,6 +2371,11 @@
     {
       "source": "presentation/components/AssessmentQuiz.tsx",
       "target": "presentation/hooks/useAssessmentQuiz.ts",
+      "value": 1
+    },
+    {
+      "source": "presentation/components/AssessmentQuiz.tsx",
+      "target": "presentation/context/ProgressContext.tsx",
       "value": 1
     },
     {
@@ -2058,7 +2420,12 @@
     },
     {
       "source": "presentation/components/CommandPalette.tsx",
-      "target": "presentation/data/searchIndex.ts",
+      "target": "domain/entities/CmsEntry.ts",
+      "value": 1
+    },
+    {
+      "source": "presentation/components/CommandPalette.tsx",
+      "target": "presentation/hooks/useCmsCollection.ts",
       "value": 1
     },
     {
@@ -2084,6 +2451,31 @@
     {
       "source": "presentation/components/disciplinechain/useDisciplineStreak.ts",
       "target": "presentation/context/ProgressContext.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/components/docsannotations/ADRBuilderSimulationTab.tsx",
+      "target": "presentation/components/adr/AdrGeneratorPanel.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/components/docsannotations/ADRBuilderSimulationTab.tsx",
+      "target": "presentation/context/ProgressContext.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/components/docsannotations/ADRBuilderSimulationTab.tsx",
+      "target": "infrastructure/stores/sandboxStore.ts",
+      "value": 1
+    },
+    {
+      "source": "presentation/components/docsannotations/ADRBuilderSimulationTab.tsx",
+      "target": "domain/usecases/TopologyAnalyzer.ts",
+      "value": 1
+    },
+    {
+      "source": "presentation/components/docsannotations/ADRBuilderSimulationTab.tsx",
+      "target": "domain/entities/Sandbox.ts",
       "value": 1
     },
     {
@@ -2242,6 +2634,41 @@
       "value": 1
     },
     {
+      "source": "presentation/components/sandbox/SandboxCanvas.tsx",
+      "target": "domain/entities/Sandbox.ts",
+      "value": 1
+    },
+    {
+      "source": "presentation/components/sandbox/SandboxCanvas.tsx",
+      "target": "infrastructure/stores/sandboxStore.ts",
+      "value": 1
+    },
+    {
+      "source": "presentation/components/sandbox/SandboxInspector.tsx",
+      "target": "domain/entities/Sandbox.ts",
+      "value": 1
+    },
+    {
+      "source": "presentation/components/sandbox/SandboxInspector.tsx",
+      "target": "infrastructure/stores/sandboxStore.ts",
+      "value": 1
+    },
+    {
+      "source": "presentation/components/sandbox/SandboxPalette.tsx",
+      "target": "domain/entities/Sandbox.ts",
+      "value": 1
+    },
+    {
+      "source": "presentation/components/sandbox/SandboxPalette.tsx",
+      "target": "infrastructure/stores/sandboxStore.ts",
+      "value": 1
+    },
+    {
+      "source": "presentation/components/sandbox/TopologyIssueList.tsx",
+      "target": "domain/usecases/TopologyAnalyzer.ts",
+      "value": 1
+    },
+    {
       "source": "presentation/components/ScrollToTop.tsx",
       "target": "presentation/context/ProgressContext.tsx",
       "value": 1
@@ -2273,7 +2700,17 @@
     },
     {
       "source": "presentation/context/ProgressContext.tsx",
-      "target": "presentation/hooks/useLocalStorage.ts",
+      "target": "domain/entities/Progress.ts",
+      "value": 1
+    },
+    {
+      "source": "presentation/context/ProgressContext.tsx",
+      "target": "domain/entities/Sandbox.ts",
+      "value": 1
+    },
+    {
+      "source": "presentation/context/ProgressContext.tsx",
+      "target": "infrastructure/stores/progressStore.ts",
       "value": 1
     },
     {
@@ -2284,6 +2721,26 @@
     {
       "source": "presentation/hooks/useAssessmentQuiz.ts",
       "target": "data/assessmentQuestions.ts",
+      "value": 1
+    },
+    {
+      "source": "presentation/hooks/useAssessmentQuiz.ts",
+      "target": "domain/usecases/QuizScorer.ts",
+      "value": 1
+    },
+    {
+      "source": "presentation/hooks/useCmsCollection.ts",
+      "target": "domain/entities/CmsEntry.ts",
+      "value": 1
+    },
+    {
+      "source": "presentation/hooks/useCmsCollection.ts",
+      "target": "domain/repositories/ContentRepository.ts",
+      "value": 1
+    },
+    {
+      "source": "presentation/hooks/useCmsCollection.ts",
+      "target": "infrastructure/cms/CmsContentRepository.ts",
       "value": 1
     },
     {
@@ -2349,6 +2806,46 @@
     {
       "source": "presentation/pages/acronyms.tsx",
       "target": "infrastructure/AcronymsData.ts",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/adr-generator.tsx",
+      "target": "presentation/components/SEO.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/adr-generator.tsx",
+      "target": "presentation/components/ArchHero.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/adr-generator.tsx",
+      "target": "presentation/components/adr/AdrGeneratorPanel.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/adr-generator.tsx",
+      "target": "presentation/components/sandbox/TopologyIssueList.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/adr-generator.tsx",
+      "target": "presentation/context/ProgressContext.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/adr-generator.tsx",
+      "target": "infrastructure/stores/sandboxStore.ts",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/adr-generator.tsx",
+      "target": "domain/usecases/TopologyAnalyzer.ts",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/adr-generator.tsx",
+      "target": "domain/entities/Sandbox.ts",
       "value": 1
     },
     {
@@ -3544,6 +4041,61 @@
     {
       "source": "presentation/pages/robustness.tsx",
       "target": "presentation/components/robustness/RobustnessCircuitBreakerSimulationTab.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/sandbox.tsx",
+      "target": "presentation/components/SEO.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/sandbox.tsx",
+      "target": "presentation/components/ArchHero.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/sandbox.tsx",
+      "target": "presentation/components/sandbox/SandboxPalette.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/sandbox.tsx",
+      "target": "presentation/components/sandbox/SandboxCanvas.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/sandbox.tsx",
+      "target": "presentation/components/sandbox/SandboxInspector.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/sandbox.tsx",
+      "target": "presentation/components/sandbox/TopologyIssueList.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/sandbox.tsx",
+      "target": "presentation/components/adr/AdrGeneratorPanel.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/sandbox.tsx",
+      "target": "presentation/context/ProgressContext.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/sandbox.tsx",
+      "target": "infrastructure/stores/sandboxStore.ts",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/sandbox.tsx",
+      "target": "domain/usecases/TopologyAnalyzer.ts",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/sandbox.tsx",
+      "target": "domain/entities/Sandbox.ts",
       "value": 1
     },
     {

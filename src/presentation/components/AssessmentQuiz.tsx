@@ -1,12 +1,14 @@
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
-import { Trophy, RefreshCw, Zap } from 'lucide-react';
+import { Trophy, RefreshCw, Zap, CloudUpload } from 'lucide-react';
 import { useAssessmentQuiz } from '../hooks/useAssessmentQuiz';
+import { useProgress } from '../context/ProgressContext';
 
 const AssessmentQuiz: React.FC = () => {
   const { i18n } = useTranslation();
   const isEn = (i18n.resolvedLanguage || i18n.language || 'tr').startsWith('en');
+  const { status } = useProgress();
 
   const {
     questions,
@@ -15,6 +17,8 @@ const AssessmentQuiz: React.FC = () => {
     selectedOption,
     isCompleted,
     result,
+    score,
+    rankLabel,
     handleSelect,
     handleNext,
     handleRestart
@@ -188,6 +192,60 @@ const AssessmentQuiz: React.FC = () => {
           <h2 style={{ fontSize: '2.5rem', fontWeight: 900, color: 'white', margin: '0.5rem 0 1.5rem' }}>
             {result?.title}
           </h2>
+
+          <div style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '1.5rem',
+            background: 'rgba(255,255,255,0.03)',
+            border: '1px solid rgba(255,255,255,0.08)',
+            borderRadius: '16px',
+            padding: '1rem 1.75rem',
+            marginBottom: '1.5rem',
+            flexWrap: 'wrap',
+            justifyContent: 'center'
+          }}>
+            <div style={{ textAlign: 'center' }}>
+              <div style={{ fontSize: '2rem', fontWeight: 900, color: result?.color, lineHeight: 1 }}>
+                {score?.score ?? 0}
+              </div>
+              <div style={{ fontSize: '0.7rem', color: 'var(--text-secondary)', textTransform: 'uppercase', letterSpacing: '1px', marginTop: '4px' }}>
+                {isEn ? 'Readiness Score' : 'Hazırlık Puanı'}
+              </div>
+            </div>
+            <div style={{ width: '1px', alignSelf: 'stretch', background: 'rgba(255,255,255,0.08)' }} />
+            <div style={{ textAlign: 'center' }}>
+              <div style={{ fontSize: '1.1rem', fontWeight: 800, color: 'white' }}>{rankLabel}</div>
+              <div style={{ fontSize: '0.7rem', color: 'var(--text-secondary)', textTransform: 'uppercase', letterSpacing: '1px', marginTop: '4px' }}>
+                {isEn ? 'Detected Rank' : 'Tespit Edilen Rütbe'}
+              </div>
+            </div>
+            <div style={{ width: '1px', alignSelf: 'stretch', background: 'rgba(255,255,255,0.08)' }} />
+            <div style={{ textAlign: 'center' }}>
+              <div style={{ fontSize: '1.1rem', fontWeight: 800, color: 'white' }}>
+                {score?.correct ?? 0}/{score?.total ?? 0}
+              </div>
+              <div style={{ fontSize: '0.7rem', color: 'var(--text-secondary)', textTransform: 'uppercase', letterSpacing: '1px', marginTop: '4px' }}>
+                {isEn ? 'Senior-grade Calls' : 'Kıdemli Karar'}
+              </div>
+            </div>
+            <div style={{ width: '1px', alignSelf: 'stretch', background: 'rgba(255,255,255,0.08)' }} />
+            <div style={{ textAlign: 'center' }}>
+              <div style={{ fontSize: '1.1rem', fontWeight: 800, color: status === 'synced' ? '#10b981' : status === 'error' ? '#ef4444' : '#94a3b8', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                <CloudUpload size={16} />
+                {status === 'synced'
+                  ? (isEn ? 'Cloud Synced' : 'Bulut Senkron')
+                  : status === 'offline'
+                    ? (isEn ? 'Queued Offline' : 'Çevrimdışı Kuyrukta')
+                    : status === 'error'
+                      ? (isEn ? 'Sync Failed' : 'Senkron Hatası')
+                      : (isEn ? 'Syncing…' : 'Senkronlanıyor…')}
+              </div>
+              <div style={{ fontSize: '0.7rem', color: 'var(--text-secondary)', textTransform: 'uppercase', letterSpacing: '1px', marginTop: '4px' }}>
+                {isEn ? 'Progress Backup' : 'İlerleme Yedeği'}
+              </div>
+            </div>
+          </div>
 
           <p style={{ color: 'var(--text-secondary)', maxWidth: '650px', margin: '0 auto 2.5rem', fontSize: '1.1rem', lineHeight: 1.8 }}>
             {result?.desc}

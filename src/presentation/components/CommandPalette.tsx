@@ -39,7 +39,8 @@ import {
   BookOpen
 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-import { SEARCH_INDEX, SearchIndexItem } from '../data/searchIndex';
+import { SearchEntry } from '../../domain/entities/CmsEntry';
+import { useCmsCollection } from '../hooks/useCmsCollection';
 
 interface SearchItem {
   id: string;
@@ -87,12 +88,14 @@ const CommandPalette = () => {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const navigate = useNavigate();
   const inputRef = useRef<HTMLInputElement>(null);
+  const cms = useCmsCollection<SearchEntry>('search-index');
+  const searchIndex = cms.data;
 
   // Initialize Fuse.js with search index
-  const fuse = useMemo(() => new Fuse(SEARCH_INDEX, fuseOptions), []);
+  const fuse = useMemo(() => new Fuse(searchIndex, fuseOptions), [searchIndex]);
 
   // Convert search index to SearchItem format
-  const allItems: SearchItem[] = useMemo(() => SEARCH_INDEX.map(item => ({
+  const allItems: SearchItem[] = useMemo(() => searchIndex.map(item => ({
     id: item.id,
     title: item.title,
     description: item.description,
@@ -100,7 +103,7 @@ const CommandPalette = () => {
     path: item.path,
     icon: iconMap[item.category] || <Book size={18} />,
     category: item.category === 'Principles' && item.id === 'lean' ? 'MASTERPIECE' : item.category
-  })), []);
+  })), [searchIndex]);
 
   // Fuse.js powered search
   const filteredItems = useMemo(() => {
@@ -110,7 +113,7 @@ const CommandPalette = () => {
     
     return results
       .map(result => {
-        const item = result.item as SearchIndexItem;
+        const item = result.item as SearchEntry;
         const score = Math.round((1 - (result.score ?? 0)) * 100);
         return {
           id: item.id,

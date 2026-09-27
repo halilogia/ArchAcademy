@@ -18,7 +18,11 @@
     "roadmap": "Architect Roadmap",
     "roadmap_desc": "Career Roadmap",
     "workshop": "Architecture Workshop",
-    "workshop_desc": "Interactive Workshop"
+    "workshop_desc": "Interactive Workshop",
+    "sandbox": "System Design Sandbox",
+    "sandbox_desc": "Drag & Drop Topology",
+    "adr_generator": "ADR Generator",
+    "adr_generator_desc": "MADR Markdown Export"
   },
   "docs_menu": {
     "acronyms": "Acronyms Guide",

@@ -18,7 +18,8 @@ import {
   Command,
   Library,
   Brain,
-  FileText
+  FileText,
+  Workflow
 } from 'lucide-react';
 
 const Navbar: React.FC = () => {
@@ -240,6 +241,20 @@ const Navbar: React.FC = () => {
                   <div>
                     <div style={{ fontSize: '0.85rem', fontWeight: 700 }}>{t('labs_menu.workshop')}</div>
                     <div style={{ fontSize: '0.7rem', opacity: 0.5 }}>{t('labs_menu.workshop_desc')}</div>
+                  </div>
+                </Link>
+                <Link to="/sandbox" style={{ display: 'flex', alignItems: 'center', gap: '1rem', padding: '0.8rem', borderRadius: '10px', textDecoration: 'none', color: 'white' }}>
+                  <div style={{ color: '#3b82f6' }}><Workflow size={18} /></div>
+                  <div>
+                    <div style={{ fontSize: '0.85rem', fontWeight: 700 }}>{t('labs_menu.sandbox')}</div>
+                    <div style={{ fontSize: '0.7rem', opacity: 0.5 }}>{t('labs_menu.sandbox_desc')}</div>
+                  </div>
+                </Link>
+                <Link to="/adr-generator" style={{ display: 'flex', alignItems: 'center', gap: '1rem', padding: '0.8rem', borderRadius: '10px', textDecoration: 'none', color: 'white' }}>
+                  <div style={{ color: '#a855f7' }}><FileText size={18} /></div>
+                  <div>
+                    <div style={{ fontSize: '0.85rem', fontWeight: 700 }}>{t('labs_menu.adr_generator')}</div>
+                    <div style={{ fontSize: '0.7rem', opacity: 0.5 }}>{t('labs_menu.adr_generator_desc')}</div>
                   </div>
                 </Link>
 

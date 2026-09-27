@@ -1,14 +1,28 @@
-export interface SearchIndexItem {
-  id: string;
-  title: string;
-  description: string;
-  path: string;
-  category: string;
-  keywords: string[];
-  content: string;
-}
+import type { CmsEnvelope, SearchEntry } from '../../../domain/entities/CmsEntry';
 
-export const SEARCH_INDEX: SearchIndexItem[] = [
+export type SearchIndexItem = SearchEntry;
+
+const SEARCH_INDEX: SearchIndexItem[] = [
+  // --- PHASE 2: SANDBOX & DECISION RECORDS ---
+  {
+    id: 'sandbox',
+    title: 'System Design Sandbox',
+    description: 'Drag & drop topology canvas',
+    path: '/sandbox',
+    category: 'Workshop',
+    keywords: ['sandbox', 'system design', 'topology', 'drag and drop', 'canvas', 'load balancer', 'message queue', 'cache', 'database', 'topoloji', 'sürükle bırak', 'tasarım'],
+    content: 'System Design Sandbox - Drag and drop infrastructure components (load balancers, API gateways, microservices, message queues, workers, caches, databases, object stores and search engines) onto a topology canvas. The reviewer scores the design and flags single points of failure, databases exposed to clients, unconsumed queues, missing cache layers and request cycles.'
+  },
+  {
+    id: 'adr-generator',
+    title: 'ADR Generator (MADR 3.0)',
+    description: 'Export decision records as markdown',
+    path: '/adr-generator',
+    category: 'Workshop',
+    keywords: ['adr', 'mad r', 'madr', 'decision record', 'architecture decision', 'markdown', 'export', 'karar kaydı', 'mimari karar', 'diyagram'],
+    content: 'Architecture Decision Record Generator - Produce a MADR 3.0.0 markdown decision record from your sandbox topology. The document includes context, decision drivers, considered options, the decision, a component inventory, a redundancy plan, an auto-generated Mermaid flowchart, positive and negative consequences, open architectural risks and review triggers.'
+  },
+
   // --- MAIN CATALOGS & CHEATSHEET ---
   {
     id: 'acronyms',
@@ -824,3 +838,12 @@ export const SEARCH_INDEX: SearchIndexItem[] = [
     content: 'ArchAcademy - The Senior Software Architecture Portal. Your comprehensive resource for learning architectural patterns, best practices and career development.'
   }
 ];
+
+export const SEARCH_INDEX_ENVELOPE: CmsEnvelope<SearchIndexItem> = {
+  collection: 'search-index',
+  version: '1.1.0',
+  updatedAt: '2026-09-27T00:00:00.000Z',
+  items: SEARCH_INDEX
+};
+
+export default SEARCH_INDEX_ENVELOPE;

@@ -1,12 +1,22 @@
-import { useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useProgress } from '../context/ProgressContext';
-import { 
-  Question, 
-  QuizOption, 
-  ArchetypeProfile, 
-  interviewQuestions, 
-  getArchetypeProfiles 
+import {
+  Question,
+  QuizOption,
+  ArchetypeProfile,
+  interviewQuestions,
+  getArchetypeProfiles
 } from '../../data/assessmentQuestions';
+import {
+  ArchetypeAnswer,
+  ArchetypeKey,
+  QuizScore,
+  rankLabel,
+  scoreArchetypeQuiz,
+  toAttempt
+} from '../../domain/usecases/QuizScorer';
+
+export const ASSESSMENT_QUIZ_ID = 'architect-challenge';
 
 export interface UseAssessmentQuizReturn {
   questions: Question[];
@@ -16,66 +26,75 @@ export interface UseAssessmentQuizReturn {
   answers: { questionId: number; option: QuizOption }[];
   isCompleted: boolean;
   result: ArchetypeProfile | null;
+  score: QuizScore | null;
+  rankLabel: string;
   handleSelect: (opt: QuizOption) => void;
   handleNext: () => void;
   handleRestart: () => void;
 }
 
 export const useAssessmentQuiz = (isEn: boolean): UseAssessmentQuizReturn => {
-  const { completeStep } = useProgress();
+  const { completeStep, recordQuizAttempt } = useProgress();
   const [currentQIndex, setCurrentQIndex] = useState(0);
   const [selectedOption, setSelectedOption] = useState<QuizOption | null>(null);
   const [answers, setAnswers] = useState<{ questionId: number; option: QuizOption }[]>([]);
   const [isCompleted, setIsCompleted] = useState(false);
+  const recordedKey = useRef<string | null>(null);
 
   const currentQ = interviewQuestions[currentQIndex];
 
-  const handleSelect = (opt: QuizOption) => {
-    if (selectedOption) return; // Prevent changing after selection
-    setSelectedOption(opt);
-  };
+  const handleSelect = useCallback((opt: QuizOption) => {
+    setSelectedOption((current) => (current ? current : opt));
+  }, []);
 
-  const handleNext = () => {
+  const handleNext = useCallback(() => {
     if (!selectedOption) return;
     const newAnswers = [...answers, { questionId: currentQ.id, option: selectedOption }];
     setAnswers(newAnswers);
     setSelectedOption(null);
 
     if (currentQIndex + 1 < interviewQuestions.length) {
-      setCurrentQIndex(prev => prev + 1);
-    } else {
-      setIsCompleted(true);
-      completeStep('/assessment');
+      setCurrentQIndex((prev) => prev + 1);
+      return;
     }
-  };
 
-  const handleRestart = () => {
+    setIsCompleted(true);
+    completeStep('/assessment');
+  }, [answers, completeStep, currentQ.id, currentQIndex, selectedOption]);
+
+  const handleRestart = useCallback(() => {
     setCurrentQIndex(0);
     setSelectedOption(null);
     setAnswers([]);
     setIsCompleted(false);
-  };
+    recordedKey.current = null;
+  }, []);
 
-  const calculateResult = (): ArchetypeProfile => {
-    const scores = { Architect: 0, Specialist: 0, OverKiller: 0, Junior: 0 };
-    answers.forEach(a => {
-      scores[a.option.score.type] += a.option.score.value;
-    });
+  const score: QuizScore | null = useMemo(
+    () =>
+      isCompleted
+        ? scoreArchetypeQuiz(
+            answers.map<ArchetypeAnswer>((answer) => ({
+              questionId: answer.questionId,
+              archetype: answer.option.score.type as ArchetypeKey,
+              weight: answer.option.score.value
+            }))
+          )
+        : null,
+    [answers, isCompleted]
+  );
 
-    let topType: keyof typeof scores = 'Architect';
-    let maxScore = -1;
-    (Object.keys(scores) as (keyof typeof scores)[]).forEach(k => {
-      if (scores[k] > maxScore) {
-        maxScore = scores[k];
-        topType = k;
-      }
-    });
+  useEffect(() => {
+    if (!score) return;
+    const key = `${ASSESSMENT_QUIZ_ID}:${score.at}`;
+    if (recordedKey.current === key) return;
+    recordedKey.current = key;
+    recordQuizAttempt(toAttempt(ASSESSMENT_QUIZ_ID, score));
+  }, [recordQuizAttempt, score]);
 
-    const profiles = getArchetypeProfiles(isEn);
-    return profiles[topType] || profiles.Architect;
-  };
-
-  const result = isCompleted ? calculateResult() : null;
+  const result: ArchetypeProfile | null = score
+    ? getArchetypeProfiles(isEn)[score.dominantArchetype]
+    : null;
 
   return {
     questions: interviewQuestions,
@@ -85,6 +104,8 @@ export const useAssessmentQuiz = (isEn: boolean): UseAssessmentQuizReturn => {
     answers,
     isCompleted,
     result,
+    score,
+    rankLabel: score ? rankLabel(score.rank, isEn) : '',
     handleSelect,
     handleNext,
     handleRestart

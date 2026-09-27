@@ -18,7 +18,11 @@
     "roadmap": "Architect Roadmap",
     "roadmap_desc": "Kariyer Yol Haritası",
     "workshop": "Architecture Workshop",
-    "workshop_desc": "İnteraktif Atölye"
+    "workshop_desc": "İnteraktif Atölye",
+    "sandbox": "Sistem Tasarım Sandbox",
+    "sandbox_desc": "Sürükle Bırak Topoloji",
+    "adr_generator": "ADR Üreticisi",
+    "adr_generator_desc": "MADR Markdown Dışa Aktarım"
   },
   "docs_menu": {
     "acronyms": "Kısaltmalar Kılavuzu",

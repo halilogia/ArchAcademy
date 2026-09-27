@@ -12,9 +12,10 @@ function loadTsModule(relativePath) {
   return "data:text/javascript;base64," + Buffer.from(transpiled).toString("base64");
 }
 
-// 2. Load searchIndex.ts
-const dataUriSearch = loadTsModule("src/presentation/data/searchIndex.ts");
-const { SEARCH_INDEX } = await import(dataUriSearch);
+// 2. Load the CMS search index seed envelope
+const dataUriSearch = loadTsModule("src/infrastructure/cms/seed/searchIndex.seed.ts");
+const { SEARCH_INDEX_ENVELOPE } = await import(dataUriSearch);
+const SEARCH_INDEX = SEARCH_INDEX_ENVELOPE.items;
 
 // 3. Load AcronymsData first for GlossaryData import
 const acronymsCode = fs.readFileSync("src/infrastructure/AcronymsData.ts", "utf8");

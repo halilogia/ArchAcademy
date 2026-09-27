@@ -1,56 +1,84 @@
-import React, { createContext, useContext, ReactNode } from 'react';
-import useLocalStorage from '../hooks/useLocalStorage';
+import React, { ReactNode, useEffect, useMemo } from 'react';
+import { QuizAttempt } from '../../domain/entities/Progress';
+import { SandboxDesign } from '../../domain/entities/Sandbox';
+import { useProgressStore } from '../../infrastructure/stores/progressStore';
 
-interface ProgressState {
-  completedSteps: string[];
-  lastVisited: string | null;
-  quizResult?: { score: number; rank: string };
-}
-
-interface ProgressContextType {
-  progress: ProgressState;
+export interface ProgressContextType {
+  progress: ReturnType<typeof useProgressStore.getState>['progress'];
   completeStep: (stepPath: string) => void;
   setLastVisited: (path: string) => void;
   updateQuizResult: (score: number, rank: string) => void;
+  recordQuizAttempt: (attempt: QuizAttempt) => void;
+  saveDesign: (design: SandboxDesign) => void;
+  status: ReturnType<typeof useProgressStore.getState>['status'];
+  lastSyncedAt: string | null;
+  pendingWrites: number;
+  remoteEnabled: boolean;
 }
 
-const ProgressContext = createContext<ProgressContextType | undefined>(undefined);
-
 export const ProgressProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  // Use Custom Hook for clean persistence logic
-  const [progress, setProgress] = useLocalStorage<ProgressState>('arch_progress', { 
-    completedSteps: [], 
-    lastVisited: null 
-  });
+  const hydrate = useProgressStore((state) => state.hydrate);
+  const setOnline = useProgressStore((state) => state.setOnline);
 
-  const completeStep = (stepPath: string) => {
-    setProgress({
-      ...progress,
-      completedSteps: progress.completedSteps.includes(stepPath) 
-        ? progress.completedSteps 
-        : [...progress.completedSteps, stepPath]
-    });
-  };
+  useEffect(() => {
+    void hydrate();
 
-  const setLastVisited = (path: string) => {
-    setProgress({ ...progress, lastVisited: path });
-  };
+    const goOnline = () => setOnline(true);
+    const goOffline = () => setOnline(false);
+    const onVisibility = () => {
+      if (document.visibilityState === 'visible') setOnline(true);
+    };
 
-  const updateQuizResult = (score: number, rank: string) => {
-    setProgress({ ...progress, quizResult: { score, rank } });
-  };
+    window.addEventListener('online', goOnline);
+    window.addEventListener('offline', goOffline);
+    document.addEventListener('visibilitychange', onVisibility);
 
-  return (
-    <ProgressContext.Provider value={{ progress, completeStep, setLastVisited, updateQuizResult }}>
-      {children}
-    </ProgressContext.Provider>
-  );
+    return () => {
+      window.removeEventListener('online', goOnline);
+      window.removeEventListener('offline', goOffline);
+      document.removeEventListener('visibilitychange', onVisibility);
+    };
+  }, [hydrate, setOnline]);
+
+  return <>{children}</>;
 };
 
-export const useProgress = () => {
-  const context = useContext(ProgressContext);
-  if (!context) {
-    throw new Error('useProgress must be used within a ProgressProvider');
-  }
-  return context;
+export const useProgress = (): ProgressContextType => {
+  const progress = useProgressStore((state) => state.progress);
+  const status = useProgressStore((state) => state.status);
+  const lastSyncedAt = useProgressStore((state) => state.lastSyncedAt);
+  const pendingWrites = useProgressStore((state) => state.pendingWrites);
+  const remoteEnabled = useProgressStore((state) => state.remoteEnabled);
+  const completeStep = useProgressStore((state) => state.completeStep);
+  const setLastVisited = useProgressStore((state) => state.setLastVisited);
+  const updateQuizResult = useProgressStore((state) => state.updateQuizResult);
+  const recordQuizAttempt = useProgressStore((state) => state.recordQuizAttempt);
+  const saveDesign = useProgressStore((state) => state.saveDesign);
+
+  return useMemo(
+    () => ({
+      progress,
+      completeStep,
+      setLastVisited,
+      updateQuizResult,
+      recordQuizAttempt,
+      saveDesign,
+      status,
+      lastSyncedAt,
+      pendingWrites,
+      remoteEnabled
+    }),
+    [
+      progress,
+      completeStep,
+      setLastVisited,
+      updateQuizResult,
+      recordQuizAttempt,
+      saveDesign,
+      status,
+      lastSyncedAt,
+      pendingWrites,
+      remoteEnabled
+    ]
+  );
 };
