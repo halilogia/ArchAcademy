@@ -30,6 +30,6 @@ Current release: **v1.2.0** · Current phase: **Phase 2 → Phase 3**
 
 ## 🧹 P4 — Hygiene
 
-- [ ] `React.memo` sweep and long-list virtualization, tracked above as FINDING-003 and FINDING-008.
 - [ ] Add a content authoring UI that writes to a CMS backend. The Content Console validates and exports; it does not yet write.
 - [ ] Point the reference sync service at a durable database and real user authentication instead of per-user static tokens.
+- [ ] Keep the MADR linter in step with the generator so `/adr-generator` output is guaranteed to pass `npm run adr:lint`.
