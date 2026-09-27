@@ -102,6 +102,9 @@ jobs:
           node-version: ${{ env.NODE_VERSION }}
           cache: 'npm'
 
+      - name: ⚙️ Configure GitHub Pages
+        uses: actions/configure-pages@v5
+
       - name: 📦 Install Dependencies
         run: npm ci --ignore-scripts
 
@@ -109,6 +112,13 @@ jobs:
         run: npm run build
         env:
           NODE_ENV: production
+          VITE_BASE_PATH: ${{ vars.VITE_BASE_PATH || '/ArchAcademy/' }}
+
+      - name: 🔎 Verify SPA fallback
+        run: |
+          test -f dist/404.html || (echo "dist/404.html missing: deep links would 404" && exit 1)
+          grep -q '404-fallback-marker' dist/404.html || (echo "dist/404.html is not the SPA fallback" && exit 1)
+          grep -q 'ArchAcademy/assets' dist/index.html || echo "warning: assets are not prefixed with the Pages base path"
 
       - name: 📦 Upload Build Artifact
         uses: actions/upload-pages-artifact@v3

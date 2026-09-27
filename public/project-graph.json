@@ -4,7 +4,7 @@
       "id": "App.tsx",
       "label": "App.tsx",
       "category": "Other",
-      "size": 1163
+      "size": 1199
     },
     {
       "id": "data/assessmentQuestions.ts",
@@ -82,7 +82,7 @@
       "id": "domain/usecases/TopologyAnalyzer.ts",
       "label": "TopologyAnalyzer.ts",
       "category": "Domain",
-      "size": 8698
+      "size": 8662
     },
     {
       "id": "i18n/index.ts",
@@ -112,7 +112,7 @@
       "id": "infrastructure/cms/HttpContentClient.ts",
       "label": "HttpContentClient.ts",
       "category": "Infra",
-      "size": 2293
+      "size": 2262
     },
     {
       "id": "infrastructure/cms/seed/index.ts",
@@ -172,7 +172,7 @@
       "id": "infrastructure/stores/progressStore.ts",
       "label": "progressStore.ts",
       "category": "Infra",
-      "size": 4156
+      "size": 4151
     },
     {
       "id": "infrastructure/stores/sandboxStore.ts",
@@ -202,7 +202,7 @@
       "id": "presentation/components/abstraction/AbstractionPaymentSimulationTab.tsx",
       "label": "AbstractionPaymentSimulationTab.tsx",
       "category": "Component",
-      "size": 7566
+      "size": 7537
     },
     {
       "id": "presentation/components/acid/ACIDConceptTab.tsx",
@@ -226,7 +226,7 @@
       "id": "presentation/components/adr/AdrGeneratorPanel.tsx",
       "label": "AdrGeneratorPanel.tsx",
       "category": "Component",
-      "size": 14851
+      "size": 14886
     },
     {
       "id": "presentation/components/agenticai/AgenticCorePatternsTab.tsx",
@@ -250,13 +250,13 @@
       "id": "presentation/components/AndroidPrinciples.tsx",
       "label": "AndroidPrinciples.tsx",
       "category": "Component",
-      "size": 5046
+      "size": 5228
     },
     {
       "id": "presentation/components/ArchHero.tsx",
       "label": "ArchHero.tsx",
       "category": "Component",
-      "size": 2867
+      "size": 2855
     },
     {
       "id": "presentation/components/ArchitectRoadmap.tsx",
@@ -274,13 +274,13 @@
       "id": "presentation/components/ArchitectureFlow.tsx",
       "label": "ArchitectureFlow.tsx",
       "category": "Component",
-      "size": 10627
+      "size": 10981
     },
     {
       "id": "presentation/components/ArchitectureWizard.tsx",
       "label": "ArchitectureWizard.tsx",
       "category": "Component",
-      "size": 11296
+      "size": 11312
     },
     {
       "id": "presentation/components/ArchReferences.tsx",
@@ -304,7 +304,7 @@
       "id": "presentation/components/bff/BFFSimulationTab.tsx",
       "label": "BFFSimulationTab.tsx",
       "category": "Component",
-      "size": 6349
+      "size": 6390
     },
     {
       "id": "presentation/components/broker/BrokerComparisonTab.tsx",
@@ -418,13 +418,13 @@
       "id": "presentation/components/CommandPalette.tsx",
       "label": "CommandPalette.tsx",
       "category": "Component",
-      "size": 12011
+      "size": 12077
     },
     {
       "id": "presentation/components/ComparisonMatrix.tsx",
       "label": "ComparisonMatrix.tsx",
       "category": "Component",
-      "size": 11573
+      "size": 11730
     },
     {
       "id": "presentation/components/componentdriven/ComponentAtomicDesignTab.tsx",
@@ -508,7 +508,7 @@
       "id": "presentation/components/DDDKeyConcepts.tsx",
       "label": "DDDKeyConcepts.tsx",
       "category": "Component",
-      "size": 5203
+      "size": 5409
     },
     {
       "id": "presentation/components/DDDSection.tsx",
@@ -646,25 +646,25 @@
       "id": "presentation/components/eventsourcing/EventSourcingSimulationTab.tsx",
       "label": "EventSourcingSimulationTab.tsx",
       "category": "Component",
-      "size": 6683
+      "size": 6685
     },
     {
       "id": "presentation/components/FeatureVsLayerDetail.tsx",
       "label": "FeatureVsLayerDetail.tsx",
       "category": "Component",
-      "size": 6665
+      "size": 6651
     },
     {
       "id": "presentation/components/FlutterBestPractices.tsx",
       "label": "FlutterBestPractices.tsx",
       "category": "Component",
-      "size": 5853
+      "size": 5956
     },
     {
       "id": "presentation/components/FolderSurgery.tsx",
       "label": "FolderSurgery.tsx",
       "category": "Component",
-      "size": 11658
+      "size": 11676
     },
     {
       "id": "presentation/components/Footer.tsx",
@@ -766,13 +766,19 @@
       "id": "presentation/components/interpreter/InterpreterSimulationTab.tsx",
       "label": "InterpreterSimulationTab.tsx",
       "category": "Component",
-      "size": 6276
+      "size": 6280
+    },
+    {
+      "id": "presentation/components/lambdakappa/kappaEvents.ts",
+      "label": "kappaEvents.ts",
+      "category": "Component",
+      "size": 318
     },
     {
       "id": "presentation/components/lambdakappa/KappaReplaySimTab.tsx",
       "label": "KappaReplaySimTab.tsx",
       "category": "Component",
-      "size": 6578
+      "size": 6451
     },
     {
       "id": "presentation/components/lambdakappa/LambdaKappaOverviewTab.tsx",
@@ -934,13 +940,13 @@
       "id": "presentation/components/MVVMFlow.tsx",
       "label": "MVVMFlow.tsx",
       "category": "Component",
-      "size": 5753
+      "size": 6035
     },
     {
       "id": "presentation/components/Navbar.tsx",
       "label": "Navbar.tsx",
       "category": "Component",
-      "size": 18972
+      "size": 17509
     },
     {
       "id": "presentation/components/OnionDiagram.tsx",
@@ -1114,7 +1120,7 @@
       "id": "presentation/components/ProjectDesignSystem.tsx",
       "label": "ProjectDesignSystem.tsx",
       "category": "Component",
-      "size": 6193
+      "size": 6179
     },
     {
       "id": "presentation/components/ProjectHero.tsx",
@@ -1168,7 +1174,7 @@
       "id": "presentation/components/RefactoringGuide.tsx",
       "label": "RefactoringGuide.tsx",
       "category": "Component",
-      "size": 6993
+      "size": 6953
     },
     {
       "id": "presentation/components/RefactoringSurgery.tsx",
@@ -1228,7 +1234,7 @@
       "id": "presentation/components/sandbox/SandboxPalette.tsx",
       "label": "SandboxPalette.tsx",
       "category": "Component",
-      "size": 4915
+      "size": 4867
     },
     {
       "id": "presentation/components/sandbox/TopologyIssueList.tsx",
@@ -1246,7 +1252,7 @@
       "id": "presentation/components/ScrollToTop.tsx",
       "label": "ScrollToTop.tsx",
       "category": "Component",
-      "size": 488
+      "size": 518
     },
     {
       "id": "presentation/components/Section.tsx",
@@ -1363,6 +1369,12 @@
       "size": 4744
     },
     {
+      "id": "presentation/components/synthesislab/mockFiles.ts",
+      "label": "mockFiles.ts",
+      "category": "Component",
+      "size": 699
+    },
+    {
       "id": "presentation/components/synthesislab/SynthesisCanvas.tsx",
       "label": "SynthesisCanvas.tsx",
       "category": "Component",
@@ -1384,7 +1396,7 @@
       "id": "presentation/components/synthesislab/SynthesisSidebar.tsx",
       "label": "SynthesisSidebar.tsx",
       "category": "Component",
-      "size": 3597
+      "size": 2939
     },
     {
       "id": "presentation/components/synthesislab/useSynthesisLab.ts",
@@ -1468,7 +1480,7 @@
       "id": "presentation/components/VerticalComparison.tsx",
       "label": "VerticalComparison.tsx",
       "category": "Component",
-      "size": 3464
+      "size": 3424
     },
     {
       "id": "presentation/components/VerticalHero.tsx",
@@ -1522,13 +1534,13 @@
       "id": "presentation/hooks/useCmsCollection.ts",
       "label": "useCmsCollection.ts",
       "category": "Hook",
-      "size": 2032
+      "size": 2229
     },
     {
       "id": "presentation/hooks/useLocalStorage.ts",
       "label": "useLocalStorage.ts",
       "category": "Hook",
-      "size": 1265
+      "size": 1254
     },
     {
       "id": "presentation/navigation/AppRouter.tsx",
@@ -1540,13 +1552,13 @@
       "id": "presentation/pages/abstraction.tsx",
       "label": "abstraction.tsx",
       "category": "Page",
-      "size": 6653
+      "size": 6588
     },
     {
       "id": "presentation/pages/acid.tsx",
       "label": "acid.tsx",
       "category": "Page",
-      "size": 7591
+      "size": 7560
     },
     {
       "id": "presentation/pages/acronyms.tsx",
@@ -1564,13 +1576,13 @@
       "id": "presentation/pages/agentic-ai.tsx",
       "label": "agentic-ai.tsx",
       "category": "Page",
-      "size": 7708
+      "size": 7627
     },
     {
       "id": "presentation/pages/anti-patterns.tsx",
       "label": "anti-patterns.tsx",
       "category": "Page",
-      "size": 8520
+      "size": 8362
     },
     {
       "id": "presentation/pages/assessment.tsx",
@@ -1582,25 +1594,25 @@
       "id": "presentation/pages/atomic-design.tsx",
       "label": "atomic-design.tsx",
       "category": "Page",
-      "size": 8432
+      "size": 8262
     },
     {
       "id": "presentation/pages/bff.tsx",
       "label": "bff.tsx",
       "category": "Page",
-      "size": 11311
+      "size": 11262
     },
     {
       "id": "presentation/pages/broker.tsx",
       "label": "broker.tsx",
       "category": "Page",
-      "size": 11072
+      "size": 11043
     },
     {
       "id": "presentation/pages/cap-theorem.tsx",
       "label": "cap-theorem.tsx",
       "category": "Page",
-      "size": 8333
+      "size": 8189
     },
     {
       "id": "presentation/pages/catalog.tsx",
@@ -1612,13 +1624,13 @@
       "id": "presentation/pages/choreography.tsx",
       "label": "choreography.tsx",
       "category": "Page",
-      "size": 10984
+      "size": 10971
     },
     {
       "id": "presentation/pages/clean-arch.tsx",
       "label": "clean-arch.tsx",
       "category": "Page",
-      "size": 7529
+      "size": 7556
     },
     {
       "id": "presentation/pages/clean-code.tsx",
@@ -1630,7 +1642,7 @@
       "id": "presentation/pages/client-server.tsx",
       "label": "client-server.tsx",
       "category": "Page",
-      "size": 11695
+      "size": 11288
     },
     {
       "id": "presentation/pages/cloud-catalog.tsx",
@@ -1642,13 +1654,13 @@
       "id": "presentation/pages/compare.tsx",
       "label": "compare.tsx",
       "category": "Page",
-      "size": 2503
+      "size": 2515
     },
     {
       "id": "presentation/pages/component-driven.tsx",
       "label": "component-driven.tsx",
       "category": "Page",
-      "size": 7900
+      "size": 7799
     },
     {
       "id": "presentation/pages/component-state.tsx",
@@ -1660,19 +1672,19 @@
       "id": "presentation/pages/composite-ui.tsx",
       "label": "composite-ui.tsx",
       "category": "Page",
-      "size": 8637
+      "size": 8467
     },
     {
       "id": "presentation/pages/containerization.tsx",
       "label": "containerization.tsx",
       "category": "Page",
-      "size": 8189
+      "size": 8090
     },
     {
       "id": "presentation/pages/cqrs.tsx",
       "label": "cqrs.tsx",
       "category": "Page",
-      "size": 5811
+      "size": 5641
     },
     {
       "id": "presentation/pages/data-ai-catalog.tsx",
@@ -1684,25 +1696,25 @@
       "id": "presentation/pages/ddd.tsx",
       "label": "ddd.tsx",
       "category": "Page",
-      "size": 6766
+      "size": 6608
     },
     {
       "id": "presentation/pages/dependency-management.tsx",
       "label": "dependency-management.tsx",
       "category": "Page",
-      "size": 6816
+      "size": 6646
     },
     {
       "id": "presentation/pages/design-patterns.tsx",
       "label": "design-patterns.tsx",
       "category": "Page",
-      "size": 8383
+      "size": 8213
     },
     {
       "id": "presentation/pages/design-tokens.tsx",
       "label": "design-tokens.tsx",
       "category": "Page",
-      "size": 7140
+      "size": 6982
     },
     {
       "id": "presentation/pages/discipline-catalog.tsx",
@@ -1714,7 +1726,7 @@
       "id": "presentation/pages/docs-annotations.tsx",
       "label": "docs-annotations.tsx",
       "category": "Page",
-      "size": 8045
+      "size": 7970
     },
     {
       "id": "presentation/pages/ecs.tsx",
@@ -1726,31 +1738,31 @@
       "id": "presentation/pages/eda.tsx",
       "label": "eda.tsx",
       "category": "Page",
-      "size": 6380
+      "size": 6210
     },
     {
       "id": "presentation/pages/elite-architecture.tsx",
       "label": "elite-architecture.tsx",
       "category": "Page",
-      "size": 7372
+      "size": 7301
     },
     {
       "id": "presentation/pages/event-sourcing.tsx",
       "label": "event-sourcing.tsx",
       "category": "Page",
-      "size": 11348
+      "size": 11299
     },
     {
       "id": "presentation/pages/evolution.tsx",
       "label": "evolution.tsx",
       "category": "Page",
-      "size": 8473
+      "size": 8303
     },
     {
       "id": "presentation/pages/fna-concept.tsx",
       "label": "fna-concept.tsx",
       "category": "Page",
-      "size": 14087
+      "size": 13917
     },
     {
       "id": "presentation/pages/fsd.tsx",
@@ -1768,19 +1780,19 @@
       "id": "presentation/pages/glossary.tsx",
       "label": "glossary.tsx",
       "category": "Page",
-      "size": 11380
+      "size": 11578
     },
     {
       "id": "presentation/pages/hexagonal.tsx",
       "label": "hexagonal.tsx",
       "category": "Page",
-      "size": 6775
+      "size": 6605
     },
     {
       "id": "presentation/pages/home.tsx",
       "label": "home.tsx",
       "category": "Page",
-      "size": 21172
+      "size": 21385
     },
     {
       "id": "presentation/pages/horizontal.tsx",
@@ -1792,55 +1804,55 @@
       "id": "presentation/pages/interpreter.tsx",
       "label": "interpreter.tsx",
       "category": "Page",
-      "size": 11972
+      "size": 11929
     },
     {
       "id": "presentation/pages/islands-arch.tsx",
       "label": "islands-arch.tsx",
       "category": "Page",
-      "size": 12802
+      "size": 12675
     },
     {
       "id": "presentation/pages/lambda-kappa.tsx",
       "label": "lambda-kappa.tsx",
       "category": "Page",
-      "size": 11217
+      "size": 11144
     },
     {
       "id": "presentation/pages/lean-architecture.tsx",
       "label": "lean-architecture.tsx",
       "category": "Page",
-      "size": 5172
+      "size": 5268
     },
     {
       "id": "presentation/pages/library.tsx",
       "label": "library.tsx",
       "category": "Page",
-      "size": 12489
+      "size": 12319
     },
     {
       "id": "presentation/pages/llm-ops.tsx",
       "label": "llm-ops.tsx",
       "category": "Page",
-      "size": 6787
+      "size": 6619
     },
     {
       "id": "presentation/pages/micro-frontends.tsx",
       "label": "micro-frontends.tsx",
       "category": "Page",
-      "size": 7532
+      "size": 7362
     },
     {
       "id": "presentation/pages/microkernel.tsx",
       "label": "microkernel.tsx",
       "category": "Page",
-      "size": 12023
+      "size": 11833
     },
     {
       "id": "presentation/pages/microservices.tsx",
       "label": "microservices.tsx",
       "category": "Page",
-      "size": 6940
+      "size": 6770
     },
     {
       "id": "presentation/pages/moderate-abstraction.tsx",
@@ -1852,43 +1864,43 @@
       "id": "presentation/pages/modular-monolith.tsx",
       "label": "modular-monolith.tsx",
       "category": "Page",
-      "size": 8584
+      "size": 8578
     },
     {
       "id": "presentation/pages/mvc.tsx",
       "label": "mvc.tsx",
       "category": "Page",
-      "size": 11040
+      "size": 10995
     },
     {
       "id": "presentation/pages/mvi.tsx",
       "label": "mvi.tsx",
       "category": "Page",
-      "size": 11429
+      "size": 10712
     },
     {
       "id": "presentation/pages/mvp.tsx",
       "label": "mvp.tsx",
       "category": "Page",
-      "size": 11332
+      "size": 11287
     },
     {
       "id": "presentation/pages/mvvm-c.tsx",
       "label": "mvvm-c.tsx",
       "category": "Page",
-      "size": 11505
+      "size": 11472
     },
     {
       "id": "presentation/pages/mvvm.tsx",
       "label": "mvvm.tsx",
       "category": "Page",
-      "size": 7323
+      "size": 7231
     },
     {
       "id": "presentation/pages/not-found.tsx",
       "label": "not-found.tsx",
       "category": "Page",
-      "size": 5209
+      "size": 5039
     },
     {
       "id": "presentation/pages/object-oriented.tsx",
@@ -1900,79 +1912,79 @@
       "id": "presentation/pages/onion.tsx",
       "label": "onion.tsx",
       "category": "Page",
-      "size": 4679
+      "size": 4509
     },
     {
       "id": "presentation/pages/oop-fundamentals.tsx",
       "label": "oop-fundamentals.tsx",
       "category": "Page",
-      "size": 8163
+      "size": 8054
     },
     {
       "id": "presentation/pages/orchestration.tsx",
       "label": "orchestration.tsx",
       "category": "Page",
-      "size": 11860
+      "size": 11690
     },
     {
       "id": "presentation/pages/p2p.tsx",
       "label": "p2p.tsx",
       "category": "Page",
-      "size": 10345
+      "size": 10309
     },
     {
       "id": "presentation/pages/pipe-filter.tsx",
       "label": "pipe-filter.tsx",
       "category": "Page",
-      "size": 10978
+      "size": 10109
     },
     {
       "id": "presentation/pages/plugin.tsx",
       "label": "plugin.tsx",
       "category": "Page",
-      "size": 11343
+      "size": 11318
     },
     {
       "id": "presentation/pages/primary-secondary.tsx",
       "label": "primary-secondary.tsx",
       "category": "Page",
-      "size": 8859
+      "size": 8810
     },
     {
       "id": "presentation/pages/project-arch.tsx",
       "label": "project-arch.tsx",
       "category": "Page",
-      "size": 4804
+      "size": 5017
     },
     {
       "id": "presentation/pages/pub-sub.tsx",
       "label": "pub-sub.tsx",
       "category": "Page",
-      "size": 9928
+      "size": 9879
     },
     {
       "id": "presentation/pages/rag-arch.tsx",
       "label": "rag-arch.tsx",
       "category": "Page",
-      "size": 7637
+      "size": 7566
     },
     {
       "id": "presentation/pages/refactoring.tsx",
       "label": "refactoring.tsx",
       "category": "Page",
-      "size": 6562
+      "size": 6574
     },
     {
       "id": "presentation/pages/roadmap.tsx",
       "label": "roadmap.tsx",
       "category": "Page",
-      "size": 2288
+      "size": 2056
     },
     {
       "id": "presentation/pages/robustness.tsx",
       "label": "robustness.tsx",
       "category": "Page",
-      "size": 7179
+      "size": 7136
     },
     {
       "id": "presentation/pages/sandbox.tsx",
@@ -1984,43 +1996,43 @@
       "id": "presentation/pages/security.tsx",
       "label": "security.tsx",
       "category": "Page",
-      "size": 7443
+      "size": 7249
     },
     {
       "id": "presentation/pages/server-driven-ui.tsx",
       "label": "server-driven-ui.tsx",
       "category": "Page",
-      "size": 7515
+      "size": 7345
     },
     {
       "id": "presentation/pages/serverless.tsx",
       "label": "serverless.tsx",
       "category": "Page",
-      "size": 10317
+      "size": 9861
     },
     {
       "id": "presentation/pages/soa.tsx",
       "label": "soa.tsx",
       "category": "Page",
-      "size": 8930
+      "size": 8881
     },
     {
       "id": "presentation/pages/solid.tsx",
       "label": "solid.tsx",
       "category": "Page",
-      "size": 5833
+      "size": 5845
     },
     {
       "id": "presentation/pages/spa-vs-mpa.tsx",
       "label": "spa-vs-mpa.tsx",
       "category": "Page",
-      "size": 10639
+      "size": 10590
     },
     {
       "id": "presentation/pages/space-based.tsx",
       "label": "space-based.tsx",
       "category": "Page",
-      "size": 10999
+      "size": 10603
     },
     {
       "id": "presentation/pages/state-driven.tsx",
@@ -2044,7 +2056,7 @@
       "id": "presentation/pages/testing.tsx",
       "label": "testing.tsx",
       "category": "Page",
-      "size": 7439
+      "size": 7270
     },
     {
       "id": "presentation/pages/ui-catalog.tsx",
@@ -2056,25 +2068,25 @@
       "id": "presentation/pages/use-case-driven.tsx",
       "label": "use-case-driven.tsx",
       "category": "Page",
-      "size": 15568
+      "size": 15507
     },
     {
       "id": "presentation/pages/vector-dbs.tsx",
       "label": "vector-dbs.tsx",
       "category": "Page",
-      "size": 8594
+      "size": 8865
     },
     {
       "id": "presentation/pages/vertical.tsx",
       "label": "vertical.tsx",
       "category": "Page",
-      "size": 9744
+      "size": 9818
     },
     {
       "id": "presentation/pages/viper.tsx",
       "label": "viper.tsx",
       "category": "Page",
-      "size": 11654
+      "size": 11623
     },
     {
       "id": "presentation/pages/workshop.tsx",
@@ -2504,6 +2516,11 @@
       "value": 1
     },
     {
+      "source": "presentation/components/lambdakappa/KappaReplaySimTab.tsx",
+      "target": "presentation/components/lambdakappa/kappaEvents.ts",
+      "value": 1
+    },
+    {
       "source": "presentation/components/lean/LeanPrinciplesViewer.tsx",
       "target": "data/leanPrinciplesData.ts",
       "value": 1
@@ -2681,6 +2698,11 @@
     {
       "source": "presentation/components/synthesislab/SynthesisInspector.tsx",
       "target": "presentation/components/synthesislab/SynthesisCanvas.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/components/synthesislab/SynthesisSidebar.tsx",
+      "target": "presentation/components/synthesislab/mockFiles.ts",
       "value": 1
     },
     {
@@ -2961,11 +2983,6 @@
     {
       "source": "presentation/pages/cap-theorem.tsx",
       "target": "presentation/components/cap/CAPSimulationTab.tsx",
-      "value": 1
-    },
-    {
-      "source": "presentation/pages/cap-theorem.tsx",
-      "target": "presentation/components/cap/useCapSimulation.ts",
       "value": 1
     },
     {
@@ -3579,11 +3596,6 @@
       "value": 1
     },
     {
-      "source": "presentation/pages/llm-ops.tsx",
-      "target": "presentation/components/llmops/useLLMOpsSimulation.ts",
-      "value": 1
-    },
-    {
       "source": "presentation/pages/micro-frontends.tsx",
       "target": "presentation/components/ArchHero.tsx",
       "value": 1
@@ -4124,11 +4136,6 @@
       "value": 1
     },
     {
-      "source": "presentation/pages/security.tsx",
-      "target": "presentation/components/security/useSecuritySimulation.ts",
-      "value": 1
-    },
-    {
       "source": "presentation/pages/server-driven-ui.tsx",
       "target": "presentation/components/ArchHero.tsx",
       "value": 1
@@ -4276,11 +4283,6 @@
     {
       "source": "presentation/pages/testing.tsx",
       "target": "presentation/components/testing/TestingStrategiesTab.tsx",
-      "value": 1
-    },
-    {
-      "source": "presentation/pages/testing.tsx",
-      "target": "presentation/components/testing/useTDDSimulation.ts",
       "value": 1
     },
     {

@@ -6,9 +6,11 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "npm run scan && vite build",
+    "build": "npm run scan && vite build && node scripts/emit_spa_fallback.mjs",
     "preview": "vite preview",
     "scan": "node scripts/generate_graph.mjs",
+    "docs:audit": "node scripts/audit_search_and_wiki.mjs",
+    "verify": "npm run check && npm run lint && npm run test:run && npm run docs:audit",
     "check": "tsc --noEmit",
     "lint": "eslint . --ext .ts,.tsx --report-unused-disable-directives --max-warnings 0",
     "lint:fix": "eslint . --ext .ts,.tsx --fix",
