@@ -17,13 +17,17 @@ const buildQuestions = (count: number): ArchitectureQuestion[] =>
 const buildAnswers = (count: number): Answers =>
   Object.fromEntries(Array.from({ length: count }, (_, index) => [`q-${index}`, index % 2]));
 
-const timeScores = (questions: ArchitectureQuestion[], answers: Answers): number => {
-  const started = performance.now();
-  for (let attempt = 0; attempt < 200; attempt += 1) {
-    calculateScores(answers, questions);
-  }
-  return performance.now() - started;
-};
+const countReads = <T extends object>(target: T, counter: { reads: number }): T =>
+  new Proxy(target, {
+    get(innerTarget, property, receiver) {
+      if (typeof property === 'string') counter.reads += 1;
+      return Reflect.get(innerTarget, property, receiver);
+    },
+    ownKeys(innerTarget) {
+      counter.reads += 1;
+      return Reflect.ownKeys(innerTarget);
+    }
+  }) as T;
 
 describe('ArchitectureCalculator complexity', () => {
   it('scores every architecture in one pass over the questions', () => {
@@ -43,11 +47,35 @@ describe('ArchitectureCalculator complexity', () => {
     expect(scores.clean).toBe(0);
   });
 
-  it('stays linear: ten times the questions must not cost an order of magnitude more', () => {
-    const small = timeScores(buildQuestions(100), buildAnswers(100));
-    const large = timeScores(buildQuestions(1000), buildAnswers(1000));
-    const ratio = large / Math.max(small, 0.05);
-    expect(ratio).toBeLessThan(40);
+  it('touches the option weights a constant number of times per answer, so cost stays linear', () => {
+    // Counting property reads is deterministic, unlike a wall-clock comparison,
+    // and it is the property that actually distinguishes linear from quadratic:
+    // a nested rescan would multiply the reads by the number of questions.
+    const probe = (questionCount: number) => {
+      const counter = { reads: 0 };
+      const questions: ArchitectureQuestion[] = Array.from({ length: questionCount }, (_, index) => ({
+        id: `q-${index}`,
+        title: `Question ${index}`,
+        type: 'choice' as const,
+        desc: 'Pick one',
+        options: [
+          { text: 'A', weights: countReads({ clean: 3, vertical: 2 }, counter) },
+          { text: 'B', weights: countReads({ vertical: 3, eda: 2 }, counter) }
+        ]
+      }));
+
+      const answers = Object.fromEntries(
+        Array.from({ length: questionCount }, (_, index) => [`q-${index}`, 0])
+      );
+      calculateScores(answers, questions);
+      return counter.reads;
+    };
+
+    const small = probe(100);
+    const large = probe(1000);
+
+    expect(small).toBeGreaterThan(0);
+    expect(large).toBe(small * 10);
   });
 
   it('is idempotent: the same inputs produce the same scores', () => {

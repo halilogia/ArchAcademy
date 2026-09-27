@@ -127,7 +127,6 @@ export default defineConfig({
       output: {
         manualChunks: {
           react: ['react', 'react-dom', 'react-router-dom', 'react-helmet-async'],
-          motion: ['framer-motion'],
           i18n: ['i18next', 'react-i18next', 'i18next-browser-languagedetector'],
           search: ['fuse.js']
         }

@@ -2,6 +2,30 @@
 
 All notable changes to the ArchAcademy project will be documented in this file.
 
+## [1.4.0] - 2026-09-27
+
+Closes the last P3 performance and quality items and the P4 hygiene block.
+
+### Changed
+- **Framer Motion is off the critical path. Initial JavaScript payload fell from 544 KB to 427 KB.** The app chrome rendered before first paint while the library loaded anyway: `ArchHero`, `CommandPalette`, `ErrorBoundary`, `PageTemplate` and the `MotionConfig` wrapper now use CSS keyframes, and `AppRouter` lost an `AnimatePresence` wrapper that had no `key` and therefore never animated anything. The library still drives page-level motion inside lazily loaded routes.
+- The sync service now keeps **progress, accounts and rate limits in one shared SQLite database**, so a second process sees the same state. The rate limiter is a fixed-window counter in a table rather than an in-process `Map`, and the account directory is no longer a separate JSON file.
+- Accounts gained **session rotation, lockout and password recovery**: a successful login invalidates every earlier session, five failed attempts lock the account for 15 minutes, and `POST /auth/reset` issues a one-time token that `POST /auth/reset/confirm` exchanges for a new password. `POST /auth/password` changes a password and revokes sessions. All three revoke the account's sessions.
+- `search-index` moved from a bundled TypeScript seed to an exported CMS collection, so the reference CMS can serve it and the repository has one source of truth per collection instead of two for the index.
+- Content validation now has a single home in `src/shared/collectionSchema.mjs`, and the test setup serves the real `public/cms/*.json` files so component tests exercise the same static path the app uses.
+
+### Added
+- **Deployment configuration**: one multi-stage `Dockerfile` for both services, a `docker-compose.yml` with named volumes and health checks, and a `.dockerignore`.
+- `server/sql/schema.sql`: the same data model in Postgres terms, for deployments that need more than one writer. It is documentation, not wired code, and says so.
+- **`npm run services:smoke`** (`scripts/smoke_services.mjs`): 13 checks that boot-independent contract assertions against both services — health and backends, register, login, session rotation, progress round trip, cross-owner refusal, the collection list the app expects, and that a schema-invalid write is rejected.
+- **A CI job that boots both services**, runs the smoke script, and then builds the app with `VITE_CMS_ENDPOINT` and `VITE_PROGRESS_SYNC_ENDPOINT` pointed at them, so the contracts are verified in the pipeline. The build job now depends on it.
+
+### Fixed
+- **`node:sqlite` was never actually loaded.** The services called `require('node:sqlite')` from ESM modules, where `require` is undefined, and the `try/catch` silently returned null — so the SQLite path never ran and every deployment quietly used the file log. It now loads through `createRequire`. A previous test passed because it accepted either backend; it now asserts the exact backend for the runtime.
+- `node:sqlite` only accepts named parameters, and every call used positional ones. All statements converted.
+- Rows come back from SQLite with snake_case columns while the rest of the service works in camelCase, so a user, a session and a reset token were `undefined` after the first read. The reads are mapped now.
+- The rate limiter received the whole request in one backend and a client key in the other; both now take a key.
+- The complexity guard on `ArchitectureCalculator` measured wall-clock time, which is flaky under parallel test load. It counts property reads on the option weights instead, so the assertion is deterministic: ten times the questions must mean exactly ten times the reads.
+
 ## [1.3.0] - 2026-09-27
 
 Closes the remaining P3 performance and quality items and the P4 hygiene block.

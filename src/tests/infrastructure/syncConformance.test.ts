@@ -6,7 +6,8 @@ import { CloudProgressRepository } from '../../infrastructure/repositories/Cloud
 import { LocalProgressCache } from '../../infrastructure/repositories/LocalProgressCache';
 import { SyncingProgressRepository } from '../../infrastructure/repositories/SyncingProgressRepository';
 import { createMemoryStorage } from '../../infrastructure/storage/SafeStorage';
-import { createProgressStore, createUserDirectory, hashPassword, parseUserTokens, startProgressServer, verifyPassword } from '../../../server/progressSyncServer.mjs';
+import { createAuthService, createFileAccountStore, createProgressStore, hashPassword, parseUserTokens, startProgressServer, verifyPassword } from '../../../server/progressSyncServer.mjs';
+import { loadSqlite } from '../../../server/lib/sqlite.mjs';
 
 const emptyProgress = (at = '2026-01-01T00:00:00.000Z') => ({
   completedSteps: [],
@@ -371,7 +372,7 @@ describe('durable store backends', () => {
     const file = createProgressStore({ dataDir, backend: 'file' });
     const memory = createProgressStore({ dataDir: null });
 
-    expect(['sqlite', 'append-log']).toContain(sqlite.backend);
+    expect(sqlite.backend).toBe(loadSqlite() ? 'sqlite' : 'append-log');
     expect(file.backend).toBe('append-log');
     expect(memory.backend).toBe('memory');
 
@@ -412,22 +413,154 @@ describe('account authentication', () => {
 
   it('registers, logs in and resolves a session to its owner', () => {
     const dataDir = fs.mkdtempSync(path.join(os.tmpdir(), 'arch-users-'));
-    const directory = createUserDirectory({ dataDir });
+    const directory = createAuthService({ store: createFileAccountStore({ dataDir }) });
 
     const registered = directory.register(credentials().ownerId, credentials().password);
     expect(registered.ok).toBe(true);
+    expect(registered.session?.token).toBeTruthy();
     expect(directory.register('alice', 'another password').ok).toBe(false);
 
     expect(directory.login('alice', 'wrong password').ok).toBe(false);
     const login = directory.login('alice', credentials().password);
     expect(login.ok).toBe(true);
 
-    expect(directory.resolve(`Bearer ${login.token}`)?.ownerId).toBe('alice');
-    expect(directory.resolve('Bearer not-a-real-token')).toBeNull();
+    const token = login.session?.token ?? '';
+    expect(directory.resolve(token)?.ownerId).toBe('alice');
+    expect(directory.resolve('not-a-real-token')).toBeNull();
     expect(directory.resolve(undefined)).toBeNull();
 
     directory.revoke('alice');
-    expect(directory.resolve(`Bearer ${login.token}`)).toBeNull();
+    expect(directory.resolve(token)).toBeNull();
+    fs.rmSync(dataDir, { recursive: true, force: true });
+  });
+
+  it('rotates sessions on every login, invalidating the previous token', () => {
+    const dataDir = fs.mkdtempSync(path.join(os.tmpdir(), 'arch-users-'));
+    const directory = createAuthService({ store: createFileAccountStore({ dataDir }) });
+    directory.register('alice', credentials().password);
+
+    const first = directory.login('alice', credentials().password).session?.token ?? '';
+    const second = directory.login('alice', credentials().password).session?.token ?? '';
+
+    expect(second).not.toBe(first);
+    expect(directory.resolve(first)).toBeNull();
+    expect(directory.resolve(second)?.ownerId).toBe('alice');
+    fs.rmSync(dataDir, { recursive: true, force: true });
+  });
+
+  it('locks an account after repeated failures and unlocks on a good login', () => {
+    const dataDir = fs.mkdtempSync(path.join(os.tmpdir(), 'arch-users-'));
+    const directory = createAuthService({ store: createFileAccountStore({ dataDir }) });
+    directory.register('alice', credentials().password);
+
+    for (let attempt = 0; attempt < 5; attempt += 1) {
+      expect(directory.login('alice', 'wrong password').ok).toBe(false);
+    }
+    expect(directory.login('alice', 'wrong password').reason).toBe('locked');
+    expect(directory.login('alice', credentials().password).reason).toBe('locked');
+    fs.rmSync(dataDir, { recursive: true, force: true });
+  });
+
+  it('changes a password and revokes every existing session', () => {
+    const dataDir = fs.mkdtempSync(path.join(os.tmpdir(), 'arch-users-'));
+    const directory = createAuthService({ store: createFileAccountStore({ dataDir }) });
+    directory.register('alice', credentials().password);
+    const session = directory.login('alice', credentials().password).session?.token ?? '';
+
+    expect(directory.changePassword('alice', 'wrong current password', 'a new long password').ok).toBe(false);
+    expect(directory.changePassword('alice', credentials().password, 'a new long password').ok).toBe(true);
+    expect(directory.resolve(session)).toBeNull();
+    expect(directory.login('alice', 'a new long password').ok).toBe(true);
+    expect(directory.login('alice', credentials().password).ok).toBe(false);
+    fs.rmSync(dataDir, { recursive: true, force: true });
+  });
+
+  it('completes a one-time password reset and revokes sessions with it', () => {
+    const dataDir = fs.mkdtempSync(path.join(os.tmpdir(), 'arch-users-'));
+    const directory = createAuthService({ store: createFileAccountStore({ dataDir }) });
+    directory.register('alice', credentials().password);
+    const session = directory.login('alice', credentials().password).session?.token ?? '';
+
+    expect(directory.requestReset('nobody').ok).toBe(false);
+    const request = directory.requestReset('alice');
+    expect(request.ok).toBe(true);
+    expect(request.token).toBeTruthy();
+
+    const token = request.token ?? '';
+    expect(directory.completeReset('made up token', 'another long password').ok).toBe(false);
+    expect(directory.completeReset(token, 'another long password').ok).toBe(true);
+    expect(directory.resolve(session)).toBeNull();
+    expect(directory.login('alice', 'another long password').ok).toBe(true);
+    expect(directory.completeReset(token, 'yet another password').ok).toBe(false);
+    fs.rmSync(dataDir, { recursive: true, force: true });
+  });
+
+  it('shares one rate limit budget across two server processes on the same database', async () => {
+    const dataDir = fs.mkdtempSync(path.join(os.tmpdir(), 'arch-shared-'));
+    const first = await startProgressServer({ port: 0, dataDir, rateLimit: { windowMs: 60_000, max: 3 } });
+    const second = await startProgressServer({ port: 0, dataDir, rateLimit: { windowMs: 60_000, max: 3 } });
+
+    try {
+      expect(first.limiter.backend).toBe('sqlite');
+      expect(second.limiter.backend).toBe('sqlite');
+
+      const statuses: number[] = [];
+      for (let attempt = 0; attempt < 6; attempt += 1) {
+        const target = attempt % 2 === 0 ? first : second;
+        const response = await fetch(`${target.origin}/progress/shared-budget`);
+        statuses.push(response.status);
+      }
+
+      const throttled = statuses.filter((status) => status === 429).length;
+      expect(throttled).toBeGreaterThan(0);
+    } finally {
+      await first.close();
+      await second.close();
+      fs.rmSync(dataDir, { recursive: true, force: true });
+    }
+  });
+
+  it('serves reset, password and logout over the HTTP surface', async () => {
+    const dataDir = fs.mkdtempSync(path.join(os.tmpdir(), 'arch-users-'));
+    const server = await startProgressServer({ port: 0, dataDir });
+
+    const post = (route: string, body: unknown, headers: Record<string, string> = {}) =>
+      fetch(`${server.origin}${route}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', ...headers },
+        body: JSON.stringify(body)
+      });
+
+    const registered = await post('/auth/register', { ownerId: 'carol', password: 'a long enough password' });
+    const { token } = await registered.json();
+
+    expect((await post('/auth/reset', { ownerId: 'carol' })).status).toBe(202);
+    expect((await post('/auth/reset', { ownerId: 'nobody' })).status).toBe(404);
+
+    expect(
+      (await post('/auth/reset/confirm', { token: 'nope', password: 'a long enough password' })).status
+    ).toBe(400);
+
+    const request = await (await post('/auth/reset', { ownerId: 'carol' })).json();
+    expect(
+      (await post('/auth/reset/confirm', { token: request.token, password: 'a brand new password' })).status
+    ).toBe(200);
+
+    expect(
+      (await post('/auth/password', { ownerId: 'carol', currentPassword: 'a brand new password', newPassword: 'yet another long one' })).status
+    ).toBe(200);
+    expect((await post('/auth/password', { ownerId: 'carol', currentPassword: 'wrong', newPassword: 'nope nope nope' })).status).toBe(401);
+
+    // The reset above revoked every session, so log in again before logging out.
+    const relogin = await post('/auth/login', { ownerId: 'carol', password: 'yet another long one' });
+    const freshToken = (await relogin.json()).token;
+    const staleLogout = await post('/auth/logout', {}, { Authorization: `Bearer ${token}` });
+    expect((await staleLogout.json()).revoked).toBe(false);
+
+    const logout = await post('/auth/logout', {}, { Authorization: `Bearer ${freshToken}` });
+    expect((await logout.json()).revoked).toBe(true);
+
+    await server.close();
     fs.rmSync(dataDir, { recursive: true, force: true });
   });
 
@@ -500,7 +633,8 @@ describe('account authentication', () => {
     try {
       const body = await (await fetch(`${server.origin}/health`)).json();
       expect(body.authMode).toBe('account');
-      expect(body.backend).toBeDefined();
+      expect(body.progressBackend).toBeDefined();
+      expect(body.rateLimitBackend).toBeDefined();
     } finally {
       await server.close();
       fs.rmSync(dataDir, { recursive: true, force: true });

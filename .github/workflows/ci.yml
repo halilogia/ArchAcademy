@@ -98,13 +98,57 @@ jobs:
           fail-on-error: false
 
   # ============================================
-  # 3. BUILD
+  # 3. SERVICE CONTRACTS
+  # ============================================
+  services:
+    name: 🔌 Service Contracts
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: 📥 Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: 🟢 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: 📦 Install Dependencies
+        run: npm ci --ignore-scripts
+
+      - name: 📤 Export CMS collections
+        run: npm run cms:export
+
+      - name: 🚀 Start reference services
+        run: |
+          mkdir -p "$RUNNER_TEMP/sync" "$RUNNER_TEMP/cms"
+          SYNC_DATA_DIR="$RUNNER_TEMP/sync" PORT=8787 node server/progressSyncServer.mjs &
+          CMS_DATA_DIR="$RUNNER_TEMP/cms" CMS_PORT=8788 node server/cmsServer.mjs &
+
+      - name: 🔌 Smoke test the service contracts
+        run: node scripts/smoke_services.mjs
+
+      - name: 🏗️ Build the app against the live services
+        run: npm run build
+        env:
+          NODE_ENV: production
+          VITE_BASE_PATH: ${{ vars.VITE_BASE_PATH || '/ArchAcademy/' }}
+          VITE_CMS_ENDPOINT: http://127.0.0.1:8788
+          VITE_PROGRESS_SYNC_ENDPOINT: http://127.0.0.1:8787
+
+      - name: 🧹 Stop reference services
+        if: always()
+        run: pkill -f 'server/progressSyncServer.mjs' || true; pkill -f 'server/cmsServer.mjs' || true
+
+  # ============================================
+  # 4. BUILD
   # ============================================
   build:
     name: 🏗️ Build Project
     runs-on: ubuntu-latest
     timeout-minutes: 15
-    needs: [lint, test]
+    needs: [lint, test, services]
     steps:
       - name: 📥 Checkout Repository
         uses: actions/checkout@v4

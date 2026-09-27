@@ -1,5 +1,4 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { ArrowRight, BookOpen, Code2, Lightbulb, Scale, CheckCircle2, XCircle, Sparkles } from 'lucide-react';
@@ -116,7 +115,7 @@ export const PageTemplate: React.FC<PageTemplateProps> = ({
     <>
       <SEO title={seoTitle} description={seoDescription} keywords={seoKeywords} canonicalUrl={canonicalUrl} />
 
-      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+      <div className="page-enter">
         {/* Hero Section */}
         <div style={{
           padding: '6rem 0 4rem',
@@ -382,7 +381,7 @@ export const PageTemplate: React.FC<PageTemplateProps> = ({
 
         {/* Custom Content */}
         {children}
-      </motion.div>
+      </div>
     </>
   );
 };

@@ -1,4 +1,4 @@
-import type { CmsEnvelope, SearchEntry } from '../../../domain/entities/CmsEntry';
+import type { CmsEnvelope, SearchEntry } from '../domain/entities/CmsEntry';
 
 export type SearchIndexItem = SearchEntry;
 

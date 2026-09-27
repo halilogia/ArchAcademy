@@ -1,39 +1,22 @@
 import fs from 'node:fs'
 import path from 'node:path'
 import http from 'node:http'
-import crypto from 'node:crypto'
 import { URL, pathToFileURL } from 'node:url'
+import {
+  createAuthService,
+  createFileAccountStore,
+  createSqliteAccountStore,
+  hashPassword,
+  normalizeBearer,
+  verifyPassword
+} from './lib/auth.mjs'
+import { createSharedRateLimiter, loadSqlite, openDatabase } from './lib/sqlite.mjs'
 
 const MAX_BODY_BYTES = 1024 * 512
 const TOKEN_TTL_MS = 1000 * 60 * 60 * 24 * 14
-const SCRYPT_KEYLEN = 64
-const SCRYPT_OPTIONS = { N: 16_384, r: 8, p: 1, maxmem: 64 * 1024 * 1024 }
+const COMPACT_AFTER_APPENDS = 50
 
-export const hashPassword = (password, salt = crypto.randomBytes(16).toString('hex')) => {
-  const derived = crypto.scryptSync(password, salt, SCRYPT_KEYLEN, SCRYPT_OPTIONS).toString('hex')
-  return `${SCRYPT_KEYLEN}:${salt}:${derived}`
-}
-
-export const verifyPassword = (password, stored) => {
-  if (typeof stored !== 'string') return false
-  const [keylen, salt, expected] = stored.split(':')
-  if (!keylen || !salt || !expected) return false
-  const derived = crypto.scryptSync(password, salt, Number(keylen), SCRYPT_OPTIONS).toString('hex')
-  const expectedBuffer = Buffer.from(expected, 'hex')
-  const derivedBuffer = Buffer.from(derived, 'hex')
-  if (expectedBuffer.length !== derivedBuffer.length) return false
-  return crypto.timingSafeEqual(expectedBuffer, derivedBuffer)
-}
-
-const openSqlite = () => {
-  try {
-    // Available from Node 22.5 behind a flag and by default from Node 24.
-    const sqlite = require('node:sqlite')
-    return sqlite.DatabaseSync
-  } catch {
-    return null
-  }
-}
+export { createAuthService, createFileAccountStore, createSqliteAccountStore, hashPassword, verifyPassword }
 
 /**
  * Durable progress store.
@@ -42,15 +25,18 @@ const openSqlite = () => {
  * writes. Falls back to an append-only log plus snapshot, which is crash safe but
  * suited to a single process. Whichever backend is used the interface is the same.
  */
-export const createProgressStore = ({ dataDir = null, backend = 'auto' } = {}) => {
-  const DatabaseSync = backend === 'file' ? null : openSqlite()
-  const usingSqlite = backend !== 'file' && Boolean(DatabaseSync) && Boolean(dataDir)
+export const createProgressStore = ({ dataDir = null, backend = 'auto', db = null } = {}) => {
+  const DatabaseSync = backend === 'file' || db ? null : loadSqlite()?.DatabaseSync ?? null
 
-  let db = null
-  if (usingSqlite) {
+  // A database opened by the caller already carries the progress table from the
+  // shared schema, so one file holds progress, accounts and rate limits.
+  let database = db ?? null
+  let ownsDatabase = false
+  if (DatabaseSync && dataDir) {
+    ownsDatabase = true
     fs.mkdirSync(dataDir, { recursive: true })
-    db = new DatabaseSync(path.join(dataDir, 'progress.db'))
-    db.exec(`
+    database = new DatabaseSync(path.join(dataDir, 'progress.db'))
+    database.exec(`
       PRAGMA journal_mode = WAL;
       CREATE TABLE IF NOT EXISTS progress (
         owner_id  TEXT PRIMARY KEY,
@@ -65,12 +51,12 @@ export const createProgressStore = ({ dataDir = null, backend = 'auto' } = {}) =
   const cache = new Map()
   let appends = 0
 
-  const logPath = usingSqlite ? null : dataDir ? path.join(dataDir, 'progress.log') : null
-  const snapshotPath = usingSqlite ? null : dataDir ? path.join(dataDir, 'progress.snapshot.json') : null
+  const logPath = database ? null : dataDir ? path.join(dataDir, 'progress.log') : null
+  const snapshotPath = database ? null : dataDir ? path.join(dataDir, 'progress.snapshot.json') : null
 
   const replay = () => {
-    if (db) {
-      const rows = db.prepare('SELECT owner_id, revision, synced_at, payload FROM progress').all()
+    if (database) {
+      const rows = database.prepare('SELECT owner_id, revision, synced_at, payload FROM progress').all()
       rows.forEach((row) => {
         try {
           cache.set(row.owner_id, {
@@ -113,7 +99,7 @@ export const createProgressStore = ({ dataDir = null, backend = 'auto' } = {}) =
   }
 
   const compact = () => {
-    if (db || !snapshotPath || !logPath || !dataDir) return
+    if (database || !snapshotPath || !logPath || !dataDir) return
     try {
       fs.mkdirSync(dataDir, { recursive: true })
       const temporary = `${snapshotPath}.tmp`
@@ -127,22 +113,29 @@ export const createProgressStore = ({ dataDir = null, backend = 'auto' } = {}) =
   }
 
   const append = (ownerId, envelope) => {
-    if (db) {
-      db.prepare(
-        `INSERT INTO progress (owner_id, revision, synced_at, payload, updated_at)
-         VALUES (?, ?, ?, ?, ?)
-         ON CONFLICT(owner_id) DO UPDATE SET
-           revision = excluded.revision,
-           synced_at = excluded.synced_at,
-           payload = excluded.payload,
-           updated_at = excluded.updated_at`
-      ).run(
-        ownerId,
-        envelope.revision ?? 0,
-        envelope.syncedAt ?? new Date().toISOString(),
-        JSON.stringify(envelope.progress ?? null),
-        Date.now()
-      )
+    if (database) {
+      if (envelope === null) {
+        database.prepare('DELETE FROM progress WHERE owner_id = :ownerId').run({ ownerId })
+        cache.delete(ownerId)
+        return
+      }
+      database
+        .prepare(
+          `INSERT INTO progress (owner_id, revision, synced_at, payload, updated_at)
+           VALUES (:ownerId, :revision, :syncedAt, :payload, :updatedAt)
+           ON CONFLICT(owner_id) DO UPDATE SET
+             revision = excluded.revision,
+             synced_at = excluded.synced_at,
+             payload = excluded.payload,
+             updated_at = excluded.updated_at`
+        )
+        .run({
+          ownerId,
+          revision: envelope.revision ?? 0,
+          syncedAt: envelope.syncedAt ?? new Date().toISOString(),
+          payload: JSON.stringify(envelope.progress ?? null),
+          updatedAt: Date.now()
+        })
       return
     }
     if (!logPath || !dataDir) return
@@ -150,7 +143,7 @@ export const createProgressStore = ({ dataDir = null, backend = 'auto' } = {}) =
       fs.mkdirSync(dataDir, { recursive: true })
       fs.appendFileSync(logPath, `${JSON.stringify({ ownerId, envelope })}\n`, 'utf8')
       appends += 1
-      if (appends >= 50) compact()
+      if (appends >= COMPACT_AFTER_APPENDS) compact()
     } catch (error) {
       console.warn('[sync-server] could not append to the log:', error.message)
     }
@@ -175,34 +168,33 @@ export const createProgressStore = ({ dataDir = null, backend = 'auto' } = {}) =
     set,
     remove: (ownerId) => {
       cache.delete(ownerId)
-      if (db) {
-        db.prepare('DELETE FROM progress WHERE owner_id = ?').run(ownerId)
-        return
-      }
       append(ownerId, null)
     },
     size: () => cache.size,
     compact,
-    backend: db ? 'sqlite' : logPath ? 'append-log' : 'memory',
+    backend: database ? 'sqlite' : logPath ? 'append-log' : 'memory',
     close: () => {
       compact()
-      db?.close()
+      // A database opened here is ours to close; a shared one is closed by the service.
+      if (ownsDatabase) database.close()
     }
   }
 }
 
+/** In-process limiter, used when no shared database is available. */
+export const clientKeyOf = (request) => {
+  const forwarded = request.headers['x-forwarded-for']
+  if (typeof forwarded === 'string' && forwarded.length > 0) return forwarded.split(',')[0].trim()
+  return request.socket?.remoteAddress ?? 'unknown'
+}
+
+/** In-process limiter, used when no shared database is available. */
 export const createRateLimiter = ({ windowMs = 60_000, max = 120 } = {}) => {
   const hits = new Map()
 
-  const clientKey = (request) => {
-    const forwarded = request.headers['x-forwarded-for']
-    if (typeof forwarded === 'string' && forwarded.length > 0) return forwarded.split(',')[0].trim()
-    return request.socket?.remoteAddress ?? 'unknown'
-  }
-
   return {
-    allow(request) {
-      const key = clientKey(request)
+    backend: 'memory',
+    allow(key) {
       const now = Date.now()
       const entry = hits.get(key)
 
@@ -246,7 +238,7 @@ const sendJson = (response, status, body, headers = {}) => {
     'Content-Length': Buffer.byteLength(payload),
     'Access-Control-Allow-Origin': '*',
     'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-    'Access-Control-Allow-Methods': 'GET, PUT, DELETE, OPTIONS',
+    'Access-Control-Allow-Methods': 'GET, PUT, POST, DELETE, OPTIONS',
     'Cache-Control': 'no-store',
     ...headers
   })
@@ -270,88 +262,16 @@ const readBody = (request) =>
     request.on('error', reject)
   })
 
-export const normalizeBearer = (header) => String(header ?? '').replace(/^Bearer\s+/i, '').trim()
+export { normalizeBearer }
 
-/** User directory backed by scrypt hashes, with issued bearer tokens. */
-export const createUserDirectory = ({ dataDir = null } = {}) => {
-  const file = dataDir ? path.join(dataDir, 'users.json') : null
-  const users = new Map()
-  const tokens = new Map()
-
-  if (file && fs.existsSync(file)) {
-    try {
-      const parsed = JSON.parse(fs.readFileSync(file, 'utf8'))
-      for (const entry of parsed.users ?? []) users.set(entry.ownerId, entry)
-    } catch (error) {
-      console.warn('[sync-server] could not read the user directory:', error.message)
-    }
-  }
-
-  const persist = () => {
-    if (!file) return
-    try {
-      fs.mkdirSync(path.dirname(file), { recursive: true })
-      fs.writeFileSync(file, JSON.stringify({ users: [...users.values()] }, null, 2), 'utf8')
-    } catch (error) {
-      console.warn('[sync-server] could not persist the user directory:', error.message)
-    }
-  }
-
-  const issue = (ownerId) => {
-    const token = crypto.randomBytes(32).toString('hex')
-    tokens.set(token, { ownerId, expiresAt: Date.now() + TOKEN_TTL_MS })
-    return token
-  }
-
-  const sweep = () => {
-    const now = Date.now()
-    for (const [token, entry] of tokens) {
-      if (entry.expiresAt <= now) tokens.delete(token)
-    }
-  }
-
-  return {
-    enabled: Boolean(file),
-    size: () => users.size,
-    tokenCount: () => {
-      sweep()
-      return tokens.size
-    },
-    register: (ownerId, password) => {
-      if (users.has(ownerId)) return { ok: false, reason: 'exists' };
-      users.set(ownerId, { ownerId, password: hashPassword(password), createdAt: Date.now() })
-      persist()
-      return { ok: true, token: issue(ownerId) }
-    },
-    login: (ownerId, password) => {
-      const user = users.get(ownerId)
-      if (!user || !verifyPassword(password, user.password)) return { ok: false, reason: 'invalid' }
-      return { ok: true, token: issue(ownerId) }
-    },
-    revoke: (ownerId) => {
-      let removed = 0
-      for (const [token, entry] of tokens) {
-        if (entry.ownerId === ownerId) {
-          tokens.delete(token)
-          removed += 1
-        }
-      }
-      return removed
-    },
-    /** Resolves a bearer token to an owner, or null when unknown or expired. */
-    resolve: (header) => {
-      const bearer = normalizeBearer(header)
-      if (!bearer) return null
-      sweep()
-      const entry = tokens.get(bearer)
-      if (!entry) return null
-      if (entry.expiresAt <= Date.now()) {
-        tokens.delete(bearer)
-        return null
-      }
-      return { ownerId: entry.ownerId, expiresAt: entry.expiresAt }
-    }
-  }
+export const createServices = ({ dataDir = null, backend = 'auto', rateLimit = {} } = {}) => {
+  const db = backend === 'file' ? null : openDatabase(dataDir)
+  const accountStore = db ? createSqliteAccountStore(db) : dataDir ? createFileAccountStore({ dataDir }) : null
+  const auth = accountStore ? createAuthService({ store: accountStore }) : null
+  const limiter = db
+    ? createSharedRateLimiter(db, rateLimit)
+    : createRateLimiter(rateLimit)
+  return { db, accountStore, auth, limiter, progress: createProgressStore({ dataDir, backend, db }) }
 }
 
 export const createProgressServer = ({
@@ -361,90 +281,160 @@ export const createProgressServer = ({
   rateLimit,
   dataDir = null,
   backend = 'auto',
-  users = null
+  users = null,
+  services = null
 } = {}) => {
-  const progressStore = store ?? createProgressStore({ dataDir, backend })
-  const limiter = typeof rateLimit?.allow === 'function' ? rateLimit : createRateLimiter(rateLimit)
+  const resolved = services ?? createServices({ dataDir, backend, rateLimit: rateLimit ?? {} })
+  const progressStore = store ?? resolved.progress
+  const limiter = typeof rateLimit?.allow === 'function' ? rateLimit : resolved.limiter
   const credentials = Array.isArray(userTokens) ? userTokens : parseUserTokens(userTokens)
-  const directory = users ?? createUserDirectory({ dataDir })
+  const auth = users ?? resolved.auth
 
   const resolveIdentity = (request) => {
-    const resolved = directory.resolve(request.headers.authorization)
-    if (resolved) return { ownerId: resolved.ownerId, source: 'session' }
+    const session = auth?.resolve(request.headers.authorization)
+    if (session) return { ownerId: session.ownerId, source: 'session' }
     if (credentials.length > 0) return { ownerId: null, source: 'static-tokens' }
     if (token) return { ownerId: null, source: 'shared-token' }
     return { ownerId: null, source: 'open' }
   }
 
+  const jsonBody = async (request) => {
+    try {
+      return { payload: JSON.parse(await readBody(request)) }
+    } catch {
+      return { error: true }
+    }
+  }
+
   const server = http.createServer(async (request, response) => {
     const requestUrl = new URL(request.url ?? '/', 'http://localhost')
+    const { pathname } = requestUrl
 
     if (request.method === 'OPTIONS') {
       sendJson(response, 204, {})
       return
     }
 
-    if (requestUrl.pathname === '/health') {
+    if (pathname === '/health') {
       sendJson(response, 200, {
         status: 'ok',
         owners: progressStore.size(),
-        backend: progressStore.backend,
+        progressBackend: progressStore.backend,
+        rateLimitBackend: limiter.backend,
         rateLimitClients: limiter.size(),
-        users: directory.size(),
-        sessions: directory.tokenCount(),
-        authMode: directory.enabled ? 'account' : credentials.length === 0 ? (token ? 'shared-token' : 'open') : 'per-user'
+        users: auth?.countUsers() ?? 0,
+        authMode: auth ? 'account' : credentials.length === 0 ? (token ? 'shared-token' : 'open') : 'per-user'
       })
       return
     }
 
-    if (requestUrl.pathname === '/auth/register' && request.method === 'POST') {
-      let payload
-      try {
-        payload = JSON.parse(await readBody(request))
-      } catch {
+    if (pathname.startsWith('/auth/')) {
+      if (!auth) {
+        sendJson(response, 409, { error: 'accounts_disabled' })
+        return
+      }
+      if (request.method !== 'POST') {
+        sendJson(response, 405, { error: 'method_not_allowed' })
+        return
+      }
+
+      const { payload, error } = await jsonBody(request)
+      if (error) {
         sendJson(response, 400, { error: 'invalid_json' })
         return
       }
-      if (!payload?.ownerId || !payload?.password) {
-        sendJson(response, 422, { error: 'ownerId and password are required' })
-        return
-      }
-      if (String(payload.password).length < 8) {
-        sendJson(response, 422, { error: 'password must be at least 8 characters' })
-        return
-      }
-      const result = directory.register(String(payload.ownerId), String(payload.password))
-      if (!result.ok) {
-        sendJson(response, 409, { error: 'owner_already_registered' })
-        return
-      }
-      sendJson(response, 201, { ownerId: payload.ownerId, token: result.token, expiresInSeconds: TOKEN_TTL_MS / 1000 })
-      return
-    }
 
-    if (requestUrl.pathname === '/auth/login' && request.method === 'POST') {
-      let payload
-      try {
-        payload = JSON.parse(await readBody(request))
-      } catch {
-        sendJson(response, 400, { error: 'invalid_json' })
+      if (pathname === '/auth/register') {
+        if (!payload?.ownerId || !payload?.password) {
+          sendJson(response, 422, { error: 'ownerId and password are required' })
+          return
+        }
+        if (String(payload.password).length < 8) {
+          sendJson(response, 422, { error: 'password must be at least 8 characters' })
+          return
+        }
+        const result = auth.register(String(payload.ownerId), String(payload.password))
+        if (!result.ok) {
+          sendJson(response, 409, { error: 'owner_already_registered' })
+          return
+        }
+        sendJson(response, 201, {
+          ownerId: payload.ownerId,
+          token: result.session.token,
+          expiresInSeconds: TOKEN_TTL_MS / 1000
+        })
         return
       }
-      const result = directory.login(String(payload?.ownerId ?? ''), String(payload?.password ?? ''))
-      if (!result.ok) {
-        sendJson(response, 401, { error: 'invalid_credentials' })
-        return
-      }
-      sendJson(response, 200, { ownerId: payload.ownerId, token: result.token, expiresInSeconds: TOKEN_TTL_MS / 1000 })
-      return
-    }
 
-    if (!requestUrl.pathname.startsWith('/progress/')) {
+      if (pathname === '/auth/login') {
+        const result = auth.login(String(payload?.ownerId ?? ''), String(payload?.password ?? ''))
+        if (!result.ok) {
+          sendJson(response, 401, { error: result.reason === 'locked' ? 'account_locked' : 'invalid_credentials' })
+          return
+        }
+        sendJson(response, 200, {
+          ownerId: payload.ownerId,
+          token: result.session.token,
+          expiresInSeconds: TOKEN_TTL_MS / 1000
+        })
+        return
+      }
+
+      if (pathname === '/auth/reset') {
+        const result = auth.requestReset(String(payload?.ownerId ?? ''))
+        if (!result.ok) {
+          sendJson(response, 404, { error: 'unknown_owner' })
+          return
+        }
+        sendJson(response, 202, result)
+        return
+      }
+
+      if (pathname === '/auth/reset/confirm') {
+        if (!payload?.token || !payload?.password || String(payload.password).length < 8) {
+          sendJson(response, 422, { error: 'token and an 8+ character password are required' })
+          return
+        }
+        const result = auth.completeReset(String(payload.token), String(payload.password))
+        if (!result.ok) {
+          sendJson(response, 400, { error: 'invalid_reset_token' })
+          return
+        }
+        sendJson(response, 200, { reset: true })
+        return
+      }
+
+      if (pathname === '/auth/password') {
+        const result = auth.changePassword(
+          String(payload?.ownerId ?? ''),
+          String(payload?.currentPassword ?? ''),
+          String(payload?.newPassword ?? '')
+        )
+        if (!result.ok) {
+          sendJson(response, 401, { error: 'invalid_credentials' })
+          return
+        }
+        sendJson(response, 200, { changed: true, sessionsRevoked: true })
+        return
+      }
+
+      if (pathname === '/auth/logout') {
+        const session = auth.resolve(request.headers.authorization)
+        if (session) auth.revokeToken(normalizeBearer(request.headers.authorization))
+        sendJson(response, 200, { revoked: Boolean(session) })
+        return
+      }
+
       sendJson(response, 404, { error: 'not_found' })
       return
     }
 
-    const quota = limiter.allow(request)
+    if (!pathname.startsWith('/progress/')) {
+      sendJson(response, 404, { error: 'not_found' })
+      return
+    }
+
+    const quota = limiter.allow(clientKeyOf(request))
     const rateHeaders = {
       'X-RateLimit-Remaining': String(quota.remaining),
       'X-RateLimit-Reset': String(quota.resetInSeconds)
@@ -457,7 +447,7 @@ export const createProgressServer = ({
       return
     }
 
-    const requestedOwner = decodeURIComponent(requestUrl.pathname.slice('/progress/'.length)).trim()
+    const requestedOwner = decodeURIComponent(pathname.slice('/progress/'.length)).trim()
     if (!requestedOwner) {
       sendJson(response, 400, { error: 'missing_owner_id' }, rateHeaders)
       return
@@ -498,14 +488,11 @@ export const createProgressServer = ({
     }
 
     if (request.method === 'PUT') {
-      let payload
-      try {
-        payload = JSON.parse(await readBody(request))
-      } catch {
+      const { payload, error } = await jsonBody(request)
+      if (error) {
         sendJson(response, 400, { error: 'invalid_json' }, rateHeaders)
         return
       }
-
       if (!payload || typeof payload !== 'object' || !payload.progress) {
         sendJson(response, 422, { error: 'invalid_envelope' }, rateHeaders)
         return
@@ -531,7 +518,7 @@ export const createProgressServer = ({
     sendJson(response, 405, { error: 'method_not_allowed' }, rateHeaders)
   })
 
-  return { server, store: progressStore, limiter, users: directory }
+  return { server, store: progressStore, limiter, users: auth, services: resolved }
 }
 
 export const startProgressServer = ({
@@ -543,7 +530,8 @@ export const startProgressServer = ({
   rateLimit = undefined,
   backend = 'auto'
 } = {}) => {
-  const { server, store, limiter, users } = createProgressServer({ token, userTokens, dataDir, rateLimit, backend })
+  const services = createServices({ dataDir, backend, rateLimit: rateLimit ?? {} })
+  const { server, store, limiter, users } = createProgressServer({ token, userTokens, services })
   return new Promise((resolve) => {
     server.listen(port, host, () => {
       const address = server.address()
@@ -552,11 +540,13 @@ export const startProgressServer = ({
         store,
         limiter,
         users,
+        services,
         port: address.port,
         origin: `http://${host}:${address.port}`,
         close: () =>
           new Promise((done) => {
             store.close?.()
+            services.db?.close()
             server.close(() => done(undefined))
           })
       })
@@ -584,11 +574,12 @@ if (isMain) {
     dataDir: dataDir === '' ? null : dataDir,
     backend,
     rateLimit: { windowMs: rateWindowMs, max: rateMax }
-  }).then(({ origin, store, users }) => {
+  }).then(({ origin, store, limiter, users }) => {
     console.log(`[sync-server] listening on ${origin}`)
-    console.log(`[sync-server] endpoints: POST /auth/register, POST /auth/login, GET|PUT|DELETE /progress/{ownerId}, GET /health`)
-    console.log(`[sync-server] store: ${store.backend}`)
-    console.log(`[sync-server] accounts: ${users.enabled ? `${users.size} registered` : 'disabled (no data dir)'}`)
+    console.log(`[sync-server] endpoints: POST /auth/{register,login,reset,reset/confirm,password,logout}, GET|PUT|DELETE /progress/{ownerId}, GET /health`)
+    console.log(`[sync-server] progress store: ${store.backend}`)
+    console.log(`[sync-server] rate limiter: ${limiter.backend}${limiter.backend === 'sqlite' ? ' (shared across processes)' : ''}`)
+    console.log(`[sync-server] accounts: ${users ? `${users.backend}, ${users.countUsers()} registered` : 'disabled (no data dir)'}`)
     console.log(`[sync-server] rate limit: ${rateMax} requests per ${Math.round(rateWindowMs / 1000)}s per client`)
   })
 }

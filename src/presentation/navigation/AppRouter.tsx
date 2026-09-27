@@ -1,6 +1,5 @@
 import React, { Suspense, lazy } from 'react';
 import { Routes, Route } from 'react-router-dom';
-import { AnimatePresence } from 'framer-motion';
 
 // Lazy Load Pages for Fault Isolation & Performance
 const HomePage = lazy(() => import('../pages/home'));
@@ -106,8 +105,7 @@ const LoadingFallback = () => (
 const AppRouter: React.FC = () => {
   return (
     <Suspense fallback={<LoadingFallback />}>
-      <AnimatePresence mode="wait">
-        <Routes>
+      <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/clean-arch" element={<CleanArchPage />} />
           <Route path="/use-case-driven" element={<UseCaseDrivenPage />} />
@@ -201,8 +199,7 @@ const AppRouter: React.FC = () => {
           <Route path="/component-state" element={<ComponentStatePage />} />
           <Route path="/elite-architecture" element={<EliteArchitecturePage />} />
           <Route path="*" element={<NotFoundPage />} />
-        </Routes>
-      </AnimatePresence>
+      </Routes>
     </Suspense>
   );
 };

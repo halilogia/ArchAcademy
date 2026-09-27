@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useCallback, useRef, useMemo } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
 import Fuse from 'fuse.js';
 import {
   Search,
@@ -193,9 +192,11 @@ const CommandPalette = () => {
   };
 
   return (
-    <AnimatePresence>
+    <>
       {isOpen && (
-        <div style={{
+        <div
+          className="palette-overlay"
+          style={{
           position: 'fixed',
           inset: 0,
           zIndex: 9999,
@@ -206,10 +207,8 @@ const CommandPalette = () => {
           background: 'rgba(0,0,0,0.8)',
           backdropFilter: 'blur(8px)'
         }} onClick={() => setIsOpen(false)}>
-          <motion.div
-            initial={{ scale: 0.95, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            exit={{ scale: 0.95, opacity: 0 }}
+          <div
+            className="palette-pop"
             onClick={e => e.stopPropagation()}
             style={{
               width: '100%',
@@ -332,9 +331,9 @@ const CommandPalette = () => {
                       </div>
                     </div>
                     {selectedIndex === index && (
-                      <motion.div initial={{ x: -10, opacity: 0 }} animate={{ x: 0, opacity: 1 }}>
+                      <span className="palette-slide-in">
                         <Maximize2 size={16} color="var(--primary)" />
-                      </motion.div>
+                      </span>
                     )}
                   </div>
                 ))
@@ -368,10 +367,10 @@ const CommandPalette = () => {
                 <span>Close</span>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       )}
-    </AnimatePresence>
+    </>
   );
 };
 

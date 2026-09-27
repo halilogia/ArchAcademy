@@ -1,6 +1,5 @@
 import React, { ErrorInfo, ReactNode } from 'react';
 import { AlertTriangle, RefreshCw, Home } from 'lucide-react';
-import { motion } from 'framer-motion';
 
 interface Props {
   children: ReactNode;
@@ -39,10 +38,8 @@ class ErrorBoundary extends React.Component<Props, State> {
           textAlign: 'center',
           padding: '2rem'
         }}>
-          <motion.div
-            initial={{ scale: 0.8, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            className="glass-card"
+          <div
+            className="glass-card hero-enter-pop"
             style={{ 
               maxWidth: '600px', 
               padding: '3rem', 
@@ -118,7 +115,7 @@ class ErrorBoundary extends React.Component<Props, State> {
                   <Home size={18} /> Ana Sayfaya Dön
                 </button>
             </div>
-          </motion.div>
+          </div>
         </div>
       );
     }

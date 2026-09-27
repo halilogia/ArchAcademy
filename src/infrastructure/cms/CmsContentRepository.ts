@@ -2,7 +2,6 @@ import { CmsCollectionName, CmsEnvelope } from '../../domain/entities/CmsEntry';
 import { CmsSource, ContentRepository } from '../../domain/repositories/ContentRepository';
 import { appConfig } from '../config/env';
 import { HttpContentClient, createHttpContentClient } from './HttpContentClient';
-import { isSeeded, seedFactoryFor } from './seed';
 
 export interface CmsContentRepositoryOptions {
   remote?: HttpContentClient | null;
@@ -91,12 +90,6 @@ export class CmsContentRepository implements ContentRepository {
       }
     }
 
-    const factory = seedFactoryFor(name);
-    if (factory) {
-      this.activeSource = 'seed';
-      return factory() as CmsEnvelope<T>;
-    }
-
     const staticPayload = await this.readStaticCollection<T>(name);
     if (staticPayload) {
       this.activeSource = 'seed';
@@ -161,4 +154,3 @@ export const cmsContentRepository: ContentRepository = new CmsContentRepository(
   }
 });
 
-export const hasSeededCollection = isSeeded;

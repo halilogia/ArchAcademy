@@ -1,0 +1,15 @@
+node_modules
+dist
+dev-dist
+coverage
+.git
+.github
+.gitignore
+docs
+brain
+*.md
+!server/README.md
+.env
+.env.*
+!.env.example
+test-results.xml

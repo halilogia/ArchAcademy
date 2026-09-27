@@ -1,5 +1,4 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 import { ChevronRight, Box, Zap, Globe, Database, Cpu } from 'lucide-react';
 
 interface ArchHeroProps {
@@ -18,9 +17,9 @@ const ArchHero: React.FC<ArchHeroProps> = ({ title, subtitle, description, badge
   return (
     <section style={{ padding: '120px 0 80px', position: 'relative', overflow: 'hidden' }}>
       <div style={{ position: 'absolute', top: '0', left: '0', width: '100%', height: '100%', background: `radial-gradient(circle at 20% 30%, ${color}11, transparent 70%)`, zIndex: -1 }} />
-      
+
       <div className="container" style={{ display: 'grid', gridTemplateColumns: '1.2fr 0.8fr', gap: '4rem', alignItems: 'center' }}>
-        <motion.div initial={{ opacity: 0, x: -30 }} animate={{ opacity: 1, x: 0 }}>
+        <div className="hero-enter-left">
           <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', background: `${color}15`, padding: '8px 16px', borderRadius: '100px', color: color, fontSize: '0.85rem', fontWeight: 600, marginBottom: '2rem', border: `1px solid ${color}33` }}>
             {badge}
           </div>
@@ -31,22 +30,26 @@ const ArchHero: React.FC<ArchHeroProps> = ({ title, subtitle, description, badge
             {description}
           </p>
           {children}
-        </motion.div>
+        </div>
 
-        <motion.div initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.2 }}>
+        <div className="hero-enter-scale">
           {illustration}
-        </motion.div>
+        </div>
       </div>
 
       {features.length > 0 && (
         <div className="container" style={{ marginTop: '6rem' }}>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '2rem' }}>
             {features.map((f, i) => (
-              <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.1 }} className="glass-card" style={{ borderTop: `4px solid ${color}` }}>
+              <div
+                key={i}
+                className="glass-card hero-enter-up"
+                style={{ borderTop: `4px solid ${color}`, animationDelay: `${i * 100}ms` }}
+              >
                 <div style={{ color: color, marginBottom: '1rem' }}>{f.icon}</div>
                 <h3 style={{ marginBottom: '0.5rem' }}>{f.title}</h3>
                 <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem' }}>{f.desc}</p>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
@@ -55,4 +58,4 @@ const ArchHero: React.FC<ArchHeroProps> = ({ title, subtitle, description, badge
   );
 };
 
-export default ArchHero;
+export default React.memo(ArchHero);

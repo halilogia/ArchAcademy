@@ -196,6 +196,9 @@ Tüm çalışma zamanı yapılandırması isteğe bağlıdır; bu değişkenler 
 | `npm run verify` | Tip kontrolü, lint, testler ve içerik denetimini tek komutta çalıştırır |
 | `npm run adr:lint` | `decisions/*.md` dosyalarını MADR 3.0.0 yapısına göre doğrular |
 | `npm run sync:serve` | Referans ilerleme senkronizasyon servisini başlatır |
+| `npm run cms:serve` | Referans CMS servisini başlatır |
+| `npm run services:smoke` | Çalışan her iki servisin sözleşmelerini denetler |
+| `docker compose up -d` | İki servisi volume ve sağlık kontrolleriyle çalıştırır |
 
 ---
 

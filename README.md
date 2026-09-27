@@ -188,6 +188,9 @@ All runtime configuration is optional; the app runs fully offline without it. Co
 | `npm run verify` | Typecheck, lint, tests and the content audit in one command |
 | `npm run adr:lint` | Validate `decisions/*.md` against the MADR 3.0.0 structure |
 | `npm run sync:serve` | Start the reference progress sync backend |
+| `npm run cms:serve` | Start the reference CMS backend |
+| `npm run services:smoke` | Check both service contracts against a running pair |
+| `docker compose up -d` | Run both services with volumes and health checks |
 
 ## 📜 License
 

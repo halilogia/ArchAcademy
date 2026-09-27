@@ -4,7 +4,7 @@
       "id": "App.tsx",
       "label": "App.tsx",
       "category": "Other",
-      "size": 1313
+      "size": 1199
     },
     {
       "id": "data/assessmentQuestions.ts",
@@ -124,7 +124,7 @@
       "id": "infrastructure/cms/CmsContentRepository.ts",
       "label": "CmsContentRepository.ts",
       "category": "Infra",
-      "size": 5474
+      "size": 5234
     },
     {
       "id": "infrastructure/cms/CmsContentWriter.ts",
@@ -137,18 +137,6 @@
       "label": "HttpContentClient.ts",
       "category": "Infra",
       "size": 2262
-    },
-    {
-      "id": "infrastructure/cms/seed/index.ts",
-      "label": "index.ts",
-      "category": "Infra",
-      "size": 685
-    },
-    {
-      "id": "infrastructure/cms/seed/searchIndex.seed.ts",
-      "label": "searchIndex.seed.ts",
-      "category": "Infra",
-      "size": 44433
     },
     {
       "id": "infrastructure/ComparisonMatrixData.ts",
@@ -185,6 +173,12 @@
       "label": "SyncingProgressRepository.ts",
       "category": "Infra",
       "size": 2273
+    },
+    {
+      "id": "infrastructure/searchIndex.ts",
+      "label": "searchIndex.ts",
+      "category": "Infra",
+      "size": 45285
     },
     {
       "id": "infrastructure/storage/SafeStorage.ts",
@@ -280,7 +274,7 @@
       "id": "presentation/components/ArchHero.tsx",
       "label": "ArchHero.tsx",
       "category": "Component",
-      "size": 2855
+      "size": 2682
     },
     {
       "id": "presentation/components/ArchitectRoadmap.tsx",
@@ -454,7 +448,7 @@
       "id": "presentation/components/CommandPalette.tsx",
       "label": "CommandPalette.tsx",
       "category": "Component",
-      "size": 12653
+      "size": 12445
     },
     {
       "id": "presentation/components/common/VirtualList.tsx",
@@ -676,7 +670,7 @@
       "id": "presentation/components/ErrorBoundary.tsx",
       "label": "ErrorBoundary.tsx",
       "category": "Component",
-      "size": 4206
+      "size": 4071
     },
     {
       "id": "presentation/components/eventsourcing/EventSourcingComparisonTab.tsx",
@@ -1072,7 +1066,7 @@
       "id": "presentation/components/PageTemplate.tsx",
       "label": "PageTemplate.tsx",
       "category": "Component",
-      "size": 15812
+      "size": 15709
     },
     {
       "id": "presentation/components/pipefilter/PipeFilterConceptTab.tsx",
@@ -1582,7 +1576,7 @@
       "id": "presentation/navigation/AppRouter.tsx",
       "label": "AppRouter.tsx",
       "category": "App",
-      "size": 13060
+      "size": 12946
     },
     {
       "id": "presentation/pages/abstraction.tsx",
@@ -2158,7 +2152,7 @@
       "id": "tests/setup.ts",
       "label": "setup.ts",
       "category": "Other",
-      "size": 36
+      "size": 1357
     }
   ],
   "links": [
@@ -2283,32 +2277,12 @@
       "value": 1
     },
     {
-      "source": "infrastructure/cms/CmsContentRepository.ts",
-      "target": "infrastructure/cms/seed/index.ts",
-      "value": 1
-    },
-    {
       "source": "infrastructure/cms/CmsContentWriter.ts",
       "target": "domain/entities/CmsEntry.ts",
       "value": 1
     },
     {
       "source": "infrastructure/cms/HttpContentClient.ts",
-      "target": "domain/entities/CmsEntry.ts",
-      "value": 1
-    },
-    {
-      "source": "infrastructure/cms/seed/index.ts",
-      "target": "domain/entities/CmsEntry.ts",
-      "value": 1
-    },
-    {
-      "source": "infrastructure/cms/seed/index.ts",
-      "target": "infrastructure/cms/seed/searchIndex.seed.ts",
-      "value": 1
-    },
-    {
-      "source": "infrastructure/cms/seed/searchIndex.seed.ts",
       "target": "domain/entities/CmsEntry.ts",
       "value": 1
     },
@@ -2370,6 +2344,11 @@
     {
       "source": "infrastructure/repositories/SyncingProgressRepository.ts",
       "target": "infrastructure/repositories/LocalProgressCache.ts",
+      "value": 1
+    },
+    {
+      "source": "infrastructure/searchIndex.ts",
+      "target": "domain/entities/CmsEntry.ts",
       "value": 1
     },
     {

@@ -36,10 +36,12 @@ const buildCollections = async () => {
     `data:text/javascript;base64,${Buffer.from(glossaryTranspiled.outputText).toString('base64')}`
   )
 
+  const searchIndex = await loadTsModule('src/infrastructure/searchIndex.ts')
   const matrix = await loadTsModule('src/infrastructure/ComparisonMatrixData.ts')
   const architecture = await loadTsModule('src/infrastructure/ArchitectureData.ts')
 
   return {
+    'search-index': searchIndex.SEARCH_INDEX_ENVELOPE,
     'acronym-categories': envelope('acronym-categories', '1.0.0', acronyms.ACRONYM_CATEGORIES),
     acronyms: envelope('acronyms', '1.0.0', acronyms.ACRONYMS_DATA),
     glossary: envelope('glossary', '1.0.0', glossary.GLOSSARY_TERMS),

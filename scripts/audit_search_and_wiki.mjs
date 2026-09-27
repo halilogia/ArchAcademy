@@ -13,7 +13,7 @@ function loadTsModule(relativePath) {
 }
 
 // 2. Load the CMS search index seed envelope
-const dataUriSearch = loadTsModule("src/infrastructure/cms/seed/searchIndex.seed.ts");
+const dataUriSearch = loadTsModule("src/infrastructure/searchIndex.ts");
 const { SEARCH_INDEX_ENVELOPE } = await import(dataUriSearch);
 const SEARCH_INDEX = SEARCH_INDEX_ENVELOPE.items;
 

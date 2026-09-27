@@ -1,0 +1,65 @@
+# Both services run from the same dependency-free image, so the pair cannot drift
+# apart. Data lives in named volumes: SQLite when the runtime provides it, an
+# append-only log otherwise.
+services:
+  sync:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: ["server/progressSyncServer.mjs"]
+    environment:
+      PORT: "8787"
+      HOST: "0.0.0.0"
+      SYNC_DATA_DIR: /data/sync
+      SYNC_BACKEND: "${SYNC_BACKEND:-auto}"
+      SYNC_RATE_LIMIT: "${SYNC_RATE_LIMIT:-120}"
+      SYNC_RATE_WINDOW_MS: "${SYNC_RATE_WINDOW_MS:-60000}"
+      # Set either a per-owner token map or a shared token. Leaving both empty
+      # starts the service in open mode, which is development only.
+      SYNC_USER_TOKENS: "${SYNC_USER_TOKENS:-}"
+      SYNC_TOKEN: "${SYNC_TOKEN:-}"
+    ports:
+      - "${SYNC_PORT:-8787}:8787"
+    volumes:
+      - sync-data:/data/sync
+    restart: unless-stopped
+    healthcheck:
+      test:
+        - CMD
+        - node
+        - -e
+        - "fetch('http://127.0.0.1:8787/health').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 5s
+
+  cms:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: ["server/cmsServer.mjs"]
+    environment:
+      CMS_PORT: "8788"
+      CMS_HOST: "0.0.0.0"
+      CMS_DATA_DIR: /data/cms
+      CMS_TOKEN: "${CMS_TOKEN:-}"
+    ports:
+      - "${CMS_PORT:-8788}:8788"
+    volumes:
+      - cms-data:/data/cms
+    restart: unless-stopped
+    healthcheck:
+      test:
+        - CMD
+        - node
+        - -e
+        - "fetch('http://127.0.0.1:8788/health').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 5s
+
+volumes:
+  sync-data:
+  cms-data:
