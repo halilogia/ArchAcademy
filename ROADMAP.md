@@ -2,7 +2,7 @@
 
 Forward-looking plan for ArchAcademy. Shipped work is recorded in [CHANGELOG.md](./CHANGELOG.md), not here.
 
-Current release: **v1.2.0** · Current phase: **Phase 2 → Phase 3**
+Current release: **v1.3.0** · Current phase: **Phase 2 → Phase 3**
 
 ---
 
@@ -24,12 +24,11 @@ Current release: **v1.2.0** · Current phase: **Phase 2 → Phase 3**
 
 ## ⚙️ P3 — Performance & quality
 
-- [ ] `React.memo` on heavy page components and virtualization in long simulation tabs (FINDING-003). Still unaddressed and unowned.
-- [ ] `ArchitectureCalculator` scores in O(n²); the question set is small today so it is cheap, but it is the last open complexity finding (FINDING-008).
-- [ ] Split the vendor chunks further. `motion` is 117 KB and `icons` 50 KB; Lucide in particular can be tree-shaken per icon rather than as one module.
+- [ ] Defer Framer Motion (117 KB) off the critical path. It is loaded before first paint because animations are everywhere; a transition to CSS for the static chrome would cut the initial payload by roughly a fifth.
+- [ ] Make the rate limiter shared: its state is per process, so a second instance or a restart resets every budget.
+- [ ] Move the sync account directory out of a flat JSON file into the same store as progress, with a rotation and password-reset policy.
 
 ## 🧹 P4 — Hygiene
 
-- [ ] Add a content authoring UI that writes to a CMS backend. The Content Console validates and exports; it does not yet write.
-- [ ] Point the reference sync service at a durable database and real user authentication instead of per-user static tokens.
-- [ ] Keep the MADR linter in step with the generator so `/adr-generator` output is guaranteed to pass `npm run adr:lint`.
+- [ ] Publish the reference services. Accounts, rate limiting and the CMS are single-writer reference implementations; they need deployment config, a real database and a secret store before real learners depend on them.
+- [ ] Add a CI job that boots both services and runs the browser build against them, so the contracts are verified in the pipeline rather than only in the local test suite.

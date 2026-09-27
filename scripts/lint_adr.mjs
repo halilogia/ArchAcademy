@@ -74,8 +74,8 @@ export const lintAdr = (markdown, fileName) => {
     warnings.push('record still contains TBD/TODO placeholders');
   }
 
-  if (statusMatch?.includes('Superseded') && !/^##\s+Supersedes\s*$/m.test(markdown)) {
-    warnings.push('status is Superseded but no "## Supersedes" section names the successor');
+  if (statusMatch?.[1]?.includes('Superseded') && !/^##\s+Supersedes\s*$/m.test(markdown)) {
+    warnings.push('status is Superseded but no "## Supersedes" section names the successor')
   }
 
   return { number, errors, warnings }

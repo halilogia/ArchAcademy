@@ -76,7 +76,7 @@
       "id": "domain/usecases/CollectionValidator.ts",
       "label": "CollectionValidator.ts",
       "category": "Domain",
-      "size": 4813
+      "size": 2149
     },
     {
       "id": "domain/usecases/ProgressMerger.ts",
@@ -125,6 +125,12 @@
       "label": "CmsContentRepository.ts",
       "category": "Infra",
       "size": 5474
+    },
+    {
+      "id": "infrastructure/cms/CmsContentWriter.ts",
+      "label": "CmsContentWriter.ts",
+      "category": "Infra",
+      "size": 2737
     },
     {
       "id": "infrastructure/cms/HttpContentClient.ts",
@@ -433,6 +439,12 @@
       "size": 5111
     },
     {
+      "id": "presentation/components/cms/ContentEditor.tsx",
+      "label": "ContentEditor.tsx",
+      "category": "Component",
+      "size": 12050
+    },
+    {
       "id": "presentation/components/cms/ContentLoading.tsx",
       "label": "ContentLoading.tsx",
       "category": "Component",
@@ -443,6 +455,12 @@
       "label": "CommandPalette.tsx",
       "category": "Component",
       "size": 12653
+    },
+    {
+      "id": "presentation/components/common/VirtualList.tsx",
+      "label": "VirtualList.tsx",
+      "category": "Component",
+      "size": 5332
     },
     {
       "id": "presentation/components/ComparisonMatrix.tsx",
@@ -970,7 +988,7 @@
       "id": "presentation/components/Navbar.tsx",
       "label": "Navbar.tsx",
       "category": "Component",
-      "size": 18099
+      "size": 18111
     },
     {
       "id": "presentation/components/OnionDiagram.tsx",
@@ -1054,7 +1072,7 @@
       "id": "presentation/components/PageTemplate.tsx",
       "label": "PageTemplate.tsx",
       "category": "Component",
-      "size": 15800
+      "size": 15812
     },
     {
       "id": "presentation/components/pipefilter/PipeFilterConceptTab.tsx",
@@ -1636,7 +1654,7 @@
       "id": "presentation/pages/catalog.tsx",
       "label": "catalog.tsx",
       "category": "Page",
-      "size": 19483
+      "size": 19495
     },
     {
       "id": "presentation/pages/choreography.tsx",
@@ -1702,7 +1720,7 @@
       "id": "presentation/pages/content-console.tsx",
       "label": "content-console.tsx",
       "category": "Page",
-      "size": 18460
+      "size": 19226
     },
     {
       "id": "presentation/pages/cqrs.tsx",
@@ -1804,7 +1822,7 @@
       "id": "presentation/pages/glossary.tsx",
       "label": "glossary.tsx",
       "category": "Page",
-      "size": 12463
+      "size": 11976
     },
     {
       "id": "presentation/pages/hexagonal.tsx",
@@ -1816,7 +1834,7 @@
       "id": "presentation/pages/home.tsx",
       "label": "home.tsx",
       "category": "Page",
-      "size": 21385
+      "size": 21397
     },
     {
       "id": "presentation/pages/horizontal.tsx",
@@ -1918,7 +1936,7 @@
       "id": "presentation/pages/mvvm.tsx",
       "label": "mvvm.tsx",
       "category": "Page",
-      "size": 7231
+      "size": 7243
     },
     {
       "id": "presentation/pages/not-found.tsx",
@@ -1966,7 +1984,7 @@
       "id": "presentation/pages/plugin.tsx",
       "label": "plugin.tsx",
       "category": "Page",
-      "size": 11318
+      "size": 11330
     },
     {
       "id": "presentation/pages/primary-secondary.tsx",
@@ -2020,7 +2038,7 @@
       "id": "presentation/pages/security.tsx",
       "label": "security.tsx",
       "category": "Page",
-      "size": 7249
+      "size": 7261
     },
     {
       "id": "presentation/pages/server-driven-ui.tsx",
@@ -2080,7 +2098,7 @@
       "id": "presentation/pages/testing.tsx",
       "label": "testing.tsx",
       "category": "Page",
-      "size": 7270
+      "size": 7282
     },
     {
       "id": "presentation/pages/ui-catalog.tsx",
@@ -2092,7 +2110,7 @@
       "id": "presentation/pages/use-case-driven.tsx",
       "label": "use-case-driven.tsx",
       "category": "Page",
-      "size": 15507
+      "size": 15519
     },
     {
       "id": "presentation/pages/vector-dbs.tsx",
@@ -2267,6 +2285,11 @@
     {
       "source": "infrastructure/cms/CmsContentRepository.ts",
       "target": "infrastructure/cms/seed/index.ts",
+      "value": 1
+    },
+    {
+      "source": "infrastructure/cms/CmsContentWriter.ts",
+      "target": "domain/entities/CmsEntry.ts",
       "value": 1
     },
     {
@@ -2477,6 +2500,21 @@
     {
       "source": "presentation/components/cleanarch/CleanArchScreamingTab.tsx",
       "target": "presentation/components/ScreamingSection.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/components/cms/ContentEditor.tsx",
+      "target": "domain/entities/CmsEntry.ts",
+      "value": 1
+    },
+    {
+      "source": "presentation/components/cms/ContentEditor.tsx",
+      "target": "domain/usecases/CollectionValidator.ts",
+      "value": 1
+    },
+    {
+      "source": "presentation/components/cms/ContentEditor.tsx",
+      "target": "infrastructure/cms/CmsContentWriter.ts",
       "value": 1
     },
     {
@@ -3276,6 +3314,16 @@
     },
     {
       "source": "presentation/pages/content-console.tsx",
+      "target": "presentation/components/cms/ContentEditor.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/content-console.tsx",
+      "target": "infrastructure/config/env.ts",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/content-console.tsx",
       "target": "infrastructure/cms/CmsContentRepository.ts",
       "value": 1
     },
@@ -3562,6 +3610,11 @@
     {
       "source": "presentation/pages/glossary.tsx",
       "target": "presentation/components/cms/ContentLoading.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/glossary.tsx",
+      "target": "presentation/components/common/VirtualList.tsx",
       "value": 1
     },
     {

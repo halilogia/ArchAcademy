@@ -170,4 +170,4 @@ const MVVMPage: React.FC = () => {
   );
 };
 
-export default MVVMPage;
+export default React.memo(MVVMPage);

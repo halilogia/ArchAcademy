@@ -8,7 +8,7 @@
 
 ---
 
-## 📌 Finding Status (reviewed 2026-09-27, v1.2.0)
+## 📌 Finding Status (reviewed 2026-09-27, v1.3.0)
 
 This report is kept as a historical record. Findings are annotated in place instead of being rewritten, and remaining work is tracked in [ROADMAP.md](./ROADMAP.md).
 
@@ -16,12 +16,12 @@ This report is kept as a historical record. Findings are annotated in place inst
 |---------|----------|--------|
 | FINDING-001 GlossaryData.ts monolith | 🔴 High | ✅ Resolved in v1.1.1 — exported to the glossary CMS collection, page chunk 198 KB → 6.8 KB |
 | FINDING-002 CommandPalette O(n) per keystroke | 🔴 High | ✅ Resolved in v1.2.0 — 120 ms debounce plus a 10 result cap and a Fuse limit |
-| FINDING-003 Missing React.memo on heavy pages | 🟠 Medium | Open — no roadmap target yet |
+| FINDING-003 Missing React.memo on heavy pages | 🟠 Medium | ✅ Resolved in v1.3.0 — layout and the largest pages are memoized; the glossary uses a windowed list |
 | FINDING-004 useLocalStorage synchronous JSON | 🟠 Medium | ✅ Resolved in v1.1.0 — progress no longer uses it; `SafeStorage` wraps writes and tolerates quota errors |
 | FINDING-005 Google Fonts render-blocking import | 🟠 Medium | ✅ Resolved in v1.2.0 — preconnect + non-blocking media=print swap |
 | FINDING-006 Unthrottled Framer Motion loops | 🟡 Low | ✅ Resolved in v1.2.0 — <MotionConfig reducedMotion="user"> plus a prefers-reduced-motion block |
 | FINDING-007 ProgressContext deep object spreads | 🟡 Low | ✅ Resolved in v1.1.0 — replaced by a Zustand store with granular selectors |
-| FINDING-008 ArchitectureCalculator O(n²) | 🟡 Low | Open — no roadmap target yet |
+| FINDING-008 ArchitectureCalculator O(n²) | 🟡 Low | ✅ Closed in v1.3.0 — the calculator is single pass; verified by a scaling test |
 | FINDING-009 Missing build optimizations | 🟡 Low | ✅ Resolved in v1.2.0 — vendor manualChunks, entry chunk 542 KB → 275 KB |
 | FINDING-010 Good practices already in place | 🟢 Info | Still valid |
 
@@ -140,7 +140,9 @@ The application demonstrates **good architectural patterns** (lazy loading, feat
 
 ---
 
-### 🟠 FINDING-003: Missing React.memo() on Heavy Page Components
+### ✅ FINDING-003: Missing React.memo() on Heavy Page Components (RESOLVED in v1.3.0)
+
+> **Resolution:** PageTemplate and Navbar (rendered on every route) plus the largest page components are wrapped in React.memo. The 508-row glossary grid was the one genuinely unbounded list; it now renders through a row-windowed VirtualList with measured row heights, so the mounted row count no longer depends on the filter result size.
 
 - **Category:** Frontend / Render Performance
 - **Severity:** High
@@ -355,7 +357,9 @@ oscript fallback.: Google Fonts - Render-Blocking Synchronous Load
 
 ---
 
-### 🟡 FINDING-008: ArchitectureCalculator - O(n²) Score Calculation
+### ✅ FINDING-008: ArchitectureCalculator - O(n²) Score Calculation (CLOSED in v1.3.0)
+
+> **Resolution:** The audit described the original .jsx implementation. The current calculateScores walks the question set once, accumulating weights and constraints into a fixed score map, and getSortedResults runs over four fixed keys. src/tests/domain/ArchitectureCalculator.test.ts now pins the behaviour and asserts that ten times the questions does not cost an order of magnitude more, so a regression back to quadratic would fail the suite.
 
 - **Category:** Algorithm / CPU
 - **Severity:** Low

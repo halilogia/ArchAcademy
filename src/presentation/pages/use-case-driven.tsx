@@ -248,4 +248,4 @@ export class CheckoutShoppingCartUseCase {
   );
 };
 
-export default UseCaseDrivenPage;
+export default React.memo(UseCaseDrivenPage);

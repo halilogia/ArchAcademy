@@ -387,4 +387,4 @@ export const PageTemplate: React.FC<PageTemplateProps> = ({
   );
 };
 
-export default PageTemplate;
+export default React.memo(PageTemplate);

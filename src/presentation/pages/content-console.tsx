@@ -15,6 +15,8 @@ import SEO from '../components/SEO';
 import ArchHero from '../components/ArchHero';
 import { CmsCollectionName, CmsEnvelope } from '../../domain/entities/CmsEntry';
 import { CollectionReport, summarizeCollection } from '../../domain/usecases/CollectionValidator';
+import { ContentEditor } from '../components/cms/ContentEditor';
+import { appConfig } from '../../infrastructure/config/env';
 import { cmsContentRepository } from '../../infrastructure/cms/CmsContentRepository';
 import { useProgress } from '../context/ProgressContext';
 
@@ -40,6 +42,7 @@ const ContentConsolePage: React.FC = () => {
   const { i18n } = useTranslation();
   const isEn = (i18n.resolvedLanguage || i18n.language || 'tr').startsWith('en');
   const { completeStep } = useProgress();
+  const cmsEndpoint = appConfig.cms.endpoint;
   const [state, setState] = useState<ConsoleState>('loading');
   const [error, setError] = useState<string | null>(null);
   const [selected, setSelected] = useState<CmsCollectionName>('search-index');
@@ -307,6 +310,20 @@ const ContentConsolePage: React.FC = () => {
                 })}
               </div>
 
+              <ContentEditor
+                name={selected}
+                envelope={active?.envelope ?? { collection: selected, version: '', updatedAt: '', items: [] }}
+                endpoint={cmsEndpoint}
+                token={appConfig.cms.token}
+                isEn={isEn}
+                onSaved={(envelope) => {
+                  setCollections((previous) => ({
+                    ...previous,
+                    [selected]: { envelope, report: summarizeCollection(selected, envelope) }
+                  }));
+                }}
+                onReset={refresh}
+              />
               {active && (
                 <div className="glass-card" style={{ padding: '1.5rem', borderTop: `2px solid ${active.report.errorCount > 0 ? '#ef4444' : active.report.warningCount > 0 ? '#f59e0b' : '#10b981'}` }}>
                   <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '1rem', flexWrap: 'wrap', marginBottom: '1rem' }}>

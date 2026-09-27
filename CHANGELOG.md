@@ -2,6 +2,30 @@
 
 All notable changes to the ArchAcademy project will be documented in this file.
 
+## [1.3.0] - 2026-09-27
+
+Closes the remaining P3 performance and quality items and the P4 hygiene block.
+
+### Added
+- **Windowed `VirtualList`** (`src/presentation/components/common/VirtualList.tsx`): a dependency-free row virtualizer that measures row heights and supports multi-column layouts. The 508-row glossary grid was the one genuinely unbounded list in the app; it now mounts only the visible rows instead of everything a filter matched, and the "load more" button is gone.
+- **Reference CMS service** (`server/cmsServer.mjs`, `npm run cms:serve`): serves the exported seed overlaid with atomic, schema-validated writes. It speaks the contract `HttpContentClient` already uses, so pointing `VITE_CMS_ENDPOINT` at it is all it takes to go live. Writes are validated by the same module the console displays, so a payload accepted in one place is accepted in the other.
+- **Content authoring UI** in the Content Console: pick a collection, pick an item, edit its fields, and `PUT` it back to the CMS. String lists take one entry per line, nested objects are edited as JSON, rejections come back with the exact failing paths, and a reset button drops the override back to the seed.
+- **Account authentication for the sync service**: scrypt password hashing with per-user salts, `POST /auth/register` and `POST /auth/login`, 14-day bearer sessions, revocation, and sessions scoped to their own owner document. `/health` reports which auth mode is live.
+- **SQLite backend for progress storage**: when the runtime provides `node:sqlite` the store uses one row per owner with WAL and transactional upserts, falling back to the append-only log where it does not. `/health` reports the active backend.
+- 24 new tests: VirtualList windowing, CMS server reads/writes/validation/auth/restart, account authentication, both store backends, and calculator complexity.
+
+### Changed
+- **Initial JavaScript payload down to 544 KB** from 584 KB by dropping the `icons` manual chunk, which forced every icon onto the first load. The entry carries only what the shell needs and each route carries its own.
+- Collection validation moved to `src/shared/collectionSchema.mjs` so the browser and the CMS server enforce one rule set.
+- `React.memo` on `PageTemplate` and `Navbar` (rendered on every route) and on the largest page components.
+- The sync service keeps its per-user static tokens as a fallback mode, but account sessions take precedence when a data directory is configured.
+
+### Fixed
+- The MADR linter checked the status with `statusMatch.includes('Superseded')` on the whole match array, so the `Superseded by` status the generator emits never triggered the "names no successor" warning. A conformance test now lints generated records, so `/adr-generator` output is guaranteed to pass `npm run adr:lint`.
+
+### Closed
+- **FINDING-008** was stale: the audit described the original `.jsx` implementation. `calculateScores` is a single pass over the question set. A scaling test now asserts that ten times the questions does not cost an order of magnitude more, so a regression would fail the suite.
+
 ## [1.2.0] - 2026-09-27
 
 Closes the P3 performance and quality block plus the P4 hygiene block from the previous roadmap.

@@ -1,6 +1,7 @@
 import { GlossaryTerm } from '../../domain/entities/ContentTypes';
 import { useCmsCollection } from '../hooks/useCmsCollection';
 import { ContentError, ContentLoading } from '../components/cms/ContentLoading';
+import { VirtualList } from '../components/common/VirtualList';
 import React, { useState, useEffect, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
@@ -30,12 +31,11 @@ const GlossaryPage: React.FC = () => {
 
   const [typedSearch, setTypedSearch] = useState('');
   const [selectedLetter, setSelectedLetter] = useState('All');
+  const listViewportRef = React.useRef<HTMLDivElement>(null);
+  const [columns, setColumns] = useState(1);
+  const [listHeight, setListHeight] = useState(620);
 
   const searchTerm = typedSearch || urlSearch;
-  const filterKey = `${searchTerm}|${selectedLetter}`;
-  const [displayState, setDisplayState] = useState({ key: filterKey, count: 100 });
-  const displayCount = displayState.key === filterKey ? displayState.count : 100;
-  const setDisplayCount = (count: number) => setDisplayState({ key: filterKey, count });
 
   useEffect(() => {
     if (urlSearch) window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -54,7 +54,27 @@ const GlossaryPage: React.FC = () => {
   }, [searchTerm, selectedLetter, isEn, GLOSSARY_TERMS]);
 
   const alphabet = React.useMemo(() => ['All', ...'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('')], []);
-  const visibleTerms = filteredTerms.slice(0, displayCount);
+
+  React.useEffect(() => {
+    const node = listViewportRef.current;
+    if (!node) return;
+
+    const measure = () => {
+      const width = node.clientWidth;
+      if (width <= 0) return;
+      setColumns(Math.max(1, Math.floor((width + 32) / 382)));
+      setListHeight(Math.max(420, Math.round(window.innerHeight * 0.7)));
+    };
+
+    measure();
+    const observer = new ResizeObserver(measure);
+    observer.observe(node);
+    window.addEventListener('resize', measure);
+    return () => {
+      observer.disconnect();
+      window.removeEventListener('resize', measure);
+    };
+  }, []);
 
   if (glossary.status === 'loading') {
     return (
@@ -169,14 +189,16 @@ const GlossaryPage: React.FC = () => {
             </div>
           </div>
 
-          {/* Terms Grid */}
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fill, minmax(350px, 1fr))',
-            gap: '2rem',
-            paddingBottom: '2rem'
-          }}>
-            {visibleTerms.map((item, i) => {
+          {/* Terms */}
+          <div ref={listViewportRef}>
+          <VirtualList<GlossaryTerm>
+            items={filteredTerms}
+            height={listHeight}
+            columns={columns}
+            estimatedRowHeight={340}
+            gap={32}
+            getKey={(item) => String(item.id)}
+            renderItem={(item, i) => {
               const termTitle = (isEn && item.term_en) ? item.term_en : item.term;
               const termDef = (isEn && item.definition_en) ? item.definition_en : item.definition;
               const termCategory = (isEn && item.category_en) ? item.category_en : item.category;
@@ -243,41 +265,15 @@ const GlossaryPage: React.FC = () => {
                   </div>
                 </motion.div>
               );
-            })}
+            }}
+            emptyState={
+              <div style={{ textAlign: 'center', padding: '5rem', opacity: 0.5 }}>
+                <Book size={48} style={{ marginBottom: '1rem' }} />
+                <p>{isEn ? "No architectural terms found matching your query." : "Aradığınız terim henüz sözlüğümüzde yok."}</p>
+              </div>
+            }
+          />
           </div>
-
-          {/* Load More Section */}
-          {filteredTerms.length > displayCount && (
-            <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
-              <button
-                onClick={() => setDisplayCount(displayCount + 100)}
-                style={{
-                  background: 'var(--primary)',
-                  color: 'white',
-                  border: 'none',
-                  padding: '1rem 2.5rem',
-                  borderRadius: '15px',
-                  fontWeight: 800,
-                  cursor: 'pointer',
-                  transition: 'all 0.2s',
-                  boxShadow: '0 10px 30px rgba(59, 130, 246, 0.3)',
-                  fontSize: '1rem'
-                }}
-              >
-                {isEn 
-                  ? `Load More (${filteredTerms.length - displayCount} remaining)`
-                  : `Daha Fazla Göster (${filteredTerms.length - displayCount} kalan)`
-                }
-              </button>
-            </div>
-          )}
-
-          {filteredTerms.length === 0 && (
-            <div style={{ textAlign: 'center', padding: '5rem', opacity: 0.5 }}>
-              <Book size={48} style={{ marginBottom: '1rem' }} />
-              <p>{isEn ? "No architectural terms found matching your query." : "Aradığınız terim henüz sözlüğümüzde yok."}</p>
-            </div>
-          )}
         </div>
         {/* Back to Top Button */}
         <motion.button

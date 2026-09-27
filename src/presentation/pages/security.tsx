@@ -139,4 +139,4 @@ const SecurityPage: React.FC = () => {
   );
 };
 
-export default SecurityPage;
+export default React.memo(SecurityPage);

@@ -6,7 +6,7 @@ import { CloudProgressRepository } from '../../infrastructure/repositories/Cloud
 import { LocalProgressCache } from '../../infrastructure/repositories/LocalProgressCache';
 import { SyncingProgressRepository } from '../../infrastructure/repositories/SyncingProgressRepository';
 import { createMemoryStorage } from '../../infrastructure/storage/SafeStorage';
-import { createProgressStore, parseUserTokens, startProgressServer } from '../../../server/progressSyncServer.mjs';
+import { createProgressStore, createUserDirectory, hashPassword, parseUserTokens, startProgressServer, verifyPassword } from '../../../server/progressSyncServer.mjs';
 
 const emptyProgress = (at = '2026-01-01T00:00:00.000Z') => ({
   completedSteps: [],
@@ -132,8 +132,7 @@ describe('per-user authentication', () => {
 });
 
 describe('durable append-only store', () => {
-  it('survives a restart by replaying the log', async () => {
-    const dataDir = fs.mkdtempSync(path.join(os.tmpdir(), 'arch-sync-'));
+  it('survives a restart by replaying the log', async () => {    const dataDir = fs.mkdtempSync(path.join(os.tmpdir(), 'arch-sync-'));
 
     const first = await startProgressServer({ port: 0, dataDir });
     try {
@@ -167,7 +166,7 @@ describe('durable append-only store', () => {
 
   it('compacts the log into a snapshot and can replay the snapshot alone', () => {
     const dataDir = fs.mkdtempSync(path.join(os.tmpdir(), 'arch-sync-'));
-    const store = createProgressStore({ dataDir });
+    const store = createProgressStore({ dataDir, backend: 'file' });
 
     store.set('owner', { ownerId: 'owner', revision: 1, syncedAt: 'now', progress: state({ completedSteps: ['/x'] }) });
     store.compact?.();
@@ -175,7 +174,7 @@ describe('durable append-only store', () => {
     expect(fs.existsSync(path.join(dataDir, 'progress.snapshot.json'))).toBe(true);
     expect(fs.readFileSync(path.join(dataDir, 'progress.log'), 'utf8').trim()).toBe('');
 
-    const reopened = createProgressStore({ dataDir });
+    const reopened = createProgressStore({ dataDir, backend: 'file' });
     expect(reopened.get('owner')?.progress.completedSteps).toEqual(['/x']);
     fs.rmSync(dataDir, { recursive: true, force: true });
   });
@@ -189,7 +188,7 @@ describe('durable append-only store', () => {
       'utf8'
     );
 
-    const store = createProgressStore({ dataDir });
+    const store = createProgressStore({ dataDir, backend: 'file' });
     expect(store.get('good')).not.toBeNull();
     expect(store.get('torn')).toBeNull();
     fs.rmSync(dataDir, { recursive: true, force: true });
@@ -356,5 +355,155 @@ describe('progress store behaviour', () => {
     const result = store.set('owner', { ownerId: 'owner', revision: 4, syncedAt: 'now', progress: state({ lastVisited: '/x' }) });
     expect(result.conflict).toBe(false);
     expect(store.get('owner')?.progress.lastVisited).toBe('/x');
+  });
+});
+describe('durable store backends', () => {
+  const envelope = (completedSteps: string[]) => ({
+    ownerId: 'learner',
+    revision: 1,
+    syncedAt: 'now',
+    progress: state({ completedSteps })
+  });
+
+  it('reports which backend it selected', () => {
+    const dataDir = fs.mkdtempSync(path.join(os.tmpdir(), 'arch-store-'));
+    const sqlite = createProgressStore({ dataDir });
+    const file = createProgressStore({ dataDir, backend: 'file' });
+    const memory = createProgressStore({ dataDir: null });
+
+    expect(['sqlite', 'append-log']).toContain(sqlite.backend);
+    expect(file.backend).toBe('append-log');
+    expect(memory.backend).toBe('memory');
+
+    sqlite.close();
+    file.close();
+    fs.rmSync(dataDir, { recursive: true, force: true });
+  });
+
+  it('round-trips through whichever backend is active', () => {
+    const dataDir = fs.mkdtempSync(path.join(os.tmpdir(), 'arch-store-'));
+    const store = createProgressStore({ dataDir });
+    store.set('learner', envelope(['/sandbox']));
+    expect(store.get('learner')?.progress.completedSteps).toEqual(['/sandbox']);
+    store.close();
+    fs.rmSync(dataDir, { recursive: true, force: true });
+  });
+});
+
+describe('account authentication', () => {
+  const credentials = () => ({ ownerId: 'alice', password: 'correct horse battery' });
+
+  it('hashes with scrypt and never stores the password', () => {
+    const stored = hashPassword('correct horse battery');
+    expect(stored).not.toContain('correct horse battery');
+    expect(stored.split(':')).toHaveLength(3);
+    expect(verifyPassword('correct horse battery', stored)).toBe(true);
+    expect(verifyPassword('wrong password', stored)).toBe(false);
+  });
+
+  it('salts so two identical passwords hash differently', () => {
+    expect(hashPassword('same password')).not.toBe(hashPassword('same password'));
+  });
+
+  it('rejects a malformed stored hash', () => {
+    expect(verifyPassword('anything', 'not-a-hash')).toBe(false);
+    expect(verifyPassword('anything', undefined as unknown as string)).toBe(false);
+  });
+
+  it('registers, logs in and resolves a session to its owner', () => {
+    const dataDir = fs.mkdtempSync(path.join(os.tmpdir(), 'arch-users-'));
+    const directory = createUserDirectory({ dataDir });
+
+    const registered = directory.register(credentials().ownerId, credentials().password);
+    expect(registered.ok).toBe(true);
+    expect(directory.register('alice', 'another password').ok).toBe(false);
+
+    expect(directory.login('alice', 'wrong password').ok).toBe(false);
+    const login = directory.login('alice', credentials().password);
+    expect(login.ok).toBe(true);
+
+    expect(directory.resolve(`Bearer ${login.token}`)?.ownerId).toBe('alice');
+    expect(directory.resolve('Bearer not-a-real-token')).toBeNull();
+    expect(directory.resolve(undefined)).toBeNull();
+
+    directory.revoke('alice');
+    expect(directory.resolve(`Bearer ${login.token}`)).toBeNull();
+    fs.rmSync(dataDir, { recursive: true, force: true });
+  });
+
+  it('scopes a session to its own document and refuses another', async () => {
+    const dataDir = fs.mkdtempSync(path.join(os.tmpdir(), 'arch-users-'));
+    const server = await startProgressServer({ port: 0, dataDir });
+    try {
+      const register = await fetch(`${server.origin}/auth/register`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(credentials())
+      });
+      expect(register.status).toBe(201);
+      const { token } = await register.json();
+
+      const own = new CloudProgressRepository({
+        endpoint: server.origin,
+        token,
+        ownerId: 'alice',
+        timeoutMs: 2000,
+        maxAttempts: 1
+      });
+      const other = new CloudProgressRepository({
+        endpoint: server.origin,
+        token,
+        ownerId: 'bob',
+        timeoutMs: 2000,
+        maxAttempts: 1
+      });
+
+      await own.push(state({ completedSteps: ['/alice'] }));
+      expect((await own.pull())?.completedSteps).toEqual(['/alice']);
+      await expect(other.pull()).rejects.toThrow(/403/);
+    } finally {
+      await server.close();
+      fs.rmSync(dataDir, { recursive: true, force: true });
+    }
+  });
+
+  it('refuses a short password and a duplicate account at the endpoint', async () => {
+    const dataDir = fs.mkdtempSync(path.join(os.tmpdir(), 'arch-users-'));
+    const server = await startProgressServer({ port: 0, dataDir });
+    try {
+      const post = (body: unknown) =>
+        fetch(`${server.origin}/auth/register`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(body)
+        });
+
+      expect((await post({ ownerId: 'x', password: 'short' })).status).toBe(422);
+      expect((await post({ ownerId: 'x', password: 'long enough password' })).status).toBe(201);
+      expect((await post({ ownerId: 'x', password: 'long enough password' })).status).toBe(409);
+
+      const badLogin = await fetch(`${server.origin}/auth/login`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ownerId: 'x', password: 'wrong' })
+      });
+      expect(badLogin.status).toBe(401);
+    } finally {
+      await server.close();
+      fs.rmSync(dataDir, { recursive: true, force: true });
+    }
+  });
+
+  it('reports the active auth mode in health', async () => {
+    const dataDir = fs.mkdtempSync(path.join(os.tmpdir(), 'arch-users-'));
+    const server = await startProgressServer({ port: 0, dataDir });
+    try {
+      const body = await (await fetch(`${server.origin}/health`)).json();
+      expect(body.authMode).toBe('account');
+      expect(body.backend).toBeDefined();
+    } finally {
+      await server.close();
+      fs.rmSync(dataDir, { recursive: true, force: true });
+    }
   });
 });

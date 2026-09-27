@@ -220,4 +220,4 @@ const PlugInPage: React.FC = () => {
   );
 };
 
-export default PlugInPage;
+export default React.memo(PlugInPage);

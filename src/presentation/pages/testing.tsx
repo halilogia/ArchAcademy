@@ -129,4 +129,4 @@ const TestingPage: React.FC = () => {
   );
 };
 
-export default TestingPage;
+export default React.memo(TestingPage);

@@ -334,4 +334,4 @@ const CatalogPage: React.FC = () => {
   );
 };
 
-export default CatalogPage;
+export default React.memo(CatalogPage);
