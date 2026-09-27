@@ -22,7 +22,9 @@
     "sandbox": "System Design Sandbox",
     "sandbox_desc": "Drag & Drop Topology",
     "adr_generator": "ADR Generator",
-    "adr_generator_desc": "MADR Markdown Export"
+    "adr_generator_desc": "MADR Markdown Export",
+    "content_console": "Content Console",
+    "content_console_desc": "Schema Validation & JSON"
   },
   "docs_menu": {
     "acronyms": "Acronyms Guide",

@@ -48,32 +48,36 @@ describe('CommandPalette Component', () => {
     });
   });
 
-  it('arama sonuçları filtrelenmeli', () => {
+  it('arama sonuçları filtrelenmeli', async () => {
     renderWithRouter(<CommandPalette />);
     // Aç
     fireEvent.keyDown(window, { key: 'k', ctrlKey: true });
     // Arama yap
     const input = screen.getByPlaceholderText(/search/i);
     fireEvent.change(input, { target: { value: 'clean' } });
-    // Sonuçlar görünmeli
-    expect(screen.getAllByText(/clean architecture/i).length).toBeGreaterThan(0);
+    // Sonuçlar görünmeli (arama debounce'lu)
+    await waitFor(() => {
+      expect(screen.getAllByText(/clean architecture/i).length).toBeGreaterThan(0);
+    }, { timeout: 3000 });
   });
 
-  it('sonuç bulunamadığında mesaj göstermeli', () => {
+  it('sonuç bulunamadığında mesaj göstermeli', async () => {
     renderWithRouter(<CommandPalette />);
     // Aç
-    fireEvent.keyDown(document, { key: 'k', ctrlKey: true });
+    fireEvent.keyDown(window, { key: 'k', ctrlKey: true });
     // Olmayan bir şey ara
     const input = screen.getByPlaceholderText(/search/i);
     fireEvent.change(input, { target: { value: 'xyznonexistent123' } });
-    // Sonuç bulunamadı mesajı
-    expect(screen.getByText(/no results found/i)).toBeInTheDocument();
+    // Sonuç bulunamadı mesajı (arama debounce'lu)
+    await waitFor(() => {
+      expect(screen.getByText(/no results found/i)).toBeInTheDocument();
+    }, { timeout: 3000 });
   });
 
   it('klavye navigasyonu çalışmalı', () => {
     renderWithRouter(<CommandPalette />);
     // Aç
-    fireEvent.keyDown(document, { key: 'k', ctrlKey: true });
+    fireEvent.keyDown(window, { key: 'k', ctrlKey: true });
     const input = screen.getByPlaceholderText(/search/i);
     // Aşağı ok
     fireEvent.keyDown(input, { key: 'ArrowDown' });

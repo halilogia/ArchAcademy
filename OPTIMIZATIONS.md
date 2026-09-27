@@ -8,21 +8,21 @@
 
 ---
 
-## 📌 Finding Status (reviewed 2026-09-27, v1.1.1)
+## 📌 Finding Status (reviewed 2026-09-27, v1.2.0)
 
 This report is kept as a historical record. Findings are annotated in place instead of being rewritten, and remaining work is tracked in [ROADMAP.md](./ROADMAP.md).
 
 | Finding | Severity | Status |
 |---------|----------|--------|
 | FINDING-001 GlossaryData.ts monolith | 🔴 High | ✅ Resolved in v1.1.1 — exported to the glossary CMS collection, page chunk 198 KB → 6.8 KB |
-| FINDING-002 CommandPalette O(n) per keystroke | 🔴 High | Open — roadmap P3 |
-| FINDING-003 Missing React.memo on heavy pages | 🟠 Medium | Open — roadmap P3 |
+| FINDING-002 CommandPalette O(n) per keystroke | 🔴 High | ✅ Resolved in v1.2.0 — 120 ms debounce plus a 10 result cap and a Fuse limit |
+| FINDING-003 Missing React.memo on heavy pages | 🟠 Medium | Open — no roadmap target yet |
 | FINDING-004 useLocalStorage synchronous JSON | 🟠 Medium | ✅ Resolved in v1.1.0 — progress no longer uses it; `SafeStorage` wraps writes and tolerates quota errors |
-| FINDING-005 Google Fonts render-blocking import | 🟠 Medium | Open — roadmap P3 |
-| FINDING-006 Unthrottled Framer Motion loops | 🟡 Low | Open — roadmap P3 |
+| FINDING-005 Google Fonts render-blocking import | 🟠 Medium | ✅ Resolved in v1.2.0 — preconnect + non-blocking media=print swap |
+| FINDING-006 Unthrottled Framer Motion loops | 🟡 Low | ✅ Resolved in v1.2.0 — <MotionConfig reducedMotion="user"> plus a prefers-reduced-motion block |
 | FINDING-007 ProgressContext deep object spreads | 🟡 Low | ✅ Resolved in v1.1.0 — replaced by a Zustand store with granular selectors |
-| FINDING-008 ArchitectureCalculator O(n²) | 🟡 Low | Open |
-| FINDING-009 Missing build optimizations | 🟡 Low | Open — roadmap P3 |
+| FINDING-008 ArchitectureCalculator O(n²) | 🟡 Low | Open — no roadmap target yet |
+| FINDING-009 Missing build optimizations | 🟡 Low | ✅ Resolved in v1.2.0 — vendor manualChunks, entry chunk 542 KB → 275 KB |
 | FINDING-010 Good practices already in place | 🟢 Info | Still valid |
 
 ---
@@ -92,7 +92,9 @@ The application demonstrates **good architectural patterns** (lazy loading, feat
 
 ---
 
-### 🔴 FINDING-002: CommandPalette - O(n) Search on Every Keystroke
+### ✅ FINDING-002: CommandPalette O(n) per Keystroke Search (RESOLVED in v1.2.0)
+
+> **Resolution:** The raw query is debounced by 120 ms before it reaches Fuse, the search is capped at 10 results and Fuse itself receives a limit, so a fast typist no longer runs a full scan per keystroke.: CommandPalette - O(n) Search on Every Keystroke
 
 - **Category:** Algorithm / CPU / Frontend
 - **Severity:** High
@@ -218,7 +220,10 @@ The application demonstrates **good architectural patterns** (lazy loading, feat
 
 ---
 
-### 🟠 FINDING-005: Google Fonts - Render-Blocking Synchronous Load
+### ✅ FINDING-005: Google Fonts Render-Blocking Import (RESOLVED in v1.2.0)
+
+> **Resolution:** The @import was removed from index.css. The stylesheet is now linked in index.html with media="print" and swapped to ll on load, keeping the existing preconnect hints and a 
+oscript fallback.: Google Fonts - Render-Blocking Synchronous Load
 
 - **Category:** Frontend / Network / Rendering
 - **Severity:** Medium
@@ -254,7 +259,9 @@ The application demonstrates **good architectural patterns** (lazy loading, feat
 
 ---
 
-### 🟡 FINDING-006: Framer Motion - Unthrottled Animation Loops
+### ✅ FINDING-006: Unthrottled Framer Motion Loops (RESOLVED in v1.2.0)
+
+> **Resolution:** The app is wrapped in <MotionConfig reducedMotion="user">, which makes Framer Motion honour the OS setting app-wide, and index.css carries a prefers-reduced-motion block for CSS animations and smooth scrolling.: Framer Motion - Unthrottled Animation Loops
 
 - **Category:** CPU / Memory / Frontend
 - **Severity:** Medium
@@ -388,7 +395,9 @@ The application demonstrates **good architectural patterns** (lazy loading, feat
 
 ---
 
-### 🟡 FINDING-009: Missing Build Optimizations
+### ✅ FINDING-009: Missing Build Optimizations (RESOLVED in v1.2.0)
+
+> **Resolution:** manualChunks splits React, Framer Motion, i18next, Fuse and Lucide into long-lived cacheable chunks. The entry chunk fell from 542 KB to 275 KB and is vendor-dominated, not content.: Missing Build Optimizations
 
 - **Category:** Build / Bundle
 - **Severity:** Medium

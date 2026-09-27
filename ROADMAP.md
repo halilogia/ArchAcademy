@@ -2,7 +2,7 @@
 
 Forward-looking plan for ArchAcademy. Shipped work is recorded in [CHANGELOG.md](./CHANGELOG.md), not here.
 
-Current release: **v1.1.1** · Current phase: **Phase 2 → Phase 3**
+Current release: **v1.2.0** · Current phase: **Phase 2 → Phase 3**
 
 ---
 
@@ -24,17 +24,12 @@ Current release: **v1.1.1** · Current phase: **Phase 2 → Phase 3**
 
 ## ⚙️ P3 — Performance & quality
 
-- [ ] Split the 555 KB entry chunk with `manualChunks` and route-level splitting (FINDING-009). Measured after the content migration: the entry is vendor-dominated (React, Framer Motion, Router, i18next, Fuse, Lucide), not content.
-- [ ] Move Google Fonts off the render-blocking `@import` in `index.css` to `preconnect` + `<link>` (FINDING-005).
-- [ ] Respect `prefers-reduced-motion` on infinite Framer Motion loops (FINDING-006).
-- [ ] Debounce and cap command palette search results (FINDING-002).
-- [ ] Add a CMS admin surface: today collections are edited in the TypeScript data modules and re-exported. A real CMS needs an authoring UI and per-field validation.
-- [ ] Harden the sync service: per-user authentication (it only understands a static bearer token), rate limiting, and a durable store instead of a JSON file.
-- [ ] Deprecate or remove `useLocalStorage` — product code no longer uses it, only its test.
+- [ ] `React.memo` on heavy page components and virtualization in long simulation tabs (FINDING-003). Still unaddressed and unowned.
+- [ ] `ArchitectureCalculator` scores in O(n²); the question set is small today so it is cheap, but it is the last open complexity finding (FINDING-008).
+- [ ] Split the vendor chunks further. `motion` is 117 KB and `icons` 50 KB; Lucide in particular can be tree-shaken per icon rather than as one module.
 
 ## 🧹 P4 — Hygiene
 
-- [ ] Versioned ADR template in `docs/` used by the generator and by contributors.
-- [ ] ADR linting in CI (markdownlint + MADR section conformance).
-- [ ] Add the `cms:check` drift guard and the sync conformance suite to the CI pipeline, not just `npm run verify`.
-- [ ] Link the still-open findings in `OPTIMIZATIONS.md` to their roadmap target so the audit and the plan stay in sync.
+- [ ] `React.memo` sweep and long-list virtualization, tracked above as FINDING-003 and FINDING-008.
+- [ ] Add a content authoring UI that writes to a CMS backend. The Content Console validates and exports; it does not yet write.
+- [ ] Point the reference sync service at a durable database and real user authentication instead of per-user static tokens.

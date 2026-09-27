@@ -2,6 +2,28 @@
 
 All notable changes to the ArchAcademy project will be documented in this file.
 
+## [1.2.0] - 2026-09-27
+
+Closes the P3 performance and quality block plus the P4 hygiene block from the previous roadmap.
+
+### Added
+- **Content Console** (`/content-console`): lists every collection the portal actually serves, validates each one against a registered schema (required keys, unique identifiers, localized fields) and shows the exact JSON envelope a headless CMS must publish. Backed by `CollectionValidator` in the domain layer, so the same rules can run in CI.
+- **Per-user sync authentication**: `SYNC_USER_TOKENS=alice:token-a,bob:token-b` scopes a token to an owner, returns `403` when a valid token addresses someone else's document, and a `*:<token>` entry acts as an admin token.
+- **Rate limiting** on the sync service with `X-RateLimit-Remaining`, `X-RateLimit-Reset` and `Retry-After` headers, configurable through `SYNC_RATE_LIMIT` and `SYNC_RATE_WINDOW_MS`.
+- **Durable append-only persistence**: progress is appended to `progress.log` and compacted into `progress.snapshot.json`, so a restart replays the log instead of reloading a single JSON file, and an interrupted write leaves a torn trailing line rather than a corrupt store.
+- **MADR linter** (`npm run adr:lint`) enforcing numbered filenames, a canonical section order, non-empty sections, a valid status and a parseable date. Covered by 11 unit tests and the first real record in `decisions/`.
+- 7 more sync conformance tests covering rate limiting, per-user auth, log replay across a restart, snapshot compaction and torn-line recovery.
+
+### Changed
+- **Entry chunk split from 542 KB to 275 KB** with vendor `manualChunks`. React, Framer Motion, i18next, Fuse and Lucide now ship as long-lived, cacheable chunks instead of being re-parsed whenever application code changes.
+- Command palette search is debounced by 120 ms, capped at 10 results, and passes a `limit` to Fuse, so typing no longer triggers a full scan per keystroke.
+- `prefers-reduced-motion` is honoured app-wide: the app is wrapped in `<MotionConfig reducedMotion="user">` and `index.css` carries a media block for CSS animations and smooth scrolling.
+- Google Fonts no longer blocks first paint. The stylesheet is linked with `media="print"` and swapped on load, keeping the `preconnect` hints and a `noscript` fallback.
+- CI is now a real gate: `npm run lint` fails the lint job instead of being swallowed, the test job lost its `continue-on-error`, and the CMS drift guard, the ADR linter, the sync conformance suite and the search/wiki audit all run there.
+
+### Removed
+- `useLocalStorage`, which no product code used after the progress store landed.
+
 ## [1.1.1] - 2026-09-27
 
 Closes the P0 blockers from the previous roadmap: **P0.1** the ESLint pipeline, **P0.2** GitHub Pages SPA routing, **P0.3** the reference cloud sync backend, **P0.4** the remaining content migration.

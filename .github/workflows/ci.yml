@@ -38,10 +38,16 @@ jobs:
         run: npm ci --ignore-scripts
 
       - name: 🔍 Run ESLint
-        run: npm run lint --if-present || echo "No lint script found, skipping"
+        run: npm run lint
 
       - name: 📝 TypeScript Type Check
         run: npm run check
+
+      - name: 📦 Verify exported CMS collections are not stale
+        run: npm run cms:check
+
+      - name: 📄 Lint architecture decision records
+        run: npm run adr:lint
 
   # ============================================
   # 2. UNIT & COMPONENT TESTS
@@ -64,8 +70,15 @@ jobs:
         run: npm ci --ignore-scripts
 
       - name: 🧪 Run Tests
-        run: npm run test -- --run --coverage --reporter=verbose --reporter=junit --outputFile=test-results.xml || echo "Some tests failed, continuing with build"
-        continue-on-error: true
+        run: npm run test:run
+        env:
+          CI: true
+
+      - name: 🔌 Sync service conformance suite
+        run: npx vitest run src/tests/infrastructure/syncConformance.test.ts --reporter=verbose
+
+      - name: 🔍 Search and glossary coverage audit
+        run: npm run docs:audit
 
       - name: 📊 Upload Test Results
         if: always()

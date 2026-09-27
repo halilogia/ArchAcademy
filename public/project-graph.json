@@ -4,7 +4,7 @@
       "id": "App.tsx",
       "label": "App.tsx",
       "category": "Other",
-      "size": 1199
+      "size": 1313
     },
     {
       "id": "data/assessmentQuestions.ts",
@@ -73,6 +73,12 @@
       "size": 2453
     },
     {
+      "id": "domain/usecases/CollectionValidator.ts",
+      "label": "CollectionValidator.ts",
+      "category": "Domain",
+      "size": 4813
+    },
+    {
       "id": "domain/usecases/ProgressMerger.ts",
       "label": "ProgressMerger.ts",
       "category": "Domain",
@@ -136,7 +142,7 @@
       "id": "infrastructure/cms/seed/searchIndex.seed.ts",
       "label": "searchIndex.seed.ts",
       "category": "Infra",
-      "size": 43736
+      "size": 44433
     },
     {
       "id": "infrastructure/ComparisonMatrixData.ts",
@@ -436,7 +442,7 @@
       "id": "presentation/components/CommandPalette.tsx",
       "label": "CommandPalette.tsx",
       "category": "Component",
-      "size": 12077
+      "size": 12653
     },
     {
       "id": "presentation/components/ComparisonMatrix.tsx",
@@ -964,7 +970,7 @@
       "id": "presentation/components/Navbar.tsx",
       "label": "Navbar.tsx",
       "category": "Component",
-      "size": 17509
+      "size": 18099
     },
     {
       "id": "presentation/components/OnionDiagram.tsx",
@@ -1555,16 +1561,10 @@
       "size": 2229
     },
     {
-      "id": "presentation/hooks/useLocalStorage.ts",
-      "label": "useLocalStorage.ts",
-      "category": "Hook",
-      "size": 1254
-    },
-    {
       "id": "presentation/navigation/AppRouter.tsx",
       "label": "AppRouter.tsx",
       "category": "App",
-      "size": 12908
+      "size": 13060
     },
     {
       "id": "presentation/pages/abstraction.tsx",
@@ -1697,6 +1697,12 @@
       "label": "containerization.tsx",
       "category": "Page",
       "size": 8090
+    },
+    {
+      "id": "presentation/pages/content-console.tsx",
+      "label": "content-console.tsx",
+      "category": "Page",
+      "size": 18460
     },
     {
       "id": "presentation/pages/cqrs.tsx",
@@ -2201,6 +2207,11 @@
     {
       "source": "domain/usecases/ArchitectureCalculator.ts",
       "target": "domain/entities/ArchitectureProfile.ts",
+      "value": 1
+    },
+    {
+      "source": "domain/usecases/CollectionValidator.ts",
+      "target": "domain/entities/CmsEntry.ts",
       "value": 1
     },
     {
@@ -3241,6 +3252,36 @@
     {
       "source": "presentation/pages/containerization.tsx",
       "target": "presentation/components/containerization/ContainerLifecycleSimulationTab.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/content-console.tsx",
+      "target": "presentation/components/SEO.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/content-console.tsx",
+      "target": "presentation/components/ArchHero.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/content-console.tsx",
+      "target": "domain/entities/CmsEntry.ts",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/content-console.tsx",
+      "target": "domain/usecases/CollectionValidator.ts",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/content-console.tsx",
+      "target": "infrastructure/cms/CmsContentRepository.ts",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/content-console.tsx",
+      "target": "presentation/context/ProgressContext.tsx",
       "value": 1
     },
     {

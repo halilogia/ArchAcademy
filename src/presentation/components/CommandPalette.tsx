@@ -53,6 +53,9 @@ interface SearchItem {
   score?: number;
 }
 
+const MAX_RESULTS = 10;
+const DEBOUNCE_MS = 120;
+
 // Icon mapping for search results
 const iconMap: Record<string, React.ReactNode> = {
   'Catalog': <Library size={18} />,
@@ -105,12 +108,21 @@ const CommandPalette = () => {
     category: item.category === 'Principles' && item.id === 'lean' ? 'MASTERPIECE' : item.category
   })), [searchIndex]);
 
+  // Debounce the raw query so a fast typist does not run Fuse on every keystroke
+  const [debouncedQuery, setDebouncedQuery] = useState('');
+
+  useEffect(() => {
+    const timer = setTimeout(() => setDebouncedQuery(query), DEBOUNCE_MS);
+    return () => clearTimeout(timer);
+  }, [query]);
+
   // Fuse.js powered search
   const filteredItems = useMemo(() => {
-    if (!query.trim()) return allItems.slice(0, 10);
+    const trimmed = debouncedQuery.trim();
+    if (!trimmed) return allItems.slice(0, MAX_RESULTS);
 
-    const results = fuse.search(query);
-    
+    const results = fuse.search(trimmed, { limit: MAX_RESULTS * 4 });
+
     return results
       .map(result => {
         const item = result.item as SearchEntry;
@@ -127,8 +139,13 @@ const CommandPalette = () => {
         };
       })
       .filter(item => item.score > 20)
-      .slice(0, 10);
-  }, [query, fuse, allItems]);
+      .slice(0, MAX_RESULTS);
+  }, [debouncedQuery, fuse, allItems]);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setSelectedIndex(0), 0);
+    return () => clearTimeout(timer);
+  }, [debouncedQuery]);
 
   const handleKeyDown = useCallback((e: KeyboardEvent) => {
     if ((e.metaKey || e.ctrlKey) && e.key === 'k') {

@@ -1,9 +1,12 @@
 import { afterAll, beforeAll, beforeEach, describe, expect, it } from 'vitest';
+import fs from 'node:fs';
+import os from 'node:os';
+import path from 'node:path';
 import { CloudProgressRepository } from '../../infrastructure/repositories/CloudProgressRepository';
 import { LocalProgressCache } from '../../infrastructure/repositories/LocalProgressCache';
 import { SyncingProgressRepository } from '../../infrastructure/repositories/SyncingProgressRepository';
 import { createMemoryStorage } from '../../infrastructure/storage/SafeStorage';
-import { createProgressStore, startProgressServer } from '../../../server/progressSyncServer.mjs';
+import { createProgressStore, parseUserTokens, startProgressServer } from '../../../server/progressSyncServer.mjs';
 
 const emptyProgress = (at = '2026-01-01T00:00:00.000Z') => ({
   completedSteps: [],
@@ -47,10 +50,149 @@ describe('sync server health', () => {
     expect(response.status).toBe(200);
     const body = await response.json();
     expect(body.status).toBe('ok');
+    expect(body.authMode).toBe('open');
   });
 
   it('rejects unknown routes', async () => {
     expect((await fetch(`${origin}/nope`)).status).toBe(404);
+  });
+});
+
+describe('rate limiting', () => {
+  it('answers 429 once the client budget is exhausted and sets Retry-After', async () => {
+    const limited = await startProgressServer({ port: 0, rateLimit: { windowMs: 60_000, max: 3 } });
+    try {
+      const statuses: number[] = [];
+      for (let attempt = 0; attempt < 5; attempt += 1) {
+        const response = await fetch(`${limited.origin}/progress/rate-limited-learner`);
+        statuses.push(response.status);
+        if (response.status === 429) {
+          expect(response.headers.get('Retry-After')).toBeTruthy();
+          expect(response.headers.get('X-RateLimit-Remaining')).toBe('0');
+        }
+      }
+      expect(statuses.filter((status) => status === 429).length).toBeGreaterThan(0);
+      expect(statuses[0]).toBe(404);
+    } finally {
+      await limited.close();
+    }
+  });
+});
+
+describe('per-user authentication', () => {
+  it('parses owner scoped tokens', () => {
+    expect(parseUserTokens('alice:token-a, bob:token-b, *:wildcard')).toEqual([
+      { ownerId: 'alice', token: 'token-a' },
+      { ownerId: 'bob', token: 'token-b' },
+      { ownerId: '*', token: 'wildcard' }
+    ]);
+  });
+
+  it('ignores an empty configuration', () => {
+    expect(parseUserTokens('')).toEqual([]);
+    expect(parseUserTokens(undefined)).toEqual([]);
+  });
+
+  it('lets a user read their own document and refuses another users', async () => {
+    const secured = await startProgressServer({
+      port: 0,
+      userTokens: parseUserTokens('alice:token-alice,bob:token-bob')
+    });
+    try {
+      const forAlice = new CloudProgressRepository({
+        endpoint: secured.origin,
+        token: 'token-alice',
+        ownerId: 'alice',
+        timeoutMs: 2000,
+        maxAttempts: 1
+      });
+      const forBob = new CloudProgressRepository({
+        endpoint: secured.origin,
+        token: 'token-bob',
+        ownerId: 'bob',
+        timeoutMs: 2000,
+        maxAttempts: 1
+      });
+      const anonymous = new CloudProgressRepository({
+        endpoint: secured.origin,
+        token: '',
+        ownerId: 'alice',
+        timeoutMs: 2000,
+        maxAttempts: 1
+      });
+
+      await forAlice.push(state({ completedSteps: ['/alice'] }));
+      expect((await forAlice.pull())?.completedSteps).toEqual(['/alice']);
+      expect((await forBob.pull())?.completedSteps).toBeUndefined();
+      await expect(anonymous.push(state())).rejects.toThrow(/401/);
+    } finally {
+      await secured.close();
+    }
+  });
+});
+
+describe('durable append-only store', () => {
+  it('survives a restart by replaying the log', async () => {
+    const dataDir = fs.mkdtempSync(path.join(os.tmpdir(), 'arch-sync-'));
+
+    const first = await startProgressServer({ port: 0, dataDir });
+    try {
+      const cloud = new CloudProgressRepository({
+        endpoint: first.origin,
+        token: '',
+        ownerId: 'durable-learner',
+        timeoutMs: 2000,
+        maxAttempts: 1
+      });
+      await cloud.push(state({ completedSteps: ['/durable'], lastVisited: '/durable' }));
+    } finally {
+      await first.close();
+    }
+
+    const second = await startProgressServer({ port: 0, dataDir });
+    try {
+      const cloud = new CloudProgressRepository({
+        endpoint: second.origin,
+        token: '',
+        ownerId: 'durable-learner',
+        timeoutMs: 2000,
+        maxAttempts: 1
+      });
+      expect((await cloud.pull())?.completedSteps).toEqual(['/durable']);
+    } finally {
+      await second.close();
+      fs.rmSync(dataDir, { recursive: true, force: true });
+    }
+  });
+
+  it('compacts the log into a snapshot and can replay the snapshot alone', () => {
+    const dataDir = fs.mkdtempSync(path.join(os.tmpdir(), 'arch-sync-'));
+    const store = createProgressStore({ dataDir });
+
+    store.set('owner', { ownerId: 'owner', revision: 1, syncedAt: 'now', progress: state({ completedSteps: ['/x'] }) });
+    store.compact?.();
+
+    expect(fs.existsSync(path.join(dataDir, 'progress.snapshot.json'))).toBe(true);
+    expect(fs.readFileSync(path.join(dataDir, 'progress.log'), 'utf8').trim()).toBe('');
+
+    const reopened = createProgressStore({ dataDir });
+    expect(reopened.get('owner')?.progress.completedSteps).toEqual(['/x']);
+    fs.rmSync(dataDir, { recursive: true, force: true });
+  });
+
+  it('skips a torn trailing line instead of failing to boot', () => {
+    const dataDir = fs.mkdtempSync(path.join(os.tmpdir(), 'arch-sync-'));
+    fs.mkdirSync(dataDir, { recursive: true });
+    fs.writeFileSync(
+      path.join(dataDir, 'progress.log'),
+      `${JSON.stringify({ ownerId: 'good', envelope: { ownerId: 'good', revision: 1, syncedAt: 'now', progress: state() } })}\n{"ownerId":"torn","envel`,
+      'utf8'
+    );
+
+    const store = createProgressStore({ dataDir });
+    expect(store.get('good')).not.toBeNull();
+    expect(store.get('torn')).toBeNull();
+    fs.rmSync(dataDir, { recursive: true, force: true });
   });
 });
 

@@ -121,6 +121,20 @@ export default defineConfig({
       }
     })
   ],
+  build: {
+    chunkSizeWarningLimit: 700,
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          react: ['react', 'react-dom', 'react-router-dom', 'react-helmet-async'],
+          motion: ['framer-motion'],
+          i18n: ['i18next', 'react-i18next', 'i18next-browser-languagedetector'],
+          search: ['fuse.js'],
+          icons: ['lucide-react']
+        }
+      }
+    }
+  },
   test: {
     globals: true,
     environment: 'jsdom',

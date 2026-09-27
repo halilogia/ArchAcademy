@@ -134,7 +134,8 @@ Proje, frontend için uyarlanmış Clean Architecture prensiplerini takip eder:
 .
 ├── .github/workflows/         # CI/CD İş Akışları (Derleme, Test, Dağıtım)
 ├── public/                    # Statik Dosyalar (PWA Manifest, Sitemap, Robots)
-├── scripts/                   # Grafik üreteci, CMS dışa aktarımı, SPA fallback, içerik denetimleri
+├── decisions/                  # Mimari karar kayıtları (MADR 3.0.0)
+├── scripts/                   # Grafik üreteci, CMS dışa aktarımı, SPA fallback, ADR lint, içerik denetimleri
 ├── server/                    # Referans bulut ilerleme senkronizasyon servisi (REST)
 ├── src/
 │   ├── domain/                # Saf İş Mantığı (Entities, Use Cases, Repository Portları)
@@ -152,7 +153,7 @@ Proje, frontend için uyarlanmış Clean Architecture prensiplerini takip eder:
 │   │   ├── components/        # Yeniden Kullanılabilir Bileşenler (SEO, Navbar, CommandPalette, sandbox/, adr/)
 │   │   ├── pages/             # 90+ Mimari Konu Sayfası (Clean Arch, Agentic AI, Sandbox vb.)
 │   │   ├── context/           # İlerleme deposunun ince adaptörü
-│   │   ├── hooks/             # Özel React Kancaları (useCmsCollection, useAssessmentQuiz, useLocalStorage)
+│   │   ├── hooks/             # Özel React Kancaları (useCmsCollection, useAssessmentQuiz)
 │   │   ├── navigation/        # Rota Yapılandırması (AppRouter)
 │   │   └── themes/            # Tasarım Belirteçleri ve Tema Ayarları
 │   ├── tests/                 # Birim ve Entegrasyon Testleri (Vitest)
@@ -193,6 +194,7 @@ Tüm çalışma zamanı yapılandırması isteğe bağlıdır; bu değişkenler 
 | `npm run cms:check` | Dışa aktarılan koleksiyonlar veri modüllerinden saptıysa hata verir |
 | `npm run docs:audit` | Arama indeksi kapsamını ve sözlük bütünlüğünü denetler |
 | `npm run verify` | Tip kontrolü, lint, testler ve içerik denetimini tek komutta çalıştırır |
+| `npm run adr:lint` | `decisions/*.md` dosyalarını MADR 3.0.0 yapısına göre doğrular |
 | `npm run sync:serve` | Referans ilerleme senkronizasyon servisini başlatır |
 
 ---

@@ -1,7 +1,7 @@
 {
   "name": "arch-academy",
   "private": true,
-  "version": "1.1.1",
+  "version": "1.2.0",
   "license": "GPL-3.0",
   "type": "module",
   "scripts": {
@@ -12,8 +12,9 @@
     "docs:audit": "node scripts/audit_search_and_wiki.mjs",
     "cms:export": "node scripts/export_cms_collections.mjs",
     "cms:check": "node scripts/export_cms_collections.mjs check",
+    "adr:lint": "node scripts/lint_adr.mjs",
     "sync:serve": "node server/progressSyncServer.mjs",
-    "verify": "npm run check && npm run lint && npm run test:run && npm run docs:audit",
+    "verify": "npm run check && npm run lint && npm run test:run && npm run cms:check && npm run adr:lint && npm run docs:audit",
     "check": "tsc --noEmit",
     "lint": "eslint . --ext .ts,.tsx --report-unused-disable-directives --max-warnings 0",
     "lint:fix": "eslint . --ext .ts,.tsx --fix",

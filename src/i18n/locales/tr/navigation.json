@@ -22,7 +22,9 @@
     "sandbox": "Sistem Tasarım Sandbox",
     "sandbox_desc": "Sürükle Bırak Topoloji",
     "adr_generator": "ADR Üreticisi",
-    "adr_generator_desc": "MADR Markdown Dışa Aktarım"
+    "adr_generator_desc": "MADR Markdown Dışa Aktarım",
+    "content_console": "İçerik Konsolu",
+    "content_console_desc": "Şema Doğrulama & JSON"
   },
   "docs_menu": {
     "acronyms": "Kısaltmalar Kılavuzu",

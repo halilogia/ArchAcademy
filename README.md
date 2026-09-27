@@ -126,7 +126,8 @@ The project follows a modified Clean Architecture structure for the frontend:
 .
 ├── .github/workflows/         # CI/CD Pipelines (Build, Test, Deploy)
 ├── public/                    # Static assets & Manifest (PWA, Sitemap, Robots)
-├── scripts/                   # Graph generator, CMS export, SPA fallback, content audits
+├── decisions/                  # Architecture decision records (MADR 3.0.0)
+├── scripts/                   # Graph generator, CMS export, SPA fallback, ADR lint, content audits
 ├── server/                    # Reference cloud progress sync service (REST)
 ├── src/
 │   ├── domain/                # Pure business logic (Entities, Use Cases, Repository Ports)
@@ -144,7 +145,7 @@ The project follows a modified Clean Architecture structure for the frontend:
 │   │   ├── components/        # Reusable UI elements (SEO, Navbar, CommandPalette, sandbox/, adr/)
 │   │   ├── pages/             # 90+ architecture pages (Clean Arch, Agentic AI, Sandbox, etc.)
 │   │   ├── context/           # Thin adapter over the progress store
-│   │   ├── hooks/             # Custom React hooks (useCmsCollection, useAssessmentQuiz, useLocalStorage)
+│   │   ├── hooks/             # Custom React hooks (useCmsCollection, useAssessmentQuiz)
 │   │   ├── navigation/        # Routing configuration (AppRouter)
 │   │   └── themes/            # Design tokens and theme configuration
 │   ├── tests/                 # Unit and integration tests (Vitest)
@@ -185,6 +186,7 @@ All runtime configuration is optional; the app runs fully offline without it. Co
 | `npm run cms:check` | Fail if the exported collections drifted from the data modules |
 | `npm run docs:audit` | Audit search index coverage and glossary completeness |
 | `npm run verify` | Typecheck, lint, tests and the content audit in one command |
+| `npm run adr:lint` | Validate `decisions/*.md` against the MADR 3.0.0 structure |
 | `npm run sync:serve` | Start the reference progress sync backend |
 
 ## 📜 License

@@ -23,6 +23,16 @@ const SEARCH_INDEX: SearchIndexItem[] = [
     content: 'Architecture Decision Record Generator - Produce a MADR 3.0.0 markdown decision record from your sandbox topology. The document includes context, decision drivers, considered options, the decision, a component inventory, a redundancy plan, an auto-generated Mermaid flowchart, positive and negative consequences, open architectural risks and review triggers.'
   },
 
+  {
+    id: 'content-console',
+    title: 'Content Console',
+    description: 'Validate and export CMS collections',
+    path: '/content-console',
+    category: 'Workshop',
+    keywords: ['content console', 'cms', 'schema', 'validation', 'collection', 'json', 'export', 'içerik', 'konsol', 'şema', 'doğrulama'],
+    content: 'Content Console - Lists every collection the portal serves through the ContentRepository, validates each one against its registered schema (required keys, unique identifiers, localized fields) and shows the exact JSON envelope a headless CMS must publish at GET /collections/{name}. Use it to confirm what the app actually resolves before pointing a CMS at it.'
+  },
+
   // --- MAIN CATALOGS & CHEATSHEET ---
   {
     id: 'acronyms',
