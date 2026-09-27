@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
@@ -19,7 +19,17 @@ import HomeHero from '../components/HomeHero';
 import HomeVibeSpotlight from '../components/HomeVibeSpotlight';
 import SEO from '../components/SEO';
 
-const FeatureCard = ({ title, icon, desc, path, color, label, isEn }: any) => (
+interface FeatureCardProps {
+  title: string;
+  icon: ReactElement<{ size?: number | string }>;
+  desc: string;
+  path: string;
+  color: string;
+  label: string;
+  isEn: boolean;
+}
+
+const FeatureCard = ({ title, icon, desc, path, color, label, isEn }: FeatureCardProps) => (
   <Link to={path} style={{ textDecoration: 'none', color: 'inherit' }}>
     <motion.div
       whileHover={{ y: -12, scale: 1.02 }}

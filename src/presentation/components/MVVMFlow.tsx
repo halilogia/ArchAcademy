@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { motion } from 'framer-motion';
 import { 
   Layout, 
@@ -12,7 +12,15 @@ import {
   Cpu
 } from 'lucide-react';
 
-const FlowBox = ({ title, color, children, subTitle, type }: any) => (
+interface MvvmFlowBoxProps {
+  title: string;
+  color: string;
+  subTitle?: string;
+  type?: string;
+  children?: ReactNode;
+}
+
+const FlowBox = ({ title, color, children, subTitle, type }: MvvmFlowBoxProps) => (
   <motion.div 
     whileHover={{ y: -5, scale: 1.02 }}
     style={{
@@ -47,7 +55,13 @@ const FlowBox = ({ title, color, children, subTitle, type }: any) => (
   </motion.div>
 );
 
-const Connection = ({ label, color, direction = 'horizontal' }: any) => (
+interface MvvmConnectionProps {
+  label: string;
+  color: string;
+  direction?: 'horizontal' | 'vertical';
+}
+
+const Connection = ({ label, color, direction = 'horizontal' }: MvvmConnectionProps) => (
   <div style={{ 
     display: 'flex', 
     flexDirection: direction === 'horizontal' ? 'column' : 'row',

@@ -6,7 +6,7 @@ interface FileNodeProps {
   node: {
     name: string;
     type: string;
-    children?: any[];
+    children?: FileNodeProps['node'][];
   };
   depth?: number;
 }

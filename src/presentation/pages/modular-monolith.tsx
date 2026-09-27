@@ -14,9 +14,9 @@ type SectionId = 'architecture' | 'rules' | 'optimizations' | 'synthesis';
 export const ModularMonolithPage: React.FC = () => {
   const { i18n } = useTranslation();
   const isEn = (i18n.resolvedLanguage || i18n.language || 'tr').startsWith('en');
-  const [activeTab, setActiveTab] = useState<SectionId>('architecture');
+  const [activeTab, setActiveTab] = useState<string>('architecture');
 
-  const scrollToSection = (id: SectionId) => {
+  const scrollToSection = (id: string) => {
     setActiveTab(id);
     const element = document.getElementById(id);
     if (element) {

@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Check, Copy, Download, FileText, Sparkles, Wand2 } from 'lucide-react';
 import { SandboxDesign } from '../../../domain/entities/Sandbox';
@@ -92,59 +92,48 @@ export const AdrGeneratorPanel: React.FC<AdrGeneratorPanelProps> = ({
   const [supersededBy, setSupersededBy] = useState('');
   const [copied, setCopied] = useState(false);
 
-  useEffect(() => {
-    if (title.trim().length > 0) return;
-    setTitle(`${design.name || (isEn ? 'Untitled System' : 'İsimsiz Sistem')} Architecture`);
-  }, [design.name, isEn, title]);
+  const autoTitle = `${design.name || (isEn ? 'Untitled System' : 'İsimsiz Sistem')} Architecture`;
+  const autoContext = buildAutoContext(design);
+  const autoDecision = buildAutoDecision(design);
+  const autoRisks = buildAutoRisks(issues, isEn).join('\n');
 
-  useEffect(() => {
-    if (context.trim().length > 0) return;
-    setContext(buildAutoContext(design));
-  }, [context, design]);
-
-  useEffect(() => {
-    if (decision.trim().length > 0) return;
-    setDecision(buildAutoDecision(design));
-  }, [decision, design]);
-
-  useEffect(() => {
-    if (negatives.trim().length > 0) return;
-    const risks = buildAutoRisks(issues, isEn);
-    if (risks.length > 0) setNegatives(risks.join('\n'));
-  }, [isEn, issues, negatives]);
+  const effectiveTitle = title.trim().length > 0 ? title : autoTitle;
+  const effectiveContext = context.trim().length > 0 ? context : autoContext;
+  const effectiveDecision = decision.trim().length > 0 ? decision : autoDecision;
+  const effectiveNegatives = negatives.trim().length > 0 ? negatives : autoRisks;
 
   const markdown = useMemo<AdrInput>(
     () => ({
       id,
-      title,
+      title: effectiveTitle,
       status,
       date,
       deciders,
-      context,
+      context: effectiveContext,
       decisionDrivers: linesToList(drivers),
-      decision,
+      decision: effectiveDecision,
       consideredOptions: linesToList(options),
       consequencesPositive: linesToList(positives),
-      consequencesNegative: linesToList(negatives),
+      consequencesNegative: linesToList(effectiveNegatives),
       supersededBy,
       design,
       issues
     }),
     [
-      context,
       date,
       deciders,
-      decision,
       design,
       drivers,
+      effectiveContext,
+      effectiveDecision,
+      effectiveNegatives,
+      effectiveTitle,
       id,
       issues,
-      negatives,
       options,
       positives,
       status,
-      supersededBy,
-      title
+      supersededBy
     ]
   );
 
@@ -204,7 +193,7 @@ export const AdrGeneratorPanel: React.FC<AdrGeneratorPanelProps> = ({
               <label style={labelStyle} htmlFor="adr-title">
                 {isEn ? 'Title' : 'Başlık'}
               </label>
-              <input id="adr-title" style={fieldStyle} value={title} onChange={(event) => setTitle(event.target.value)} />
+              <input id="adr-title" style={fieldStyle} value={effectiveTitle} onChange={(event) => setTitle(event.target.value)} />
             </div>
           </div>
 
@@ -250,7 +239,7 @@ export const AdrGeneratorPanel: React.FC<AdrGeneratorPanelProps> = ({
           <ListField
             id="adr-context"
             label={isEn ? 'Context' : 'Bağlam'}
-            value={context}
+            value={effectiveContext}
             rows={4}
             placeholder={isEn ? 'What forces are at play?' : 'Hangi etkiler devrede?'}
             onChange={setContext}
@@ -275,7 +264,7 @@ export const AdrGeneratorPanel: React.FC<AdrGeneratorPanelProps> = ({
           <ListField
             id="adr-decision"
             label={isEn ? 'Decision' : 'Karar'}
-            value={decision}
+            value={effectiveDecision}
             rows={5}
             onChange={setDecision}
           />
@@ -291,7 +280,7 @@ export const AdrGeneratorPanel: React.FC<AdrGeneratorPanelProps> = ({
           <ListField
             id="adr-negative"
             label={isEn ? 'Negative Consequences / Risks' : 'Olumsuz Sonuçlar / Riskler'}
-            value={negatives}
+            value={effectiveNegatives}
             rows={4}
             onChange={setNegatives}
           />

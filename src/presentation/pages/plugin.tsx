@@ -10,7 +10,7 @@ import { PluginSimulationTab, Extension } from '../components/plugin/PluginSimul
 const PlugInPage: React.FC = () => {
   const { i18n } = useTranslation();
   const isEn = (i18n.resolvedLanguage || i18n.language || 'tr').startsWith('en');
-  const [activeTab, setActiveTab] = useState<'simulation' | 'concept'>('concept');
+  const [activeTab, setActiveTab] = useState<string>('concept');
   
   const [extensions, setExtensions] = useState<Extension[]>([
     { id: 'dark-mode', name: isEn ? 'Dark Contrast Theme' : 'Dark Contrast', description: isEn ? 'Injects high-contrast dark styles.' : 'Injects dark CSS styles.', type: 'ui', active: false },
@@ -138,7 +138,7 @@ const PlugInPage: React.FC = () => {
             ].map((tab) => (
               <button
                 key={tab.id}
-                onClick={() => setActiveTab(tab.id as any)}
+                onClick={() => setActiveTab(tab.id)}
                 style={{
                   padding: '10px 24px',
                   borderRadius: '18px',

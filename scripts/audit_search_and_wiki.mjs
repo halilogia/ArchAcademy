@@ -25,7 +25,7 @@ const transpiledAcronyms = ts.transpileModule(acronymsCode, {
 
 let glossaryCode = fs.readFileSync("src/infrastructure/GlossaryData.ts", "utf8");
 // inline acronyms import to avoid unresolved relative path in data URI
-glossaryCode = glossaryCode.replace(/import\s*\{[^}]+\}\s*from\s*[\x27\"][^\x27\"]+[\x27\"];?/, transpiledAcronyms);
+glossaryCode = glossaryCode.replace(/import\s*\{[^}]+\}\s*from\s*['"][^'"]+['"];?/, transpiledAcronyms);
 
 const transpiledGlossary = ts.transpileModule(glossaryCode, {
   compilerOptions: { module: ts.ModuleKind.ESNext, target: ts.ScriptTarget.ES2022 }

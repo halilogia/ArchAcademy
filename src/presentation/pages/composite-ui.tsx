@@ -1,4 +1,3 @@
-import { useTranslation } from 'react-i18next';
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Grid, Monitor, LayoutDashboard, AppWindow, Share2, Layers, Cpu, ShieldCheck } from 'lucide-react';
@@ -6,8 +5,6 @@ import ArchHero from '../components/ArchHero';
 
 
 const CompositeUIPage = () => {
-  const { i18n } = useTranslation();
-  const isEn = (i18n.resolvedLanguage || i18n.language || 'tr').startsWith('en');
   const illustration = (
     <div style={{ position: 'relative', width: '400px', height: '400px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
       {/* Central Shell */}

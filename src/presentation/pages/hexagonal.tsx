@@ -1,13 +1,10 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { useTranslation } from 'react-i18next';
 import HexagonalHero from '../components/HexagonalHero';
 import HexagonalDiagram from '../components/HexagonalDiagram';
 import HexagonalPractical from '../components/HexagonalPractical';
 
 const HexagonalPage = () => {
-  const { i18n } = useTranslation();
-  const isEn = (i18n.resolvedLanguage || i18n.language || 'tr').startsWith('en');
 
   
 

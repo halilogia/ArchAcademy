@@ -15,8 +15,8 @@ const CleanArchPage: React.FC = () => {
   const isEn = (i18n.resolvedLanguage || i18n.language || 'tr').startsWith('en');
 
   const { completeStep } = useProgress();
-  const [activeTab, setActiveTab] = useState<'clean' | 'scream' | 'layer' | 'feature'>('clean');
-  const scrollToSection = (id: 'clean' | 'scream' | 'layer' | 'feature') => {
+  const [activeTab, setActiveTab] = useState<string>('clean');
+  const scrollToSection = (id: string) => {
     setActiveTab(id);
     const element = document.getElementById(id);
     if (element) {
@@ -30,10 +30,11 @@ const CleanArchPage: React.FC = () => {
       completeStep('/clean-arch');
     }, 2000);
     return () => clearTimeout(timer);
-  }, []);
+  }, [completeStep]);
 
   // Map 4 tabs directly to 4 Hero modes
   const heroMode = activeTab === 'layer' ? 'classic' : activeTab === 'feature' ? 'modern' : activeTab;
+  const heroModeId = heroMode as 'clean' | 'classic' | 'scream' | 'modern' | undefined;
 
   return (
     <>
@@ -51,7 +52,7 @@ const CleanArchPage: React.FC = () => {
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
       >
-        <Hero mode={heroMode}>
+        <Hero mode={heroModeId}>
           <div style={{
             background: 'rgba(15, 23, 42, 0.6)',
             padding: '6px',
@@ -76,7 +77,7 @@ const CleanArchPage: React.FC = () => {
             ].map((tab) => (
               <button
                 key={tab.id}
-                onClick={() => scrollToSection(tab.id as any)}
+                onClick={() => scrollToSection(tab.id)}
                 style={{
                   padding: '10px 20px',
                   borderRadius: '18px',

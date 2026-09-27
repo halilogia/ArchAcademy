@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { ReactElement, ReactNode, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   Sparkles,
@@ -22,7 +22,7 @@ import { calculateScores, getSortedResults, calculateConfidence, Answers } from 
 
 // Presentation Utils - Restore original icon mapping
 const getIcon = (id: string, optionIndex?: number) => {
-  const icons: Record<string, any> = {
+  const icons: Record<string, ReactElement<{ size?: number }>[]> = {
     domain: [<Target />, <Zap />, <Gauge />, <Zap />],
     team: [<Users />, <Users />, <Users />],
     dependency: [<Shield />, <HardDrive />],
@@ -38,7 +38,7 @@ const getIcon = (id: string, optionIndex?: number) => {
   }
 
   // Range questions icons (static for the question)
-  const defaults: Record<string, any> = {
+  const defaults: Record<string, ReactNode> = {
     flexibility: <Zap size={24} />,
     horizon: <Clock size={24} />,
   };
@@ -54,16 +54,16 @@ const ArchitectureWizard: React.FC = () => {
   const handleChoice = (optionIndex: number) => {
     const nextAnswers = { ...answers, [WIZARD_QUESTIONS[step].id]: optionIndex };
     setAnswers(nextAnswers);
-    advance(nextAnswers);
+    advance();
   };
 
   const handleRange = () => {
     const nextAnswers = { ...answers, [WIZARD_QUESTIONS[step].id]: rangeValue };
     setAnswers(nextAnswers);
-    advance(nextAnswers);
+    advance();
   };
 
-  const advance = (currentAnswers: Answers) => {
+  const advance = () => {
     if (step < WIZARD_QUESTIONS.length - 1) {
       setStep(step + 1);
       setRangeValue(5);

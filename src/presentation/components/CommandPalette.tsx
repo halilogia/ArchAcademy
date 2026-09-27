@@ -147,11 +147,13 @@ const CommandPalette = () => {
   }, [handleKeyDown]);
 
   useEffect(() => {
-    if (isOpen) {
-      setTimeout(() => inputRef.current?.focus(), 100);
+    if (!isOpen) return;
+    const timer = setTimeout(() => {
+      inputRef.current?.focus();
       setSelectedIndex(0);
       setQuery('');
-    }
+    }, 100);
+    return () => clearTimeout(timer);
   }, [isOpen]);
 
   const selectItem = (item: SearchItem) => {

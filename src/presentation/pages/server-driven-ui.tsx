@@ -1,4 +1,3 @@
-import { useTranslation } from 'react-i18next';
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Server, Smartphone, CloudLightning, ArrowRight, Layers, FileJson, LayoutTemplate } from 'lucide-react';
@@ -6,8 +5,6 @@ import ArchHero from '../components/ArchHero';
 
 
 const ServerDrivenUIPage = () => {
-  const { i18n } = useTranslation();
-  const isEn = (i18n.resolvedLanguage || i18n.language || 'tr').startsWith('en');
   const [activeStep, setActiveStep] = useState(0);
 
   const steps = [

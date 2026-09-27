@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Palette, Droplets, Type, Layout, Sparkles, BoxSelect } from 'lucide-react';
 

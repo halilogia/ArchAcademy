@@ -1,5 +1,4 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { ReactNode } from 'react';
 import { 
   FolderTree, 
   Files, 
@@ -11,7 +10,14 @@ import {
   CheckCircle2
 } from 'lucide-react';
 
-const FolderNode = ({ name, type, children, color }: any) => (
+interface FolderNodeProps {
+  name: string;
+  type: 'folder' | 'file';
+  color?: string;
+  children?: ReactNode;
+}
+
+const FolderNode = ({ name, type, children, color }: FolderNodeProps) => (
   <div style={{ marginLeft: '20px', borderLeft: `1px solid ${color}40`, paddingLeft: '15px', marginTop: '8px' }}>
     <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: 'white', fontSize: '0.9rem' }}>
       {type === 'folder' ? <FolderTree size={16} color={color} /> : <Files size={16} opacity={0.6} />}

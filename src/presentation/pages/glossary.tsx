@@ -1,5 +1,5 @@
 import { GLOSSARY_TERMS } from "../../infrastructure/GlossaryData";
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import {
@@ -18,23 +18,23 @@ const GlossaryPage: React.FC = () => {
   const isEn = (i18n.resolvedLanguage || i18n.language || 'tr').startsWith('en');
 
   const location = useLocation();
-  const [searchTerm, setSearchTerm] = useState('');
-  const [selectedLetter, setSelectedLetter] = useState('All');
-  const [displayCount, setDisplayCount] = useState(100);
-
-  useEffect(() => {
-    const params = new URLSearchParams(location.search);
-    const search = params.get('search');
-    if (search) {
-      setSearchTerm(decodeURIComponent(search));
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
+  const urlSearch = useMemo(() => {
+    const raw = new URLSearchParams(location.search).get('search');
+    return raw ? decodeURIComponent(raw) : '';
   }, [location.search]);
 
-  // Reset display count when filters change
+  const [typedSearch, setTypedSearch] = useState('');
+  const [selectedLetter, setSelectedLetter] = useState('All');
+
+  const searchTerm = typedSearch || urlSearch;
+  const filterKey = `${searchTerm}|${selectedLetter}`;
+  const [displayState, setDisplayState] = useState({ key: filterKey, count: 100 });
+  const displayCount = displayState.key === filterKey ? displayState.count : 100;
+  const setDisplayCount = (count: number) => setDisplayState({ key: filterKey, count });
+
   useEffect(() => {
-    setDisplayCount(100);
-  }, [searchTerm, selectedLetter]);
+    if (urlSearch) window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [urlSearch]);
 
   const filteredTerms = React.useMemo(() => {
     return GLOSSARY_TERMS.filter(t => {
@@ -102,7 +102,7 @@ const GlossaryPage: React.FC = () => {
                 type="text"
                 placeholder={isEn ? "Search architectural terms... (e.g. Coupling, RAG, Zero Trust)" : "Terimlerde ara... (örn: Coupling, RAG, Zero Trust)"}
                 value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
+                onChange={(e) => setTypedSearch(e.target.value)}
                 style={{
                   background: 'transparent',
                   border: 'none',
@@ -225,7 +225,7 @@ const GlossaryPage: React.FC = () => {
           {filteredTerms.length > displayCount && (
             <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
               <button
-                onClick={() => setDisplayCount(prev => prev + 100)}
+                onClick={() => setDisplayCount(displayCount + 100)}
                 style={{
                   background: 'var(--primary)',
                   color: 'white',

@@ -15,23 +15,24 @@ interface VerticalSlicePageProps {
 const VerticalSlicePage: React.FC<VerticalSlicePageProps> = ({ initialTab = 'features' }) => {
   const { i18n } = useTranslation();
   const isEn = (i18n.resolvedLanguage || i18n.language || 'tr').startsWith('en');
-  const [activeTab, setActiveTab] = useState<'features' | 'compare' | 'vibecoding'>(initialTab);
+  const [activeTab, setActiveTab] = useState<string>(initialTab);
 
-  useEffect(() => {
-    if (initialTab && initialTab !== 'features') {
-      setTimeout(() => {
-        scrollToSection(initialTab);
-      }, 150);
-    }
-  }, [initialTab]);
-
-  const scrollToSection = (id: 'features' | 'compare' | 'vibecoding') => {
+  const scrollToSection = (id: string) => {
     setActiveTab(id);
     const element = document.getElementById(id);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   };
+
+  useEffect(() => {
+    if (!initialTab || initialTab === 'features') return;
+    const timer = setTimeout(() => {
+      setActiveTab(initialTab);
+      document.getElementById(initialTab)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 150);
+    return () => clearTimeout(timer);
+  }, [initialTab]);
 
   return (
     <>
@@ -104,7 +105,7 @@ const VerticalSlicePage: React.FC<VerticalSlicePageProps> = ({ initialTab = 'fea
             ].map((tab) => (
               <button
                 key={tab.id}
-                onClick={() => scrollToSection(tab.id as any)}
+                onClick={() => scrollToSection(tab.id)}
                 style={{
                   padding: '10px 24px',
                   borderRadius: '18px',

@@ -37,7 +37,7 @@ export const EventSourcingSimulationTab: React.FC = () => {
 
   const replayEvents = () => {
     setCurrentState({ items: 0, total: 0 });
-    let tempState = { items: 0, total: 0 };
+    const tempState = { items: 0, total: 0 };
     
     events.forEach((ev, i) => {
       setTimeout(() => {

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { 
   Layers, 
@@ -24,7 +24,6 @@ import {
 
 const Navbar: React.FC = () => {
   const { t, i18n } = useTranslation(['navigation', 'common']);
-  const location = useLocation();
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
 
   const currentLang = i18n.resolvedLanguage || i18n.language || 'tr';
@@ -34,33 +33,6 @@ const Navbar: React.FC = () => {
     const nextLang = isEn ? 'tr' : 'en';
     i18n.changeLanguage(nextLang);
   };
-
-  const architectures = [
-    { name: 'Clean Architecture', path: '/clean-arch', color: 'var(--primary)' },
-    { name: 'Onion Architecture', path: '/onion', color: '#f43f5e' },
-    { name: 'Hexagonal (Ports)', path: '/hexagonal', color: '#10b981' },
-    { name: 'Vertical Slice', path: '/vertical', color: '#f97316' },
-    { name: 'n-Tier (Horizontal)', path: '/horizontal', color: '#3b82f6' },
-    { name: 'FSD (Frontend)', path: '/fsd', color: '#06b6d4' },
-    { name: 'Event-Driven (EDA)', path: '/eda', color: '#a855f7' },
-    { name: 'Microservices vs Monolith', path: '/system', color: '#f43f5e' },
-    { name: 'Microkernel (Plug-in)', path: '/microkernel', color: '#3b82f6' },
-    { name: 'Serverless (FaaS)', path: '/serverless', color: '#ec4899' },
-    { name: 'Space-Based Arch', path: '/space-based', color: '#eab308' },
-    { name: 'Peer-to-Peer (P2P)', path: '/p2p', color: '#10b981' },
-    { name: 'SOA (Service Oriented)', path: '/soa', color: '#3b82f6' },
-    { name: 'Event Sourcing', path: '/event-sourcing', color: '#6366f1' },
-    { name: 'Broker (Kafka Style)', path: '/broker', color: '#fda4af' },
-    { name: 'Orchestration', path: '/orchestration', color: '#8b5cf6' },
-    { name: 'Choreography', path: '/choreography', color: '#7c3aed' },
-    { name: 'Big Data (Lambda/Kappa)', path: '/lambda-kappa', color: '#06b6d4' },
-    { name: 'Pipe-Filter (Pipeline)', path: '/pipe-filter', color: '#8b5cf6' },
-    { name: 'Interpreter Logic', path: '/interpreter', color: '#6366f1' },
-    { name: 'MVC / MVP / MVVM', path: '/mvc', color: '#10b981' },
-    { name: 'ECS (System Design)', path: '/ecs', color: '#059669' },
-    { name: 'Evolutionary Arch', path: '/evolution', color: '#ec4899' },
-    { name: 'Object-Oriented Arch', path: '/object-oriented', color: '#3b82f6' },
-  ];
 
   return (
     <nav style={{

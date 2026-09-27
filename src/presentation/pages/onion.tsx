@@ -1,13 +1,10 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { useTranslation } from 'react-i18next';
 import OnionHero from '../components/OnionHero';
 import OnionDiagram from '../components/OnionDiagram';
 import OnionPractical from '../components/OnionPractical';
 
 const OnionPage = () => {
-  const { i18n } = useTranslation();
-  const isEn = (i18n.resolvedLanguage || i18n.language || 'tr').startsWith('en');
 
   
 

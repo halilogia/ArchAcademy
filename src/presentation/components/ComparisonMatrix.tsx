@@ -3,10 +3,12 @@ import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Star, Zap, Users, Layers, ChevronUp, ChevronDown, Minimize2, Repeat, ShieldCheck, FolderTree } from 'lucide-react';
-import { MATRIX_DATA, MATRIX_SUMMARY_CARDS } from '../../infrastructure/ComparisonMatrixData';
+import { MATRIX_DATA, MATRIX_SUMMARY_CARDS, MatrixRowItem } from '../../infrastructure/ComparisonMatrixData';
+
+type SortableKey = 'name' | 'speed' | 'kiss' | 'dry' | 'maintAndTest' | 'flex' | 'aiLocality' | 'sizeValue';
 
 type SortConfig = {
-  key: string;
+  key: SortableKey;
   direction: 'ascending' | 'descending';
 };
 
@@ -18,9 +20,9 @@ const ComparisonMatrix: React.FC = () => {
   const [sortConfig, setSortConfig] = useState<SortConfig | null>({ key: 'speed', direction: 'descending' });
 
   const sortedData = useMemo(() => {
-    let sortableData = [...MATRIX_DATA];
+    const sortableData = [...MATRIX_DATA];
     if (sortConfig !== null) {
-      sortableData.sort((a: any, b: any) => {
+      sortableData.sort((a: MatrixRowItem, b: MatrixRowItem) => {
         const aValue = a[sortConfig.key];
         const bValue = b[sortConfig.key];
         
@@ -36,7 +38,7 @@ const ComparisonMatrix: React.FC = () => {
     return sortableData;
   }, [sortConfig]);
 
-  const requestSort = (key: string) => {
+  const requestSort = (key: SortableKey) => {
     let direction: 'ascending' | 'descending' = 'descending';
     if (sortConfig && sortConfig.key === key && sortConfig.direction === 'descending') {
       direction = 'ascending';

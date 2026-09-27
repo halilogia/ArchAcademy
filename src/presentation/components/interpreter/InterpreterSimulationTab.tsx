@@ -17,8 +17,8 @@ export const InterpreterSimulationTab: React.FC = () => {
     setVariables({});
 
     const lines = code.split('\n');
-    let currentVars: Record<string, number> = {};
-    let logs: string[] = [];
+    const currentVars: Record<string, number> = {};
+    const logs: string[] = [];
 
     let delay = 0;
     lines.forEach((line, i) => {

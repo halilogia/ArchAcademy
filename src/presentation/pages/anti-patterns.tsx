@@ -1,4 +1,3 @@
-import { useTranslation } from 'react-i18next';
 import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import ArchHero from '../components/ArchHero';
@@ -16,8 +15,6 @@ import {
 } from 'lucide-react';
 
 const AntiPatternsPage = () => {
-  const { i18n } = useTranslation();
-  const isEn = (i18n.resolvedLanguage || i18n.language || 'tr').startsWith('en');
   const { completeStep } = useProgress();
 
   useEffect(() => {
@@ -25,7 +22,7 @@ const AntiPatternsPage = () => {
       completeStep('/anti-patterns');
     }, 2000);
     return () => clearTimeout(timer);
-  }, []);
+  }, [completeStep]);
 
   const antiPatterns = [
     {

@@ -10,36 +10,13 @@ import { MVISimulationTab, UiState } from '../components/mvi/MVISimulationTab';
 const MVIPage: React.FC = () => {
   const { i18n } = useTranslation();
   const isEn = (i18n.resolvedLanguage || i18n.language || 'tr').startsWith('en');
-  const [activeTab, setActiveTab] = useState<'simulation' | 'flow'>('flow');
-  const scrollToSection = (id: 'simulation' | 'flow') => {
+  const [activeTab, setActiveTab] = useState<string>('flow');
+  const scrollToSection = (id: string) => {
     setActiveTab(id);
     const element = document.getElementById(id);
     if (element) {
       element.scrollIntoView({ behavior: "smooth", block: "start" });
     }
-  };
-
-  const [currentState, setCurrentState] = useState<UiState>({ count: 0, loading: false, message: 'Idle' });
-
-  const dispatchIntent = (intent: 'INCREMENT' | 'DECREMENT' | 'RESET') => {
-    processIntent(intent);
-  };
-
-  const processIntent = (intent: string) => {
-    const intermediateState: UiState = { ...currentState, loading: true, message: `Processing ${intent}...` };
-    setCurrentState(intermediateState);
-
-    setTimeout(() => {
-      let finalState: UiState;
-      if (intent === 'INCREMENT') {
-        finalState = { count: currentState.count + 1, loading: false, message: 'Incremented' };
-      } else if (intent === 'DECREMENT') {
-        finalState = { count: currentState.count - 1, loading: false, message: 'Decremented' };
-      } else {
-        finalState = { count: 0, loading: false, message: 'Reset' };
-      }
-      setCurrentState(finalState);
-    }, 1000);
   };
 
   const heroIllustration = (
@@ -150,7 +127,7 @@ const MVIPage: React.FC = () => {
             ].map((tab) => (
               <button
                 key={tab.id}
-                onClick={() => scrollToSection(tab.id as any)}
+                onClick={() => scrollToSection(tab.id)}
                 style={{
                   padding: '10px 24px',
                   borderRadius: '18px',

@@ -10,8 +10,8 @@ import { SpaceBasedSimulationTab, PartitionNode } from '../components/spacebased
 const SpaceBasedPage: React.FC = () => {
   const { i18n } = useTranslation();
   const isEn = (i18n.resolvedLanguage || i18n.language || 'tr').startsWith('en');
-  const [activeTab, setActiveTab] = useState<'simulation' | 'comparison'>('comparison');
-  const scrollToSection = (id: 'simulation' | 'comparison') => {
+  const [activeTab, setActiveTab] = useState<string>('comparison');
+  const scrollToSection = (id: string) => {
     setActiveTab(id);
     const element = document.getElementById(id);
     if (element) {
@@ -19,20 +19,8 @@ const SpaceBasedPage: React.FC = () => {
     }
   };
 
-  const [partitions, setPartitions] = useState<PartitionNode[]>([
-    { id: 1, load: 0, range: 'A-M', color: '#eab308' },
-    { id: 2, load: 0, range: 'N-Z', color: '#f59e0b' }
-  ]);
-  const [dbLoad, setDbLoad] = useState(0);
-
-  const handleLoad = () => {
-    setPartitions(prev => prev.map(p => ({
-      ...p,
-      load: Math.min(100, p.load + Math.floor(Math.random() * 20))
-    })));
-
-    setDbLoad(prev => Math.min(100, prev + 5)); 
-  };
+  const [, setPartitions] = useState<PartitionNode[]>([]);
+  const [, setDbLoad] = useState(0);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -146,7 +134,7 @@ const SpaceBasedPage: React.FC = () => {
             ].map((tab) => (
               <button
                 key={tab.id}
-                onClick={() => scrollToSection(tab.id as any)}
+                onClick={() => scrollToSection(tab.id)}
                 style={{
                   padding: '10px 24px',
                   borderRadius: '18px',

@@ -10,8 +10,8 @@ import { MicrokernelSimulationTab, Plugin } from '../components/microkernel/Micr
 const MicrokernelPage: React.FC = () => {
   const { i18n } = useTranslation();
   const isEn = (i18n.resolvedLanguage || i18n.language || 'tr').startsWith('en');
-  const [activeTab, setActiveTab] = useState<'concept' | 'simulation'>('concept');
-  const scrollToSection = (id: 'concept' | 'simulation') => {
+  const [activeTab, setActiveTab] = useState<string>('concept');
+  const scrollToSection = (id: string) => {
     setActiveTab(id);
     const element = document.getElementById(id);
     if (element) {
@@ -19,18 +19,13 @@ const MicrokernelPage: React.FC = () => {
     }
   };
 
-  const [coreColor, setCoreColor] = useState('#10b981'); 
+  const [coreColor] = useState('#10b981');
 
-  const [plugins, setPlugins] = useState<Plugin[]>([
+  const [plugins] = useState<Plugin[]>([
     { id: 'dark-theme', name: 'Dark Theme', description: isEn ? 'Custom UI Theme Extension' : 'Arayüz temasını dinamik değiştirir', icon: <Settings size={18} />, status: 'available', effect: 'UI Color changed' },
     { id: 'payment', name: 'Stripe Payment', description: isEn ? 'Payment gateway connector' : 'Ödeme alma modülü ekler', icon: <Zap size={18} />, status: 'available', effect: 'Payment Gateway Loaded' },
     { id: 'security', name: 'Auth Module', description: isEn ? 'OAuth2 / MFA Security layer' : 'Gelişmiş güvenlik denetimi', icon: <Shield size={18} />, status: 'available', effect: 'Security Level: High' }
   ]);
-
-  const handleCorePing = () => {
-    setCoreColor('#34d399');
-    setTimeout(() => setCoreColor('#10b981'), 500);
-  };
 
   const heroIllustration = (
     <div style={{ position: 'relative', width: '350px', height: '350px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
@@ -178,7 +173,7 @@ const MicrokernelPage: React.FC = () => {
             ].map((tab) => (
                <button
                 key={tab.id}
-                onClick={() => scrollToSection(tab.id as any)}
+                onClick={() => scrollToSection(tab.id)}
                 style={{
                   padding: '10px 24px',
                   borderRadius: '18px',

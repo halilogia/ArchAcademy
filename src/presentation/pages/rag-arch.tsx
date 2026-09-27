@@ -11,9 +11,9 @@ import { RAGRetrievalSimulationTab } from '../components/ragarch/RAGRetrievalSim
 const RAGArchPage: React.FC = () => {
   const { i18n } = useTranslation();
   const isEn = (i18n.resolvedLanguage || i18n.language || 'tr').startsWith('en');
-  const [activeTab, setActiveTab] = useState<'pipeline' | 'advanced' | 'simulation'>('pipeline');
+  const [activeTab, setActiveTab] = useState<string>('pipeline');
 
-  const scrollToSection = (id: 'pipeline' | 'advanced' | 'simulation') => {
+  const scrollToSection = (id: string) => {
     setActiveTab(id);
     const element = document.getElementById(id);
     if (element) {
@@ -83,7 +83,7 @@ const RAGArchPage: React.FC = () => {
             ].map((tab) => (
               <button
                 key={tab.id}
-                onClick={() => scrollToSection(tab.id as any)}
+                onClick={() => scrollToSection(tab.id)}
                 style={{
                   padding: '10px 24px',
                   borderRadius: '18px',

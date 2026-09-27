@@ -12,7 +12,7 @@ const ScrollToTop = () => {
       setLastVisited(pathname);
       completeStep(pathname);
     }
-  }, [pathname]);
+  }, [pathname, completeStep, setLastVisited]);
 
   return null;
 };

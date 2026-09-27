@@ -23,14 +23,7 @@ const MVVMPage: React.FC = () => {
   const { i18n } = useTranslation();
   const isEn = (i18n.resolvedLanguage || i18n.language || 'tr').startsWith('en');
   const { completeStep } = useProgress();
-  const [activeTab, setActiveTab] = useState<'principles' | 'hybrid' | 'nia'>('principles');
-  const scrollToSection = (id: 'principles' | 'hybrid' | 'nia') => {
-    setActiveTab(id);
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
-  };
+  const [activeTab, setActiveTab] = useState<string>('principles');
 
 
   useEffect(() => {

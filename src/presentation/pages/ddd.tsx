@@ -1,4 +1,3 @@
-import { useTranslation } from 'react-i18next';
 import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import DDDHero from '../components/DDDHero';
@@ -10,8 +9,6 @@ import { useProgress } from '../context/ProgressContext';
 
 
 const DDDPage = () => {
-  const { i18n } = useTranslation();
-  const isEn = (i18n.resolvedLanguage || i18n.language || 'tr').startsWith('en');
   const { completeStep } = useProgress();
 
   useEffect(() => {
@@ -19,7 +16,7 @@ const DDDPage = () => {
       completeStep('/ddd');
     }, 2000);
     return () => clearTimeout(timer);
-  }, []);
+  }, [completeStep]);
 
   return (
     <motion.div

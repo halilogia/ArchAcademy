@@ -12,8 +12,8 @@ const VIPERPage: React.FC = () => {
   const { i18n } = useTranslation();
   const isEn = (i18n.resolvedLanguage || i18n.language || 'tr').startsWith('en');
   const { completeStep } = useProgress();
-  const [activeTab, setActiveTab] = useState<'anatomy' | 'comparison'>('comparison');
-  const scrollToSection = (id: 'anatomy' | 'comparison') => {
+  const [activeTab, setActiveTab] = useState<string>('comparison');
+  const scrollToSection = (id: string) => {
     setActiveTab(id);
     const element = document.getElementById(id);
     if (element) {
@@ -27,7 +27,7 @@ const VIPERPage: React.FC = () => {
       completeStep('/viper');
     }, 2000);
     return () => clearTimeout(timer);
-  }, []);
+  }, [completeStep]);
 
   const heroIllustration = (
     <div style={{ position: 'relative', width: '380px', height: '380px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
@@ -136,7 +136,7 @@ const VIPERPage: React.FC = () => {
             ].map((tab) => (
               <button
                 key={tab.id}
-                onClick={() => scrollToSection(tab.id as any)}
+                onClick={() => scrollToSection(tab.id)}
                 style={{
                   padding: '10px 24px',
                   borderRadius: '18px',

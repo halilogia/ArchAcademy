@@ -1,12 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
-
-export interface LogEvent {
-  id: number;
-  value: number;
-  timestamp: string;
-}
+import { KAPPA_EVENT_LOG } from './kappaEvents';
 
 export const KappaReplaySimTab: React.FC = () => {
   const { i18n } = useTranslation();
@@ -17,12 +12,7 @@ export const KappaReplaySimTab: React.FC = () => {
   const [processingLogic, setProcessingLogic] = useState<'sum' | 'double'>('sum');
   const [kappaResult, setKappaResult] = useState(0);
 
-  const eventLog: LogEvent[] = [
-    { id: 1, value: 10, timestamp: '10:00:01' },
-    { id: 2, value: 20, timestamp: '10:00:05' },
-    { id: 3, value: 5,  timestamp: '10:00:12' },
-    { id: 4, value: 50, timestamp: '10:00:45' }
-  ];
+  const eventLog = KAPPA_EVENT_LOG;
 
   const startKappaReplay = (newLogic: 'sum' | 'double') => {
     if (isReplaying) return;
@@ -42,13 +32,17 @@ export const KappaReplaySimTab: React.FC = () => {
           return prev;
         });
         setProcessingIndex(prev => prev + 1);
-      }, 800); 
+      }, 800);
       return () => clearTimeout(timer);
-    } else if (processingIndex >= eventLog.length) {
-      setIsReplaying(false);
-      setProcessingIndex(-1);
     }
-  }, [isReplaying, processingIndex, processingLogic]);
+    if (processingIndex >= eventLog.length) {
+      const reset = setTimeout(() => {
+        setIsReplaying(false);
+        setProcessingIndex(-1);
+      }, 0);
+      return () => clearTimeout(reset);
+    }
+  }, [isReplaying, processingIndex, processingLogic, eventLog]);
 
   return (
     <motion.div

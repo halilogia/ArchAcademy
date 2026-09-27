@@ -10,8 +10,8 @@ import { ClientServerSimulationTab } from '../components/clientserver/ClientServ
 const ClientServerPage: React.FC = () => {
   const { i18n } = useTranslation();
   const isEn = (i18n.resolvedLanguage || i18n.language || 'tr').startsWith('en');
-  const [activeTab, setActiveTab] = useState<'simulation' | 'comparison'>('comparison');
-  const scrollToSection = (id: 'simulation' | 'comparison') => {
+  const [activeTab, setActiveTab] = useState<string>('comparison');
+  const scrollToSection = (id: string) => {
     setActiveTab(id);
     const element = document.getElementById(id);
     if (element) {
@@ -19,31 +19,7 @@ const ClientServerPage: React.FC = () => {
     }
   };
 
-  const [requestStatus, setRequestStatus] = useState<'IDLE' | 'SENDING' | 'PROCESSING' | 'RECEIVING'>('IDLE');
-  const [serverLoad, setServerLoad] = useState(0);
-
-  const simulateRequest = () => {
-    if (requestStatus !== 'IDLE') return;
-
-    setRequestStatus('SENDING');
-    
-    // Server load spikes
-    setTimeout(() => {
-      setServerLoad(prev => Math.min(100, prev + 20));
-      setRequestStatus('PROCESSING');
-    }, 1000);
-
-    // Response returns
-    setTimeout(() => {
-      setServerLoad(prev => Math.max(0, prev - 20));
-      setRequestStatus('RECEIVING');
-    }, 2500);
-
-    // Idle
-    setTimeout(() => {
-      setRequestStatus('IDLE');
-    }, 3500);
-  };
+  const requestStatus = 'IDLE' as 'IDLE' | 'SENDING' | 'PROCESSING' | 'RECEIVING';
 
   const heroIllustration = (
     <div style={{ position: 'relative', width: '350px', height: '300px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
@@ -175,7 +151,7 @@ const ClientServerPage: React.FC = () => {
             ].map((tab) => (
               <button
                 key={tab.id}
-                onClick={() => scrollToSection(tab.id as any)}
+                onClick={() => scrollToSection(tab.id)}
                 style={{
                   padding: '10px 24px',
                   borderRadius: '18px',

@@ -18,7 +18,7 @@ const RefactoringPage: React.FC = () => {
       completeStep('/refactoring');
     }, 2000);
     return () => clearTimeout(timer);
-  }, []);
+  }, [completeStep]);
 
   const stats = [
     { icon: <Microscope size={20} />, label: isEn ? "Deep Inspection" : "Detaylı Analiz", value: isEn ? "Anti-Pattern Detection" : "Anti-Pattern Tespiti" },

@@ -12,8 +12,8 @@ import { ContainerLifecycleSimulationTab } from '../components/containerization/
 const ContainerizationPage: React.FC = () => {
   const { i18n } = useTranslation();
   const isEn = (i18n.resolvedLanguage || i18n.language || 'tr').startsWith('en');
-  const [activeTab, setActiveTab] = useState<'fundamentals' | 'dockerfile' | 'k8s' | 'simulation'>('fundamentals');
-  const scrollToSection = (id: 'fundamentals' | 'dockerfile' | 'k8s' | 'simulation') => {
+  const [activeTab, setActiveTab] = useState<string>('fundamentals');
+  const scrollToSection = (id: string) => {
     setActiveTab(id);
     const element = document.getElementById(id);
     if (element) {
@@ -85,7 +85,7 @@ const ContainerizationPage: React.FC = () => {
             ].map((tab) => (
               <button
                 key={tab.id}
-                onClick={() => scrollToSection(tab.id as any)}
+                onClick={() => scrollToSection(tab.id)}
                 style={{
                   padding: '10px 24px',
                   borderRadius: '18px',

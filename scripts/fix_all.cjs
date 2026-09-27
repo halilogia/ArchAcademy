@@ -881,4 +881,5 @@ c_mat = c_mat.replace("name: 'Use-Case Driven (BCE)',\n    size: { tr: 'Orta/Bü
 fs.writeFileSync(p_mat, c_mat, 'utf8');
 
 console.log('UseCaseDriven dedicated page and all routes created and linked!');
+console.log('Sequential scroll conversions:', count);
 

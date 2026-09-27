@@ -10,8 +10,8 @@ import { SPAMPASimulationTab } from '../components/spampa/SPAMPASimulationTab';
 const SPAvsMPAPage: React.FC = () => {
   const { i18n } = useTranslation();
   const isEn = (i18n.resolvedLanguage || i18n.language || 'tr').startsWith('en');
-  const [activeTab, setActiveTab] = useState<'simulation' | 'comparison'>('comparison');
-  const scrollToSection = (id: 'simulation' | 'comparison') => {
+  const [activeTab, setActiveTab] = useState<string>('comparison');
+  const scrollToSection = (id: string) => {
     setActiveTab(id);
     const element = document.getElementById(id);
     if (element) {
@@ -135,7 +135,7 @@ const SPAvsMPAPage: React.FC = () => {
             ].map((tab) => (
                <button
                 key={tab.id}
-                onClick={() => scrollToSection(tab.id as any)}
+                onClick={() => scrollToSection(tab.id)}
                 style={{
                   padding: '10px 24px',
                   borderRadius: '18px',

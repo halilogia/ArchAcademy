@@ -10,8 +10,8 @@ import { PipeFilterSimulationTab, DataPacket } from '../components/pipefilter/Pi
 const PipeFilterPage: React.FC = () => {
   const { i18n } = useTranslation();
   const isEn = (i18n.resolvedLanguage || i18n.language || 'tr').startsWith('en');
-  const [activeTab, setActiveTab] = useState<'simulation' | 'concept'>('concept');
-  const scrollToSection = (id: 'simulation' | 'concept') => {
+  const [activeTab, setActiveTab] = useState<string>('concept');
+  const scrollToSection = (id: string) => {
     setActiveTab(id);
     const element = document.getElementById(id);
     if (element) {
@@ -19,29 +19,8 @@ const PipeFilterPage: React.FC = () => {
     }
   };
 
-  const [pipelineActive, setPipelineActive] = useState(false);
-  const [processedPackets, setProcessedPackets] = useState<DataPacket[]>([]);
+  const [pipelineActive] = useState(false);
 
-  const runPipeline = () => {
-    if (pipelineActive) return;
-    setPipelineActive(true);
-    setProcessedPackets([]);
-
-    const text = "hello world";
-    const steps = [
-      { content: text, stage: 'raw' as const },
-      { content: text.toUpperCase(), stage: 'parsed' as const },
-      { content: text.toUpperCase() + " [VALID]", stage: 'validated' as const },
-      { content: btoa(text.toUpperCase() + " [VALID]").substring(0, 10) + "...", stage: 'encrypted' as const }
-    ];
-
-    steps.forEach((step, index) => {
-      setTimeout(() => {
-        setProcessedPackets(prev => [...prev, { id: index, ...step }]);
-        if (index === steps.length - 1) setPipelineActive(false);
-      }, (index + 1) * 1200);
-    });
-  };
 
   const heroIllustration = (
     <div style={{ position: 'relative', width: '350px', height: '300px', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
@@ -156,7 +135,7 @@ const PipeFilterPage: React.FC = () => {
             ].map((tab) => (
               <button
                 key={tab.id}
-                onClick={() => scrollToSection(tab.id as any)}
+                onClick={() => scrollToSection(tab.id)}
                 style={{
                   padding: '10px 24px',
                   borderRadius: '18px',

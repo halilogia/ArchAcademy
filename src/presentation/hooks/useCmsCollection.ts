@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { CmsCollectionName, CmsEnvelope } from '../../domain/entities/CmsEntry';
 import { CmsSource, ContentRepository } from '../../domain/repositories/ContentRepository';
 import { cmsContentRepository } from '../../infrastructure/cms/CmsContentRepository';
@@ -23,33 +23,39 @@ export const useCmsCollection = <T,>(
   const [envelope, setEnvelope] = useState<CmsEnvelope<T> | null>(peeked);
   const [status, setStatus] = useState<CmsStatus>(peeked ? 'ready' : 'loading');
   const [error, setError] = useState<string | null>(null);
-  const mounted = useRef(true);
 
-  useEffect(() => {
-    mounted.current = true;
-    return () => {
-      mounted.current = false;
-    };
+  const applyEnvelope = useCallback((next: CmsEnvelope<T>) => {
+    setEnvelope(next);
+    setError(null);
+    setStatus('ready');
   }, []);
 
   const load = useCallback(async () => {
-    setStatus((prev) => (prev === 'ready' ? prev : 'loading'));
     try {
-      const next = await repository.getCollection<T>(name);
-      if (!mounted.current) return;
-      setEnvelope(next);
-      setError(null);
-      setStatus('ready');
+      applyEnvelope(await repository.getCollection<T>(name));
     } catch (cause) {
-      if (!mounted.current) return;
       setError(cause instanceof Error ? cause.message : 'CMS unavailable');
       setStatus('error');
     }
-  }, [name, repository]);
+  }, [applyEnvelope, name, repository]);
 
   useEffect(() => {
-    if (!envelope) void load();
-  }, [envelope, load]);
+    if (envelope) return;
+    let cancelled = false;
+    repository
+      .getCollection<T>(name)
+      .then((next) => {
+        if (!cancelled) applyEnvelope(next);
+      })
+      .catch((cause: unknown) => {
+        if (cancelled) return;
+        setError(cause instanceof Error ? cause.message : 'CMS unavailable');
+        setStatus('error');
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [applyEnvelope, envelope, name, repository]);
 
   const refresh = useCallback(async () => {
     await repository.refresh(name);

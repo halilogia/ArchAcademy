@@ -9,6 +9,12 @@ import { LeanPrinciplesViewer } from '../components/lean/LeanPrinciplesViewer';
 import { LeanCodeComparison } from '../components/lean/LeanCodeComparison';
 import { LeanMaturityModel } from '../components/lean/LeanMaturityModel';
 
+const WASTE_PARTICLES = [
+  { x: 180, y: -120 },
+  { x: -210, y: 90 },
+  { x: 140, y: 160 },
+  { x: -90, y: -170 }
+];
 const LeanArchitecturePage: React.FC = () => {
   const { i18n } = useTranslation();
   const isEn = (i18n.resolvedLanguage || i18n.language || 'tr').startsWith('en');
@@ -48,12 +54,12 @@ const LeanArchitecturePage: React.FC = () => {
       </motion.div>
 
       {/* Flying Particles (Waste being removed) */}
-      {[1, 2, 3, 4].map(i => (
+      {WASTE_PARTICLES.map((particle, i) => (
          <motion.div
            key={`p-${i}`}
-           animate={{ 
-              x: [0, (Math.random() - 0.5) * 400], 
-              y: [0, (Math.random() - 0.5) * 400], 
+           animate={{
+              x: [0, particle.x],
+              y: [0, particle.y],
               opacity: [1, 0],
               scale: [1, 0]
            }}

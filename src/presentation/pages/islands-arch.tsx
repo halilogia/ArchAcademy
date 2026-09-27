@@ -1,13 +1,11 @@
-import { useTranslation } from 'react-i18next';
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Zap, Anchor, Layers, Smartphone, Layout, ShoppingBag } from 'lucide-react';
 import ArchHero from '../components/ArchHero';
 
 
+const STATIC_ROW_WIDTHS = [72, 84, 66, 91];
 const IslandsArchPage = () => {
-  const { i18n } = useTranslation();
-  const isEn = (i18n.resolvedLanguage || i18n.language || 'tr').startsWith('en');
   const [activeIsland, setActiveIsland] = useState<string | null>(null);
 
   return (
@@ -38,8 +36,8 @@ const IslandsArchPage = () => {
             
             {/* Static Content (Water) */}
             <div style={{ position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column', gap: '10px', padding: '20px', zIndex: 1 }}>
-               {[1,2,3,4].map(i => (
-                 <div key={i} style={{ height: '10px', width: `${60 + Math.random() * 40}%`, background: 'rgba(255,255,255,0.05)', borderRadius: '4px' }} />
+               {STATIC_ROW_WIDTHS.map((width, i) => (
+                 <div key={i} style={{ height: '10px', width: `${width}%`, background: 'rgba(255,255,255,0.05)', borderRadius: '4px' }} />
                ))}
             </div>
 

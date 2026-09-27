@@ -7,14 +7,13 @@ import SEO from '../components/SEO';
 import { useProgress } from '../context/ProgressContext';
 import { CAPConceptTab } from '../components/cap/CAPConceptTab';
 import { CAPSimulationTab } from '../components/cap/CAPSimulationTab';
-import { useCapSimulation } from '../components/cap/useCapSimulation';
 
 const CAPTheoremPage: React.FC = () => {
   const { i18n } = useTranslation();
   const isEn = (i18n.resolvedLanguage || i18n.language || 'tr').startsWith('en');
   const { completeStep } = useProgress();
-  const [activeTab, setActiveTab] = useState<'simulation' | 'concept'>('concept');
-  const scrollToSection = (id: 'simulation' | 'concept') => {
+  const [activeTab, setActiveTab] = useState<string>('concept');
+  const scrollToSection = (id: string) => {
     setActiveTab(id);
     const element = document.getElementById(id);
     if (element) {
@@ -23,14 +22,12 @@ const CAPTheoremPage: React.FC = () => {
   };
 
   
-  const simulation = useCapSimulation();
-
   useEffect(() => {
     const timer = setTimeout(() => {
       completeStep('/cap-theorem');
     }, 2000);
     return () => clearTimeout(timer);
-  }, []);
+  }, [completeStep]);
 
   const heroIllustration = (
     <div style={{ position: 'relative', width: '350px', height: '350px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
@@ -121,7 +118,7 @@ const CAPTheoremPage: React.FC = () => {
             ].map((tab) => (
               <button
                 key={tab.id}
-                onClick={() => scrollToSection(tab.id as any)}
+                onClick={() => scrollToSection(tab.id)}
                 style={{
                   padding: '10px 24px',
                   borderRadius: '18px',

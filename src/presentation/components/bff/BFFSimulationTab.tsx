@@ -8,7 +8,7 @@ export const BFFSimulationTab: React.FC = () => {
   const isEn = (i18n.resolvedLanguage || i18n.language || 'tr').startsWith('en');
 
   const [requestType, setRequestType] = useState<'mobile' | 'web' | null>(null);
-  const [response, setResponse] = useState<any>(null);
+  const [response, setResponse] = useState<Record<string, unknown> | null>(null);
   const [loading, setLoading] = useState(false);
 
   const fetchData = (type: 'mobile' | 'web') => {
@@ -133,7 +133,7 @@ export const BFFSimulationTab: React.FC = () => {
                 background: requestType === 'mobile' ? '#10b981' : '#f43f5e', 
                 color: 'white', padding: '2px 8px', borderRadius: '4px', fontSize: '0.8rem', fontWeight: 800 
               }}>
-                SIZE: {response.size}
+                SIZE: {String(response.size ?? '')}
               </div>
             </div>
             <pre style={{ color: '#cbd5e1', fontFamily: 'monospace', fontSize: '0.9rem', lineHeight: 1.5 }}>

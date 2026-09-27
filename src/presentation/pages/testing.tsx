@@ -7,13 +7,12 @@ import SEO from '../components/SEO';
 import { TestPyramidTab } from '../components/testing/TestPyramidTab';
 import { TDDLifecycleTab } from '../components/testing/TDDLifecycleTab';
 import { TestingStrategiesTab } from '../components/testing/TestingStrategiesTab';
-import { useTDDSimulation } from '../components/testing/useTDDSimulation';
 
 const TestingPage: React.FC = () => {
   const { i18n } = useTranslation();
   const isEn = (i18n.resolvedLanguage || i18n.language || 'tr').startsWith('en');
-  const [activeTab, setActiveTab] = useState<'pyramid' | 'tdd' | 'strategies'>('pyramid');
-  const scrollToSection = (id: 'pyramid' | 'tdd' | 'strategies') => {
+  const [activeTab, setActiveTab] = useState<string>('pyramid');
+  const scrollToSection = (id: string) => {
     setActiveTab(id);
     const element = document.getElementById(id);
     if (element) {
@@ -21,8 +20,6 @@ const TestingPage: React.FC = () => {
     }
   };
 
-
-  const tdd = useTDDSimulation();
 
   return (
     <>
@@ -80,7 +77,7 @@ const TestingPage: React.FC = () => {
             ].map((tab) => (
               <button
                 key={tab.id}
-                onClick={() => scrollToSection(tab.id as any)}
+                onClick={() => scrollToSection(tab.id)}
                 style={{
                   padding: '10px 24px',
                   borderRadius: '18px',

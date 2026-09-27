@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
+import type { LucideIcon } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { 
   ShieldCheck, 
@@ -10,7 +11,14 @@ import {
   ExternalLink
 } from 'lucide-react';
 
-const PrincipleCard = ({ icon: Icon, title, desc, color }: any) => (
+interface PrincipleCardProps {
+  icon: LucideIcon;
+  title: string;
+  desc: string;
+  color: string;
+}
+
+const PrincipleCard = ({ icon: Icon, title, desc, color }: PrincipleCardProps) => (
   <motion.div 
     whileHover={{ y: -5 }}
     className="glass-card"

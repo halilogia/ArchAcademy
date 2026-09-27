@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
+import type { LucideIcon } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { 
   Puzzle, 
@@ -11,7 +12,15 @@ import {
   Users 
 } from 'lucide-react';
 
-const ConceptBlock = ({ number, title, children, icon: Icon, color }: any) => (
+interface ConceptBlockProps {
+  number: string;
+  title: string;
+  icon: LucideIcon;
+  color: string;
+  children?: ReactNode;
+}
+
+const ConceptBlock = ({ number, title, children, icon: Icon, color }: ConceptBlockProps) => (
   <motion.div
     initial={{ opacity: 0, y: 20 }}
     whileInView={{ opacity: 1, y: 0 }}

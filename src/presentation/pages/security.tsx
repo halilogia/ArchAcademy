@@ -7,13 +7,12 @@ import SEO from '../components/SEO';
 import { AppSecOWASPTab } from '../components/security/AppSecOWASPTab';
 import { ZeroTrustNISTTab } from '../components/security/ZeroTrustNISTTab';
 import { SecurityDefenseSimulationTab } from '../components/security/SecurityDefenseSimulationTab';
-import { useSecuritySimulation } from '../components/security/useSecuritySimulation';
 
 const SecurityPage: React.FC = () => {
   const { i18n } = useTranslation();
   const isEn = (i18n.resolvedLanguage || i18n.language || 'tr').startsWith('en');
-  const [activeTab, setActiveTab] = useState<'appsec' | 'zerotrust' | 'defense'>('appsec');
-  const scrollToSection = (id: 'appsec' | 'zerotrust' | 'defense') => {
+  const [activeTab, setActiveTab] = useState<string>('appsec');
+  const scrollToSection = (id: string) => {
     setActiveTab(id);
     const element = document.getElementById(id);
     if (element) {
@@ -21,8 +20,6 @@ const SecurityPage: React.FC = () => {
     }
   };
 
-
-  const security = useSecuritySimulation();
 
   return (
     <>
@@ -90,7 +87,7 @@ const SecurityPage: React.FC = () => {
             ].map((tab) => (
               <button
                 key={tab.id}
-                onClick={() => scrollToSection(tab.id as any)}
+                onClick={() => scrollToSection(tab.id)}
                 style={{
                   padding: '10px 24px',
                   borderRadius: '18px',

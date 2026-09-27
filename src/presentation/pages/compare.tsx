@@ -12,7 +12,7 @@ const ComparisonPage = () => {
       completeStep('/compare');
     }, 2000);
     return () => clearTimeout(timer);
-  }, []);
+  }, [completeStep]);
 
   return (
     <motion.div

@@ -15,7 +15,7 @@ const SOLIDPage = () => {
       completeStep('/solid');
     }, 2000);
     return () => clearTimeout(timer);
-  }, []);
+  }, [completeStep]);
 
   const principles = [
     { 

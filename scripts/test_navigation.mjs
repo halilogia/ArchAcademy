@@ -1,5 +1,4 @@
 import fs from "fs";
-import path from "path";
 
 const navbarFile = "src/presentation/components/Navbar.tsx";
 const navbarContent = fs.readFileSync(navbarFile, "utf8");

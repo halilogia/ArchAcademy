@@ -1,4 +1,3 @@
-import { useTranslation } from 'react-i18next';
 import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Palette, Box, Type, Move, Zap, Shield, Sparkles } from 'lucide-react';
@@ -7,8 +6,6 @@ import { useProgress } from '../context/ProgressContext';
 
 
 const DesignTokensPage = () => {
-  const { i18n } = useTranslation();
-  const isEn = (i18n.resolvedLanguage || i18n.language || 'tr').startsWith('en');
   const { completeStep } = useProgress();
 
   useEffect(() => {
@@ -16,7 +13,7 @@ const DesignTokensPage = () => {
       completeStep('/design-tokens');
     }, 2000);
     return () => clearTimeout(timer);
-  }, []);
+  }, [completeStep]);
 
   const tokens = {
     colors: [

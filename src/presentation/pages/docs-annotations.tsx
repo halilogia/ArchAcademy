@@ -12,8 +12,8 @@ import { ADRBuilderSimulationTab } from '../components/docsannotations/ADRBuilde
 const DocsAnnotationsPage: React.FC = () => {
   const { i18n } = useTranslation();
   const isEn = (i18n.resolvedLanguage || i18n.language || 'tr').startsWith('en');
-  const [activeTab, setActiveTab] = useState<'adr' | 'c4' | 'diagrams' | 'simulation'>('adr');
-  const scrollToSection = (id: 'adr' | 'c4' | 'diagrams' | 'simulation') => {
+  const [activeTab, setActiveTab] = useState<string>('adr');
+  const scrollToSection = (id: string) => {
     setActiveTab(id);
     const element = document.getElementById(id);
     if (element) {
@@ -85,7 +85,7 @@ const DocsAnnotationsPage: React.FC = () => {
             ].map((tab) => (
               <button
                 key={tab.id}
-                onClick={() => scrollToSection(tab.id as any)}
+                onClick={() => scrollToSection(tab.id)}
                 style={{
                   padding: '10px 24px',
                   borderRadius: '18px',

@@ -65,7 +65,7 @@ export const useProgressStore = create<ProgressStore>((set, get) => {
     pushInFlight = (async () => {
       try {
         const authoritative = await progressRepository.save(progress);
-        set((state) => ({
+        set(() => ({
           progress: authoritative,
           pendingWrites: 0,
           status: 'synced',

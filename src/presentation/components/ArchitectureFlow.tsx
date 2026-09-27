@@ -1,8 +1,16 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { motion } from 'framer-motion';
 import { MousePointer2, Cpu, Database, Server, Zap, ShieldCheck, Link, Settings } from 'lucide-react';
 
-const FlowBox = ({ title, color, children, subTitle, isInterface = false }: any) => (
+interface FlowBoxProps {
+  title: string;
+  color: string;
+  subTitle?: string;
+  isInterface?: boolean;
+  children?: ReactNode;
+}
+
+const FlowBox = ({ title, color, children, subTitle, isInterface = false }: FlowBoxProps) => (
   <div style={{
     background: 'rgba(255, 255, 255, 0.02)',
     backdropFilter: 'blur(10px)',
@@ -45,7 +53,16 @@ const FlowBox = ({ title, color, children, subTitle, isInterface = false }: any)
   </div>
 );
 
-const AnimatedLine = ({ direction = 'right', color = '#fff', label, bidirectional = true, duration = 3, offset = 0 }: any) => (
+interface AnimatedLineProps {
+  direction?: 'right' | 'left' | 'up' | 'down';
+  color?: string;
+  label?: string;
+  bidirectional?: boolean;
+  duration?: number;
+  offset?: number;
+}
+
+const AnimatedLine = ({ direction = 'right', color = '#fff', label, bidirectional = true, duration = 3, offset = 0 }: AnimatedLineProps) => (
   <div style={{ 
     display: 'flex', 
     flexDirection: 'column', 

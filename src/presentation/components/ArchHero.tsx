@@ -14,7 +14,7 @@ interface ArchHeroProps {
   hideAction?: boolean;
 }
 
-const ArchHero: React.FC<ArchHeroProps> = ({ title, subtitle, description, badge, color, illustration, features, children, hideAction }) => {
+const ArchHero: React.FC<ArchHeroProps> = ({ title, subtitle, description, badge, color, illustration, features, children }) => {
   return (
     <section style={{ padding: '120px 0 80px', position: 'relative', overflow: 'hidden' }}>
       <div style={{ position: 'absolute', top: '0', left: '0', width: '100%', height: '100%', background: `radial-gradient(circle at 20% 30%, ${color}11, transparent 70%)`, zIndex: -1 }} />

@@ -7,7 +7,7 @@ export const AbstractionPaymentSimulationTab: React.FC = () => {
   const { i18n } = useTranslation();
   const isEn = (i18n.resolvedLanguage || i18n.language || 'tr').startsWith('en');
 
-  const [selectedProvider, setSelectedProvider] = useState<'stripe' | 'paypal' | 'crypto'>('stripe');
+  const [selectedProvider, setSelectedProvider] = useState<string>('stripe');
   const [log, setLog] = useState<string[]>([]);
   const [isProcessing, setIsProcessing] = useState(false);
 
@@ -16,7 +16,7 @@ export const AbstractionPaymentSimulationTab: React.FC = () => {
     setLog([]);
     
     setTimeout(() => {
-      let processingLog = [];
+      const processingLog = [];
       if (selectedProvider === 'stripe') {
         processingLog.push("Connecting to Stripe API v2...");
         processingLog.push("Validating Card Token...");
@@ -66,7 +66,7 @@ export const AbstractionPaymentSimulationTab: React.FC = () => {
               {providers.map((p) => (
                 <div 
                   key={p.id}
-                  onClick={() => setSelectedProvider(p.id as any)}
+                  onClick={() => setSelectedProvider(p.id)}
                   style={{ 
                     padding: '12px', 
                     borderRadius: '8px', 

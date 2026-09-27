@@ -1,5 +1,4 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 import { Layers, Combine, ArrowRight } from 'lucide-react';
 
 const VerticalComparison = () => {

@@ -12,8 +12,8 @@ import { ComponentLifecycleSimulationTab } from '../components/componentdriven/C
 const ComponentDrivenPage: React.FC = () => {
   const { i18n } = useTranslation();
   const isEn = (i18n.resolvedLanguage || i18n.language || 'tr').startsWith('en');
-  const [activeTab, setActiveTab] = useState<'atomic' | 'statemachine' | 'reactive' | 'simulation'>('atomic');
-  const scrollToSection = (id: 'atomic' | 'statemachine' | 'reactive' | 'simulation') => {
+  const [activeTab, setActiveTab] = useState<string>('atomic');
+  const scrollToSection = (id: string) => {
     setActiveTab(id);
     const element = document.getElementById(id);
     if (element) {
@@ -86,7 +86,7 @@ const ComponentDrivenPage: React.FC = () => {
             ].map((tab) => (
               <button
                 key={tab.id}
-                onClick={() => scrollToSection(tab.id as any)}
+                onClick={() => scrollToSection(tab.id)}
                 style={{
                   padding: '10px 24px',
                   borderRadius: '18px',

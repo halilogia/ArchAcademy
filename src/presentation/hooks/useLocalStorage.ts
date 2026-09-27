@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 // T: Saklanacak verinin tipi (string, number, object array...)
 function useLocalStorage<T>(key: string, initialValue: T): [T, (value: T) => void] {

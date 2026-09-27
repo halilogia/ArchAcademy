@@ -74,7 +74,6 @@ export const analyzeTopology = (design: Pick<SandboxDesign, 'nodes' | 'edges'>):
   const apis = [...byKind('service'), ...byKind('container'), ...byKind('function')];
   const databases = [...byKind('db'), ...byKind('objectStore'), ...byKind('search')];
   const queues = byKind('queue');
-  const workers = byKind('worker');
   const caches = byKind('cache');
 
   if (apis.length >= 2 && loadBalancers.length === 0) {

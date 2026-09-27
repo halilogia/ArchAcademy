@@ -1,13 +1,17 @@
-import { useTranslation } from 'react-i18next';
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Database, Search, Cpu, Zap, Share2, Box, Layers, MousePointer2, GitMerge } from 'lucide-react';
 import ArchHero from '../components/ArchHero';
 
 
+const VECTOR_POINTS = [
+  { top: '12%', left: '38%' }, { top: '24%', left: '72%' }, { top: '35%', left: '18%' },
+  { top: '47%', left: '58%' }, { top: '55%', left: '84%' }, { top: '63%', left: '28%' },
+  { top: '71%', left: '66%' }, { top: '78%', left: '46%' }, { top: '85%', left: '12%' },
+  { top: '19%', left: '90%' }, { top: '41%', left: '8%' }, { top: '59%', left: '76%' },
+  { top: '88%', left: '56%' }, { top: '6%', left: '24%' }, { top: '95%', left: '34%' }
+];
 const VectorDBPage: React.FC = () => {
-  const { i18n } = useTranslation();
-  const isEn = (i18n.resolvedLanguage || i18n.language || 'tr').startsWith('en');
   return (
     <div style={{ minHeight: '100vh', background: '#020617', color: 'white' }}>
       <ArchHero 
@@ -24,13 +28,13 @@ const VectorDBPage: React.FC = () => {
               transition={{ repeat: Infinity, duration: 20, ease: 'linear' }}
               style={{ position: 'absolute', inset: 0, border: '1px solid #3b82f633', borderRadius: '50%', transformStyle: 'preserve-3d' }}
             >
-              {[...Array(15)].map((_, i) => (
+              {VECTOR_POINTS.map((point, i) => (
                 <motion.div
                   key={i}
                   style={{
                     position: 'absolute',
-                    top: `${Math.random() * 100}%`,
-                    left: `${Math.random() * 100}%`,
+                    top: point.top,
+                    left: point.left,
                     width: '6px',
                     height: '6px',
                     background: '#3b82f6',

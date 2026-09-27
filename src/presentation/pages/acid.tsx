@@ -13,8 +13,8 @@ const ACIDPage: React.FC = () => {
   const { i18n } = useTranslation();
   const isEn = (i18n.resolvedLanguage || i18n.language || 'tr').startsWith('en');
   const { completeStep } = useProgress();
-  const [activeTab, setActiveTab] = useState<'simulation' | 'concept'>('concept');
-  const scrollToSection = (id: 'simulation' | 'concept') => {
+  const [activeTab, setActiveTab] = useState<string>('concept');
+  const scrollToSection = (id: string) => {
     setActiveTab(id);
     const element = document.getElementById(id);
     if (element) {
@@ -30,7 +30,7 @@ const ACIDPage: React.FC = () => {
       completeStep('/acid');
     }, 2000);
     return () => clearTimeout(timer);
-  }, []);
+  }, [completeStep]);
 
   const heroIllustration = (
     <div style={{ position: 'relative', width: '350px', height: '350px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
@@ -112,7 +112,7 @@ const ACIDPage: React.FC = () => {
             ].map((tab) => (
               <button
                 key={tab.id}
-                onClick={() => scrollToSection(tab.id as any)}
+                onClick={() => scrollToSection(tab.id)}
                 style={{
                   padding: '10px 24px',
                   borderRadius: '18px',

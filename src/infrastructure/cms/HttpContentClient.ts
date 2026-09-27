@@ -14,14 +14,14 @@ export interface HttpContentClient {
 const buildUrl = (endpoint: string, name: CmsCollectionName): string =>
   `${endpoint.replace(/\/+$/, '')}/collections/${encodeURIComponent(name)}`;
 
-const isEnvelope = <T>(value: unknown, name: CmsCollectionName): value is CmsEnvelope<T> => {
+const isEnvelope = <T>(value: unknown): value is CmsEnvelope<T> => {
   if (typeof value !== 'object' || value === null) return false;
   const candidate = value as Partial<CmsEnvelope<T>>;
   return Array.isArray(candidate.items) && typeof candidate.version === 'string';
 };
 
 const normalize = <T>(payload: unknown, name: CmsCollectionName): CmsEnvelope<T> => {
-  if (isEnvelope<T>(payload, name)) {
+  if (isEnvelope<T>(payload)) {
     return {
       collection: payload.collection ?? name,
       version: payload.version,

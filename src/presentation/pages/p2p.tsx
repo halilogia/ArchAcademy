@@ -10,14 +10,7 @@ import { P2PSimulationTab } from '../components/p2p/P2PSimulationTab';
 const P2PPage: React.FC = () => {
   const { i18n } = useTranslation();
   const isEn = (i18n.resolvedLanguage || i18n.language || 'tr').startsWith('en');
-  const [activeTab, setActiveTab] = useState<'comparison' | 'simulation'>('comparison');
-  const scrollToSection = (id: 'comparison' | 'simulation') => {
-    setActiveTab(id);
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
-  };
+  const [activeTab, setActiveTab] = useState<string>('comparison');
 
 
   const heroIllustration = (

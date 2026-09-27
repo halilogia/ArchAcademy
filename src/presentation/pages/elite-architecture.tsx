@@ -14,8 +14,8 @@ const EliteArchitecturePage: React.FC = () => {
   const { i18n } = useTranslation();
   const isEn = (i18n.resolvedLanguage || i18n.language || 'tr').startsWith('en');
   const { completeStep } = useProgress();
-  const [activeTab, setActiveTab] = useState<'overview' | 'layers' | 'patterns' | 'elite'>('overview');
-  const scrollToSection = (id: 'overview' | 'layers' | 'patterns' | 'elite') => {
+  const [activeTab, setActiveTab] = useState<string>('overview');
+  const scrollToSection = (id: string) => {
     setActiveTab(id);
     const element = document.getElementById(id);
     if (element) {
@@ -29,7 +29,7 @@ const EliteArchitecturePage: React.FC = () => {
       completeStep('/elite-architecture');
     }, 2000);
     return () => clearTimeout(timer);
-  }, []);
+  }, [completeStep]);
 
   return (
     <>
@@ -102,7 +102,7 @@ const EliteArchitecturePage: React.FC = () => {
               ].map((tab) => (
                 <button
                   key={tab.id}
-                  onClick={() => scrollToSection(tab.id as any)}
+                  onClick={() => scrollToSection(tab.id)}
                   style={{
                     padding: '12px 24px',
                     borderRadius: '18px',
