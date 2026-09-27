@@ -2,18 +2,7 @@
 
 Forward-looking plan for ArchAcademy. Shipped work is recorded in [CHANGELOG.md](./CHANGELOG.md), not here.
 
-Current release: **v1.1.0** · Current phase: **Phase 2 → Phase 3**
-
----
-
-## ✅ Recently completed
-
-The P0 blockers are all closed (see [CHANGELOG.md](./CHANGELOG.md) for the detail):
-
-- **P0.1 ESLint pipeline** — TypeScript parsing registered, all 139 violations cleared, `npm run lint` exits 0. Along the way it exposed a temporal dead zone in `vertical.tsx`, render-time `Math.random` in three pages and stale-tab syncing bugs.
-- **P0.2 GitHub Pages SPA routing** — env-driven `base`, router basename, generated `404.html` fallback, service worker navigation fallback, and a CI guard that fails the build if the fallback goes missing.
-- **P0.3 Reference sync backend** — `server/progressSyncServer.mjs` plus 17 conformance tests that drive the real client repositories against it. Two contract bugs were found and fixed.
-- **P0.4 Content migration** — all remaining data modules now live behind the CMS port. The glossary page chunk went from 198 KB to 6.8 KB.
+Current release: **v1.1.1** · Current phase: **Phase 2 → Phase 3**
 
 ---
 
@@ -35,7 +24,7 @@ The P0 blockers are all closed (see [CHANGELOG.md](./CHANGELOG.md) for the detai
 
 ## ⚙️ P3 — Performance & quality
 
-- [ ] Split the 555 KB entry chunk with `manualChunks` and route-level splitting (FINDING-009). Measured after P0.4: the entry is vendor-dominated (React, Framer Motion, Router, i18next, Fuse, Lucide).
+- [ ] Split the 555 KB entry chunk with `manualChunks` and route-level splitting (FINDING-009). Measured after the content migration: the entry is vendor-dominated (React, Framer Motion, Router, i18next, Fuse, Lucide), not content.
 - [ ] Move Google Fonts off the render-blocking `@import` in `index.css` to `preconnect` + `<link>` (FINDING-005).
 - [ ] Respect `prefers-reduced-motion` on infinite Framer Motion loops (FINDING-006).
 - [ ] Debounce and cap command palette search results (FINDING-002).
@@ -48,4 +37,4 @@ The P0 blockers are all closed (see [CHANGELOG.md](./CHANGELOG.md) for the detai
 - [ ] Versioned ADR template in `docs/` used by the generator and by contributors.
 - [ ] ADR linting in CI (markdownlint + MADR section conformance).
 - [ ] Add the `cms:check` drift guard and the sync conformance suite to the CI pipeline, not just `npm run verify`.
-- [ ] Keep `IMPROVEMENTS.md` and `OPTIMIZATIONS.md` historical; annotate resolved findings there instead of rewriting the reports.
+- [ ] Link the still-open findings in `OPTIMIZATIONS.md` to their roadmap target so the audit and the plan stay in sync.
