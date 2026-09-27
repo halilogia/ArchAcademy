@@ -47,7 +47,6 @@ desktop.ini
 
 docs/
 archive/
-brain/
 Universal-Docs/
 Universal-Docs
 
@@ -81,3 +80,6 @@ Universal-Docs
 
 
 archives/
+
+# Agent Internal Brain & Scratch
+brain/
