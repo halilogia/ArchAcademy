@@ -59,7 +59,11 @@ export class CloudProgressRepository {
       body: JSON.stringify(payload)
     });
 
-    if (!response.ok) throw new Error(`sync push failed with ${response.status}`);
+    // 409 means the server rejected a stale write and returned the authoritative
+    // document, so it is a successful round trip rather than a transport failure.
+    if (!response.ok && response.status !== 409) {
+      throw new Error(`sync push failed with ${response.status}`);
+    }
 
     const merged = (await response.json().catch(() => null)) as Partial<ProgressEnvelope> | null;
     return merged?.progress ? normalizeProgress(merged.progress) : state;

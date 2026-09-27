@@ -50,6 +50,15 @@ const mergeDesigns = (local: SandboxDesign[], remote: SandboxDesign[]): SandboxD
   return [...byId.values()].sort((a, b) => a.id.localeCompare(b.id));
 };
 
+const signature = (state: ProgressState): string =>
+  JSON.stringify([
+    state.completedSteps,
+    state.lastVisited,
+    state.quizResult ?? null,
+    state.quizAttempts,
+    state.designs
+  ]);
+
 export const mergeProgress = (local: ProgressState, remote: ProgressState): ProgressState => {
   const localIsNewer = timeOf(local.updatedAt) >= timeOf(remote.updatedAt);
   const completedSteps = unionSteps(local.completedSteps, remote.completedSteps);
@@ -71,14 +80,7 @@ export const mergeProgress = (local: ProgressState, remote: ProgressState): Prog
     revision: local.revision
   };
 
-  const identicalToLocal =
-    merged.completedSteps.length === local.completedSteps.length &&
-    merged.lastVisited === local.lastVisited &&
-    merged.quizAttempts.length === local.quizAttempts.length &&
-    merged.designs.length === local.designs.length &&
-    merged.updatedAt === local.updatedAt;
-
-  if (identicalToLocal) return local;
+  if (signature(merged) === signature(local)) return local;
 
   return { ...merged, revision: Math.max(local.revision, remote.revision) + 1 };
 };

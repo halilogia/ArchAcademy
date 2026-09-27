@@ -83,3 +83,6 @@ archives/
 
 # Agent Internal Brain & Scratch
 brain/
+
+# Reference sync server runtime data
+server/data/
