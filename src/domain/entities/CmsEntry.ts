@@ -1,9 +1,12 @@
 export type CmsCollectionName =
   | 'search-index'
   | 'acronyms'
+  | 'acronym-categories'
   | 'glossary'
   | 'comparison-matrix'
-  | 'architecture'
+  | 'comparison-matrix-cards'
+  | 'architecture-questions'
+  | 'architectures'
   | 'project-graph';
 
 export interface CmsEnvelope<T> {

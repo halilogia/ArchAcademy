@@ -6,10 +6,12 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "npm run scan && vite build && node scripts/emit_spa_fallback.mjs",
+    "build": "npm run scan && npm run cms:export && vite build && node scripts/emit_spa_fallback.mjs",
     "preview": "vite preview",
     "scan": "node scripts/generate_graph.mjs",
     "docs:audit": "node scripts/audit_search_and_wiki.mjs",
+    "cms:export": "node scripts/export_cms_collections.mjs",
+    "cms:check": "node scripts/export_cms_collections.mjs check",
     "sync:serve": "node server/progressSyncServer.mjs",
     "verify": "npm run check && npm run lint && npm run test:run && npm run docs:audit",
     "check": "tsc --noEmit",

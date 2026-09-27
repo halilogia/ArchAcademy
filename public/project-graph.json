@@ -19,10 +19,22 @@
       "size": 5463
     },
     {
+      "id": "domain/entities/ArchitectureProfile.ts",
+      "label": "ArchitectureProfile.ts",
+      "category": "Domain",
+      "size": 615
+    },
+    {
       "id": "domain/entities/CmsEntry.ts",
       "label": "CmsEntry.ts",
       "category": "Domain",
-      "size": 697
+      "size": 782
+    },
+    {
+      "id": "domain/entities/ContentTypes.ts",
+      "label": "ContentTypes.ts",
+      "category": "Domain",
+      "size": 771
     },
     {
       "id": "domain/entities/Progress.ts",
@@ -58,13 +70,13 @@
       "id": "domain/usecases/ArchitectureCalculator.ts",
       "label": "ArchitectureCalculator.ts",
       "category": "Domain",
-      "size": 2417
+      "size": 2453
     },
     {
       "id": "domain/usecases/ProgressMerger.ts",
       "label": "ProgressMerger.ts",
       "category": "Domain",
-      "size": 4436
+      "size": 4353
     },
     {
       "id": "domain/usecases/QuizScorer.ts",
@@ -94,19 +106,19 @@
       "id": "infrastructure/AcronymsData.ts",
       "label": "AcronymsData.ts",
       "category": "Infra",
-      "size": 28395
+      "size": 28007
     },
     {
       "id": "infrastructure/ArchitectureData.ts",
       "label": "ArchitectureData.ts",
       "category": "Infra",
-      "size": 6892
+      "size": 6765
     },
     {
       "id": "infrastructure/cms/CmsContentRepository.ts",
       "label": "CmsContentRepository.ts",
       "category": "Infra",
-      "size": 3528
+      "size": 5474
     },
     {
       "id": "infrastructure/cms/HttpContentClient.ts",
@@ -148,7 +160,7 @@
       "id": "infrastructure/repositories/CloudProgressRepository.ts",
       "label": "CloudProgressRepository.ts",
       "category": "Infra",
-      "size": 4107
+      "size": 4313
     },
     {
       "id": "infrastructure/repositories/LocalProgressCache.ts",
@@ -280,7 +292,7 @@
       "id": "presentation/components/ArchitectureWizard.tsx",
       "label": "ArchitectureWizard.tsx",
       "category": "Component",
-      "size": 11312
+      "size": 12630
     },
     {
       "id": "presentation/components/ArchReferences.tsx",
@@ -415,6 +427,12 @@
       "size": 5111
     },
     {
+      "id": "presentation/components/cms/ContentLoading.tsx",
+      "label": "ContentLoading.tsx",
+      "category": "Component",
+      "size": 2333
+    },
+    {
       "id": "presentation/components/CommandPalette.tsx",
       "label": "CommandPalette.tsx",
       "category": "Component",
@@ -424,7 +442,7 @@
       "id": "presentation/components/ComparisonMatrix.tsx",
       "label": "ComparisonMatrix.tsx",
       "category": "Component",
-      "size": 11730
+      "size": 12691
     },
     {
       "id": "presentation/components/componentdriven/ComponentAtomicDesignTab.tsx",
@@ -1564,7 +1582,7 @@
       "id": "presentation/pages/acronyms.tsx",
       "label": "acronyms.tsx",
       "category": "Page",
-      "size": 15694
+      "size": 17027
     },
     {
       "id": "presentation/pages/adr-generator.tsx",
@@ -1780,7 +1798,7 @@
       "id": "presentation/pages/glossary.tsx",
       "label": "glossary.tsx",
       "category": "Page",
-      "size": 11578
+      "size": 12463
     },
     {
       "id": "presentation/pages/hexagonal.tsx",
@@ -2182,7 +2200,7 @@
     },
     {
       "source": "domain/usecases/ArchitectureCalculator.ts",
-      "target": "infrastructure/ArchitectureData.ts",
+      "target": "domain/entities/ArchitectureProfile.ts",
       "value": 1
     },
     {
@@ -2203,6 +2221,16 @@
     {
       "source": "domain/usecases/TopologyAnalyzer.ts",
       "target": "domain/entities/Sandbox.ts",
+      "value": 1
+    },
+    {
+      "source": "infrastructure/AcronymsData.ts",
+      "target": "domain/entities/ContentTypes.ts",
+      "value": 1
+    },
+    {
+      "source": "infrastructure/ArchitectureData.ts",
+      "target": "domain/entities/ArchitectureProfile.ts",
       "value": 1
     },
     {
@@ -2372,7 +2400,17 @@
     },
     {
       "source": "presentation/components/ArchitectureWizard.tsx",
-      "target": "infrastructure/ArchitectureData.ts",
+      "target": "domain/entities/ArchitectureProfile.ts",
+      "value": 1
+    },
+    {
+      "source": "presentation/components/ArchitectureWizard.tsx",
+      "target": "presentation/hooks/useCmsCollection.ts",
+      "value": 1
+    },
+    {
+      "source": "presentation/components/ArchitectureWizard.tsx",
+      "target": "presentation/components/cms/ContentLoading.tsx",
       "value": 1
     },
     {
@@ -2443,6 +2481,16 @@
     {
       "source": "presentation/components/ComparisonMatrix.tsx",
       "target": "infrastructure/ComparisonMatrixData.ts",
+      "value": 1
+    },
+    {
+      "source": "presentation/components/ComparisonMatrix.tsx",
+      "target": "presentation/hooks/useCmsCollection.ts",
+      "value": 1
+    },
+    {
+      "source": "presentation/components/ComparisonMatrix.tsx",
+      "target": "presentation/components/cms/ContentLoading.tsx",
       "value": 1
     },
     {
@@ -2827,7 +2875,17 @@
     },
     {
       "source": "presentation/pages/acronyms.tsx",
-      "target": "infrastructure/AcronymsData.ts",
+      "target": "domain/entities/ContentTypes.ts",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/acronyms.tsx",
+      "target": "presentation/hooks/useCmsCollection.ts",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/acronyms.tsx",
+      "target": "presentation/components/cms/ContentLoading.tsx",
       "value": 1
     },
     {
@@ -3452,7 +3510,17 @@
     },
     {
       "source": "presentation/pages/glossary.tsx",
-      "target": "infrastructure/GlossaryData.ts",
+      "target": "domain/entities/ContentTypes.ts",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/glossary.tsx",
+      "target": "presentation/hooks/useCmsCollection.ts",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/glossary.tsx",
+      "target": "presentation/components/cms/ContentLoading.tsx",
       "value": 1
     },
     {

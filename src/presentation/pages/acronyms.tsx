@@ -16,7 +16,9 @@ import {
   ArrowRight
 } from 'lucide-react';
 import SEO from '../components/SEO';
-import { ACRONYMS_DATA, ACRONYM_CATEGORIES } from '../../infrastructure/AcronymsData';
+import { AcronymCategory, AcronymItem } from '../../domain/entities/ContentTypes';
+import { useCmsCollection } from '../hooks/useCmsCollection';
+import { ContentError, ContentLoading } from '../components/cms/ContentLoading';
 
 const iconMap: Record<string, React.ReactNode> = {
   Sparkles: <Sparkles size={18} />,
@@ -36,8 +38,16 @@ const AcronymsPage: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');
 
+  const acronyms = useCmsCollection<AcronymItem>('acronyms');
+  const categories = useCmsCollection<AcronymCategory>('acronym-categories');
+  const ACRONYMS_DATA = acronyms.data;
+  const ACRONYM_CATEGORIES = categories.data;
+  const isLoading = acronyms.status === 'loading' || categories.status === 'loading';
+  const loadError =
+    acronyms.status === 'error' ? acronyms.error : categories.status === 'error' ? categories.error : null;
+
   const filteredItems = useMemo(() => {
-    return ACRONYMS_DATA.filter(item => {
+    return ACRONYMS_DATA.filter((item: AcronymItem) => {
       const matchesCategory = selectedCategory === 'all' || item.category === selectedCategory;
       const name = item.name.toLowerCase();
       const fullName = (item.fullName[lang] || item.fullName.tr).toLowerCase();
@@ -52,7 +62,34 @@ const AcronymsPage: React.FC = () => {
         description.includes(q);
       return matchesCategory && matchesSearch;
     });
-  }, [searchQuery, selectedCategory, lang]);
+  }, [searchQuery, selectedCategory, lang, ACRONYMS_DATA]);
+
+  if (isLoading) {
+    return (
+      <div style={{ minHeight: '100vh', background: 'var(--bg-dark)', paddingTop: '100px' }}>
+        <div className="container">
+          <ContentLoading rows={8} isEn={lang === 'en'} />
+        </div>
+      </div>
+    );
+  }
+
+  if (loadError) {
+    return (
+      <div style={{ minHeight: '100vh', background: 'var(--bg-dark)', paddingTop: '100px' }}>
+        <div className="container">
+          <ContentError
+            message={loadError}
+            isEn={lang === 'en'}
+            onRetry={() => {
+              void acronyms.refresh();
+              void categories.refresh();
+            }}
+          />
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div style={{ minHeight: '100vh', background: 'var(--bg-dark)', color: 'var(--text-primary)', paddingTop: '100px', paddingBottom: '120px' }}>

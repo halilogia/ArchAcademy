@@ -3,7 +3,9 @@ import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Star, Zap, Users, Layers, ChevronUp, ChevronDown, Minimize2, Repeat, ShieldCheck, FolderTree } from 'lucide-react';
-import { MATRIX_DATA, MATRIX_SUMMARY_CARDS, MatrixRowItem } from '../../infrastructure/ComparisonMatrixData';
+import type { MatrixRowItem, SummaryCardItem } from '../../infrastructure/ComparisonMatrixData';
+import { useCmsCollection } from '../hooks/useCmsCollection';
+import { ContentError, ContentLoading } from './cms/ContentLoading';
 
 type SortableKey = 'name' | 'speed' | 'kiss' | 'dry' | 'maintAndTest' | 'flex' | 'aiLocality' | 'sizeValue';
 
@@ -14,8 +16,15 @@ type SortConfig = {
 
 const ComparisonMatrix: React.FC = () => {
   const navigate = useNavigate();
+  const matrix = useCmsCollection<MatrixRowItem>('comparison-matrix');
+  const cards = useCmsCollection<SummaryCardItem>('comparison-matrix-cards');
+  const MATRIX_DATA = matrix.data;
+  const MATRIX_SUMMARY_CARDS = cards.data;
+  const isLoading = matrix.status === 'loading' || cards.status === 'loading';
+  const loadError = matrix.status === 'error' ? matrix.error : cards.status === 'error' ? cards.error : null;
   const { i18n } = useTranslation();
   const lang = (i18n.language === 'en' ? 'en' : 'tr') as 'tr' | 'en';
+  const isEn = lang === 'en';
 
   const [sortConfig, setSortConfig] = useState<SortConfig | null>({ key: 'speed', direction: 'descending' });
 
@@ -36,7 +45,21 @@ const ComparisonMatrix: React.FC = () => {
       });
     }
     return sortableData;
-  }, [sortConfig]);
+  }, [sortConfig, MATRIX_DATA]);
+
+  if (isLoading) return <ContentLoading rows={6} isEn={lang === 'en'} label={isEn ? 'Loading the comparison matrix' : 'Karsilastirma matrisi yukleniyor'} />;
+  if (loadError) {
+    return (
+      <ContentError
+        message={loadError}
+        isEn={lang === 'en'}
+        onRetry={() => {
+          void matrix.refresh();
+          void cards.refresh();
+        }}
+      />
+    );
+  }
 
   const requestSort = (key: SortableKey) => {
     let direction: 'ascending' | 'descending' = 'descending';

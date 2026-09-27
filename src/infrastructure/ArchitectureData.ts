@@ -1,32 +1,10 @@
-interface Architecture {
-  title: string;
-  tag: string;
-  desc: string;
-  color: string;
-  pros: string[];
-}
+import type { ArchitectureOption, ArchitectureProfile, ArchitectureQuestion } from '../domain/entities/ArchitectureProfile';
 
-export type Weights = Record<string, number>;
+type Architecture = Omit<ArchitectureProfile, 'key'>;
+type Option = ArchitectureOption;
+type Question = ArchitectureQuestion;
 
-export interface Option {
-  text: string;
-  weights: Weights;
-  constraints?: Record<string, number>;
-}
-
-export interface Question {
-  id: string;
-  title: string;
-  type: 'choice' | 'range';
-  desc: string;
-  options?: Option[];
-  leftLabel?: string;
-  rightLabel?: string;
-  weights?: {
-    low: Weights;
-    high: Weights;
-  };
-}
+export type { Architecture, ArchitectureOption, ArchitectureProfile, ArchitectureQuestion, Option, Question };
 
 export const ARCHITECTURES: Record<string, Architecture> = {
   clean: {

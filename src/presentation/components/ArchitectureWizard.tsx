@@ -1,4 +1,4 @@
-import React, { ReactElement, ReactNode, useState } from 'react';
+import React, { ReactElement, ReactNode, useMemo, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   Sparkles,
@@ -17,7 +17,9 @@ import {
 } from 'lucide-react';
 
 // CLEAN ARCHITECTURE: Data & Logic separated from UI
-import { WIZARD_QUESTIONS, ARCHITECTURES } from '../../infrastructure/ArchitectureData';
+import { ArchitectureProfile, ArchitectureQuestion } from '../../domain/entities/ArchitectureProfile';
+import { useCmsCollection } from '../hooks/useCmsCollection';
+import { ContentError, ContentLoading } from './cms/ContentLoading';
 import { calculateScores, getSortedResults, calculateConfidence, Answers } from '../../domain/usecases/ArchitectureCalculator';
 
 // Presentation Utils - Restore original icon mapping
@@ -46,6 +48,22 @@ const getIcon = (id: string, optionIndex?: number) => {
 };
 
 const ArchitectureWizard: React.FC = () => {
+  const isEn = true;
+  const questionsCollection = useCmsCollection<ArchitectureQuestion>('architecture-questions');
+  const profilesCollection = useCmsCollection<ArchitectureProfile>('architectures');
+  const WIZARD_QUESTIONS = questionsCollection.data;
+  const ARCHITECTURES: Record<string, ArchitectureProfile> = useMemo(
+    () => Object.fromEntries(profilesCollection.data.map((profile) => [profile.key, profile])),
+    [profilesCollection.data]
+  );
+  const isLoading = questionsCollection.status === 'loading' || profilesCollection.status === 'loading';
+  const loadError =
+    questionsCollection.status === 'error'
+      ? questionsCollection.error
+      : profilesCollection.status === 'error'
+        ? profilesCollection.error
+        : null;
+
   const [step, setStep] = useState(0);
   const [rangeValue, setRangeValue] = useState(5);
   const [answers, setAnswers] = useState<Answers>({});
@@ -78,6 +96,23 @@ const ArchitectureWizard: React.FC = () => {
     setShowResult(false);
   };
 
+  if (isLoading) {
+    return <ContentLoading rows={5} isEn={isEn} label={isEn ? 'Loading the architecture wizard' : 'Mimari sihirbazi yukleniyor'} />;
+  }
+
+  if (loadError) {
+    return (
+      <ContentError
+        message={loadError}
+        isEn={isEn}
+        onRetry={() => {
+          void questionsCollection.refresh();
+          void profilesCollection.refresh();
+        }}
+      />
+    );
+  }
+
   if (showResult) {
     const scores = calculateScores(answers, WIZARD_QUESTIONS);
     const sorted = getSortedResults(scores);
@@ -87,7 +122,8 @@ const ArchitectureWizard: React.FC = () => {
     const totalScore = sorted.reduce((a, b) => a + (b.score > 0 ? b.score : 0), 0);
     const confidence = calculateConfidence(sorted);
 
-    return (
+  
+  return (
       <motion.div
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
@@ -130,7 +166,8 @@ const ArchitectureWizard: React.FC = () => {
               const r = ARCHITECTURES[runner.key];
               if (!r) return null;
               const matchScore = totalScore > 0 ? Math.round((runner.score / totalScore) * 100) : 0;
-              return (
+            
+  return (
                 <div key={runner.key} className="glass-card" style={{ textAlign: 'left', padding: '1.5rem', display: 'flex', alignItems: 'center', gap: '1rem', background: 'rgba(255,255,255,0.02)' }}>
                   <div style={{ width: '45px', height: '45px', borderRadius: '12px', background: `${r.color}15`, display: 'flex', alignItems: 'center', justifyContent: 'center', color: r.color, fontWeight: 800, fontSize: '0.8rem', border: `1px solid ${r.color}30` }}>
                     %{matchScore}
@@ -153,6 +190,7 @@ const ArchitectureWizard: React.FC = () => {
   }
 
   const currentQuestion = WIZARD_QUESTIONS[step];
+
 
   return (
     <div style={{ maxWidth: '900px', margin: '0 auto' }}>

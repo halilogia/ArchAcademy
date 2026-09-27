@@ -1,14 +1,14 @@
-import { Question } from '../../infrastructure/ArchitectureData';
+import { ArchitectureAnswers, ArchitectureQuestion } from '../entities/ArchitectureProfile';
 
 type Scores = Record<string, number>;
-export type Answers = Record<string, number>;
+export type Answers = ArchitectureAnswers;
 
 interface SortedResult {
   key: string;
   score: number;
 }
 
-export const calculateScores = (answers: Answers, questions: Question[]): Scores => {
+export const calculateScores = (answers: Answers, questions: ArchitectureQuestion[]): Scores => {
   const scores: Scores = {
     clean: 0,
     onion: 0,

@@ -1,28 +1,6 @@
-export interface LocalizedString {
-  tr: string;
-  en: string;
-}
+import type { AcronymCategory, AcronymItem, LocalizedString } from '../domain/entities/ContentTypes';
 
-export interface AcronymItem {
-  id: string;
-  name: string;
-  fullName: LocalizedString;
-  tagline: LocalizedString;
-  description: LocalizedString;
-  category: 'core' | 'solid' | 'grasp' | 'function' | 'data' | 'testing' | 'antipattern';
-  badgeColor: string;
-  details?: { tr: string[]; en: string[] };
-  example?: string;
-  relatedPath?: string;
-}
-
-export interface AcronymCategory {
-  id: string;
-  title: LocalizedString;
-  icon: string;
-  color: string;
-  desc: LocalizedString;
-}
+export type { AcronymCategory, AcronymItem, LocalizedString };
 
 export const ACRONYM_CATEGORIES: AcronymCategory[] = [
   { 

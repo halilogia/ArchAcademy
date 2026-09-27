@@ -1,4 +1,6 @@
-import { GLOSSARY_TERMS } from "../../infrastructure/GlossaryData";
+import { GlossaryTerm } from '../../domain/entities/ContentTypes';
+import { useCmsCollection } from '../hooks/useCmsCollection';
+import { ContentError, ContentLoading } from '../components/cms/ContentLoading';
 import React, { useState, useEffect, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
@@ -16,6 +18,9 @@ import SEO from '../components/SEO';
 const GlossaryPage: React.FC = () => {
   const { i18n } = useTranslation();
   const isEn = (i18n.resolvedLanguage || i18n.language || 'tr').startsWith('en');
+
+  const glossary = useCmsCollection<GlossaryTerm>('glossary');
+  const GLOSSARY_TERMS = glossary.data;
 
   const location = useLocation();
   const urlSearch = useMemo(() => {
@@ -46,10 +51,30 @@ const GlossaryPage: React.FC = () => {
       const matchesLetter = selectedLetter === 'All' || termStr.toUpperCase().startsWith(selectedLetter);
       return matchesSearch && matchesLetter;
     });
-  }, [searchTerm, selectedLetter, isEn]);
+  }, [searchTerm, selectedLetter, isEn, GLOSSARY_TERMS]);
 
   const alphabet = React.useMemo(() => ['All', ...'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('')], []);
   const visibleTerms = filteredTerms.slice(0, displayCount);
+
+  if (glossary.status === 'loading') {
+    return (
+      <div style={{ minHeight: '100vh', background: 'var(--bg-dark)', paddingTop: '100px' }}>
+        <div className="container">
+          <ContentLoading rows={10} isEn={isEn} />
+        </div>
+      </div>
+    );
+  }
+
+  if (glossary.status === 'error') {
+    return (
+      <div style={{ minHeight: '100vh', background: 'var(--bg-dark)', paddingTop: '100px' }}>
+        <div className="container">
+          <ContentError message={glossary.error ?? ''} isEn={isEn} onRetry={() => void glossary.refresh()} />
+        </div>
+      </div>
+    );
+  }
 
   return (
     <>
