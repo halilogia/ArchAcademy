@@ -14,6 +14,8 @@ All notable changes to the ArchAcademy project will be documented in this file.
 - **Static graph data moved behind a CMS port.** The hardcoded search/graph index is now a `ContentRepository` collection (`search-index`) resolved remote-first with a bundled seed snapshot as the offline fallback, so content can be updated without a rebuild.
 - **Progress is no longer sourced from `localStorage`.** `ProgressContext` is now a thin adapter over a Zustand store; localStorage is only an offline cache, and the legacy `arch_progress` key is migrated once and then removed.
 - The command palette and its fuzzy search read from the CMS collection instead of a static module.
+- Documentation refreshed for v1.1.0: `ROADMAP.md` now tracks only upcoming work, `ARCHITECTURE.md` documents the layering, content port and sync flow, and the READMEs describe the new modules.
+- Version bumped to `1.1.0` to match this release.
 
 ## [1.0.0] - 2026-08-25
 ### Added

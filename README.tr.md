@@ -38,11 +38,23 @@ Proje gereksinimlerinizi (ekip büyüklüğü, zaman kısıtı, iş alanı karma
 ### 🛣️ Mimarın Kariyer Yolculuğu (Roadmap)
 **Usta Yazılımcıdan (Craftsman)** **Vizyonere (Visionary)** kadar uzanan; SOLID prensipleri, tasarım desenleri ve stratejik liderliği içeren adım adım kariyer haritası.
 
-### 📜 Mimari Kısaltmalar & Prensipler Rehberi (/acronyms)
+### 🧪 Sistem Tasarım Sandbox'ı (`/sandbox`)
+Yük dengeleyici, API gateway, mikroservis, mesaj kuyruğu, worker, cache, veritabanı, nesne deposu ve arama motoru bileşenlerini sürükleyip bırakarak topoloji tuvaline yerleştirin. Bağlantıları çizin, kopya sayılarını ayarlayın; topoloji denetçisi tasarımınızı puanlayıp tek hata noktalarını, istemciye açık veritabanlarını, tüketilmeyen kuyrukları, eksik cache katmanlarını ve döngüsel bağımlılıkları işaretlesin.
+
+### 📄 ADR Üreticisi (`/adr-generator`)
+Sandbox topolojinizi **MADR 3.0.0** karar kaydına dönüştürür: bağlam, karar etkenleri, değerlendirilen seçenekler, karar, bileşen envanteri, fazlalık planı, otomatik üretilen Mermaid akış şeması, sonuçlar, açık mimari riskler ve gözden geçirme tetikleyicileri. Panoya kopyalayın veya deponuz için `.md` olarak indirin.
+
+### ☁️ Bulut Senkronlu İlerleme
+Ders tamamlama, quiz skorları ve kayıtlı tasarımlar bir Zustand deposunda tutulur; çakışma birleştirme, yeniden deneme ve çevrimdışı kuyruklama ile bir REST uç noktasına gönderilir. Eski localStorage durumu otomatik olarak taşınır ve uygulama çevrimdışıyken de tam çalışır.
+
+### 📚 CMS portu arkasındaki içerik
+Dersler, sözlük ve arama içeriği bir `ContentRepository` üzerinden çözülür: `VITE_CMS_ENDPOINT` yapılandırılmışsa önce uzak CMS, aksi halde paketlenmiş seed anlık görüntüsü kullanılır. İçerik yeniden derleme olmadan CMS üzerinden güncellenebilir.
+
+### 📜 Mimari Kısaltmalar & Prensipler Rehberi (`/acronyms`)
 Yazılım mühendisliğinin temel kısaltma ve ilkeleri için kapsamlı başvuru kaynağı: **KISS, DRY, WET, AHA, YAGNI, SOLID, GRASP, ACID, CAP, FIRST, STUPID** ve daha fazlası.
 
 ### 🔍 Gelişmiş Bulanık Arama (Fuzzy Search)
-**Fuse.js** ile güçlendirilmiş akıllı anahtar kelime eşleştirmesi sayesinde 80'den fazla sayfa ve konsept arasında anında arama yapın.
+**Fuse.js** ile güçlendirilmiş akıllı anahtar kelime eşleştirmesi sayesinde 90'dan fazla sayfa ve konsept arasında anında arama yapın.
 
 ### 🌍 Çoklu Dil Desteği & SEO
 Dinamik meta etiketleri, site haritası ve yapılandırılmış veri optimizasyonu ile tam **TR/EN** dil desteği.
@@ -93,24 +105,24 @@ Masaüstü ve mobil cihazlara bağımsız bir uygulama olarak yüklenebilir. Tü
 ### Kurulum
 
 1. Depoyu klonlayın:
-   `ash
+   ```bash
    git clone https://github.com/halilogia/ArchAcademy.git
-   `
+   ```
 
 2. Proje dizinine gidin:
-   `ash
+   ```bash
    cd ArchAcademy
-   `
+   ```
 
 3. Bağımlılıkları yükleyin:
-   `ash
+   ```bash
    npm install
-   `
+   ```
 
 4. Geliştirme sunucusunu başlatın:
-   `ash
+   ```bash
    npm run dev
-   `
+   ```
 
 ---
 
@@ -118,49 +130,64 @@ Masaüstü ve mobil cihazlara bağımsız bir uygulama olarak yüklenebilir. Tü
 
 Proje, frontend için uyarlanmış Clean Architecture prensiplerini takip eder:
 
-`	ext
+```text
 .
 ├── .github/workflows/         # CI/CD İş Akışları (Derleme, Test, Dağıtım)
 ├── public/                    # Statik Dosyalar (PWA Manifest, Sitemap, Robots)
+├── scripts/                   # Mimari bağımlılık grafiği üreteci ve içerik denetimleri
 ├── src/
-│   ├── domain/                # Saf İş Mantığı (Entities, Use Cases, Models)
-│   ├── infrastructure/        # Veri Sağlayıcıları, Dış Servisler, Arama İndeksleri
+│   ├── domain/                # Saf İş Mantığı (Entities, Use Cases, Repository Portları)
+│   │   ├── entities/          # CmsEntry, Sandbox, Progress
+│   │   ├── repositories/      # ContentRepository, ProgressRepository (portlar)
+│   │   └── usecases/          # TopologyAnalyzer, AdrGenerator, QuizScorer, ProgressMerger
+│   ├── infrastructure/        # Adaptörler: CMS istemcisi, bulut senkronizasyonu, çevrimdışı önbellek, store'lar
+│   │   ├── cms/               # Uzak öncelikli içerik deposu + paketlenmiş seed anlık görüntüleri
+│   │   ├── config/            # Tipli ortam değişkeni yapılandırması
+│   │   ├── repositories/      # CloudProgress, LocalProgressCache, SyncingProgressRepository
+│   │   ├── storage/           # Kota toleranslı güvenli depolama sarmalayıcısı
+│   │   └── stores/            # Zustand store'ları (ilerleme, sandbox)
 │   ├── i18n/                  # Dil Konfigürasyonu ve Çeviriler
 │   ├── presentation/          # Arayüz Katmanı
-│   │   ├── components/        # Yeniden Kullanılabilir Bileşenler
-│   │   ├── pages/             # 80+ Mimari Konu Sayfası (Clean Arch, Agentic AI vb.)
-│   │   ├── context/           # Global Durum Yönetimi
-│   │   ├── hooks/             # Özel React Kancaları (Custom Hooks)
+│   │   ├── components/        # Yeniden Kullanılabilir Bileşenler (SEO, Navbar, CommandPalette, sandbox/, adr/)
+│   │   ├── pages/             # 90+ Mimari Konu Sayfası (Clean Arch, Agentic AI, Sandbox vb.)
+│   │   ├── context/           # İlerleme deposunun ince adaptörü
+│   │   ├── hooks/             # Özel React Kancaları (useCmsCollection, useAssessmentQuiz, useLocalStorage)
 │   │   ├── navigation/        # Rota Yapılandırması (AppRouter)
 │   │   └── themes/            # Tasarım Belirteçleri ve Tema Ayarları
 │   ├── tests/                 # Birim ve Entegrasyon Testleri (Vitest)
 │   └── assets/                # Görseller ve Stiller
 ├── eslint.config.js           # ESLint v9+ Yapılandırması
 └── vite.config.js             # Vite, PWA ve Vitest Yapılandırması
-`
+```
+
+### Yapılandırma
+
+Tüm çalışma zamanı yapılandırması isteğe bağlıdır; bu değişkenler olmadan da uygulama çevrimdışı olarak tam çalışır. Uzak servisleri etkinleştirmek için `.env.example` dosyasını `.env` olarak kopyalayın.
+
+| Değişken | Açıklama |
+|----------|---------|
+| `VITE_CMS_ENDPOINT` | `GET {endpoint}/collections/{name}` sunan CMS taban adresi |
+| `VITE_CMS_TOKEN` | CMS için isteğe bağlı bearer token |
+| `VITE_CMS_TIMEOUT_MS` | CMS istek zaman aşımı (varsayılan `6000`) |
+| `VITE_PROGRESS_SYNC_ENDPOINT` | İlerleme senkronizasyonu için REST taban adresi (`GET`/`PUT {endpoint}/progress/{ownerId}`) |
+| `VITE_PROGRESS_SYNC_TOKEN` | Senkronizasyon uç noktası için isteğe bağlı bearer token |
+| `VITE_PROGRESS_SYNC_TIMEOUT_MS` | Senkronizasyon istek zaman aşımı (varsayılan `8000`) |
+| `VITE_PROGRESS_USER_ID` | Sunucuda ilerlemeyi kapsamak için kullanılan sahip kimliği (varsayılan `local-learner`) |
 
 ### Kullanılabilir Komutlar
 
 | Komut | Açıklama |
 |---------|-------------|
-| 
-pm run dev | Geliştirme sunucusunu başlatır |
-| 
-pm run build | Üretim (Production) derlemesi alır |
-| 
-pm run preview | Üretim derlemesini yerelde önizler |
-| 
-pm run test | Vitest testlerini izleme modunda çalıştırır |
-| 
-pm run test:run | Testleri tek seferlik çalıştırır |
-| 
-pm run lint | ESLint kontrolü yapar |
-| 
-pm run lint:fix | Kodlama standart hatalarını otomatik düzeltir |
-| 
-pm run check | TypeScript tip kontrollerini gerçekleştirir |
-| 
-pm run scan | Otomatik mimari bağımlılık ve sinir ağını günceller |
+| `npm run dev` | Geliştirme sunucusunu başlatır |
+| `npm run build` | Üretim (Production) derlemesi alır |
+| `npm run preview` | Üretim derlemesini yerelde önizler |
+| `npm run test` | Vitest testlerini izleme modunda çalıştırır |
+| `npm run test:run` | Testleri tek seferlik çalıştırır |
+| `npm run lint` | ESLint kontrolü yapar |
+| `npm run lint:fix` | Kodlama standart hatalarını otomatik düzeltir |
+| `npm run check` | TypeScript tip kontrollerini gerçekleştirir |
+| `npm run scan` | Otomatik mimari bağımlılık ve sinir ağını günceller |
+| `node scripts/audit_search_and_wiki.mjs` | Arama indeksi kapsamını ve sözlük bütünlüğünü denetler |
 
 ---
 

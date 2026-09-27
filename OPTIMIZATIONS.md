@@ -8,6 +8,25 @@
 
 ---
 
+## 📌 Finding Status (reviewed 2026-09-27, v1.1.0)
+
+This report is kept as a historical record. Findings are annotated in place instead of being rewritten, and remaining work is tracked in [ROADMAP.md](./ROADMAP.md).
+
+| Finding | Severity | Status |
+|---------|----------|--------|
+| FINDING-001 GlossaryData.ts monolith | 🔴 High | Open — roadmap P0.4 (move to CMS collection) |
+| FINDING-002 CommandPalette O(n) per keystroke | 🔴 High | Open — roadmap P3 |
+| FINDING-003 Missing React.memo on heavy pages | 🟠 Medium | Open — roadmap P3 |
+| FINDING-004 useLocalStorage synchronous JSON | 🟠 Medium | ✅ Resolved in v1.1.0 — progress no longer uses it; `SafeStorage` wraps writes and tolerates quota errors |
+| FINDING-005 Google Fonts render-blocking import | 🟠 Medium | Open — roadmap P3 |
+| FINDING-006 Unthrottled Framer Motion loops | 🟡 Low | Open — roadmap P3 |
+| FINDING-007 ProgressContext deep object spreads | 🟡 Low | ✅ Resolved in v1.1.0 — replaced by a Zustand store with granular selectors |
+| FINDING-008 ArchitectureCalculator O(n²) | 🟡 Low | Open |
+| FINDING-009 Missing build optimizations | 🟡 Low | Open — roadmap P3 |
+| FINDING-010 Good practices already in place | 🟢 Info | Still valid |
+
+---
+
 ## 1) Optimization Summary
 
 ### Current Optimization Health: **MEDIUM** ⚠️
@@ -151,7 +170,9 @@ The application demonstrates **good architectural patterns** (lazy loading, feat
 
 ---
 
-### 🟠 FINDING-004: useLocalStorage Hook - Synchronous JSON Operations
+### ✅ FINDING-004: useLocalStorage Hook - Synchronous JSON Operations (RESOLVED in v1.1.0)
+
+> **Resolution:** Learner progress no longer goes through `useLocalStorage`. It runs on a Zustand store that writes an offline cache envelope through `src/infrastructure/storage/SafeStorage.ts`, which defers writes to idle time, catches quota errors and falls back to an in-memory store. The hook itself is no longer used by product code and is queued for removal in the roadmap.
 
 - **Category:** Memory / I/O
 - **Severity:** Medium
@@ -275,7 +296,9 @@ The application demonstrates **good architectural patterns** (lazy loading, feat
 
 ---
 
-### 🟡 FINDING-007: ProgressContext - Deep Object Spread Updates
+### ✅ FINDING-007: ProgressContext - Deep Object Spread Updates (RESOLVED in v1.1.0)
+
+> **Resolution:** `src/presentation/context/ProgressContext.tsx` no longer owns progress state. It is a thin adapter over `useProgressStore` (Zustand), so consumers subscribe to the exact slice they read and only re-render when that slice changes. Mutations are pure functions in `src/domain/usecases/ProgressMerger.ts` and short-circuit when nothing changed.
 
 - **Category:** Memory / Algorithm
 - **Severity:** Medium

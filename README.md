@@ -36,11 +36,23 @@ An intelligent discovery tool that analyzes your project requirements (team size
 ### 🛣️ Architect's Journey (Roadmap)
 A step-by-step career path from **The Craftsman** to **The Visionary**, covering SOLID principles, patterns, and strategic leadership.
 
+### 🧪 System Design Sandbox (`/sandbox`)
+Drag and drop load balancers, API gateways, microservices, message queues, workers, caches, databases, object stores and search engines onto a topology canvas. Draw connections, set replica counts, and let the topology reviewer score your design and flag single points of failure, client-exposed databases, unconsumed queues, missing cache layers and request cycles.
+
+### 📄 ADR Generator (`/adr-generator`)
+Turns your sandbox topology into a **MADR 3.0.0** decision record: context, decision drivers, considered options, the decision, a component inventory, a redundancy plan, an auto-generated Mermaid flowchart, consequences, open architectural risks and review triggers. Copy to clipboard or download the `.md` for your repository.
+
+### ☁️ Cloud-synced progress
+Lesson completion, quiz scores and saved designs are held in a Zustand store and pushed to a REST endpoint with conflict merging, retry and offline queueing. The legacy local storage state is migrated automatically, and the app stays fully usable offline.
+
+### 📚 Content behind a CMS port
+Lessons, glossary and search content are resolved through a `ContentRepository`: remote CMS first when `VITE_CMS_ENDPOINT` is configured, bundled seed snapshot otherwise. Content can ship from a CMS without a rebuild.
+
 ### 📜 Architect's Cheat Sheet (`/acronyms`)
 Comprehensive reference guide for software engineering acronyms & core principles: **KISS, DRY, WET, AHA, YAGNI, SOLID, GRASP, ACID, CAP, FIRST, STUPID**, and more.
 
 ### 🔍 Advanced Fuzzy Search
-Powered by **Fuse.js**, find any architectural concept instantly across 80+ pages with intelligent keyword matching.
+Powered by **Fuse.js**, find any architectural concept instantly across 90+ pages with intelligent keyword matching.
 
 ### 🌍 Multi-language & SEO
 Full **i18n** support (TR/EN) and optimized for search engines with dynamic meta tags, sitemaps, and structured data.
@@ -114,15 +126,24 @@ The project follows a modified Clean Architecture structure for the frontend:
 .
 ├── .github/workflows/         # CI/CD Pipelines (Build, Test, Deploy)
 ├── public/                    # Static assets & Manifest (PWA, Sitemap, Robots)
+├── scripts/                   # Project graph generator and content audits
 ├── src/
-│   ├── domain/                # Pure business logic (Entities, Use Cases, Models)
-│   ├── infrastructure/        # Data providers, External APIs, Search Indexes
+│   ├── domain/                # Pure business logic (Entities, Use Cases, Repository Ports)
+│   │   ├── entities/          # CmsEntry, Sandbox, Progress
+│   │   ├── repositories/      # ContentRepository, ProgressRepository (ports)
+│   │   └── usecases/          # TopologyAnalyzer, AdrGenerator, QuizScorer, ProgressMerger
+│   ├── infrastructure/        # Adapters: CMS client, cloud sync, offline cache, stores
+│   │   ├── cms/               # Remote-first content repository + bundled seed snapshots
+│   │   ├── config/            # Typed environment configuration
+│   │   ├── repositories/      # CloudProgress, LocalProgressCache, SyncingProgressRepository
+│   │   ├── storage/           # Safe storage wrapper (quota tolerant)
+│   │   └── stores/            # Zustand stores (progress, sandbox)
 │   ├── i18n/                  # Localization configuration and translations
 │   ├── presentation/          # UI layer
-│   │   ├── components/        # Reusable UI elements (SEO, Navbar, CommandPalette)
-│   │   ├── pages/             # 80+ architecture pages (Clean Arch, Agentic AI, etc.)
-│   │   ├── context/           # Global State Management
-│   │   ├── hooks/             # Custom React hooks (useLocalStorage, useDebounce)
+│   │   ├── components/        # Reusable UI elements (SEO, Navbar, CommandPalette, sandbox/, adr/)
+│   │   ├── pages/             # 90+ architecture pages (Clean Arch, Agentic AI, Sandbox, etc.)
+│   │   ├── context/           # Thin adapter over the progress store
+│   │   ├── hooks/             # Custom React hooks (useCmsCollection, useAssessmentQuiz, useLocalStorage)
 │   │   ├── navigation/        # Routing configuration (AppRouter)
 │   │   └── themes/            # Design tokens and theme configuration
 │   ├── tests/                 # Unit and integration tests (Vitest)
@@ -130,6 +151,20 @@ The project follows a modified Clean Architecture structure for the frontend:
 ├── eslint.config.js           # Modern ESLint (v9+) configuration
 └── vite.config.js             # Vite configuration with PWA and Vitest setup
 ```
+
+### Configuration
+
+All runtime configuration is optional; the app runs fully offline without it. Copy `.env.example` to `.env` to enable remote services.
+
+| Variable | Purpose |
+|----------|---------|
+| `VITE_CMS_ENDPOINT` | Headless CMS base URL serving `GET {endpoint}/collections/{name}` |
+| `VITE_CMS_TOKEN` | Optional bearer token for the CMS |
+| `VITE_CMS_TIMEOUT_MS` | CMS request timeout (default `6000`) |
+| `VITE_PROGRESS_SYNC_ENDPOINT` | REST base URL for progress sync (`GET`/`PUT {endpoint}/progress/{ownerId}`) |
+| `VITE_PROGRESS_SYNC_TOKEN` | Optional bearer token for the sync endpoint |
+| `VITE_PROGRESS_SYNC_TIMEOUT_MS` | Sync request timeout (default `8000`) |
+| `VITE_PROGRESS_USER_ID` | Owner id used to scope progress on the server (default `local-learner`) |
 
 ### Available Scripts
 
@@ -144,6 +179,7 @@ The project follows a modified Clean Architecture structure for the frontend:
 | `npm run lint:fix` | Run ESLint and automatically fix issues |
 | `npm run check` | Type-check with TypeScript |
 | `npm run scan` | Generate project dependency graph |
+| `node scripts/audit_search_and_wiki.mjs` | Audit search index coverage and glossary completeness |
 
 ## 📜 License
 
