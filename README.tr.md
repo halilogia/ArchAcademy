@@ -45,10 +45,10 @@ Yük dengeleyici, API gateway, mikroservis, mesaj kuyruğu, worker, cache, verit
 Sandbox topolojinizi **MADR 3.0.0** karar kaydına dönüştürür: bağlam, karar etkenleri, değerlendirilen seçenekler, karar, bileşen envanteri, fazlalık planı, otomatik üretilen Mermaid akış şeması, sonuçlar, açık mimari riskler ve gözden geçirme tetikleyicileri. Panoya kopyalayın veya deponuz için `.md` olarak indirin.
 
 ### ☁️ Bulut Senkronlu İlerleme
-Ders tamamlama, quiz skorları ve kayıtlı tasarımlar bir Zustand deposunda tutulur; çakışma birleştirme, yeniden deneme ve çevrimdışı kuyruklama ile bir REST uç noktasına gönderilir. Eski localStorage durumu otomatik olarak taşınır ve uygulama çevrimdışıyken de tam çalışır.
+Ders tamamlama, quiz skorları ve kayıtlı tasarımlar bir Zustand deposunda tutulur; çakışma birleştirme, yeniden deneme ve çevrimdışı kuyruklama ile bir REST uç noktasına gönderilir. `npm run sync:serve` bu sözleşmenin bağımlılıksız referans implementasyonunu başlatır ve bir uyumluluk testi gerçek istemciyi ona karşı doğrular. Eski localStorage durumu otomatik olarak taşınır ve uygulama çevrimdışıyken de tam çalışır.
 
 ### 📚 CMS portu arkasındaki içerik
-Dersler, sözlük ve arama içeriği bir `ContentRepository` üzerinden çözülür: `VITE_CMS_ENDPOINT` yapılandırılmışsa önce uzak CMS, aksi halde paketlenmiş seed anlık görüntüsü kullanılır. İçerik yeniden derleme olmadan CMS üzerinden güncellenebilir.
+Dersler, sözlük, kısaltmalar, karşılaştırma matrisi ve arama içeriği bir `ContentRepository` üzerinden çözülür: `VITE_CMS_ENDPOINT` yapılandırılmışsa önce uzak CMS, sonra paketlenmiş seed, sonra da çevrimdışı için ön belleğe alınmış `public/cms/*.json`. İçerik yazarları TypeScript veri modüllerini düzenleyip `npm run cms:export` çalıştırır; sunum katmanı bu modülleri doğrudan import etmez — bu yüzden sözlük sayfası chunk'ı 198 KB yerine 6.8 KB.
 
 ### 📜 Mimari Kısaltmalar & Prensipler Rehberi (`/acronyms`)
 Yazılım mühendisliğinin temel kısaltma ve ilkeleri için kapsamlı başvuru kaynağı: **KISS, DRY, WET, AHA, YAGNI, SOLID, GRASP, ACID, CAP, FIRST, STUPID** ve daha fazlası.
@@ -134,7 +134,8 @@ Proje, frontend için uyarlanmış Clean Architecture prensiplerini takip eder:
 .
 ├── .github/workflows/         # CI/CD İş Akışları (Derleme, Test, Dağıtım)
 ├── public/                    # Statik Dosyalar (PWA Manifest, Sitemap, Robots)
-├── scripts/                   # Mimari bağımlılık grafiği üreteci ve içerik denetimleri
+├── scripts/                   # Grafik üreteci, CMS dışa aktarımı, SPA fallback, içerik denetimleri
+├── server/                    # Referans bulut ilerleme senkronizasyon servisi (REST)
 ├── src/
 │   ├── domain/                # Saf İş Mantığı (Entities, Use Cases, Repository Portları)
 │   │   ├── entities/          # CmsEntry, Sandbox, Progress
@@ -173,6 +174,7 @@ Tüm çalışma zamanı yapılandırması isteğe bağlıdır; bu değişkenler 
 | `VITE_PROGRESS_SYNC_TOKEN` | Senkronizasyon uç noktası için isteğe bağlı bearer token |
 | `VITE_PROGRESS_SYNC_TIMEOUT_MS` | Senkronizasyon istek zaman aşımı (varsayılan `8000`) |
 | `VITE_PROGRESS_USER_ID` | Sunucuda ilerlemeyi kapsamak için kullanılan sahip kimliği (varsayılan `local-learner`) |
+| `VITE_BASE_PATH` | Dağıtım taban yolu. CI'da `/ArchAcademy/`, yerelde `/` varsayılan. |
 
 ### Kullanılabilir Komutlar
 
@@ -187,7 +189,11 @@ Tüm çalışma zamanı yapılandırması isteğe bağlıdır; bu değişkenler 
 | `npm run lint:fix` | Kodlama standart hatalarını otomatik düzeltir |
 | `npm run check` | TypeScript tip kontrollerini gerçekleştirir |
 | `npm run scan` | Otomatik mimari bağımlılık ve sinir ağını günceller |
-| `node scripts/audit_search_and_wiki.mjs` | Arama indeksi kapsamını ve sözlük bütünlüğünü denetler |
+| `npm run cms:export` | İçerik modüllerini `public/cms/*.json` olarak dışa aktarır |
+| `npm run cms:check` | Dışa aktarılan koleksiyonlar veri modüllerinden saptıysa hata verir |
+| `npm run docs:audit` | Arama indeksi kapsamını ve sözlük bütünlüğünü denetler |
+| `npm run verify` | Tip kontrolü, lint, testler ve içerik denetimini tek komutta çalıştırır |
+| `npm run sync:serve` | Referans ilerleme senkronizasyon servisini başlatır |
 
 ---
 

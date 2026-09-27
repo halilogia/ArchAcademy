@@ -2,6 +2,23 @@
 
 All notable changes to the ArchAcademy project will be documented in this file.
 
+## [1.1.1] - 2026-09-27
+### Fixed
+- **ESLint pipeline repaired.** The flat config matched only `**/*.{js,jsx}` and registered no TypeScript parser, so `npm run lint` failed with 401 parse errors and the quality gate was dead. `typescript-eslint` is now registered for `**/*.{ts,tsx}`, `no-undef`/`no-unused-vars` are swapped for their TypeScript-aware equivalents, and `--report-unused-disable-directives` is enforced. All 139 violations are cleared, including 51 explicit `any` usages and ~85 unused imports, variables and dead simulation code paths.
+- Genuine defects surfaced by the newly enforced rules: a temporal dead zone in `vertical.tsx` where an effect called a function declared below it, render-time `Math.random` in `islands-arch`, `lean-architecture` and `vector-dbs`, effect-based URL-to-state syncing in `glossary` and `project-arch`, and a missing timer cleanup in `KappaReplaySimTab`.
+- **GitHub Pages SPA routing.** Deploying to `halilogia.github.io/ArchAcademy/` without a `base` meant assets resolved against the domain root and a refresh on any deep link such as `/sandbox` or `/adr-generator` returned a hard 404. The base path is now env-driven, the router receives the matching basename, `dist/404.html` is generated with a path-restoring script, and the service worker has a navigation fallback that denylists API paths.
+- **Cloud sync contract.** `CloudProgressRepository` treated a legitimate `409` stale-write rejection as a transport failure, and `mergeProgress` compared only collection lengths, so a remote quiz attempt with a better score was silently discarded whenever both sides held the same number of attempts.
+
+### Added
+- **Reference progress sync backend** (`server/progressSyncServer.mjs`): a dependency-free Node service implementing `GET|PUT|DELETE /progress/{ownerId}` and `/health`, with CORS, optional bearer authentication, a 512 KB body cap, JSON file persistence and `409` responses for stale revisions. Documented in `server/README.md`.
+- **Sync conformance suite**: 17 tests start the server on an ephemeral port and drive the real `CloudProgressRepository` and `SyncingProgressRepository` against it.
+- `npm run sync:serve` to run the reference backend, and `npm run verify` chaining typecheck, lint, tests and the search/wiki audit.
+
+### Changed
+- **All remaining content moved behind the CMS port.** `GlossaryData`, `AcronymsData`, `ComparisonMatrixData` and `ArchitectureData` are now exported to `public/cms/*.json` by `scripts/export_cms_collections.mjs` and served through a new static-JSON seed tier, precached by the service worker. The acronyms page, glossary page, `ComparisonMatrix` and `ArchitectureWizard` load them through `useCmsCollection` with loading and error states. The glossary page chunk dropped from 198 KB to 6.8 KB and the acronyms page chunk from 23 KB to 9.8 KB.
+- Content and architecture-wizard types moved into the domain layer, so `ArchitectureCalculator` no longer imports from `infrastructure`.
+- CI now configures GitHub Pages, passes the base path, and fails the build if the SPA fallback is missing.
+
 ## [1.1.0] - 2026-09-27
 ### Added
 - **System Design Sandbox** (`/sandbox`): drag-and-drop topology canvas with 13 infrastructure components across four tiers, pointer-based node dragging, click-to-add, connection drawing, undo/redo, per-component replica and technology editing, and a live topology reviewer that scores the design and flags single points of failure, client-exposed databases, unconsumed queues, missing cache layers, missing persistence and request cycles.

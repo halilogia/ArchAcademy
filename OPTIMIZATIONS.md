@@ -8,13 +8,13 @@
 
 ---
 
-## 📌 Finding Status (reviewed 2026-09-27, v1.1.0)
+## 📌 Finding Status (reviewed 2026-09-27, v1.1.1)
 
 This report is kept as a historical record. Findings are annotated in place instead of being rewritten, and remaining work is tracked in [ROADMAP.md](./ROADMAP.md).
 
 | Finding | Severity | Status |
 |---------|----------|--------|
-| FINDING-001 GlossaryData.ts monolith | 🔴 High | Open — roadmap P0.4 (move to CMS collection) |
+| FINDING-001 GlossaryData.ts monolith | 🔴 High | ✅ Resolved in v1.1.1 — exported to the glossary CMS collection, page chunk 198 KB → 6.8 KB |
 | FINDING-002 CommandPalette O(n) per keystroke | 🔴 High | Open — roadmap P3 |
 | FINDING-003 Missing React.memo on heavy pages | 🟠 Medium | Open — roadmap P3 |
 | FINDING-004 useLocalStorage synchronous JSON | 🟠 Medium | ✅ Resolved in v1.1.0 — progress no longer uses it; `SafeStorage` wraps writes and tolerates quota errors |
@@ -49,7 +49,9 @@ The application demonstrates **good architectural patterns** (lazy loading, feat
 
 ## 2) Findings (Prioritized)
 
-### 🔴 FINDING-001: GlossaryData.ts - Synchronous Monolithic Data Loading
+### ✅ FINDING-001: GlossaryData.ts - Synchronous Monolithic Data Loading (RESOLVED in v1.1.1)
+
+> **Resolution:** The glossary, acronyms, comparison matrix and architecture wizard data are exported to `public/cms/*.json` by `scripts/export_cms_collections.mjs` and served through the `ContentRepository` static-JSON seed tier, precached by the service worker. No component imports a data module for its data any more. The glossary page chunk went from 198 KB to 6.8 KB.
 
 - **Category:** Bundle Size / Memory / I/O
 - **Severity:** Critical

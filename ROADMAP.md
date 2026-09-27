@@ -6,14 +6,16 @@ Current release: **v1.1.0** · Current phase: **Phase 2 → Phase 3**
 
 ---
 
-## 🚧 P0 — Blockers that hurt real users or the quality gate
+## ✅ Recently completed
 
-| # | Item | Why it matters | Done when |
-|---|------|----------------|-----------|
-| 0.1 | **Fix the ESLint pipeline** | `npm run lint` fails with 401 parse errors: the flat config only matches `**/*.{js,jsx}` and no TS parser is registered. The lint gate has been effectively dead. | `typescript-eslint` registered for `**/*.{ts,tsx}`, existing violations triaged, `npm run lint` exits 0 |
-| 0.2 | **GitHub Pages SPA routing** | Deploys to `halilogia.github.io/ArchAcademy/` but `vite.config.js` sets no `base` and there is no 404 fallback. Refreshing `/sandbox` or `/adr-generator` returns 404 and assets resolve against the wrong root. | `base` set for the Pages path, `404.html` SPA fallback generated, deep links verified in production |
-| 0.3 | **Reference backend for cloud sync** | The client-side sync contract exists and is tested against a fake, but no server implements it, so the feature cannot be exercised end to end. | Minimal service implementing `GET`/`PUT /progress/{ownerId}`, deployed, plus a conformance test that runs against it |
-| 0.4 | **Content module migration to the CMS port** | Only `search-index` is registered. `GlossaryData.ts` (203 KB) is still a monolithic synchronous import and is the single largest bundle contributor (`OPTIMIZATIONS.md` FINDING-001). | `glossary`, `acronyms`, `comparison-matrix` and `architecture` registered as CMS collections; presentation imports no data module directly |
+The P0 blockers are all closed (see [CHANGELOG.md](./CHANGELOG.md) for the detail):
+
+- **P0.1 ESLint pipeline** — TypeScript parsing registered, all 139 violations cleared, `npm run lint` exits 0. Along the way it exposed a temporal dead zone in `vertical.tsx`, render-time `Math.random` in three pages and stale-tab syncing bugs.
+- **P0.2 GitHub Pages SPA routing** — env-driven `base`, router basename, generated `404.html` fallback, service worker navigation fallback, and a CI guard that fails the build if the fallback goes missing.
+- **P0.3 Reference sync backend** — `server/progressSyncServer.mjs` plus 17 conformance tests that drive the real client repositories against it. Two contract bugs were found and fixed.
+- **P0.4 Content migration** — all remaining data modules now live behind the CMS port. The glossary page chunk went from 198 KB to 6.8 KB.
+
+---
 
 ## 🧪 P1 — Learning experience
 
@@ -31,18 +33,19 @@ Current release: **v1.1.0** · Current phase: **Phase 2 → Phase 3**
 - [ ] **Senior Architect Skill Matrix**: interactive evaluation dashboard for engineering leads and staff engineers.
 - [ ] **Decision copilot**: draft an ADR from a design conversation, then challenge it with the trade-off questions a staff reviewer would ask.
 
-## ⚙️ P3 — Performance & quality debt
+## ⚙️ P3 — Performance & quality
 
-- [ ] Split the 554 KB entry chunk with `manualChunks` and route-level splitting (FINDING-009).
+- [ ] Split the 555 KB entry chunk with `manualChunks` and route-level splitting (FINDING-009). Measured after P0.4: the entry is vendor-dominated (React, Framer Motion, Router, i18next, Fuse, Lucide).
 - [ ] Move Google Fonts off the render-blocking `@import` in `index.css` to `preconnect` + `<link>` (FINDING-005).
 - [ ] Respect `prefers-reduced-motion` on infinite Framer Motion loops (FINDING-006).
-- [ ] `React.memo` on heavy page components and virtualization in long simulation tabs (FINDING-003).
 - [ ] Debounce and cap command palette search results (FINDING-002).
+- [ ] Add a CMS admin surface: today collections are edited in the TypeScript data modules and re-exported. A real CMS needs an authoring UI and per-field validation.
+- [ ] Harden the sync service: per-user authentication (it only understands a static bearer token), rate limiting, and a durable store instead of a JSON file.
 - [ ] Deprecate or remove `useLocalStorage` — product code no longer uses it, only its test.
-- [ ] Add a public `docs:audit` script to the default verification chain so `lint`, `check`, `test` and the search/wiki audit run in one command.
 
 ## 🧹 P4 — Hygiene
 
 - [ ] Versioned ADR template in `docs/` used by the generator and by contributors.
 - [ ] ADR linting in CI (markdownlint + MADR section conformance).
+- [ ] Add the `cms:check` drift guard and the sync conformance suite to the CI pipeline, not just `npm run verify`.
 - [ ] Keep `IMPROVEMENTS.md` and `OPTIMIZATIONS.md` historical; annotate resolved findings there instead of rewriting the reports.

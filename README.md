@@ -43,10 +43,10 @@ Drag and drop load balancers, API gateways, microservices, message queues, worke
 Turns your sandbox topology into a **MADR 3.0.0** decision record: context, decision drivers, considered options, the decision, a component inventory, a redundancy plan, an auto-generated Mermaid flowchart, consequences, open architectural risks and review triggers. Copy to clipboard or download the `.md` for your repository.
 
 ### ☁️ Cloud-synced progress
-Lesson completion, quiz scores and saved designs are held in a Zustand store and pushed to a REST endpoint with conflict merging, retry and offline queueing. The legacy local storage state is migrated automatically, and the app stays fully usable offline.
+Lesson completion, quiz scores and saved designs are held in a Zustand store and pushed to a REST endpoint with conflict merging, retry and offline queueing. `npm run sync:serve` starts a dependency-free reference implementation of that contract, and a conformance suite drives the real client against it. The legacy local storage state is migrated automatically, and the app stays fully usable offline.
 
 ### 📚 Content behind a CMS port
-Lessons, glossary and search content are resolved through a `ContentRepository`: remote CMS first when `VITE_CMS_ENDPOINT` is configured, bundled seed snapshot otherwise. Content can ship from a CMS without a rebuild.
+Lessons, glossary, acronyms, the comparison matrix and search content are resolved through a `ContentRepository`: remote CMS first when `VITE_CMS_ENDPOINT` is configured, then a bundled seed, then `public/cms/*.json` precached for offline use. Content authors edit the TypeScript data modules and run `npm run cms:export`; presentation code never imports them, which is why the glossary page chunk is 6.8 KB instead of 198 KB.
 
 ### 📜 Architect's Cheat Sheet (`/acronyms`)
 Comprehensive reference guide for software engineering acronyms & core principles: **KISS, DRY, WET, AHA, YAGNI, SOLID, GRASP, ACID, CAP, FIRST, STUPID**, and more.
@@ -126,7 +126,8 @@ The project follows a modified Clean Architecture structure for the frontend:
 .
 ├── .github/workflows/         # CI/CD Pipelines (Build, Test, Deploy)
 ├── public/                    # Static assets & Manifest (PWA, Sitemap, Robots)
-├── scripts/                   # Project graph generator and content audits
+├── scripts/                   # Graph generator, CMS export, SPA fallback, content audits
+├── server/                    # Reference cloud progress sync service (REST)
 ├── src/
 │   ├── domain/                # Pure business logic (Entities, Use Cases, Repository Ports)
 │   │   ├── entities/          # CmsEntry, Sandbox, Progress
@@ -165,6 +166,7 @@ All runtime configuration is optional; the app runs fully offline without it. Co
 | `VITE_PROGRESS_SYNC_TOKEN` | Optional bearer token for the sync endpoint |
 | `VITE_PROGRESS_SYNC_TIMEOUT_MS` | Sync request timeout (default `8000`) |
 | `VITE_PROGRESS_USER_ID` | Owner id used to scope progress on the server (default `local-learner`) |
+| `VITE_BASE_PATH` | Deployment base path. Defaults to `/ArchAcademy/` in CI and `/` locally. |
 
 ### Available Scripts
 
@@ -179,7 +181,11 @@ All runtime configuration is optional; the app runs fully offline without it. Co
 | `npm run lint:fix` | Run ESLint and automatically fix issues |
 | `npm run check` | Type-check with TypeScript |
 | `npm run scan` | Generate project dependency graph |
-| `node scripts/audit_search_and_wiki.mjs` | Audit search index coverage and glossary completeness |
+| `npm run cms:export` | Export content modules to `public/cms/*.json` |
+| `npm run cms:check` | Fail if the exported collections drifted from the data modules |
+| `npm run docs:audit` | Audit search index coverage and glossary completeness |
+| `npm run verify` | Typecheck, lint, tests and the content audit in one command |
+| `npm run sync:serve` | Start the reference progress sync backend |
 
 ## 📜 License
 

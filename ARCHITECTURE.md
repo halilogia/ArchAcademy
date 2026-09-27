@@ -42,8 +42,10 @@ flowchart LR
     Repo --> Cache["in-memory cache + inflight dedupe"]
 ```
 
-- `CmsContentRepository` resolves remote-first, validates the payload, caches per collection and falls back to the bundled seed on any failure.
-- New collections are one line in `src/infrastructure/cms/seed/index.ts`.
+- `CmsContentRepository` resolves remote-first, validates the payload, caches per collection, then falls back to a bundled TypeScript seed and finally to `public/cms/<collection>.json`. All tiers keep the portal usable offline.
+- Content modules under `src/infrastructure/*Data.ts` are the authoring format. `scripts/export_cms_collections.mjs` turns them into `public/cms/*.json` during the build, and `npm run cms:check` (asserted by a test) fails when the committed JSON drifts from the source.
+- Registered collections: `search-index`, `acronyms`, `acronym-categories`, `glossary`, `comparison-matrix`, `comparison-matrix-cards`, `architecture-questions`, `architectures`.
+- Presentation imports no data module for its data. Remaining imports are type-only and erase at compile time.
 - Presentation code never imports seed data directly, so a CMS can be introduced without touching components.
 
 ## ☁️ 5. Progress & Cloud Sync
@@ -64,8 +66,25 @@ flowchart LR
 - `mergeProgress` unions monotonic data (completed steps, designs by id) and resolves scalars (last visited, quiz result) by timestamp, keeping the best score per quiz.
 - The legacy `arch_progress` key is migrated once and then deleted.
 - Without `VITE_PROGRESS_SYNC_ENDPOINT` the app degrades to cache-only and still works fully offline.
+- `server/progressSyncServer.mjs` is the reference implementation of the wire format (`npm run sync:serve`). `src/tests/infrastructure/syncConformance.test.ts` starts it on an ephemeral port and exercises the real repositories against it, so the contract is verified rather than assumed.
 
-## 🔒 6. Architecture Principles
+## 🚀 6. Build & Deploy
+
+`mermaid
+flowchart LR
+  Scan["npm run scan"] --> Export["npm run cms:export"]
+  Export --> Vite["vite build (env-driven base)"]
+  Vite --> Fallback["emit dist/404.html"]
+  Fallback --> Pages["GitHub Pages"]
+  Pages --> SW["service worker precaches /cms/*.json"]
+`
+
+- ase is VITE_BASE_PATH, falling back to /ArchAcademy/ in CI and / locally. The router basename, asset URLs, PWA scope and start_url all derive from it.
+- dist/404.html is a copy of index.html with a script that rewrites the requested path, because GitHub Pages serves that file for unknown routes and the SPA router then takes over.
+- CI fails the build if the fallback is missing, and 
+pm run verify runs typecheck, lint, tests and the search/wiki audit.
+
+## 🔒 7. Architecture Principles
 1. **Single Source of Truth**: Typed domain entities plus explicit repository ports; infrastructure is swappable.
 2. **Deterministic Offline Experience**: Service workers, the CMS seed snapshot and the progress cache keep the portal fully usable without a network.
 3. **Pure Domain Logic**: Scoring, topology analysis, progress merging and ADR generation are pure functions with no React or I/O, so they are unit-testable in isolation.
