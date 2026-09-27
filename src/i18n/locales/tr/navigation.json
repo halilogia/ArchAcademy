@@ -24,7 +24,9 @@
     "adr_generator": "ADR Üreticisi",
     "adr_generator_desc": "MADR Markdown Dışa Aktarım",
     "content_console": "İçerik Konsolu",
-    "content_console_desc": "Şema Doğrulama & JSON"
+    "content_console_desc": "Şema Doğrulama & JSON",
+    "diagnostics": "Çalışma Zamanı Tanılama",
+    "diagnostics_desc": "Uzun Görevler ve Route Ölçümü"
   },
   "docs_menu": {
     "acronyms": "Kısaltmalar Kılavuzu",

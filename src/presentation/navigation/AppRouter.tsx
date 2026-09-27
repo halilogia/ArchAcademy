@@ -1,5 +1,6 @@
-import React, { Suspense, lazy } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import React, { Suspense, lazy, useEffect, useRef } from 'react';
+import { Routes, Route, useLocation } from 'react-router-dom';
+import { recordRouteTransition } from '../../infrastructure/performance/performanceBeacon';
 
 // Lazy Load Pages for Fault Isolation & Performance
 const HomePage = lazy(() => import('../pages/home'));
@@ -95,6 +96,7 @@ const AcronymsPage = lazy(() => import('../pages/acronyms'));
 const SandboxPage = lazy(() => import('../pages/sandbox'));
 const AdrGeneratorPage = lazy(() => import('../pages/adr-generator'));
 const ContentConsolePage = lazy(() => import('../pages/content-console'));
+const DiagnosticsPage = lazy(() => import('../pages/diagnostics'));
 
 const LoadingFallback = () => (
   <div style={{ height: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--primary)' }}>
@@ -102,10 +104,27 @@ const LoadingFallback = () => (
   </div>
 );
 
-const AppRouter: React.FC = () => {
+/**
+ * Times a lazily loaded route from the moment it is requested to the moment it
+ * paints, and hands the number to the runtime beacon that /diagnostics reads.
+ */
+const MeasuredRoutes: React.FC = () => {
+  const location = useLocation();
+  const startedAt = useRef<number>(0);
+
+  useEffect(() => {
+    startedAt.current = Date.now();
+  }, [location.pathname]);
+
+  useEffect(() => {
+    const frame = requestAnimationFrame(() => {
+      recordRouteTransition(location.pathname, Date.now() - startedAt.current);
+    });
+    return () => cancelAnimationFrame(frame);
+  }, [location.pathname]);
+
   return (
-    <Suspense fallback={<LoadingFallback />}>
-      <Routes>
+    <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/clean-arch" element={<CleanArchPage />} />
           <Route path="/use-case-driven" element={<UseCaseDrivenPage />} />
@@ -126,6 +145,7 @@ const AppRouter: React.FC = () => {
           <Route path="/sandbox" element={<SandboxPage />} />
           <Route path="/adr-generator" element={<AdrGeneratorPage />} />
           <Route path="/content-console" element={<ContentConsolePage />} />
+          <Route path="/diagnostics" element={<DiagnosticsPage />} />
           <Route path="/project-arch" element={<ProjectPage />} />
           <Route path="/solid" element={<SOLIDPage />} />
           <Route path="/glossary" element={<GlossaryPage />} />
@@ -200,8 +220,13 @@ const AppRouter: React.FC = () => {
           <Route path="/elite-architecture" element={<EliteArchitecturePage />} />
           <Route path="*" element={<NotFoundPage />} />
       </Routes>
-    </Suspense>
   );
 };
+
+const AppRouter: React.FC = () => (
+  <Suspense fallback={<LoadingFallback />}>
+    <MeasuredRoutes />
+  </Suspense>
+);
 
 export default AppRouter;

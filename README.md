@@ -190,6 +190,7 @@ All runtime configuration is optional; the app runs fully offline without it. Co
 | `npm run sync:serve` | Start the reference progress sync backend |
 | `npm run cms:serve` | Start the reference CMS backend |
 | `npm run services:smoke` | Check both service contracts against a running pair |
+| `/diagnostics` | In-app runtime metrics: long tasks, route transitions, heap |
 | `docker compose up -d` | Run both services with volumes and health checks |
 
 ## 📜 License

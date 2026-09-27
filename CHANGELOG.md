@@ -2,6 +2,23 @@
 
 All notable changes to the ArchAcademy project will be documented in this file.
 
+## [1.4.1] - 2026-09-27
+
+Closes the performance and quality work. The P3 and P4 sections are retired: what remains is
+forward-looking product work plus an explicitly unbounded backlog, so this category stops
+regenerating itself every pass.
+
+### Added
+- **Runtime Diagnostics** (` /diagnostics `): an in-app performance beacon that records long
+  tasks, route transition cost, navigation timing and JS heap use in the reader's own browser, and
+  a page that reads it back with p50 and p95. Bundle numbers were the only performance evidence in
+  the project; this is the runtime half. A capability the browser does not expose is reported as
+  "not recorded" rather than as a good number.
+- MeasuredRoutes in the router times each lazily loaded route from request to paint and hands the
+  result to the beacon.
+- decisions/0001: the storage decision for the reference services, recorded with the reasoning
+  and the trigger that would reopen it.
+
 ## [1.4.0] - 2026-09-27
 
 Closes the last P3 performance and quality items and the P4 hygiene block.

@@ -4,7 +4,7 @@
       "id": "App.tsx",
       "label": "App.tsx",
       "category": "Other",
-      "size": 1199
+      "size": 1364
     },
     {
       "id": "data/assessmentQuestions.ts",
@@ -157,6 +157,18 @@
       "size": 202999
     },
     {
+      "id": "infrastructure/performance/beaconSupport.ts",
+      "label": "beaconSupport.ts",
+      "category": "Infra",
+      "size": 482
+    },
+    {
+      "id": "infrastructure/performance/performanceBeacon.ts",
+      "label": "performanceBeacon.ts",
+      "category": "Infra",
+      "size": 6041
+    },
+    {
       "id": "infrastructure/repositories/CloudProgressRepository.ts",
       "label": "CloudProgressRepository.ts",
       "category": "Infra",
@@ -178,7 +190,7 @@
       "id": "infrastructure/searchIndex.ts",
       "label": "searchIndex.ts",
       "category": "Infra",
-      "size": 45285
+      "size": 45887
     },
     {
       "id": "infrastructure/storage/SafeStorage.ts",
@@ -982,7 +994,7 @@
       "id": "presentation/components/Navbar.tsx",
       "label": "Navbar.tsx",
       "category": "Component",
-      "size": 18111
+      "size": 18689
     },
     {
       "id": "presentation/components/OnionDiagram.tsx",
@@ -1576,7 +1588,7 @@
       "id": "presentation/navigation/AppRouter.tsx",
       "label": "AppRouter.tsx",
       "category": "App",
-      "size": 12946
+      "size": 13825
     },
     {
       "id": "presentation/pages/abstraction.tsx",
@@ -1751,6 +1763,12 @@
       "label": "design-tokens.tsx",
       "category": "Page",
       "size": 6982
+    },
+    {
+      "id": "presentation/pages/diagnostics.tsx",
+      "label": "diagnostics.tsx",
+      "category": "Page",
+      "size": 12049
     },
     {
       "id": "presentation/pages/discipline-catalog.tsx",
@@ -2173,6 +2191,11 @@
     },
     {
       "source": "App.tsx",
+      "target": "infrastructure/performance/performanceBeacon.ts",
+      "value": 1
+    },
+    {
+      "source": "App.tsx",
       "target": "presentation/components/ErrorBoundary.tsx",
       "value": 1
     },
@@ -2289,6 +2312,16 @@
     {
       "source": "infrastructure/GlossaryData.ts",
       "target": "infrastructure/AcronymsData.ts",
+      "value": 1
+    },
+    {
+      "source": "infrastructure/performance/performanceBeacon.ts",
+      "target": "infrastructure/performance/beaconSupport.ts",
+      "value": 1
+    },
+    {
+      "source": "infrastructure/performance/performanceBeacon.ts",
+      "target": "infrastructure/performance/beaconSupport.ts",
       "value": 1
     },
     {
@@ -2842,6 +2875,11 @@
       "value": 1
     },
     {
+      "source": "presentation/navigation/AppRouter.tsx",
+      "target": "infrastructure/performance/performanceBeacon.ts",
+      "value": 1
+    },
+    {
       "source": "presentation/pages/abstraction.tsx",
       "target": "presentation/components/ArchHero.tsx",
       "value": 1
@@ -3384,6 +3422,26 @@
     {
       "source": "presentation/pages/design-tokens.tsx",
       "target": "presentation/context/ProgressContext.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/diagnostics.tsx",
+      "target": "presentation/components/SEO.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/diagnostics.tsx",
+      "target": "presentation/components/ArchHero.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/diagnostics.tsx",
+      "target": "infrastructure/performance/performanceBeacon.ts",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/diagnostics.tsx",
+      "target": "infrastructure/performance/beaconSupport.ts",
       "value": 1
     },
     {

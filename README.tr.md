@@ -198,6 +198,7 @@ Tüm çalışma zamanı yapılandırması isteğe bağlıdır; bu değişkenler 
 | `npm run sync:serve` | Referans ilerleme senkronizasyon servisini başlatır |
 | `npm run cms:serve` | Referans CMS servisini başlatır |
 | `npm run services:smoke` | Çalışan her iki servisin sözleşmelerini denetler |
+| `/diagnostics` | Uygulama içi çalışma zamanı metrikleri: uzun görevler, route geçişleri, heap |
 | `docker compose up -d` | İki servisi volume ve sağlık kontrolleriyle çalıştırır |
 
 ---

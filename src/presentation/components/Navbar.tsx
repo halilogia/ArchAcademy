@@ -20,7 +20,8 @@ import {
   Brain,
   FileText,
   Workflow,
-  Database
+  Database,
+  Activity
 } from 'lucide-react';
 
 const Navbar: React.FC = () => {
@@ -235,6 +236,13 @@ const Navbar: React.FC = () => {
                   <div>
                     <div style={{ fontSize: '0.85rem', fontWeight: 700 }}>{t('labs_menu.content_console')}</div>
                     <div style={{ fontSize: '0.7rem', opacity: 0.5 }}>{t('labs_menu.content_console_desc')}</div>
+                  </div>
+                </Link>
+                <Link to="/diagnostics" style={{ display: 'flex', alignItems: 'center', gap: '1rem', padding: '0.8rem', borderRadius: '10px', textDecoration: 'none', color: 'white' }}>
+                  <div style={{ color: '#10b981' }}><Activity size={18} /></div>
+                  <div>
+                    <div style={{ fontSize: '0.85rem', fontWeight: 700 }}>{t('labs_menu.diagnostics')}</div>
+                    <div style={{ fontSize: '0.7rem', opacity: 0.5 }}>{t('labs_menu.diagnostics_desc')}</div>
                   </div>
                 </Link>
 

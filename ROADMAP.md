@@ -2,7 +2,10 @@
 
 Forward-looking plan for ArchAcademy. Shipped work is recorded in [CHANGELOG.md](./CHANGELOG.md), not here.
 
-Current release: **v1.4.0** · Current phase: **Phase 2 → Phase 3**
+Current release: **v1.4.1** · Current phase: **Phase 2 → Phase 3**
+
+Phase 1 (foundations) and Phase 2 (sandbox, ADR generator, CMS port, cloud sync, quiz scoring) are
+closed, as are the performance and quality passes in v1.2.0 through v1.4.1. What remains is below.
 
 ---
 
@@ -22,8 +25,8 @@ Current release: **v1.4.0** · Current phase: **Phase 2 → Phase 3**
 - [ ] **Senior Architect Skill Matrix**: interactive evaluation dashboard for engineering leads and staff engineers.
 - [ ] **Decision copilot**: draft an ADR from a design conversation, then challenge it with the trade-off questions a staff reviewer would ask.
 
-## ⚙️ P3 — Performance & quality
+## 🧹 Backlog — unbounded, not scheduled
 
-- [ ] Move the remaining page-level Framer Motion animation to CSS where it does not need gesture handling. The library is off the critical path but still ships in every route chunk.
-- [ ] Publish a follow-up perf report: the entry chunk is 427 KB and vendor-dominated, and nothing has been measured at runtime (long tasks, interaction latency, route transition cost).
-- [ ] Decide the storage story for more than one writer. `server/sql/schema.sql` documents the Postgres shape; nothing is wired to it.
+- [ ] Move page-level Framer Motion animation to CSS where no gesture handling is needed. The library is off the critical path but still ships in every route chunk. This is a wide refactor across the page layer, so it stays a backlog item rather than a sprint-sized one.
+- [ ] Multi-writer storage, if the services ever run on more than one instance. The data model is documented in `server/sql/schema.sql` and the reasoning is recorded in `decisions/0001`; adopting it is real work, not a config change.
+- [ ] A CMS authoring surface beyond the Console's field editor: draft state, review, publish history.

@@ -24,7 +24,9 @@
     "adr_generator": "ADR Generator",
     "adr_generator_desc": "MADR Markdown Export",
     "content_console": "Content Console",
-    "content_console_desc": "Schema Validation & JSON"
+    "content_console_desc": "Schema Validation & JSON",
+    "diagnostics": "Runtime Diagnostics",
+    "diagnostics_desc": "Measure Long Tasks & Routes"
   },
   "docs_menu": {
     "acronyms": "Acronyms Guide",

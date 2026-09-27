@@ -1,5 +1,5 @@
-import { describe, it, expect, vi } from 'vitest';
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { afterEach, beforeEach, describe, it, expect, vi } from 'vitest';
+import { act, render, screen, fireEvent } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 import CommandPalette from '../../presentation/components/CommandPalette';
 
@@ -21,7 +21,27 @@ const renderWithRouter = (ui: React.ReactElement) => {
   );
 };
 
+/**
+ * The palette debounces its query, so the tests drive the clock rather than
+ * waiting on wall time. That keeps them deterministic under parallel load.
+ */
+const searchWithDebounce = (value: string) => {
+  const input = screen.getByPlaceholderText(/search/i);
+  fireEvent.change(input, { target: { value } });
+  act(() => {
+    vi.advanceTimersByTime(200);
+  });
+  return input;
+};
 describe('CommandPalette Component', () => {
+  beforeEach(() => {
+    vi.useFakeTimers({ shouldAdvanceTime: true });
+  });
+
+  afterEach(() => {
+    vi.useRealTimers();
+  });
+
   it('başlangıçta kapalı olmalı', () => {
     renderWithRouter(<CommandPalette />);
     // Command palette varsayılan olarak kapalı
@@ -36,42 +56,28 @@ describe('CommandPalette Component', () => {
     expect(screen.getByPlaceholderText(/search/i)).toBeInTheDocument();
   });
 
-  it('Escape ile kapanmalı', async () => {
+  it('Escape ile kapanmalı', () => {
     renderWithRouter(<CommandPalette />);
     // Aç
     fireEvent.keyDown(window, { key: 'k', ctrlKey: true });
     expect(screen.getByPlaceholderText(/search/i)).toBeInTheDocument();
     // Kapat
     fireEvent.keyDown(window, { key: 'Escape' });
-    await waitFor(() => {
-      expect(screen.queryByPlaceholderText(/search/i)).not.toBeInTheDocument();
-    });
+    expect(screen.queryByPlaceholderText(/search/i)).not.toBeInTheDocument();
   });
 
-  it('arama sonuçları filtrelenmeli', async () => {
+  it('arama sonuçları filtrelenmeli', () => {
     renderWithRouter(<CommandPalette />);
-    // Aç
     fireEvent.keyDown(window, { key: 'k', ctrlKey: true });
-    // Arama yap
-    const input = screen.getByPlaceholderText(/search/i);
-    fireEvent.change(input, { target: { value: 'clean' } });
-    // Sonuçlar görünmeli (arama debounce'lu)
-    await waitFor(() => {
-      expect(screen.getAllByText(/clean architecture/i).length).toBeGreaterThan(0);
-    }, { timeout: 3000 });
+    searchWithDebounce('clean');
+    expect(screen.getAllByText(/clean architecture/i).length).toBeGreaterThan(0);
   });
 
-  it('sonuç bulunamadığında mesaj göstermeli', async () => {
+  it('sonuç bulunamadığında mesaj göstermeli', () => {
     renderWithRouter(<CommandPalette />);
-    // Aç
     fireEvent.keyDown(window, { key: 'k', ctrlKey: true });
-    // Olmayan bir şey ara
-    const input = screen.getByPlaceholderText(/search/i);
-    fireEvent.change(input, { target: { value: 'xyznonexistent123' } });
-    // Sonuç bulunamadı mesajı (arama debounce'lu)
-    await waitFor(() => {
-      expect(screen.getByText(/no results found/i)).toBeInTheDocument();
-    }, { timeout: 3000 });
+    searchWithDebounce('xyznonexistent123');
+    expect(screen.getByText(/no results found/i)).toBeInTheDocument();
   });
 
   it('klavye navigasyonu çalışmalı', () => {

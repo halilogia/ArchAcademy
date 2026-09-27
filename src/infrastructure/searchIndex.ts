@@ -3,6 +3,16 @@ import type { CmsEnvelope, SearchEntry } from '../domain/entities/CmsEntry';
 export type SearchIndexItem = SearchEntry;
 
 const SEARCH_INDEX: SearchIndexItem[] = [
+  {
+    id: 'diagnostics',
+    title: 'Runtime Diagnostics',
+    description: 'Measure long tasks and route cost',
+    path: '/diagnostics',
+    category: 'Workshop',
+    keywords: ['diagnostics', 'performance', 'long tasks', 'runtime', 'route transition', 'web vitals', 'tanılama', 'performans', 'gecikme'],
+    content: 'Runtime Diagnostics - Records long tasks, route transition cost, navigation timing and JS heap use in your own browser. Bundle size only tells half the story: a route can ship a small chunk and still block the main thread. Navigate between a few routes, then re-measure.'
+  },
+
   // --- PHASE 2: SANDBOX & DECISION RECORDS ---
   {
     id: 'sandbox',

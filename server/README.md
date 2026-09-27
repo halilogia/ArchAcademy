@@ -125,6 +125,9 @@ npm run services:smoke
 The CI pipeline runs the smoke script and then builds the app with both endpoints pointed at the
 running services, so the contracts are checked on every push rather than only locally.
 
+The storage decision and the trigger that would reopen it are recorded in
+`decisions/0001-single-writer-sqlite-for-the-reference-services.md`.
+
 ## Production notes
 
 Neither service is a production deployment. The rate limiter and account store assume a single
