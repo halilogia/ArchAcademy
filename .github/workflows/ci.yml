@@ -5,6 +5,7 @@ on:
     branches: [main, develop]
   pull_request:
     branches: [main]
+  workflow_dispatch:
 
 # İzinler - Güvenlik için minimum izinler
 permissions:
@@ -13,7 +14,7 @@ permissions:
   pull-requests: write
 
 env:
-  NODE_VERSION: '20'
+  NODE_VERSION: '22'
   CACHE_NAME: 'npm-cache'
 
 jobs:
@@ -70,7 +71,7 @@ jobs:
         run: npm ci --ignore-scripts
 
       - name: 🧪 Run Tests
-        run: npm run test:run
+        run: npx vitest run --reporter=default --reporter=junit --outputFile=test-results.xml
         env:
           CI: true
 
@@ -87,9 +88,11 @@ jobs:
           name: test-results
           path: test-results.xml
           retention-days: 30
+          if-no-files-found: ignore
 
       - name: 📈 Publish Test Report
         if: always()
+        continue-on-error: true
         uses: dorny/test-reporter@v1
         with:
           name: Test Results
@@ -229,7 +232,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     needs: [build]
-    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    if: github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
     permissions:
       pages: write
       id-token: write
