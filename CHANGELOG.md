@@ -2,6 +2,10 @@
 
 All notable changes to the ArchAcademy project will be documented in this file.
 
+## [Unreleased]
+
+- **CI autofix (`.github/workflows/ci-autofix.yml`):** when CI fails on a push, Claude reproduces the failure, fixes the root cause with a test and opens a PR from `ci-autofix/<sha>`. It never pushes to the default branch and may not skip tests, loosen checks or add suppression comments. Needs the `CLAUDE_CODE_OAUTH_TOKEN` secret; without it the job skips.
+
 ## [1.4.1] - 2026-09-27
 
 Closes the performance and quality work. The P3 and P4 sections are retired: what remains is
