@@ -8,6 +8,7 @@ import { ComponentAtomicDesignTab } from '../components/componentdriven/Componen
 import { ComponentStateManagementTab } from '../components/componentdriven/ComponentStateManagementTab';
 import { StateDrivenArchitectureTab } from '../components/componentdriven/StateDrivenArchitectureTab';
 import { ComponentLifecycleSimulationTab } from '../components/componentdriven/ComponentLifecycleSimulationTab';
+import { CmsDiagramScene } from '../components/diagrams/CmsDiagramScene';
 
 const ComponentDrivenPage: React.FC = () => {
   const { i18n } = useTranslation();
@@ -120,7 +121,8 @@ const ComponentDrivenPage: React.FC = () => {
           <div id="reactive" style={{ scrollMarginTop: "100px" }}>
             <StateDrivenArchitectureTab />
           </div>
-          <div id="simulation" style={{ scrollMarginTop: "100px" }}>
+          <div id="simulation" style={{ scrollMarginTop: "100px", display: "flex", flexDirection: "column", gap: "2rem" }}>
+            <CmsDiagramScene sceneId="component-state" locale={isEn ? 'en' : 'tr'}  />
             <ComponentLifecycleSimulationTab />
           </div>
         </div>

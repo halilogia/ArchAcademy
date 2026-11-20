@@ -13,7 +13,8 @@ const COLLECTIONS: CmsCollectionName[] = [
   'comparison-matrix',
   'comparison-matrix-cards',
   'architecture-questions',
-  'architectures'
+  'architectures',
+  'diagram-scenes'
 ];
 
 const read = (name: CmsCollectionName): CmsEnvelope<unknown> => {

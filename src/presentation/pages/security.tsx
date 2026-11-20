@@ -7,6 +7,7 @@ import SEO from '../components/SEO';
 import { AppSecOWASPTab } from '../components/security/AppSecOWASPTab';
 import { ZeroTrustNISTTab } from '../components/security/ZeroTrustNISTTab';
 import { SecurityDefenseSimulationTab } from '../components/security/SecurityDefenseSimulationTab';
+import { CmsDiagramScene } from '../components/diagrams/CmsDiagramScene';
 
 const SecurityPage: React.FC = () => {
   const { i18n } = useTranslation();
@@ -117,6 +118,9 @@ const SecurityPage: React.FC = () => {
           </div>
           <div id="zerotrust" style={{ scrollMarginTop: "100px" }}>
             <ZeroTrustNISTTab />
+          </div>
+          <div id="defense" style={{ scrollMarginTop: "100px" }}>
+            <CmsDiagramScene sceneId="security" locale={isEn ? 'en' : 'tr'}  />
           </div>
         </div>
         </div>

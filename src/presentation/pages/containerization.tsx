@@ -8,6 +8,7 @@ import { ContainerFundamentalsTab } from '../components/containerization/Contain
 import { DockerfileOptimizationTab } from '../components/containerization/DockerfileOptimizationTab';
 import { KubernetesOrchestrationTab } from '../components/containerization/KubernetesOrchestrationTab';
 import { ContainerLifecycleSimulationTab } from '../components/containerization/ContainerLifecycleSimulationTab';
+import { CmsDiagramScene } from '../components/diagrams/CmsDiagramScene';
 
 const ContainerizationPage: React.FC = () => {
   const { i18n } = useTranslation();
@@ -119,7 +120,8 @@ const ContainerizationPage: React.FC = () => {
           <div id="k8s" style={{ scrollMarginTop: "100px" }}>
             <KubernetesOrchestrationTab />
           </div>
-          <div id="simulation" style={{ scrollMarginTop: "100px" }}>
+          <div id="simulation" style={{ scrollMarginTop: "100px", display: "flex", flexDirection: "column", gap: "2rem" }}>
+            <CmsDiagramScene sceneId="containerization" locale={isEn ? 'en' : 'tr'}  />
             <ContainerLifecycleSimulationTab />
           </div>
         </div>

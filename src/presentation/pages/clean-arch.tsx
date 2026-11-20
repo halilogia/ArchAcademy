@@ -9,6 +9,8 @@ import { CleanArchPrinciplesTab } from '../components/cleanarch/CleanArchPrincip
 import { CleanArchScreamingTab } from '../components/cleanarch/CleanArchScreamingTab';
 import { CleanArchClassicLayerTab } from '../components/cleanarch/CleanArchClassicLayerTab';
 import { CleanArchModernFeatureTab } from '../components/cleanarch/CleanArchModernFeatureTab';
+import { DiagramSection } from '../components/diagrams/DiagramSection';
+import { CmsDiagramScene } from '../components/diagrams/CmsDiagramScene';
 
 const CleanArchPage: React.FC = () => {
   const { i18n } = useTranslation();
@@ -99,6 +101,10 @@ const CleanArchPage: React.FC = () => {
             ))}
           </div>
         </Hero>
+
+        <DiagramSection>
+          <CmsDiagramScene sceneId="clean-arch" locale={isEn ? 'en' : 'tr'}  />
+        </DiagramSection>
 
         <div className="container">
           <div style={{ display: "flex", flexDirection: "column", gap: "4rem" }}>

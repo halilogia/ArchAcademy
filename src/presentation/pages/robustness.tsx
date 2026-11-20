@@ -6,6 +6,7 @@ import ArchHero from '../components/ArchHero';
 import SEO from '../components/SEO';
 import { RobustnessConceptTab } from '../components/robustness/RobustnessConceptTab';
 import { RobustnessCircuitBreakerSimulationTab } from '../components/robustness/RobustnessCircuitBreakerSimulationTab';
+import { CmsDiagramScene } from '../components/diagrams/CmsDiagramScene';
 
 const RobustnessPage: React.FC = () => {
   const { i18n } = useTranslation();
@@ -135,7 +136,8 @@ const RobustnessPage: React.FC = () => {
           <div id="concept" style={{ scrollMarginTop: "100px" }}>
             <RobustnessConceptTab />
           </div>
-          <div id="simulation" style={{ scrollMarginTop: "100px" }}>
+          <div id="simulation" style={{ scrollMarginTop: "100px", display: "flex", flexDirection: "column", gap: "2rem" }}>
+            <CmsDiagramScene sceneId="robustness" locale={isEn ? 'en' : 'tr'} />
             <RobustnessCircuitBreakerSimulationTab />
           </div>
         </div>

@@ -15,6 +15,7 @@ export const COLLECTION_NAMES = [
   'comparison-matrix-cards',
   'architecture-questions',
   'architectures',
+  'diagram-scenes',
   'project-graph'
 ]
 
@@ -43,6 +44,7 @@ export const COLLECTION_SCHEMAS = {
   'comparison-matrix-cards': { requiredKeys: ['id', 'title', 'desc', 'color'], uniqueKey: 'id', minItems: 1 },
   'architecture-questions': { requiredKeys: ['id', 'title', 'type', 'desc'], uniqueKey: 'id', minItems: 1 },
   architectures: { requiredKeys: ['key', 'title', 'tag', 'desc', 'color', 'pros'], uniqueKey: 'key', minItems: 1 },
+  'diagram-scenes': { requiredKeys: ['id', 'template', 'specs'], uniqueKey: 'id', minItems: 1 },
   'project-graph': { requiredKeys: ['nodes', 'links'], minItems: 1 }
 }
 

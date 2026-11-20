@@ -3,6 +3,8 @@ import { motion } from 'framer-motion';
 import HexagonalHero from '../components/HexagonalHero';
 import HexagonalDiagram from '../components/HexagonalDiagram';
 import HexagonalPractical from '../components/HexagonalPractical';
+import { DiagramSection } from '../components/diagrams/DiagramSection';
+import { CmsDiagramScene } from '../components/diagrams/CmsDiagramScene';
 
 const HexagonalPage = () => {
 
@@ -16,6 +18,9 @@ const HexagonalPage = () => {
       style={{ background: 'var(--bg-dark)' }}
     >
       <HexagonalHero />
+      <DiagramSection>
+        <CmsDiagramScene sceneId="hexagonal" locale="tr"  />
+      </DiagramSection>
       <HexagonalDiagram />
       <HexagonalPractical />
       

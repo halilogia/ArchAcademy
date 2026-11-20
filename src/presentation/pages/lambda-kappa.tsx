@@ -7,6 +7,8 @@ import SEO from '../components/SEO';
 import { LambdaKappaOverviewTab } from '../components/lambdakappa/LambdaKappaOverviewTab';
 import { LambdaServingSimTab } from '../components/lambdakappa/LambdaServingSimTab';
 import { KappaReplaySimTab } from '../components/lambdakappa/KappaReplaySimTab';
+import { DiagramSection } from '../components/diagrams/DiagramSection';
+import { CmsDiagramScene } from '../components/diagrams/CmsDiagramScene';
 
 export interface DataParticle {
   id: number;
@@ -149,6 +151,10 @@ const LambdaKappaPage: React.FC = () => {
             ))}
           </div>
         </ArchHero>
+
+        <DiagramSection>
+          <CmsDiagramScene sceneId="lambda-kappa" locale={isEn ? 'en' : 'tr'}  />
+        </DiagramSection>
 
         <div className="container" style={{ marginTop: '3rem', paddingBottom: '5rem' }}>
           <div style={{ display: "flex", flexDirection: "column", gap: "4rem" }}>

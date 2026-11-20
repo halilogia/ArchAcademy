@@ -4,6 +4,8 @@ import { useTranslation } from 'react-i18next';
 import { Database, Cpu, Layers, RefreshCcw, Activity } from 'lucide-react';
 import ArchHero from '../components/ArchHero';
 import SEO from '../components/SEO';
+import { DiagramSection } from '../components/diagrams/DiagramSection';
+import { CmsDiagramScene } from '../components/diagrams/CmsDiagramScene';
 import { SpaceBasedComparisonTab } from '../components/spacebased/SpaceBasedComparisonTab';
 import { SpaceBasedSimulationTab, PartitionNode } from '../components/spacebased/SpaceBasedSimulationTab';
 
@@ -156,6 +158,10 @@ const SpaceBasedPage: React.FC = () => {
             ))}
           </div>
         </ArchHero>
+
+        <DiagramSection>
+          <CmsDiagramScene sceneId="space-based" locale={isEn ? 'en' : 'tr'}  />
+        </DiagramSection>
 
         <div className="container" style={{ marginTop: '2rem' }}>
           <div style={{ display: "flex", flexDirection: "column", gap: "4rem" }}>

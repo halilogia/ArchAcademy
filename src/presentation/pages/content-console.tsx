@@ -28,7 +28,8 @@ const CONSOLE_COLLECTIONS: CmsCollectionName[] = [
   'comparison-matrix',
   'comparison-matrix-cards',
   'architecture-questions',
-  'architectures'
+  'architectures',
+  'diagram-scenes'
 ];
 
 type ConsoleState = 'loading' | 'ready' | 'error';

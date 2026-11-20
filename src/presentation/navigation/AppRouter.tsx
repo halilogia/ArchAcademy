@@ -58,6 +58,7 @@ const DependencyManagementPage = lazy(() => import('../pages/dependency-manageme
 const ModerateAbstractionPage = lazy(() => import('../pages/moderate-abstraction'));
 const DisciplineCatalogPage = lazy(() => import('../pages/discipline-catalog'));
 const LeanArchitecturePage = lazy(() => import('../pages/lean-architecture'));
+const DiagramLabPage = lazy(() => import('../pages/diagram-lab'));
 const DesignTokensPage = lazy(() => import('../pages/design-tokens'));
 const AtomicDesignPage = lazy(() => import('../pages/atomic-design'));
 const ServerDrivenUIPage = lazy(() => import('../pages/server-driven-ui'));
@@ -218,6 +219,7 @@ const MeasuredRoutes: React.FC = () => {
           <Route path="/spa-vs-mpa" element={<SPAvsMPAPage />} />
           <Route path="/component-state" element={<ComponentStatePage />} />
           <Route path="/elite-architecture" element={<EliteArchitecturePage />} />
+          <Route path="/diagram-lab" element={<DiagramLabPage />} />
           <Route path="*" element={<NotFoundPage />} />
       </Routes>
   );

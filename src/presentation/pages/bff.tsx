@@ -6,6 +6,7 @@ import ArchHero from '../components/ArchHero';
 import SEO from '../components/SEO';
 import { BFFComparisonTab } from '../components/bff/BFFComparisonTab';
 import { BFFSimulationTab } from '../components/bff/BFFSimulationTab';
+import { CmsDiagramScene } from '../components/diagrams/CmsDiagramScene';
 
 const BFFPage: React.FC = () => {
   const { i18n } = useTranslation();
@@ -162,7 +163,8 @@ const BFFPage: React.FC = () => {
           <div id="comparison" style={{ scrollMarginTop: "100px" }}>
             <BFFComparisonTab />
           </div>
-          <div id="simulation" style={{ scrollMarginTop: "100px" }}>
+          <div id="simulation" style={{ scrollMarginTop: "100px", display: "flex", flexDirection: "column", gap: "2rem" }}>
+            <CmsDiagramScene sceneId="bff" locale={isEn ? 'en' : 'tr'}  />
             <BFFSimulationTab />
           </div>
         </div>

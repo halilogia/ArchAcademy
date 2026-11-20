@@ -3,6 +3,8 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import FSDHero from '../components/FSDHero';
 import FSDDiagram from '../components/FSDDiagram';
+import { DiagramSection } from '../components/diagrams/DiagramSection';
+import { CmsDiagramScene } from '../components/diagrams/CmsDiagramScene';
 import FSDPractical from '../components/FSDPractical';
 
 
@@ -17,6 +19,9 @@ const FSDPage = () => {
       style={{ background: 'var(--bg-dark)' }}
     >
       <FSDHero />
+      <DiagramSection>
+        <CmsDiagramScene sceneId="fsd" locale={isEn ? 'en' : 'tr'}  />
+      </DiagramSection>
       <FSDDiagram />
       <FSDPractical />
       

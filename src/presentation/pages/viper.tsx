@@ -4,6 +4,8 @@ import { useTranslation } from 'react-i18next';
 import { ShieldCheck, Zap, Map, Share2, Layout, Cpu, Database, Route as RouterIcon, GitCompare, Box } from 'lucide-react';
 import ArchHero from '../components/ArchHero';
 import SEO from '../components/SEO';
+import { DiagramSection } from '../components/diagrams/DiagramSection';
+import { CmsDiagramScene } from '../components/diagrams/CmsDiagramScene';
 import { useProgress } from '../context/ProgressContext';
 import { VIPERComparisonTab } from '../components/viper/VIPERComparisonTab';
 import { VIPERAnatomyTab } from '../components/viper/VIPERAnatomyTab';
@@ -158,6 +160,10 @@ const VIPERPage: React.FC = () => {
             ))}
           </div>
         </ArchHero>
+
+        <DiagramSection>
+          <CmsDiagramScene sceneId="viper" locale={isEn ? 'en' : 'tr'}  />
+        </DiagramSection>
 
         <div className="container" style={{ marginTop: '2rem' }}>
           <div style={{ display: "flex", flexDirection: "column", gap: "4rem" }}>

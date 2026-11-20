@@ -7,6 +7,8 @@ import SEO from '../components/SEO';
 import { useProgress } from '../context/ProgressContext';
 import { CAPConceptTab } from '../components/cap/CAPConceptTab';
 import { CAPSimulationTab } from '../components/cap/CAPSimulationTab';
+import { DiagramSection } from '../components/diagrams/DiagramSection';
+import { CmsDiagramScene } from '../components/diagrams/CmsDiagramScene';
 
 const CAPTheoremPage: React.FC = () => {
   const { i18n } = useTranslation();
@@ -146,6 +148,9 @@ const CAPTheoremPage: React.FC = () => {
           <div id="concept" style={{ scrollMarginTop: "100px" }}>
             <CAPConceptTab />
           </div>
+          <DiagramSection id="simulation">
+            <CmsDiagramScene sceneId="cap-theorem" locale={isEn ? 'en' : 'tr'} />
+          </DiagramSection>
         </div>
         </div>
       </motion.div>

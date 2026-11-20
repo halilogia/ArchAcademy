@@ -4,6 +4,8 @@ import { useTranslation } from 'react-i18next';
 import { Layers, ArrowRightLeft, Sparkles, BookOpen, FolderTree } from 'lucide-react';
 import ArchHero from '../components/ArchHero';
 import SEO from '../components/SEO';
+import { DiagramSection } from '../components/diagrams/DiagramSection';
+import { CmsDiagramScene } from '../components/diagrams/CmsDiagramScene';
 import { VerticalFeaturesTab } from '../components/vertical/VerticalFeaturesTab';
 import { VerticalVsHorizontalTab } from '../components/vertical/VerticalVsHorizontalTab';
 import { VerticalAIVibeTab } from '../components/vertical/VerticalAIVibeTab';
@@ -127,6 +129,10 @@ const VerticalSlicePage: React.FC<VerticalSlicePageProps> = ({ initialTab = 'fea
             ))}
           </div>
         </ArchHero>
+
+        <DiagramSection>
+          <CmsDiagramScene sceneId="vertical" locale={isEn ? 'en' : 'tr'}  />
+        </DiagramSection>
 
         <div className="container" style={{ marginTop: '2rem', display: 'flex', flexDirection: 'column', gap: '4rem' }}>
           <div id="features" style={{ scrollMarginTop: '100px' }}>

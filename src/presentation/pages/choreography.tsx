@@ -6,6 +6,7 @@ import ArchHero from '../components/ArchHero';
 import SEO from '../components/SEO';
 import { ChoreographyComparisonTab } from '../components/choreography/ChoreographyComparisonTab';
 import { ChoreographySimulationTab } from '../components/choreography/ChoreographySimulationTab';
+import { CmsDiagramScene } from '../components/diagrams/CmsDiagramScene';
 
 const ChoreographyPage: React.FC = () => {
   const { i18n } = useTranslation();
@@ -188,7 +189,8 @@ const ChoreographyPage: React.FC = () => {
           <div id="comparison" style={{ scrollMarginTop: "100px" }}>
             <ChoreographyComparisonTab />
           </div>
-          <div id="simulation" style={{ scrollMarginTop: "100px" }}>
+          <div id="simulation" style={{ scrollMarginTop: "100px", display: "flex", flexDirection: "column", gap: "2rem" }}>
+            <CmsDiagramScene sceneId="choreography" locale={isEn ? 'en' : 'tr'}  />
             <ChoreographySimulationTab />
           </div>
         </div>

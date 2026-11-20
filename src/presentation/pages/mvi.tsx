@@ -4,6 +4,8 @@ import { useTranslation } from 'react-i18next';
 import { RefreshCcw, MousePointerClick, Layers, Database, ArrowRight, Play, CircleDot } from 'lucide-react';
 import ArchHero from '../components/ArchHero';
 import SEO from '../components/SEO';
+import { DiagramSection } from '../components/diagrams/DiagramSection';
+import { CmsDiagramScene } from '../components/diagrams/CmsDiagramScene';
 import { MVIFlowTab } from '../components/mvi/MVIFlowTab';
 import { MVISimulationTab, UiState } from '../components/mvi/MVISimulationTab';
 
@@ -149,6 +151,10 @@ const MVIPage: React.FC = () => {
             ))}
           </div>
         </ArchHero>
+
+        <DiagramSection>
+          <CmsDiagramScene sceneId="mvi" locale={isEn ? 'en' : 'tr'}  />
+        </DiagramSection>
 
         <div className="container" style={{ marginTop: '2rem' }}>
           <div style={{ display: "flex", flexDirection: "column", gap: "4rem" }}>

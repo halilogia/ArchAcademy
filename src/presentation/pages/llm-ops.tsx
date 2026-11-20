@@ -4,6 +4,8 @@ import { Terminal, Settings, Activity, BookOpen, Layers } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import ArchHero from '../components/ArchHero';
 import SEO from '../components/SEO';
+import { DiagramSection } from '../components/diagrams/DiagramSection';
+import { CmsDiagramScene } from '../components/diagrams/CmsDiagramScene';
 import { LLMOpsPillarsTab } from '../components/llmops/LLMOpsPillarsTab';
 import { LLMOpsSimulationTab } from '../components/llmops/LLMOpsSimulationTab';
 
@@ -104,6 +106,10 @@ const LLMOpsPage: React.FC = () => {
             ))}
           </div>
         </ArchHero>
+
+        <DiagramSection>
+          <CmsDiagramScene sceneId="llm-ops" locale={isEn ? 'en' : 'tr'}  />
+        </DiagramSection>
 
         <div className="container" style={{ marginTop: '2rem' }}>
           <div style={{ display: "flex", flexDirection: "column", gap: "4rem" }}>

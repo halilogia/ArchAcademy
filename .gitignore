@@ -82,7 +82,12 @@ Universal-Docs
 archives/
 
 # Agent Internal Brain & Scratch
-brain/
+# brain/ tracked for core-docs
+brain/scratch/
+brain/.chat-history/
 
 # Reference sync server runtime data
 server/data/
+
+# Executables
+Launch.exe

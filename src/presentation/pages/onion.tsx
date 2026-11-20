@@ -3,6 +3,8 @@ import { motion } from 'framer-motion';
 import OnionHero from '../components/OnionHero';
 import OnionDiagram from '../components/OnionDiagram';
 import OnionPractical from '../components/OnionPractical';
+import { DiagramSection } from '../components/diagrams/DiagramSection';
+import { CmsDiagramScene } from '../components/diagrams/CmsDiagramScene';
 
 const OnionPage = () => {
 
@@ -16,6 +18,9 @@ const OnionPage = () => {
       style={{ background: 'var(--bg-dark)' }}
     >
       <OnionHero />
+      <DiagramSection>
+        <CmsDiagramScene sceneId="onion" locale="tr"  />
+      </DiagramSection>
       <OnionDiagram />
       <OnionPractical />
       

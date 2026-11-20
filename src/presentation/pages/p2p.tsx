@@ -6,6 +6,7 @@ import ArchHero from '../components/ArchHero';
 import SEO from '../components/SEO';
 import { P2PComparisonTab } from '../components/p2p/P2PComparisonTab';
 import { P2PSimulationTab } from '../components/p2p/P2PSimulationTab';
+import { CmsDiagramScene } from '../components/diagrams/CmsDiagramScene';
 
 const P2PPage: React.FC = () => {
   const { i18n } = useTranslation();
@@ -165,7 +166,8 @@ const P2PPage: React.FC = () => {
           <div id="comparison" style={{ scrollMarginTop: "100px" }}>
             <P2PComparisonTab />
           </div>
-          <div id="simulation" style={{ scrollMarginTop: "100px" }}>
+          <div id="simulation" style={{ scrollMarginTop: "100px", display: "flex", flexDirection: "column", gap: "2rem" }}>
+            <CmsDiagramScene sceneId="p2p" locale={isEn ? 'en' : 'tr'}  />
             <P2PSimulationTab />
           </div>
         </div>

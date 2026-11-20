@@ -3,6 +3,8 @@ import { motion } from 'framer-motion';
 import SystemHero from '../components/SystemHero';
 import SystemComparison from '../components/SystemComparison';
 import SystemChoice from '../components/SystemChoice';
+import { DiagramSection } from '../components/diagrams/DiagramSection';
+import { CmsDiagramScene } from '../components/diagrams/CmsDiagramScene';
 
 
 const MicroservicesPage = () => {
@@ -14,6 +16,9 @@ const MicroservicesPage = () => {
       style={{ background: 'var(--bg-dark)' }}
     >
       <SystemHero />
+      <DiagramSection>
+        <CmsDiagramScene sceneId="microservices" locale="tr"  />
+      </DiagramSection>
       <SystemComparison />
       <SystemChoice />
       

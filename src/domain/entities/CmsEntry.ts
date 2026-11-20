@@ -7,6 +7,7 @@ export type CmsCollectionName =
   | 'comparison-matrix-cards'
   | 'architecture-questions'
   | 'architectures'
+  | 'diagram-scenes'
   | 'project-graph';
 
 export interface CmsEnvelope<T> {

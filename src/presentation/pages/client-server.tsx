@@ -6,6 +6,7 @@ import ArchHero from '../components/ArchHero';
 import SEO from '../components/SEO';
 import { ClientServerComparisonTab } from '../components/clientserver/ClientServerComparisonTab';
 import { ClientServerSimulationTab } from '../components/clientserver/ClientServerSimulationTab';
+import { SequenceScene } from '../components/diagrams/templates/SequenceScene';
 
 const ClientServerPage: React.FC = () => {
   const { i18n } = useTranslation();
@@ -178,6 +179,84 @@ const ClientServerPage: React.FC = () => {
           <div style={{ display: "flex", flexDirection: "column", gap: "4rem" }}>
           <div id="comparison" style={{ scrollMarginTop: "100px" }}>
             <ClientServerComparisonTab />
+          </div>
+          <div id="simulation" style={{ scrollMarginTop: "100px" }}>
+            <SequenceScene
+              locale={isEn ? 'en' : 'tr'}
+              title={isEn ? 'One HTTP request, end to end' : 'Uçtan uca tek HTTP isteği'}
+              subtitle={
+                isEn
+                  ? 'Resolve, connect, ask, answer. Every arrow is a real network hop.'
+                  : 'Çözümle, bağlan, sor, yanıt al. Her ok gerçek bir ağ adımıdır.'
+              }
+              participants={[
+                { id: 'browser', label: isEn ? 'Browser' : 'Tarayıcı', icon: 'globe', tone: 'green' },
+                { id: 'dns', label: 'DNS', icon: 'network', tone: 'slate' },
+                { id: 'edge', label: isEn ? 'Edge / CDN' : 'Edge / CDN', icon: 'cloud', tone: 'violet' },
+                { id: 'origin', label: isEn ? 'Origin server' : 'Origin sunucu', icon: 'server', tone: 'blue' },
+              ]}
+              intro={{
+                title: isEn ? 'The request lifecycle' : 'İsteğin yaşam döngüsü',
+                body: isEn
+                  ? 'The client always initiates. The server never pushes without a request in flight.'
+                  : 'İletişimi her zaman istemci başlatır. Sunucu, uçuşta bir istek yokken veri göndermez.',
+                tag: isEn ? 'Overview' : 'Genel bakış',
+              }}
+              messages={[
+                {
+                  from: 'browser',
+                  to: 'dns',
+                  label: 'resolve host',
+                  tone: 'slate',
+                  note: isEn
+                    ? 'The name becomes an IP address before a single byte of HTTP is sent.'
+                    : 'Tek bir HTTP baytı gitmeden önce isim bir IP adresine çözülür.',
+                },
+                {
+                  from: 'browser',
+                  to: 'edge',
+                  label: 'GET /api/data',
+                  tone: 'green',
+                  note: isEn
+                    ? 'TLS terminates at the edge. The request carries method, path, and headers — not server state.'
+                    : 'TLS edge’de sonlanır. İstek metot, yol ve başlık taşır; sunucu durumu taşımaz.',
+                },
+                {
+                  from: 'edge',
+                  to: 'origin',
+                  label: 'cache miss',
+                  tone: 'violet',
+                  dashed: true,
+                  note: isEn
+                    ? 'Only a cache miss reaches the origin. A hit would have answered two hops earlier.'
+                    : 'Origin’e yalnızca cache miss ulaşır. Hit olsaydı iki adım önce yanıtlanırdı.',
+                },
+                {
+                  from: 'origin',
+                  to: 'edge',
+                  label: '200 OK + JSON',
+                  tone: 'blue',
+                  dashed: true,
+                  note: isEn
+                    ? 'The response is data plus metadata: status, content type, cache directives.'
+                    : 'Yanıt, veri ve metadatasıdır: durum kodu, içerik tipi, cache direktifleri.',
+                },
+                {
+                  from: 'edge',
+                  to: 'browser',
+                  label: 'cached 200',
+                  tone: 'green',
+                  dashed: true,
+                  note: isEn
+                    ? 'The client renders. The connection may stay open for the next request.'
+                    : 'İstemci render eder. Bağlantı bir sonraki istek için açık kalabilir.',
+                },
+              ]}
+              metrics={[
+                { id: 'hops', label: isEn ? 'Network hops' : 'Ağ adımı', value: '5', tone: 'blue' },
+                { id: 'state', label: isEn ? 'Client state' : 'İstemci durumu', value: isEn ? 'owned' : 'sahipli', tone: 'green' },
+              ]}
+            />
           </div>
         </div>
         </div>

@@ -198,3 +198,4 @@ All runtime configuration is optional; the app runs fully offline without it. Co
 This project is licensed under the GNU General Public License v3.0 - see the [LICENSE](LICENSE) file for details.
 
 ---
+- [DESIGN.md](DESIGN.md) — Görsel tasarım sistemi ve bileşen spesifikasyonu

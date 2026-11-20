@@ -4,6 +4,8 @@ import CQRSHero from '../components/CQRSHero';
 import CQRSDiagram from '../components/CQRSDiagram';
 import CQRSPractical from '../components/CQRSPractical';
 import CQRSSection from '../components/CQRSSection';
+import { DiagramSection } from '../components/diagrams/DiagramSection';
+import { CmsDiagramScene } from '../components/diagrams/CmsDiagramScene';
 
 
 const CQRSPage = () => {
@@ -15,6 +17,9 @@ const CQRSPage = () => {
       style={{ background: 'var(--bg-dark)' }}
     >
       <CQRSHero />
+      <DiagramSection>
+        <CmsDiagramScene sceneId="cqrs" locale="tr"  />
+      </DiagramSection>
       <CQRSDiagram />
       <CQRSPractical />
       

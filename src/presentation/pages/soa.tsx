@@ -4,6 +4,8 @@ import { useTranslation } from 'react-i18next';
 import { Layers, Share2, Settings, Box, Database, Server, ArrowRightLeft, ShieldCheck, Globe, Activity, Workflow } from 'lucide-react';
 import ArchHero from '../components/ArchHero';
 import SEO from '../components/SEO';
+import { DiagramSection } from '../components/diagrams/DiagramSection';
+import { CmsDiagramScene } from '../components/diagrams/CmsDiagramScene';
 import { SOAComparisonTab } from '../components/soa/SOAComparisonTab';
 import { SOASimulationTab } from '../components/soa/SOASimulationTab';
 import { useESBSimulation } from '../components/soa/useESBSimulation';
@@ -150,6 +152,10 @@ const SOAPage: React.FC = () => {
             ))}
           </div>
         </ArchHero>
+
+        <DiagramSection>
+          <CmsDiagramScene sceneId="soa" locale={isEn ? 'en' : 'tr'}  />
+        </DiagramSection>
 
         <div className="container" style={{ marginTop: '2rem' }}>
           <div style={{ display: "flex", flexDirection: "column", gap: "4rem" }}>

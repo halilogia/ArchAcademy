@@ -19,6 +19,24 @@
       "size": 5463
     },
     {
+      "id": "domain/diagrams/geometry.ts",
+      "label": "geometry.ts",
+      "category": "Domain",
+      "size": 4801
+    },
+    {
+      "id": "domain/diagrams/sceneSpec.ts",
+      "label": "sceneSpec.ts",
+      "category": "Domain",
+      "size": 3264
+    },
+    {
+      "id": "domain/diagrams/sceneState.ts",
+      "label": "sceneState.ts",
+      "category": "Domain",
+      "size": 5272
+    },
+    {
       "id": "domain/entities/ArchitectureProfile.ts",
       "label": "ArchitectureProfile.ts",
       "category": "Domain",
@@ -28,13 +46,19 @@
       "id": "domain/entities/CmsEntry.ts",
       "label": "CmsEntry.ts",
       "category": "Domain",
-      "size": 782
+      "size": 803
     },
     {
       "id": "domain/entities/ContentTypes.ts",
       "label": "ContentTypes.ts",
       "category": "Domain",
       "size": 771
+    },
+    {
+      "id": "domain/entities/DiagramScene.ts",
+      "label": "DiagramScene.ts",
+      "category": "Domain",
+      "size": 610
     },
     {
       "id": "domain/entities/Progress.ts",
@@ -77,6 +101,12 @@
       "label": "CollectionValidator.ts",
       "category": "Domain",
       "size": 2149
+    },
+    {
+      "id": "domain/usecases/DiagramSceneValidator.ts",
+      "label": "DiagramSceneValidator.ts",
+      "category": "Domain",
+      "size": 4468
     },
     {
       "id": "domain/usecases/ProgressMerger.ts",
@@ -149,6 +179,150 @@
       "label": "env.ts",
       "category": "Infra",
       "size": 1548
+    },
+    {
+      "id": "infrastructure/diagramScenes/aiScenes.ts",
+      "label": "aiScenes.ts",
+      "category": "Infra",
+      "size": 28805
+    },
+    {
+      "id": "infrastructure/diagramScenes/brokerScene.ts",
+      "label": "brokerScene.ts",
+      "category": "Infra",
+      "size": 17616
+    },
+    {
+      "id": "infrastructure/diagramScenes/cleanArchScene.ts",
+      "label": "cleanArchScene.ts",
+      "category": "Infra",
+      "size": 13522
+    },
+    {
+      "id": "infrastructure/diagramScenes/containerizationScene.ts",
+      "label": "containerizationScene.ts",
+      "category": "Infra",
+      "size": 16347
+    },
+    {
+      "id": "infrastructure/diagramScenes/cqrsScene.ts",
+      "label": "cqrsScene.ts",
+      "category": "Infra",
+      "size": 18168
+    },
+    {
+      "id": "infrastructure/diagramScenes/eventSourcingScene.ts",
+      "label": "eventSourcingScene.ts",
+      "category": "Infra",
+      "size": 16019
+    },
+    {
+      "id": "infrastructure/diagramScenes/fsdScene.ts",
+      "label": "fsdScene.ts",
+      "category": "Infra",
+      "size": 21987
+    },
+    {
+      "id": "infrastructure/diagramScenes/gitOpsScene.ts",
+      "label": "gitOpsScene.ts",
+      "category": "Infra",
+      "size": 16435
+    },
+    {
+      "id": "infrastructure/diagramScenes/hexagonalScene.ts",
+      "label": "hexagonalScene.ts",
+      "category": "Infra",
+      "size": 18103
+    },
+    {
+      "id": "infrastructure/diagramScenes/index.ts",
+      "label": "index.ts",
+      "category": "Infra",
+      "size": 1666
+    },
+    {
+      "id": "infrastructure/diagramScenes/lambdaKappaScene.ts",
+      "label": "lambdaKappaScene.ts",
+      "category": "Infra",
+      "size": 13690
+    },
+    {
+      "id": "infrastructure/diagramScenes/messagingScenes.ts",
+      "label": "messagingScenes.ts",
+      "category": "Infra",
+      "size": 52081
+    },
+    {
+      "id": "infrastructure/diagramScenes/microservicesScene.ts",
+      "label": "microservicesScene.ts",
+      "category": "Infra",
+      "size": 17607
+    },
+    {
+      "id": "infrastructure/diagramScenes/onionScene.ts",
+      "label": "onionScene.ts",
+      "category": "Infra",
+      "size": 13510
+    },
+    {
+      "id": "infrastructure/diagramScenes/opsScenes.ts",
+      "label": "opsScenes.ts",
+      "category": "Infra",
+      "size": 39812
+    },
+    {
+      "id": "infrastructure/diagramScenes/platformScenes.ts",
+      "label": "platformScenes.ts",
+      "category": "Infra",
+      "size": 34820
+    },
+    {
+      "id": "infrastructure/diagramScenes/principlesScenes.ts",
+      "label": "principlesScenes.ts",
+      "category": "Infra",
+      "size": 40165
+    },
+    {
+      "id": "infrastructure/diagramScenes/pubSubScene.ts",
+      "label": "pubSubScene.ts",
+      "category": "Infra",
+      "size": 17451
+    },
+    {
+      "id": "infrastructure/diagramScenes/securityScene.ts",
+      "label": "securityScene.ts",
+      "category": "Infra",
+      "size": 18387
+    },
+    {
+      "id": "infrastructure/diagramScenes/testingScenes.ts",
+      "label": "testingScenes.ts",
+      "category": "Infra",
+      "size": 13833
+    },
+    {
+      "id": "infrastructure/diagramScenes/topologyScenes.ts",
+      "label": "topologyScenes.ts",
+      "category": "Infra",
+      "size": 51894
+    },
+    {
+      "id": "infrastructure/diagramScenes/uiPatternScenes.ts",
+      "label": "uiPatternScenes.ts",
+      "category": "Infra",
+      "size": 52910
+    },
+    {
+      "id": "infrastructure/diagramScenes/viperScene.ts",
+      "label": "viperScene.ts",
+      "category": "Infra",
+      "size": 17701
+    },
+    {
+      "id": "infrastructure/DiagramScenesData.ts",
+      "label": "DiagramScenesData.ts",
+      "category": "Infra",
+      "size": 13037
     },
     {
       "id": "infrastructure/GlossaryData.ts",
@@ -569,6 +743,138 @@
       "label": "DDDSimulation.tsx",
       "category": "Component",
       "size": 6481
+    },
+    {
+      "id": "presentation/components/diagrams/CmsDiagramScene.tsx",
+      "label": "CmsDiagramScene.tsx",
+      "category": "Component",
+      "size": 1528
+    },
+    {
+      "id": "presentation/components/diagrams/DiagramEdges.tsx",
+      "label": "DiagramEdges.tsx",
+      "category": "Component",
+      "size": 6152
+    },
+    {
+      "id": "presentation/components/diagrams/DiagramNodeView.tsx",
+      "label": "DiagramNodeView.tsx",
+      "category": "Component",
+      "size": 7616
+    },
+    {
+      "id": "presentation/components/diagrams/DiagramScene.tsx",
+      "label": "DiagramScene.tsx",
+      "category": "Component",
+      "size": 4690
+    },
+    {
+      "id": "presentation/components/diagrams/DiagramSection.tsx",
+      "label": "DiagramSection.tsx",
+      "category": "Component",
+      "size": 535
+    },
+    {
+      "id": "presentation/components/diagrams/DiagramStage.tsx",
+      "label": "DiagramStage.tsx",
+      "category": "Component",
+      "size": 3181
+    },
+    {
+      "id": "presentation/components/diagrams/diagramTheme.ts",
+      "label": "diagramTheme.ts",
+      "category": "Component",
+      "size": 1494
+    },
+    {
+      "id": "presentation/components/diagrams/SceneMetrics.tsx",
+      "label": "SceneMetrics.tsx",
+      "category": "Component",
+      "size": 2028
+    },
+    {
+      "id": "presentation/components/diagrams/SceneNarration.tsx",
+      "label": "SceneNarration.tsx",
+      "category": "Component",
+      "size": 5018
+    },
+    {
+      "id": "presentation/components/diagrams/ScenePlayerBar.tsx",
+      "label": "ScenePlayerBar.tsx",
+      "category": "Component",
+      "size": 2456
+    },
+    {
+      "id": "presentation/components/diagrams/SceneStepper.tsx",
+      "label": "SceneStepper.tsx",
+      "category": "Component",
+      "size": 2619
+    },
+    {
+      "id": "presentation/components/diagrams/templates/builders/fanOut.ts",
+      "label": "fanOut.ts",
+      "category": "Component",
+      "size": 8282
+    },
+    {
+      "id": "presentation/components/diagrams/templates/builders/layerStack.ts",
+      "label": "layerStack.ts",
+      "category": "Component",
+      "size": 2936
+    },
+    {
+      "id": "presentation/components/diagrams/templates/builders/pipeline.ts",
+      "label": "pipeline.ts",
+      "category": "Component",
+      "size": 4561
+    },
+    {
+      "id": "presentation/components/diagrams/templates/builders/sequence.ts",
+      "label": "sequence.ts",
+      "category": "Component",
+      "size": 3492
+    },
+    {
+      "id": "presentation/components/diagrams/templates/builders/stateMachine.ts",
+      "label": "stateMachine.ts",
+      "category": "Component",
+      "size": 3489
+    },
+    {
+      "id": "presentation/components/diagrams/templates/FanOutScene.tsx",
+      "label": "FanOutScene.tsx",
+      "category": "Component",
+      "size": 628
+    },
+    {
+      "id": "presentation/components/diagrams/templates/labels.ts",
+      "label": "labels.ts",
+      "category": "Component",
+      "size": 743
+    },
+    {
+      "id": "presentation/components/diagrams/templates/LayerStackScene.tsx",
+      "label": "LayerStackScene.tsx",
+      "category": "Component",
+      "size": 661
+    },
+    {
+      "id": "presentation/components/diagrams/templates/PipelineScene.tsx",
+      "label": "PipelineScene.tsx",
+      "category": "Component",
+      "size": 646
+    },
+    {
+      "id": "presentation/components/diagrams/templates/SequenceScene.tsx",
+      "label": "SequenceScene.tsx",
+      "category": "Component",
+      "size": 635
+    },
+    {
+      "id": "presentation/components/diagrams/templates/StateMachineScene.tsx",
+      "label": "StateMachineScene.tsx",
+      "category": "Component",
+      "size": 683
     },
     {
       "id": "presentation/components/disciplinechain/DisciplineChainColumn.tsx",
@@ -1585,10 +1891,22 @@
       "size": 2229
     },
     {
+      "id": "presentation/hooks/useDiagramScene.ts",
+      "label": "useDiagramScene.ts",
+      "category": "Hook",
+      "size": 1198
+    },
+    {
+      "id": "presentation/hooks/useScenePlayback.ts",
+      "label": "useScenePlayback.ts",
+      "category": "Hook",
+      "size": 2334
+    },
+    {
       "id": "presentation/navigation/AppRouter.tsx",
       "label": "AppRouter.tsx",
       "category": "App",
-      "size": 13825
+      "size": 13961
     },
     {
       "id": "presentation/pages/abstraction.tsx",
@@ -1600,7 +1918,7 @@
       "id": "presentation/pages/acid.tsx",
       "label": "acid.tsx",
       "category": "Page",
-      "size": 7560
+      "size": 11332
     },
     {
       "id": "presentation/pages/acronyms.tsx",
@@ -1618,7 +1936,7 @@
       "id": "presentation/pages/agentic-ai.tsx",
       "label": "agentic-ai.tsx",
       "category": "Page",
-      "size": 7627
+      "size": 7839
     },
     {
       "id": "presentation/pages/anti-patterns.tsx",
@@ -1642,19 +1960,19 @@
       "id": "presentation/pages/bff.tsx",
       "label": "bff.tsx",
       "category": "Page",
-      "size": 11262
+      "size": 11467
     },
     {
       "id": "presentation/pages/broker.tsx",
       "label": "broker.tsx",
       "category": "Page",
-      "size": 11043
+      "size": 11252
     },
     {
       "id": "presentation/pages/cap-theorem.tsx",
       "label": "cap-theorem.tsx",
       "category": "Page",
-      "size": 8189
+      "size": 8488
     },
     {
       "id": "presentation/pages/catalog.tsx",
@@ -1666,13 +1984,13 @@
       "id": "presentation/pages/choreography.tsx",
       "label": "choreography.tsx",
       "category": "Page",
-      "size": 10971
+      "size": 11186
     },
     {
       "id": "presentation/pages/clean-arch.tsx",
       "label": "clean-arch.tsx",
       "category": "Page",
-      "size": 7556
+      "size": 7835
     },
     {
       "id": "presentation/pages/clean-code.tsx",
@@ -1684,7 +2002,7 @@
       "id": "presentation/pages/client-server.tsx",
       "label": "client-server.tsx",
       "category": "Page",
-      "size": 11288
+      "size": 15311
     },
     {
       "id": "presentation/pages/cloud-catalog.tsx",
@@ -1702,7 +2020,7 @@
       "id": "presentation/pages/component-driven.tsx",
       "label": "component-driven.tsx",
       "category": "Page",
-      "size": 7799
+      "size": 8016
     },
     {
       "id": "presentation/pages/component-state.tsx",
@@ -1720,19 +2038,19 @@
       "id": "presentation/pages/containerization.tsx",
       "label": "containerization.tsx",
       "category": "Page",
-      "size": 8090
+      "size": 8308
     },
     {
       "id": "presentation/pages/content-console.tsx",
       "label": "content-console.tsx",
       "category": "Page",
-      "size": 19226
+      "size": 19246
     },
     {
       "id": "presentation/pages/cqrs.tsx",
       "label": "cqrs.tsx",
       "category": "Page",
-      "size": 5641
+      "size": 5895
     },
     {
       "id": "presentation/pages/data-ai-catalog.tsx",
@@ -1771,6 +2089,12 @@
       "size": 12049
     },
     {
+      "id": "presentation/pages/diagram-lab.tsx",
+      "label": "diagram-lab.tsx",
+      "category": "Page",
+      "size": 15597
+    },
+    {
       "id": "presentation/pages/discipline-catalog.tsx",
       "label": "discipline-catalog.tsx",
       "category": "Page",
@@ -1780,7 +2104,7 @@
       "id": "presentation/pages/docs-annotations.tsx",
       "label": "docs-annotations.tsx",
       "category": "Page",
-      "size": 7970
+      "size": 8188
     },
     {
       "id": "presentation/pages/ecs.tsx",
@@ -1804,7 +2128,7 @@
       "id": "presentation/pages/event-sourcing.tsx",
       "label": "event-sourcing.tsx",
       "category": "Page",
-      "size": 11299
+      "size": 11515
     },
     {
       "id": "presentation/pages/evolution.tsx",
@@ -1822,13 +2146,13 @@
       "id": "presentation/pages/fsd.tsx",
       "label": "fsd.tsx",
       "category": "Page",
-      "size": 14479
+      "size": 14748
     },
     {
       "id": "presentation/pages/gitops.tsx",
       "label": "gitops.tsx",
       "category": "Page",
-      "size": 3973
+      "size": 4248
     },
     {
       "id": "presentation/pages/glossary.tsx",
@@ -1840,7 +2164,7 @@
       "id": "presentation/pages/hexagonal.tsx",
       "label": "hexagonal.tsx",
       "category": "Page",
-      "size": 6605
+      "size": 6864
     },
     {
       "id": "presentation/pages/home.tsx",
@@ -1870,13 +2194,13 @@
       "id": "presentation/pages/lambda-kappa.tsx",
       "label": "lambda-kappa.tsx",
       "category": "Page",
-      "size": 11144
+      "size": 11425
     },
     {
       "id": "presentation/pages/lean-architecture.tsx",
       "label": "lean-architecture.tsx",
       "category": "Page",
-      "size": 5268
+      "size": 5554
     },
     {
       "id": "presentation/pages/library.tsx",
@@ -1888,7 +2212,7 @@
       "id": "presentation/pages/llm-ops.tsx",
       "label": "llm-ops.tsx",
       "category": "Page",
-      "size": 6619
+      "size": 6895
     },
     {
       "id": "presentation/pages/micro-frontends.tsx",
@@ -1906,7 +2230,7 @@
       "id": "presentation/pages/microservices.tsx",
       "label": "microservices.tsx",
       "category": "Page",
-      "size": 6770
+      "size": 7033
     },
     {
       "id": "presentation/pages/moderate-abstraction.tsx",
@@ -1930,7 +2254,7 @@
       "id": "presentation/pages/mvi.tsx",
       "label": "mvi.tsx",
       "category": "Page",
-      "size": 10712
+      "size": 10989
     },
     {
       "id": "presentation/pages/mvp.tsx",
@@ -1948,7 +2272,7 @@
       "id": "presentation/pages/mvvm.tsx",
       "label": "mvvm.tsx",
       "category": "Page",
-      "size": 7243
+      "size": 7515
     },
     {
       "id": "presentation/pages/not-found.tsx",
@@ -1966,7 +2290,7 @@
       "id": "presentation/pages/onion.tsx",
       "label": "onion.tsx",
       "category": "Page",
-      "size": 4509
+      "size": 4764
     },
     {
       "id": "presentation/pages/oop-fundamentals.tsx",
@@ -1978,13 +2302,13 @@
       "id": "presentation/pages/orchestration.tsx",
       "label": "orchestration.tsx",
       "category": "Page",
-      "size": 11690
+      "size": 11955
     },
     {
       "id": "presentation/pages/p2p.tsx",
       "label": "p2p.tsx",
       "category": "Page",
-      "size": 10309
+      "size": 10515
     },
     {
       "id": "presentation/pages/pipe-filter.tsx",
@@ -2002,7 +2326,7 @@
       "id": "presentation/pages/primary-secondary.tsx",
       "label": "primary-secondary.tsx",
       "category": "Page",
-      "size": 8810
+      "size": 9096
     },
     {
       "id": "presentation/pages/project-arch.tsx",
@@ -2014,19 +2338,19 @@
       "id": "presentation/pages/pub-sub.tsx",
       "label": "pub-sub.tsx",
       "category": "Page",
-      "size": 9879
+      "size": 10088
     },
     {
       "id": "presentation/pages/rag-arch.tsx",
       "label": "rag-arch.tsx",
       "category": "Page",
-      "size": 7566
+      "size": 7776
     },
     {
       "id": "presentation/pages/refactoring.tsx",
       "label": "refactoring.tsx",
       "category": "Page",
-      "size": 6574
+      "size": 6798
     },
     {
       "id": "presentation/pages/roadmap.tsx",
@@ -2038,7 +2362,7 @@
       "id": "presentation/pages/robustness.tsx",
       "label": "robustness.tsx",
       "category": "Page",
-      "size": 7136
+      "size": 7346
     },
     {
       "id": "presentation/pages/sandbox.tsx",
@@ -2050,7 +2374,7 @@
       "id": "presentation/pages/security.tsx",
       "label": "security.tsx",
       "category": "Page",
-      "size": 7261
+      "size": 7499
     },
     {
       "id": "presentation/pages/server-driven-ui.tsx",
@@ -2062,31 +2386,31 @@
       "id": "presentation/pages/serverless.tsx",
       "label": "serverless.tsx",
       "category": "Page",
-      "size": 9861
+      "size": 10140
     },
     {
       "id": "presentation/pages/soa.tsx",
       "label": "soa.tsx",
       "category": "Page",
-      "size": 8881
+      "size": 9153
     },
     {
       "id": "presentation/pages/solid.tsx",
       "label": "solid.tsx",
       "category": "Page",
-      "size": 5845
+      "size": 6118
     },
     {
       "id": "presentation/pages/spa-vs-mpa.tsx",
       "label": "spa-vs-mpa.tsx",
       "category": "Page",
-      "size": 10590
+      "size": 10802
     },
     {
       "id": "presentation/pages/space-based.tsx",
       "label": "space-based.tsx",
       "category": "Page",
-      "size": 10603
+      "size": 10883
     },
     {
       "id": "presentation/pages/state-driven.tsx",
@@ -2110,7 +2434,7 @@
       "id": "presentation/pages/testing.tsx",
       "label": "testing.tsx",
       "category": "Page",
-      "size": 7282
+      "size": 7558
     },
     {
       "id": "presentation/pages/ui-catalog.tsx",
@@ -2134,13 +2458,13 @@
       "id": "presentation/pages/vertical.tsx",
       "label": "vertical.tsx",
       "category": "Page",
-      "size": 9818
+      "size": 10095
     },
     {
       "id": "presentation/pages/viper.tsx",
       "label": "viper.tsx",
       "category": "Page",
-      "size": 11623
+      "size": 11897
     },
     {
       "id": "presentation/pages/workshop.tsx",
@@ -2215,6 +2539,21 @@
       "value": 1
     },
     {
+      "source": "domain/diagrams/geometry.ts",
+      "target": "domain/diagrams/sceneSpec.ts",
+      "value": 1
+    },
+    {
+      "source": "domain/diagrams/sceneState.ts",
+      "target": "domain/diagrams/sceneSpec.ts",
+      "value": 1
+    },
+    {
+      "source": "domain/entities/DiagramScene.ts",
+      "target": "domain/diagrams/sceneSpec.ts",
+      "value": 1
+    },
+    {
       "source": "domain/entities/Progress.ts",
       "target": "domain/entities/Sandbox.ts",
       "value": 1
@@ -2247,6 +2586,16 @@
     {
       "source": "domain/usecases/CollectionValidator.ts",
       "target": "domain/entities/CmsEntry.ts",
+      "value": 1
+    },
+    {
+      "source": "domain/usecases/DiagramSceneValidator.ts",
+      "target": "domain/entities/DiagramScene.ts",
+      "value": 1
+    },
+    {
+      "source": "domain/usecases/DiagramSceneValidator.ts",
+      "target": "domain/diagrams/sceneSpec.ts",
       "value": 1
     },
     {
@@ -2307,6 +2656,246 @@
     {
       "source": "infrastructure/cms/HttpContentClient.ts",
       "target": "domain/entities/CmsEntry.ts",
+      "value": 1
+    },
+    {
+      "source": "infrastructure/diagramScenes/aiScenes.ts",
+      "target": "domain/entities/DiagramScene.ts",
+      "value": 1
+    },
+    {
+      "source": "infrastructure/diagramScenes/brokerScene.ts",
+      "target": "domain/entities/DiagramScene.ts",
+      "value": 1
+    },
+    {
+      "source": "infrastructure/diagramScenes/cleanArchScene.ts",
+      "target": "domain/entities/DiagramScene.ts",
+      "value": 1
+    },
+    {
+      "source": "infrastructure/diagramScenes/containerizationScene.ts",
+      "target": "domain/entities/DiagramScene.ts",
+      "value": 1
+    },
+    {
+      "source": "infrastructure/diagramScenes/cqrsScene.ts",
+      "target": "domain/entities/DiagramScene.ts",
+      "value": 1
+    },
+    {
+      "source": "infrastructure/diagramScenes/eventSourcingScene.ts",
+      "target": "domain/entities/DiagramScene.ts",
+      "value": 1
+    },
+    {
+      "source": "infrastructure/diagramScenes/fsdScene.ts",
+      "target": "domain/entities/DiagramScene.ts",
+      "value": 1
+    },
+    {
+      "source": "infrastructure/diagramScenes/gitOpsScene.ts",
+      "target": "domain/entities/DiagramScene.ts",
+      "value": 1
+    },
+    {
+      "source": "infrastructure/diagramScenes/hexagonalScene.ts",
+      "target": "domain/entities/DiagramScene.ts",
+      "value": 1
+    },
+    {
+      "source": "infrastructure/diagramScenes/index.ts",
+      "target": "infrastructure/diagramScenes/aiScenes.ts",
+      "value": 1
+    },
+    {
+      "source": "infrastructure/diagramScenes/index.ts",
+      "target": "infrastructure/diagramScenes/brokerScene.ts",
+      "value": 1
+    },
+    {
+      "source": "infrastructure/diagramScenes/index.ts",
+      "target": "infrastructure/diagramScenes/cleanArchScene.ts",
+      "value": 1
+    },
+    {
+      "source": "infrastructure/diagramScenes/index.ts",
+      "target": "infrastructure/diagramScenes/containerizationScene.ts",
+      "value": 1
+    },
+    {
+      "source": "infrastructure/diagramScenes/index.ts",
+      "target": "infrastructure/diagramScenes/cqrsScene.ts",
+      "value": 1
+    },
+    {
+      "source": "infrastructure/diagramScenes/index.ts",
+      "target": "infrastructure/diagramScenes/eventSourcingScene.ts",
+      "value": 1
+    },
+    {
+      "source": "infrastructure/diagramScenes/index.ts",
+      "target": "infrastructure/diagramScenes/fsdScene.ts",
+      "value": 1
+    },
+    {
+      "source": "infrastructure/diagramScenes/index.ts",
+      "target": "infrastructure/diagramScenes/gitOpsScene.ts",
+      "value": 1
+    },
+    {
+      "source": "infrastructure/diagramScenes/index.ts",
+      "target": "infrastructure/diagramScenes/hexagonalScene.ts",
+      "value": 1
+    },
+    {
+      "source": "infrastructure/diagramScenes/index.ts",
+      "target": "infrastructure/diagramScenes/lambdaKappaScene.ts",
+      "value": 1
+    },
+    {
+      "source": "infrastructure/diagramScenes/index.ts",
+      "target": "infrastructure/diagramScenes/messagingScenes.ts",
+      "value": 1
+    },
+    {
+      "source": "infrastructure/diagramScenes/index.ts",
+      "target": "infrastructure/diagramScenes/microservicesScene.ts",
+      "value": 1
+    },
+    {
+      "source": "infrastructure/diagramScenes/index.ts",
+      "target": "infrastructure/diagramScenes/onionScene.ts",
+      "value": 1
+    },
+    {
+      "source": "infrastructure/diagramScenes/index.ts",
+      "target": "infrastructure/diagramScenes/opsScenes.ts",
+      "value": 1
+    },
+    {
+      "source": "infrastructure/diagramScenes/index.ts",
+      "target": "infrastructure/diagramScenes/platformScenes.ts",
+      "value": 1
+    },
+    {
+      "source": "infrastructure/diagramScenes/index.ts",
+      "target": "infrastructure/diagramScenes/principlesScenes.ts",
+      "value": 1
+    },
+    {
+      "source": "infrastructure/diagramScenes/index.ts",
+      "target": "infrastructure/diagramScenes/pubSubScene.ts",
+      "value": 1
+    },
+    {
+      "source": "infrastructure/diagramScenes/index.ts",
+      "target": "infrastructure/diagramScenes/securityScene.ts",
+      "value": 1
+    },
+    {
+      "source": "infrastructure/diagramScenes/index.ts",
+      "target": "infrastructure/diagramScenes/testingScenes.ts",
+      "value": 1
+    },
+    {
+      "source": "infrastructure/diagramScenes/index.ts",
+      "target": "infrastructure/diagramScenes/topologyScenes.ts",
+      "value": 1
+    },
+    {
+      "source": "infrastructure/diagramScenes/index.ts",
+      "target": "infrastructure/diagramScenes/uiPatternScenes.ts",
+      "value": 1
+    },
+    {
+      "source": "infrastructure/diagramScenes/index.ts",
+      "target": "infrastructure/diagramScenes/viperScene.ts",
+      "value": 1
+    },
+    {
+      "source": "infrastructure/diagramScenes/lambdaKappaScene.ts",
+      "target": "domain/entities/DiagramScene.ts",
+      "value": 1
+    },
+    {
+      "source": "infrastructure/diagramScenes/messagingScenes.ts",
+      "target": "domain/entities/DiagramScene.ts",
+      "value": 1
+    },
+    {
+      "source": "infrastructure/diagramScenes/microservicesScene.ts",
+      "target": "domain/entities/DiagramScene.ts",
+      "value": 1
+    },
+    {
+      "source": "infrastructure/diagramScenes/onionScene.ts",
+      "target": "domain/entities/DiagramScene.ts",
+      "value": 1
+    },
+    {
+      "source": "infrastructure/diagramScenes/opsScenes.ts",
+      "target": "domain/entities/DiagramScene.ts",
+      "value": 1
+    },
+    {
+      "source": "infrastructure/diagramScenes/platformScenes.ts",
+      "target": "domain/entities/DiagramScene.ts",
+      "value": 1
+    },
+    {
+      "source": "infrastructure/diagramScenes/principlesScenes.ts",
+      "target": "domain/entities/DiagramScene.ts",
+      "value": 1
+    },
+    {
+      "source": "infrastructure/diagramScenes/pubSubScene.ts",
+      "target": "domain/entities/DiagramScene.ts",
+      "value": 1
+    },
+    {
+      "source": "infrastructure/diagramScenes/securityScene.ts",
+      "target": "domain/entities/DiagramScene.ts",
+      "value": 1
+    },
+    {
+      "source": "infrastructure/diagramScenes/testingScenes.ts",
+      "target": "domain/entities/DiagramScene.ts",
+      "value": 1
+    },
+    {
+      "source": "infrastructure/diagramScenes/topologyScenes.ts",
+      "target": "domain/entities/DiagramScene.ts",
+      "value": 1
+    },
+    {
+      "source": "infrastructure/diagramScenes/uiPatternScenes.ts",
+      "target": "domain/entities/DiagramScene.ts",
+      "value": 1
+    },
+    {
+      "source": "infrastructure/diagramScenes/viperScene.ts",
+      "target": "domain/entities/DiagramScene.ts",
+      "value": 1
+    },
+    {
+      "source": "infrastructure/DiagramScenesData.ts",
+      "target": "domain/entities/CmsEntry.ts",
+      "value": 1
+    },
+    {
+      "source": "infrastructure/DiagramScenesData.ts",
+      "target": "domain/entities/DiagramScene.ts",
+      "value": 1
+    },
+    {
+      "source": "infrastructure/DiagramScenesData.ts",
+      "target": "infrastructure/diagramScenes/index.ts",
+      "value": 1
+    },
+    {
+      "source": "infrastructure/DiagramScenesData.ts",
+      "target": "domain/diagrams/sceneSpec.ts",
       "value": 1
     },
     {
@@ -2552,6 +3141,356 @@
     {
       "source": "presentation/components/ComparisonMatrix.tsx",
       "target": "presentation/components/cms/ContentLoading.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/components/diagrams/CmsDiagramScene.tsx",
+      "target": "domain/diagrams/sceneSpec.ts",
+      "value": 1
+    },
+    {
+      "source": "presentation/components/diagrams/CmsDiagramScene.tsx",
+      "target": "presentation/hooks/useDiagramScene.ts",
+      "value": 1
+    },
+    {
+      "source": "presentation/components/diagrams/CmsDiagramScene.tsx",
+      "target": "presentation/components/diagrams/DiagramScene.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/components/diagrams/CmsDiagramScene.tsx",
+      "target": "presentation/components/diagrams/diagramTheme.ts",
+      "value": 1
+    },
+    {
+      "source": "presentation/components/diagrams/CmsDiagramScene.tsx",
+      "target": "presentation/components/diagrams/templates/labels.ts",
+      "value": 1
+    },
+    {
+      "source": "presentation/components/diagrams/DiagramEdges.tsx",
+      "target": "domain/diagrams/sceneSpec.ts",
+      "value": 1
+    },
+    {
+      "source": "presentation/components/diagrams/DiagramEdges.tsx",
+      "target": "domain/diagrams/sceneState.ts",
+      "value": 1
+    },
+    {
+      "source": "presentation/components/diagrams/DiagramEdges.tsx",
+      "target": "domain/diagrams/sceneState.ts",
+      "value": 1
+    },
+    {
+      "source": "presentation/components/diagrams/DiagramEdges.tsx",
+      "target": "domain/diagrams/geometry.ts",
+      "value": 1
+    },
+    {
+      "source": "presentation/components/diagrams/DiagramEdges.tsx",
+      "target": "domain/diagrams/sceneSpec.ts",
+      "value": 1
+    },
+    {
+      "source": "presentation/components/diagrams/DiagramEdges.tsx",
+      "target": "presentation/components/diagrams/diagramTheme.ts",
+      "value": 1
+    },
+    {
+      "source": "presentation/components/diagrams/DiagramNodeView.tsx",
+      "target": "domain/diagrams/sceneSpec.ts",
+      "value": 1
+    },
+    {
+      "source": "presentation/components/diagrams/DiagramNodeView.tsx",
+      "target": "domain/diagrams/geometry.ts",
+      "value": 1
+    },
+    {
+      "source": "presentation/components/diagrams/DiagramNodeView.tsx",
+      "target": "presentation/components/diagrams/diagramTheme.ts",
+      "value": 1
+    },
+    {
+      "source": "presentation/components/diagrams/DiagramScene.tsx",
+      "target": "domain/diagrams/sceneSpec.ts",
+      "value": 1
+    },
+    {
+      "source": "presentation/components/diagrams/DiagramScene.tsx",
+      "target": "domain/diagrams/sceneState.ts",
+      "value": 1
+    },
+    {
+      "source": "presentation/components/diagrams/DiagramScene.tsx",
+      "target": "presentation/hooks/useScenePlayback.ts",
+      "value": 1
+    },
+    {
+      "source": "presentation/components/diagrams/DiagramScene.tsx",
+      "target": "presentation/components/diagrams/diagramTheme.ts",
+      "value": 1
+    },
+    {
+      "source": "presentation/components/diagrams/DiagramScene.tsx",
+      "target": "presentation/components/diagrams/DiagramStage.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/components/diagrams/DiagramScene.tsx",
+      "target": "presentation/components/diagrams/SceneMetrics.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/components/diagrams/DiagramScene.tsx",
+      "target": "presentation/components/diagrams/SceneNarration.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/components/diagrams/DiagramScene.tsx",
+      "target": "presentation/components/diagrams/ScenePlayerBar.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/components/diagrams/DiagramScene.tsx",
+      "target": "presentation/components/diagrams/SceneStepper.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/components/diagrams/DiagramStage.tsx",
+      "target": "domain/diagrams/sceneSpec.ts",
+      "value": 1
+    },
+    {
+      "source": "presentation/components/diagrams/DiagramStage.tsx",
+      "target": "domain/diagrams/sceneState.ts",
+      "value": 1
+    },
+    {
+      "source": "presentation/components/diagrams/DiagramStage.tsx",
+      "target": "domain/diagrams/sceneState.ts",
+      "value": 1
+    },
+    {
+      "source": "presentation/components/diagrams/DiagramStage.tsx",
+      "target": "presentation/components/diagrams/diagramTheme.ts",
+      "value": 1
+    },
+    {
+      "source": "presentation/components/diagrams/DiagramStage.tsx",
+      "target": "presentation/components/diagrams/DiagramEdges.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/components/diagrams/DiagramStage.tsx",
+      "target": "presentation/components/diagrams/DiagramNodeView.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/components/diagrams/diagramTheme.ts",
+      "target": "domain/diagrams/sceneSpec.ts",
+      "value": 1
+    },
+    {
+      "source": "presentation/components/diagrams/diagramTheme.ts",
+      "target": "presentation/themes/theme.ts",
+      "value": 1
+    },
+    {
+      "source": "presentation/components/diagrams/SceneMetrics.tsx",
+      "target": "domain/diagrams/sceneSpec.ts",
+      "value": 1
+    },
+    {
+      "source": "presentation/components/diagrams/SceneMetrics.tsx",
+      "target": "domain/diagrams/sceneState.ts",
+      "value": 1
+    },
+    {
+      "source": "presentation/components/diagrams/SceneMetrics.tsx",
+      "target": "presentation/components/diagrams/diagramTheme.ts",
+      "value": 1
+    },
+    {
+      "source": "presentation/components/diagrams/SceneNarration.tsx",
+      "target": "domain/diagrams/sceneSpec.ts",
+      "value": 1
+    },
+    {
+      "source": "presentation/components/diagrams/SceneNarration.tsx",
+      "target": "presentation/components/diagrams/diagramTheme.ts",
+      "value": 1
+    },
+    {
+      "source": "presentation/components/diagrams/ScenePlayerBar.tsx",
+      "target": "presentation/components/diagrams/diagramTheme.ts",
+      "value": 1
+    },
+    {
+      "source": "presentation/components/diagrams/SceneStepper.tsx",
+      "target": "domain/diagrams/sceneSpec.ts",
+      "value": 1
+    },
+    {
+      "source": "presentation/components/diagrams/SceneStepper.tsx",
+      "target": "presentation/components/diagrams/diagramTheme.ts",
+      "value": 1
+    },
+    {
+      "source": "presentation/components/diagrams/templates/builders/fanOut.ts",
+      "target": "domain/diagrams/sceneSpec.ts",
+      "value": 1
+    },
+    {
+      "source": "presentation/components/diagrams/templates/builders/fanOut.ts",
+      "target": "presentation/components/diagrams/templates/labels.ts",
+      "value": 1
+    },
+    {
+      "source": "presentation/components/diagrams/templates/builders/layerStack.ts",
+      "target": "domain/diagrams/sceneSpec.ts",
+      "value": 1
+    },
+    {
+      "source": "presentation/components/diagrams/templates/builders/layerStack.ts",
+      "target": "presentation/components/diagrams/templates/labels.ts",
+      "value": 1
+    },
+    {
+      "source": "presentation/components/diagrams/templates/builders/pipeline.ts",
+      "target": "domain/diagrams/sceneSpec.ts",
+      "value": 1
+    },
+    {
+      "source": "presentation/components/diagrams/templates/builders/pipeline.ts",
+      "target": "presentation/components/diagrams/templates/labels.ts",
+      "value": 1
+    },
+    {
+      "source": "presentation/components/diagrams/templates/builders/sequence.ts",
+      "target": "domain/diagrams/sceneSpec.ts",
+      "value": 1
+    },
+    {
+      "source": "presentation/components/diagrams/templates/builders/sequence.ts",
+      "target": "presentation/components/diagrams/templates/labels.ts",
+      "value": 1
+    },
+    {
+      "source": "presentation/components/diagrams/templates/builders/stateMachine.ts",
+      "target": "domain/diagrams/sceneSpec.ts",
+      "value": 1
+    },
+    {
+      "source": "presentation/components/diagrams/templates/builders/stateMachine.ts",
+      "target": "presentation/components/diagrams/templates/labels.ts",
+      "value": 1
+    },
+    {
+      "source": "presentation/components/diagrams/templates/FanOutScene.tsx",
+      "target": "presentation/components/diagrams/templates/builders/fanOut.ts",
+      "value": 1
+    },
+    {
+      "source": "presentation/components/diagrams/templates/FanOutScene.tsx",
+      "target": "presentation/components/diagrams/templates/builders/fanOut.ts",
+      "value": 1
+    },
+    {
+      "source": "presentation/components/diagrams/templates/FanOutScene.tsx",
+      "target": "presentation/components/diagrams/DiagramScene.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/components/diagrams/templates/FanOutScene.tsx",
+      "target": "presentation/components/diagrams/templates/labels.ts",
+      "value": 1
+    },
+    {
+      "source": "presentation/components/diagrams/templates/labels.ts",
+      "target": "domain/diagrams/sceneSpec.ts",
+      "value": 1
+    },
+    {
+      "source": "presentation/components/diagrams/templates/LayerStackScene.tsx",
+      "target": "presentation/components/diagrams/templates/builders/layerStack.ts",
+      "value": 1
+    },
+    {
+      "source": "presentation/components/diagrams/templates/LayerStackScene.tsx",
+      "target": "presentation/components/diagrams/templates/builders/layerStack.ts",
+      "value": 1
+    },
+    {
+      "source": "presentation/components/diagrams/templates/LayerStackScene.tsx",
+      "target": "presentation/components/diagrams/DiagramScene.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/components/diagrams/templates/LayerStackScene.tsx",
+      "target": "presentation/components/diagrams/templates/labels.ts",
+      "value": 1
+    },
+    {
+      "source": "presentation/components/diagrams/templates/PipelineScene.tsx",
+      "target": "presentation/components/diagrams/templates/builders/pipeline.ts",
+      "value": 1
+    },
+    {
+      "source": "presentation/components/diagrams/templates/PipelineScene.tsx",
+      "target": "presentation/components/diagrams/templates/builders/pipeline.ts",
+      "value": 1
+    },
+    {
+      "source": "presentation/components/diagrams/templates/PipelineScene.tsx",
+      "target": "presentation/components/diagrams/DiagramScene.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/components/diagrams/templates/PipelineScene.tsx",
+      "target": "presentation/components/diagrams/templates/labels.ts",
+      "value": 1
+    },
+    {
+      "source": "presentation/components/diagrams/templates/SequenceScene.tsx",
+      "target": "presentation/components/diagrams/templates/builders/sequence.ts",
+      "value": 1
+    },
+    {
+      "source": "presentation/components/diagrams/templates/SequenceScene.tsx",
+      "target": "presentation/components/diagrams/templates/builders/sequence.ts",
+      "value": 1
+    },
+    {
+      "source": "presentation/components/diagrams/templates/SequenceScene.tsx",
+      "target": "presentation/components/diagrams/DiagramScene.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/components/diagrams/templates/SequenceScene.tsx",
+      "target": "presentation/components/diagrams/templates/labels.ts",
+      "value": 1
+    },
+    {
+      "source": "presentation/components/diagrams/templates/StateMachineScene.tsx",
+      "target": "presentation/components/diagrams/templates/builders/stateMachine.ts",
+      "value": 1
+    },
+    {
+      "source": "presentation/components/diagrams/templates/StateMachineScene.tsx",
+      "target": "presentation/components/diagrams/templates/builders/stateMachine.ts",
+      "value": 1
+    },
+    {
+      "source": "presentation/components/diagrams/templates/StateMachineScene.tsx",
+      "target": "presentation/components/diagrams/DiagramScene.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/components/diagrams/templates/StateMachineScene.tsx",
+      "target": "presentation/components/diagrams/templates/labels.ts",
       "value": 1
     },
     {
@@ -2875,6 +3814,36 @@
       "value": 1
     },
     {
+      "source": "presentation/hooks/useDiagramScene.ts",
+      "target": "domain/diagrams/sceneSpec.ts",
+      "value": 1
+    },
+    {
+      "source": "presentation/hooks/useDiagramScene.ts",
+      "target": "domain/entities/DiagramScene.ts",
+      "value": 1
+    },
+    {
+      "source": "presentation/hooks/useDiagramScene.ts",
+      "target": "presentation/hooks/useCmsCollection.ts",
+      "value": 1
+    },
+    {
+      "source": "presentation/hooks/useDiagramScene.ts",
+      "target": "domain/repositories/ContentRepository.ts",
+      "value": 1
+    },
+    {
+      "source": "presentation/hooks/useScenePlayback.ts",
+      "target": "domain/diagrams/sceneSpec.ts",
+      "value": 1
+    },
+    {
+      "source": "presentation/hooks/useScenePlayback.ts",
+      "target": "domain/diagrams/sceneState.ts",
+      "value": 1
+    },
+    {
       "source": "presentation/navigation/AppRouter.tsx",
       "target": "infrastructure/performance/performanceBeacon.ts",
       "value": 1
@@ -2932,6 +3901,11 @@
     {
       "source": "presentation/pages/acid.tsx",
       "target": "presentation/components/acid/useAcidSimulation.ts",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/acid.tsx",
+      "target": "presentation/components/diagrams/templates/SequenceScene.tsx",
       "value": 1
     },
     {
@@ -3020,6 +3994,11 @@
       "value": 1
     },
     {
+      "source": "presentation/pages/agentic-ai.tsx",
+      "target": "presentation/components/diagrams/CmsDiagramScene.tsx",
+      "value": 1
+    },
+    {
       "source": "presentation/pages/anti-patterns.tsx",
       "target": "presentation/components/ArchHero.tsx",
       "value": 1
@@ -3065,6 +4044,11 @@
       "value": 1
     },
     {
+      "source": "presentation/pages/bff.tsx",
+      "target": "presentation/components/diagrams/CmsDiagramScene.tsx",
+      "value": 1
+    },
+    {
       "source": "presentation/pages/broker.tsx",
       "target": "presentation/components/ArchHero.tsx",
       "value": 1
@@ -3082,6 +4066,11 @@
     {
       "source": "presentation/pages/broker.tsx",
       "target": "presentation/components/broker/BrokerSimulationTab.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/broker.tsx",
+      "target": "presentation/components/diagrams/CmsDiagramScene.tsx",
       "value": 1
     },
     {
@@ -3110,6 +4099,16 @@
       "value": 1
     },
     {
+      "source": "presentation/pages/cap-theorem.tsx",
+      "target": "presentation/components/diagrams/DiagramSection.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/cap-theorem.tsx",
+      "target": "presentation/components/diagrams/CmsDiagramScene.tsx",
+      "value": 1
+    },
+    {
       "source": "presentation/pages/catalog.tsx",
       "target": "presentation/components/SEO.tsx",
       "value": 1
@@ -3132,6 +4131,11 @@
     {
       "source": "presentation/pages/choreography.tsx",
       "target": "presentation/components/choreography/ChoreographySimulationTab.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/choreography.tsx",
+      "target": "presentation/components/diagrams/CmsDiagramScene.tsx",
       "value": 1
     },
     {
@@ -3167,6 +4171,16 @@
     {
       "source": "presentation/pages/clean-arch.tsx",
       "target": "presentation/components/cleanarch/CleanArchModernFeatureTab.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/clean-arch.tsx",
+      "target": "presentation/components/diagrams/DiagramSection.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/clean-arch.tsx",
+      "target": "presentation/components/diagrams/CmsDiagramScene.tsx",
       "value": 1
     },
     {
@@ -3220,6 +4234,11 @@
       "value": 1
     },
     {
+      "source": "presentation/pages/client-server.tsx",
+      "target": "presentation/components/diagrams/templates/SequenceScene.tsx",
+      "value": 1
+    },
+    {
       "source": "presentation/pages/cloud-catalog.tsx",
       "target": "presentation/components/SEO.tsx",
       "value": 1
@@ -3270,6 +4289,11 @@
       "value": 1
     },
     {
+      "source": "presentation/pages/component-driven.tsx",
+      "target": "presentation/components/diagrams/CmsDiagramScene.tsx",
+      "value": 1
+    },
+    {
       "source": "presentation/pages/component-state.tsx",
       "target": "presentation/pages/component-driven.tsx",
       "value": 1
@@ -3307,6 +4331,11 @@
     {
       "source": "presentation/pages/containerization.tsx",
       "target": "presentation/components/containerization/ContainerLifecycleSimulationTab.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/containerization.tsx",
+      "target": "presentation/components/diagrams/CmsDiagramScene.tsx",
       "value": 1
     },
     {
@@ -3367,6 +4396,16 @@
     {
       "source": "presentation/pages/cqrs.tsx",
       "target": "presentation/components/CQRSSection.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/cqrs.tsx",
+      "target": "presentation/components/diagrams/DiagramSection.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/cqrs.tsx",
+      "target": "presentation/components/diagrams/CmsDiagramScene.tsx",
       "value": 1
     },
     {
@@ -3445,6 +4484,36 @@
       "value": 1
     },
     {
+      "source": "presentation/pages/diagram-lab.tsx",
+      "target": "presentation/components/SEO.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/diagram-lab.tsx",
+      "target": "presentation/components/diagrams/templates/FanOutScene.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/diagram-lab.tsx",
+      "target": "presentation/components/diagrams/templates/SequenceScene.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/diagram-lab.tsx",
+      "target": "presentation/components/diagrams/templates/LayerStackScene.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/diagram-lab.tsx",
+      "target": "presentation/components/diagrams/templates/PipelineScene.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/diagram-lab.tsx",
+      "target": "presentation/components/diagrams/templates/StateMachineScene.tsx",
+      "value": 1
+    },
+    {
       "source": "presentation/pages/discipline-catalog.tsx",
       "target": "presentation/components/SEO.tsx",
       "value": 1
@@ -3492,6 +4561,11 @@
     {
       "source": "presentation/pages/docs-annotations.tsx",
       "target": "presentation/components/docsannotations/ADRBuilderSimulationTab.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/docs-annotations.tsx",
+      "target": "presentation/components/diagrams/CmsDiagramScene.tsx",
       "value": 1
     },
     {
@@ -3590,6 +4664,11 @@
       "value": 1
     },
     {
+      "source": "presentation/pages/event-sourcing.tsx",
+      "target": "presentation/components/diagrams/CmsDiagramScene.tsx",
+      "value": 1
+    },
+    {
       "source": "presentation/pages/evolution.tsx",
       "target": "presentation/components/ArchHero.tsx",
       "value": 1
@@ -3607,6 +4686,16 @@
     {
       "source": "presentation/pages/fsd.tsx",
       "target": "presentation/components/FSDDiagram.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/fsd.tsx",
+      "target": "presentation/components/diagrams/DiagramSection.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/fsd.tsx",
+      "target": "presentation/components/diagrams/CmsDiagramScene.tsx",
       "value": 1
     },
     {
@@ -3632,6 +4721,16 @@
     {
       "source": "presentation/pages/gitops.tsx",
       "target": "presentation/components/gitops/GitOpsReferenceFooter.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/gitops.tsx",
+      "target": "presentation/components/diagrams/DiagramSection.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/gitops.tsx",
+      "target": "presentation/components/diagrams/CmsDiagramScene.tsx",
       "value": 1
     },
     {
@@ -3672,6 +4771,16 @@
     {
       "source": "presentation/pages/hexagonal.tsx",
       "target": "presentation/components/HexagonalPractical.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/hexagonal.tsx",
+      "target": "presentation/components/diagrams/DiagramSection.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/hexagonal.tsx",
+      "target": "presentation/components/diagrams/CmsDiagramScene.tsx",
       "value": 1
     },
     {
@@ -3745,6 +4854,16 @@
       "value": 1
     },
     {
+      "source": "presentation/pages/lambda-kappa.tsx",
+      "target": "presentation/components/diagrams/DiagramSection.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/lambda-kappa.tsx",
+      "target": "presentation/components/diagrams/CmsDiagramScene.tsx",
+      "value": 1
+    },
+    {
       "source": "presentation/pages/lean-architecture.tsx",
       "target": "presentation/components/ArchHero.tsx",
       "value": 1
@@ -3775,6 +4894,16 @@
       "value": 1
     },
     {
+      "source": "presentation/pages/lean-architecture.tsx",
+      "target": "presentation/components/diagrams/DiagramSection.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/lean-architecture.tsx",
+      "target": "presentation/components/diagrams/CmsDiagramScene.tsx",
+      "value": 1
+    },
+    {
       "source": "presentation/pages/llm-ops.tsx",
       "target": "presentation/components/ArchHero.tsx",
       "value": 1
@@ -3782,6 +4911,16 @@
     {
       "source": "presentation/pages/llm-ops.tsx",
       "target": "presentation/components/SEO.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/llm-ops.tsx",
+      "target": "presentation/components/diagrams/DiagramSection.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/llm-ops.tsx",
+      "target": "presentation/components/diagrams/CmsDiagramScene.tsx",
       "value": 1
     },
     {
@@ -3837,6 +4976,16 @@
     {
       "source": "presentation/pages/microservices.tsx",
       "target": "presentation/components/SystemChoice.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/microservices.tsx",
+      "target": "presentation/components/diagrams/DiagramSection.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/microservices.tsx",
+      "target": "presentation/components/diagrams/CmsDiagramScene.tsx",
       "value": 1
     },
     {
@@ -3902,6 +5051,16 @@
     {
       "source": "presentation/pages/mvi.tsx",
       "target": "presentation/components/SEO.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/mvi.tsx",
+      "target": "presentation/components/diagrams/DiagramSection.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/mvi.tsx",
+      "target": "presentation/components/diagrams/CmsDiagramScene.tsx",
       "value": 1
     },
     {
@@ -3985,6 +5144,16 @@
       "value": 1
     },
     {
+      "source": "presentation/pages/mvvm.tsx",
+      "target": "presentation/components/diagrams/DiagramSection.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/mvvm.tsx",
+      "target": "presentation/components/diagrams/CmsDiagramScene.tsx",
+      "value": 1
+    },
+    {
       "source": "presentation/pages/object-oriented.tsx",
       "target": "presentation/pages/oop-fundamentals.tsx",
       "value": 1
@@ -4002,6 +5171,16 @@
     {
       "source": "presentation/pages/onion.tsx",
       "target": "presentation/components/OnionPractical.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/onion.tsx",
+      "target": "presentation/components/diagrams/DiagramSection.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/onion.tsx",
+      "target": "presentation/components/diagrams/CmsDiagramScene.tsx",
       "value": 1
     },
     {
@@ -4040,6 +5219,16 @@
       "value": 1
     },
     {
+      "source": "presentation/pages/orchestration.tsx",
+      "target": "presentation/components/diagrams/DiagramSection.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/orchestration.tsx",
+      "target": "presentation/components/diagrams/CmsDiagramScene.tsx",
+      "value": 1
+    },
+    {
       "source": "presentation/pages/p2p.tsx",
       "target": "presentation/components/ArchHero.tsx",
       "value": 1
@@ -4057,6 +5246,11 @@
     {
       "source": "presentation/pages/p2p.tsx",
       "target": "presentation/components/p2p/P2PSimulationTab.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/p2p.tsx",
+      "target": "presentation/components/diagrams/CmsDiagramScene.tsx",
       "value": 1
     },
     {
@@ -4107,6 +5301,16 @@
     {
       "source": "presentation/pages/primary-secondary.tsx",
       "target": "presentation/components/SEO.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/primary-secondary.tsx",
+      "target": "presentation/components/diagrams/DiagramSection.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/primary-secondary.tsx",
+      "target": "presentation/components/diagrams/CmsDiagramScene.tsx",
       "value": 1
     },
     {
@@ -4165,6 +5369,11 @@
       "value": 1
     },
     {
+      "source": "presentation/pages/pub-sub.tsx",
+      "target": "presentation/components/diagrams/CmsDiagramScene.tsx",
+      "value": 1
+    },
+    {
       "source": "presentation/pages/rag-arch.tsx",
       "target": "presentation/components/ArchHero.tsx",
       "value": 1
@@ -4190,6 +5399,11 @@
       "value": 1
     },
     {
+      "source": "presentation/pages/rag-arch.tsx",
+      "target": "presentation/components/diagrams/CmsDiagramScene.tsx",
+      "value": 1
+    },
+    {
       "source": "presentation/pages/refactoring.tsx",
       "target": "presentation/components/RefactoringSurgery.tsx",
       "value": 1
@@ -4207,6 +5421,11 @@
     {
       "source": "presentation/pages/refactoring.tsx",
       "target": "presentation/components/SEO.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/refactoring.tsx",
+      "target": "presentation/components/diagrams/CmsDiagramScene.tsx",
       "value": 1
     },
     {
@@ -4252,6 +5471,11 @@
     {
       "source": "presentation/pages/robustness.tsx",
       "target": "presentation/components/robustness/RobustnessCircuitBreakerSimulationTab.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/robustness.tsx",
+      "target": "presentation/components/diagrams/CmsDiagramScene.tsx",
       "value": 1
     },
     {
@@ -4335,6 +5559,11 @@
       "value": 1
     },
     {
+      "source": "presentation/pages/security.tsx",
+      "target": "presentation/components/diagrams/CmsDiagramScene.tsx",
+      "value": 1
+    },
+    {
       "source": "presentation/pages/server-driven-ui.tsx",
       "target": "presentation/components/ArchHero.tsx",
       "value": 1
@@ -4347,6 +5576,16 @@
     {
       "source": "presentation/pages/serverless.tsx",
       "target": "presentation/components/SEO.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/serverless.tsx",
+      "target": "presentation/components/diagrams/DiagramSection.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/serverless.tsx",
+      "target": "presentation/components/diagrams/CmsDiagramScene.tsx",
       "value": 1
     },
     {
@@ -4371,6 +5610,16 @@
     },
     {
       "source": "presentation/pages/soa.tsx",
+      "target": "presentation/components/diagrams/DiagramSection.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/soa.tsx",
+      "target": "presentation/components/diagrams/CmsDiagramScene.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/soa.tsx",
       "target": "presentation/components/soa/SOAComparisonTab.tsx",
       "value": 1
     },
@@ -4387,6 +5636,16 @@
     {
       "source": "presentation/pages/solid.tsx",
       "target": "presentation/components/SOLIDHero.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/solid.tsx",
+      "target": "presentation/components/diagrams/DiagramSection.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/solid.tsx",
+      "target": "presentation/components/diagrams/CmsDiagramScene.tsx",
       "value": 1
     },
     {
@@ -4420,6 +5679,11 @@
       "value": 1
     },
     {
+      "source": "presentation/pages/spa-vs-mpa.tsx",
+      "target": "presentation/components/diagrams/CmsDiagramScene.tsx",
+      "value": 1
+    },
+    {
       "source": "presentation/pages/space-based.tsx",
       "target": "presentation/components/ArchHero.tsx",
       "value": 1
@@ -4427,6 +5691,16 @@
     {
       "source": "presentation/pages/space-based.tsx",
       "target": "presentation/components/SEO.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/space-based.tsx",
+      "target": "presentation/components/diagrams/DiagramSection.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/space-based.tsx",
+      "target": "presentation/components/diagrams/CmsDiagramScene.tsx",
       "value": 1
     },
     {
@@ -4467,6 +5741,16 @@
     {
       "source": "presentation/pages/testing.tsx",
       "target": "presentation/components/SEO.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/testing.tsx",
+      "target": "presentation/components/diagrams/DiagramSection.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/testing.tsx",
+      "target": "presentation/components/diagrams/CmsDiagramScene.tsx",
       "value": 1
     },
     {
@@ -4521,6 +5805,16 @@
     },
     {
       "source": "presentation/pages/vertical.tsx",
+      "target": "presentation/components/diagrams/DiagramSection.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/vertical.tsx",
+      "target": "presentation/components/diagrams/CmsDiagramScene.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/vertical.tsx",
       "target": "presentation/components/vertical/VerticalFeaturesTab.tsx",
       "value": 1
     },
@@ -4542,6 +5836,16 @@
     {
       "source": "presentation/pages/viper.tsx",
       "target": "presentation/components/SEO.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/viper.tsx",
+      "target": "presentation/components/diagrams/DiagramSection.tsx",
+      "value": 1
+    },
+    {
+      "source": "presentation/pages/viper.tsx",
+      "target": "presentation/components/diagrams/CmsDiagramScene.tsx",
       "value": 1
     },
     {

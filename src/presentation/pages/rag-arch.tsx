@@ -7,6 +7,7 @@ import SEO from '../components/SEO';
 import { RAGPipelineTab } from '../components/ragarch/RAGPipelineTab';
 import { AdvancedRAGTab } from '../components/ragarch/AdvancedRAGTab';
 import { RAGRetrievalSimulationTab } from '../components/ragarch/RAGRetrievalSimulationTab';
+import { CmsDiagramScene } from '../components/diagrams/CmsDiagramScene';
 
 const RAGArchPage: React.FC = () => {
   const { i18n } = useTranslation();
@@ -113,7 +114,8 @@ const RAGArchPage: React.FC = () => {
           <div id="advanced" style={{ scrollMarginTop: '100px' }}>
             <AdvancedRAGTab />
           </div>
-          <div id="simulation" style={{ scrollMarginTop: '100px' }}>
+          <div id="simulation" style={{ scrollMarginTop: '100px', display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+            <CmsDiagramScene sceneId="rag-arch" locale={isEn ? 'en' : 'tr'}  />
             <RAGRetrievalSimulationTab />
           </div>
         </div>

@@ -8,6 +8,7 @@ import { useProgress } from '../context/ProgressContext';
 import { ACIDConceptTab } from '../components/acid/ACIDConceptTab';
 import { ACIDSimulationTab } from '../components/acid/ACIDSimulationTab';
 import { useAcidSimulation } from '../components/acid/useAcidSimulation';
+import { SequenceScene } from '../components/diagrams/templates/SequenceScene';
 
 const ACIDPage: React.FC = () => {
   const { i18n } = useTranslation();
@@ -139,6 +140,79 @@ const ACIDPage: React.FC = () => {
           <div style={{ display: "flex", flexDirection: "column", gap: "4rem" }}>
           <div id="concept" style={{ scrollMarginTop: "100px" }}>
             <ACIDConceptTab />
+          </div>
+          <div id="simulation" style={{ scrollMarginTop: "100px" }}>
+            <SequenceScene
+              locale={isEn ? 'en' : 'tr'}
+              title={isEn ? 'A transfer that must not half-happen' : 'Yarım kalmaması gereken transfer'}
+              subtitle={
+                isEn
+                  ? 'Debit written, credit never lands. The log decides what survives.'
+                  : 'Borç yazıldı, alacak hiç gelmedi. Neyin kalacağına log karar verir.'
+              }
+              participants={[
+                { id: 'client', label: isEn ? 'Client' : 'İstemci', icon: 'globe', tone: 'green' },
+                { id: 'api', label: isEn ? 'Transfer API' : 'Transfer API', icon: 'server', tone: 'blue' },
+                { id: 'db', label: isEn ? 'Accounts' : 'Hesaplar', icon: 'database', tone: 'amber' },
+                { id: 'wal', label: isEn ? 'WAL' : 'WAL', icon: 'file', tone: 'violet' },
+              ]}
+              intro={{
+                title: isEn ? 'All or nothing' : 'Hep ya da hiç',
+                body: isEn
+                  ? 'A committed transaction survives a crash. An uncommitted one leaves no trace.'
+                  : 'Commit edilmiş işlem çökmeden sağ çıkar. Commit edilmemiş işlem iz bırakmaz.',
+                tag: isEn ? 'Contract' : 'Sözleşme',
+              }}
+              messages={[
+                {
+                  from: 'client',
+                  to: 'api',
+                  label: 'POST /transfer',
+                  note: isEn ? 'The client asks for a state change, not a sequence of steps.' : 'İstemci adım adım işlem değil, sonuç ister.',
+                },
+                {
+                  from: 'api',
+                  to: 'db',
+                  label: 'BEGIN',
+                  tone: 'amber',
+                  note: isEn ? 'The transaction opens. Nothing is visible to other readers yet.' : 'İşlem açılır. Henüz diğer okuyuculara görünmez.',
+                },
+                {
+                  from: 'db',
+                  to: 'wal',
+                  label: 'debit A · fsync',
+                  tone: 'violet',
+                  note: isEn ? 'The debit is durable first. A crash here can still roll back.' : 'Önce borç kalıcı olur. Burada çökmek hâlâ geri alınabilir.',
+                },
+                {
+                  from: 'db',
+                  to: 'wal',
+                  label: 'credit B · crash',
+                  tone: 'red',
+                  dashed: true,
+                  note: isEn ? 'The process dies mid-transaction. B was never credited.' : 'Süreç işlemin ortasında ölür. B hesabına hiç geçmedi.',
+                },
+                {
+                  from: 'db',
+                  to: 'wal',
+                  label: 'ROLLBACK',
+                  tone: 'red',
+                  note: isEn ? 'Recovery replays the log and erases the uncommitted debit.' : 'Kurtarma logu tekrar oynatır ve commit edilmemiş borcu siler.',
+                },
+                {
+                  from: 'api',
+                  to: 'client',
+                  label: '500 · unchanged',
+                  tone: 'red',
+                  dashed: true,
+                  note: isEn ? 'The client sees failure, and both balances are exactly as before.' : 'İstemci hata görür; iki bakiye de önceki hâlindedir.',
+                },
+              ]}
+              metrics={[
+                { id: 'atomicity', label: 'Atomicity', value: isEn ? 'guaranteed' : 'garanti', tone: 'green' },
+                { id: 'drift', label: isEn ? 'Balance drift' : 'Bakiye sapması', value: '0', tone: 'green' },
+              ]}
+            />
           </div>
         </div>
         </div>

@@ -6,6 +6,7 @@ import RefactoringSurgery from '../components/RefactoringSurgery';
 import FolderSurgery from '../components/FolderSurgery';
 import { useProgress } from '../context/ProgressContext';
 import SEO from '../components/SEO';
+import { CmsDiagramScene } from '../components/diagrams/CmsDiagramScene';
 
 const RefactoringPage: React.FC = () => {
   const { i18n } = useTranslation();
@@ -123,6 +124,9 @@ const RefactoringPage: React.FC = () => {
           </div>
 
           {/* Active Operating View */}
+          <div style={{ marginBottom: '3rem' }}>
+            <CmsDiagramScene sceneId="refactoring" locale={isEn ? 'en' : 'tr'}  />
+          </div>
           {activeTab === 'code' ? <RefactoringSurgery /> : <FolderSurgery />}
 
           {/* Highlights Row */}

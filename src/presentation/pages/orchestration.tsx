@@ -2,6 +2,8 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import ArchHero from '../components/ArchHero';
 import { Target, GitMerge, Cpu, Zap } from 'lucide-react';
+import { DiagramSection } from '../components/diagrams/DiagramSection';
+import { CmsDiagramScene } from '../components/diagrams/CmsDiagramScene';
 
 
 const OrchestrationPage = () => {
@@ -95,6 +97,10 @@ const OrchestrationPage = () => {
           { icon: <Zap />, title: 'Predictability', desc: 'Akışın sonucunu ve yolunu önceden kestirmek daha kolaydır.' }
         ]}
       />
+
+      <DiagramSection>
+        <CmsDiagramScene sceneId="orchestration" locale="tr"  />
+      </DiagramSection>
 
       {/* Detailed Deep Dive */}
       <section style={{ padding: '100px 0', borderTop: '1px solid var(--glass-border)' }}>

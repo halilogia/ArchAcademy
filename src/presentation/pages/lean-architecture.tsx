@@ -8,6 +8,8 @@ import { LeanCleanDeepDive } from '../components/lean/LeanCleanDeepDive';
 import { LeanPrinciplesViewer } from '../components/lean/LeanPrinciplesViewer';
 import { LeanCodeComparison } from '../components/lean/LeanCodeComparison';
 import { LeanMaturityModel } from '../components/lean/LeanMaturityModel';
+import { DiagramSection } from '../components/diagrams/DiagramSection';
+import { CmsDiagramScene } from '../components/diagrams/CmsDiagramScene';
 
 const WASTE_PARTICLES = [
   { x: 180, y: -120 },
@@ -115,6 +117,10 @@ const LeanArchitecturePage: React.FC = () => {
             }
           ]}
         />
+
+        <DiagramSection>
+          <CmsDiagramScene sceneId="lean-architecture" locale={isEn ? 'en' : 'tr'}  />
+        </DiagramSection>
 
         <LeanCleanDeepDive />
         <LeanPrinciplesViewer />

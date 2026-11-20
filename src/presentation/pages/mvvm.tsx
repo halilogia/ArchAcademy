@@ -18,6 +18,8 @@ import { useProgress } from '../context/ProgressContext';
 import { MVVMPrinciplesTab } from '../components/mvvm/MVVMPrinciplesTab';
 import { MVVMHybridTab } from '../components/mvvm/MVVMHybridTab';
 import { MVVMNiaTab } from '../components/mvvm/MVVMNiaTab';
+import { DiagramSection } from '../components/diagrams/DiagramSection';
+import { CmsDiagramScene } from '../components/diagrams/CmsDiagramScene';
 
 const MVVMPage: React.FC = () => {
   const { i18n } = useTranslation();
@@ -154,6 +156,10 @@ const MVVMPage: React.FC = () => {
           ))}
         </div>
       </ArchHero>
+
+      <DiagramSection>
+        <CmsDiagramScene sceneId="mvvm" locale={isEn ? 'en' : 'tr'}  />
+      </DiagramSection>
 
       <div style={{ display: "flex", flexDirection: "column", gap: "4rem" }}>
           <div id="principles" style={{ scrollMarginTop: "100px" }}>

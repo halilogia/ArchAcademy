@@ -1,6 +1,7 @@
 import fs from 'node:fs'
 import path from 'node:path'
 import ts from 'typescript'
+import { build } from 'esbuild'
 
 const root = process.cwd()
 const outDir = path.join(root, 'public', 'cms')
@@ -12,6 +13,21 @@ const loadTsModule = async (relativePath) => {
     compilerOptions: { module: ts.ModuleKind.ESNext, target: ts.ScriptTarget.ES2022 }
   })
   const dataUri = `data:text/javascript;base64,${Buffer.from(transpiled.outputText).toString('base64')}`
+  return import(dataUri)
+}
+
+const loadBundledTsModule = async (relativePath) => {
+  const result = await build({
+    entryPoints: [path.join(root, relativePath)],
+    bundle: true,
+    write: false,
+    format: 'esm',
+    platform: 'node',
+    target: 'node20',
+    logLevel: 'silent'
+  })
+  const code = result.outputFiles[0].text
+  const dataUri = `data:text/javascript;base64,${Buffer.from(code).toString('base64')}`
   return import(dataUri)
 }
 
@@ -39,6 +55,7 @@ const buildCollections = async () => {
   const searchIndex = await loadTsModule('src/infrastructure/searchIndex.ts')
   const matrix = await loadTsModule('src/infrastructure/ComparisonMatrixData.ts')
   const architecture = await loadTsModule('src/infrastructure/ArchitectureData.ts')
+  const diagramScenes = await loadBundledTsModule('src/infrastructure/DiagramScenesData.ts')
 
   return {
     'search-index': searchIndex.SEARCH_INDEX_ENVELOPE,
@@ -52,7 +69,8 @@ const buildCollections = async () => {
       'architectures',
       '1.0.0',
       Object.entries(architecture.ARCHITECTURES).map(([key, value]) => ({ key, ...value }))
-    )
+    ),
+    'diagram-scenes': diagramScenes.DIAGRAM_SCENES_ENVELOPE
   }
 }
 

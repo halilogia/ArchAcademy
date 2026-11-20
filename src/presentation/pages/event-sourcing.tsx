@@ -6,6 +6,7 @@ import ArchHero from '../components/ArchHero';
 import SEO from '../components/SEO';
 import { EventSourcingComparisonTab } from '../components/eventsourcing/EventSourcingComparisonTab';
 import { EventSourcingSimulationTab } from '../components/eventsourcing/EventSourcingSimulationTab';
+import { CmsDiagramScene } from '../components/diagrams/CmsDiagramScene';
 
 const EventSourcingPage: React.FC = () => {
   const { i18n } = useTranslation();
@@ -163,7 +164,8 @@ const EventSourcingPage: React.FC = () => {
           <div id="comparison" style={{ scrollMarginTop: "100px" }}>
             <EventSourcingComparisonTab />
           </div>
-          <div id="simulation" style={{ scrollMarginTop: "100px" }}>
+          <div id="simulation" style={{ scrollMarginTop: "100px", display: "flex", flexDirection: "column", gap: "2rem" }}>
+            <CmsDiagramScene sceneId="event-sourcing" locale={isEn ? 'en' : 'tr'}  />
             <EventSourcingSimulationTab />
           </div>
         </div>

@@ -8,6 +8,7 @@ import { ADRArchitectureTab } from '../components/docsannotations/ADRArchitectur
 import { C4ModelHierarchyTab } from '../components/docsannotations/C4ModelHierarchyTab';
 import { ArchitectureDiagramsTab } from '../components/docsannotations/ArchitectureDiagramsTab';
 import { ADRBuilderSimulationTab } from '../components/docsannotations/ADRBuilderSimulationTab';
+import { CmsDiagramScene } from '../components/diagrams/CmsDiagramScene';
 
 const DocsAnnotationsPage: React.FC = () => {
   const { i18n } = useTranslation();
@@ -119,7 +120,8 @@ const DocsAnnotationsPage: React.FC = () => {
           <div id="diagrams" style={{ scrollMarginTop: "100px" }}>
             <ArchitectureDiagramsTab />
           </div>
-          <div id="simulation" style={{ scrollMarginTop: "100px" }}>
+          <div id="simulation" style={{ scrollMarginTop: "100px", display: "flex", flexDirection: "column", gap: "2rem" }}>
+            <CmsDiagramScene sceneId="docs-annotations" locale={isEn ? 'en' : 'tr'}  />
             <ADRBuilderSimulationTab />
           </div>
         </div>

@@ -274,6 +274,34 @@ button {
   }
 }
 
+/* Diagram scene shell: stage + narration side by side, stacked on narrow screens. */
+.diagram-scene-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 2.05fr) minmax(250px, 0.95fr);
+  gap: 14px;
+  align-items: stretch;
+}
+
+.diagram-scene-grid > * {
+  min-width: 0;
+}
+
+@media (max-width: 980px) {
+  .diagram-scene-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .diagram-metrics {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+
+@media (max-width: 560px) {
+  .diagram-metrics {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+
 /*
  * Respect the OS "reduce motion" setting.
  * Page-level framer-motion animation is scoped out by these rules for the shell,

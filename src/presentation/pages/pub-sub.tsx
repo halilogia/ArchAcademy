@@ -6,6 +6,7 @@ import ArchHero from '../components/ArchHero';
 import SEO from '../components/SEO';
 import { PubSubComparisonTab } from '../components/pubsub/PubSubComparisonTab';
 import { PubSubSimulationTab, Topic } from '../components/pubsub/PubSubSimulationTab';
+import { CmsDiagramScene } from '../components/diagrams/CmsDiagramScene';
 
 const PubSubPage: React.FC = () => {
   const { i18n } = useTranslation();
@@ -157,7 +158,8 @@ const PubSubPage: React.FC = () => {
           <div id="comparison" style={{ scrollMarginTop: "100px" }}>
             <PubSubComparisonTab />
           </div>
-          <div id="simulation" style={{ scrollMarginTop: "100px" }}>
+          <div id="simulation" style={{ scrollMarginTop: "100px", display: "flex", flexDirection: "column", gap: "2rem" }}>
+            <CmsDiagramScene sceneId="pub-sub" locale={isEn ? 'en' : 'tr'}  />
             <PubSubSimulationTab />
           </div>
         </div>

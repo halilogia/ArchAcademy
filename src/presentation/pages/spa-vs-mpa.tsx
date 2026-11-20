@@ -6,6 +6,7 @@ import ArchHero from '../components/ArchHero';
 import SEO from '../components/SEO';
 import { SPAMPAComparisonTab } from '../components/spampa/SPAMPAComparisonTab';
 import { SPAMPASimulationTab } from '../components/spampa/SPAMPASimulationTab';
+import { CmsDiagramScene } from '../components/diagrams/CmsDiagramScene';
 
 const SPAvsMPAPage: React.FC = () => {
   const { i18n } = useTranslation();
@@ -163,7 +164,8 @@ const SPAvsMPAPage: React.FC = () => {
           <div id="comparison" style={{ scrollMarginTop: "100px" }}>
             <SPAMPAComparisonTab />
           </div>
-          <div id="simulation" style={{ scrollMarginTop: "100px" }}>
+          <div id="simulation" style={{ scrollMarginTop: "100px", display: "flex", flexDirection: "column", gap: "2rem" }}>
+            <CmsDiagramScene sceneId="spa-vs-mpa" locale={isEn ? 'en' : 'tr'}  />
             <SPAMPASimulationTab />
           </div>
         </div>

@@ -4,6 +4,8 @@ import { useTranslation } from 'react-i18next';
 import { CheckCircle2, Shield, Zap, Layers, RotateCcw, BookOpen, FileCheck } from 'lucide-react';
 import ArchHero from '../components/ArchHero';
 import SEO from '../components/SEO';
+import { DiagramSection } from '../components/diagrams/DiagramSection';
+import { CmsDiagramScene } from '../components/diagrams/CmsDiagramScene';
 import { TestPyramidTab } from '../components/testing/TestPyramidTab';
 import { TDDLifecycleTab } from '../components/testing/TDDLifecycleTab';
 import { TestingStrategiesTab } from '../components/testing/TestingStrategiesTab';
@@ -99,6 +101,10 @@ const TestingPage: React.FC = () => {
             ))}
           </div>
         </ArchHero>
+
+        <DiagramSection>
+          <CmsDiagramScene sceneId="testing" locale={isEn ? 'en' : 'tr'}  />
+        </DiagramSection>
 
         <div className="container" style={{ marginTop: '2rem' }}>
           <div style={{ display: "flex", flexDirection: "column", gap: "4rem" }}>

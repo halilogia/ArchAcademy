@@ -2,6 +2,8 @@ import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import SOLIDHero from '../components/SOLIDHero';
+import { DiagramSection } from '../components/diagrams/DiagramSection';
+import { CmsDiagramScene } from '../components/diagrams/CmsDiagramScene';
 import SOLIDSection from '../components/SOLIDSection';
 import { useProgress } from '../context/ProgressContext';
 
@@ -53,6 +55,10 @@ const SOLIDPage = () => {
       style={{ background: 'var(--bg-dark)' }}
     >
       <SOLIDHero />
+
+      <DiagramSection>
+        <CmsDiagramScene sceneId="solid" locale={isEn ? 'en' : 'tr'}  />
+      </DiagramSection>
       <SOLIDSection />
 
       <section style={{ padding: '80px 0', background: 'rgba(2, 6, 23, 0.3)' }}>

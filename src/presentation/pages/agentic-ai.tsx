@@ -7,6 +7,7 @@ import SEO from '../components/SEO';
 import { AgenticCorePatternsTab } from '../components/agenticai/AgenticCorePatternsTab';
 import { MultiAgentOrchestrationTab } from '../components/agenticai/MultiAgentOrchestrationTab';
 import { AgentSwarmSimulationTab } from '../components/agenticai/AgentSwarmSimulationTab';
+import { CmsDiagramScene } from '../components/diagrams/CmsDiagramScene';
 
 const AgenticAIPage: React.FC = () => {
   const { i18n } = useTranslation();
@@ -113,7 +114,8 @@ const AgenticAIPage: React.FC = () => {
           <div id="orchestration" style={{ scrollMarginTop: '100px' }}>
             <MultiAgentOrchestrationTab />
           </div>
-          <div id="simulation" style={{ scrollMarginTop: '100px' }}>
+          <div id="simulation" style={{ scrollMarginTop: '100px', display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+            <CmsDiagramScene sceneId="agentic-ai" locale={isEn ? 'en' : 'tr'}  />
             <AgentSwarmSimulationTab />
           </div>
         </div>

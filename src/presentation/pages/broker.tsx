@@ -6,6 +6,7 @@ import ArchHero from '../components/ArchHero';
 import SEO from '../components/SEO';
 import { BrokerComparisonTab } from '../components/broker/BrokerComparisonTab';
 import { BrokerSimulationTab } from '../components/broker/BrokerSimulationTab';
+import { CmsDiagramScene } from '../components/diagrams/CmsDiagramScene';
 
 const BrokerPage: React.FC = () => {
   const { i18n } = useTranslation();
@@ -172,7 +173,8 @@ const BrokerPage: React.FC = () => {
           <div id="comparison" style={{ scrollMarginTop: "100px" }}>
             <BrokerComparisonTab />
           </div>
-          <div id="simulation" style={{ scrollMarginTop: "100px" }}>
+          <div id="simulation" style={{ scrollMarginTop: "100px", display: "flex", flexDirection: "column", gap: "2rem" }}>
+            <CmsDiagramScene sceneId="broker" locale={isEn ? 'en' : 'tr'}  />
             <BrokerSimulationTab />
           </div>
         </div>

@@ -6,6 +6,8 @@ import ArchHero from '../components/ArchHero';
 import SEO from '../components/SEO';
 import { GitOpsPipelineStepper } from '../components/gitops/GitOpsPipelineStepper';
 import { GitOpsReferenceFooter } from '../components/gitops/GitOpsReferenceFooter';
+import { DiagramSection } from '../components/diagrams/DiagramSection';
+import { CmsDiagramScene } from '../components/diagrams/CmsDiagramScene';
 
 const GitOpsPage: React.FC = () => {
   const { i18n } = useTranslation();
@@ -56,6 +58,10 @@ const GitOpsPage: React.FC = () => {
             { icon: <RefreshCw />, title: isEn ? 'Self-Healing' : 'Otomatik İyileştirme', desc: isEn ? 'If live drift occurs, reconcilers auto-correct the environment to match Git.' : 'Canlı ortam bozulursa, sistem Git\'e bakarak kendini otomatik düzeltir.' }
           ]}
         />
+
+        <DiagramSection>
+          <CmsDiagramScene sceneId="gitops" locale={isEn ? 'en' : 'tr'}  />
+        </DiagramSection>
 
         <GitOpsPipelineStepper />
         <GitOpsReferenceFooter />
