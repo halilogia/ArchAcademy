@@ -28,7 +28,7 @@
       "id": "domain/entities/CmsEntry.ts",
       "label": "CmsEntry.ts",
       "category": "Domain",
-      "size": 782
+      "size": 827
     },
     {
       "id": "domain/entities/ContentTypes.ts",
@@ -1588,7 +1588,7 @@
       "id": "presentation/navigation/AppRouter.tsx",
       "label": "AppRouter.tsx",
       "category": "App",
-      "size": 13825
+      "size": 14057
     },
     {
       "id": "presentation/pages/abstraction.tsx",
@@ -1600,7 +1600,7 @@
       "id": "presentation/pages/acid.tsx",
       "label": "acid.tsx",
       "category": "Page",
-      "size": 7560
+      "size": 7710
     },
     {
       "id": "presentation/pages/acronyms.tsx",
@@ -1618,7 +1618,7 @@
       "id": "presentation/pages/agentic-ai.tsx",
       "label": "agentic-ai.tsx",
       "category": "Page",
-      "size": 7627
+      "size": 7766
     },
     {
       "id": "presentation/pages/anti-patterns.tsx",
@@ -1642,7 +1642,7 @@
       "id": "presentation/pages/bff.tsx",
       "label": "bff.tsx",
       "category": "Page",
-      "size": 11262
+      "size": 11480
     },
     {
       "id": "presentation/pages/broker.tsx",
@@ -1654,7 +1654,7 @@
       "id": "presentation/pages/cap-theorem.tsx",
       "label": "cap-theorem.tsx",
       "category": "Page",
-      "size": 8189
+      "size": 8345
     },
     {
       "id": "presentation/pages/catalog.tsx",
@@ -1672,7 +1672,7 @@
       "id": "presentation/pages/clean-arch.tsx",
       "label": "clean-arch.tsx",
       "category": "Page",
-      "size": 7556
+      "size": 7722
     },
     {
       "id": "presentation/pages/clean-code.tsx",
@@ -1702,7 +1702,7 @@
       "id": "presentation/pages/component-driven.tsx",
       "label": "component-driven.tsx",
       "category": "Page",
-      "size": 7799
+      "size": 7946
     },
     {
       "id": "presentation/pages/component-state.tsx",
@@ -1720,13 +1720,13 @@
       "id": "presentation/pages/containerization.tsx",
       "label": "containerization.tsx",
       "category": "Page",
-      "size": 8090
+      "size": 8236
     },
     {
       "id": "presentation/pages/content-console.tsx",
       "label": "content-console.tsx",
       "category": "Page",
-      "size": 19226
+      "size": 19659
     },
     {
       "id": "presentation/pages/cqrs.tsx",
@@ -1780,7 +1780,7 @@
       "id": "presentation/pages/docs-annotations.tsx",
       "label": "docs-annotations.tsx",
       "category": "Page",
-      "size": 7970
+      "size": 8116
     },
     {
       "id": "presentation/pages/ecs.tsx",
@@ -1804,7 +1804,7 @@
       "id": "presentation/pages/event-sourcing.tsx",
       "label": "event-sourcing.tsx",
       "category": "Page",
-      "size": 11299
+      "size": 11518
     },
     {
       "id": "presentation/pages/evolution.tsx",
@@ -1828,7 +1828,7 @@
       "id": "presentation/pages/gitops.tsx",
       "label": "gitops.tsx",
       "category": "Page",
-      "size": 3973
+      "size": 4040
     },
     {
       "id": "presentation/pages/glossary.tsx",
@@ -1870,13 +1870,13 @@
       "id": "presentation/pages/lambda-kappa.tsx",
       "label": "lambda-kappa.tsx",
       "category": "Page",
-      "size": 11144
+      "size": 11371
     },
     {
       "id": "presentation/pages/lean-architecture.tsx",
       "label": "lean-architecture.tsx",
       "category": "Page",
-      "size": 5268
+      "size": 5396
     },
     {
       "id": "presentation/pages/library.tsx",
@@ -1888,7 +1888,7 @@
       "id": "presentation/pages/llm-ops.tsx",
       "label": "llm-ops.tsx",
       "category": "Page",
-      "size": 6619
+      "size": 6753
     },
     {
       "id": "presentation/pages/micro-frontends.tsx",
@@ -2002,7 +2002,7 @@
       "id": "presentation/pages/primary-secondary.tsx",
       "label": "primary-secondary.tsx",
       "category": "Page",
-      "size": 8810
+      "size": 8976
     },
     {
       "id": "presentation/pages/project-arch.tsx",
@@ -2014,19 +2014,19 @@
       "id": "presentation/pages/pub-sub.tsx",
       "label": "pub-sub.tsx",
       "category": "Page",
-      "size": 9879
+      "size": 10092
     },
     {
       "id": "presentation/pages/rag-arch.tsx",
       "label": "rag-arch.tsx",
       "category": "Page",
-      "size": 7566
+      "size": 7705
     },
     {
       "id": "presentation/pages/refactoring.tsx",
       "label": "refactoring.tsx",
       "category": "Page",
-      "size": 6574
+      "size": 6721
     },
     {
       "id": "presentation/pages/roadmap.tsx",
@@ -2038,7 +2038,7 @@
       "id": "presentation/pages/robustness.tsx",
       "label": "robustness.tsx",
       "category": "Page",
-      "size": 7136
+      "size": 7284
     },
     {
       "id": "presentation/pages/sandbox.tsx",
@@ -2050,7 +2050,7 @@
       "id": "presentation/pages/security.tsx",
       "label": "security.tsx",
       "category": "Page",
-      "size": 7261
+      "size": 7403
     },
     {
       "id": "presentation/pages/server-driven-ui.tsx",
@@ -2062,13 +2062,13 @@
       "id": "presentation/pages/serverless.tsx",
       "label": "serverless.tsx",
       "category": "Page",
-      "size": 9861
+      "size": 10075
     },
     {
       "id": "presentation/pages/soa.tsx",
       "label": "soa.tsx",
       "category": "Page",
-      "size": 8881
+      "size": 9047
     },
     {
       "id": "presentation/pages/solid.tsx",
@@ -2080,13 +2080,13 @@
       "id": "presentation/pages/spa-vs-mpa.tsx",
       "label": "spa-vs-mpa.tsx",
       "category": "Page",
-      "size": 10590
+      "size": 10809
     },
     {
       "id": "presentation/pages/space-based.tsx",
       "label": "space-based.tsx",
       "category": "Page",
-      "size": 10603
+      "size": 10818
     },
     {
       "id": "presentation/pages/state-driven.tsx",
@@ -2110,7 +2110,7 @@
       "id": "presentation/pages/testing.tsx",
       "label": "testing.tsx",
       "category": "Page",
-      "size": 7282
+      "size": 7414
     },
     {
       "id": "presentation/pages/ui-catalog.tsx",
@@ -2134,13 +2134,13 @@
       "id": "presentation/pages/vertical.tsx",
       "label": "vertical.tsx",
       "category": "Page",
-      "size": 9818
+      "size": 10004
     },
     {
       "id": "presentation/pages/viper.tsx",
       "label": "viper.tsx",
       "category": "Page",
-      "size": 11623
+      "size": 11843
     },
     {
       "id": "presentation/pages/workshop.tsx",
